@@ -1,0 +1,105 @@
+html , body {
+    width: 100%;
+}
+.jumbotron {
+    margin-bottom: 0.625rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+.container {
+    padding: 1.5rem 0.625rem;
+}
+.container > .container {
+    padding: 5px;
+}
+.container-main {
+    padding-top: 4.5rem;
+}
+.container-main h1 {
+    padding: 5px;
+}
+nav > .container {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.comments {
+    padding: 5px;
+}
+p , .row {
+    padding: 5px;
+    font-size: 1.2rem;
+}
+li {
+    border-left: 1px solid white;
+}
+.contact , .contact a {
+    padding: 0;
+    border: none;
+    font-size: 2rem;
+}
+.footer {
+    background-color: #191919;
+    color: #f2f2f2;
+}
+
+/* Search Tool */
+.dropbtn {
+    padding: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    font-size: 16px;
+    color: white;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+#myInput {
+    padding: 14px 20px 12px 45px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+}
+#myInput:focus {
+    outline: 3px solid #ddd;
+}
+.dropdown {
+    display: inline-block;
+    position: relative;
+    padding: 8px;
+    padding-left: 3rem;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 230px;
+    z-index: 1;
+    overflow: auto;
+    border: 1px solid #ddd;
+    background-color: #f6f6f6;
+}
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
+}
+.dropdown a:hover {
+    background-color: #ddd;
+}
+.show {
+    display: block;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 766px){
+    li {
+        border: none;
+    }
+    .dropdown {
+        padding-left: 2rem;
+    }
+}
