@@ -10,7 +10,7 @@ struct classroom {
 struct classroom* edit(int r,char n[]){
 	/* We use dynamic memory (heap) using malloc instead of stack memory bacause we are going to return address of memory using pointer,
 	and stack memory clears after execution of function so the address will be non-existing.
-	Therefore we use heap as its does not clears automatically. */
+	Therefore we use heap as it does not clears automatically. */
 	struct classroom *ptr = (struct classroom*)malloc(sizeof(struct classroom));
 	ptr->roll = r;
 	strcpy(ptr->name,n);

@@ -6,7 +6,6 @@ struct classroom {
 };
 
 void print(struct classroom c[]){
-
 	for (int i = 0; i < 2; i++)
 		printf("Name: %s\nRoll: %d\n",c[i].name,c[i].roll);
 }
