@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+	int data;
+	struct node *link;
+};
+
+struct node *head = NULL;
+struct node *current = NULL;
+
+void printData(struct node *head){
+	if(head == NULL)
+		printf("Linked list is empty.");
+	struct node *ptr = NULL;
+	ptr=head;
+	printf("\nData:");
+	while(ptr != NULL){
+		printf(" %d",ptr->data);
+		ptr = ptr->link;
+	}
+}
+
+struct node* insertNodeAtEnd(struct node *current, int data){
+	struct node *temp = (struct node*)malloc(sizeof(struct node));
+	temp->data = data;
+	temp->link = NULL;
+
+	current->link = temp;
+	return temp;
+}
+
+int main(int argc, char const *argv[]){
+	// 1st node -
+	head = (struct node *)malloc(sizeof(struct node));
+	head->data = 10;
+	head->link = NULL;
+
+	printData(head);
+
+	current = head;
+	current = insertNodeAtEnd(current, 20);
+	current = insertNodeAtEnd(current, 30);
+	current = insertNodeAtEnd(current, 40);
+	printData(head);
+	
+	return 0;
+}

@@ -3,15 +3,15 @@
 
 struct node{
 	int data;
-	struct node *link;
+	struct node *next;
 };
 
-int main(int argc, char const *argv[]){
-	struct node *head = NULL;
-	head = (struct node *)malloc(sizeof(struct node));
+struct node *head = NULL;
 
+int main(int argc, char const *argv[]){
+	head = (struct node *)malloc(sizeof(struct node));
 	head->data = 20;
-	head->link = NULL;
+	head->next = NULL;
 
 	printf("%d", head->data);
 	

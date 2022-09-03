@@ -16,7 +16,7 @@ public class UDPClient {
         ia = InetAddress.getLocalHost();
 
         System.out.println("Client is Running...");
-        System.out.println("Type some text if u want to Quit type 'exit'.");
+        System.out.println("Type some text.\nTo quit type 'exit'.");
         while (true) {
             String str1 = new String(br.readLine());
             buf = str1.getBytes();
