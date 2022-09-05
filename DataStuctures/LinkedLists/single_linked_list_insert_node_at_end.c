@@ -3,7 +3,7 @@
 
 struct node{
 	int data;
-	struct node *link;
+	struct node *next;
 };
 
 struct node *head = NULL;
@@ -17,7 +17,7 @@ void printData(struct node *head){
 	printf("\nData:");
 	while(ptr != NULL){
 		printf(" %d",ptr->data);
-		ptr = ptr->link;
+		ptr = ptr->next;
 	}
 }
 
@@ -26,29 +26,29 @@ void insertNodeAtEnd(struct node *head, int data){
 	ptr=head;
 	temp=(struct node*)malloc(sizeof(struct node));
 	temp->data = data;
-	temp->link = NULL;
-	while(ptr->link != NULL)
-		ptr = ptr->link;
-	ptr->link = temp;
+	temp->next = NULL;
+	while(ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->next = temp;
 }
 
 int main(int argc, char const *argv[]){
 	// 1st node -
 	head = (struct node *)malloc(sizeof(struct node));
 	head->data = 10;
-	head->link = NULL;
+	head->next = NULL;
 
 	// 2nd node -
 	current = malloc(sizeof(struct node));
 	current->data = 20;
-	current->link = NULL;
-	head->link = current;
+	current->next = NULL;
+	head->next = current;
 
 	// 3rd node -
 	current = malloc(sizeof(struct node));
 	current->data = 30;
-	current->link = NULL;
-	head->link->link = current;
+	current->next = NULL;
+	head->next->next = current;
 
 	printData(head);
 
