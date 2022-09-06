@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]){
 	head->data = 20;
 	head->next = NULL;
 
-	printf("%d", head->data);
+	printf("Data: %d", head->data);
 	
 	return 0;
 }
