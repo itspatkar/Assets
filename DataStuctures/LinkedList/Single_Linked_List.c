@@ -9,19 +9,20 @@ struct node{
 struct node *head = NULL;
 struct node *current = NULL;
 
-
 // Traversing Single Linked List : Counting nodes -
 void countNode(struct node *head){
 	int count=0;
 	if(head == NULL)
-		printf("nexted list is empty.");
-	struct node *ptr = NULL;
-	ptr=head;
-	while(ptr != NULL){
-		count++;
-		ptr = ptr->next;
+		printf("\nLinked list is empty.");
+	else {
+		struct node *ptr = NULL;
+		ptr=head;
+		while(ptr != NULL){
+			count++;
+			ptr = ptr->next;
+		}
+		printf("Nodes in Linked list = %d",count);
 	}
-	printf("Nodes in Linked list = %d",count);
 }
 
 // Traversing Single Linked List : Printing data -
@@ -79,7 +80,7 @@ void insertNodeAtBeginning(struct node **head, int data){
 	*head = temp;
 } */
 
-// Inserting Node at Certain Position of Linked List -
+// Inserting Node at Certain Position in Linked List -
 void insertNodeAtPos(struct node *head, int data, int pos){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
@@ -92,6 +93,7 @@ void insertNodeAtPos(struct node *head, int data, int pos){
 		count++;
 		ptr = ptr->next;
 	}
+
 	temp->next = ptr->next;
 	ptr->next = temp;
 
@@ -136,7 +138,7 @@ void deleteLastNode(struct node *head){
 	}
 }
 
-// Deleting Node at Certain Position of Linked List -
+// Deleting Node at Certain Position in Linked List -
 struct node* deleteAtPosNode(struct node *head, int pos){
 	struct node *previous = head;
 	struct node *current = head;
@@ -184,8 +186,8 @@ int main(int argc, char const *argv[]){
 	current->next = NULL;
 	head->next = current;
 
-	// 3rd node (two methods for it) -
-	/* method 1 (but it cant be used as it creates unnecessory pointers) -
+	// 3rd node (two methods) -
+	/* method 1 (it can't be used as it creates unnecessory pointers) -
 	struct node *current2 = malloc(sizeof(struct node));
 	current2->data = 30;
 	current2->next = NULL;
@@ -197,12 +199,10 @@ int main(int argc, char const *argv[]){
 	current->next = NULL;
 	head->next->next = current;
 
-
 	// Traversing Linked List -
 	printf("# Traversing Linked List :\n");
 	countNode(head);
 	printData(head);
-
 
 	// Inserting Node at End of Linked List -
 	printf("\n\n# Inserting Node at End of Linked List :");
@@ -216,7 +216,6 @@ int main(int argc, char const *argv[]){
 	insertNodeAtBeginning(&head,5);
 	printData(head); */
 
-
 	// Inserting Node at Beginning of Linked List -
 	printf("\n\n# Inserting Node at Beginning of Linked List :");
 	head = insertNodeAtBeginning(head,5);
@@ -224,12 +223,10 @@ int main(int argc, char const *argv[]){
 	head = insertNodeAtBeginning(head,15);
 	printData(head);
 
-
-	// Inserting Node at Certain Position of Linked List -
+	// Inserting Node at Certain Position in Linked List -
 	printf("\n\n# Inserting Node at Certain Position of Linked List :");
 	insertNodeAtPos(head, 25, 3); // (head, data, position)
 	printData(head);
-
 
 	// Deleting First Node of Linked List -
 	printf("\n\n# Deleting First Node of Linked List :");
@@ -238,7 +235,6 @@ int main(int argc, char const *argv[]){
 	head = deleteFirstNode(head);
 	printData(head);
 
-
 	// Deleting Last Node of Linked List -
 	printf("\n\n# Deleting Last Node of Linked List :");
 	deleteLastNode(head);
@@ -246,12 +242,10 @@ int main(int argc, char const *argv[]){
 	deleteLastNode(head);
 	printData(head);
 
-
-	// Deleting Node at Certain Position of Linked List -
+	// Deleting Node at Certain Position in Linked List -
 	printf("\n\n# Deleting Node at Certain Position of Linked List :");
 	head = deleteAtPosNode(head, 3); // (head, position)
 	printData(head);
-
 
 	// Deleting Entire Linked List -
 	printf("\n\n# Deleting Entire Linked List :");
