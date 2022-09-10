@@ -174,6 +174,20 @@ struct node* deleteLinkedList(struct node *head){
 	return head;
 }
 
+// Reverse Single Linked List -
+struct node* reverseLinkedList(struct node* head){
+	struct node* prevT = NULL;
+	struct node* nextT = NULL;
+	while(head != NULL){
+		nextT = head->next;
+		head->next = prevT;
+		prevT = head;
+		head = nextT;
+	}
+	head = prevT;
+	return head;
+}
+
 int main(int argc, char const *argv[]){
 	// 1st node -
 	head = (struct node *)malloc(sizeof(struct node));
@@ -250,6 +264,17 @@ int main(int argc, char const *argv[]){
 	// Deleting Entire Linked List -
 	printf("\n\n# Deleting Entire Linked List :");
 	head = deleteLinkedList(head);
+	printData(head);
+
+	// Reverse Single Linked List -
+	printf("\n\n# // Reverse Single Linked List :");
+	head = insertNodeAtBeginning(head,10);
+	head = insertNodeAtBeginning(head,20);
+	head = insertNodeAtBeginning(head,30);
+	head = insertNodeAtBeginning(head,40);
+	head = insertNodeAtBeginning(head,50);
+	printData(head);
+	head = reverseLinkedList(head);
 	printData(head);
 
 	return 0;
