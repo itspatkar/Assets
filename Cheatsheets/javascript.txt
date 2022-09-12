@@ -1,0 +1,621 @@
+
+# JavaScript -
+
+
+## Strict Mode :- "use strict";
+
+
+## JS Display :-
+element.innerHTML
+document.write("message")
+window.alert("message")
+console.log("message")
+
+
+## JS DOM  (elements return as array) :-
+# Finding Elements (method) :
+document.getElementById("id")
+document.getElementsByTagName("class")
+document.getElementsByClassName("tag")
+document.querySelectorAll("class/id/tag")  (by CSS selector)
+
+
+# Changing HTML Elements (property) :
+element.innerHTML =  "new html content"
+element.attribute = "new value"
+element.style.property = "new style"  (CSS Style)
+element.setAttribute(attribute, value)  //Method
+
+Eg:
+1) document.getElementById("name").innerHTML = Date();
+2) document.getElementById("theme-descript").style.backgroundColor="#ffc294";
+3) var x = document.getElementById("main");
+	var y = x.getElementsByTagName("p");
+	document.getElementById("demo").innerHTML = y[0].innerHTML;
+4) var x = document.querySelectorAll("p.intro");
+	x.value = x.value.toUpperCase();
+5) var x = document.forms["frm1"];
+6) <img id="myImage" src="smiley.gif">
+	document.getElementById("myImage").src = "landscape.jpg";
+
+
+# Adding/Removing HTML Element :
+element.createElement("class/id/tag/element")
+element.remove("class/id/tag/element")
+element.appendChild("child-node")
+element.replaceChild(old-class/id/tag/element, new-class/id/tag/element)
+para-element.removeChild("child-node")
+document.write("message")
+
+
+# Returns HTML Elements/Objects :
+document.anchors
+document.applets
+document.baseURI
+document.body
+document.cookie
+document.doctype
+document.documentElement
+document.documentMode
+document.documentURI
+document.domain
+document.domConfig
+document.embeds
+document.forms
+document.head
+document.images
+document.implementation
+document.inputEncoding
+document.lastModified
+document.links
+document.readyState
+document.referrer
+document.scripts
+document.strictErrorChecking
+document.title
+document.URL
+
+
+# Event Listener :
+element.addEventListener(event, function)
+element.removeEventListener(event, function)
+document.getElementById("id").onclick = function(){code}
+
+Eg:
+element.addEventListener("click", myFunction);
+window.addEventListener("load", hello);
+
+
+# JS Node :
+nodeValue - gives value of property
+nodeName - gives name of property
+
+parentNode
+childNodes[nodenumber]
+element.firstChild
+element.lastChild.nodeValue
+nextSibling
+previousSibling
+document.body - body of document
+document.documentElement - full document
+remove()
+removeChild()
+replaceChild()
+
+Eg:
+1) document.getElementById("id02").innerHTML = document.getElementById("id01").firstChild.nodeValue;
+	document.getElementById("id02").innerHTML = document.getElementById("id01").childNodes[0].nodeValue;
+2) var elmnt = document.getElementById("p1");
+	elmnt.remove();
+3) var parent = document.getElementById("div1");
+	var child = document.getElementById("p1");
+	parent.removeChild(child);
+
+
+## Browser Object Model :-
+
+# Window Methods & Properties :
+window.innerHeight
+window.innerWidth
+window.open() // window.open("link")
+window.close()
+window.moveTo()
+window.resizeTo()
+window.print();
+screen.width
+screen.height
+screen.availWidth (without taskbar)
+screen.availHeight (without taskbar)
+screen.colorDepth
+screen.pixelDepth
+window.location (page url)
+window.location.href
+window.location.hostname
+window.location.pathname
+window.location.protocol
+window.location.assign()
+window.history
+history.back()
+history.forward()
+window.navigator
+navigator.appName
+navigator.appCodeName
+navigator.platform
+navigator.language
+navigator.userAgent
+navigator.cookieEnabled (trur/false)
+navigator.onLine (returns true if browser online)
+navigator.javaEnabled() (true/false)
+
+# Pop-up :
+window.alert("sometext")
+window.confirm("sometext")
+window.prompt("sometext")  (input)
+window.prompt("sometext","defaultText")
+
+
+## JS Time :-
+var = setTimeout(function, milliseconds)
+clearTimeout(var)
+var = setInterval(function, milliseconds)
+clearInterval(var)
+
+
+## JS Cookies :-
+document.cookie = "username=tg";
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+var x = document.cookie; (return all cookies in one string : cookie1=value;)
+
+
+## Data :-
+Datatypes: String, Number, Boolean, Object, function
+Objects: Object, Date, Array, String, Number, Boolean
+Not Value: Null, Undefined
+NaN : not-a-number (number), Infinity (number)
+
+
+## Variable  (without declaration : global) :-
+# Keyword :
+var - within block where declared
+let - temporary or within block access
+const - constants variable
+
+
+## JS Operators & Methods :-
+typeof() operator : typeof "John" //String, typeoff null //returns object
+instanceof() operator : returns true if object is instance of specified object // cars instanceof Array is true if cars is array
+delete operator : delete object/object.property  (delete object/property)
+in : returns true if exists else false // "PI" in Math is true
+
+x=Boolean(expression)  //true or false
+
+
+## Comparison :-
+== : equal by value
+=== : equal by value & type
+isNaN() , isArray() , isNumber()
+
+
+## String Methods (Immutable) :-
+string-length=str.length
+pos=str.search("text")  // canbe used with regex
+pos=str.indexOf("text") : returns index of first occurrence 
+pos=strlastIndexOf("text") : else not found (-1)
+x=str.slice(start, end)  //slice(5,9) -ve : from last
+x=str.substring(start, end)  -\\- not accept -ve
+x=str.substr(start, length) //substr(3,5)  : mango : -ve from last
+x=str.replace(find,width)  //replace("text1","text2")
+x=str.toUpperCase()
+x=str.toLowerCase()
+x=str.concat(" ",text)
+x=str.trim() //removes whitespace from both sides of string.
+x=str.charAt(index) //charAt(2) - jscript : c
+x=str.charCodeAt(index) //charCodeAt(2) - jscript: 67
+x=str[1] //mango : a (property access)
+
+
+## Number Methods :-
+x=no.toString() // (123).toString()
+x=no.toFixed() // (9.56)toFixed(0)=10,(9.656)toString(2)=9.66
+x=no.toPrecision() // (9.656).toPrecision(2)=9.7
+x=no-ob.valueOf() // returns value from no object
+x=parseInt("string") // returns int from string
+x=parseFloat("string") // returns float from string
+
+
+## Arrays :-
+array = [ "A", "B", "C"], [1,2,3]  //Recommended
+var cars = new Array("Saab", "Volvo", "BMW")  // Create array object - dont use array as object
+no=array.length
+Array.isArray(arr) //true=array coz js arr->ob
+x=array.toString() //convert & returns all elements as string by comma
+x=array.join("*") // convert & returns all elements as string by comma by *
+x=array.pop() // returns & remove last element of array
+array.push(element) // add new element at end of array
+x=array.shift() //returns & remove first element & shift all to lower index by one
+array.unshift(element) // add new element to array
+delete array[index] // deletes array element at index
+array.splice(index,how,elements) // add element list at end
+x=array.concat(array-2,array-3) //returns merge array
+x=array.slice(n) //slice & return array from index n
+array.sort()
+array.reverse()
+
+
+## Date Objects :-
+var x = new Date();
+x = d.toUTCString()
+x = d.toDateString()
+x=d.getFullYear()
+x=d.getMonth()
+x=d.getDate()
+x=d.getHours()
+x=d.getMinutes()
+x=d.getSeconds()
+x=d.getMilliseconds()
+x=d.getTime()
+x=d.getDay()
+x=d.Date.now()
+
+# UTC d.getUTCMethod()  :
+d.setDate()
+d.setFullYear()
+d.setMilliseconds()
+d.setHours()
+d.setMinutes()
+d.setMonth()
+d.setSeconds()
+d.setTime()
+
+
+## JS Maths (canbe use without Math object) :-
+x=Math.PI
+x=Math.pow()
+x=Math.sqrt()
+x=Math.round()
+x=Math.abs()
+x=Math.ceil()
+x=Math.floor()
+x=Math.random()
+x=Math.floor(Math.random()*n) //Return betn 0-(n-1)
+x=Math.floor(Math.random() * (max - min + 1) ) + min; //Return betn min-max
+x=Math.min()
+x=Math.max()
+x=Math.cos()
+x=Math.sin()
+
+
+## Loops :-
+# for/in (must use person[x] in the loop - person.x will not work because x is a variable) :
+for (x in object) {
+	text += person[x];
+}
+
+# for/of : string, array, maps :
+for (x of var_iterable) {
+	document.write(x + "<br >");
+}
+
+
+## Type Conversion :-
+x=String(Date()/true/false/val) //returns string
+x=Number() //invalid?=NaN
+
+
+## RegEx :-
+search() : searches for match - returns matched position
+replace() : searches for match - return new replace matched
+x=string.search(pattern/modifier) //search("w3school"), search(/w3school/i)
+x=string.replace(pattern/modifier) //replace(/miscrosoft/i,"w3school")
+x=/e/.test("The Cool Boy") //true if pattern exist
+ob=/e/.exec("The Cool Boy") //returns object of matched
+ob[0], ob.index, ob.input
+
+# Modifier :
+i - case insensitive,
+g - global search,
+m - multiple search
+
+Eg:
+var str = "\nIs th\nis it?";
+var patt1 = /^is/m;
+var result = str.match(patt1);
+
+# RegEx Pattern (to be searched/replaced) :
+[abc] Find any character between the brackets
+[^abc] Find any character NOT between the brackets
+[0-9] Find any character between the brackets (any digit)
+[^0-9] Find any character NOT between the brackets (any non-digit)
+(x|y) Find any of the alternatives specified
+
+Eg:
+var str = "Is this all there is?";
+var patt1 = /[h]/g;
+var result = str.match(patt1); //h,h
+
+# Metacharacters :
+.	Find a single character, except newline or line terminator
+\w	Find a word character
+\W	Find a non-word character
+\d	Find a digit
+\D	Find a non-digit character
+\s	Find a whitespace character
+\S	Find a non-whitespace character
+\b	Find a match at the beginning/end of a word, beginning like this: \bHI, end like this: HI\b
+\B	Find a match, but not at the beginning/end of a word
+\0	Find a NULL character
+\n	Find a new line character
+\f	Find a form feed character
+\r	Find a carriage return character
+\t	Find a tab character
+\v	Find a vertical tab character
+\xxx	Find the character specified by an octal number xxx
+\xdd	Find the character specified by a hexadecimal number dd
+\udddd	Find the Unicode character specified by a hexadecimal number dddd
+
+Eg:
+var str = "Give 100%!"; 
+var patt1 = /\w/g;
+var result = str.match(patt1);
+  
+# Quantifier :
+n+	Matches any string that contains at least one n
+n*	Matches any string that contains zero or more occurrences of n
+n?	Matches any string that contains zero or one occurrences of n
+n{X}	Matches any string that contains a sequence of X n's
+n{X,Y}	Matches any string that contains a sequence of X to Y n's
+n{X,}	Matches any string that contains a sequence of at least X n's
+n$	Matches any string with n at the end of it
+^n	Matches any string with n at the beginning of it
+?=n	Matches any string that is followed by a specific string n
+?!n	Matches any string that is not followed by a specific string n
+
+Eg:
+var str = "100, 1000 or 10000?";
+var patt1 = /\d{4}/g;
+var result = str.match(patt1);
+
+
+## Form Validation :-
+checkValidity() :
+properties : validity (bool), validationMessage,willValidate
+validity properties :
+ custonError, patternMismatch,rangeOverflow, rangeUnderflow, stepMismatch,
+ tooLong, typeMismatch, valueMissing, valid
+setCustomValidity()
+
+
+## Error Handling :-
+(javascript'll create 2 ob with prop name, message)
+try {
+	error-code;
+} catch(error-ob){
+	display = error.message;
+}
+throw var //throws custom error
+finally { some-code; }
+
+
+## Arrow Function :-
+x = function(){ return "text"; }
+x = () => { return "text"; }
+x = () => "text"; //function?=returns only one statement
+x = (param) => "text"+param; //function?=param
+x = param => "text"+param; //function?=only one param
+
+
+## Objects :-
+var person = {
+	firstName: "John",
+	id : 5566,
+	fullName : function() {
+		return this.firstName + " " + this.lastName;
+	}
+};
+
+
+## Class (should Use In strict mode) :-
+class class-n {
+constructor(param){
+	this.val-n = param; }
+method-n(x){
+	return "text"+this.val+x; }
+static method-n(){
+	return "static"; }
+}
+// Calling Methods -
+ob-n = class-n("param");
+ob-n.method-n("cool");
+ob-n.val-n;
+// Calling Static Method -
+class-n.method-n;
+
+# Inheritance :
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+  present() {
+    return 'I have a ' + this.carname;
+  }
+}
+class Model extends Car {
+   constructor(brand, mod) {
+     super(brand); //refers patent class
+     this.model = mod;  }
+   show() {
+     return this.present() + ', it is a ' + this.model;
+  }
+}
+mycar = new Model("Ford", "Mustang");
+document.getElementById("demo").innerHTML = mycar.show();
+
+# Getter-Setter  :
+class Car {
+  constructor(brand) {
+    this._carname = brand;
+  }
+  get carname() {
+    return this._carname;
+  }
+  set carname(x) {
+    this._carname = x;
+  }
+}
+mycar = new Car("Ford");
+mycar.carname = "Volvo";
+document.getElementById("demo").innerHTML = mycar.carname;
+
+
+## Getter & Setter :-
+//Getter -
+var person = {
+	language : "english",
+	get lang() {
+		return this.language;
+	}
+};
+document.getElementById("demo").innerHTML = person.lang;
+//Setter -
+var person = {
+	language : "",
+	set lang(lang) {
+		this.language = lang;
+	}
+};
+person.lang = "en";
+document.getElementById("demo").innerHTML = person.language;
+
+# Object Constructor Function :-
+function PersonObject(first,last, age){
+this.firstname=first;
+this.lastname=last;
+this.age=age;
+this.nationality="Indian";
+}
+var user = new PersionObject("John","Dev",17);
+elementValue=user.age;
+//New Property & Functions can't be added in existing objects.
+
+
+## Adding Function & Property to existing object :-
+ob.p_name = "value";
+ob.f_name = function(){
+return this.firstname+" "+this.lastname;
+};
+
+# Prototypes :-
+ob.prototype.prop_name = "value";
+ob.prototype.fun_name = function(){
+return this.firstName + " " + this.lastName;
+}
+
+
+# Anonymous Functions :- (without name)
+var x = function (a, b) {return a * b};
+var z = x(4, 3);
+
+
+# Function Constructor :-
+var myFunction = new Function("a", "b", "return a * b");
+var x = myFunction(4, 3);
+Can be -
+var myFunction = function (a, b) {return a * b};
+var x = myFunction(4, 3);
+
+
+# Self-Invoking Functions :-
+(function () {
+  var x = "Hello!!";  // I will invoke myself
+})();
+
+
+# arguments Object (store arg passed at invocation as array) :-
+arguments[i]
+arguments.length
+
+
+# calls method of another object :-
+call() : method takes arguments separately
+apply() : method takes arguments as an array
+
+
+# Closures :-
+var add = (function () {
+  var counter = 0;
+  return function () {counter += 1; return counter}
+})();
+add();
+add();
+add();
+
+
+
+-------
+
+
+
+# JSON :- JavaScript Object Notation
+
+Data is in name/value pairs eg: "name":"John"
+Data is separated by commas eg: { "name":"John" } or { name:'John' }
+Curly braces hold objects
+Square brackets hold arrays eg: "cars": [ "Ford", "BMW", "Fiat" ]
+
+String to Object :
+var ob = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+
+Object to String :
+var obj = { name: "John", age: 30, city: "New York" };
+var myJSON = JSON.stringify(obj);
+JSON.stringify(new Date())
+
+Delete :
+delete object.property;
+
+###
+myElement.textContent = "Hello Sweden!";
+
+
+
+-------
+
+
+
+JQuery -
+
+# Accessing Class/Id/Tag :
+var element = $(".class/#id/div.p);
+
+# Changing Element's Text :
+element.text("text");
+
+# Get Text :
+var x = element.text();
+
+# Set HTML Content :
+var myElement.html("<p>Hello World</p>");
+
+# Get HTML Content :
+var content = element.html();
+
+# Hiding Element / Changing Visibility To Hidden :
+element.hide();
+
+# Showing HTML Elements :
+element.show();
+
+# Styling HTML Elements :
+element.css("font-size","35px");
+
+# Removing Elements :
+$("#id").remove();
+
+# Get Parent Element :
+var myParent = element.parent();
+
+
+-------
+
+# Updated : 16-06-2020
