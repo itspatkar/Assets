@@ -10,6 +10,7 @@ struct node *head = NULL;
 struct node *current = NULL;
 
 // Traversing Single Linked List : Counting nodes -
+// Time Complexity: O(n)
 void countNode(struct node *head){
 	int count=0;
 	if(head == NULL)
@@ -26,6 +27,7 @@ void countNode(struct node *head){
 }
 
 // Traversing Single Linked List : Printing data -
+// Time Complexity: O(n)
 void printData(struct node *head){
 	if(head == NULL)
 		printf("\nLinked list is empty.");
@@ -41,8 +43,10 @@ void printData(struct node *head){
 }
 
 // Inserting Node at End of Linked List -
+// Time Complexity: O(1)
 struct node* insertNodeAtEnd(struct node *current, int data){
-	/* Logic 1 -
+	/* Logic 1
+	// Time Complexity with traversal: O(n) -
 	struct node *ptr, *temp;
 	ptr=head;
 	temp=(struct node*)malloc(sizeof(struct node));
@@ -61,6 +65,7 @@ struct node* insertNodeAtEnd(struct node *current, int data){
 }
 
 // Inserting Node at Beginning of Linked List -
+// Time Complexity: O(1)
 struct node* insertNodeAtBeginning(struct node *head, int data){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
@@ -81,6 +86,7 @@ void insertNodeAtBeginning(struct node **head, int data){
 } */
 
 // Inserting Node at Certain Position in Linked List -
+// Time Complexity: O(n)
 void insertNodeAtPos(struct node *head, int data, int pos){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
@@ -106,6 +112,7 @@ void insertNodeAtPos(struct node *head, int data, int pos){
 }
 
 // Deleting First Node of Linked List -
+// Time Complexity: O(1)
 struct node* deleteFirstNode(struct node *head){
 	if(head == NULL)
 		printf("\nLinked list is already empty!");
@@ -119,6 +126,7 @@ struct node* deleteFirstNode(struct node *head){
 }
 
 // Deleting Last Node of Linked List -
+// Time Complexity: O(n)
 void deleteLastNode(struct node *head){
 	if(head == NULL)
 		printf("\nLinked list is already empty!");
@@ -139,6 +147,7 @@ void deleteLastNode(struct node *head){
 }
 
 // Deleting Node at Certain Position in Linked List -
+// Time Complexity: O(n)
 struct node* deleteAtPosNode(struct node *head, int pos){
 	struct node *previous = head;
 	struct node *current = head;
@@ -162,6 +171,7 @@ struct node* deleteAtPosNode(struct node *head, int pos){
 }
 
 // Deleting Entire Linked List -
+// Time Complexity: O(n)
 struct node* deleteLinkedList(struct node *head){
 	struct node *temp = head;
 	while(head->next != NULL){
@@ -175,6 +185,7 @@ struct node* deleteLinkedList(struct node *head){
 }
 
 // Reverse Single Linked List -
+// Time Complexity: O(n)
 struct node* reverseLinkedList(struct node* head){
 	struct node* prevT = NULL;
 	struct node* nextT = NULL;
