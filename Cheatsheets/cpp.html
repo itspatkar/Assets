@@ -201,6 +201,182 @@ int main(){
 
             <div class="sections" id="basic-syntax">
                 <h3 class="heading"># Operators</h3>
+                <div>
+                    <h4>&bull; Arithmetic Operators</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>Addition</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-</code></td>
+                                    <td>Substraction</td>
+                                </tr>
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>Multiplication</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>Division</td>
+                                </tr>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>Modulus</td>
+                                </tr>
+                                <tr>
+                                    <td><code>++</code></td>
+                                    <td>Increment</td>
+                                </tr>
+                                <tr>
+                                    <td><code>--</code></td>
+                                    <td>Decrement</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; Relational Operators</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>==</code></td>
+                                    <td>Equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!=</code></td>
+                                    <td>Not equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code>></code></td>
+                                    <td>Greater than</td>
+                                </tr>
+                                <tr>
+                                    <td><code><</code></td>
+                                    <td>Less than</td>
+                                </tr>
+                                <tr>
+                                    <td><code>>=</code></td>
+                                    <td>Greater than or equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code><=</code></td>
+                                    <td>Less than or equal to</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; Logical Operators</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&&</code></td>
+                                    <td>Logical and</td>
+                                </tr>
+                                <tr>
+                                    <td><code>||</code></td>
+                                    <td>Logical or</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!</code></td>
+                                    <td>Logical not</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; Bitwise Operators</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&</code></td>
+                                    <td>Bitwise &</td>
+                                </tr>
+                                <tr>
+                                    <td><code>|</code></td>
+                                    <td>Bitwise OR</td>
+                                </tr>
+                                <tr>
+                                    <td><code>^</code></td>
+                                    <td>Bitwise XOR</td>
+                                </tr>
+                                <tr>
+                                    <td><code>~</code></td>
+                                    <td>One's Complement (unary)</td>
+                                </tr>
+                                <tr>
+                                    <td><code><<</code></td>
+                                    <td>Left Shift Operator</td>
+                                </tr>
+                                <tr>
+                                    <td><code>>></code></td>
+                                    <td>Right Shift Operator</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; <code>sizeof()</code> Operator</h4>
+                    <div>Returns the size of a variable.</div>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int x = 15;
+    cout << sizeof(x);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Ternary Operator</h4>
+                    <div class="code-box"><code>[condition] ? [expression_1] : [expression_2]</code></div>
+                    <div>If condition is true, then expression 1 is evaluated otherwise expression 2 is evaluated.</div>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int a=5, b=10, large;
+    large = a > b ? a : b;
+    cout << " Largest number is " << large;
+
+    return 0;
+}</code></pre>
+                </div>
             </div>
 
             <div class="sections" id="strings">
