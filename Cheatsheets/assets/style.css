@@ -55,10 +55,10 @@ nav {
 /* Responsiveness */
 @media screen and (max-width: 575px) {
     h2 {
-        font-size: 1.725rem !important;
+        font-size: 1.715rem !important;
     }
     h3 {
-        font-size: 1.625rem !important;
+        font-size: 1.615rem !important;
     }
     h4 {
         font-size: 1.35rem !important;
