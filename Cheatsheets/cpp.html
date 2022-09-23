@@ -29,7 +29,7 @@
                 <li><a href="#input-output">Input & Output</a></li>
                 <li><a href="#comments">Comments</a></li>
                 <li><a href="#variables">Variables</a></li>
-                <li><a href="#basic-data-types">Basic Data Types</a></li>
+                <li><a href="#data-types">Data Types</a></li>
                 <li><a href="#operators">Operators</a></li>
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
@@ -99,31 +99,18 @@ int main(){
                 <div>
                     <h4>&bull; Single-line Comment :</h4>
                     <div><code>//</code> is used for single-line comment.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
+                    <pre class="code-box code-box-color"><code>// This is single-line comment.
 
-int main(){
-    cout << "Hello World!";
-
-    // This is single-line comment.
-
-    return 0;
-}</code></pre>
+cout << "Hello World"; // This is comment</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Multi-line Comment :</h4>
                     <div><code>/* */</code> is used for multi-line comment.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
+                    <pre class="code-box code-box-color"><code>/* This is
+multi-line comment. */
 
-int main(){
-    cout << "Hello World!";
-
-    /* This is
-    multi-line comment. */
-
-    return 0;
-}</code></pre>
+int x = 15; /* This is multi-line
+comment. */</code></pre>
                 </div>
             </div>
 
@@ -134,7 +121,12 @@ int main(){
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
+// Global variables -
+float f=5.5;
+int n=0;
+
 int main(){
+    // Local variables -
     int x, y=10;
     float a,b;
     a = b = 2.5;
@@ -143,59 +135,104 @@ int main(){
 }</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Constant Keyword/Variable :</h4>
-                    <div><code>const</code> keyword is used for declaring constant (read-only) variables.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+                    <h4>&bull; Constant Keyword :</h4>
+                    <div>Keyword <code>const</code> is used for declaring constant (read-only) variables.</div>
+                    <pre class="code-box code-box-color"><code>const int x = 10;
+const string name = "Mandar";</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Preprocessor Directives :</h4>
+                    <div>Preprocessor directives or macros are lines included in the code of programs preceded by hash sign (#). These lines are not program statements but directives for the preprocessor. To define preprocessor macros <code>#define</code> is used. No semicolon (;) is expected at the end of a preprocessor directive.<br>
+                    Undefining macros by using <code>#undef</code>.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>#define identifier replacement</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>#include<iostream>
 using namespace std;
 
+#define PI 3.14159
+#define NEWLINE '\n'
+#define getMax(a,b) ((a)>(b)?(a):(b))
+
+#undef PI
+
 int main(){
-    const int x = 10;
-    const string name = "Mandar"; 
+    cout << "Value of Pi = " << PI;
+    cout << NEWLINE;
+
+    cout << "Max NO = " << getMax(10,25);
 
     return 0;
 }</code></pre>
                 </div>
             </div>
 
-            <div class="sections" id="basic-data-types">
-                <h3 class="heading"># Basic Data Types</h3>
-                <div class="table-scroll">
-                    <table class="table table-bordered table-hover table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Date Type</th>
-                                <th>Size</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>boolean</code></td>
-                                <td>1 byte</td>
-                                <td>Stores <code>true</code> or <code>false</code> values</td>
-                            </tr>
-                            <tr>
-                                <td><code>char</code></td>
-                                <td>1 byte</td>
-                                <td>Stores single character, letter, number or ASCII values</td>
-                            </tr>
-                            <tr>
-                                <td><code>int</code></td>
-                                <td>2 byte</td>
-                                <td>Stores whole numbers, without decimals</td>
-                            </tr>
-                            <tr>
-                                <td><code>float</code></td>
-                                <td>4 byte</td>
-                                <td>Stores fractional numbers (upto 7 decimal digits)</td>
-                            </tr>
-                            <tr>
-                                <td><code>double</code></td>
-                                <td>8 byte</td>
-                                <td>Stores fractional numbers (upto 15 decimal digits)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="sections" id="data-types">
+                <h3 class="heading"># Data Types</h3>
+                <div>
+                    <h4>&bull; Basic Data Types :</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Date Type</th>
+                                    <th>Size</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>boolean</code></td>
+                                    <td>1 byte</td>
+                                    <td>Stores <code>true</code> or <code>false</code> values</td>
+                                </tr>
+                                <tr>
+                                    <td><code>char</code></td>
+                                    <td>1 byte</td>
+                                    <td>Stores single character, letter, number or ASCII values</td>
+                                </tr>
+                                <tr>
+                                    <td><code>int</code></td>
+                                    <td>2 byte</td>
+                                    <td>Stores whole numbers, without decimals</td>
+                                </tr>
+                                <tr>
+                                    <td><code>float</code></td>
+                                    <td>4 byte</td>
+                                    <td>Stores fractional numbers (upto 7 decimal digits)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>double</code></td>
+                                    <td>8 byte</td>
+                                    <td>Stores fractional numbers (upto 15 decimal digits)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>void</code></td>
+                                    <td>-</td>
+                                    <td>Represents no or absence of type</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; <code>typedef</code> Declarations :</h4>
+                    <div>Assign new name (alias) for an existing type using keyword typedef.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>typedef type newname;</code></div>
+                    <pre class="code-box code-box-color"><code>typedef int feet;
+feet distance;</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Enumeration :</h4>
+                    <div>An enumeration is user-defined data type that consists of integral constants. To define an enumeration, keyword <code>enum</code> is used.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box">enum enum_name { list_of_names } var_list;</div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+
+enum color { red, green, blue } c;
+c = blue;</code></pre>
                 </div>
             </div>
 
@@ -352,35 +389,25 @@ int main(){
                 <div>
                     <h4>&bull; <code>sizeof()</code> Operator</h4>
                     <div>Returns the size of a variable.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
-
-int main(){
-    int x = 15;
-    cout << sizeof(x);
-
-    return 0;
-}</code></pre>
+                    <pre class="code-box code-box-color"><code>int x = 15;
+cout << sizeof(x);</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Ternary Operator</h4>
                     <div class="code-box"><code>[condition] ? [expression_1] : [expression_2]</code></div>
                     <div>If condition is true, then expression 1 is evaluated otherwise expression 2 is evaluated.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
-
-int main(){
-    int a=5, b=10, large;
-    large = a > b ? a : b;
-    cout << " Largest number is " << large;
-
-    return 0;
-}</code></pre>
+                    <pre class="code-box code-box-color"><code>int a=5, b=10, large;
+large = a > b ? a : b;
+cout << " Largest number is " << large;</code></pre>
                 </div>
             </div>
 
             <div class="sections" id="strings">
                 <h3 class="heading"># Strings</h3>
+                <div>Strings are one-dimensional array of characters terminated by null character '\0'.</div>
+                <pre class="code-box code-box-color"><code>int a=5, b=10, large;
+large = a > b ? a : b;
+cout << " Largest number is " << large;</code></pre>
             </div>
 
             <div class="sections" id="arrays">
