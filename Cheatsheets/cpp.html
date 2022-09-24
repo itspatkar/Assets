@@ -39,6 +39,7 @@
                 <li><a href="#recursion">Recursion</a></li>
                 <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
+                <li><a href="#preprocessor"> Preprocessor Directives</a></li>
                 <li><a href="#oops">Object-Oriented Programming</a></li>
                 <li><a href="#class-objects">Class & Objects</a></li>
                 <li><a href="#constructor-destructor">Constructor & Destructor</a></li>
@@ -117,7 +118,7 @@ comment. */</code></pre>
             <div class="sections" id="variables">
                 <h3 class="heading"># Variables</h3>
                 <div>
-                    <h4>&bull; Declaring Variables :</h4>
+                    <h4>&bull; Local & Global Variables :</h4>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
@@ -135,64 +136,7 @@ int main(){
 }</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Constant Keyword :</h4>
-                    <div>Keyword <code>const</code> is used for declaring constant (read-only) variables.</div>
-                    <pre class="code-box code-box-color"><code>const int x = 10;
-const string name = "Mandar";</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; Preprocessor Directives :</h4>
-                    <div>Preprocessor directives or macros are lines included in the code of programs preceded by hash sign (#). These lines are not program statements but directives for the preprocessor. To define preprocessor macros <code>#define</code> is used. No semicolon (;) is expected at the end of a preprocessor directive.<br>
-                    Undefining macros by using <code>#undef</code>.</div>
-                    <h5>Syntax:</h5>
-                    <div class="code-box"><code>#define identifier replacement</code></div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>#include<iostream>
-using namespace std;
-
-#define PI 3.14159
-#define NEWLINE '\n'
-#define getMax(a,b) ((a)>(b)?(a):(b))
-
-#undef PI
-
-int main(){
-    cout << "Value of Pi = " << PI;
-    cout << NEWLINE;
-
-    cout << "Max NO = " << getMax(10,25);
-
-    return 0;
-}</code></pre>
-                    <h4>Predefined C++ Macros :</h4>
-                    <div class="table-scroll">
-                        <table class="table table-bordered table-hover table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Macro</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>__LINE__</code></td>
-                                    <td>This contains current line number of program when it is being compiled</td>
-                                </tr>
-                                <tr>
-                                    <td><code>__FILE__</code></td>
-                                    <td>This contains current file name of program when it is being compiled</td>
-                                </tr>
-                                <tr>
-                                    <td><code>__DATE__</code></td>
-                                    <td>This contains string of form month/day/year that is date of the translation of source file into object code.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>__TIME__</code></td>
-                                    <td>This contains string of form hour:minute:second that is time at which program was compiled.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -245,7 +189,7 @@ int main(){
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Modifier Types :</h4>
+                    <h4>&bull; Data Type Modifier :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -279,6 +223,35 @@ int main(){
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div>
+                    <h4>&bull; Date Type Qualifiers :</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Keyword</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>const</code></td>
+                                    <td>Used for declaring constant (read-only) variables (cannot be reassigned)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>volatile</code></td>
+                                    <td>It tells the compiler that variable's value may be changed in ways not explicitly specified by the program</td>
+                                </tr>
+                                <tr>
+                                    <td><code>restrict</code></td>
+                                    <td>Pointer qualified by restrict is initially the only means by which the object it points to can be accessed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="code-box code-box-color"><code>const int x = 10;
+const string name = "Mandar";</code></pre>
                 </div>
                 <div>
                     <h4>&bull; <code>typedef</code> Declarations :</h4>
@@ -459,7 +432,7 @@ cout << sizeof(x);</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Ternary Operator</h4>
-                    <div class="code-box"><code>[condition] ? [expression_1] : [expression_2]</code></div>
+                    <div class="code-box"><code>[condition] ? [expr_1] : [expr_2]</code></div>
                     <div>If condition is true, then expression 1 is evaluated otherwise expression 2 is evaluated.</div>
                     <pre class="code-box code-box-color"><code>int a=5, b=10, large;
 large = a > b ? a : b;
@@ -501,6 +474,63 @@ cout << " Largest number is " << large;</code></pre>
 
             <div class="sections" id="exception-handling">
                 <h3 class="heading"># Exception Handling</h3>
+            </div>
+
+            <div class="sections" id="preprocessor">
+                <h3 class="heading"># Preprocessor Directives</h3>
+                <div>Preprocessor directives or macros are lines included in the code of programs preceded by hash sign (#). These lines are not program statements but directives for the preprocessor. To define preprocessor macros <code>#define</code> is used. No semicolon (;) is expected at the end of a preprocessor directive. Macros are undefined by using <code>#undef</code>.</div>
+                <h5>Syntax:</h5>
+                <pre class="code-box"><code>#define identifier replacement
+#undef identifier</code></pre>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>#include<iostream>
+using namespace std;
+
+#define PI 3.14159
+#define NEWLINE '\n'
+#define getMax(a,b) ((a)>(b)?(a):(b))
+
+#undef PI
+
+int main(){
+    cout << "Value of Pi = " << PI;
+    cout << NEWLINE;
+
+    cout << "Max NO = " << getMax(10,25);
+
+    return 0;
+}</code></pre>
+                <div>
+                    <h4>Predefined C++ Macros :</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Macro</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>__LINE__</code></td>
+                                    <td>This contains current line number of program when it is being compiled</td>
+                                </tr>
+                                <tr>
+                                    <td><code>__FILE__</code></td>
+                                    <td>This contains current file name of program when it is being compiled</td>
+                                </tr>
+                                <tr>
+                                    <td><code>__DATE__</code></td>
+                                    <td>This contains string of form month/day/year that is date of the translation of source file into object code.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>__TIME__</code></td>
+                                    <td>This contains string of form hour:minute:second that is time at which program was compiled.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="oops">
