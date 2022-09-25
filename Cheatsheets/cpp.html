@@ -30,13 +30,16 @@
                 <li><a href="#comments">Comments</a></li>
                 <li><a href="#variables">Variables</a></li>
                 <li><a href="#data-types">Data Types</a></li>
+                <li><a href="#storage-classes">Storage Classes</a></li>
                 <li><a href="#operators">Operators</a></li>
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#decision-making">Decision Making</a></li>
                 <li><a href="#loops">Loops</a></li>
                 <li><a href="#functions">Functions</a></li>
                 <li><a href="#recursion">Recursion</a></li>
+
                 <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
@@ -118,7 +121,18 @@ comment. */</code></pre>
             <div class="sections" id="variables">
                 <h3 class="heading"># Variables</h3>
                 <div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>data_type var_name</code></div>
+                    <pre class="code-box code-box-color"><code>int x;
+int x,y,z;
+int a=10;
+string name="Mandar";</code></pre>
+                </div>
+                <div>
                     <h4>&bull; Local & Global Variables :</h4>
+                    <div><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.<br>
+                    <strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</div>
+                    <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
@@ -261,17 +275,49 @@ const string name = "Mandar";</code></pre>
                     <pre class="code-box code-box-color"><code>typedef int feet;
 feet distance;</code></pre>
                 </div>
-                <div>
-                    <h4>&bull; Enumeration :</h4>
-                    <div>An enumeration is user-defined data type that consists of integral constants. To define an enumeration, keyword <code>enum</code> is used.</div>
-                    <h5>Syntax:</h5>
-                    <div class="code-box">enum enum_name { list_of_names } var_list;</div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+            </div>
 
-enum color { red, green, blue } c;
-c = blue;</code></pre>
+            <div class="sections" id="storage-classes">
+                <h3 class="heading"># Storage Classes</h3>
+                <div>Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ Program.</div>
+                <h5>Syntax:</h5>
+                <div class="code-box"><code>class data_type var_name</code></div>
+                <div class="table-scroll">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Class</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>auto</code></td>
+                                <td>It is the default storage class for all local variables.</td>
+                            </tr>
+                            <tr>
+                                <td><code>register</code></td>
+                                <td>It is used to define local variables that should be stored in register instead of RAM. The register should only be used for variables that require quick access such as counters.</td>
+                            </tr>
+                            <tr>
+                                <td><code>static</code></td>
+                                <td>It instructs the compiler to keep local variable in existence during the life-time of the program instead of creating and destroying it each time it comes into and goes out of scope.</td>
+                            </tr>
+                            <tr>
+                                <td><code>extern</code></td>
+                                <td>It is used to give reference of a global variable that is visible to ALL the program files.</td>
+                            </tr>
+                            <tr>
+                                <td><code>mutable</code></td>
+                                <td>The mutable specifier applies only to class objects. It allows a member of an object to override const member function. That is, a mutable member can be modified by a const member function.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>auto int x;
+register int amount = 0;
+static int count = 1;</code></pre>
             </div>
 
             <div class="sections" id="operators">
@@ -452,8 +498,90 @@ cout << " Largest number is " << large;</code></pre>
                 <h3 class="heading"># Arrays</h3>
             </div>
 
+            <div class="sections" id="enum">
+                <h3 class="heading"># Enumeration</h3>
+                <div>An enumeration is user-defined data type that consists of integral constants. To define an enumeration, keyword <code>enum</code> is used.</div>
+                <h5>Syntax:</h5>
+                <div class="code-box">enum enum_name { list_of_names } var_list;</div>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+
+enum color { red, green, blue } c;
+c = blue;</code></pre>
+            </div>
+
             <div class="sections" id="decision-making">
                 <h3 class="heading"># Decision Making</h3>
+                <div>
+                    <h4>&bull; if statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is larger than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; if-else statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+} else {
+    // statements if false
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else {
+    cout << "A is smaller than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; else-if statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+} else if (condition) {
+    // statements if true
+} else {
+    // statements if false
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else if (a < b) {
+    cout << "A is smaller than B";
+} else {
+    cout << "A is equal to B";
+}</code></pre>
+               </div>
+               <div>
+                    <h4>&bull; Nested if & else :</h4>
+                    <div>If statements inside another if or else statements.</div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int age = 16;
+
+if(age > 0){
+    if(age < 18)
+        cout << "You are young.";
+    else if ( age >= 18)
+        cout << "You are adult.";
+} else {
+    if(age < 0)
+        cout << "Age cannot be negative.";
+    else
+        cout << "Age cannot be zero.";
+}
+</code></pre>
+                </div>
             </div>
 
             <div class="sections" id="loops">
@@ -477,13 +605,34 @@ cout << " Largest number is " << large;</code></pre>
             </div>
 
             <div class="sections" id="preprocessor">
-                <h3 class="heading"># Preprocessor Directives</h3>
-                <div>Preprocessor directives or macros are lines included in the code of programs preceded by hash sign (#). These lines are not program statements but directives for the preprocessor. To define preprocessor macros <code>#define</code> is used. No semicolon (;) is expected at the end of a preprocessor directive. Macros are undefined by using <code>#undef</code>.</div>
-                <h5>Syntax:</h5>
-                <pre class="code-box"><code>#define identifier replacement
-#undef identifier</code></pre>
-                <h5>Ex:</h5>
-                <pre class="code-box code-box-color"><code>#include<iostream>
+                <h3 class="heading"># Preprocessor Directives (WIP)</h3>
+                <div>Preprocessor directives or macros are lines included in the code of programs preceded by hash sign (#). These lines are not program statements but directives for the preprocessor. No semicolon (;) is expected at the end of a preprocessor directive.</div>
+                <div>
+                    <h4> &bull; Macro Definition</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Directive</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>#define</code></td>
+                                    <td>To define preprocessor macros <code>#define</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#undef</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>#define identifier replacement</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
 #define PI 3.14159
@@ -500,6 +649,70 @@ int main(){
 
     return 0;
 }</code></pre>
+                </div>
+                <div>
+                    <h4> &bull; Conditional Directives</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Directive</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>#ifdef</code></td>
+                                    <td>To define preprocessor macros <code>#define</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#ifndef</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#if</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#endif</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#else</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#elif</code></td>
+                                    <td>To undefine macro <code>#undef</code> is used</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box code-box-color"><code>#ifdef 
+/* code */
+#else
+/* code to include if the token is not defined */
+#endif</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+#define PI 3.14159
+#define NEWLINE '\n'
+#define getMax(a,b) ((a)>(b)?(a):(b))
+
+#undef PI
+
+int main(){
+    cout << "Value of Pi = " << PI;
+    cout << NEWLINE;
+
+    cout << "Max NO = " << getMax(10,25);
+
+    return 0;
+}</code></pre>
+                </div>
                 <div>
                     <h4>Predefined C++ Macros :</h4>
                     <div class="table-scroll">
