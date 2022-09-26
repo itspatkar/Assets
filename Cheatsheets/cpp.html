@@ -39,8 +39,6 @@
                 <li><a href="#loops">Loops</a></li>
                 <li><a href="#loop-control-statements">Loop Control Statements</a></li>
                 <li><a href="#functions">Functions</a></li>
-                <li><a href="#recursion">Recursion</a></li>
-
                 <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
@@ -445,7 +443,7 @@ static int count = 1;</code></pre>
                             <tbody>
                                 <tr>
                                     <td><code>&</code></td>
-                                    <td>Bitwise &</td>
+                                    <td>Bitwise AND</td>
                                 </tr>
                                 <tr>
                                     <td><code>|</code></td>
@@ -489,10 +487,76 @@ cout << " Largest number is " << large;</code></pre>
 
             <div class="sections" id="strings">
                 <h3 class="heading"># Strings</h3>
-                <div>Strings are one-dimensional array of characters terminated by null character '\0'.</div>
-                <pre class="code-box code-box-color"><code>int a=5, b=10, large;
-large = a > b ? a : b;
-cout << " Largest number is " << large;</code></pre>
+                <div>Strings are one-dimensional array of characters terminated by null character '\0'. There are two ways for using strings in C++ :</div>
+                <ul>
+                    <li>1. String as char array</li>
+                    <li>2. String Class</li>
+                </ul>
+                <div>
+                    <h4>&bull; String as char array :</h4>
+                    <div>Declaring string as a character array as in C language.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>char varname[];</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>char greet[] = "Hello World";
+char name[10];
+name = "Mandar";</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; String Class :</h4>
+                    <div>The standard C++ library provides a string class for this we must include header file <code>&lt;string&gt;</code> or <code>&lt;cstring&gt;</code> library.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>string var_name;</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+int main(){
+    string greet = "Hello World";
+    
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>String Functions :</h4>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Function</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>strcpy(s1, s2)</code></td>
+                                    <td>Copies string s2 into string s1.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>strcat(s1, s2)</code></td>
+                                    <td>Concatenates string s2 onto the end of string s1.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>strlen(s1)</code></td>
+                                    <td>Returns the length of string s1.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>strcmp(s1, s2)</code></td>
+                                    <td>Returns 0 if s1 and s2 are the same; less than 0 if s1&lt;s2; greater than 0 if s1&gt;s2.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>strcmp(s1, s2)</code></td>
+                                    <td>Returns a pointer to the first occurrence of character ch in string s1.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>strstr(s1, s2)</code></td>
+                                    <td>Returns a pointer to the first occurrence of string s2 in string s1.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="arrays">
@@ -732,10 +796,6 @@ if (n%2 == 0) goto INPUT;</code></pre>
                 <h3 class="heading"># Functions</h3>
             </div>
 
-            <div class="sections" id="recursion">
-                <h3 class="heading"># Recursion</h3>
-            </div>
-
             <div class="sections" id="pointers">
                 <h3 class="heading"># Pointers</h3>
             </div>
@@ -900,18 +960,6 @@ int main(){
 
             <div class="sections" id="inheritance">
                 <h3 class="heading"># Inheritance</h3>
-            </div>
-
-            <div class="sections" id="">
-                <h3 class="heading">#</h3>
-            </div>
-
-            <div class="sections" id="">
-                <h3 class="heading">#</h3>
-            </div>
-
-            <div class="sections" id="">
-                <h3 class="heading">#</h3>
             </div>
 
             <nav>
