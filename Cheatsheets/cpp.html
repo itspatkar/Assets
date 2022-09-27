@@ -34,13 +34,13 @@
                 <li><a href="#operators">Operators</a></li>
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
                 <li><a href="#decision-making">Decision Making</a></li>
                 <li><a href="#loops">Loops</a></li>
                 <li><a href="#loop-control-statements">Loop Control Statements</a></li>
                 <li><a href="#functions">Functions</a></li>
-                <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
                 <li><a href="#oops">Object-Oriented Programming</a></li>
@@ -119,7 +119,7 @@ comment. */</code></pre>
                 <h3 class="heading"># Variables</h3>
                 <div>
                     <h5>Syntax:</h5>
-                    <div class="code-box"><code>data_type var_name</code></div>
+                    <div class="code-box"><code>data_type variable_name;</code></div>
                     <pre class="code-box code-box-color"><code>int x;
 int x,y,z;
 int a=10;
@@ -127,8 +127,10 @@ string name="Mandar";</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Local & Global Variables :</h4>
-                    <div><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.<br>
-                    <strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</div>
+                    <ul>
+                        <li><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.</li>
+                        <li><strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</li>
+                    </ul>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
@@ -154,7 +156,7 @@ int main(){
             <div class="sections" id="data-types">
                 <h3 class="heading"># Data Types</h3>
                 <div>
-                    <h4>&bull; Primitive Built-in Data Types :</h4>
+                    <h4>&bull; Primitive (Built-in) Data Types :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -278,7 +280,7 @@ feet distance;</code></pre>
                 <h3 class="heading"># Storage Classes</h3>
                 <div>Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ Program.</div>
                 <h5>Syntax:</h5>
-                <div class="code-box"><code>class data_type var_name</code></div>
+                <div class="code-box"><code>class type name</code></div>
                 <div class="table-scroll">
                     <table class="table table-bordered table-hover table-striped">
                         <thead class="thead-dark">
@@ -494,7 +496,7 @@ cout << " Largest number is " << large;</code></pre>
                     <h4>&bull; String as char array :</h4>
                     <div>Declaring string as a character array as in C language.</div>
                     <h5>Syntax:</h5>
-                    <div class="code-box"><code>char varname[];</code></div>
+                    <div class="code-box"><code>char name[];</code></div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>char greet[] = "Hello World";
 char name[10];
@@ -504,7 +506,7 @@ name = "Mandar";</code></pre>
                     <h4>&bull; String Class :</h4>
                     <div>The standard C++ library provides a string class for this we must include header file <code>&lt;string&gt;</code> or <code>&lt;cstring&gt;</code> library.</div>
                     <h5>Syntax:</h5>
-                    <div class="code-box"><code>string var_name;</code></div>
+                    <div class="code-box"><code>string name;</code></div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 #include&lt;cstring&gt;
@@ -563,8 +565,8 @@ int main(){
                 <h5>Declaring array:</h5>
                 <div class="code-box"><code>type name[size];</code></div>
                 <h5>Initializing array:</h5>
-                <pre class="code-box"><code>type array_name[N] = { element1, element2, ..., elementN };
-type array_name[] = { element1, element2, ..., elementN };</code></pre>
+                <pre class="code-box"><code>type name[N] = { element1, element2, ..., elementN };
+type name[] = { element1, element2, ..., elementN };</code></pre>
                 <h5>Array Indexing:</h5>
                 <div>Array indexing is accessing value of an array.</div>
                 <pre class="code-box"><code>array[index];</code></pre>
@@ -594,7 +596,7 @@ for( int i=0; i<4; i++)
                 </div>
                 <div>
                     <div>
-                        <h4>&bull; Pointer to array :</h4>
+                        <h4>&bull; Pointer to Array :</h4>
                         <pre class="code-box code-box-color"><code>int num[5] = { 1, 2, 3, 4, 5};
 int *p;
 p = num;
@@ -612,7 +614,7 @@ for ( int i = 0; i < 5; i++ )
     cout << *(p++) << endl;</code></pre>
                     </div>
                     <div>
-                        <h4>&bull; Passing arrays to functions :</h4>
+                        <h4>&bull; Passing Arrays to Functions :</h4>
                         <pre class="code-box code-box-color"><code>int sumOfNum(int num[], int size){
     int sum=0;
     for (int i = 0; i < size; i++){
@@ -630,7 +632,7 @@ int main(){
 }</code></pre>
                     </div>
                     <div>
-                        <h4>&bull; Return array from functions :</h4>
+                        <h4>&bull; Return Array from Functions :</h4>
                         <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 #include&lt;ctime&gt;
 using namespace std;
@@ -658,6 +660,10 @@ int main(){
 }</code></pre>
                     </div>
                 </div>
+            </div>
+
+            <div class="sections" id="pointers">
+                <h3 class="heading"># Pointers</h3>
             </div>
 
             <div class="sections" id="enum">
@@ -714,7 +720,6 @@ int main(){
 }</code></pre>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
-#include &lt;cstring&gt;
 using namespace std;
 
 struct Classroom {
@@ -727,7 +732,103 @@ int main(){
     struct Classroom c1 = { 17, "Mandar", NULL};
 
     c1.ptr=&c1;
-    cout << "Roll: "<<c1.ptr->roll << "\nName: "<< c1.ptr->name;
+    cout << "Roll: " << c1.ptr->roll << "\nName: "<< c1.ptr->name;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Passing Structure as Function Argument :</h4>
+                    <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom c){
+    cout << "Roll: " << c.roll << "\nName: "<< c.name;
+}
+
+int main(){
+    struct Classroom c1 = {17, "Mandar"};
+    print(c1);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Passing Array of Structures as Argument :</h4>
+                    <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom c[]){
+    for (int i = 0; i < 2; i++)
+        cout << "Roll: " << c[i].roll << "\nName: "<< c[i].name << endl;
+}
+
+int main(){
+    struct Classroom c[2] = { {17, "Vinit"}, {22, "Vinita"} };
+    print(c);
+
+    return 0;
+}
+</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Return Structure Variable :</h4>
+                    <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+struct Classroom {
+    int roll;
+    char name[10];
+};
+
+struct Classroom edit(struct Classroom c){
+    c.roll=22;
+    strcpy(c.name,"Vinita");
+    return c;
+}
+
+void print(struct Classroom c){
+    cout << "Roll: " << c.roll << "\nName: "<< c.name << endl;
+}
+
+int main(){
+    struct Classroom c1 = {17, "Vinit"};
+    print(c1);
+
+    c1=edit(c1);
+    print(c1);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Passing Pointer to Structure as Argument :</h4>
+                    <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+using namespace std;
+
+struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom *c_ptr){
+    cout << "Roll: " << c_ptr->roll << "\nName: "<< c_ptr->name;
+}
+
+int main(int argc, char const *argv[]){
+    struct Classroom c1 = {17, "Mandar"};
+    print(&c1);
 
     return 0;
 }</code></pre>
@@ -953,10 +1054,6 @@ if (n%2 == 0) goto INPUT;</code></pre>
 
             <div class="sections" id="functions">
                 <h3 class="heading"># Functions</h3>
-            </div>
-
-            <div class="sections" id="pointers">
-                <h3 class="heading"># Pointers</h3>
             </div>
 
             <div class="sections" id="exception-handling">
