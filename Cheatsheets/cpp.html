@@ -35,6 +35,7 @@
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
                 <li><a href="#enum">Enumeration</a></li>
+                <li><a href="#struct">Structures</a></li>
                 <li><a href="#decision-making">Decision Making</a></li>
                 <li><a href="#loops">Loops</a></li>
                 <li><a href="#loop-control-statements">Loop Control Statements</a></li>
@@ -593,7 +594,7 @@ for( int i=0; i<4; i++)
                 </div>
                 <div>
                     <div>
-                        <h4>Pointer to array :</h4>
+                        <h4>&bull; Pointer to array :</h4>
                         <pre class="code-box code-box-color"><code>int num[5] = { 1, 2, 3, 4, 5};
 int *p;
 p = num;
@@ -611,7 +612,7 @@ for ( int i = 0; i < 5; i++ )
     cout << *(p++) << endl;</code></pre>
                     </div>
                     <div>
-                        <h4>Passing arrays to functions :</h4>
+                        <h4>&bull; Passing arrays to functions :</h4>
                         <pre class="code-box code-box-color"><code>int sumOfNum(int num[], int size){
     int sum=0;
     for (int i = 0; i < size; i++){
@@ -629,8 +630,32 @@ int main(){
 }</code></pre>
                     </div>
                     <div>
-                        <h4>Return array from functions :</h4>
-                        <pre class="code-box code-box-color"><code></code></pre>
+                        <h4>&bull; Return array from functions :</h4>
+                        <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;ctime&gt;
+using namespace std;
+
+// Get array of random numbers -
+int* getArray(){
+    static int num[10];
+
+    // set the seed
+    srand((unsigned)time(NULL));
+
+    for (int i = 0; i < 10; i++)
+        num[i] = rand()%10;
+
+    return num;
+}
+
+int main(){
+    int *p;
+    p = getArray();
+    for (int i = 0; i < 10; i++)
+        cout << *(p++) << " ";
+
+    return 0;
+}</code></pre>
                     </div>
                 </div>
             </div>
@@ -645,6 +670,68 @@ int main(){
 
 enum color { red, green, blue } c;
 c = blue;</code></pre>
+            </div>
+
+            <div class="sections" id="struct">
+                <h3 class="heading"># Structures</h3>
+                <div>Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is termed as member of the structure. A structure can contain many different data types (int, string, bool, etc.). To access member of structure, member access operator (.) is used. We can't assign char array (string) to stucture, but we can copy it.</div>
+                <h5>Syntax:</h5>
+                <pre class="code-box"><code>struct Name {
+    type name;
+    type name;
+    ....;
+} var;</code></pre>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+struct Books {
+    int book_id;
+    char title[50];
+    char author[50];
+} Book1;
+
+int main(){
+    // Book 1 Specification:
+    Book1.book_id = 01;
+    strcpy( Book1.title, "The C++ Programming Language");
+    strcpy( Book1.author, "Bjarne Stroustrup"); 
+
+    // Book 2 Specification: (short-hand syntax)
+    struct Books Book2 = { 02, "Beginning C++ Programming", "Richard Grimes"}; 
+
+    return 0;
+}
+</code></pre>
+                <div>
+                    <h4>&bull; Self Referential Structure :</h4>
+                    <div>Self referential structures are those structures in which one or more pointers points to the structure of same type.</div>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>struct Name {
+    int p;
+    struct Name *pointer;
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+struct Classroom {
+    int roll;
+    char name[10];
+    struct Classroom *ptr;
+};
+
+int main(){
+    struct Classroom c1 = { 17, "Mandar", NULL};
+
+    c1.ptr=&c1;
+    cout << "Roll: "<<c1.ptr->roll << "\nName: "<< c1.ptr->name;
+
+    return 0;
+}</code></pre>
+                </div>
             </div>
 
             <div class="sections" id="decision-making">

@@ -1,19 +1,19 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 
-int sumOfNum(int num[], int size){
-	int sum=0;
-	for (int i = 0; i < size; i++){
-		sum += num[i];
-	}
-	return sum;
-}
+struct Classroom {
+    int roll;
+    char name[10];
+    struct Classroom *ptr;
+};
 
 int main(){
-	int num[5] = { 1, 2, 3, 4, 5};
-	int size = sizeof(num) / sizeof(int);
-	cout << "Sum of numbers is " << sumOfNum(num,size);
+    struct Classroom c1 = { 17, "Mandar", NULL};
 
-	return 0;
+    c1.ptr=&c1;
+    cout << "Roll: "<<c1.ptr->roll << "\nName: "<< c1.ptr->name;
+
+    return 0;
 }
