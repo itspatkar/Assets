@@ -46,9 +46,6 @@
                 <li><a href="#class-objects">Class & Objects</a></li>
                 <li><a href="#constructor-destructor">Constructor & Destructor</a></li>
                 <li><a href="#inheritance">Inheritance</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
             </ul>
 
             <hr />
@@ -561,6 +558,81 @@ int main(){
 
             <div class="sections" id="arrays">
                 <h3 class="heading"># Arrays</h3>
+                <div>Array is fixed-size sequential collection of elements of the same type. All arrays consist of contiguous memory locations. Array indexes start with 0: [0] is the first element. Arrays cannot be reinitialized.</div>
+                <h5>Declaring array:</h5>
+                <div class="code-box"><code>type name[size];</code></div>
+                <h5>Initializing array:</h5>
+                <pre class="code-box"><code>type array_name[N] = { element1, element2, ..., elementN };
+type array_name[] = { element1, element2, ..., elementN };</code></pre>
+                <h5>Array Indexing:</h5>
+                <div>Array indexing is accessing value of an array.</div>
+                <pre class="code-box"><code>array[index];</code></pre>
+                <h5>Size of array:</h5>
+                <div class="code-box"><code>int size = sizeof(array) / sizeof(type);</code></div>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>int num[] = { 1, 2, 3, 4, 5 };
+int n = num[2];
+
+int squareNum[5];
+int size = sizeof(squareNum) / sizeof(int);
+for (int i = 0; i < size; i++)
+    squareNum[i] = (i+1)*(i+1);
+
+for(int i=0; i < size; i++)
+    cout << squareNum[i] << " ";</code></pre>
+                <div>
+                    <h4>&bull; Multi-dimensional Arrays :</h4>
+                    <div>A multi-dimensional array is an array of arrays.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>type name[size1][size2]...[sizeN];</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int arr[4][2] = { {1,2}, {3,4}, {5,6}, {7,8} };
+for( int i=0; i<4; i++)
+    for( int j=0; j<2; j++)
+        cout << arr[i][j] << " ";</code></pre>
+                </div>
+                <div>
+                    <div>
+                        <h4>Pointer to array :</h4>
+                        <pre class="code-box code-box-color"><code>int num[5] = { 1, 2, 3, 4, 5};
+int *p;
+p = num;
+
+cout << "Array values using pointer:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(p + i) << endl;
+
+cout << "Array values using num as address:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(num + i) << endl;
+
+cout << "Array values by incrementing pointer address:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(p++) << endl;</code></pre>
+                    </div>
+                    <div>
+                        <h4>Passing arrays to functions :</h4>
+                        <pre class="code-box code-box-color"><code>int sumOfNum(int num[], int size){
+    int sum=0;
+    for (int i = 0; i < size; i++){
+        sum += num[i];
+    }
+    return sum;
+}
+
+int main(){
+    int num[5] = { 1, 2, 3, 4, 5};
+    int size = sizeof(num) / sizeof(int);
+    cout << "Sum of numbers is " << sumOfNum(num,size);
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h4>Return array from functions :</h4>
+                        <pre class="code-box code-box-color"><code></code></pre>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="enum">
