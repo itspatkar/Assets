@@ -127,10 +127,8 @@ string name="Mandar";</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Local & Global Variables :</h4>
-                    <ul>
-                        <li><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.</li>
-                        <li><strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</li>
-                    </ul>
+                    <div><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.<div>
+                    <div><strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
@@ -483,6 +481,26 @@ cout << sizeof(x);</code></pre>
 large = a > b ? a : b;
 cout << " Largest number is " << large;</code></pre>
                 </div>
+                <div>
+                    <h4>&bull; Membership Operator :</h4>
+                    <div>The <strong>dot operator</strong> (<code>.</code>) and the <strong>arrow operator</strong> (<code>-></code>) are used to reference individual members of classes, structures, and unions. To access members through a pointer, the arrow operator is used.</div>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+   int roll;
+   char name[20];
+};
+
+int main(){
+    // Using dot operator:
+    struct Classroom s = { 17, "Mandar" };
+    cout << "Roll: " << s.roll << "\nName: "<< s.name << endl;
+
+    // Using arrow operator:
+    struct Classroom *sp = &s;
+    cout << "Roll: " << sp->roll << "\nName: "<< sp->name;
+
+    return 0;
+}</code></pre>
+                </div>
             </div>
 
             <div class="sections" id="strings">
@@ -673,25 +691,49 @@ int main(){
                 <h5>Syntax:</h5>
                 <div class="code-box"><code>type *name;</code></div>
                 <h5>Ex:</h5>
-                <pre class="code-box code-box-color"><code>int x = 10;
+                <pre class="code-box code-box-color"><code>int n = 10;
 // Referencing:
-int *p = &x;
+int *p = &n;
 
 cout << "Adrress: " << p;
 // Dereferencing:
 cout << "Value: " << *p;</code></pre>
                 <div>
-                    <h4>Types of pointers -</h4>
-                    <ul>
-                        <li>NULL Pointer</li>
-                        <li>Void Pointer</li>
-                        <li>Wild Pointer</li>
-                        <li>Dangling Pointer</li>
-                    </ul>
+                    <h4> &bull; Pointer to Pointer :</h4>
+                    <div>A pointer to a pointer is a form of multiple indirection or a chain of pointers where pointer contains the adress of another pointer.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box code-box-color"><code>type **name;</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n = 15;
+int *p = &n;
+int **pp = &p;
+
+cout << "n = " << n << endl;
+cout << "p = " << *p << endl;
+cout << "pp = " << **pp << endl;</code></pre>
+                </div>
+                <div>
+                    <h4>Types of pointers :</h4>
                     <div>
                         <h4>&bull; NULL Pointer :</h4>
                         <div>A pointer that is assigned NULL is called a null pointer. It does not point to any memory location; it represents an invalid memory location. It is used to initialise a pointer when that pointer has not been assigned any valid address yet.</div>
                         <div class="code-box code-box-color"><code>int *p = NULL;</code></div>
+                    </div>
+                    <div>
+                        <h4>&bull; Void Pointer :</h4>
+                        <div>A pointer with no associated data type is referred to as a void pointer. It can point to data of any type. We cannot directly dereference a void pointer; it must first be typecast before dereferencing.</div>
+                        <pre class="code-box code-box-color"><code>int n = 10;
+void *p = &n;
+
+cout << *(int*)p << endl;</code></pre>
+                    </div>
+                    <div>
+                        <h4>&bull; Wild Pointer :</h4>
+                        <div>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the programme to crash or misbehave.</div>
+                    </div>
+                    <div>
+                        <h4>&bull; Dangling Pointer :</h4>
+                        <div>A dangling pointer is a pointer that points to some non-existing memory location.</div>
                     </div>
                 </div>
             </div>
@@ -747,7 +789,7 @@ int main(){
                     <pre class="code-box"><code>struct Name {
     int p;
     struct Name *pointer;
-}</code></pre>
+};</code></pre>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
 using namespace std;
@@ -856,7 +898,7 @@ void print(struct Classroom *c_ptr){
     cout << "Roll: " << c_ptr->roll << "\nName: "<< c_ptr->name;
 }
 
-int main(int argc, char const *argv[]){
+int main(){
     struct Classroom c1 = {17, "Mandar"};
     print(&c1);
 
