@@ -32,14 +32,14 @@
                 <li><a href="#data-types">Data Types</a></li>
                 <li><a href="#storage-classes">Storage Classes</a></li>
                 <li><a href="#operators">Operators</a></li>
+                <li><a href="#decision-making">Decision Making</a></li>
+                <li><a href="#loops">Loops</a></li>
+                <li><a href="#loop-control-statements">Loop Control Statements</a></li>
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
                 <li><a href="#pointers">Pointers</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
-                <li><a href="#decision-making">Decision Making</a></li>
-                <li><a href="#loops">Loops</a></li>
-                <li><a href="#loop-control-statements">Loop Control Statements</a></li>
                 <li><a href="#functions">Functions</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
@@ -503,6 +503,223 @@ int main(){
                 </div>
             </div>
 
+            <div class="sections" id="decision-making">
+                <h3 class="heading"># Decision Making</h3>
+                <div>
+                    <h4>&bull; if statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is larger than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; if-else statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+} else {
+    // statements if false
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else {
+    cout << "A is smaller than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; else-if statement :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>if(condition){
+    // statements if true
+} else if (condition) {
+    // statements if true
+} else {
+    // statements if false
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else if (a < b) {
+    cout << "A is smaller than B";
+} else {
+    cout << "A is equal to B";
+}</code></pre>
+               </div>
+               <div>
+                    <h4>&bull; Nested if & else :</h4>
+                    <div>If statements inside another if or else statements.</div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int age = 16;
+
+if(age > 0){
+    if(age < 18)
+        cout << "You are young.";
+    else if ( age >= 18)
+        cout << "You are adult.";
+} else {
+    if(age < 0)
+        cout << "Age cannot be negative.";
+    else
+        cout << "Age cannot be zero.";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Switch Case :</h4>
+                    <div>A switch statement allows a variable to be tested for equality against a list of values.</div>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>switch(expression){
+    case constant-expression-1 :
+        statement(s);
+        break;
+    case constant-expression-2 :
+        statement(s);
+        break;
+    case constant-expression-N :
+        statement(s);
+        break;
+
+    default :
+        statement(s);
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int day = 3;
+
+switch(day){
+    case 1 :
+        cout << "Mon";
+        break;
+    case 2 :
+        cout << "Tue";
+        break;
+    case 3 :
+        cout << "Wed";
+        break;
+    case 4 :
+        cout << "Thu";
+        break;
+    case 5 :
+        cout << "Fri";
+        break;
+    case 6 :
+        cout << "Sat";
+        break;
+    case 7 :
+        cout << "Sun";
+        break;
+
+    default :
+        cout << "Incorrect Day!";
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="loops">
+                <h3 class="heading"># Loops</h3>
+                <div>A loop statement repeatedly executes a target statement as long as a given condition is true.</div>
+                <div>
+                    <h4>&bull; while loop :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>while(condition) {
+    statement(s);
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 5){
+    cout << "Hello World!";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; do-while loop :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>do {
+    statement(s);
+} while(condition);</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+do {
+    cout << "Hello World!";
+    n++;
+} while(n <= 5)</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; for loop :</h4>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>for ( init; condition; increment ){
+    statement(s);
+}</code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++){
+    cout << "Hello World!";
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Nested loop :</h4>
+                    <div>A loop can be nested inside of another loop.</div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++)
+    for(int j=1; j<=i; j++)
+        cout << "Hello World!";</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="loop-control-statements">
+                <h3 class="heading"># Loop Control Statements</h3>
+                <div>Loop control statements change execution from its normal sequence.</div>
+                <div>
+                    <h4>&bull; break statement :</h4>
+                    <div>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>break;</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 100){
+    if (n == 50) break;
+    cout << "Hello World!";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; continue statement :</h4>
+                    <div>This causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>continue;</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 100){
+    if (n%2 == 0) continue;
+    cout << "Hello World!";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; goto statement :</h4>
+                    <div>Transfers control to the labelled statement.</div>
+                    <h5>Syntax:</h5>
+                    <pre class="code-box"><code>goto label;
+labal:
+    statement(s);
+    </code></pre>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>int n;
+INPUT:
+cout << "Enter Odd Number :";
+cin >> n;
+if (n%2 == 0) goto INPUT;</code></pre>
+                </div>
+            </div>
+
             <div class="sections" id="strings">
                 <h3 class="heading"># Strings</h3>
                 <div>Strings are one-dimensional arrays of characters terminated by the null character '\0'. There are two ways of using strings in C++ :</div>
@@ -904,223 +1121,6 @@ int main(){
 
     return 0;
 }</code></pre>
-                </div>
-            </div>
-
-            <div class="sections" id="decision-making">
-                <h3 class="heading"># Decision Making</h3>
-                <div>
-                    <h4>&bull; if statement :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>if(condition){
-    // statements if true
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
-
-if(a > b){
-    cout << "A is larger than B";
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; if-else statement :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>if(condition){
-    // statements if true
-} else {
-    // statements if false
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
-
-if(a > b){
-    cout << "A is greater than B";
-} else {
-    cout << "A is smaller than B";
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; else-if statement :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>if(condition){
-    // statements if true
-} else if (condition) {
-    // statements if true
-} else {
-    // statements if false
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int a = 10, b =20;
-
-if(a > b){
-    cout << "A is greater than B";
-} else if (a < b) {
-    cout << "A is smaller than B";
-} else {
-    cout << "A is equal to B";
-}</code></pre>
-               </div>
-               <div>
-                    <h4>&bull; Nested if & else :</h4>
-                    <div>If statements inside another if or else statements.</div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int age = 16;
-
-if(age > 0){
-    if(age < 18)
-        cout << "You are young.";
-    else if ( age >= 18)
-        cout << "You are adult.";
-} else {
-    if(age < 0)
-        cout << "Age cannot be negative.";
-    else
-        cout << "Age cannot be zero.";
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; Switch Case :</h4>
-                    <div>A switch statement allows a variable to be tested for equality against a list of values.</div>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>switch(expression){
-    case constant-expression-1 :
-        statement(s);
-        break;
-    case constant-expression-2 :
-        statement(s);
-        break;
-    case constant-expression-N :
-        statement(s);
-        break;
-
-    default :
-        statement(s);
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int day = 3;
-
-switch(day){
-    case 1 :
-        cout << "Mon";
-        break;
-    case 2 :
-        cout << "Tue";
-        break;
-    case 3 :
-        cout << "Wed";
-        break;
-    case 4 :
-        cout << "Thu";
-        break;
-    case 5 :
-        cout << "Fri";
-        break;
-    case 6 :
-        cout << "Sat";
-        break;
-    case 7 :
-        cout << "Sun";
-        break;
-
-    default :
-        cout << "Incorrect Day!";
-}</code></pre>
-                </div>
-            </div>
-
-            <div class="sections" id="loops">
-                <h3 class="heading"># Loops</h3>
-                <div>A loop statement repeatedly executes a target statement as long as a given condition is true.</div>
-                <div>
-                    <h4>&bull; while loop :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>while(condition) {
-    statement(s);
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int n = 1;
-while(n <= 5){
-    cout << "Hello World!";
-    n++;
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; do-while loop :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>do {
-    statement(s);
-} while(condition);</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int n = 1;
-do {
-    cout << "Hello World!";
-    n++;
-} while(n <= 5)</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; for loop :</h4>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>for ( init; condition; increment ){
-    statement(s);
-}</code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++){
-    cout << "Hello World!";
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; Nested loop :</h4>
-                    <div>A loop can be nested inside of another loop.</div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++)
-    for(int j=1; j<=i; j++)
-        cout << "Hello World!";</code></pre>
-                </div>
-            </div>
-
-            <div class="sections" id="loop-control-statements">
-                <h3 class="heading"># Loop Control Statements</h3>
-                <div>Loop control statements change execution from its normal sequence.</div>
-                <div>
-                    <h4>&bull; break statement :</h4>
-                    <div>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</div>
-                    <h5>Syntax:</h5>
-                    <div class="code-box"><code>break;</code></div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int n = 1;
-while(n <= 100){
-    if (n == 50) break;
-    cout << "Hello World!";
-    n++;
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; continue statement :</h4>
-                    <div>This causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</div>
-                    <h5>Syntax:</h5>
-                    <div class="code-box"><code>continue;</code></div>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int n = 1;
-while(n <= 100){
-    if (n%2 == 0) continue;
-    cout << "Hello World!";
-    n++;
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; goto statement :</h4>
-                    <div>Transfers control to the labelled statement.</div>
-                    <h5>Syntax:</h5>
-                    <pre class="code-box"><code>goto label;
-labal:
-    statement(s);
-    </code></pre>
-                    <h5>Ex:</h5>
-                    <pre class="code-box code-box-color"><code>int n;
-INPUT:
-cout << "Enter Odd Number :";
-cin >> n;
-if (n%2 == 0) goto INPUT;</code></pre>
                 </div>
             </div>
 
