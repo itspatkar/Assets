@@ -38,9 +38,9 @@
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
                 <li><a href="#pointers">Pointers</a></li>
+                <li><a href="#functions">Functions</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
-                <li><a href="#functions">Functions</a></li>
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
                 <li><a href="#oops">Object-Oriented Programming</a></li>
@@ -69,28 +69,14 @@ int main(){
                 <div>
                     <h4>&bull; Output :</h4>
                     <div><code>cout<<</code> is used for printing output.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
-
-int main(){
-    cout << "Hello World!";
-
-    return 0;
-}</code></pre>
+                    <pre class="code-box code-box-color"><code>cout << "Hello World!";
+cout << "Value of A is " << a;</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Input :</h4>
                     <div><code>cin>></code> is used for taking user input.</div>
-                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
-using namespace std;
-
-int main(){
-    int n;
-    cout << "Enter Number:";
-    cin >> n;
-
-    return 0;
-}</code></pre>
+                    <pre class="code-box code-box-color"><code>cin >> n;
+cin >> a >> b >> c;</code></pre>
                 </div>
 
             </div>
@@ -133,12 +119,12 @@ string name="Mandar";</code></pre>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
-// Global variables -
+// Global Variables :
 float f=5.5;
 int n=0;
 
 int main(){
-    // Local variables -
+    // Local Variables :
     int x, y=10;
     float a,b;
     a = b = 2.5;
@@ -261,7 +247,7 @@ int main(){
                             </tbody>
                         </table>
                     </div>
-                    <pre class="code-box code-box-color"><code>const int x = 10;
+                    <pre class="code-box code-box-color"><code>const int count = 10;
 const string name = "Mandar";</code></pre>
                 </div>
                 <div>
@@ -558,7 +544,6 @@ if(a > b){
                </div>
                <div>
                     <h4>&bull; Nested if & else :</h4>
-                    <div>If statements inside another if or else statements.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>int age = 16;
 
@@ -626,7 +611,6 @@ switch(day){
 
             <div class="sections" id="loops">
                 <h3 class="heading"># Loops</h3>
-                <div>A loop statement repeatedly executes a target statement as long as a given condition is true.</div>
                 <div>
                     <h4>&bull; while loop :</h4>
                     <h5>Syntax:</h5>
@@ -666,7 +650,6 @@ do {
                 </div>
                 <div>
                     <h4>&bull; Nested loop :</h4>
-                    <div>A loop can be nested inside of another loop.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++)
     for(int j=1; j<=i; j++)
@@ -676,7 +659,6 @@ do {
 
             <div class="sections" id="loop-control-statements">
                 <h3 class="heading"># Loop Control Statements</h3>
-                <div>Loop control statements change execution from its normal sequence.</div>
                 <div>
                     <h4>&bull; break statement :</h4>
                     <div>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</div>
@@ -724,11 +706,11 @@ if (n%2 == 0) goto INPUT;</code></pre>
                 <h3 class="heading"># Strings</h3>
                 <div>Strings are one-dimensional arrays of characters terminated by the null character '\0'. There are two ways of using strings in C++ :</div>
                 <ul>
-                    <li>1. String as char array</li>
+                    <li>1. String as Char Array</li>
                     <li>2. String Class</li>
                 </ul>
                 <div>
-                    <h4>&bull; String as char array :</h4>
+                    <h4>&bull; String as Char Array :</h4>
                     <div>Declaring a string as a character array as in the C language</div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>char name[];</code></div>
@@ -955,6 +937,55 @@ cout << *(int*)p << endl;</code></pre>
                 </div>
             </div>
 
+            <div class="sections" id="functions">
+                <h3 class="heading"># Functions</h3>
+                <div>A function is a block of code that performs a specific task. A function declaration tells the compiler about a function's name, return type, and parameters. A function definition provides the actual body of the function.</div>
+                <h5>Syntax:</h5>
+                <h5>Function Declaration -</h5>
+                <div class="code-box"><code>return_type function_name(parameter_list);</code></div>
+                <h5>Function Definition -</h5>
+                <pre class="code-box"><code>return_type function_name(){
+    //body of function
+}</code></pre>
+                <h5>Function Calling -</h5>
+                <div class="code-box"><code>function_name();</code></div>
+                <h5>Ex:</h5>
+                <pre class="code-box code-box-color"><code>// Function declaration:
+void greet();
+int sum(int, int);
+
+// Function definition:
+void greet(){
+    cout << "Hello World!";
+}
+int sum(int a, int b){
+    return a+b;
+}
+
+// Calling function:
+greet();
+sum(10,15);</code></pre>
+                <div>
+                    <h4>&bull; Function Arguments :</h4>
+                    <div>A function can have arguments. We need to pass arguments as formal parameters while calling the function. There are three ways in which we can pass parameters to a function.</div>
+                    <div>
+                        <h5><u>Call by Value</u> -</h5>
+                        <div>This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</div>
+                        <pre class="code-box code-box-color"><code>void swap(int a, int b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+int main(){
+    int a=3, b=7;
+    swap(a,b);
+    cout << "A = " << a << "\nB = " << b;
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
             <div class="sections" id="enum">
                 <h3 class="heading"># Enumeration</h3>
                 <div>An enumeration is a user-defined data type that consists of integral constants. To define an enumeration, the keyword <code>enum</code> is used.</div>
@@ -1122,10 +1153,6 @@ int main(){
     return 0;
 }</code></pre>
                 </div>
-            </div>
-
-            <div class="sections" id="functions">
-                <h3 class="heading"># Functions</h3>
             </div>
 
             <div class="sections" id="exception-handling">
