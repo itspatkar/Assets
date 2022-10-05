@@ -38,6 +38,7 @@
                 <li><a href="#strings">Strings</a></li>
                 <li><a href="#arrays">Arrays</a></li>
                 <li><a href="#pointers">Pointers</a></li>
+                <li><a href="#references">References</a></li>
                 <li><a href="#functions">Functions</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
@@ -70,7 +71,7 @@ int main(){
                     <h4>&bull; Output :</h4>
                     <div><code>cout<<</code> is used for printing output.</div>
                     <pre class="code-box code-box-color"><code>cout << "Hello World!";
-cout << "Value of A is " << a;</code></pre>
+cout << "\nValue of A is " << a;</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Input :</h4>
@@ -106,7 +107,7 @@ comment. */</code></pre>
                 <div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>data_type variable_name;</code></div>
-                    <pre class="code-box code-box-color"><code>int x;
+                    <pre class="code-box code-box-color"><code>int n;
 int x,y,z;
 int a=10;
 string name="Mandar";</code></pre>
@@ -251,7 +252,7 @@ int main(){
 const string name = "Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; <code>typedef</code> Declarations :</h4>
+                    <h4>&bull; <code>typedef</code> Keyword :</h4>
                     <div>Assign a new name (alias) to an existing type using the keyword typedef.</div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>typedef type newname;</code></div>
@@ -455,7 +456,7 @@ static int count = 1;</code></pre>
                 </div>
                 <div>
                     <h4>&bull; <code>sizeof()</code> Operator</h4>
-                    <div>It returns the size of a variable.</div>
+                    <div>It returns the amount of memory that is allocated to data types.</div>
                     <pre class="code-box code-box-color"><code>int x = 15;
 cout << sizeof(x);</code></pre>
                 </div>
@@ -486,6 +487,16 @@ int main(){
 
     return 0;
 }</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Referencing & Dereferencing Operator :</h4>
+                    <div>The <strong>referencing operator</strong> (<code>&</code>) is used for accessing the memory location of a variable, and the <strong>dereferncing operator</strong> (<code>&</code>) is used for accessing the value stored at the memory location.</div>
+                    <pre class="code-box code-box-color"><code>// Referencing:
+int v = 22;
+cout << "Address of v is " << &v;
+
+// Dereferencing:
+cout << "\nValue of v is " << *(&v);</code></pre>
                 </div>
             </div>
 
@@ -705,10 +716,10 @@ if (n%2 == 0) goto INPUT;</code></pre>
             <div class="sections" id="strings">
                 <h3 class="heading"># Strings</h3>
                 <div>Strings are one-dimensional arrays of characters terminated by the null character '\0'. There are two ways of using strings in C++ :</div>
-                <ul>
-                    <li>1. String as Char Array</li>
-                    <li>2. String Class</li>
-                </ul>
+                <ol>
+                    <li>String as Char Array</li>
+                    <li>String Class</li>
+                </ol>
                 <div>
                     <h4>&bull; String as Char Array :</h4>
                     <div>Declaring a string as a character array as in the C language</div>
@@ -785,7 +796,6 @@ int main(){
                 <pre class="code-box"><code>type name[N] = { element1, element2, ..., elementN };
 type name[] = { element1, element2, ..., elementN };</code></pre>
                 <h5>Array Indexing:</h5>
-                <div>Array indexing is the accessing of values in an array.</div>
                 <pre class="code-box"><code>array[index];</code></pre>
                 <h5>Size of array:</h5>
                 <div class="code-box"><code>int size = sizeof(array) / sizeof(type);</code></div>
@@ -937,17 +947,25 @@ cout << *(int*)p << endl;</code></pre>
                 </div>
             </div>
 
+            <div class="sections" id="references">
+                <h3 class="heading"># References</h3>
+                <div>A reference variable is an alias, that is, another name for an already existing variable.</div>
+                <h5>Syntax:</h5>
+                <div class="code-box"><code>type &name = var;</code></div>
+                <h5>Ex:</h5>
+                <pre class="code-box"><code></code></pre>
+            </div>
+
             <div class="sections" id="functions">
                 <h3 class="heading"># Functions</h3>
-                <div>A function is a block of code that performs a specific task. A function declaration tells the compiler about a function's name, return type, and parameters. A function definition provides the actual body of the function.</div>
                 <h5>Syntax:</h5>
-                <h5>Function Declaration -</h5>
+                <h5>Function Declaration :</h5>
                 <div class="code-box"><code>return_type function_name(parameter_list);</code></div>
-                <h5>Function Definition -</h5>
+                <h5>Function Definition :</h5>
                 <pre class="code-box"><code>return_type function_name(){
     //body of function
 }</code></pre>
-                <h5>Function Calling -</h5>
+                <h5>Function Calling :</h5>
                 <div class="code-box"><code>function_name();</code></div>
                 <h5>Ex:</h5>
                 <pre class="code-box code-box-color"><code>// Function declaration:
@@ -967,9 +985,9 @@ greet();
 sum(10,15);</code></pre>
                 <div>
                     <h4>&bull; Function Arguments :</h4>
-                    <div>A function can have arguments. We need to pass arguments as formal parameters while calling the function. There are three ways in which we can pass parameters to a function.</div>
+                    <div>Arguments are passed to functions as formal parameters while calling the function. There are three ways in which we can pass parameters to a function.</div>
                     <div>
-                        <h5><u>Call by Value</u> -</h5>
+                        <h5>1. <u>Call by Value</u> :</h5>
                         <div>This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</div>
                         <pre class="code-box code-box-color"><code>void swap(int a, int b){
     a = a + b;
@@ -978,11 +996,61 @@ sum(10,15);</code></pre>
 }
 int main(){
     int a=3, b=7;
-    swap(a,b);
-    cout << "A = " << a << "\nB = " << b;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b;
+    swap(a, b);
+    cout << "\nAfter Swapping :\nA = " << a << "\nB = " << b << endl;
+
     return 0;
 }</code></pre>
                     </div>
+                    <div>
+                        <h5>1. <u>Call by Pointer</u> :</h5>
+                        <div>This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</div>
+                        <pre class="code-box code-box-color"><code>void swap(int *a, int *b){
+    *a = *a + *b;
+    *b = *a - *b;
+    *a = *a - *b;
+}
+int main(){
+    int a=3, b=7;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b;
+    swap(&a, &b);
+    cout << "\nAfter Swapping :\nA = " << a << "\nB = " << b << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>1. <u>Call by Reference</u> :</h5>
+                        <div>This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</div>
+                        <pre class="code-box code-box-color"><code>void swap(int &a, int &b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+int main(){
+    int a=3, b=7;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b;
+    swap(a, b);
+    cout << "\nAfter Swapping :\nA = " << a << "\nB = " << b << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h4>&bull; Default Values for Parameters :</h4>
+                    <div>When no parameters are passed or some arguments are left blank while calling the function, the default values are used.</div>
+                    <pre class="code-box code-box-color"><code>int sum(int a=2, int b=5){
+    return a+b;
+}
+int main(){
+    cout << "Sum is " << sum(2,4);
+    cout << "\nSum is " << sum(5);
+    cout << "\nSum is " << sum();
+
+    return 0;
+}</code></pre>
                 </div>
             </div>
 
