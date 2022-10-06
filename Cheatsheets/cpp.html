@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <title>C++ Cheatsheets | ItsPatkar</title>
 
         <!-- Bootstrap Libraries -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -17,7 +17,7 @@
         <script src="https://kit.fontawesome.com/e76697353a.js" crossorigin="anonymous"></script>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="assets/style.css" />
+        <link rel="stylesheet" href="assets/style.css">
     </head>
 
     <body>
@@ -25,8 +25,9 @@
             <h2 class="title">C++</h2>
 
             <ul class="section-list">
+                <!-- Basics -->
                 <li><a href="#program-structure">Program Structure</a></li>
-                <li><a href="#input-output">Input & Output</a></li>
+                <li><a href="#input-output">Input &amp; Output</a></li>
                 <li><a href="#comments">Comments</a></li>
                 <li><a href="#variables">Variables</a></li>
                 <li><a href="#data-types">Data Types</a></li>
@@ -42,16 +43,18 @@
                 <li><a href="#functions">Functions</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
+                <!-- OOPS -->
+                <li><a href="#oops">Object-Oriented Programming</a></li>
+                <li><a href="#class-objects">Class &amp; Objects</a></li>
+                <li><a href="#constructor-destructor">Constructor &amp; Destructor</a></li>
+                <li><a href="#inheritance">Inheritance</a></li>
+                <!-- Advanced -->
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
-                <li><a href="#oops">Object-Oriented Programming</a></li>
-                <li><a href="#class-objects">Class & Objects</a></li>
-                <li><a href="#constructor-destructor">Constructor & Destructor</a></li>
-                <li><a href="#inheritance">Inheritance</a></li>
             </ul>
 
-            <hr />
-            <br />
+            <hr>
+            <br>
 
             <div class="sections" id="program-structure">
                 <h3 class="heading"># Program Structure</h3>
@@ -65,8 +68,8 @@ int main(){
 }</code></pre>
             </div>
 
-            <div class="sections" id="basic-syntax">
-                <h3 class="heading"># Input & Output</h3>
+            <div class="sections" id="input-output">
+                <h3 class="heading"># Input &amp; Output</h3>
                 <div>
                     <h4>&bull; Output :</h4>
                     <div><code>cout<<</code> is used for printing output.</div>
@@ -79,7 +82,70 @@ cout << "\nValue of A is " << a;</code></pre>
                     <pre class="code-box code-box-color"><code>cin >> n;
 cin >> a >> b >> c;</code></pre>
                 </div>
-
+                <div>
+                    <h4>&bull; Escape Sequences :</h4>
+                    <div>The escape sequences are special non-printing characters that are used to control the printing behavior of the output stream objects.</div>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Escape Char</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>\a</code></td>
+                                    <td>Alarm or beep sound</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\b</code></td>
+                                    <td>Backspace</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\f</code></td>
+                                    <td>Form feed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\n</code></td>
+                                    <td>New line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\r</code></td>
+                                    <td>Return</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\t</code></td>
+                                    <td>Tab space</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\\</code></td>
+                                    <td>Backslash</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\'</code></td>
+                                    <td>Single quote</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\?</code></td>
+                                    <td>Question mark</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\nnn</code></td>
+                                    <td>Octal number</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\xhh</code></td>
+                                    <td>Hexadecimal number</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\0</code></td>
+                                    <td>Null</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="comments">
@@ -113,7 +179,7 @@ int a=10;
 string name="Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Local & Global Variables :</h4>
+                    <h4>&bull; Local &amp; Global Variables :</h4>
                     <div><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.<div>
                     <div><strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</div>
                     <h5>Ex:</h5>
@@ -132,9 +198,6 @@ int main(){
 
     return 0;
 }</code></pre>
-                </div>
-                <div>
-                    
                 </div>
             </div>
 
@@ -307,7 +370,7 @@ static int count = 1;</code></pre>
             <div class="sections" id="operators">
                 <h3 class="heading"># Operators</h3>
                 <div>
-                    <h4>&bull; Arithmetic Operators</h4>
+                    <h4>&bull; Arithmetic Operators :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -350,7 +413,7 @@ static int count = 1;</code></pre>
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Relational Operators</h4>
+                    <h4>&bull; Relational Operators :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -389,7 +452,7 @@ static int count = 1;</code></pre>
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Logical Operators</h4>
+                    <h4>&bull; Logical Operators :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -416,7 +479,7 @@ static int count = 1;</code></pre>
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Bitwise Operators</h4>
+                    <h4>&bull; Bitwise Operators :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -455,13 +518,13 @@ static int count = 1;</code></pre>
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; <code>sizeof()</code> Operator</h4>
+                    <h4>&bull; <code>sizeof()</code> Operator :</h4>
                     <div>It returns the amount of memory that is allocated to data types.</div>
                     <pre class="code-box code-box-color"><code>int x = 15;
 cout << sizeof(x);</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Ternary Operator</h4>
+                    <h4>&bull; Ternary Operator :</h4>
                     <div class="code-box"><code>[condition] ? [expr_1] : [expr_2]</code></div>
                     <div>If the condition is true, then expression 1 is evaluated; otherwise, expression 2 is evaluated.</div>
                     <pre class="code-box code-box-color"><code>int a=5, b=10, large;
@@ -489,7 +552,7 @@ int main(){
 }</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Referencing & Dereferencing Operator :</h4>
+                    <h4>&bull; Referencing &amp; Dereferencing Operator :</h4>
                     <div>The <strong>referencing operator</strong> (<code>&</code>) is used for accessing the memory location of a variable, and the <strong>dereferncing operator</strong> (<code>&</code>) is used for accessing the value stored at the memory location.</div>
                     <pre class="code-box code-box-color"><code>// Referencing:
 int v = 22;
@@ -497,6 +560,18 @@ cout << "Address of v is " << &v;
 
 // Dereferencing:
 cout << "\nValue of v is " << *(&v);</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Type Casting :</h4>
+                    <div>Typecasting is the conversion of one data type into another by using a casting operator.</div>
+                    <h5>Syntax:</h5>
+                    <div class="code-box"><code>type(expression)</code></div>
+                    <div class="code-box"><code>(type)expression</code></div>
+                    <h5>Ex:</h5>
+                    <pre class="code-box code-box-color"><code>// Casting float into int:
+cout << int(22.17);
+cout << (int)17.22;
+</code></pre>
                 </div>
             </div>
 
@@ -554,7 +629,7 @@ if(a > b){
 }</code></pre>
                </div>
                <div>
-                    <h4>&bull; Nested if & else :</h4>
+                    <h4>&bull; Nested if &amp; else :</h4>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>int age = 16;
 
@@ -953,7 +1028,8 @@ cout << *(int*)p << endl;</code></pre>
                 <h5>Syntax:</h5>
                 <div class="code-box"><code>type &name = var;</code></div>
                 <h5>Ex:</h5>
-                <pre class="code-box"><code></code></pre>
+                <pre class="code-box code-box-color"><code>string food = "Veg Rice";
+string &meal = food;</code></pre>
             </div>
 
             <div class="sections" id="functions">
@@ -1004,7 +1080,7 @@ int main(){
 }</code></pre>
                     </div>
                     <div>
-                        <h5>1. <u>Call by Pointer</u> :</h5>
+                        <h5>2. <u>Call by Pointer</u> :</h5>
                         <div>This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</div>
                         <pre class="code-box code-box-color"><code>void swap(int *a, int *b){
     *a = *a + *b;
@@ -1021,7 +1097,7 @@ int main(){
 }</code></pre>
                     </div>
                     <div>
-                        <h5>1. <u>Call by Reference</u> :</h5>
+                        <h5>3. <u>Call by Reference</u> :</h5>
                         <div>This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</div>
                         <pre class="code-box code-box-color"><code>void swap(int &a, int &b){
     a = a + b;
@@ -1051,6 +1127,46 @@ int main(){
 
     return 0;
 }</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Function Overloading :</h4>
+                    <div>Function overloading means two or more functions can have the same name but different parameters, and based on those parameters, the corresponding function is overloaded. When the number of arguments, the type of arguments, and the order of arguments differ, the function is overloaded. Function overloading is an example of a compile-time polymorphism feature in C++.</div>
+                    <pre class="code-box code-box-color"><code>int sum(){
+    int a, b;
+    cout << "\nEnter Two Numbers: ";
+    cin >> a >> b;
+    return a+b;
+}
+int sum(int a, int b){
+    return a+b;
+}
+float sum(float a, float b){
+    return a+b;
+}
+
+int main(){
+    cout << "Sum is " << sum(2,4);
+    cout << "\nSum is " << sum(5.2f,2.4f);
+    int s = sum();
+    cout << "Sum is " << s;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Recursion :</h4>
+                    <div>The process in which a function calls itself directly or indirectly is called recursion, and the corresponding function is called a recursive function.</div>
+                    <pre class="code-box code-box-color"><code>int sum(int n){
+    if(n != 0) return n + sum(n-1);
+    else return n;
+}
+
+int main(){
+    cout << "Sum is " << sum(10);
+
+    return 0;
+}
+</code></pre>
                 </div>
             </div>
 
@@ -1223,8 +1339,49 @@ int main(){
                 </div>
             </div>
 
+            <div class="sections" id="oops">
+                <h3 class="heading"># Object-Oriented Programming</h3>
+            </div>
+
+            <div class="sections" id="class-objects">
+                <h3 class="heading"># Class &amp; Objects</h3>
+            </div>
+
+            <div class="sections" id="constructor-destructor">
+                <h3 class="heading"># Constructor &amp; Destructor</h3>
+            </div>
+
+            <div class="sections" id="inheritance">
+                <h3 class="heading"># Inheritance</h3>
+            </div>
+
             <div class="sections" id="exception-handling">
-                <h3 class="heading"># Exception Handling</h3>
+                <h3 class="heading"># Exception Handling (WIP)</h3>
+                <div>An exception is a error that arises during the execution of a program. C++ exception handling is built upon three keywords: <code>try</code>, <code>catch</code>, and <code>throw</code>.
+                    <ul>
+                        <li><code>try</code> : a try block is used to place code that may result in an exception.</li>
+                        <li><code>catch</code> : A catch block is used to handle the exception.</li>
+                        <li><code>throw</code> : throws an exception when caught.</li>
+                    </ul>
+                </div>
+                <h5>Syntax:</h5>
+                <pre class="code-box"><code>try {
+    //Block of code to try
+    throw exception; //Throws exception when error arise
+} catch() {
+    //Block of code to handle errors
+}</code></pre>
+                <h5>Ex:</h5>
+                <pre class="code-box"><code>int a,b;
+cout << "Enter Two Numbers: ";
+cin >> a >> b;
+
+try {
+    if(a == 0) throw "Division By Zero.";
+    else cout << "Division is " << (float)a/b;
+} catch(const char *e) {
+    cout << "Error! " << e;
+}</code></pre>
             </div>
 
             <div class="sections" id="preprocessor">
@@ -1367,22 +1524,6 @@ int main(){
                         </table>
                     </div>
                 </div>
-            </div>
-
-            <div class="sections" id="oops">
-                <h3 class="heading"># Object-Oriented Programming</h3>
-            </div>
-
-            <div class="sections" id="class-objects">
-                <h3 class="heading"># Class & Objects</h3>
-            </div>
-
-            <div class="sections" id="constructor-destructor">
-                <h3 class="heading"># Constructor & Destructor</h3>
-            </div>
-
-            <div class="sections" id="inheritance">
-                <h3 class="heading"># Inheritance</h3>
             </div>
 
             <nav>
