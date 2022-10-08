@@ -199,7 +199,7 @@ struct node* reverseLinkedList(struct node* head){
 	return head;
 }
 
-int main(int argc, char const *argv[]){
+int main(){
 	// 1st node -
 	head = (struct node *)malloc(sizeof(struct node));
 	head->data = 10;

@@ -8,7 +8,7 @@ struct node{
 
 struct node *head = NULL;
 
-int main(int argc, char const *argv[]){
+int main(){
 	head = (struct node *)malloc(sizeof(struct node));
 	head->data = 20;
 	head->next = NULL;
