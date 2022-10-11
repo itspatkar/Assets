@@ -128,6 +128,10 @@ struct node* deleteAtPosNode(struct node *head, int pos){
 			ptr->next->prev = ptr->prev;
 			free(ptr);
 		}
+		/*struct node *ptr2 = ptr->prev;
+		ptr2->next = ptr->next;
+		ptr->next->prev = ptr2;
+		free(ptr);*/
 	}
 	return head;
 }
@@ -156,7 +160,7 @@ int main(){
 
 	// Inserting Node at Certain Position in Linked List -
 	printf("\n\n# Inserting Node at Pos :");
-	head = insertAtPos(head,50,3);
+	head = insertAtPos(head,50,2);
 	printData(head);
 	head = insertAtPos(head,60,2);
 	printData(head);
