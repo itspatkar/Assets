@@ -278,7 +278,7 @@ int main(){
 	printData(head);
 
 	// Reverse Single Linked List -
-	printf("\n\n# // Reverse Single Linked List :");
+	printf("\n\n# Reverse Single Linked List :");
 	head = insertNodeAtBeginning(head,10);
 	head = insertNodeAtBeginning(head,20);
 	head = insertNodeAtBeginning(head,30);
@@ -287,13 +287,6 @@ int main(){
 	printData(head);
 	head = reverseLinkedList(head);
 	printData(head);
-
-	switch(c){
-		case 1:
-		
-		break;
-		default:
-	}
 
 	return 0;
 }
