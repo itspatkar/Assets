@@ -69,7 +69,7 @@ struct node* insertAtPos(struct node *head, int data, int pos){
 		struct node *ptr = head;
 		struct node *ptr2 = head;
 		int count = 1;
-		while(count != pos-1){
+		while(count != pos){
 			ptr = ptr->next;
 			ptr2 = ptr->next->next;
 			count++;
@@ -162,7 +162,7 @@ int main(){
 	printf("\n\n# Inserting Node at Pos :");
 	head = insertAtPos(head,50,2);
 	printData(head);
-	head = insertAtPos(head,60,2);
+	head = insertAtPos(head,60,3);
 	printData(head);
 	head = insertAtPos(head,70,1);
 	printData(head);
@@ -179,7 +179,7 @@ int main(){
 
 	// Deleting Node at Certain Position in Linked List -
 	printf("\n\n# Deleting Node at Certain Position :");
-	head = deleteAtPosNode(head, 3);
+	head = deleteAtPosNode(head, 4);
 	printData(head);
 
 	return 0;
