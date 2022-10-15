@@ -8,7 +8,7 @@ struct node{
 
 struct node *tail = NULL;
 
-// Traversing Doubly Linked List : Printing data -
+// Traversing Linked List : Printing data -
 void printData(struct node *tail){
 	struct node *ptr = tail->next;
 	printf("\nData:");
@@ -18,7 +18,7 @@ void printData(struct node *tail){
 	} while(ptr != tail->next);
 }
 
-// Insert Node in Empty Doubly Linked List -
+// Insert Node in Empty Linked List -
 struct node* addToEmpty(int data){
 	struct node *temp = malloc(sizeof(struct node));
 	temp->data = data;
@@ -36,7 +36,7 @@ struct node* insertAtBeg(struct node *tail, int data){
 	return tail;
 }
 
-// Insert Node at End of Doubly Linked List -
+// Insert Node at End of Linked List -
 struct node* insertAtEnd(struct node *tail, int data){
 	struct node *temp = malloc(sizeof(struct node));
 	temp->data = data;
@@ -44,6 +44,31 @@ struct node* insertAtEnd(struct node *tail, int data){
 	temp->next = tail->next;
 	tail->next = temp;
 	tail = tail->next;
+	return tail;
+}
+
+// Inserting Node at Certain Position in Linked List -
+struct node* insertAtPos(struct node *tail, int data, int pos){
+	if(pos == 1)
+		tail = insertAtBeg(tail,data);
+	else {
+		struct node *temp = malloc(sizeof(struct node));
+		temp->data = data;
+		temp->next = NULL;
+		struct node *ptr = tail->next;
+		int count = 1;
+		while(count != pos-1){
+			ptr = ptr->next;
+			count++;
+		}
+		if(ptr->next == tail){
+			tail = insertAtEnd(tail,data);
+		}
+		else {
+			temp->next = ptr->next;
+			ptr->next = temp;
+		}
+	}
 	return tail;
 }
 
@@ -63,6 +88,11 @@ int main(){
 	printf("\n\n# Inserting Node at End :");
 	tail = insertAtEnd(tail,40);
 	tail = insertAtEnd(tail,50);
+	printData(tail);
+
+	// Inserting Node at Certain Position in Linked List -
+	printf("\n\n# Inserting Node at Certain Position :");
+	tail = insertAtPos(tail, 25, 5);
 	printData(tail);
 
 	return 0;

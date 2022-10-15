@@ -9,7 +9,8 @@ struct node{
 
 struct node *head = NULL;
 
-// Traversing Single Linked List : Counting nodes -
+// Traversing Linked List : Counting nodes -
+// Time Complexity: O(n)
 int countNode(struct node *head){
 	int count=0;
 	if(head == NULL)
@@ -25,7 +26,8 @@ int countNode(struct node *head){
 	}
 }
 
-// Traversing Single Linked List : Printing data -
+// Traversing Linked List : Printing data -
+// Time Complexity: O(n)
 void printData(struct node *head){
 	if(head == NULL)
 		printf("Linked list is empty.");
@@ -41,48 +43,81 @@ void printData(struct node *head){
 	}
 }
 
-// Inserting Node at End of Linked List -
+// Inserting Node at End -
+// Time Complexity: O(1)
 struct node* insertNodeAtEnd(struct node *head, int data){
+	/* Logic 1
+	// Time Complexity with traversal: O(n) -
+	struct node *ptr, *temp;
+	ptr=head;
+	temp=(struct node*)malloc(sizeof(struct node));
+	temp->data = data;
+	temp->next = NULL;
+	while(ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->next = temp;
+	Better Logic - */
 	struct node *ptr = head;
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
 	temp->next = NULL;
 	while(ptr->next != NULL)
 		ptr = ptr->next;
-
 	ptr->next = temp;
 	return head;
 }
 
-// Inserting Node at Beginning of Linked List -
+// Inserting Node at Beginning -
+// Time Complexity: O(1)
 struct node* insertNodeAtBeginning(struct node *head, int data){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
 	temp->next = NULL;
-
 	temp->next = head;
 	return temp;
 }
 
-// Inserting Node at Certain Position in Linked List -
-void insertNodeAtPos(struct node *head, int data, int pos){
+/* Inserting Node at Beginningt : Using Pass by referrence/address -
+void insertNodeAtBeginning(struct node **head, int data){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
 	temp->next = NULL;
 
-	struct node *ptr = NULL;
-	ptr=head;
-	int count=1;
-	while(count != pos-1){
-		count++;
-		ptr = ptr->next;
-	}
+	temp->next = *head;
+	*head = temp;
+} */
 
-	temp->next = ptr->next;
-	ptr->next = temp;
+// Inserting Node at Certain Position -
+// Time Complexity: O(n)
+struct node* insertNodeAtPos(struct node *head, int data, int pos){
+	if(pos == 1)
+		head = insertNodeAtBeginning(head,data);
+	else {
+		struct node *temp = (struct node*)malloc(sizeof(struct node));
+		temp->data = data;
+		temp->next = NULL;
+
+		struct node *ptr = NULL;
+		ptr=head;
+		int count=1;
+		while(count != pos-1){
+			count++;
+			ptr = ptr->next;
+		}
+		/* Another logic -
+		pos--;
+		while(pos != 1){
+			ptr = ptr->next;
+			pos--
+		}*/
+		temp->next = ptr->next;
+		ptr->next = temp;
+	}
+	return head;
 }
 
-// Deleting First Node of Linked List -
+// Deleting First Node -
+// Time Complexity: O(1)
 struct node* deleteFirstNode(struct node *head){
 	if(head == NULL)
 		printf("Linked list is empty!\n");
@@ -96,7 +131,8 @@ struct node* deleteFirstNode(struct node *head){
 	return head;
 }
 
-// Deleting Last Node of Linked List -
+// Deleting Last Node -
+// Time Complexity: O(n)
 void deleteLastNode(struct node *head){
 	if(head == NULL)
 		printf("Linked list is empty!\n");
@@ -106,16 +142,20 @@ void deleteLastNode(struct node *head){
 		printf("Last node deleted.\n");
 	} else{
 		struct node* temp = head;
+		//struct node* tempN = head;
 		while(temp->next->next != NULL){
+			//tempN = temp;
 			temp = temp->next;
 		}
+		//tempN->next = NULL;
 		free(temp->next);
 		temp->next = NULL;
 		printf("Last node deleted.\n");
 	}
 }
 
-// Deleting Node at Certain Position in Linked List -
+// Deleting Node at Certain Position -
+// Time Complexity: O(n)
 struct node* deleteAtPosNode(struct node *head, int pos){
 	struct node *previous = head;
 	struct node *current = head;
@@ -141,6 +181,7 @@ struct node* deleteAtPosNode(struct node *head, int pos){
 }
 
 // Deleting Entire Linked List -
+// Time Complexity: O(n)
 struct node* deleteLinkedList(struct node *head){
 	struct node *temp = head;
 	if(head == NULL)
@@ -158,7 +199,8 @@ struct node* deleteLinkedList(struct node *head){
 	return head;
 }
 
-// Reverse Single Linked List -
+// Reverse Linked List -
+// Time Complexity: O(n)
 struct node* reverseLinkedList(struct node* head){
 	struct node* prevT = NULL;
 	struct node* nextT = NULL;
@@ -190,6 +232,13 @@ int main(){
 	head->next = current;
 
 	// 3rd Node -
+	/* method 1 (it can't be used as it creates unnecessory pointers) -
+	struct node *current2 = malloc(sizeof(struct node));
+	current2->data = 30;
+	current2->next = NULL;
+	current->next = current2;
+	printf("%d\n", current2->data); */
+	// method 2 -
 	current = malloc(sizeof(struct node));
 	current->data = 30;
 	current->next = NULL;
@@ -226,40 +275,42 @@ int main(){
 				printData(head);
 				break;
 			case 4:
-				// Inserting Node at End of Linked List -
+				// Inserting Node at End -
 				printf("# Inserting Node at End:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				head = insertNodeAtEnd(head,d);
 				break;
 			case 5:
-				// Inserting Node at Beginning of Linked List -
+				// Inserting Node at Beginning -
 				printf("# Inserting Node at Beginning:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				head = insertNodeAtBeginning(head,d);
+				/* Pass by referrence/address -
+				insertNodeAtBeginning(&head,d); */
 				break;
 			case 6:
-				// Inserting Node at Certain Position in Linked List -
+				// Inserting Node at Certain Position -
 				printf("# Inserting Node at Certain Position:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				printf("Enter Position: ");
 				scanf("%d",&p);
-				insertNodeAtPos(head, d, p); // (head, data, position)
+				head = insertNodeAtPos(head, d, p); // (head, data, position)
 				break;
 			case 7:
-				// Deleting First Node of Linked List -
+				// Deleting First Node -
 				printf("# Deleting First Node:\n");
 				head = deleteFirstNode(head);
 				break;
 			case 8:
-				// Deleting Last Node of Linked List -
+				// Deleting Last Node -
 				printf("# Deleting Last Node:\n");
 				deleteLastNode(head);
 				break;
 			case 9:
-				// Deleting Node at Certain Position in Linked List -
+				// Deleting Node at Certain Position -
 				printf("# Deleting Node at Certain Position:\n");
 				printf("Enter Position: ");
 				scanf("%d",&p);
@@ -271,8 +322,8 @@ int main(){
 				head = deleteLinkedList(head);
 				break;
 			case 11:
-				// Reverse Single Linked List -
-				printf("# Reverse Single Linked List:\n");
+				// Reverse Linked List -
+				printf("# Reverse Linked List:\n");
 				head = reverseLinkedList(head);
 				break;
 			default:
