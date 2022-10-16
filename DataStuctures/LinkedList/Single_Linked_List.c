@@ -30,7 +30,7 @@ int countNode(struct node *head){
 // Time Complexity: O(n)
 void printData(struct node *head){
 	if(head == NULL)
-		printf("Linked list is empty.");
+		printf("Linked list is empty.\n");
 	else {
 		struct node *ptr = NULL;
 		ptr=head;
@@ -101,8 +101,8 @@ struct node* insertNodeAtPos(struct node *head, int data, int pos){
 		ptr=head;
 		int count=1;
 		while(count != pos-1){
-			count++;
 			ptr = ptr->next;
+			count++;
 		}
 		/* Another logic -
 		pos--;
@@ -327,7 +327,7 @@ int main(){
 				head = reverseLinkedList(head);
 				break;
 			default:
-				printf("Incorrect Choice!");
+				printf("Incorrect Choice!\n");
 		}
 	}
 

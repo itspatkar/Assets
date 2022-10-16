@@ -84,11 +84,9 @@ struct node* insertAtPos(struct node *head, int data, int pos){
 		temp->data = data;
 		temp->next = NULL;
 		struct node *ptr = head;
-		struct node *ptr2 = head;
 		int count = 1;
 		while(count != pos-1){
 			ptr = ptr->next;
-			ptr2 = ptr->next->next;
 			count++;
 		}
 		/* Another Logic:
@@ -99,7 +97,7 @@ struct node* insertAtPos(struct node *head, int data, int pos){
 		temp->prev = ptr;
 		temp->next = ptr->next;
 		ptr->next = temp;
-		ptr2->prev = temp;
+		ptr->next->prev = temp;
 	}
 	return head;
 }
@@ -279,7 +277,7 @@ int main(){
 				head = reverseLinkedList(head);
 				break;
 			default:
-				printf("Incorrect Choice!");
+				printf("Incorrect Choice!\n");
 		}
 	}
 
