@@ -61,9 +61,11 @@ struct node* insertNodeAtEnd(struct node *head, int data){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
 	temp->next = NULL;
+
 	while(ptr->next != NULL)
 		ptr = ptr->next;
 	ptr->next = temp;
+
 	return head;
 }
 
@@ -74,10 +76,11 @@ struct node* insertNodeAtBeginning(struct node *head, int data){
 	temp->data = data;
 	temp->next = NULL;
 	temp->next = head;
+
 	return temp;
 }
 
-/* Inserting Node at Beginningt : Using Pass by referrence/address -
+/* Inserting Node at Beginning : Using Pass by referrence/address -
 void insertNodeAtBeginning(struct node **head, int data){
 	struct node *temp = (struct node*)malloc(sizeof(struct node));
 	temp->data = data;
@@ -113,6 +116,7 @@ struct node* insertNodeAtPos(struct node *head, int data, int pos){
 		temp->next = ptr->next;
 		ptr->next = temp;
 	}
+
 	return head;
 }
 
@@ -128,6 +132,7 @@ struct node* deleteFirstNode(struct node *head){
 		temp = NULL;
 		printf("First node deleted.\n");
 	}
+
 	return head;
 }
 
@@ -159,6 +164,7 @@ void deleteLastNode(struct node *head){
 struct node* deleteAtPosNode(struct node *head, int pos){
 	struct node *previous = head;
 	struct node *current = head;
+
 	if(head == NULL)
 		printf("Linked list is empty!\n");
 	else if(pos == 1){
@@ -177,6 +183,7 @@ struct node* deleteAtPosNode(struct node *head, int pos){
 		current = NULL;
 		printf("Node deleted.\n");
 	}
+
 	return head;
 }
 
@@ -196,6 +203,7 @@ struct node* deleteLinkedList(struct node *head){
 		head = temp = NULL;
 		printf("Linked list deleted.\n");
 	}
+
 	return head;
 }
 
@@ -204,6 +212,7 @@ struct node* deleteLinkedList(struct node *head){
 struct node* reverseLinkedList(struct node* head){
 	struct node* prevT = NULL;
 	struct node* nextT = NULL;
+
 	while(head != NULL){
 		nextT = head->next;
 		head->next = prevT;
@@ -212,6 +221,7 @@ struct node* reverseLinkedList(struct node* head){
 	}
 	head = prevT;
 	printf("Linked list reversed.\n");
+
 	return head;
 }
 
@@ -232,13 +242,13 @@ int main(){
 	head->next = current;
 
 	// 3rd Node -
-	/* method 1 (it can't be used as it creates unnecessory pointers) -
+	/* Method 1 (it can't be used as it creates unnecessory pointers) -
 	struct node *current2 = malloc(sizeof(struct node));
 	current2->data = 30;
 	current2->next = NULL;
 	current->next = current2;
 	printf("%d\n", current2->data); */
-	// method 2 -
+	// Method 2 -
 	current = malloc(sizeof(struct node));
 	current->data = 30;
 	current->next = NULL;
@@ -263,7 +273,6 @@ int main(){
 				printf("_____________________________\n");
 				break;
 			case 2:
-				// Traversing Linked List -
 				count = countNode(head);
 				if (count == 0)
 					printf("Linked list is empty.\n");
@@ -271,18 +280,15 @@ int main(){
 					printf("Nodes in Linked list = %d\n",count);
 				break;
 			case 3:
-				// Traversing Linked List -
 				printData(head);
 				break;
 			case 4:
-				// Inserting Node at End -
 				printf("# Inserting Node at End:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				head = insertNodeAtEnd(head,d);
 				break;
 			case 5:
-				// Inserting Node at Beginning -
 				printf("# Inserting Node at Beginning:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
@@ -291,7 +297,6 @@ int main(){
 				insertNodeAtBeginning(&head,d); */
 				break;
 			case 6:
-				// Inserting Node at Certain Position -
 				printf("# Inserting Node at Certain Position:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
@@ -300,29 +305,24 @@ int main(){
 				head = insertNodeAtPos(head, d, p); // (head, data, position)
 				break;
 			case 7:
-				// Deleting First Node -
 				printf("# Deleting First Node:\n");
 				head = deleteFirstNode(head);
 				break;
 			case 8:
-				// Deleting Last Node -
 				printf("# Deleting Last Node:\n");
 				deleteLastNode(head);
 				break;
 			case 9:
-				// Deleting Node at Certain Position -
 				printf("# Deleting Node at Certain Position:\n");
 				printf("Enter Position: ");
 				scanf("%d",&p);
 				head = deleteAtPosNode(head, p); // (head, position)
 				break;
 			case 10:
-				// Deleting Entire Linked List -
 				printf("# Deleting Entire Linked List:\n");
 				head = deleteLinkedList(head);
 				break;
 			case 11:
-				// Reverse Linked List -
 				printf("# Reverse Linked List:\n");
 				head = reverseLinkedList(head);
 				break;
