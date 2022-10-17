@@ -120,6 +120,37 @@ struct node* deleteLast(struct node *tail){
 	return tail;
 }
 
+// Deleting Node at Certain Position -
+// Time Complexity: O(n)
+struct node* deletePos(struct node *tail, int pos){
+	if(tail == NULL)
+		printf("Linked list is empty!\n");
+	else if(pos == 1){
+		tail = deleteFirst(tail);
+	} else if(tail->next == tail){
+		free(tail);
+		tail = NULL;
+	} else{
+		struct node *ptr = tail->next;
+		pos--;
+		while(pos != 1){
+			ptr = ptr->next;
+			pos--;
+		}
+		if(ptr == tail)
+			tail = deleteLast(tail);
+		else {
+			struct node *temp = ptr->next;
+			ptr->next = temp->next;
+			free(temp);
+			temp = NULL;
+			printf("Node deleted.\n");
+		}
+	}
+
+	return tail;
+}
+
 int main(){
 	int d, p, c, count;
 	bool exit = false;
@@ -184,20 +215,12 @@ int main(){
 				printf("# Deleting Last Node:\n");
 				tail = deleteLast(tail);
 				break;
-			/*case 9:
+			case 9:
 				printf("# Deleting Node at Certain Position:\n");
 				printf("Enter Position: ");
 				scanf("%d",&p);
 				tail = deletePos(tail, p); // (tail, position)
 				break;
-			/* case 10:
-				printf("# Deleting Entire Linked List:\n");
-				tail = deleteLinkedList(tail);
-				break;
-			case 11:
-				printf("# Reverse Linked List:\n");
-				tail = reverseLinkedList(tail);
-				break; */
 			default:
 				printf("Incorrect Choice!\n");
 		}
