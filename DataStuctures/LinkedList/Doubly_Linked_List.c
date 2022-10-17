@@ -29,7 +29,7 @@ int countNode(struct node *head){
 // Traversing Linked List : Printing data -
 void printData(struct node *head){
 	if(head == NULL)
-		printf("Linked List is empty.\n");
+		printf("Linked List is empty!\n");
 	else {
 		struct node *ptr = head;
 		printf("Data:");
@@ -42,7 +42,7 @@ void printData(struct node *head){
 }
 
 // Insert Node in Empty Linked List -
-struct node* insertToEmpty(struct node *head, int data){
+struct node* insertEmpty(struct node *head, int data){
 	struct node *temp = malloc(sizeof(struct node));
 	temp->prev = NULL;
 	temp->data = data;
@@ -52,7 +52,7 @@ struct node* insertToEmpty(struct node *head, int data){
 }
 
 // Insert Node at Beggining -
-struct node* insertAtBeg(struct node *head, int data){
+struct node* insertBeg(struct node *head, int data){
 	struct node *temp = malloc(sizeof(struct node));
 	temp->prev = NULL;
 	temp->data = data;
@@ -63,7 +63,7 @@ struct node* insertAtBeg(struct node *head, int data){
 }
 
 // Insert Node at End -
-struct node* insertAtEnd(struct node *head, int data){
+struct node* insertEnd(struct node *head, int data){
 	struct node *temp = malloc(sizeof(struct node));
 	temp->prev = NULL;
 	temp->data = data;
@@ -79,9 +79,9 @@ struct node* insertAtEnd(struct node *head, int data){
 }
 
 // Inserting Node at Certain Position -
-struct node* insertAtPos(struct node *head, int data, int pos){
+struct node* insertPos(struct node *head, int data, int pos){
 	if(pos == 1)
-		head = insertAtBeg(head,data);
+		head = insertBeg(head,data);
 	else {
 		struct node *temp = malloc(sizeof(struct node));
 		temp->prev = NULL;
@@ -109,7 +109,7 @@ struct node* insertAtPos(struct node *head, int data, int pos){
 }
 
 // Deleting First Node -
-struct node* deleteFirstNode(struct node *head){
+struct node* deleteFirst(struct node *head){
 	head = head->next;
 	free(head->prev);
 	head->prev = NULL;
@@ -119,7 +119,7 @@ struct node* deleteFirstNode(struct node *head){
 }
 
 // Deleting Last Node -
-void deleteLastNode(struct node *head){
+void deleteLast(struct node *head){
 	struct node *ptr = head;
 	while(ptr->next->next != NULL)
 		ptr = ptr->next;
@@ -129,12 +129,12 @@ void deleteLastNode(struct node *head){
 }
 
 // Deleting Node at Certain Position -
-struct node* deleteAtPosNode(struct node *head, int pos){
+struct node* deletePos(struct node *head, int pos){
 	struct node *ptr = head;
 	if(head == NULL)
-		printf("Linked list is already empty.\n");
+		printf("Linked list is already empty!\n");
 	else if(pos == 1){
-		head = deleteFirstNode(head);
+		head = deleteFirst(head);
 		printf("Node deleted.\n");
 	}
 	else {
@@ -143,7 +143,7 @@ struct node* deleteAtPosNode(struct node *head, int pos){
 			pos--;
 		}
 		if (ptr->next == NULL)
-			deleteLastNode(head);
+			deleteLast(head);
 		else {
 			ptr->prev->next = ptr->next;
 			ptr->next->prev = ptr->prev;
@@ -195,11 +195,11 @@ int main(){
 	int d, p, c, count;
 	bool exit = false;
 
-	head = insertToEmpty(head,10);
-	head = insertAtEnd(head,20);
-	head = insertAtEnd(head,30);
-	head = insertAtEnd(head,40);
-	head = insertAtEnd(head,50);
+	head = insertEmpty(head,10);
+	head = insertEnd(head,20);
+	head = insertEnd(head,30);
+	head = insertEnd(head,40);
+	head = insertEnd(head,50);
 
 	printf("Select Operation to perform :\n0. Exit\n1. Clear Screen\n2. Count Nodes\n3. Print Nodes\n4. Insert Node in Empty Linked List\n5. Insert Node at End\n6. Insert Node at Beginning\n7. Insert Node at Position\n8. Delete First Node\n9. Delete Last Node\n10. Delete Node at Position\n11. Delete Linked List\n12. Reverse Linked List\n");
 	printf("_____________________________\n");
@@ -222,7 +222,7 @@ int main(){
 			case 2:
 				count = countNode(head);
 				if (count == 0)
-					printf("Linked list is empty.\n");
+					printf("Linked list is empty!\n");
 				else
 					printf("Nodes in Linked list = %d\n",count);
 				break;
@@ -233,19 +233,19 @@ int main(){
 				printf("# Inserting Node in Empty Linked List:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
-				head = insertToEmpty(head,d);
+				head = insertEmpty(head,d);
 				break;
 			case 5:
 				printf("# Inserting Node at End:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
-				head = insertAtEnd(head,d);
+				head = insertEnd(head,d);
 				break;
 			case 6:
 				printf("# Inserting Node at Beginning:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
-				head = insertAtBeg(head,d);
+				head = insertBeg(head,d);
 				break;
 			case 7:
 				printf("# Inserting Node at Certain Position:\n");
@@ -253,21 +253,21 @@ int main(){
 				scanf("%d",&d);
 				printf("Enter Position: ");
 				scanf("%d",&p);
-				head = insertAtPos(head, d, p); // (head, data, position)
+				head = insertPos(head, d, p); // (head, data, position)
 				break;
 			case 8:
 				printf("# Deleting First Node:\n");
-				head = deleteFirstNode(head);
+				head = deleteFirst(head);
 				break;
 			case 9:
 				printf("# Deleting Last Node:\n");
-				deleteLastNode(head);
+				deleteLast(head);
 				break;
 			case 10:
 				printf("# Deleting Node at Certain Position:\n");
 				printf("Enter Position: ");
 				scanf("%d",&p);
-				head = deleteAtPosNode(head, p); // (head, position)
+				head = deletePos(head, p); // (head, position)
 				break;
 			case 11:
 				printf("# Deleting Entire Linked List:\n");
