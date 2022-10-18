@@ -9,8 +9,24 @@ struct node{
 
 struct node *tail = NULL;
 
-// Traversing Linked List : Printing data -
-void printData(struct node *tail){
+// Counting Nodes -
+int countNode(struct node *tail){
+	int count = 0;
+	if(tail == NULL)
+		count = 0;
+	else {
+		count++;
+		struct node *ptr = tail->next;
+		while(ptr != tail){
+			ptr = ptr->next;
+			count++;
+		}
+	}
+	return count;
+}
+
+// Printing Nodes -
+void printNode(struct node *tail){
 	if(tail == NULL)
 		printf("Linked list is empty!\n");
 	else {
@@ -121,7 +137,6 @@ struct node* deleteLast(struct node *tail){
 }
 
 // Deleting Node at Certain Position -
-// Time Complexity: O(n)
 struct node* deletePos(struct node *tail, int pos){
 	if(tail == NULL)
 		printf("Linked list is empty!\n");
@@ -151,6 +166,23 @@ struct node* deletePos(struct node *tail, int pos){
 	return tail;
 }
 
+// Searching Element -
+int searchNode(struct node *tail, int element){
+	int index = 0;
+	if(tail == NULL)
+		return -2;
+	else {
+		struct node *ptr = tail->next;
+		do {
+			if(ptr->data == element)
+				return index;
+			ptr = ptr->next;
+			index++;
+		}while(ptr != tail->next);
+		return -1;
+	}
+}
+
 int main(){
 	int d, p, c, count;
 	bool exit = false;
@@ -160,7 +192,7 @@ int main(){
 	tail = insertEnd(tail,30);
 	tail = insertEnd(tail,40);
 
-	printf("Select Operation to perform :\n0. Exit\n1. Clear Screen\n2. Print Nodes\n3. Insert Node in Empty Linked List\n4. Insert Node at Beginning\n5. Insert Node at End\n6. Insert Node at Position\n7. Delete First Node\n8. Delete Last Node\n9. Delete Node at Position\n10. Delete Linked List\n11. Reverse Linked List\n");
+	printf("Select Operation to perform :\n0. Exit\n1. Clear Screen\n2. Count Nodes\n3. Print Nodes\n4. Insert Node in Empty Linked List\n5. Insert Node at Beginning\n6. Insert Node at End\n7. Insert Node at Position\n8. Delete First Node\n9. Delete Last Node\n10. Delete Node at Position\n11. Search element in Linked List\n");
 	printf("_____________________________\n");
 	
 	while(!exit){
@@ -175,31 +207,38 @@ int main(){
 			case 1:
 				printf("Clearing screen...\n");
 				system("clear");
-				printf("Select Operation to perform :\n0. Exit\n1. Clear Screen\n2. Print Nodes\n3. Insert Node in Empty Linked List\n4. Insert Node at Beginning\n5. Insert Node at End\n6. Insert Node at Position\n7. Delete First Node\n8. Delete Last Node\n9. Delete Node at Position\n10. Delete Linked List\n11. Reverse Linked List\n");
+				printf("Select Operation to perform :\n0. Exit\n1. Clear Screen\n2. Count Nodes\n3. Print Nodes\n4. Insert Node in Empty Linked List\n5. Insert Node at Beginning\n6. Insert Node at End\n7. Insert Node at Position\n8. Delete First Node\n9. Delete Last Node\n10. Delete Node at Position\n11. Search element in Linked List\n");
 				printf("_____________________________\n");
 				break;
 			case 2:
-				printData(tail);
+				count = countNode(tail);
+				if (count == 0)
+					printf("Linked list is empty!\n");
+				else
+					printf("Nodes in Linked list = %d\n",count);
 				break;
 			case 3:
+				printNode(tail);
+				break;
+			case 4:
 				printf("# Inserting Node in Empty Linked List:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				tail = insertEmpty(d);
 				break;
-			case 4:
+			case 5:
 				printf("# Inserting Node at Beginning:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				tail = insertBeg(tail,d);
 				break;
-			case 5:
+			case 6:
 				printf("# Inserting Node at End:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
 				tail = insertEnd(tail,d);
 				break;
-			case 6:
+			case 7:
 				printf("# Inserting Node at Certain Position:\n");
 				printf("Enter Data: ");
 				scanf("%d",&d);
@@ -207,19 +246,31 @@ int main(){
 				scanf("%d",&p);
 				tail = insertPos(tail, d, p); // (tail, data, position)
 				break;
-			case 7:
+			case 8:
 				printf("# Deleting First Node:\n");
 				tail = deleteFirst(tail);
 				break;
-			case 8:
+			case 9:
 				printf("# Deleting Last Node:\n");
 				tail = deleteLast(tail);
 				break;
-			case 9:
+			case 10:
 				printf("# Deleting Node at Certain Position:\n");
 				printf("Enter Position: ");
 				scanf("%d",&p);
 				tail = deletePos(tail, p); // (tail, position)
+				break;
+			case 11:
+				printf("Searching Element in Linked List:\n");
+				printf("Enter Element: ");
+				scanf("%d",&d);
+				count = searchNode(tail,d);
+				if(count == -1)
+					printf("Element not found!\n");
+				else if(count == -2)
+					printf("Linked list is empty!\n");
+				else
+					printf("Element %d is at index %d.\n",d,count);
 				break;
 			default:
 				printf("Incorrect Choice!\n");

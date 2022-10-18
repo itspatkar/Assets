@@ -10,7 +10,7 @@ struct node{
 
 struct node *head = NULL;
 
-// Traversing Linked List : Counting nodes -
+// Counting Nodes -
 int countNode(struct node *head){
 	int count=0;
 	if(head == NULL)
@@ -26,8 +26,8 @@ int countNode(struct node *head){
 	}
 }
 
-// Traversing Linked List : Printing data -
-void printData(struct node *head){
+// Printing Nodes -
+void printNode(struct node *head){
 	if(head == NULL)
 		printf("Linked List is empty!\n");
 	else {
@@ -227,7 +227,7 @@ int main(){
 					printf("Nodes in Linked list = %d\n",count);
 				break;
 			case 3:
-				printData(head);
+				printNode(head);
 				break;
 			case 4:
 				printf("# Inserting Node in Empty Linked List:\n");
