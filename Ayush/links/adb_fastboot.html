@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>ADB & Fastboot Cheatsheet | ItsPatkar</title>
+
+        <!-- CSS -->
+
+        <link rel="stylesheet" href="link-style.css">
+
+    </head>
+
+    <body>
+        <div class="container" id="container">
+            <h2 class="title">ADB & Fastboot</h2>
+
+            <ul class="section-list">
+                <li><a href="#adb">ADB</a></li>
+                <li><a href="#fastboot">Fastboot</a></li>
+            </ul>
+
+            <br>
+
+            <div class="sections" id="adb">
+                <h3 class="heading"># ADB</h3>
+                <div>
+                    <h5>&bull; List connected adb devices :</h5>
+                    <div class="code-box"><code>adb devices</code></div>
+                    <h5>&bull; List Packages :</h5>
+                    <div class="code-box"><code>adb shell pm list packages | grep '&lt;keyword&gt;'</code></div>
+                    <h5>&bull; Install Package :</h5>
+                    <div class="code-box"><code>adb install &lt;package&gt;</code></div>
+                    <h5>&bull; Uninstall Package :</h5>
+                    <div>Keep data and cache.</div>
+                    <div class="code-box"><code>adb shell pm uninstall -k --user 0 &lt;package&gt;</code></div>
+                </div>
+                <div><strong>Note :</strong> Package refers to the android package.</div>
+            </div>
+
+            <div class="sections" id="fastboot">
+                <h3 class="heading"># Fastboot</h3>
+                <div>
+                    <h5>&bull; List connected devices :</h5>
+                    <div class="code-box"><code>fastboot devices</code></div>
+                    <h5>&bull; Flash Recovery :</h5>
+                    <div class="code-box"><code>fastboot flash recovery &lt;image&gt;</code></div>
+                    <h5>&bull; Reboot into ROM :</h5>
+                    <div class="code-box"><code>fastboot reboot</code></div>
+                    <h5>&bull; Reboot into Recovery :</h5>
+                    <div class="code-box"><code>fastboot reboot recovery</code></div>
+                    <h5>&bull; Reboot into Bootloader :</h5>
+                    <div class="code-box"><code>fastboot reboot bootloader</code></div>
+                </div>
+            </div>
+
+            <nav>
+                <a href="https://itspatkar.github.io/Cheatsheets/"><i class="fas fa-arrow-left"></i> BACK</a>
+                <a href="#container" class="float-right"><i class="fas fa-arrow-up"></i> TOP</a>
+            </nav>
+        </div>
+    </body>
+</html>

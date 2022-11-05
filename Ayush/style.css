@@ -1,0 +1,137 @@
+
+
+/* Fonts Family */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
+@font-face {
+    font-family: UbuntuMedium;
+    src: url(https://itspatkar.github.io/Cheatsheets/assets/UbuntuMedium.ttf);
+}
+
+
+.ubuntu-medium {
+    font-family: UbuntuMedium;
+}
+
+/* ===== variable ==== */
+
+:root{
+    --clr:#fff;
+    --bg-clr:#000;
+    --link-clr: #006abf;
+}
+
+/* ==== Universal selector ==== */
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    padding: 0 2rem;
+    background: var(--bg-clr);
+    color: var(--clr);
+}
+
+.header{
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    color: var(--link-clr);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* toggle-btn */
+
+.dark-mode-toggle{
+   margin-left: 5rem;
+   padding: 0 .75rem 0.4rem .75rem;
+   color: var(--clr);
+   font-size: 1.5rem;
+   font-weight: 500;
+   background-color: var(--link-clr);
+   border: none;
+   border-radius: 50px;
+
+}
+
+.links{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.list {
+    color: var(--clr);
+    text-decoration: none;
+    padding: 1rem 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid var(--link-clr);
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.list::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: var(--link-clr);
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 500ms;
+    z-index: -1;
+}
+.list:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.credits {
+    padding: 1.5rem;
+    text-align: center;
+    word-spacing: 3px;
+    font-size: 1.15rem;
+}
+.credits a{
+    color: var(--link-clr);
+}
+
+/* ==== dark-mode ===== */
+
+.darkmode {
+
+    --clr:#000;
+    --bg-clr:#fff;
+    --link-clr: #006abf;
+  }
+
+
+
+  @media only screen and (max-width:450px) {
+    body{
+        padding: 0 1rem;
+    }
+    .title{
+        font-size: 1.5rem;
+    }
+    .dark-mode-toggle{
+        font-size: 1.25rem;
+        padding: 0 .5rem 0.25rem .5rem;
+    }
+    .links{
+        grid-template-columns: 1fr;
+    }
+  }
+  
