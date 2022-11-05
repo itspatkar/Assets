@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>Calculator by ItsPatkar</title>
+
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+	<!-- Font Awesome Kit's Code -->
+	<script src="https://kit.fontawesome.com/ade27430ed.js" crossorigin="anonymous"></script>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+	<!-- Page -->
+	<div class="container customctn">
+
+		<!-- Answer Box -->
+		<div class="text-light" id="ans">0</div>
+		
+		<!-- Buttons -->
+		<div class="btn-group-vertical full">
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('(')">&lpar;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue(')')">&rpar;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="factorial()">&excl;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="backspace()" ><i class="fas fa-backspace"></i></button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('**')" >&and;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="root()" >&radic;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('%')" >&percnt;</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('/')" >&divide;</button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('7')" >7</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('8')" >8</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('9')" >9</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('*')" >&times;</button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('4')" >4</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('5')" >5</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('6')" >6</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('-')" >&minus;</button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('1')" >1</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('2')" >2</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('3')" >3</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('+')" >&plus;</button>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="clearAns()" >&comp;</button>
+				<button type="button" class="btn btn-outline-secondary text-light custombtn" onclick="putValue('0')" >0</button>
+				<button type="button" class="btn btn-outline-primary custombtn" onclick="putValue('.')" >&sdot;</button>
+				<button type="button" class="btn btn-outline-success custombtn" onclick="showAns()" >&equals;</button>
+			</div>
+		</div>
+
+	</div>
+	
+	<!-- JavaScript -->
+	<script src="JS/jscript.js"></script>
+</body>
+
+</html>
