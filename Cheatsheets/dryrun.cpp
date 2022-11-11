@@ -1,20 +1,40 @@
 #include <iostream>
 using namespace std;
 
-class MyClass {
-    public: // Public access specifier
-        int pu;
-    private: // Private access specifier
-        int pr;
-    protected: // Protected access specifier
-        int pt;
+class Student {
+    private:
+        int *ptr;
+    public:
+        int roll;
+        string name;
+
+        // Constructor (parameterized) :
+        Student(int r, string n){
+            roll = r;
+            name = n;
+            ptr = new int;
+            *ptr = len;
+        }
+        // Copy Constructor :
+        Student(const Student &ob){
+            ptr = new int;
+            *ptr = *ob.ptr;
+        }
+        // Destructor :
+        ~Student(){
+            cout << "Destructor is called." << endl;
+            delete ptr;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
 };
 
 int main(){
-    MyClass ob;
-    ob.pu = 25; // Allowed (public)
-    ob.pr = 50; // Error: Not allowed (private)
-    ob.pt = 75; // Error: Not allowed (protected)
+    Student s1(17, "Mandar");
+    s1.studentInfo();
 
     return 0;
 }

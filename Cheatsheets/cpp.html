@@ -1376,8 +1376,8 @@ int main(){
 
 // Method outside class with Scope Resolution Operator :
 void Student::studentInfo(){
+    cout << "Roll : " << printRoll() << endl;
     cout << "Name : " << printName() << endl;
-    cout << "Roll NO : " << printRoll() << endl;
 }</code></pre>
                 </div>
                 <div>
@@ -1441,8 +1441,8 @@ int main(){
         }
 
         void studentInfo(){
+            cout << "Roll : " << roll << endl;
             cout << "Name : " << name << endl;
-            cout << "Roll NO : " << roll << endl;
         }
 };
 
@@ -1455,7 +1455,69 @@ int main(){
                 </div>
                 <div>
                     <h4>Destructor :</h4>
-                    <div>A class is a blueprint or template for objects.</div>
+                    <div>It is a special method that is automatically called when an object of its class goes out of scope. The destructor has the same name as the class, is preceded by a tilde (~) symbol, is always public, and does not have any return value.</div>
+                    <pre class="code-box code-box-color"><code>class Student {
+    public:
+        int roll;
+        string name;
+
+        // Constructor (Parameterized) :
+        Student(int r, string n){
+            cout << "Constructor is called." << endl;;
+            roll = r;
+            name = n;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+
+        // Destructor :
+        ~Student(){
+            cout << "Destructor is called." << endl;
+        }
+};
+
+int main(){
+    Student s1(17, "Mandar");
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>Initialization List :</h4>
+                    <div>Using Initialization Lists to Initialize Fields</div>
+                    <pre class="code-box code-box-color"><code>class Student {
+    public:
+        int roll;
+        string name;
+        int std;
+
+        // Constructor (parameterized) :
+        // Initialization List :
+        Student(int r, string n, int s): name(n), std(s){
+            roll = r;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+            cout << "Std : " << std << "th" << endl;
+        }
+};
+
+int main(){
+    Student s1(17, "Mandar", 9);
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>Copy Constructor :</h4>
+                    <div>The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously.</div>
                     <pre class="code-box code-box-color"><code>
 </code></pre>
                 </div>
@@ -1463,6 +1525,28 @@ int main(){
 
             <div class="sections" id="encapsulation">
                 <h3 class="heading"># Encapsulation</h3>
+                <div>Encapsulation in OOPs is the concept of binding fields (object state) and methods (behavior) together as a single unit. Encapsulation in OOPs may also mean restricting direct access to certain components of an object so that users can’t access the state values for all variables of a particular object. Therefore, encapsulation can be used to hide data members and functions associated with an instantiated class or object.</div>
+                <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int salary;
+    public:
+        // Setter :
+        void setSalary(int sal){
+            salary = sal;
+        }
+        // Getter :
+        int getSalary(){
+            return salary;
+        }
+};
+
+int main(){
+    Employee empOb;
+    empOb.setSalary(80000);
+    cout << "Salary is " << empOb.getSalary() << endl;
+
+    return 0;
+}</code></pre>
             </div>
 
             <div class="sections" id="inheritance">
