@@ -25,7 +25,7 @@
             <h2 class="title">C++</h2>
 
             <ul class="section-list">
-                <!-- Basics -->
+                <!-- Basic -->
                 <li><a href="#program-structure">Program Structure</a></li>
                 <li><a href="#input-output">Input &amp; Output</a></li>
                 <li><a href="#comments">Comments</a></li>
@@ -43,7 +43,7 @@
                 <li><a href="#functions">Functions</a></li>
                 <li><a href="#enum">Enumeration</a></li>
                 <li><a href="#struct">Structures</a></li>
-                <!-- OOPS -->
+                <!-- OOP -->
                 <li><a href="#class-objects">Class &amp; Objects</a></li>
                 <li><a href="#encapsulation">Encapsulation</a></li>
                 <li><a href="#constructor-destructor">Constructor &amp; Destructor</a></li>
@@ -178,14 +178,14 @@ comment. */</code></pre>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>data_type variable_name;</code></div>
                     <pre class="code-box code-box-color"><code>int n;
-int x,y,z;
+int x,y,z=5;
 int a=10;
 string name="Mandar";</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Local &amp; Global Variables :</h4>
-                    <div><strong>Local variables</strong> are declared inside a function or block. They can be used only by statements that are inside that function or block of code.<div>
-                    <div><strong>Global variables</strong> are defined outside of all the functions. The global variables will hold their value throughout the life-time of your program. A global variable can be accessed by any function.</div>
+                    <div><strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block.<div>
+                    <div><strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
@@ -222,32 +222,32 @@ int main(){
                                 <tr>
                                     <td><code>bool</code></td>
                                     <td>1 byte</td>
-                                    <td>Stores  boolean values (<code>true</code> or <code>false</code>)</td>
+                                    <td>boolean values (<code>true</code> or <code>false</code>)</td>
                                 </tr>
                                 <tr>
                                     <td><code>char</code></td>
                                     <td>1 byte</td>
-                                    <td>Stores single character, letter, number or ASCII values</td>
+                                    <td>single character, letter, number or ASCII values</td>
                                 </tr>
                                 <tr>
                                     <td><code>int</code></td>
                                     <td>4 byte</td>
-                                    <td>Stores whole numbers, without decimals</td>
+                                    <td>integers (non-decimals)</td>
                                 </tr>
                                 <tr>
                                     <td><code>float</code></td>
                                     <td>4 byte</td>
-                                    <td>Stores fractional numbers (upto 7 decimal digits)</td>
+                                    <td>fractional numbers (upto 7 decimal digits)</td>
                                 </tr>
                                 <tr>
                                     <td><code>double</code></td>
                                     <td>8 byte</td>
-                                    <td>Stores fractional numbers (upto 15 decimal digits)</td>
+                                    <td>fractional numbers (upto 15 decimal digits)</td>
                                 </tr>
                                 <tr>
                                     <td><code>void</code></td>
                                     <td>-</td>
-                                    <td>Represents no or absence of type</td>
+                                    <td>represents no type or absence of type</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -268,22 +268,22 @@ int main(){
                                 <tr>
                                     <td><code>signed</code></td>
                                     <td>4 byte</td>
-                                    <td>Store positive, negative integers, and zero</td>
+                                    <td>only negative numbers</td>
                                 </tr>
                                 <tr>
                                     <td><code>unsigned</code></td>
                                     <td>4 byte</td>
-                                    <td>Store only non-negative integer values</td>
+                                    <td>only positive numbers</td>
                                 </tr>
                                 <tr>
                                     <td><code>short</code></td>
-                                    <td>2 byte</td>
-                                    <td>Short modifies minimum values that data type can hold</td>
+                                    <td>2-4 byte</td>
+                                    <td>small numbers (machine dependent)</td>
                                 </tr>
                                 <tr>
                                     <td><code>long</code></td>
-                                    <td>8 byte</td>
-                                    <td>Long modifies maximum values that data type can hold</td>
+                                    <td>4-8 byte</td>
+                                    <td>large numbers (machine dependent)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -302,15 +302,15 @@ int main(){
                             <tbody>
                                 <tr>
                                     <td><code>const</code></td>
-                                    <td>Used for declaring constants (read-only) variables that can't be reassigned</td>
+                                    <td>constant (read-only variables that can't be reassigned)</td>
                                 </tr>
                                 <tr>
                                     <td><code>volatile</code></td>
-                                    <td>It tells the compiler that a variable's value may be changed in ways not explicitly specified by the program</td>
+                                    <td>volatile variables' value could change unexpectedly, and no optimization is done on them</td>
                                 </tr>
                                 <tr>
                                     <td><code>restrict</code></td>
-                                    <td>A pointer qualified by restrict is initially the only means by which the object it points to can be accessed.</td>
+                                    <td>restrict is used for pointers, which tells the compiler that a restricted pointer is the only way to access the object pointed at it (no other pointer can point to the same object)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -344,11 +344,11 @@ feet distance;</code></pre>
                         <tbody>
                             <tr>
                                 <td><code>auto</code></td>
-                                <td>It is the default storage class for all local variables.</td>
+                                <td>default storage class for all local variables.</td>
                             </tr>
                             <tr>
                                 <td><code>register</code></td>
-                                <td>It is used to define local variables that should be stored in a register instead of RAM. The register should only be used for variables that require quick access, such as counters.</td>
+                                <td>define local variables that should be stored in a register instead of RAM. The register should only be used for variables that require quick access, such as counters.</td>
                             </tr>
                             <tr>
                                 <td><code>static</code></td>
@@ -1179,8 +1179,19 @@ int main(){
     cout << "Sum is " << sum(10);
 
     return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Inline Function :</h4>
+                    <div>In an inline function, when it is called, the whole code of the inline function gets inserted or substituted at the point of the inline function call.</div>
+                    <pre class="code-box code-box-color"><code>inline int Max(int a, int b){
+    return (a > b) ? a : b;
 }
-</code></pre>
+
+int main(){
+    cout << "Max of number is " << max(12,10) << endl;
+    return 0;
+}</code></pre>
                 </div>
             </div>
 
