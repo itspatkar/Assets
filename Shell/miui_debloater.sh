@@ -23,7 +23,6 @@ packages=(
 	"com.mipay.wallet.in"
 	"com.miui.analytics"
 	"com.miui.bugreport"
-	"com.miui.compass"
 	"com.miui.miservice"
 	"com.miui.notes"
 	"com.miui.player"
@@ -32,7 +31,6 @@ packages=(
 	"com.xiaomi.mipicks"
 	"com.xiaomi.payment"
 )
-
 
 for pkg in "${packages[@]}"; do
 	adb shell pm uninstall -k --user 0 $pkg

@@ -338,28 +338,46 @@ feet distance;</code></pre>
                         <thead class="thead-dark">
                             <tr>
                                 <th>Class</th>
+                                <th>Lifetime</th>
+                                <th>Visibility</th>
+                                <th>Default Value</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><code>auto</code></td>
-                                <td>default storage class for all local variables.</td>
+                                <td>function/block</td>
+                                <td>local</td>
+                                <td>Garbage</td>
+                                <td>default storage class.</td>
                             </tr>
                             <tr>
                                 <td><code>register</code></td>
-                                <td>define local variables that should be stored in a register instead of RAM. The register should only be used for variables that require quick access, such as counters.</td>
+                                <td>function/block</td>
+                                <td>local</td>
+                                <td>Garbage</td>
+                                <td>register variables are stored in the processor register instead of memory (deprecated).</td>
                             </tr>
                             <tr>
                                 <td><code>static</code></td>
-                                <td>It instructs the compiler to keep local variables in existence during the life-time of the programme instead of creating and destroying them each time they come into and go out of scope.</td>
+                                <td>throughout program</td>
+                                <td>local</td>
+                                <td>zero</td>
+                                <td>value of static variables and data members persists until the end of the program.</td>
                             </tr>
                             <tr>
                                 <td><code>extern</code></td>
+                                <td>function/block</td>
+                                <td>global</td>
+                                <td>zero</td>
                                 <td>It is used to give reference to a global variable that is visible to all the programme files.</td>
                             </tr>
                             <tr>
                                 <td><code>mutable</code></td>
+                                <td>class</td>
+                                <td>local</td>
+                                <td>Garbage</td>
                                 <td>The mutable specifier applies only to class objects. It allows a member of an object to override a const member function. That is, a const member function can modify a mutable member.</td>
                             </tr>
                         </tbody>
