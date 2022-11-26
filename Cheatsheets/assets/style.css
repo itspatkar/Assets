@@ -28,7 +28,7 @@ nav {
     overflow-x: scroll;
 }
 .code-box {
-    margin: 4px auto 14px auto;
+    margin: 4px auto 10px auto;
     padding: 6px;
     border: 1px solid #7c8e9c;
     border-radius: 5px;
@@ -39,6 +39,7 @@ nav {
     color: #ff395a;
 }
 .block-quote {
+    margin-bottom: 8px;
     padding: 4px;
     padding-left: 10px;
     border: 1px solid #e9ecef;
@@ -50,6 +51,9 @@ nav {
 .img {
     max-height: 100%;
     max-width: 100%;
+}
+.justify {
+    text-align: justify;
 }
 
 /* Responsiveness */
