@@ -71,23 +71,23 @@ int main(){
             <div class="sections" id="input-output">
                 <h3 class="heading"># Input &amp; Output</h3>
                 <div>
-                    <h4>&bull; Output :</h4>
+                    <h4>Output :</h4>
                     <div><code>cout</code> is a predefined object of the ostream class. It is used with a stream insertion operator (<code>&lt;&lt;</code>) to display output.</div>
                     <pre class="code-box code-box-color"><code>cout << "Hello World!";
 cout << "\nValue of A is " << a;</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Input :</h4>
+                    <h4>Input :</h4>
                     <div><code>cin</code> is a predefined object of the istream class. It is used with the stream extraction operator (<code>&gt;&gt;</code>) to read input from the console.</div>
                     <pre class="code-box code-box-color"><code>cin >> n;
 cin >> a >> b >> c;</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; End Line :</h4>
+                    <h4>End Line :</h4>
                     <div><code>endl</code> is a predefined object of the ostream class. It is used to insert new line characters and flush the stream.</div>
                     <pre class="code-box code-box-color"><code>cout << "Hello World" << endl;</code></pre>
                 <div>
-                    <h4>&bull; Escape Sequences :</h4>
+                    <h4>Escape Sequences :</h4>
                     <div>The escape sequences are special non-printing characters that are used to control the printing behavior of the output stream objects.</div>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
@@ -155,14 +155,14 @@ cin >> a >> b >> c;</code></pre>
             <div class="sections" id="comments">
                 <h3 class="heading"># Comments</h3>
                 <div>
-                    <h4>&bull; Single-line Comment :</h4>
+                    <h4>Single-line Comment :</h4>
                     <div><code>//</code> is used for single-line comment.</div>
                     <pre class="code-box code-box-color"><code>// This is single-line comment.
 
 cout << "Hello World"; // This is comment</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Multi-line Comment :</h4>
+                    <h4>Multi-line Comment :</h4>
                     <div><code>/* */</code> is used for multi-line comment.</div>
                     <pre class="code-box code-box-color"><code>/* This is
 multi-line comment. */
@@ -183,9 +183,8 @@ int a=10;
 string name="Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Local &amp; Global Variables :</h4>
-                    <div><strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block.<div>
-                    <div><strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</div>
+                    <h4>Local &amp; Global Variables :</h4>
+                    <div>The <strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block. The <strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
@@ -208,7 +207,7 @@ int main(){
             <div class="sections" id="data-types">
                 <h3 class="heading"># Data Types</h3>
                 <div>
-                    <h4>&bull; Primitive (Built-in) Data Types :</h4>
+                    <h4>Primitive (Built-in) Data Types :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -254,7 +253,7 @@ int main(){
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Data Type Modifier :</h4>
+                    <h4>Data Type Modifier :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -290,7 +289,7 @@ int main(){
                     </div>
                 </div>
                 <div>
-                    <h4>&bull; Date Type Qualifiers :</h4>
+                    <h4>Date Type Qualifiers :</h4>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -306,11 +305,11 @@ int main(){
                                 </tr>
                                 <tr>
                                     <td><code>volatile</code></td>
-                                    <td>volatile variables' value could change unexpectedly, and no optimization is done on them</td>
+                                    <td>volatile variables' value could change unexpectedly, and no optimization is done on them.</td>
                                 </tr>
                                 <tr>
                                     <td><code>restrict</code></td>
-                                    <td>restrict is used for pointers, which tells the compiler that a restricted pointer is the only way to access the object pointed at it (no other pointer can point to the same object)</td>
+                                    <td>restrict is used for pointers, which tells the compiler that a restricted pointer is the only way to access the object pointed at it (no other pointer can point to the same object).</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -319,7 +318,7 @@ int main(){
 const string name = "Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; <code>typedef</code> Keyword :</h4>
+                    <h4>Keyword <code>typedef</code> :</h4>
                     <div>Assign a new name (alias) to an existing type using the keyword typedef.</div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>typedef type newname;</code></div>
@@ -349,15 +348,15 @@ feet distance;</code></pre>
                                 <td><code>auto</code></td>
                                 <td>function/block</td>
                                 <td>local</td>
-                                <td>Garbage</td>
+                                <td>garbage</td>
                                 <td>default storage class.</td>
                             </tr>
                             <tr>
                                 <td><code>register</code></td>
                                 <td>function/block</td>
                                 <td>local</td>
-                                <td>Garbage</td>
-                                <td>register variables are stored in the processor register instead of memory (deprecated).</td>
+                                <td>garbage</td>
+                                <td>register variables are stored in the processor register instead of memory <strong>(deprecated)</strong>.</td>
                             </tr>
                             <tr>
                                 <td><code>static</code></td>
@@ -371,14 +370,14 @@ feet distance;</code></pre>
                                 <td>function/block</td>
                                 <td>global</td>
                                 <td>zero</td>
-                                <td>It is used to give reference to a global variable that is visible to all the programme files.</td>
+                                <td>It specifies that the symbol has external linkage to an external file or scope.</td>
                             </tr>
                             <tr>
                                 <td><code>mutable</code></td>
                                 <td>class</td>
                                 <td>local</td>
-                                <td>Garbage</td>
-                                <td>The mutable specifier applies only to class objects. It allows a member of an object to override a const member function. That is, a const member function can modify a mutable member.</td>
+                                <td>garbage</td>
+                                <td>It allows a member of an object to override a const member function (applies only to class objects).</td>
                             </tr>
                         </tbody>
                     </table>
