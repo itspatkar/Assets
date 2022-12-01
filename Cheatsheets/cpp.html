@@ -71,24 +71,24 @@ int main(){
             <div class="sections" id="input-output">
                 <h3 class="heading"># Input &amp; Output</h3>
                 <div>
-                    <h4>Output :</h4>
-                    <div><code>cout</code> is a predefined object of the ostream class. It is used with a stream insertion operator (<code>&lt;&lt;</code>) to display output.</div>
+                    <h4>&bull; Output :</h4>
+                    <div class="justify"><code>cout</code> is a predefined object of the ostream class. It is used with a stream insertion operator (<code>&lt;&lt;</code>) to display output.</div>
                     <pre class="code-box code-box-color"><code>cout << "Hello World!";
 cout << "\nValue of A is " << a;</code></pre>
                 </div>
                 <div>
-                    <h4>Input :</h4>
-                    <div><code>cin</code> is a predefined object of the istream class. It is used with the stream extraction operator (<code>&gt;&gt;</code>) to read input from the console.</div>
+                    <h4>&bull; Input :</h4>
+                    <div class="justify"><code>cin</code> is a predefined object of the istream class. It is used with the stream extraction operator (<code>&gt;&gt;</code>) to read input from the console.</div>
                     <pre class="code-box code-box-color"><code>cin >> n;
 cin >> a >> b >> c;</code></pre>
                 </div>
                 <div>
-                    <h4>End Line :</h4>
-                    <div><code>endl</code> is a predefined object of the ostream class. It is used to insert new line characters and flush the stream.</div>
+                    <h4>&bull; End Line :</h4>
+                    <div class="justify"><code>endl</code> is a predefined object of the ostream class. It is used to insert new line characters and flush the stream.</div>
                     <pre class="code-box code-box-color"><code>cout << "Hello World" << endl;</code></pre>
                 <div>
-                    <h4>Escape Sequences :</h4>
-                    <div>The escape sequences are special non-printing characters that are used to control the printing behavior of the output stream objects.</div>
+                    <h4>&bull; Escape Sequences :</h4>
+                    <div class="justify">The escape sequences are special non-printing characters that are used to control the printing behavior of the output stream objects.</div>
                     <div class="table-scroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead class="thead-dark">
@@ -155,14 +155,14 @@ cin >> a >> b >> c;</code></pre>
             <div class="sections" id="comments">
                 <h3 class="heading"># Comments</h3>
                 <div>
-                    <h4>Single-line Comment :</h4>
+                    <h4>&bull; Single-Line Comment :</h4>
                     <div><code>//</code> is used for single-line comment.</div>
                     <pre class="code-box code-box-color"><code>// This is single-line comment.
 
 cout << "Hello World"; // This is comment</code></pre>
                 </div>
                 <div>
-                    <h4>Multi-line Comment :</h4>
+                    <h4>&bull; Multi-Line Comment :</h4>
                     <div><code>/* */</code> is used for multi-line comment.</div>
                     <pre class="code-box code-box-color"><code>/* This is
 multi-line comment. */
@@ -183,8 +183,8 @@ int a=10;
 string name="Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>Local &amp; Global Variables :</h4>
-                    <div>The <strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block. The <strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</div>
+                    <h4>&bull; Local &amp; Global Variables :</h4>
+                    <div class="justify">The <strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block. The <strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</div>
                     <h5>Ex:</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
@@ -318,8 +318,8 @@ int main(){
 const string name = "Mandar";</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Keyword <code>typedef</code> :</h4>
-                    <div>Assign a new name (alias) to an existing type using the keyword typedef.</div>
+                    <h4>&bull; <code>typedef</code> Keyword :</h4>
+                    <div class="justify">Assign a new name (alias) to an existing type using the keyword typedef.</div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>typedef type newname;</code></div>
                     <pre class="code-box code-box-color"><code>typedef int feet;
@@ -329,7 +329,7 @@ feet distance;</code></pre>
 
             <div class="sections" id="storage-classes">
                 <h3 class="heading"># Storage Classes</h3>
-                <div>The Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ programm.</div>
+                <div class="justify">The Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ programm.</div>
                 <h5>Syntax:</h5>
                 <div class="code-box"><code>class type name</code></div>
                 <div class="table-scroll">
@@ -540,21 +540,21 @@ static int count = 1;</code></pre>
                 </div>
                 <div>
                     <h4>&bull; <code>sizeof()</code> Operator :</h4>
-                    <div>It returns the amount of memory that is allocated to data types.</div>
+                    <div class="justify">It returns the amount of memory that is allocated to data types.</div>
                     <pre class="code-box code-box-color"><code>int x = 15;
 cout << sizeof(x);</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Ternary Operator :</h4>
                     <div class="code-box"><code>[condition] ? [expr_1] : [expr_2]</code></div>
-                    <div>If the condition is true, then expression 1 is evaluated; otherwise, expression 2 is evaluated.</div>
+                    <div class="justify">If the condition is true, then expression 1 is evaluated; otherwise, expression 2 is evaluated.</div>
                     <pre class="code-box code-box-color"><code>int a=5, b=10, large;
 large = a > b ? a : b;
 cout << " Largest number is " << large;</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Membership Operator :</h4>
-                    <div>The <strong>dot operator</strong> (<code>.</code>) and the <strong>arrow operator</strong> (<code>-></code>) are used to reference individual members of classes, structures, and unions. To access members through a pointer, the arrow operator is used.</div>
+                    <div class="justify">The <strong>dot operator</strong> (<code>.</code>) and the <strong>arrow operator</strong> (<code>-></code>) are used to reference individual members of classes, structures, and unions. To access members through a pointer, the arrow operator is used.</div>
                     <pre class="code-box code-box-color"><code>struct Classroom {
    int roll;
    char name[20];
@@ -574,7 +574,7 @@ int main(){
                 </div>
                 <div>
                     <h4>&bull; Referencing &amp; Dereferencing Operator :</h4>
-                    <div>The <strong>referencing operator</strong> (<code>&</code>) is used for accessing the memory location of a variable, and the <strong>dereferncing operator</strong> (<code>&</code>) is used for accessing the value stored at the memory location.</div>
+                    <div class="justify">The <strong>referencing operator</strong> (<code>&</code>) is used for accessing the memory location of a variable, and the <strong>dereferncing operator</strong> (<code>&</code>) is used for accessing the value stored at the memory location.</div>
                     <pre class="code-box code-box-color"><code>// Referencing:
 int v = 22;
 cout << "Address of v is " << &v;
@@ -584,7 +584,7 @@ cout << "\nValue of v is " << *(&v);</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Type Casting :</h4>
-                    <div>Typecasting is the conversion of one data type into another by using a casting operator.</div>
+                    <div class="justify">Typecasting is the conversion of one data type into another by using a casting operator.</div>
                     <h5>Syntax:</h5>
                     <div class="code-box"><code>type(expression)</code></div>
                     <div class="code-box"><code>(type)expression</code></div>
