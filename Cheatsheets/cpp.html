@@ -175,7 +175,7 @@ comment. */</code></pre>
             <div class="sections" id="variables">
                 <h3 class="heading"># Variables</h3>
                 <div>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>data_type variable_name;</code></div>
                     <pre class="code-box code-box-color"><code>int n;
 int x,y,z=5;
@@ -185,7 +185,7 @@ string name="Mandar";</code></pre>
                 <div>
                     <h4>Local &amp; Global Variables :</h4>
                     <p>The <strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block. The <strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</p>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
@@ -324,7 +324,7 @@ const string name = "Mandar";</code></pre>
                 <div>
                     <h4>&bull; <code>typedef</code> Keyword :</h4>
                     <p>Assign a new name (alias) to an existing type using the keyword typedef.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>typedef type newname;</code></div>
                     <pre class="code-box code-box-color"><code>typedef int feet;
 feet distance;</code></pre>
@@ -334,7 +334,7 @@ feet distance;</code></pre>
             <div class="sections" id="storage-classes">
                 <h3 class="heading"># Storage Classes</h3>
                 <p>The Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ program.</p>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <div class="code-box"><code>class type name</code></div>
                 <div class="table-scroll">
                     <table class="table table-bordered table-hover table-striped">
@@ -386,7 +386,7 @@ feet distance;</code></pre>
                         </tbody>
                     </table>
                 </div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>auto int x;
 register int amount = 0;
 static int count = 1;</code></pre>
@@ -589,10 +589,10 @@ cout << "\nValue of v is " << *(&v);</code></pre>
                 <div>
                     <h4>&bull; Type Casting :</h4>
                     <p>Typecasting is the conversion of one data type into another by using a casting operator.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>type(expression)</code></div>
                     <div class="code-box"><code>(type)expression</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>// Casting float into int:
 cout << int(22.17);
 cout << (int)17.22;
@@ -604,11 +604,11 @@ cout << (int)17.22;
                 <h3 class="heading"># Decision Making</h3>
                 <div>
                     <h4>&bull; If Statement :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>if(condition){
     // statements if true
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int a = 10, b =20;
 
 if(a > b){
@@ -617,13 +617,13 @@ if(a > b){
                 </div>
                 <div>
                     <h4>&bull; If-Else Statement :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>if(condition){
     // statements if true
 } else {
     // statements if false
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int a = 10, b =20;
 
 if(a > b){
@@ -634,7 +634,7 @@ if(a > b){
                 </div>
                 <div>
                     <h4>&bull; Else-If Statement :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>if(condition){
     // statements if true
 } else if (condition) {
@@ -642,7 +642,7 @@ if(a > b){
 } else {
     // statements if false
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int a = 10, b =20;
 
 if(a > b){
@@ -655,7 +655,7 @@ if(a > b){
                </div>
                <div>
                     <h4>&bull; Nested If-Else :</h4>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int age = 16;
 
 if(age > 0){
@@ -673,7 +673,7 @@ if(age > 0){
                 <div>
                     <h4>&bull; Switch Case :</h4>
                     <p>A switch statement allows a variable to be tested for equality against a list of values.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>switch(expression){
     case constant-expression-1 :
         statement(s);
@@ -688,7 +688,7 @@ if(age > 0){
     default :
         statement(s);
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int day = 3;
 
 switch(day){
@@ -724,11 +724,11 @@ switch(day){
                 <h3 class="heading"># Loops</h3>
                 <div>
                     <h4>&bull; While Loop :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>while(condition) {
     statement(s);
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n = 1;
 while(n <= 5){
     cout << "Hello World!";
@@ -737,11 +737,11 @@ while(n <= 5){
                 </div>
                 <div>
                     <h4>&bull; Do-While Loop :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>do {
     statement(s);
 } while(condition);</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n = 1;
 do {
     cout << "Hello World!";
@@ -750,18 +750,18 @@ do {
                 </div>
                 <div>
                     <h4>&bull; For Loop :</h4>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>for ( init; condition; increment ){
     statement(s);
 }</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++){
     cout << "Hello World!";
 }</code></pre>
                 </div>
                 <div>
                     <h4>&bull; Nested Loops :</h4>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++)
     for(int j=1; j<=i; j++)
         cout << "Hello World!";</code></pre>
@@ -773,9 +773,9 @@ do {
                 <div>
                     <h4>&bull; Break Statement :</h4>
                     <p>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>break;</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n = 1;
 while(n <= 100){
     if (n == 50) break;
@@ -786,9 +786,9 @@ while(n <= 100){
                 <div>
                     <h4>&bull; Continue Statement :</h4>
                     <p>This causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>continue;</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n = 1;
 while(n <= 100){
     if (n%2 == 0) continue;
@@ -799,11 +799,11 @@ while(n <= 100){
                 <div>
                     <h4>&bull; Goto Statement :</h4>
                     <div>Transfers control to the labelled statement.</div>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>goto label;
 labal:
     statement(s);</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n;
 INPUT:
 cout << "Enter Odd Number :";
@@ -822,9 +822,9 @@ if (n%2 == 0) goto INPUT;</code></pre>
                 <div>
                     <h4>&bull; String as Char Array :</h4>
                     <p>Declaring a string as a character array as in the C language</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>char name[];</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>char greet[] = "Hello World";
 char name[10];
 name = "Mandar";</code></pre>
@@ -832,9 +832,9 @@ name = "Mandar";</code></pre>
                 <div>
                     <h4>&bull; String Class :</h4>
                     <p>The standard C++ library provides a string class. For this, we must include the header file <code>&lt;string&gt;</code> or <code>&lt;cstring&gt;</code> library.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>string name;</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 #include&lt;cstring&gt;
 using namespace std;
@@ -898,7 +898,7 @@ type name[] = { element1, element2, ..., elementN };</code></pre>
                 <pre class="code-box"><code>array[index];</code></pre>
                 <h5>Size of array :</h5>
                 <div class="code-box"><code>type size = sizeof(array) / sizeof(type);</code></div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>int num[] = { 1, 2, 3, 4, 5 };
 int n = num[2];
 
@@ -912,9 +912,9 @@ for(int i=0; i < size; i++)
                 <div>
                     <h4>&bull; Multi-dimensional Arrays :</h4>
                     <div>A multi-dimensional array is an array of arrays.</div>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>type name[size1][size2]...[sizeN];</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int arr[4][2] = { {1,2}, {3,4}, {5,6}, {7,8} };
 for( int i=0; i<4; i++)
     for( int j=0; j<2; j++)
@@ -996,9 +996,9 @@ int main(){
                     <li><strong>Dereferencing:</strong> Dereferencing is accessing the value of a variable stored at a memory location. A dereferencing operator (<code>*</code>) is used for this.</li>
                     <li>Pointers are used for dynamic memory allocation and deallocation.</li>
                 </ul>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <div class="code-box"><code>type *name;</code></div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>int n = 10;
 // Referencing:
 int *p = &n;
@@ -1009,9 +1009,9 @@ cout << "Value: " << *p;</code></pre>
                 <div>
                     <h4> &bull; Pointer to Pointer :</h4>
                     <p>A pointer to a pointer is a form of multiple indirection or a chain of pointers where pointer contains the adress of another pointer.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box code-box-color"><code>type **name;</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>int n = 15;
 int *p = &n;
 int **pp = &p;
@@ -1049,16 +1049,16 @@ cout << *(int*)p << endl;</code></pre>
             <div class="sections" id="references">
                 <h3 class="heading"># References</h3>
                 <p>A reference variable is an alias, that is, another name for an already existing variable.</p>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <div class="code-box"><code>type &name = var;</code></div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>string food = "Veg Rice";
 string &meal = food;</code></pre>
             </div>
 
             <div class="sections" id="functions">
                 <h3 class="heading"># Functions</h3>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <h5>Function Declaration :</h5>
                 <div class="code-box"><code>return_type function_name(parameter_list);</code></div>
                 <h5>Function Definition :</h5>
@@ -1067,7 +1067,7 @@ string &meal = food;</code></pre>
 }</code></pre>
                 <h5>Function Calling :</h5>
                 <div class="code-box"><code>function_name();</code></div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>// Function declaration:
 void greet();
 int sum(int, int);
@@ -1221,9 +1221,9 @@ int main(){
             <div class="sections" id="enum">
                 <h3 class="heading"># Enumeration</h3>
                 <p>An enumeration is a user-defined data type that consists of integral constants. To define an enumeration, the keyword <code>enum</code> is used.</p>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <div class="code-box">enum enum_name { list_of_names } var_list;</div>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
 
 enum color { red, green, blue } c;
@@ -1233,13 +1233,13 @@ c = blue;</code></pre>
             <div class="sections" id="struct">
                 <h3 class="heading"># Structures</h3>
                 <p>Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is termed a member of the structure. A structure can contain many different data types (int, string, bool, etc.). To access members of a structure, the member access operator (.) is used. We can't assign a character array (string) to a structure, but we can copy it.</p>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <pre class="code-box"><code>struct Name {
     type name;
     type name;
     ....;
 } var;</code></pre>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 using namespace std;
@@ -1265,12 +1265,12 @@ int main(){
                 <div>
                     <h4>&bull; Self Referential Structure :</h4>
                     <p>Self-referential structures are those structures in which one or more pointers point to another structure of the same type.</p>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box"><code>struct Name {
     int p;
     struct Name *pointer;
 };</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
 using namespace std;
 
@@ -1595,14 +1595,14 @@ int main(){
                     <li><code>catch</code> : A catch block is used to handle the exception.</li>
                     <li><code>throw</code> : throws an exception when caught.</li>
                 </ul>
-                <h5>Syntax:</h5>
+                <h5>Syntax :</h5>
                 <pre class="code-box"><code>try {
     //Block of code to try
     throw exception; //Throws exception when error arise
 } catch() {
     //Block of code to handle errors
 }</code></pre>
-                <h5>Ex:</h5>
+                <h5>Ex :</h5>
                 <pre class="code-box"><code>int a,b;
 cout << "Enter Two Numbers: ";
 cin >> a >> b;
@@ -1640,9 +1640,9 @@ try {
                             </tbody>
                         </table>
                     </div>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <div class="code-box"><code>#define identifier replacement</code></div>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
@@ -1699,13 +1699,13 @@ int main(){
                             </tbody>
                         </table>
                     </div>
-                    <h5>Syntax:</h5>
+                    <h5>Syntax :</h5>
                     <pre class="code-box code-box-color"><code>#ifdef 
 /* code */
 #else
 /* code to include if the token is not defined */
 #endif</code></pre>
-                    <h5>Ex:</h5>
+                    <h5>Ex :</h5>
                     <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
 using namespace std;
 
