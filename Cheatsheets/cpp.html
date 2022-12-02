@@ -7,14 +7,11 @@
 
         <title>C++ Cheatsheets | ItsPatkar</title>
 
-        <!-- Bootstrap Libraries -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
         <!-- Font Awesome Kit's Code -->
-        <script src="https://kit.fontawesome.com/e76697353a.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/ade27430ed.js" crossorigin="anonymous"></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="style.css">
@@ -587,7 +584,7 @@ cout << "Address of v is " << &v;
 cout << "\nValue of v is " << *(&v);</code></pre>
                 </div>
                 <div>
-                    <h4>&bull; Type Casting :</h4>
+                    <h4>&bull; Type Casting Operator :</h4>
                     <p>Typecasting is the conversion of one data type into another by using a casting operator.</p>
                     <h5>Syntax :</h5>
                     <div class="code-box"><code>type(expression)</code></div>
@@ -1099,7 +1096,7 @@ int main(){
                     <p>Arguments are passed to functions as formal parameters while calling the function. There are three ways in which we can pass parameters to a function.</p>
                     <ol>
                         <li>
-                            <h5><u>Call by Value</u> :</h5>
+                            <h5>Call by Value :</h5>
                             <p>This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</p>
                             <pre class="code-box code-box-color"><code>void swap(int a, int b){
     a = a + b;
@@ -1116,7 +1113,7 @@ int main(){
 }</code></pre>
                         </li>
                         <li>
-                            <h5><u>Call by Pointer</u> :</h5>
+                            <h5>Call by Pointer :</h5>
                             <p>This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</p>
                             <pre class="code-box code-box-color"><code>void swap(int *a, int *b){
     *a = *a + *b;
@@ -1133,7 +1130,7 @@ int main(){
 }</code></pre>
                         </li>
                         <li>
-                            <h5><u>Call by Reference</u> :</h5>
+                            <h5>Call by Reference :</h5>
                             <p>This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</p>
                             <pre class="code-box code-box-color"><code>void swap(int &a, int &b){
     a = a + b;
@@ -1167,7 +1164,7 @@ int main(){
                 </div>
                 <div>
                     <h4>&bull; Function Overloading :</h4>
-                    <p>Function overloading means two or more functions can have the same name but different parameters, and based on those parameters, the corresponding function is overloaded. When the number of arguments, the type of arguments, and the order of arguments differ, the function is overloaded. Function overloading is an example of a compile-time polymorphism feature in C++.</p>
+                    <p>Function overloading means two or more functions can have the same name but different parameters, and based on those parameters, the corresponding function is overloaded. When the number of arguments, the type of arguments, and the order of arguments differ, the function is overloaded. Function overloading is an example of a compile-time polymorphism.</p>
                     <pre class="code-box code-box-color"><code>int sum(){
     int a, b;
     cout << "\nEnter Two Numbers: ";
@@ -1206,7 +1203,7 @@ int main(){
                 </div>
                 <div>
                     <h4>&bull; Inline Function :</h4>
-                    <p>In an inline function, when it is called, the whole code of the inline function gets inserted or substituted at the point of the inline function call.</p>
+                    <p>In an inline function, when it is called, the whole code of the inline function gets inserted or substituted at the point of the inline function call by the compiler. Inlining is only a request to the compiler, not a command, and the compiler can ignore the request for inlining.</p>
                     <pre class="code-box code-box-color"><code>inline int Max(int a, int b){
     return (a > b) ? a : b;
 }
@@ -1759,7 +1756,7 @@ int main(){
 
             <nav>
                 <a href="https://itspatkar.github.io/Cheatsheets/"><i class="fas fa-arrow-left"></i> BACK</a>
-                <a href="https://itspatkar.github.io/Cheatsheets/cpp.html#" class="float-right"><i class="fas fa-arrow-up"></i> TOP</a>
+                <a href="#" class="float-right"><i class="fas fa-arrow-up"></i> TOP</a>
             </nav>
         </div>
     </body>
