@@ -1,8 +1,12 @@
+p {
+    margin-bottom: 0.5rem;
+    text-align: justify;
+}
 thead {
     text-align: center;
 }
 nav {
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 .title {
@@ -28,7 +32,7 @@ nav {
     overflow-x: scroll;
 }
 .code-box {
-    margin: 4px auto 10px auto;
+    margin-bottom: 8px;
     padding: 6px;
     border: 1px solid #7c8e9c;
     border-radius: 5px;
@@ -51,9 +55,6 @@ nav {
 .img {
     max-height: 100%;
     max-width: 100%;
-}
-.justify {
-    text-align: justify;
 }
 
 /* Responsiveness */
