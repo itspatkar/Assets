@@ -34,6 +34,7 @@ Install following packages for your distribution :
 
 ### Ricing :
 Download themes from the link below. Extract and copy folder to `/usr/share/themes`, and select theme from GTK theme settings.
+- [GTK - Material Black Colors](https://www.xfce-look.org/p/1316887/)
 - [GTK - Materia Blackout](https://www.xfce-look.org/p/1381066/)
 - [GTK - Sweet Dark](https://www.xfce-look.org/p/1253385/)
 
