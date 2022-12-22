@@ -911,7 +911,7 @@ type name[] = { element1, element2, ..., elementN };</code></pre>
                 <h5>Array Indexing :</h5>
                 <pre class="code-box"><code>array[index];</code></pre>
                 <h5>Size of array :</h5>
-                <div class="code-box"><code>type size = sizeof(array) / sizeof(type);</code></div>
+                <div class="code-box"><code>int size = sizeof(array) / sizeof(type);</code></div>
                 <h5>Ex :</h5>
                 <pre class="code-box code-box-color"><code>int num[] = { 1, 2, 3, 4, 5 };
 int n = num[2];
@@ -1006,8 +1006,8 @@ int main(){
                 <h3 class="heading"># Pointers</h3>
                 <p>A pointer is a variable which holds the memory address of another variable, i.e., it stores the address of a memory location.</p>
                 <ul class="justify">
-                    <li><strong>Referencing:</strong> The reference is accessing the memory address of the variable. The reference operator (<code>&</code>) is used for this.</li>
-                    <li><strong>Dereferencing:</strong> Dereferencing is accessing the value of a variable stored at a memory location. A dereferencing operator (<code>*</code>) is used for this.</li>
+                    <li><strong>Referencing:</strong> The referencing is accessing the memory address of the variable. The reference operator (<code>&</code>) is used for this.</li>
+                    <li><strong>Dereferencing:</strong> The dereferencing involves accessing the value of a variable stored at a memory location. A dereferencing operator (<code>*</code>) is used for this.</li>
                     <li>Pointers are used for dynamic memory allocation and deallocation.</li>
                 </ul>
                 <h5>Syntax :</h5>
@@ -1051,7 +1051,7 @@ cout << *(int*)p << endl;</code></pre>
                     </div>
                     <div>
                         <h4>&bull; Wild Pointer :</h4>
-                        <p>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the programme to crash or misbehave.</p>
+                        <p>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the program to crash or misbehave.</p>
                     </div>
                     <div>
                         <h4>&bull; Dangling Pointer :</h4>
@@ -1181,25 +1181,28 @@ int main(){
                 </div>
                 <div>
                     <h4>&bull; Function Overloading :</h4>
-                    <p>Function overloading means two or more functions can have the same name but different parameters, and based on those parameters, the corresponding function is overloaded. When the number of arguments, the type of arguments, and the order of arguments differ, the function is overloaded. Function overloading is an example of a compile-time polymorphism.</p>
-                    <pre class="code-box code-box-color"><code>int sum(){
+                    <p>Function overloading is a feature of object-oriented programming. When two or more functions have the same name but different numbers and types of parameters, the corresponding function is overloaded based on the parameters; this is called function overloading. This is an example of a compile-time polymorphism.</p>
+                    <pre class="code-box code-box-color"><code>void sum(){
     int a, b;
     cout << "\nEnter Two Numbers: ";
     cin >> a >> b;
-    return a+b;
+    cout << "Sum is " << a+b;
 }
 int sum(int a, int b){
     return a+b;
+}
+int sum(int a, int b, int c){
+    return a+b+c;
 }
 float sum(float a, float b){
     return a+b;
 }
 
 int main(){
-    cout << "Sum is " << sum(2,4);
-    cout << "\nSum is " << sum(5.2f,2.4f);
-    int s = sum();
-    cout << "Sum is " << s;
+    cout << "Sum is " << sum(4,6);
+    cout << "\nSum is " << sum(1,2,3);
+    cout << "\nSum is " << sum(3.2f,2.4f);
+    sum();
 
     return 0;
 }</code></pre>
@@ -1221,7 +1224,7 @@ int main(){
                 <div>
                     <h4>&bull; Inline Function :</h4>
                     <p>In an inline function, when it is called, the whole code of the inline function gets inserted or substituted at the point of the inline function call by the compiler. Inlining is only a request to the compiler, not a command, and the compiler can ignore the request for inlining.</p>
-                    <pre class="code-box code-box-color"><code>inline int Max(int a, int b){
+                    <pre class="code-box code-box-color"><code>inline int max(int a, int b){
     return (a > b) ? a : b;
 }
 
