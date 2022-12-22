@@ -333,6 +333,29 @@ feet distance;</code></pre>
                 <p>The Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ program.</p>
                 <h5>Syntax :</h5>
                 <div class="code-box"><code>class type name</code></div>
+                <h5>C++ uses 5 storage classes, namely -</h5>
+                <ul>
+                    <li>
+                        <h5>Automatic :</h5> 
+                        <p>It is the default storage class for all local variables.</p>
+                    </li>
+                    <li>
+                        <h5>External :</h5>
+                        <p>It specifies that the symbol has external linkage to an external file or scope. The external storage class simply tells us that the variable is defined elsewhere and not within the same block where it is used.</p>
+                    </li>
+                    <li>
+                        <h5>Static :</h5>
+                        <p>The static is a property of the class, not the object. The static variable or method is shared among all the objects of the class, and we don't need an object of the class to access it; it can be called using the class name. The value of static variables and data members persists until the end of the program.</p>
+                    </li>
+                    <li>
+                        <h5>Register :</h5>
+                        <p>Register variables are stored in the processor register instead of memory <strong>(deprecated)</strong>.</p>
+                    </li>
+                    <li>
+                        <h5>Mutable :</h5>
+                        <p>It allows a member of an object to override a const member function (applies only to class objects).</p>
+                    </li>
+                </ul>
                 <div class="table-scroll">
                     <table class="table table-bordered table-hover table-striped">
                         <thead class="thead-dark">
@@ -341,7 +364,6 @@ feet distance;</code></pre>
                                 <th>Lifetime</th>
                                 <th>Visibility</th>
                                 <th>Default Value</th>
-                                <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -350,35 +372,30 @@ feet distance;</code></pre>
                                 <td>function/block</td>
                                 <td>local</td>
                                 <td>garbage</td>
-                                <td>default storage class.</td>
                             </tr>
                             <tr>
-                                <td><code>register</code></td>
-                                <td>function/block</td>
-                                <td>local</td>
-                                <td>garbage</td>
-                                <td>register variables are stored in the processor register instead of memory <strong>(deprecated)</strong>.</td>
+                                <td><code>extern</code></td>
+                                <td>throughout program</td>
+                                <td>global</td>
+                                <td>zero</td>
                             </tr>
                             <tr>
                                 <td><code>static</code></td>
                                 <td>throughout program</td>
                                 <td>local</td>
                                 <td>zero</td>
-                                <td>value of static variables and data members persists until the end of the program.</td>
                             </tr>
                             <tr>
-                                <td><code>extern</code></td>
+                                <td><code>register</code></td>
                                 <td>function/block</td>
-                                <td>global</td>
-                                <td>zero</td>
-                                <td>It specifies that the symbol has external linkage to an external file or scope.</td>
+                                <td>local</td>
+                                <td>garbage</td>
                             </tr>
                             <tr>
                                 <td><code>mutable</code></td>
                                 <td>class</td>
                                 <td>local</td>
                                 <td>garbage</td>
-                                <td>It allows a member of an object to override a const member function (applies only to class objects).</td>
                             </tr>
                         </tbody>
                     </table>
