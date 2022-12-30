@@ -10,7 +10,7 @@ class A {
         // Constructor :
         A() : x(10){}
 
-    friend void addNum(A a, B b);
+    friend void addNum(A, B);
 };
 
 class B {
@@ -20,7 +20,7 @@ class B {
         // Constructor :
         B() : y(20){}
 
-    friend void addNum(A a, B b);
+    friend void addNum(A, B);
 };
 
 void addNum(A a, B b){
