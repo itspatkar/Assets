@@ -1,11 +1,38 @@
 #include <iostream>
 using namespace std;
 
-inline int max(int a, int b){
-    return (a > b) ? a : b;
+class B;
+
+class A {
+    private:
+        int x;
+    public:
+        // Constructor :
+        A() : x(10){}
+
+    friend void addNum(A a, B b);
+};
+
+class B {
+    private:
+        int y;
+    public:
+        // Constructor :
+        B() : y(20){}
+
+    friend void addNum(A a, B b);
+};
+
+void addNum(A a, B b){
+    cout << "Addition is " << a.x + b.y << endl;
 }
 
+
 int main(){
-    cout << "Max of number is " << max(12,10) << endl;
+    A a;
+    B b;
+
+    addNum(a,b);
+
     return 0;
 }

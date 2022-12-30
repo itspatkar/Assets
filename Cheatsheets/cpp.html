@@ -43,9 +43,9 @@
                 <li><a href="#struct">Structures</a></li>
                 <!-- OOP -->
                 <li><a href="#class-objects">Class &amp; Objects</a></li>
-                <li><a href="#encapsulation">Encapsulation</a></li>
                 <li><a href="#constructor-destructor">Constructor &amp; Destructor</a></li>
                 <li><a href="#inheritance">Inheritance</a></li>
+                <li><a href="#encapsulation">Encapsulation</a></li>
                 <!-- Advanced -->
                 <li><a href="#exception-handling">Exception Handling</a></li>
                 <li><a href="#preprocessor"> Preprocessor Directives</a></li>
@@ -1047,28 +1047,30 @@ cout << "p = " << *p << endl;
 cout << "pp = " << **pp << endl;</code></pre>
                 </div>
                 <div>
-                    <h4>Types of Pointers :</h4>
-                    <div>
-                        <h4>&bull; NULL Pointer :</h4>
-                        <p>A pointer that is assigned NULL is called a null pointer. It does not point to any memory location; it represents an invalid memory location. It is used to initialise a pointer when that pointer has not been assigned any valid address yet.</p>
-                        <div class="code-box code-box-color"><code>int *p = NULL;</code></div>
-                    </div>
-                    <div>
-                        <h4>&bull; Void Pointer :</h4>
-                        <p>A pointer with no associated data type is referred to as a void pointer. It can point to data of any type. We cannot directly dereference a void pointer; it must first be typecast before dereferencing.</p>
-                        <pre class="code-box code-box-color"><code>int n = 10;
-void *p = &n;
+                    <h5>Types of Pointers :</h5>
+                    <ul>
+                        <li>
+                            <h5> NULL Pointer :</h5>
+                            <p>A pointer that is assigned NULL is called a null pointer. It does not point to any memory location; it represents an invalid memory location. It is used to initialise a pointer when that pointer has not been assigned any valid address yet.</p>
+                            <div class="code-box code-box-color"><code>int *p = NULL;</code></div>
+                        </li>
+                        <li>
+                            <h5> Void Pointer :</h5>
+                            <p>A pointer with no associated data type is referred to as a void pointer. It can point to data of any type. We cannot directly dereference a void pointer; it must first be typecast before dereferencing.</p>
+                            <pre class="code-box code-box-color"><code>int n = 10;
+    void *p = &n;
 
-cout << *(int*)p << endl;</code></pre>
-                    </div>
-                    <div>
-                        <h4>&bull; Wild Pointer :</h4>
-                        <p>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the program to crash or misbehave.</p>
-                    </div>
-                    <div>
-                        <h4>&bull; Dangling Pointer :</h4>
-                        <p>A dangling pointer is a pointer that points to some non-existing memory location.</p>
-                    </div>
+    cout << *(int*)p << endl;</code></pre>
+                        </li>
+                        <li>
+                            <h5> Wild Pointer :</h5>
+                            <p>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the program to crash or misbehave.</p>
+                        </li>
+                        <li>
+                            <h5> Dangling Pointer :</h5>
+                            <p>A dangling pointer is a pointer that points to some non-existing memory location.</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -1437,7 +1439,7 @@ int main(){
         void studentInfo();
 };
 
-// Method outside class with Scope Resolution Operator :
+// Method definition outside class with Scope Resolution Operator :
 void Student::studentInfo(){
     cout << "Roll : " << printRoll() << endl;
     cout << "Name : " << printName() << endl;
@@ -1485,6 +1487,107 @@ int main(){
     return 0;
 }</code></pre>
                 </div>
+                <div>
+                    <h4>&bull; This Keyword :</h4>
+                    <p>The keyword <code>this</code> is a pointer that refers to the current instance of the class. The compiler supplies this pointer implicitly along with the names of functions. It is passed as a hidden argument to all non-static member function calls and is available as a local variable within the body of all non-static functions.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    public:
+        int roll;
+        string name;
+
+        // Constructor :
+        Student(int roll, string name){
+            this->roll = roll;
+            this->name = name;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+
+        void print(){
+            this->studentInfo();
+        }
+};
+
+int main(){
+    Student s1(17, "Mandar");
+    s1.print();
+    
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Friend Class & Function :</h4>
+                    <p>A friend class or function can access the private and protected members of a class. It is declared using the <code>friend</code> keyword inside the body of the class. A friend function can be a member of another class or a global function.</p>
+                    <div>
+                        <h5>Friend Class :</h5>
+                        <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+    public:
+        // Constructor :
+        Student(int roll, string name){
+            this->roll = roll;
+            this->name = name;
+        }
+
+    friend class Info;
+};
+
+class Info {
+    public:
+        void studentInfo(){
+            Student s(17, "Mandar");
+            cout << "Roll : " << s.roll << endl;
+            cout << "Name : " << s.name << endl;
+        }
+};
+
+int main(){
+    Info ob;
+    ob.studentInfo();
+
+    return 0;
+}</code></pre>
+                        <h5>Friend Function :</h5>
+                        <pre class="code-box code-box-color"><code>class B;
+
+class A {
+    private:
+        int x;
+    public:
+        // Constructor :
+        A() : x(10){}
+
+    friend void addNum(A a, B b);
+};
+
+class B {
+    private:
+        int y;
+    public:
+        // Constructor :
+        B() : y(20){}
+
+    friend void addNum(A a, B b);
+};
+
+void addNum(A a, B b){
+    cout << "Addition is " << a.x + b.y << endl;
+}
+
+int main(){
+    A a;
+    B b;
+    addNum(a,b);
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="constructor-destructor">
@@ -1499,6 +1602,7 @@ int main(){
 
         // Constructor (parameterized) :
         Student(int r, string n){
+            cout << "Constructor is called." << endl;
             roll = r;
             name = n;
         }
@@ -1517,6 +1621,75 @@ int main(){
 }</code></pre>
                 </div>
                 <div>
+                    <h4>&bull; Initialization List :</h4>
+                    <p>Initialization lists are used to initialise fields.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    public:
+        int roll;
+        string name;
+        int std;
+
+        // Constructor :
+        // Initialization List :
+        Student(int r, string n, int s): name(n), std(s){
+            roll = r;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+            cout << "Std : " << std << "th" << endl;
+        }
+};
+
+int main(){
+    Student s1(17, "Mandar", 9);
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Copy Constructor :</h4>
+                    <p>The copy constructor is a constructor that creates an object by initialising it with an already created object of the same class. The copy constructor takes a reference to an object of the same class as an argument. The compiler implicitly defines the default copy constructor if it is not defined by the programmer.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    public:
+        int roll;
+        string name;
+
+        // Constructor :
+        Student(int r, string n){
+            roll = r;
+            name = n;
+        }
+
+        // User Defined Copy Constructor (explicitly defined) :
+        Student(const Student &s){
+            roll = s.roll;
+            name = s.name;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+};
+
+int main(){
+    Student s1(17, "Mandar");
+    s1.studentInfo();
+
+    // Copy Constructor :
+    Student s2=s1;
+    s2.studentInfo();
+
+    Student s3(s2);
+    s3.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
                     <h4>&bull; Destructor :</h4>
                     <p>It is a special method that is automatically called when an object of its class goes out of scope. The destructor has the same name as the class, is preceded by a tilde (~) symbol, is always public, and does not have any return value.</p>
                     <pre class="code-box code-box-color"><code>class Student {
@@ -1524,9 +1697,9 @@ int main(){
         int roll;
         string name;
 
-        // Constructor (Parameterized) :
+        // Constructor :
         Student(int r, string n){
-            cout << "Constructor is called." << endl;;
+            cout << "Constructor is called." << endl;
             roll = r;
             name = n;
         }
@@ -1549,45 +1722,14 @@ int main(){
     return 0;
 }</code></pre>
                 </div>
-                <div>
-                    <h4>&bull; Initialization List :</h4>
-                    <p>Using Initialization Lists to Initialize Fields</p>
-                    <pre class="code-box code-box-color"><code>class Student {
-    public:
-        int roll;
-        string name;
-        int std;
+            </div>
 
-        // Constructor (parameterized) :
-        // Initialization List :
-        Student(int r, string n, int s): name(n), std(s){
-            roll = r;
-        }
-
-        void studentInfo(){
-            cout << "Roll : " << roll << endl;
-            cout << "Name : " << name << endl;
-            cout << "Std : " << std << "th" << endl;
-        }
-};
-
-int main(){
-    Student s1(17, "Mandar", 9);
-    s1.studentInfo();
-
-    return 0;
-}</code></pre>
-                </div>
-                <div>
-                    <h4>&bull; Copy Constructor :</h4>
-                    <p>The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously.</p>
-                    <pre class="code-box code-box-color"><code>
-</code></pre>
-                </div>
+            <div class="sections" id="inheritance">
+                <h3 class="heading"># Inheritance</h3>
             </div>
 
             <div class="sections" id="encapsulation">
-                <h3 class="heading"># Encapsulation</h3>
+                <h3 class="heading"># Encapsulation (WIP)</h3>
                 <p>Encapsulation in OOPs is the concept of binding fields (object state) and methods (behavior) together as a single unit. Encapsulation in OOPs may also mean restricting direct access to certain components of an object so that users can’t access the state values for all variables of a particular object. Therefore, encapsulation can be used to hide data members and functions associated with an instantiated class or object.</p>
                 <pre class="code-box code-box-color"><code>class Employee {
     private:
@@ -1610,10 +1752,6 @@ int main(){
 
     return 0;
 }</code></pre>
-            </div>
-
-            <div class="sections" id="inheritance">
-                <h3 class="heading"># Inheritance</h3>
             </div>
 
             <div class="sections" id="exception-handling">
