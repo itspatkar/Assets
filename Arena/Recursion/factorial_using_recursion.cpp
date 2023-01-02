@@ -1,19 +1,17 @@
 #include<iostream>
 using namespace std;
 
-int fact(int b){
-	if ( b == 0 ) return 1;
-	else return (b*fact(b-1));
+int factorial(int n){
+	if(n == 1) return 1;
+	else return (n*factorial(n-1));
 }
 
-int main()
-{
-	int a;
+int main(){
+	int n;
 	
 	cout<<"Enter Number : ";
-	cin>>a;
-	cout<<"Factorial Of "<<a<<" is = "<<fact(a)<<endl;
+	cin>>n;
+	cout<<"Factorial Of "<<n<<" is "<<factorial(n)<<endl;
 	
 	return 0;
 }
-	
