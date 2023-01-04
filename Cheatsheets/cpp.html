@@ -1086,6 +1086,7 @@ string &meal = food;</code></pre>
 
             <div class="sections" id="functions">
                 <h3 class="heading"># Functions</h3>
+                <p>Functions are blocks of statements that perform a specific task. It is reusable code that can be called anywhere in the program.</p>
                 <h5>Syntax :</h5>
                 <h5>Function Declaration :</h5>
                 <div class="code-box"><code>return_type function_name(parameter_list);</code></div>
@@ -1119,6 +1120,23 @@ sum(10,15);</code></pre>
 }
 int main(){
     cout << "Addition is " << sum(1,2) << endl;
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Parameters vs Arguments :</h4>
+                    <p>When a function is called, the values that are passed in the call are called <b>arguments</b>. They are also called <b>actual parameters</b>. The values that are written at the time of the function prototype and the definition of the function are called <b>parameters</b>. They are also called <b>formal parameters</b>.</p>
+                    <pre class="code-box code-box-color"><code>// Here name is parameter
+void greet(string name){
+    cout << "Hello " << name << endl;
+}
+
+int main(){
+    string name="Mandar";
+
+    // Here name is argument
+    greet(name);
+
     return 0;
 }</code></pre>
                 </div>
@@ -1244,6 +1262,33 @@ int main(){
 
 int main(){
     cout << "Max of number is " << max(12,10) << endl;
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h4>&bull; Functions vs Methods :</h4>
+                    <p>A <b>function</b> is defined without any class and is called by its name only. A <b>method</b> also works the same as that of a function, but it is defined inside a class and invoked by its reference or object only.</p>
+                    <pre class="code-box code-box-color"><code>class Name {
+public:
+    // printm is method
+    void printm(string name){
+        cout << name << endl;
+    }
+};
+
+// printf is function
+void printf(string name){
+    cout << name << endl;
+}
+
+int main(){
+    Name ob;
+    // printm is method
+    ob.printm("Mandar");
+
+    // printf is function
+    printf("Mandar");
+
     return 0;
 }</code></pre>
                 </div>
@@ -1521,6 +1566,10 @@ int main(){
                 <div>
                     <h4>&bull; Friend Class & Function :</h4>
                     <p>A friend class or function can access the private and protected members of a class. It is declared using the <code>friend</code> keyword inside the body of the class. A friend function can be a member of another class or a global function.</p>
+                    <h5>Syntax :</h5>
+                    <pre class="code-box code-box-color"><code>class Class_name {
+    friend data_type function_name(arguments);
+}</code></pre>
                     <div>
                         <h5>Friend Class :</h5>
                         <pre class="code-box code-box-color"><code>class Student {

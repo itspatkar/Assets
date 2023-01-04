@@ -1,38 +1,26 @@
 #include <iostream>
 using namespace std;
 
-class B;
-
-class A {
-    private:
-        int x;
-    public:
-        // Constructor :
-        A() : x(10){}
-
-    friend void addNum(A, B);
+class Name {
+public:
+    // printm is method
+    void printm(string name){
+        cout << name << endl;
+    }
 };
 
-class B {
-    private:
-        int y;
-    public:
-        // Constructor :
-        B() : y(20){}
-
-    friend void addNum(A, B);
-};
-
-void addNum(A a, B b){
-    cout << "Addition is " << a.x + b.y << endl;
+// printf is function
+void printf(string name){
+    cout << name << endl;
 }
 
-
 int main(){
-    A a;
-    B b;
+    Name ob;
+    // printm is method
+    ob.printm("Mandar");
 
-    addNum(a,b);
+    // printf is function
+    printf("Mandar");
 
     return 0;
 }
