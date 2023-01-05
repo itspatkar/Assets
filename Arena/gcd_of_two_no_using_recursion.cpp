@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 // Recursive approach of Euclidean Algorithm to find GCD of two numbers -
 int gcd(int a, int b){
@@ -9,10 +10,10 @@ int gcd(int a, int b){
 int main(){
 	int num1, num2, hcf;
 
-	printf("Enter 2 Numbers : ");
-	scanf("%d%d", &num1, &num2);
+	cout<<"Enter 2 Numbers : ";
+	cin>>num1>>num2;
 	hcf = gcd(num1, num2);
-	printf("GCD of %d and %d = %d\n", num1, num2, hcf);
+	cout<<"GCD of "<<num1<<" and "<<num2<<" = "<<hcf<<endl;
 
 	return 0;
 }

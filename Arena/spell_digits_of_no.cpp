@@ -1,12 +1,14 @@
-// Spells each digit of no
+// Spells each digit of number
 
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 int main(){
-	int n, d, r = 0;
+	int n, d, r=0;
 
-	printf("Enter Number : ");
-	scanf("%d", &n);
+	cout<<"Enter Number : ";
+	cin>>n;
+
 	while (n != 0){
 		d = n % 10;
 		r = r * 10 + d;
@@ -16,41 +18,41 @@ int main(){
 		d = r % 10;
 		switch (d){
 			case 0:
-				printf(" Zero ");
+				cout<<"Zero ";
 				break;
 			case 1:
-				printf(" One ");
+				cout<<"One ";
 				break;
 			case 2:
-				printf(" Two ");
+				cout<<"Two ";
 				break;
 			case 3:
-				printf(" Three ");
+				cout<<"Three ";
 				break;
 			case 4:
-				printf("  Four ");
+				cout<<"Four ";
 				break;
 			case 5:
-				printf(" Five ");
+				cout<<"Five ";
 				break;
 			case 6:
-				printf(" Six ");
+				cout<<"Six ";
 				break;
 			case 7:
-				printf(" Seven ");
+				cout<<"Seven ";
 				break;
 			case 8:
-				printf(" Eight ");
+				cout<<"Eight ";
 				break;
 			case 9:
-				printf(" Nine ");
+				cout<<"Nine ";
 				break;
 			default:
-				printf("Invalid Input!\n");
+				cout<<"Invalid Input!";
 		}
 		r = r / 10;
 	}
-	printf("\n");
+	cout<<"\n";
 
 	return 0;
 }

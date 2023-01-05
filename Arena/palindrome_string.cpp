@@ -19,7 +19,7 @@ int main(){
 	for(i=0; i<=n-1; i++)
 		if(s[i] != rev[i]) break;
 
-	if(i==n) cout<<"String is palindrome\n";
+	if(i == n) cout<<"String is palindrome\n";
 	else cout<<"String is not palindrome\n";
 
 	return 0;

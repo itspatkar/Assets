@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 int countDigits(int n){
 	static int count;
@@ -14,9 +15,9 @@ int countDigits(int n){
 int main(){
 	int n;
 
-	printf("Enter Positive Number : ");
-	scanf("%d",&n);
-	printf("Digits %d is : %d\n",n,countDigits(n));
+	cout<<"Enter Number : ";
+	cin>>n;
+	cout<<"Digits = "<<countDigits(n)<<endl;
 
 	return 0;
 }
