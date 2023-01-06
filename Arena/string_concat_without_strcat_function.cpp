@@ -4,9 +4,9 @@ using namespace std;
 int main(){
 	char s1[100], s2[100], i=0, j;
 
-	cout<<"First string : ";
+	cout<<"First String : ";
 	cin>>s1;
-	cout<<"Second string : ";
+	cout<<"Second String : ";
 	cin>>s2;
 	
 	// Length of string s1 :
@@ -16,7 +16,7 @@ int main(){
 		s1[i] = s2[j];
 	s1[i] = '\0';
 
-	cout<<"After concatenation : "<<s1<<endl;
+	cout<<"After Concatenation : "<<s1<<endl;
 
 	return 0;
 }

@@ -4,10 +4,10 @@ using namespace std;
 int main(){
 	int a[10][10], m, n, i, j, sum=0;
 
-	cout<<"Enter row and column of matrix : ";
+	cout<<"Enter row & column : ";
 	cin>>m>>n;
 
-	cout<<"Enter elements of matrix: ";
+	cout<<"Enter elements : ";
 	for(i=0; i<m; i++)
 		for(j=0; j<n; j++)
 			cin>>a[i][j];

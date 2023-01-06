@@ -11,7 +11,7 @@ int main(){
 
  	cout<<"Enter Number : ";
  	cin>>n;
- 	cout<<"Sum of numbers is "<<sum(n)<<endl;
+ 	cout<<"Sum is "<<sum(n)<<endl;
 
  	return 0;
  }

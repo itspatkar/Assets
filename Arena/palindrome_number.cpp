@@ -15,8 +15,8 @@ int main(){
 		r = r*10+d;
 		n = n/10;
 	}
-	if (t == r) cout<<t<<" is palindrome number."<<endl;
-	else cout<<t<<" is not palindrome number."<<endl;
+	if (t == r) cout<<t<<" is palindrome number"<<endl;
+	else cout<<t<<" is not palindrome number"<<endl;
 	
 	return 0;
 }

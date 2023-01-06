@@ -22,8 +22,8 @@ int main(){
         t = t + pow(d, c);
         n = n/10;
     }
-    if (k == t) cout<<k<<" is armstrong\n";
-    else cout<<k<<" is not armstrong\n";
+    if (k == t) cout<<k<<" is armstrong number"<<endl;
+    else cout<<k<<" is not armstrong number"<<endl;
     
     return 0;
 }

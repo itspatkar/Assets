@@ -15,8 +15,8 @@ int main(){
 		}
 		i++;
 	}
-	if (flag == true) cout<<n<<" is prime number."<<endl;
-	else cout<<n<<" is not prime number."<<endl;
+	if (flag == true) cout<<n<<" is prime number"<<endl;
+	else cout<<n<<" is not prime number"<<endl;
 
 	return 0;
 }

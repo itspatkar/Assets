@@ -17,7 +17,7 @@ int main(){
 
 	cout<<"Enter Number : ";
 	cin>>n;
-	cout<<"Sum of digits is "<<sumDigits(n);
+	cout<<"Sum of digits is "<<sumDigits(n)<<endl;
 
 	return 0;
 }

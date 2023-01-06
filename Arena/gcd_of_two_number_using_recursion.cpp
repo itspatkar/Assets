@@ -13,7 +13,7 @@ int main(){
 	cout<<"Enter 2 Numbers : ";
 	cin>>num1>>num2;
 	hcf = gcd(num1, num2);
-	cout<<"GCD of "<<num1<<" and "<<num2<<" = "<<hcf<<endl;
+	cout<<"GCD of "<<num1<<" and "<<num2<<" is "<<hcf<<endl;
 
 	return 0;
 }

@@ -11,7 +11,7 @@ int main(){
 	
 	cout<<"Enter Number : ";
 	cin>>n;
-	cout<<"Factorial Of "<<n<<" is "<<factorial(n)<<endl;
+	cout<<"Factorial of "<<n<<" is "<<factorial(n)<<endl;
 	
 	return 0;
 }
