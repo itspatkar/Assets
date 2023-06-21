@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PHP Forms</title>
+
+    <style>
+        * {
+            font-size: 1.2rem;
+        }
+        div {
+            padding: 2rem 20rem 2rem 20rem;
+        }
+        fieldset {
+            padding: 10px;
+            border-radius: 7px;
+        }
+        input[type=text] {
+            border: none;
+            width: 100%;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <form action="formvalidate.php" method="post">
+        <fieldset>
+            <legend>Name</legend>
+            <input type="text" name="name"  autofocus>
+            <span class="error">* <?php echo $nameErr;?></span>
+        </fieldset>
+
+        <fieldset>
+            <legend>Email</legend>
+            <input type="text" name="email" required>
+            <span class="error">* <?php echo $emailErr;?></span>
+        </fieldset>
+
+        <fieldset>
+            <legend>Website</legend>
+            <input type="text" name="website" required>
+            <span class="error"><?php echo $websiteErr;?></span>
+        </fieldset>
+
+        <fieldset>
+            <legend>Working Status</legend>
+            <input type="radio" name="status" value="student">Student
+            <input type="radio" name="status" value="working">Working
+            <input type="radio" name="status" value="nonworking">Non-Working
+            <span class="error"><?php echo $statusErr;?></span>
+        </fieldset> <br>
+
+        <input type="submit" value="SUBMIT">
+    </form>
+    
+</div>
+
+</body>
+</html>
