@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin-contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin-contracts/access/Ownable.sol";
+import "@openzeppelin-contracts/utils/Counters.sol";
 
 contract Spacebear is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
