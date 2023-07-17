@@ -1,0 +1,9 @@
+com.facebook.appmanager
+com.facebook.services
+com.facebook.system
+com.google.android.apps.messaging
+com.google.android.apps.subscriptions.red
+com.google.android.youtube
+com.miui.analytics
+com.xiaomi.glgm
+com.xiaomi.mipicks
