@@ -4,10 +4,12 @@ pragma solidity >=0.8.0;
 
 /* assert() function:
 Assert is used to check invariants.
-Invariants are states our contract or variables should never reach.
+Invariants are states that contract or variables should never reach.
 It is used to check for code that should never be false.
 Failing assertion probably means that there is a bug.
-For example, if we decrease a value then it should never get bigger, only smaller. */
+For example, if we decrease a value then it should never get bigger, only smaller.
+Assert cannot return error string.
+It does not return gas, it consume gas. */
 
 contract Exceptions {
     mapping(address => uint8) public balanceReceived;

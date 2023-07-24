@@ -4,9 +4,10 @@ pragma solidity >=0.8.0;
 
 /* > require() function:
 require() function is used for exception handling.
-The require function is used to verify inputs and conditions before execution.
+The require function is used to validate inputs and conditions before execution.
 If the condition is false, then the require function immediately stops execution.
-It does not consume gas. */
+Require can return error string.
+It does not consume gas, it return gas when fail. */
 
 contract StartStopUpdate {
     address owner;

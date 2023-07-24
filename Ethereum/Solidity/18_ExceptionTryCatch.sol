@@ -8,7 +8,8 @@ It does not evaluate any condition and does not depends on any state or statemen
 It is used to generate exceptions, display errors, and revert the function call.
 This statement contains a string message which indicates the issue related to the information of the exception.
 Calling a revert statement implies an exception is thrown, the unused gas is returned and the state reverts to its original state.
-Revert is used to handle the same exception types as require handles, but with little bit more complex logic. */
+Revert is used to handle the same exception types as require handles, but with little bit more complex logic. 
+throw is depracated and removed from solidity 0.4.10 */
 
 contract Exception {
     // Custom Error (Named Exceptions):
