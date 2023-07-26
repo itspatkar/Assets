@@ -14,7 +14,7 @@ Function must be payable to access msg.value property.
 
 contract SampleContract {
     // This function receives ether:
-    function getValue() public payable returns(uint) {
+    function receiveMoney() public payable returns(uint) {
         return msg.value;
     }
 }

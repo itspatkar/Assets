@@ -8,10 +8,10 @@ The receiving smart contract should have fallback function define or else the tr
 There is a gas limit of 2300 gas.
 If the transfer fails, it will throw an error. */
 
-contract SendReceive {
+contract TransferETH {
     uint public balanceReceived;
 
-    function receiveETH() public payable {
+    function receiveMoney() public payable {
         balanceReceived += msg.value;
     }
 

@@ -9,7 +9,7 @@ contract Mapping {
         return address(this).balance;
     }
 
-    function sendMoney() public payable {
+    function receiveMoney() public payable {
         balanceReceived[msg.sender] += msg.value;
     }
 

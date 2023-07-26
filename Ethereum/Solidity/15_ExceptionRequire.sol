@@ -16,7 +16,7 @@ contract StartStopUpdate {
         owner = msg.sender;
     }
 
-    function sendMoney() public payable {
+    function receiveMoney() public payable {
     }
 
     function withdrawMoneyAll(address payable to) public {
