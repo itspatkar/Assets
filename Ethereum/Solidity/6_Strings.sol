@@ -1,12 +1,14 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-/* In solidity, string are stored in memory not as storage variables.
-We cant concatenate string, search or replace string.
-It is also expensive in terms of gas price.
-
-We can store it as events or outside of blockchain and only its hash on blockchain. */
+/*
+> Strings:
+- In solidity, string are stored in memory not as storage variables.
+- We cant concatenate, search or replace strings.
+- It is also expensive in terms of gas price.
+- We can store it as events or outside of blockchain and only its hash on blockchain.
+*/
 
 contract Strings {
     // Strings:
@@ -15,14 +17,15 @@ contract Strings {
     // Bytes:
     bytes public myBytes = "Hello Bytes";
 
-    function setString(string memory inString) public {
-        myString = inString;
+    function setString(string memory str) public {
+        myString = str;
     }
 
-    function compareString(string memory inString) public view returns(bool) {
-        return keccak256(abi.encodePacked(myString)) == keccak256(abi.encodePacked(inString));
+    function compareString(string memory str) public view returns(bool) {
+        return keccak256(abi.encodePacked(myString)) == keccak256(abi.encodePacked(str));
     }
 
+    // Bytes has length property:
     function getBytesLength() public view returns(uint) {
         return myBytes.length;
     }

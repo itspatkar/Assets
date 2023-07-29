@@ -1,19 +1,18 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-/* Boolean operators: or, and, ||, &&
-*/
+// Boolean operators: or, and, ||, &&
 
 contract Boolean {
     bool public myBool;
-    bool public myFlag;
+    bool public myInvBool;
 
-    function setMyBool(bool inBool) public {
-        myBool = inBool;
+    function setMyBool(bool val) public {
+        myBool = val;
     }
 
-    function setMyFlag(bool inFlag) public {
-        myFlag = !inFlag;
+    function setMyFlag(bool val) public {
+        myInvBool = !val;
     }
 }
