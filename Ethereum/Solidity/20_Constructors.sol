@@ -1,13 +1,14 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-/* Constructor :
+/* 
+> Constructor:
+- It is declared as either public or internal
+
 syntax: constructor() {
     // code
 }
-
-- It is either public or internal
 */
 
 contract Constructor {

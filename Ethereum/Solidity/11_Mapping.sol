@@ -1,13 +1,14 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-/* Mapping:
-Mappings are like hashmaps.
-Mapping(key => value) map_name
-map_name[key] = value
-All possible keys in mapping are initialized by default.
-It is preferred over arrays beacause of gas.
+/*
+> Mapping:
+- Mappings are like associated arrays or hashmaps.
+- All possible keys in mapping are initialized by default.
+- It is preferred over arrays beacause of low gas.
+- Syntax: Mapping(key => value) map_name
+- map_name[key] = value
 */
 
 contract Mapping {

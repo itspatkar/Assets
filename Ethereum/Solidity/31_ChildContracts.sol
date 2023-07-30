@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
 contract Wallet {
     // Create instance of child contract:
@@ -16,8 +16,8 @@ contract PayamentReceived {
     address public from;
     uint public amount;
     
-    constructor(address inFrom, uint inAmount){
-        from = inFrom;
-        amount = inAmount;
+    constructor(address _from, uint _amount){
+        from = _from;
+        amount = _amount;
     }
 }

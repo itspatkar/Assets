@@ -2,11 +2,13 @@
 
 pragma solidity ^0.8.0;
 
-/* Inheritnce
-> Syntax:
+/*
+> Inheritance:
+Syntax:
 contract A {
     // code
 }
+
 contract B is A {
     // code
 }

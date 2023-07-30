@@ -1,9 +1,10 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
-/* Structure:
-Structs are used to define own data types.
+/*
+> Structure:
+- Structs are used to define own data types.
 */
 
 contract Structure {
@@ -15,7 +16,7 @@ contract Structure {
 
     Book public book1;
 
-    function setBook(uint _id,string memory _name, bool _avail) public {
+    function setBook(uint _id, string memory _name, bool _avail) public {
         book1 = Book(_id, _name, _avail);
     }
 

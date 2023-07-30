@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0;
+pragma solidity ^0.8.0;
 
 /* > View function:
 - The view functions reads from the state but does not modify (write) the state.
@@ -10,9 +10,9 @@ pragma solidity >=0.8.0;
 > Pure function:
 - The pure functions do not read or modify the state variables.
 - It returns the values only using the parameters passed to the function or local variables present in it.
-- If the statements which read the state variables, access the address or balance, access any global variable block or msg,call a function
-- that is not pure, etc are present in pure functions then the compiler throws a warning in such cases.
 - It can only access its own arguments and other pure functions.
+- If the statements which read the state variables, access the address or balance, access any global variable block or msg,
+call a function that is not pure, etc are present in pure functions then the compiler throws a warning in such cases.
 */
 
 contract ViewPureFunction {
