@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-contract SmartMoney {
+contract MoneyTransfer {
     uint public totalBalance;
 
     function deposit() public payable {
