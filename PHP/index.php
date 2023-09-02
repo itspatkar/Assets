@@ -598,7 +598,7 @@ function phpExceptions(){
 
 
 # Function execution -
-//basicIO();
+basicIO();
 //controlStructure();
 //forEachLoop();
 //Constants();
