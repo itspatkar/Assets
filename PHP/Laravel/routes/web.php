@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,16 +31,12 @@ Route::get('/test', function () {
     return "<h1>This is test!</h1>";
 });
 
-// Without function direct routing:
+// Direct routing without function:
 Route::view('/contact', 'contact');
 
+// Routing subdirectory:
 Route::get('/about', function () {
     return view('about.about');
-});
-
-
-Route::get('/student', function () {
-    return view('student');
 });
 
 // Routing parameters:
@@ -75,12 +72,39 @@ Route::get('/param_in/{select}', function ($select) {
     return "<h2>Here is your: " . $select . "</h2>";
 })->whereIn('select', ['tea', 'coffee', 'water']);
 
+// Named route:
+Route::get('/profile', function () {
+    return view('view_profile');
+})->name('profile');
 
+// Redirect route:
+Route::redirect('/contact-us', '/contact');
 
-Route::get('/form', function () {
-    return view('index');
+// Permanent redirection:
+Route::redirect('/about-us', '/about', 301);
+
+// Route Groups:
+Route::prefix('services')->group(function () {
+    Route::get('/create', function () {
+        return view('services.create');
+    });
+    Route::get('/delete', function () {
+        return view('services.delete');
+    });
 });
 
-Route::post('/form', function () {
-    return "Hello";
-})->name('submitform');
+// Fallback route:
+Route::fallback(function () {
+    return "<h1>Error 404: File not found!</h1>";
+});
+
+
+// ----- Task 1 : Student Form -----
+Route::get('/task1', function () {
+    return view('task1.student');
+});
+
+Route::post('/task1', function (Request $request) {
+    //dd($request->all());
+    return $request->input('name');
+})->name('submitForm');
