@@ -98,6 +98,38 @@ Route::fallback(function () {
     return "<h1>Error 404: File not found!</h1>";
 });
 
+// Blade Basics:
+Route::get('/basic', function () {
+    return view('basic');
+});
+
+// Directive: include
+Route::get('/include', function () {
+    return view('directives.main');
+});
+
+// Directive: inheritance
+Route::get('/inherit', function () {
+    return view('directives.inherit.home');
+});
+Route::get('/inherit/about', function () {
+    return view('directives.inherit.about');
+});
+Route::get('/inherit/contact', function () {
+    return view('directives.inherit.contact');
+});
+
+// JS in Blade:
+Route::get('/js', function () {
+    return view('jscript.js');
+});
+Route::get('/jsmain', function () {
+    return view('jscript.main');
+});
+Route::get('/jspage', function () {
+    return view('jscript.page');
+});
+
 
 // ----- Task 1 : Student Form -----
 Route::get('/task1', function () {
