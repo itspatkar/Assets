@@ -62,6 +62,49 @@ Route::get('/param_mul/{name}/id/{id}', function ($data, $id) {
 Route::get('/param_keyval/{name}', function ($data) {
     return view('param', ['name' => $data]);
 });
+Route::get('/param_keyval/', function () {
+    $user = "Mandar";
+    $system = "Void";
+    return view('paramkv', ['user' => $user, 'system' => $system]);
+});
+
+// Pass data Route to View:
+Route::get('/passwith/', function () {
+    $user = "Mandar";
+    $system = "Void";
+    return view('passwith')->with('user', $user)->with('system', $system);
+});
+// Route::get('/passwith2/', function () { // Alternate
+//     $user = "Mandar";
+//     $system = "Void";
+//     return view('passwith')
+//         ->withUser($user)
+//         ->withSystem($system);
+// });
+
+// Pass array:
+Route::get('/passwitharray/', function () {
+    $users = [
+        1 => ['name' => 'Mandar', 'city' => 'Mumbai'],
+        2 => ['name' => 'Aman', 'city' => 'Pune']
+    ];
+    return view('passwitharray')->with('users', $users);
+});
+
+function getUsers()
+{
+    return [
+        1 => ['name' => 'Mandar', 'city' => 'Mumbai'],
+        2 => ['name' => 'Aman', 'city' => 'Pune'],
+        3 => ['name' => 'Akash', 'city' => 'Nashik']
+    ];
+}
+Route::get('/printuser/{id}', function ($id) {
+    $users = getUsers();
+    abort_if(!isset($users[$id]), 404);
+    $user = $users[$id];
+    return view('printuser', ['id' => $user]);
+})->name('printuser');
 
 // Route Constraints:
 Route::get('/param_con/{data}', function ($data) {
