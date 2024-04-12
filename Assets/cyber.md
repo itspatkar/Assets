@@ -27,9 +27,9 @@
 
 ### Tools
 
-- **`gobuster`** : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
+- `gobuster` : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - `pdfinfo` : Portable Document Format (PDF) document information extractor (poppler-utils)
-- `**exiftool**` : ExifTool is used to read and write metadata in various file types, such as JPEG images.
+- `exiftool` : ExifTool is used to read and write metadata in various file types, such as JPEG images.
 
 <!-- https://tryhackme.com/r/resources/blog/free_path -->
 <!-- https://tryhackme.com/path/outline/web -->
