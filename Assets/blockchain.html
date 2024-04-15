@@ -44,10 +44,14 @@
                     <li>A blockchain is typically managed by a peer-to-peer network collectively adhering to a protocol for validating new blocks.</li>
                     <li>Once recorded, information cannot be altered without the alteration of all subsequent blocks.</li>
                 </ul>
-                <h5>&bull; Genesis Block :</h5>
-                <p>The Genesis Block, also known as Block 0, is the very first block upon which additional blocks in a blockchain are added. It is effectively the ancestor that every other block can trace its lineage back to since every block references the one preceding it. The Genesis Block is a critical element of a blockchain network because it serves as the foundation for the entire network.</p>
-                <h5>&bull; Blockchain Explorer :</h5>
-                <p>A blockchain explorer is a platform that allows people to search and navigate a blockchain. They$re not necessary for using the blockchain. However, they offer a valuable service to those who wish to inspect a blockchain in detail. You can view transactions on the blockchain, smart contract code, account balances, and more.</p>
+                <div>
+                    <h5>&bull; Genesis Block :</h5>
+                    <p>The Genesis Block, also known as Block 0, is the very first block upon which additional blocks in a blockchain are added. It is effectively the ancestor that every other block can trace its lineage back to since every block references the one preceding it. The Genesis Block is a critical element of a blockchain network because it serves as the foundation for the entire network.</p>
+                </div>
+                <div>
+                    <h5>&bull; Blockchain Explorer :</h5>
+                    <p>A blockchain explorer is a platform that allows people to search and navigate a blockchain. They're not necessary for using the blockchain. However, they offer a valuable service to those who wish to inspect a blockchain in detail. You can view transactions on the blockchain, smart contract code, account balances, and more.</p>
+                </div>
             </div>
 
             <div class="sections" id="blockchain-type">
@@ -91,21 +95,31 @@
             <div class="sections" id="smart-contracts">
                 <h4 class="heading"># Smart Contracts</h4>
                 <p>Smart contracts are self-executing contracts with predefined rules and conditions encoded on a blockchain. They are written in programming languages such as Solidity (for Ethereum) or Vyper and operate autonomously without the need for intermediaries.</p>
-                <h5>&bull; Web3.JS :</h5>
-                <p>Web3.JS is a popular JavaScript library that allows you to interact with the Ethereum network (and smart contracts). If you want to build an application, you can use Web3.JS to connect to the Ethereum blockchain and make the front-end of your application.</p>
-                <h5>&bull; ABI Bytecode :</h5>
-                <p>ABI stands for Application Binary Interface. The ABI is typically provided as a JSON (JavaScript Object Notation) file or an ABI-encoded string. Smart contracts are written in high-level languages like Solidity and compiled into bytecode, which is then deployed on the blockchain or Ethereum Virtual Machine (EVM) for execution. The ABI Array contains all functions, inputs, and outputs, as well as all variables and their types, from a smart contract. Inside, there are assembly opcodes telling the EVM during execution of a smart contract where to jump to. Those jump destinations are the first 4 bytes of the keccak hash of the function signature.</p>
+                <div>
+                    <h5>&bull; Web3.JS :</h5>
+                    <p>Web3.JS is a popular JavaScript library that allows you to interact with the Ethereum network (and smart contracts). If you want to build an application, you can use Web3.JS to connect to the Ethereum blockchain and make the front-end of your application.</p>
+                </div>
+                <div>
+                    <h5>&bull; ABI Bytecode :</h5>
+                    <p>ABI stands for Application Binary Interface. The ABI is typically provided as a JSON (JavaScript Object Notation) file or an ABI-encoded string. Smart contracts are written in high-level languages like Solidity and compiled into bytecode, which is then deployed on the blockchain or Ethereum Virtual Machine (EVM) for execution. The ABI Array contains all functions, inputs, and outputs, as well as all variables and their types, from a smart contract. Inside, there are assembly opcodes telling the EVM during execution of a smart contract where to jump to. Those jump destinations are the first 4 bytes of the keccak hash of the function signature.</p>
+                </div>
             </div>
 
             <div class="sections" id="consensus-mechanism">
                 <h4 class="heading"># Consensus Mechanism</h4>
                 <p>Blockchain networks rely on a consensus mechanism to achieve agreement among nodes about the validity of transactions and the order in which they are added to the blockchain. Common consensus mechanisms include Proof of Work (PoW), Proof of Stake (PoS), and Practical Byzantine Fault Tolerance (PBFT).</p>
-                <h5>&bull; Proof of Work (PoW) :</h5>
-		<p>In a PoW-based blockchain network, miners compete to solve a complex mathematical puzzle or algorithm. The process of solving this puzzle is called mining.</p>
-		<h5>&bull; Proof of Stake (PoS) :</h5>
-		<p>In a PoS-based blockchain network, participants are called validators. Validators are chosen to create new blocks and validate transactions based on the amount of cryptocurrency they hold and "stake" in the network.</p>
-		<h6>PoW and PoS :</h6>
-                <p>In a PoW system, miners compete to find a solution to an equation that will allow them to add a block to the blockchain. In a PoS system, validators stake their cryptocurrency on the chain they want to mine. The more they stake, the more likely they will solve the next block. When they reach a consensus on a block, they get rewarded with more of the cryptocurrency. Critics argue that PoS may lead to centralization.</p>
+                <div>
+                    <h5>&bull; Proof of Work (PoW) :</h5>
+            		<p>In a PoW-based blockchain network, miners compete to solve a complex mathematical puzzle or algorithm. The process of solving this puzzle is called mining.</p>
+                </div>
+                <div>
+            		<h5>&bull; Proof of Stake (PoS) :</h5>
+            		<p>In a PoS-based blockchain network, participants are called validators. Validators are chosen to create new blocks and validate transactions based on the amount of cryptocurrency they hold and "stake" in the network.</p>
+                </div>
+                <div>
+            		<h6>PoW and PoS :</h6>
+                    <p>In a PoW system, miners compete to find a solution to an equation that will allow them to add a block to the blockchain. In a PoS system, validators stake their cryptocurrency on the chain they want to mine. The more they stake, the more likely they will solve the next block. When they reach a consensus on a block, they get rewarded with more of the cryptocurrency. Critics argue that PoS may lead to centralization.</p>
+                </div>
             </div>
 
             <div class="sections" id="tokens">
@@ -136,7 +150,6 @@
             <div class="sections" id="ethereum">
                 <h4 class="heading"># Ethereum</h4>
                 <p>Ethereum is the blockchain platform that enables the creation and execution of smart contracts and decentralized applications (dApps).</p>
-
                 <div>
                     <h5>&bull; ERC-20 :</h5>
                     <p>ERC-20 stands for Ethereum Request for Comment 20, which is a technical standard or protocol used for creating and implementing fungible tokens on the Ethereum blockchain. It defines a set of rules and standards that a token contract must follow in order to be considered an ERC-20 token. ERC-20 allows developers to create smart-contract-enabled tokens that can be used with other products and services.</p>
@@ -146,7 +159,7 @@
                     <h6>The functions a token must have are -</h6>
                     <ul class="justify">
                         <li><b><code>TotalSupply</code> :</b> The total number of tokens that will ever be issued.</li>
-                        <li><b><code>BalanceOf</code> :</b> The account balance of a token owner$s account.</li>
+                        <li><b><code>BalanceOf</code> :</b> The account balance of a token owner's account.</li>
                         <li><b><code>Transfer</code> :</b> Automatically executes transfers of a specified number of tokens to a specified address for transactions using the token.</li>
                         <li><b><code>TransferFrom</code> :</b> Automatically executes transfers of a specified number of tokens from a specified address using the token.</li>
                         <li><b><code>Approve</code> :</b> Allows a spender to withdraw a set number of tokens from a specified account, up to a specific amount.</li>
@@ -157,6 +170,7 @@
                         <li><b><code>Transfer</code> :</b> An event triggered when a transfer is successful.</li>
                         <li><b><code>Approval</code> :</b> A log of an approved event (an event).</li>
                     </ul>
+
                     <h6>ETH vs ERC-20 :</h6>
                     <p>Ether (ETH) is the native token used by the Ethereum blockchain and network as a payment system for verifying transactions. ERC-20 is the standard for creating smart contract-enabled fungible tokens to be used in the Ethereum ecosystem.</p>
                 </div>
@@ -171,50 +185,53 @@
                     <li>From the compiled contracts it creates json-artifacts, which contain not only the ABI, but also the bytecode and the AST and much more.</li>
                     <li>When we deploy the code using truffle migrations, it will also contain the contract address on a specific network.</li>
                 </ul>
-
-                <h6>Truffle Folder Structure :</h6>
-                <ul class="justify">
-                    <li><b><code>Contracts</code> :</b> This directory contains the Solidity smart contracts for your project. It usually has a separate file for each contract, along with any libraries or interfaces.</li>
-                    <li><b><code>Migrations</code> :</b> The migrations folder contains JavaScript files that handle deploying and updating your smart contracts to the Ethereum network. Each migration script represents a deployment or an update, and they are executed in order.</li>
-                    <li><b><code>Test</code> :</b> This directory is used for writing automated tests for your smart contracts. It usually contains JavaScript or Solidity test files that ensure your contracts behave as expected.</li>
-                    <li><b><code>Truffle Config</code> :</b> The truffle-config.js (or truffle.js) file holds the configuration settings for your Truffle project. It specifies the network settings, compiler version, and other project-specific options.</li>
-                    <li><b><code>Build</code> :</b> The build folder is automatically generated by Truffle and contains the compiled contracts and build artifacts. It includes the ABI (Application Binary Interface) JSON files, bytecode, and other necessary information for interacting with your contracts.</li>
-                    <li><b><code>App</code></b> (Optional) : If you are building a decentralized application (DApp), you may have an "app" or "client" folder that contains the frontend code (HTML, CSS, JavaScript, etc.) for your DApp. This folder is not specific to Truffle but is commonly included in Truffle projects for convenience.</li>
-                </ul>
-
-                <h6>Truffle Commands :</h6>
-                <ul class="justify">
-                    <li><b><code>truffle init</code> :</b> Initializes a new Truffle project by creating the necessary directory structure and configuration files.</li>
-                    <li><b><code>truffle compile</code> :</b> Compiles the smart contracts written in Solidity language into bytecode that can be executed on the Ethereum Virtual Machine (EVM). It generates artifacts refer to the JSON files generated during the compilation process. These artifact files contain metadata and information about the compiled smart contracts, including their bytecode, application binary interface (ABI), and other details.</li>
-                    <li><b><code>truffle migrate</code> :</b> Deploys the compiled smart contracts to a specified Ethereum network. It uses migration scripts to manage the deployment process.</li>
-                    <li><b><code>truffle test</code> :</b> Runs the test cases written for your smart contracts using a built-in testing framework (usually Mocha and Chai). It helps ensure that your contracts behave as expected.</li>
-                    <li><b><code>truffle console</code> :</b> Opens a Truffle console, which is an interactive JavaScript environment connected to an Ethereum network. It allows you to interact with deployed contracts and test their functionality manually.</li>
-                    <li><b><code>truffle develop</code> :</b> Starts a local development blockchain, also known as the Truffle Develop Network. It provides a pre-configured blockchain environment for rapid contract development and testing.</li>
-                    <li><b><code>truffle networks</code> :</b> Lists the available network configurations defined in the Truffle project$s configuration file. You can define multiple networks for different Ethereum networks like mainnet, ropsten, rinkeby, etc.</li>
-                    <li><b><code>truffle create</code> :</b> Creates new contract, migration, test, or other files/templates within the Truffle project$s directory structure.</li>
-                    <li><b><code>truffle build</code> :</b> Compiles and generates an optimized build of your DApp for production deployment. It typically creates a bundled version of your frontend code and deploys it to an appropriate location.</li>
-                </ul>
-
-                <h5>&bull; Ganache :</h5>
-                <p>Truffle Ganache is a local blockchain development tool that provides a personal Ethereum blockchain for development and testing purposes. It is part of the Truffle suite. Ganache allows developers to create a local Ethereum network with predefined accounts and pre-funded Ether. This allows you to simulate a blockchain environment on your local machine without the need to connect to a public or test network.</p>
-                
-                <h6>Deploy smart contracts on ganache (cli) -</h6>
-                <ul>
-                    <li>Start ganache: <b><code>ganache</code></b></li>
-                    <li>Migrate in new terminal: <b><code>truffle migrate --network ganache</code></b></li>
-                </ul>
+                <div>
+                    <h6>Truffle Folder Structure :</h6>
+                    <ul class="justify">
+                        <li><b><code>Contracts</code> :</b> This directory contains the Solidity smart contracts for your project. It usually has a separate file for each contract, along with any libraries or interfaces.</li>
+                        <li><b><code>Migrations</code> :</b> The migrations folder contains JavaScript files that handle deploying and updating your smart contracts to the Ethereum network. Each migration script represents a deployment or an update, and they are executed in order.</li>
+                        <li><b><code>Test</code> :</b> This directory is used for writing automated tests for your smart contracts. It usually contains JavaScript or Solidity test files that ensure your contracts behave as expected.</li>
+                        <li><b><code>Truffle Config</code> :</b> The truffle-config.js (or truffle.js) file holds the configuration settings for your Truffle project. It specifies the network settings, compiler version, and other project-specific options.</li>
+                        <li><b><code>Build</code> :</b> The build folder is automatically generated by Truffle and contains the compiled contracts and build artifacts. It includes the ABI (Application Binary Interface) JSON files, bytecode, and other necessary information for interacting with your contracts.</li>
+                        <li><b><code>App</code></b> (Optional) : If you are building a decentralized application (DApp), you may have an "app" or "client" folder that contains the frontend code (HTML, CSS, JavaScript, etc.) for your DApp. This folder is not specific to Truffle but is commonly included in Truffle projects for convenience.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h6>Truffle Commands :</h6>
+                    <ul class="justify">
+                        <li><b><code>truffle init</code> :</b> Initializes a new Truffle project by creating the necessary directory structure and configuration files.</li>
+                        <li><b><code>truffle compile</code> :</b> Compiles the smart contracts written in Solidity language into bytecode that can be executed on the Ethereum Virtual Machine (EVM). It generates artifacts refer to the JSON files generated during the compilation process. These artifact files contain metadata and information about the compiled smart contracts, including their bytecode, application binary interface (ABI), and other details.</li>
+                        <li><b><code>truffle migrate</code> :</b> Deploys the compiled smart contracts to a specified Ethereum network. It uses migration scripts to manage the deployment process.</li>
+                        <li><b><code>truffle test</code> :</b> Runs the test cases written for your smart contracts using a built-in testing framework (usually Mocha and Chai). It helps ensure that your contracts behave as expected.</li>
+                        <li><b><code>truffle console</code> :</b> Opens a Truffle console, which is an interactive JavaScript environment connected to an Ethereum network. It allows you to interact with deployed contracts and test their functionality manually.</li>
+                        <li><b><code>truffle develop</code> :</b> Starts a local development blockchain, also known as the Truffle Develop Network. It provides a pre-configured blockchain environment for rapid contract development and testing.</li>
+                        <li><b><code>truffle networks</code> :</b> Lists the available network configurations defined in the Truffle project's configuration file. You can define multiple networks for different Ethereum networks like mainnet, ropsten, rinkeby, etc.</li>
+                        <li><b><code>truffle create</code> :</b> Creates new contract, migration, test, or other files/templates within the Truffle project's directory structure.</li>
+                        <li><b><code>truffle build</code> :</b> Compiles and generates an optimized build of your DApp for production deployment. It typically creates a bundled version of your frontend code and deploys it to an appropriate location.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>&bull; Ganache :</h5>
+                    <p>Truffle Ganache is a local blockchain development tool that provides a personal Ethereum blockchain for development and testing purposes. It is part of the Truffle suite. Ganache allows developers to create a local Ethereum network with predefined accounts and pre-funded Ether. This allows you to simulate a blockchain environment on your local machine without the need to connect to a public or test network.</p>
+                </div>
+                <div>
+                    <h6>Deploy smart contracts on ganache (cli) -</h6>
+                    <ul>
+                        <li>Start ganache: <b><code>ganache</code></b></li>
+                        <li>Migrate in new terminal: <b><code>truffle migrate --network ganache</code></b></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="sections" id="hardhat">
                 <h4 class="heading"># Hardhat</h4>
                 <p>Hardhat is a development environment for Ethereum smart contracts. It is a popular alternative to Truffle and provides a comprehensive toolset for compiling, testing, and deploying smart contracts.</p>
-
                 <ul class="justify">
                     <li>
                         <h6>Set up your project:</h6>
                         <ul>
                             <li>Create a new directory for your project.</li>
-                            <li>Run <b><code>npm init</code></b> to initialize a new Node.js project (if you haven$t already).</li>
+                            <li>Run <b><code>npm init</code></b> to initialize a new Node.js project (if you haven't already).</li>
                             <li>Install Hardhat by running: <b><code>npm install --save-dev hardhat</code></b>.</li>
                         </ul>
                     </li>
@@ -236,7 +253,7 @@
                         <h6>Write tests:</h6>
                         <ul>
                             <li>Create a test directory in your project.</li>
-                            <li>Write automated tests for your contracts using the testing framework of your choice (e.g., Mocha or Hardhat$s built-in testing framework).</li>
+                            <li>Write automated tests for your contracts using the testing framework of your choice (e.g., Mocha or Hardhat's built-in testing framework).</li>
                         </ul>
                     </li>
                     <li>
