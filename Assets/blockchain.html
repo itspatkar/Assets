@@ -23,7 +23,7 @@
             <h3 class="title">Blockchain</h3>
             
             <div class="section-list">
-                <ul>
+                <ul class="justify">
                     <li><a href="#blockchain">Blockchain</a></li>
                     <li><a href="#blockchain">Types of Blockchain</a></li>
                     <li><a href="#smart-contracts">Smart Contracts</a></li>
@@ -38,7 +38,7 @@
             <div class="sections" id="blockchain">
                 <h4 class="heading"># Blockchain</h4>
                 <p>A blockchain is a digitized, decentralized ledger of transactions. Blockchains record a continuously growing list of records, called blocks, which are linked and secured using cryptography.</p>
-                <ul>
+                <ul class="justify">
                     <li>A blockchain is a distributed database that maintains a continuously growing list of records, called blocks, secured from tampering and revision.</li>
                     <li>Each block contains a timestamp and a link to a previous block.</li>
                     <li>A blockchain is typically managed by a peer-to-peer network collectively adhering to a protocol for validating new blocks.</li>
@@ -52,7 +52,7 @@
 
             <div class="sections" id="blockchain-type">
                 <h4 class="heading"># Types of Blockchain</h4>
-                <ul>
+                <ul class="justify">
                     <li>
                         <h6>Public :</h6>
                         <ul>
@@ -100,11 +100,11 @@
             <div class="sections" id="consensus-mechanism">
                 <h4 class="heading"># Consensus Mechanism</h4>
                 <p>Blockchain networks rely on a consensus mechanism to achieve agreement among nodes about the validity of transactions and the order in which they are added to the blockchain. Common consensus mechanisms include Proof of Work (PoW), Proof of Stake (PoS), and Practical Byzantine Fault Tolerance (PBFT).</p>
-                <ul>
-                    <li><b>Proof of Work (PoW) :</b> In a PoW-based blockchain network, miners compete to solve a complex mathematical puzzle or algorithm. The process of solving this puzzle is called mining.</li>
-                    <li><b>Proof of Stake (PoS) :</b> In a PoS-based blockchain network, participants are called validators. Validators are chosen to create new blocks and validate transactions based on the amount of cryptocurrency they hold and "stake" in the network.</li>
-                </ul>
-                <h6>&bull; PoW and PoS :</h6>
+                <h5>&bull; Proof of Work (PoW) :</h5>
+		<p>In a PoW-based blockchain network, miners compete to solve a complex mathematical puzzle or algorithm. The process of solving this puzzle is called mining.</p>
+		<h5>&bull; Proof of Stake (PoS) :</h5>
+		<p>In a PoS-based blockchain network, participants are called validators. Validators are chosen to create new blocks and validate transactions based on the amount of cryptocurrency they hold and "stake" in the network.</p>
+		<h6>PoW and PoS :</h6>
                 <p>In a PoW system, miners compete to find a solution to an equation that will allow them to add a block to the blockchain. In a PoS system, validators stake their cryptocurrency on the chain they want to mine. The more they stake, the more likely they will solve the next block. When they reach a consensus on a block, they get rewarded with more of the cryptocurrency. Critics argue that PoS may lead to centralization.</p>
             </div>
 
@@ -144,7 +144,7 @@
                     <h6>ERC-20 Contents :</h6>
                     <p>ERC-20 is a list of functions and events that must be implemented into a token for it to be considered ERC-20 compliant. These functions (called methods in the ERC) describe what must be included in the smart-contract-enabled token, while events describe an action.</p>
                     <h6>The functions a token must have are -</h6>
-                    <ul>
+                    <ul class="justify">
                         <li><b><code>TotalSupply</code> :</b> The total number of tokens that will ever be issued.</li>
                         <li><b><code>BalanceOf</code> :</b> The account balance of a token owner$s account.</li>
                         <li><b><code>Transfer</code> :</b> Automatically executes transfers of a specified number of tokens to a specified address for transactions using the token.</li>
@@ -153,7 +153,7 @@
                         <li><b><code>Allowance</code> :</b> Returns a set number of tokens from a spender to the owner.</li>
                     </ul>
                     <h6>The events that must be included in the token are -</h6>
-                    <ul>
+                    <ul class="justify">
                         <li><b><code>Transfer</code> :</b> An event triggered when a transfer is successful.</li>
                         <li><b><code>Approval</code> :</b> A log of an approved event (an event).</li>
                     </ul>
@@ -165,7 +165,7 @@
             <div class="sections" id="truffle">
                 <h4 class="heading"># Truffle</h4>
                 <p>Truffle is a development framework for Ethereum; It is used to streamline the process of building, testing, and deploying smart contracts on the Ethereum network. Truffle provides a suite of tools and libraries that aid in the development and management of Ethereum-based decentralized applications (dApps).</p>
-                <ul>
+                <ul class="justify">
                     <li>Truffle downloads a solidity compiler in the background (the version is defined in truffle-config).</li>
                     <li>Then it looks in the contracts folder for all solidity files and runs them through the solidity compiler.</li>
                     <li>From the compiled contracts it creates json-artifacts, which contain not only the ABI, but also the bytecode and the AST and much more.</li>
@@ -173,7 +173,7 @@
                 </ul>
 
                 <h6>Truffle Folder Structure :</h6>
-                <ul>
+                <ul class="justify">
                     <li><b><code>Contracts</code> :</b> This directory contains the Solidity smart contracts for your project. It usually has a separate file for each contract, along with any libraries or interfaces.</li>
                     <li><b><code>Migrations</code> :</b> The migrations folder contains JavaScript files that handle deploying and updating your smart contracts to the Ethereum network. Each migration script represents a deployment or an update, and they are executed in order.</li>
                     <li><b><code>Test</code> :</b> This directory is used for writing automated tests for your smart contracts. It usually contains JavaScript or Solidity test files that ensure your contracts behave as expected.</li>
@@ -183,7 +183,7 @@
                 </ul>
 
                 <h6>Truffle Commands :</h6>
-                <ul>
+                <ul class="justify">
                     <li><b><code>truffle init</code> :</b> Initializes a new Truffle project by creating the necessary directory structure and configuration files.</li>
                     <li><b><code>truffle compile</code> :</b> Compiles the smart contracts written in Solidity language into bytecode that can be executed on the Ethereum Virtual Machine (EVM). It generates artifacts refer to the JSON files generated during the compilation process. These artifact files contain metadata and information about the compiled smart contracts, including their bytecode, application binary interface (ABI), and other details.</li>
                     <li><b><code>truffle migrate</code> :</b> Deploys the compiled smart contracts to a specified Ethereum network. It uses migration scripts to manage the deployment process.</li>
@@ -209,7 +209,7 @@
                 <h4 class="heading"># Hardhat</h4>
                 <p>Hardhat is a development environment for Ethereum smart contracts. It is a popular alternative to Truffle and provides a comprehensive toolset for compiling, testing, and deploying smart contracts.</p>
 
-                <ul>
+                <ul class="justify">
                     <li>
                         <h6>Set up your project:</h6>
                         <ul>
