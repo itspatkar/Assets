@@ -1,5 +1,7 @@
 <!-- https://tryhackme.com/r/resources/blog/free_path -->
 <!-- https://tryhackme.com/path/outline/web -->
+<!-- https://tryhackme.com/r/room/whatisnetworking -->
+<!-- https://tryhackme.com/module/linux-fundamentals -->
 
 
 ### Cyber Security Terminology
@@ -27,6 +29,8 @@
 - Trojan Horse : Trojan Horse is a program that shows one desirable function but hides a malicious function underneath. For example, a victim might download a video player from a shady website that gives the attacker complete control over their system.
 
 - Ransomware : Ransomware is a malicious program that encrypts the user’s files. Encryption makes the files unreadable without knowing the encryption password. The attacker offers the user the encryption password if the user is willing to pay a “ransom.”
+
+- HTML Injection : HTML Injection is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website fails to sanitise user input (filter any "malicious" text that a user inputs into a website), and that input is used on the page, an attacker can inject HTML code into a vulnerable website.
 
 
 ---
@@ -102,4 +106,25 @@ status code informs the client of the outcome of their request and also potentia
 - 404 - Page Not Found : The page/resource you requested does not exist.
 - 500 - Internal Service Error : The server has encountered some kind of error with your request that it doesn't know how to handle properly.
 - 503 - Service Unavailable : This server cannot handle your request as it's either overloaded or down for maintenance.
+
+#### Headers
+Headers are additional bits of data you can send to the web server when making requests. Although no headers are strictly required when making a HTTP request, you’ll find it difficult to view a website properly.
+
+##### Common Request Headers:
+These are headers that are sent from the client (usually your browser) to the server.
+- Host: Some web servers host multiple websites so by providing the host headers you can tell it which one you require, otherwise you'll just receive the default website for the server.
+- User-Agent: This is your browser software and version number, telling the web server your browser software helps it format the website properly for your browser and also some elements of HTML, JavaScript and CSS are only available in certain browsers.
+- Content-Length: When sending data to a web server such as in a form, the content length tells the web server how much data to expect in the web request. This way the server can ensure it isn't missing any data.
+- Accept-Encoding: Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.
+- Cookie: Data sent to the server to help remember your information (see cookies task for more information).
+
+##### Common Response Headers
+These are the headers that are returned to the client from the server after a request.
+- Set-Cookie: Information to store which gets sent back to the web server on each request (see cookies task for more information).
+- Cache-Control: How long to store the content of the response in the browser's cache before it requests it again.
+- Content-Type: This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, Images, PDF, Video, etc. Using the content-type header the browser then knows how to process the data.
+- Content-Encoding: What method has been used to compress the data to make it smaller when sending it over the internet.
+
+#### Cookies
+a small piece of data that is stored on your computer. Cookies are saved when you receive a "Set-Cookie" header from a web server. Then every further request you make, you'll send the cookie data back to the web server. Because HTTP is stateless (doesn't keep track of your previous requests).
 
