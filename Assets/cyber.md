@@ -1,7 +1,7 @@
 <!-- https://tryhackme.com/r/resources/blog/free_path -->
 <!-- https://tryhackme.com/path/outline/web -->
-<!-- https://tryhackme.com/module/introduction-to-offensive-pentesting?ref=blog.tryhackme.com -->
 <!-- https://tryhackme.com/r/room/ohsint?ref=blog.tryhackme.com -->
+<!-- https://tryhackme.com/r/room/burpsuitebasics -->
 
 
 ### Cyber Security Terminology
@@ -11,6 +11,8 @@
 - Defensive Security (Blue Team) - Defending/Protecting/Preventing : Defensive security is the process of protecting an organization's network and computer systems by analyzing and securing any potential digital threats; learn more in the digital forensics room.
 
 - Security Operations Center (SOC) : Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within a company’s network and systems.
+
+- Open source intelligence (OSINT) is the act of gathering and analyzing publicly available data for intelligence purposes.
 
 - Threat Intelligence : Threat intelligence aims to gather information to help the company better prepare against potential adversaries.
 
@@ -32,7 +34,9 @@
 
 - HTML Injection : HTML Injection is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website fails to sanitise user input (filter any "malicious" text that a user inputs into a website), and that input is used on the page, an attacker can inject HTML code into a vulnerable website.
 
-- SQLi (Structured Query Language Injection) : SQLi is an attack on a web application database server that causes malicious queries to be executed. When a web application communicates with a database using input from a user that hasn't been properly validated, there runs the potential of an attacker being able to steal, delete or alter private and customer data and also attack the web application authentication methods to private or customer areas.
+- SQLi (Structured Query Language Injection) : SQLi is an attack on a web application database server that causes malicious queries to be executed. When a web application communicates with a database using input from a user that hasn't been properly validated, there runs the potential of an attacker being able to steal, delete or alter private and customer data and also attack the web application authentication methods to private or customer areas. - If web server of dbms throws sql error directly then it has sql injection vulnerability.
+
+- Burp Suite : Burp Suite is an integrated platform for performing security testing of web applications. It includes various tools for scanning, fuzzing, intercepting, and analysing web traffic. It is used by security professionals worldwide to find and exploit vulnerabilities in web applications. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server.
 
 
 ---
