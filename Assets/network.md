@@ -26,7 +26,11 @@ Ping uses ICMP (Internet Control Message Protocol) packets to determine the perf
 
 ### MAC Address
 Devices on a network will all have a physical network interface, which is a microchip board found on the device's motherboard. This network interface is assigned a unique address at the factory it was built at, called a MAC (Media Access Control ) address. The MAC address is a twelve-character hexadecimal number (a base sixteen numbering system used in computing to represent numbers) split into two's and separated by a colon. The first six characters represent the vendor/company that made the network interface, and the last six is a unique number.
-However, an interesting thing with MAC addresses is that they can be faked or "spoofed" in a process known as spoofing. This spoofing occurs when a networked device pretends to identify as another using its MAC address.
+However, an interesting thing with MAC addresses is that they can be faked or "spoofed" in a process known as spoofing. This spoofing occurs when a networked device pretends to identify as another using its MAC address. Every node in the LAN is identified with the help of MAC address. 
+
+### Ports Address/Number
+In node multiple processes are running, data which is sent or received must be reach to the right process. Every process in the node is uniquely identified using port number.
+
 
 ### Requests And Responses
 When we access a website, your browser will need to make requests to a web server for assets such as HTML, Images, and download the responses. Before that, you need to tell the browser specifically how and where to access these resources, this is where URLs will help.
@@ -159,7 +163,7 @@ a small piece of data that is stored on your computer. Cookies are saved when yo
 - star topology
 
 #### Switch
-- used to connect devices together on network to establish LAN
+- used to connect devices together on network to establish LAN (switching is deciding best route for data transmission)
 - Layer 2 device
 - Works at data link layer
 - has memory - stores MAC address table
