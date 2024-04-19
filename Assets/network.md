@@ -62,6 +62,7 @@ Ex:  http://user:password@tryhackme.com:80/view-room?id=1#task3
 
 
 ### Protocols
+It is set of rules that governs data communication
 
 #### HTTP
 - HyperText Transfer Protocol (HTTP) - 80 : Hypertext Transfer Protocol (HTTP) is the protocol that specifies how a web browser and a web server communicate. Your web browser requests content from the TryHackMe web server using the HTTP protocol.
@@ -136,20 +137,8 @@ a small piece of data that is stored on your computer. Cookies are saved when yo
 
 ------------------
 
-
-### Data Flow
-- Simplex : communication is unidirectional
-- Half Duplex : communication is both direction but not at same time
-- Full Duplex : communication is both direction (send & receive) at same time
-
-### Media
-- Wired medium - Unguided medium
-- Wireless medium - Unguided medium
-
-### Protocols
-- It is set of rules that governs data communication
-
-### Newtork Devices:
+### Networking Nodes/Devices:
+A node is a connection point inside a network that can receive, send, create, or store data. Each node requires you to provide some form of identification to receive access, like an IP address. A node is essentially any network device that can recognize, process, and transmit information to any other network node.
 
 #### Hub
 - used to setup LANs
