@@ -128,3 +128,74 @@ a small piece of data that is stored on your computer. Cookies are saved when yo
 ---
 
 <!-- You can also use an OpenVPN connection and use your own computer. Follow the steps on the OpenVPN page for further instructions on connecting. Once connected to our network via OpenVPN, deploy the machine on this task and paste its IP into your own browser. -->
+
+
+------------------
+
+
+### Data Flow
+- Simplex : communication is unidirectional
+- Half Duplex : communication is both direction but not at same time
+- Full Duplex : communication is both direction (send & receive) at same time
+
+### Media
+- Wired medium - Unguided medium
+- Wireless medium - Unguided medium
+
+### Protocols
+- It is set of rules that governs data communication
+
+### Newtork Devices:
+
+#### Hub
+- used to setup LANs
+- Layer 1 device
+- Works at physical layer
+- has no memory
+- only broadcasting (thus floods the network)
+- LAN
+- half duplex
+- has muliple ports
+- star topology
+
+#### Switch
+- used to connect devices together on network to establish LAN
+- Layer 2 device
+- Works at data link layer
+- has memory - stores MAC address table
+- unicasting, multicasting and broadcasting
+- LAN
+- full duplex
+- uses MAC address to communicate
+
+#### Multi-Layer Switch - layer 2 switch
+
+#### Bridge
+- Repeater + Functionality of reading MAC address
+- used for interconnecting 2 LANs on same protocol
+- layer 2 device
+- two port devices
+
+#### Router
+- use to connect two or more different LANs - different protocols (forwards data packets between computer networks)
+- layer 3 device
+- works at network layer
+- has memory - stores routing table
+- uses IP address to communicate
+- LAN, MAN, WAN
+- full deplex
+
+#### Brouter
+
+#### Repeater
+- repeater regenerates the signal over the same network as signal become weak or corrupted when sent at long distance
+- operates at physical layer
+
+#### Modem
+
+#### Firewall
+
+#### Wireless Access Points (WAP)
+
+
+

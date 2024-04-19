@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Networking Cheatsheet</title>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body data-theme="light">
+        <div class="container">
+            <!-- Theme Toggle -->
+            <div class="button float-end"><i class="bi bi-circle-half"></i></div>
+
+            <h3 class="title">Networking</h3>
+            
+            <div class="section-list">
+                <ul>
+                    <li><a href="#blockchain">Blockchain</a></li>
+                    <li><a href="#blockchain">Types of Blockchain</a></li>
+                    <li><a href="#smart-contracts">Smart Contracts</a></li>
+                    <li><a href="#consensus-mechanism">Consensus Mechanism</a></li>
+                    <li><a href="#tokens">Tokens</a></li>
+                    <li><a href="#ethereum">Ethereum</a></li>
+                    <li><a href="#truffle">Truffle</a></li>
+                    <li><a href="#hardhat">Hardhat</a></li>
+                </ul>
+            </div>
+            
+            <div class="sections" id="blockchain">
+                <h4 class="heading"># Blockchain</h4>
+                <p>A blockchain is a digitized, decentralized ledger of transactions. Blockchains record a continuously growing list of records, called blocks, which are linked and secured using cryptography.</p>
+                <ul class="justify">
+                    <li>A blockchain is a distributed database that maintains a continuously growing list of records, called blocks, secured from tampering and revision.</li>
+                    <li>Each block contains a timestamp and a link to a previous block.</li>
+                    <li>A blockchain is typically managed by a peer-to-peer network collectively adhering to a protocol for validating new blocks.</li>
+                    <li>Once recorded, information cannot be altered without the alteration of all subsequent blocks.</li>
+                </ul>
+                <div>
+                    <h5>&bull; Genesis Block :</h5>
+                    <p>The Genesis Block, also known as Block 0, is the very first block upon which additional blocks in a blockchain are added. It is effectively the ancestor that every other block can trace its lineage back to since every block references the one preceding it. The Genesis Block is a critical element of a blockchain network because it serves as the foundation for the entire network.</p>
+                </div>
+                <div>
+                    <h5>&bull; Blockchain Explorer :</h5>
+                    <p>A blockchain explorer is a platform that allows people to search and navigate a blockchain. They're not necessary for using the blockchain. However, they offer a valuable service to those who wish to inspect a blockchain in detail. You can view transactions on the blockchain, smart contract code, account balances, and more.</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="https://itspatkar.github.io/Cheatsheets/"><i class="bi bi-arrow-left-square-fill"></i></a>
+                <a href="#" class="float-end"><i class="bi bi-arrow-up-square-fill"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="script.js"></script>
+    </body>
+</html>
