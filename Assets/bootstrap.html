@@ -1,0 +1,3244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Bootstrap Cheatsheet</title>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+
+    <body data-theme="light">
+        <div class="container">
+            <!-- Theme Toggle -->
+            <div class="button float-end"><i class="bi bi-circle-half"></i></div>
+
+            <h3 class="title">BOOTSTRAP 4</h3>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#container-classes">Container Classes</a></li>
+                    <li><a href="#jumbotron-classes">Jumbotron Classes</a></li>
+                    <li><a href="#heading-classes">Heading Classes</a></li>
+                    <li><a href="#typography-classes">Typography Classes</a></li>
+                    <li><a href="#float-and-clearfix">Float and Clearfix</a></li>
+                    <li><a href="#height-and-width">Height and Width</a></li>
+                    <li><a href="#margin-and-padding">Margin and Padding</a></li>
+                    <li><a href="#vertical-align">Vertical Align</a></li>
+                    <li><a href="#visibility">Visibility</a></li>
+                    <li><a href="#position">Position</a></li>
+                    <li><a href="#display-element">Display Element</a></li>
+                    <li><a href="#color-classes">Color Classes</a></li>
+                    <li><a href="#screenreaders">Screenreaders</a></li>
+                    <li><a href="#responsive-embeds">Responsive Embeds</a></li>
+                    <li><a href="#border">Border</a></li>
+                    <li><a href="#shadow">Shadow</a></li>
+                    <li><a href="#tables-classes">Tables Classes</a></li>
+                    <li><a href="#image-classes">Image Classes</a></li>
+                    <li><a href="#alert-box-classes">Alert Box Classes</a></li>
+                    <li><a href="#button-classes">Button Classes</a></li>
+                    <li><a href="#badges">Badges</a></li>
+                    <li><a href="#progress-bar">Progress Bar</a></li>
+                    <li><a href="#spinners">Spinners</a></li>
+                    <li><a href="#pagination">Pagination</a></li>
+                    <li><a href="#list-groups">List Groups</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#dropdown">Dropdown</a></li>
+                    <li><a href="#collapse">Collapse</a></li>
+                    <li><a href="#navs">Navs</a></li>
+                    <li><a href="#navbar">Navbar</a></li>
+                    <li><a href="#carousel">Carousel</a></li>
+                    <li><a href="#modal">Modal</a></li>
+                    <li><a href="#tooltip">Tooltip</a></li>
+                    <li><a href="#popover">Popover</a></li>
+                    <li><a href="#toast">Toast</a></li>
+                    <li><a href="#scrollspy">Scrollspy</a></li>
+                    <li><a href="#media-objects">Media Objects</a></li>
+                    <li><a href="#forms">Forms</a></li>
+                    <li><a href="#form-inputs">Form Inputs</a></li>
+                    <li><a href="#input-group">Input Group</a></li>
+                    <li><a href="#custom-forms">Custom Forms</a></li>
+                    <li><a href="#flexbox">Flexbox</a></li>
+                    <li><a href="#grid">Grid</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="container-classes">
+                <h4 class="heading"># Container Classes</h4>
+                <ul>
+                    <li><code>container</code> : add to <code>&lt;div&gt;</code> for fixed width container</li>
+                    <li><code>container-fluid</code> : add to <code>&lt;div&gt;</code> for full width container</li>
+                    <li><code>container-sm|md|lg|xl</code> : add to <code>&lt;div&gt;</code> for responive containers</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;container&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="jumbotron-classes">
+                <h4 class="heading"># Jumbotron Classes</h4>
+                <ul>
+                    <li><code>jumbotron</code> : add to <code>&lt;div&gt;</code> for indicate big grey box for calling extra attention</li>
+                    <li><code>jumbotron-fluid</code> : add to <code>&lt;div&gt;</code> for full-width jumbotron without rounded borders</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;jumbotron&quot;&gt;
+    &lt;h1&gt;Bootstrap Tutorial&lt;/h1&gt;
+    &lt;p&gt;Bootstrap is the most popular HTML, CSS...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;jumbotron jumbotron-fluid&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;h1&gt;Bootstrap Tutorial&lt;/h1&gt;
+        &lt;p&gt;Bootstrap is the most popular HTML, CSS...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="heading-classes">
+                <h4 class="heading"># Heading Classes</h4>
+                <ul>
+                    <li><code>display-1|2|3|4</code> : define header for element</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;h1 class=&quot;display-1&quot;&gt;Display 1&lt;/h1&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="typography-classes">
+                <h4 class="heading"># Typography Classes</h4>
+                <div>
+                    <h5>Font Style :</h5>
+                    <ul>
+                        <li><code>font-weight-bold</code> : bold text</li>
+                        <li><code>font-weight-bolder</code> : bolder text</li>
+                        <li><code>font-italic</code> : italic text</li>
+                        <li><code>font-weight-light</code> : light text</li>
+                        <li><code>font-weight-lighter</code> : lighter text</li>
+                        <li><code>font-weight-normal</code> : normal text</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;font-weight-bold&quot;&gt;Bold text&lt;/p&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Text Alignment :</h5>
+                    <ul>
+                        <li><code>text-left</code> : left aligned text</li>
+                        <li><code>text-sm|md|lg|xl-left</code> : left-aligned text on screen size</li>
+                        <li><code>text-right</code> : right aligned text</li>
+                        <li><code>text-sm|md|lg|xl-right</code> : right aligned text on screens size</li>
+                        <li><code>text-center</code> : center aligned text</li>
+                        <li><code>text-sm|md|lg|xl-center</code> : center aligned text on screens size</li>
+                        <li><code>text-justify</code> : justified text</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-right&quot;&gt;Right-aligned text&lt;/p&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Text Format &amp; Cases :</h5>
+                    <ul>
+                        <li><code>text-monospace</code> : monospaced text</li>
+                        <li><code>text-lowercase</code> : lowercased text</li>
+                        <li><code>text-uppercase</code> : uppercased text</li>
+                        <li><code>text-capitalize</code> : capitalized text</li>
+                        <li><code>text-break</code> : prevents long text from breaking layout</li>
+                        <li><code>text-nowrap</code> : no wrap text</li>
+                        <li><code>text-reset</code> : resets color of text/link</li>
+                        <li><code>text-decoration-none</code> : removes underline from link</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-uppercase&quot;&gt;Uppercased text&lt;/p&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Lists Style :</h5>
+                    <ul>
+                        <li><code>list-unstyled</code> : add to <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code> to remove default list-style &amp; ml on list items (this class only applies to immediate children list items)</li>
+                        <li><code>list-inline</code> : place all list items on single line (used together with .list-inline-item on each <code>&lt;li&gt;</code> elements)</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-unstyled&quot;&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class=&quot;list-inline&quot;&gt;
+    &lt;li class=&quot;list-inline-item&quot;&gt;Coffee&lt;/li&gt;
+    &lt;li class=&quot;list-inline-item&quot;&gt;Tea&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Text Format :</h5>
+                    <ul>
+                        <li><code>lead</code> : makes paragraph stand out</li>
+                        <li><code>small</code> : small text than parent</li>
+                        <li><code>initialism</code> : display text inside <code>&lt;abbr&gt;</code> element in slightly smaller font size</li>
+                        <li><code>pre-scrollable</code> : make <code>&lt;pre&gt;</code> element scrollable</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;lead&quot;&gt;This paragraph stands out&lt;/p&gt;
+&lt;p&gt;The &lt;abbr title=&quot;World Health Organization&quot; class=&quot;initialism&quot;&gt;WHO&lt;/abbr&gt; was founded in 1948&lt;/p&gt;
+&lt;pre class=&quot;pre-scrollable&quot;&gt;
+    Text in pre element is displayed in fixed-width font &amp; it preservea both spaces &amp; line breaks.
+&lt;/pre&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex &amp; Grid :</h5>
+                    <ul>
+                        <li><code>justify-content</code> : justify content to start (default)</li>
+                        <li><code>justify-content-start|end|center|between|around</code> : justifies inside content to</li>
+                        <li><code>align-content-start|end|center|between|around|stretch</code> : align content to</li>
+                        <li><code>align-items-start|end|center|baseline|stretch</code> : align item to</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="float-and-clearfix">
+                <h4 class="heading"># Float and Clearfix</h4>
+                <ul>
+                    <li><code>float-left|right</code> : float image to left or right</li>
+                    <li><code>clearfix</code> : clear floats</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;clearfix&quot;&gt;
+    &lt;span class=&quot;float-left&quot;&gt;Float left&lt;/span&gt;
+    &lt;span class=&quot;float-right&quot;&gt;Float right&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Responive Floats Class :</h5>
+                    <ul>
+                        <li><code>float-sm|md|lg|xl-left|right</code> : float depends on screen width</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;float-sm-right&quot;&gt;Float right on small screens or wider&lt;/div&gt;
+    </code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="height-and-width">
+                <h4 class="heading"># Height and Width</h4>
+                <ul>
+                    <li><code>w-%</code> : set width to %</li>
+                    <li><code>mw-%</code> : set max-width to %</li>
+                    <li><code>h-%</code> : set height to %</li>
+                    <li><code>mh-%</code> : set max-height to %</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;h-50 w-25 bg-warning&quot;&gt;Width 25%, Height 50%&lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="margin-and-padding">
+                <h4 class="heading"># Margin and Padding</h4>
+                <ul>
+                    <li><code>property-size</code> : set margin/padding</li>
+                    <li><code>property(side)-size</code> : set specific sides margin/padding</li>
+                    <li><code>property(side)-screen-size</code> : set margin/padding according to screen width</li>
+                    <li><code>property-auto</code> : set margin/padding auto</li>
+                </ul>
+                <div>
+                    <strong>Note :</strong>
+                    <ol>
+                        <li>property : m (margin) / p (padding)</li>
+                        <li>side : l (left) / r (right) / t (top) / b (bottom) / x (left &amp; right) / y (top &amp; bottom)</li>
+                        <li>size : 0, 1 (0.25rem), 2 (0.5rem), 3 (1rem), 4 (1.5rem), 5 (3rem); n1-n5 (sets negative value)</li>
+                        <li>screen width : xs/sm/md/lg/xl</li>
+                    </ol>
+                </div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;pt-4 bg-warning&quot;&gt;Padding 1.5rem&lt;/div&gt;
+&lt;div class=&quot;m-5 pb-5 bg-info&quot;&gt;Margin 3rem &amp; Bottom Padding 3rem&lt;/div&gt;
+&lt;div class=&quot;mb-sm-5 bg-warning&quot;&gt;Margin Bottom 3rem on sm screens&lt;/div&gt;
+&lt;div class=&quot;px-xl-5 bg-primary&quot;&gt;Padding on x 5 on xl screens&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h6>Center Align Element Using Margin :</h6>
+                    <p>Set left &amp; right margin to auto i.e. <code>mx-auto</code></p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;mx-auto bg-warning&quot; style=&quot;width:150px&quot;&gt;Centered&lt;/div&gt;
+    </code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="vertical-align">
+                <h4 class="heading"># Vertical Align</h4>
+                <p>Only for inline elements.</p>
+                <ul>
+                    <li><code>align-baseline</code> : align to line</li>
+                    <li><code>align-top</code> : align above line</li>
+                    <li><code>align-middle</code> : align to middle of line</li>
+                    <li><code>align-bottom</code> : align to bottom of line</li>
+                    <li><code>align-text-top</code> : align text to top of line</li>
+                    <li><code>align-text-bottom</code> : align text to bottom of line</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;span class=&quot;align-baseline&quot;&gt;baseline&lt;/span&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="visibility">
+                <h4 class="heading"># Visibility</h4>
+                <ul>
+                    <li><code>visible</code> : make element visible (visibility:visible)</li>
+                    <li><code>invisible</code> : make element invisible (visibility:hidden)</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;visible&quot;&gt;I am visible&lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="position">
+                <h4 class="heading"># Position</h4>
+                <ul>
+                    <li><code>fixed-top|bottom</code> : fixed to top or bottom</li>
+                    <li><code>sticky-top</code> : sticks to top on scroll</li>
+                </ul>
+                <h6>Ex :</h6>
+                <p>Fixed nav-bar at top -</p>
+                <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;...&lt;/nav&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="display-element">
+                <h4 class="heading"># Display Element</h4>
+                <ul>
+                    <li><code>d-block</code> : add to make element block level</li>
+                    <li><code>d-sm|md|lg|xl-block</code> : make block level depends on screen width</li>
+                    <li><code>d-none</code> : set display property none</li>
+                    <li><code>d-sm|md|lg-none</code> : make display none depends on srceen width</li>
+                    <li><code>d-inline</code> : make element inline</li>
+                    <li><code>d-sm|md|lg|xl-inline</code> : make element inline on specific screen width</li>
+                    <li><code>d-inline-block</code> : make element inline block</li>
+                    <li><code>d-sm|md|lg|xl-inline-block</code> : make element inline-block on specific screen size</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;span class=&quot;d-block bg-success&quot;&gt;d-block&lt;/span&gt;
+&lt;span class=&quot;d-sm-block bg-success&quot;&gt;d-sm-block&lt;/span&gt;
+</code></pre>
+                <div>
+                    <h5>Display as Table :</h5>
+                    <ul>
+                        <li><code>d-table</code> : add to <code>&lt;div&gt;</code> to make element display as table</li>
+                        <li><code>d-sm|md|lg|xl-table</code> : add to <code>&lt;div&gt;</code> make element display as table depends on screen size</li>
+                        <li><code>d-table-cell</code> : add to <code>&lt;div&gt;</code> inside table make element display as table cell</li>
+                        <li><code>d-sm|md|lg|xl-table-cell</code> : add to <code>&lt;div&gt;</code> to make element display as table cell depends on screen size</li>
+                        <li><code>d-table-row</code> : add to <code>&lt;div&gt;</code> inside cell to make element display as table row</li>
+                        <li><code>d-sm|md|lg|xl-table-row</code> : add to <code>&lt;div&gt;</code> to make element display as table row depends on screen size</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-table&quot; style=&quot;width:100%&quot;&gt;
+    &lt;div class=&quot;d-table-row&quot; style=&quot;width:100%&quot;&gt;
+        &lt;div class=&quot;d-table-cell&quot;&gt;
+            &lt;h4&gt;Left Cell&lt;/h4&gt;
+            &lt;p&gt;Some text&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-table-cell&quot;&gt;
+            &lt;h4&gt;Middle Cell&lt;/h4&gt;
+            &lt;p&gt;Some text&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-table-cell&quot;&gt;
+            &lt;h4&gt;Right Cell&lt;/h4&gt;
+            &lt;p&gt;Some text&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Display as Flex :</h5>
+                    <ul>
+                        <li><code>d-flex</code> : create flexbox container &amp; transform direct children into flex items</li>
+                        <li><code>d-md|sm|lg|xl-flex</code> : create flexbox container depends on screen size</li>
+                        <li><code>d-inline-flex</code> : create inline flexbox container</li>
+                        <li><code>d-sm|md|lg|xl-inline-flex</code> : create inline flexbox container depends on screen size</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex p-3 bg-secondary text-white&quot;&gt;    
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="color-classes">
+                <h4 class="heading"># Color Classes</h4>
+                <div>
+                    <h5>Text Color Classes :</h5>
+                    <ul>
+                        <li><code>text-primary</code> : blue</li>
+                        <li><code>text-secondary</code> : silver grey</li>
+                        <li><code>text-success</code> : green</li>
+                        <li><code>text-info</code> : cyan</li>
+                        <li><code>text-warning</code> : yellow</li>
+                        <li><code>text-danger</code> : red</li>
+                        <li><code>text-dark</code> : dark grey</li>
+                        <li><code>text-light</code> : light grey</li>
+                        <li><code>text-body</code> : black (default color)</li>
+                        <li><code>text-white</code> : white</li>
+                        <li><code>text-muted</code> : grey</li>
+                        <li><code>text-class-opacity</code> : text-dark-50 (50% opacity text)</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;text-primary&quot;&gt;This text is important&lt;/p&gt;
+&lt;a href=&quot;#&quot; class=&quot;text-success&quot;&gt;Success link&lt;/a&gt;
+&lt;p class=&quot;text-black-50&quot;&gt;Black text with 50% opacity on white background&lt;/p&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Background Color Classes :</h5>
+                    <ul>
+                        <li><code>bg-primary</code> : blue</li>
+                        <li><code>bg-secondary</code> : grey</li>
+                        <li><code>bg-success</code> : green</li>
+                        <li><code>bg-info</code> : cyan</li>
+                        <li><code>bg-warning</code> : yellow</li>
+                        <li><code>bg-danger</code> : red</li>
+                        <li><code>bg-dark</code> : dark grey</li>
+                        <li><code>bg-light</code> : light grey</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;p class=&quot;bg-primary text-white&quot;&gt;This text is important&lt;/p&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="screenreaders">
+                <h4 class="heading"># Screenreaders</h4>
+                <ul>
+                    <li><code>sr-only</code> : to hide element on all devices, except screen readers</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;span class=&quot;sr-only&quot;&gt;I will be hidden on all screens except for screen readers.&lt;/span&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="responsive-embeds">
+                <h4 class="heading"># Responsive Embeds</h4>
+                <ul>
+                    <li><code>embed-responsive-aspectRatio</code> : add to parent element of video/iframe (div/span)</li>
+                    <li><code>embed-responsive-item</code> : add to <code>&lt;video&gt;/&lt;iframe&gt;</code></li>
+                </ul>
+                <h6>Ex :</h6>
+                <p>Frame will be open is ratio 21:9 on screen -</p>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;embed-responsive embed-responsive-21by9&quot;&gt;
+    &lt;iframe class=&quot;embed-responsive-item&quot; src=&quot;...&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="border">
+                <h4 class="heading"># Border</h4>
+                <ul>
+                    <li><code>border</code> : add default border to element</li>
+                    <li><code>border-0</code> : set border width to 0</li>
+                    <li><code>border-top|bottom|left|right-0</code> : set specific border to 0</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;span class=&quot;border&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;border border-0&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;border border-top-0&quot;&gt;&lt;/span&gt;
+</code></pre>
+                <div>
+                    <h5>Contextual Border Color Classes :</h5>
+                    <ul>
+                        <li><code>border-primary</code> : blue</li>
+                        <li><code>border-secondary</code> : grey</li>
+                        <li><code>border-success</code> : green</li>
+                        <li><code>border-info</code> : cyan</li>
+                        <li><code>birder-warning</code> : yellow</li>
+                        <li><code>border-danger</code> : red</li>
+                        <li><code>border-dark</code> : dark grey</li>
+                        <li><code>border-light</code> : light grey</li>
+                        <li><code>border-white</code> : white</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;span class=&quot;border border-primary&quot;&gt;&lt;/span&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Border Radius Classes :</h5>
+                    <ul>
+                        <li><code>rounded</code> : rounded border</li>
+                        <li><code>rounded-sm</code> : rounded border on sm, lg &amp; xl screens</li>
+                        <li><code>rounded-lg</code> : rounded border on lg and xl screens</li>
+                        <li><code>rounded-left|right|top|bottom</code> : border to specific side</li>
+                        <li><code>rounded-circle</code> : border of 50% radius</li>
+                        <li><code>rounded-0</code> : no rounded border</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;span class=&quot;rounded-lg&quot;&gt;&lt;/span&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="shadow">
+                <h4 class="heading"># Shadow</h4>
+                <ul>
+                    <li><code>shadow</code> : add default shadow to element</li>
+                    <li><code>shadow-none</code> : no shadow</li>
+                    <li><code>shadow-sm|lg</code> : add shadow on sm &amp; lg shadow</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;shadow-none p-4 mb-4 bg-light&quot;&gt;No shadow&lt;/div&gt;
+&lt;div class=&quot;shadow-sm p-4 mb-4 bg-white&quot;&gt;Small shadow&lt;/div&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="tables-classes">
+                <h4 class="heading"># Tables Classes</h4>
+                <ul>
+                    <li><code>table</code> : add to <code>&lt;table&gt;</code> for basic table style</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;Doe&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+                <div>
+                    <h5>Table Style Classes :</h5>
+                    <ul>
+                        <li><code>table-striped</code> : add zebra-stripes to rows</li>
+                        <li><code>table-bordered</code> : add borders on all sides of table and cells</li>
+                        <li><code>table-hover</code> : add hover effect (grey background color) on table rows</li>
+                        <li><code>table-dark</code> : add dark background to table</li>
+                        <li><code>table-borderless</code> : removes borders from table</li>
+                        <li><code>table-sm</code> : make table smaller by cutting cell padding in half</li>
+                    </ul>
+                    <p>Add in <code>&lt;table&gt;</code>.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped&quot;&gt;
+    &lt;thead class=&quot;thead-dark&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;header&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;text 1&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;text 2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Responsive Table :</h5>
+                    <ul>
+                        <li><code>table-responsive</code> : add scrollbar to table when needed</li>
+                        <li><code>table-responsive-sm|md|lg|xl</code> : add scrollbar to table when needed depends on screen width</li>
+                    </ul>
+                    <p>Add in parent <code>&lt;div&gt;</code> element of table.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;table-responsive&quot;&gt;
+    &lt;table class=&quot;table table-bordered&quot;&gt; ... &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Table Header Color :</h5>
+                    <ul>
+                        <li><code>thead-dark</code> : add dark background to table header</li>
+                        <li><code>thead-light</code> : add grey background to table header</li>
+                    </ul>
+                    <p>Add in table header <code>&lt;thead&gt;</code>.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped table-sm&quot;&gt;
+    &lt;thead class=&quot;thead-dark&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;header&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;text 1&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;text 2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Contextual Color Classes :</h5>
+                    <ul>
+                        <li><code>table-primary</code> : blue</li>
+                        <li><code>table-success</code> : green</li>
+                        <li><code>table-info</code> : cyan</li>
+                        <li><code>table-warning</code> : yellow</li>
+                        <li><code>table-danger</code> : red</li>
+                        <li><code>table-active</code> : grey</li>
+                        <li><code>table-secondary</code> : grey</li>
+                        <li><code>table-light</code> : light grey</li>
+                        <li><code>table-dark</code> : dark grey</li>
+                    </ul>
+                    <p>For row/col.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;table class=&quot;table table-striped&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr class=&quot;table-primary&quot;&gt;
+            &lt;th&gt;header&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr class=&quot;table-light text-dark&quot;&gt;
+            &lt;td&gt;text 1&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="image-classes">
+                <h4 class="heading"># Image Classes</h4>
+                <ul>
+                    <li><code>rounded</code> : add rounded corners to image</li>
+                    <li><code>rounded-circle</code> : shape image to circle</li>
+                    <li><code>img-thumbnail</code> : shape image to thumbnail (bordered)</li>
+                    <li><code>float-left</code> : float image to left</li>
+                    <li><code>float-right</code> : float image to right</li>
+                    <li><code>img-fluid</code> : image scale to parent element</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;img src=&quot;cinqueterre.jpg&quot; class=&quot;rounded&quot; alt=&quot;Cinque Terre&quot;&gt;
+&lt;img src=&quot;paris.jpg&quot; class=&quot;float-left&quot;&gt;
+</code></pre>
+                <div>
+                    <h6>Float Image To Center (Center Aligned Image) -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;img src=&quot;paris.jpg&quot; class=&quot;mx-auto d-block&quot;&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="alert-box-classes">
+                <h4 class="heading"># Alert Box Classes</h4>
+                <ul>
+                    <li><code>alert</code> : default alert</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert&quot;&gt;
+    &lt;strong&gt;Alert!&lt;/strong&gt; This is alert-box
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Contextual Alert Classes :</h5>
+                    <ul>
+                        <li><code>alert-success</code></li>
+                        <li><code>alert-info</code></li>
+                        <li><code>alert-warning</code></li>
+                        <li><code>alert-danger</code></li>
+                        <li><code>alert-primary</code></li>
+                        <li><code>alert-secondary</code></li>
+                        <li><code>alert-light</code></li>
+                        <li><code>alert-dark</code></li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success&quot;&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; Indicates a successful or positive action.
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Alert Links Class :</h5>
+                    <ul>
+                        <li><code>alert-link</code> : add to links <code>&lt;a&gt;</code> inside alert box to create matching colored links</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success&quot;&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; You should &lt;a href=&quot;#&quot; class=&quot;alert-link&quot;&gt;read this message&lt;/a&gt;.
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Animated Alerts :</h5>
+                    <ul>
+                        <li>add <code>.fade</code> and <code>.show</code> class to alert box</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success alert-dismissible fade show&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; This alert box could indicate a successful or positive action.
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Close Button Class :</h5>
+                    <ul>
+                        <li><code>alert-dismissible</code> : add to create dismussible alert box</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;alert alert-success alert-dismissible&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; Indicates a successful or positive action.
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="button-classes">
+                <h4 class="heading"># Button Classes</h4>
+                <ul>
+                    <li><code>btn</code> : add to <code>&lt;button&gt;/&lt;input&gt;/&lt;a&gt;</code> for basic button style</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn&quot;&gt;Basic&lt;/button&gt;
+</code></pre>
+                <div>
+                    <h5>Button Classes :</h5>
+                    <ul>
+                        <li><code>btn-block</code> : make button block-level that spans full width</li>
+                        <li><code>active</code> : active button</li>
+                        <li><code>disable</code> : disabled button</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Full-Width Button&lt;/button&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary active&quot;&gt;Active Primary&lt;/button&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn-primary disabled&quot;&gt;Disabled Link&lt;/a&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Contextual Button Colors :</h5>
+                    <ul>
+                        <li><code>btn-primary</code> : blue</li>
+                        <li><code>btn-secondary</code> : grey</li>
+                        <li><code>btn-success</code> : green</li>
+                        <li><code>btn-info</code> : cyan</li>
+                        <li><code>btn-warning</code> : yellow</li>
+                        <li><code>btn-danger</code> : red</li>
+                        <li><code>btn-light</code> : light grey</li>
+                        <li><code>btn-dark </code>: dark grey</li>
+                        <li><code>btn-link</code> : no color</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-warning&quot;&gt;Warning&lt;/button&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Button Outline Classes :</h5>
+                    <ul>
+                        <li><code>btn-outline-primary</code> : blue</li>
+                        <li><code>btn-outline-secondary</code> : grey</li>
+                        <li><code>btn-outline-success</code> : green</li>
+                        <li><code>btn-outline-info</code> : cyan</li>
+                        <li><code>btn-outline-warning</code> : yellow</li>
+                        <li><code>btn-outline-danger</code> : red</li>
+                        <li><code>btn-outline-light</code> : light grey</li>
+                        <li><code>btn-outline-dark</code> : dark grey</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-outline-primary&quot;&gt;Primary&lt;/button&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Spinner Buttons :</h5>
+                    <ul>
+                        <li><code>spinner-border</code> : spinner button</li>
+                        <li><code>spinner-border-sm</code> : small size spinner button</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;button class=&quot;btn btn-primary&quot;&gt;
+    &lt;span class=&quot;spinner-border spinner-border-sm&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Button Size Classes :</h5>
+                    <ul>
+                        <li><code>btn-sm</code> : small size button</li>
+                        <li><code>btn-lg</code> : large size button</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;Large&lt;/button&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Button Groups Classes :</h5>
+                    <ul>
+                        <li><code>btn-group</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;button&gt;</code> for horizontal group buttons</li>
+                        <li><code>btn-group-vertical</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;button&gt;</code> for vertical group buttons</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
+&lt;/div&gt; 
+
+&lt;div class=&quot;btn-group-vertical&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
+&lt;/div&gt; 
+</code></pre>
+                </div>
+                <div>
+                    <h5>Button Group Sizing Classes :</h5>
+                    <ul>
+                        <li><code>btn-group-sm</code> : small button</li>
+                        <li><code>btn-group-lg</code> : large button</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group btn-group-lg&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Sony&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h6>Button Group With Dropdown List -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
+     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
+    &lt;div class=&quot;btn-group&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+            Sony
+        &lt;/button&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Tablet&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Smartphone&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div>
+                    <h5>Split Button Dropdown :</h5>
+                    <ul>
+                        <li><code>dropdown-toggle-split</code> : add to button for split</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Sony&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle dropdown-toggle-split&quot; data-toggle=&quot;dropdown&quot;&gt;
+        &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Tablet&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Smartphone&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="badges">
+                <h4 class="heading"># Badges</h4>
+                <ul>
+                    <li><code>badge</code> : add badge to <code>&lt;span&gt;</code></li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge&quot;&gt;Badge&lt;/span&gt;
+</code></pre>
+                <div>
+                    <h5>Pill Badges :</h5>
+                    <ul>
+                        <li><code>badge-pill</code> : to make badges more round</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge badge-pill badge-primary&quot;&gt;Primary&lt;/span&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Contextual Color Badges :</h5>
+                    <ul>
+                        <li><code>badge-primary</code> : blue</li>
+                        <li><code>badge-secondary</code> : grey</li>
+                        <li><code>badge-success</code> : green</li>
+                        <li><code>badge-info</code> : cyan</li>
+                        <li><code>badge-warning</code> : yellow</li>
+                        <li><code>badge-danger</code> : red</li>
+                        <li><code>badge-light</code> : light grey</li>
+                        <li><code>badge-dark</code> : dark grey</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;span class=&quot;badge badge-primary&quot;&gt;Primary&lt;/span&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="progress-bar">
+                <h4 class="heading"># Progress Bar</h4>
+                <ul>
+                    <li><code>progress</code> : add progress to parent <code>&lt;div&gt;</code></li>
+                    <li><code>progress-bar</code> : add progress-bar inside of parent progress for progress status</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
+    &lt;div class=&quot;progress-bar&quot; style=&quot;width:70%&quot;&gt; 70% &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Progress Bar Style Class :</h5>
+                    <ul>
+                        <li><code>progress-bar-striped</code> : add stripes to progress bar</li>
+                        <li><code>progress-bar-animated</code> : for animating progress bar</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
+    &lt;div class=&quot;progress-bar progress-bar-striped&quot; style=&quot;width:40%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;progress&quot;&gt;
+    &lt;div class=&quot;progress-bar progress-bar-striped progress-bar-animated&quot; style=&quot;width:40%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Multiple Progress Bar :</h5>
+                    <p>Use contextual color classes for bg &amp; text color.</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;progress&quot;&gt;
+    &lt;div class=&quot;progress-bar bg-success&quot; style=&quot;width:40%&quot;&gt;
+        Free Space
+    &lt;/div&gt;
+    &lt;div class=&quot;progress-bar bg-warning&quot; style=&quot;width:10%&quot;&gt;
+        Warning
+    &lt;/div&gt;
+    &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width:20%&quot;&gt;
+        Danger
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="spinners">
+                <h4 class="heading"># Spinners</h4>
+                <ul>
+                    <li><code>spinner-border</code> : add to <code>&lt;div&gt;/&lt;span&gt;</code> for spinner of spinning border</li>
+                </ul>
+                <h6>Ex :</h6>
+                <p>Use contextual color classes for color.</p>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-border text-primary&quot;&gt;&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Growing Spinner :</h5>
+                    <ul>
+                        <li><code>spinner-grow</code> : add to <code>&lt;div&gt;/&lt;span&gt;</code> for growing spinner</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-grow text-muted&quot;&gt;&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Spinner Size Classes :</h5>
+                    <ul>
+                        <li><code>spinner-border-sm|lg</code> : spinner size</li>
+                        <li><code>spinner-grow-sm|lg</code> : spinner size</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;spinner-border spinner-border-sm&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;spinner-grow spinner-grow-sm&quot;&gt;&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="pagination">
+                <h4 class="heading"># Pagination</h4>
+                <ul>
+                    <li><code>pagination</code> : add class to <code>&lt;ul&gt;</code></li>
+                    <li><code>page-item</code> : add to each <code>&lt;li&gt;</code> inside <code>&lt;ul&gt;</code></li>
+                    <li><code>page-link</code> : add to each link <code>&lt;a&gt;</code> inside of <code>&lt;li&gt;</code></li>
+                </ul>
+                <div>
+                    <h5>Page Status Class :</h5>
+                    <ul>
+                        <li><code>active</code> : add to <code>&lt;li&gt;</code> for highlight current page</li>
+                        <li><code>disabled</code> : add to <code>&lt;li&gt;</code> for disable page click</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination&quot;&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item active&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item disabled&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Pagination Size :</h5>
+                    <ul>
+                        <li><code>pagination-sm|lg</code> : small &amp; large pagination</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination pagination-lg&quot;&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Previous&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;page-item&quot;&gt;&lt;a class=&quot;page-link&quot; href=&quot;#&quot;&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Pagination Alignment Classes :</h5>
+                    <ul>
+                        <li><code>justify-content-center</code> : center aligned</li>
+                        <li><code>justify-content-end</code> : right aligned</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;pagination justify-content-end&quot; style=&quot;margin:20px 0&quot;&gt;
+    &lt;li class=&quot;page-item&quot;&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Breadcrumbs :</h5>
+                    <p>Indicates current page&#39;s location within navigational hierarchy.</p>
+                    <ul>
+                        <li><code>breadcrumb</code> : add to <code>&lt;ul&gt;</code></li>
+                        <li><code>breadcrumb-item</code> : add to each <code>&lt;li&gt;</code></li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;breadcrumb&quot;&gt;
+    &lt;li class=&quot;breadcrumb-item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Photos&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;breadcrumb-item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Summer 2017&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;breadcrumb-item&quot;&gt;&lt;a href=&quot;#&quot;&gt;Italy&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;breadcrumb-item active&quot;&gt;Rome&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="list-groups">
+                <h4 class="heading"># List Groups</h4>
+                <ul>
+                    <li><code>list-group</code> : add to <code>&lt;ul&gt;</code></li>
+                    <li><code>list-group-item</code> : add to each <code>&lt;li&gt;</code></li>
+                </ul>
+                <div>
+                    <h5>List Page Status :</h5>
+                    <ul>
+                        <li><code>active</code> : add to <code>&lt;li&gt;/&lt;a&gt;</code> for highlight current page</li>
+                        <li><code>disabled</code> : add to <code>&lt;li&gt;/&lt;a&gt;</code> for disable list</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group&quot;&gt;
+    &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
+    &lt;li class=&quot;list-group-item active&quot;&gt;Second item&lt;/li&gt;
+    &lt;li class=&quot;list-group-item&quot;&gt;
+        Inbox
+        &lt;span class=&quot;badge badge-primary badge-pill&quot;&gt;12&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>List Group With Linked Items :</h5>
+                    <ul>
+                        <li><code>list-group</code> : add to <code>&lt;div&gt;</code></li>
+                        <li><code>list-group-items</code> : add to each <code>&lt;a&gt;</code></li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;list-group&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action&quot;&gt;First item&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action&quot;&gt;Second item&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;list-group-item disabled&quot;&gt;Disabled item&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Horizontal List Groups :</h5>
+                    <ul>
+                        <li><code>list-group-horizontal</code> : groups list horizontally</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group list-group-horizontal&quot;&gt;
+    &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
+    &lt;li class=&quot;list-group-item&quot;&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>List Group Style :</h5>
+                    <ul>
+                        <li><code>list-group-flush</code> : add to <code>&lt;ul&gt;</code> to remove border &amp; rounded corners</li>
+                        <li><code>list-group-item-action</code> : add to <code>&lt;li&gt;</code> to create grey bg on hover</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+    &lt;li class=&quot;list-group-item&quot;&gt;First item&lt;/li&gt;
+    &lt;li class=&quot;list-group-item list-group-item-action&quot;&gt;Second item&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Contextual List BG Colors :</h5>
+                    <ul>
+                        <li><code>list-group-item-action</code> : white</li>
+                        <li><code>list-group-item-success</code> : green</li>
+                        <li><code>list-group-item-secondary</code> : grey</li>
+                        <li><code>list-group-item-info</code> : cyan</li>
+                        <li><code>list-group-item-warning</code> : yellow</li>
+                        <li><code>list-group-item-danger</code> : red</li>
+                        <li><code>list-group-item-primary</code> : blue</li>
+                        <li><code>list-group-item-dark</code> : dark grey</li>
+                        <li><code>list-group-item-light</code> : light grey</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;list-group&quot;&gt;
+    &lt;li class=&quot;list-group-item list-group-item-success&quot;&gt;Success item&lt;/li&gt;
+    &lt;li class=&quot;list-group-item list-group-item-secondary&quot;&gt;Secondary item&lt;/li&gt;
+&lt;/ul&gt; 
+</code></pre>
+                </div>
+                <div>
+                    <h6>Link List with Contextual Colors -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;list-group&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action list-group-item-dark&quot;&gt;Action item&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;list-group-item list-group-item-action list-group-item-success&quot;&gt;Success item&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="cards">
+                <h4 class="heading"># Cards</h4>
+                <ul>
+                    <li><code>card</code> : add to parent <code>&lt;div&gt;</code> for basic card</li>
+                </ul>
+                <div>
+                    <h5>Card Classes :</h5>
+                    <ul>
+                        <li><code>card-header</code> : add inside card for card header</li>
+                        <li><code>card-body</code> : add inside card for card body</li>
+                        <li><code>card-footer</code> : add inside card for card footer</li>
+                        <li><code>card-title</code> : add inside body for title</li>
+                        <li><code>card-text</code> : add add inside body for text</li>
+                        <li><code>card-link</code> : add add inside body for card link</li>
+                    </ul>
+                    <p>Use contextual colors for bg &amp; text colors.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;h4 class=&quot;card-title&quot;&gt;Card title&lt;/h4&gt;
+        &lt;p class=&quot;card-text&quot;&gt;Some example text. Some example text.&lt;/p&gt;
+        &lt;a href=&quot;#&quot; class=&quot;card-link&quot;&gt;Card link&lt;/a&gt;
+        &lt;a href=&quot;#&quot; class=&quot;card-link&quot;&gt;Another link&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Card Images Classes :</h5>
+                    <ul>
+                        <li><code>card-img-top</code> : add inside card for add image to top</li>
+                        <li><code>card-img-bottom</code> : add inside card for add image to bottom</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:400px&quot;&gt;
+    &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;h4 class=&quot;card-title&quot;&gt;John Doe&lt;/h4&gt;
+        &lt;p class=&quot;card-text&quot;&gt;Some example text&lt;/p&gt;
+        &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;See Profile&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Stretched Link :</h5>
+                    <ul>
+                        <li><code>stretched-link</code> : add inside make whole card clickable &amp; hoverable</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:400px&quot;&gt;
+    &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot; style=&quot;width:100%&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;h4 class=&quot;card-title&quot;&gt;John Doe&lt;/h4&gt;
+        &lt;p class=&quot;card-text&quot;&gt;Some example text some example text. John Doe is an architect and engineer&lt;/p&gt;
+        &lt;a href=&quot;#&quot; class=&quot;btn btn-primary stretched-link&quot;&gt;See Profile&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Card Image Overlay :</h5>
+                    <ul>
+                        <li><code>card-img-overlay</code> : add inside card for text on top of image</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card&quot; style=&quot;width:500px&quot;&gt;
+    &lt;img class=&quot;card-img-top&quot; src=&quot;img_avatar1.png&quot; alt=&quot;Card image&quot;&gt;
+    &lt;div class=&quot;card-img-overlay&quot;&gt;
+        &lt;h4 class=&quot;card-title&quot;&gt;John Doe&lt;/h4&gt;
+        &lt;p class=&quot;card-text&quot;&gt;Some example text.&lt;/p&gt;
+        &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;See Profile&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Card Columns :</h5>
+                    <ul>
+                        <li><code>card-columns</code> : add to parent <code>&lt;div&gt;</code> of card to create grid of cards (like pinterest)</li>
+                    </ul>
+                    <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px).</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-columns&quot;&gt;
+    &lt;div class=&quot;card bg-primary&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the first card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-warning&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the second card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-info&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the sixth card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Card Deck :</h5>
+                    <ul>
+                        <li><code>card-deck</code> : add to parent <code>&lt;div&gt;</code> of card to create grid of cards are of equal height &amp; width</li>
+                    </ul>
+                    <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px).</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-deck&quot;&gt;
+    &lt;div class=&quot;card bg-primary&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the first card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-warning&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the second card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-success&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the third card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Card Group :</h5>
+                    <ul>
+                        <li><code>card-group</code> : add to parent <code>&lt;div&gt;</code> of card to create group of cards (same as card column &amp; deck but it removes left &amp; right margin)</li>
+                    </ul>
+                    <p><strong>Note :</strong> The layout will automatically adjust as you insert more cards. Cards are displayed vertically on small screens (&lt;576px) with a top and bottom margin.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;card-group&quot;&gt;
+    &lt;div class=&quot;card bg-primary&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the first card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-warning&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the second card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card bg-success&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;p class=&quot;card-text&quot;&gt;Some text inside the third card&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="dropdown">
+                <h4 class="heading"># Dropdown</h4>
+                <ul>
+                    <li><code>dropdown</code> : add to <code>&lt;div&gt;</code> element for dropdown menu</li>
+                    <li><code>dropdown-menu</code> : add to <code>&lt;div&gt;</code> inside dropdown for menu for dropdown</li>
+                    <li><code>dropdown-item</code> : add to each <code>&lt;div&gt;</code> for dropdown items</li>
+                </ul>
+                <ul>
+                    <li><code>dropdown-toggle</code> : add to <code>&lt;button&gt;/&lt;a&gt;</code> for dropdown toggle</li>
+                    <li><code>data-toggle=&quot;dropdown&quot;</code> : add to <code>&lt;button&gt;/&lt;a&gt;</code> to made toggle as dropdown</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropdown button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Dropdown Item Status :</h5>
+                    <ul>
+                        <li><code>active</code> : add to <code>&lt;a&gt;</code> of each menu for highlight active class</li>
+                        <li><code>disabled</code> : add to <code>&lt;a&gt;</code> of each menu for disable item</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+            Dropdown button
+        &lt;/button&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Normal&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Dropdown Divider :</h5>
+                    <ul>
+                        <li><code>dropdown-divider</code> : add to <code>&lt;div&gt;</code> for dividing dropdown list &amp; link with thin horiz border</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropdown button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Another link&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Dropdown Header :</h5>
+                    <ul>
+                        <li><code>dropdown-header</code> : add inside of dropdown menu for header</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropdown button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;h5 class=&quot;dropdown-header&quot;&gt;Dropdown header&lt;/h5&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;h5 class=&quot;dropdown-header&quot;&gt;Dropdown header&lt;/h5&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Another link&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Dropdown Position Class :</h5>
+                    <ul>
+                        <li><code>dropleft</code> : add to dropdown class for left dropdown menu</li>
+                        <li><code>dropright</code> : add to dropdown class for right dropdown menu</li>
+                        <li><code>dropup</code> : add instead of dropdown for dropup menu</li>
+                        <li><code>dropdown-menu-right</code> : add to dropdown class for right-align dropdown menu</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown dropright&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropright button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Dropup :</h5>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropup&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropup button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div>
+                    <h5>Dropdown Text :</h5>
+                    <ul>
+                        <li><code>dropdown-item-text</code> : add text with dropdown link</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;dropdown&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+        Dropdown button
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item-text&quot; href=&quot;#&quot;&gt;Text Link&lt;/a&gt;
+        &lt;span class=&quot;dropdown-item-text&quot;&gt;Just Text&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h6>Grouped Buttons with Dropdown -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
+    &lt;div class=&quot;btn-group&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+             Sony
+        &lt;/button&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Tablet&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Smartphone&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Split Button Dropdowns :</h5>
+                    <ul>
+                        <li><code>dropdown-toggle-split</code> : add to button to split button &amp; dropdown toggle</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle dropdown-toggle-split&quot; data-toggle=&quot;dropdown&quot;&gt;
+    &lt;/button&gt;
+    &lt;div class=&quot;dropdown-menu&quot;&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Vertical Button Group with Dropdown :</h5>
+                    <ul>
+                        <li><code>btn-group-vertical</code> : add to parent <code>&lt;div&gt;</code> for vertical button group</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;btn-group-vertical&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Apple&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Samsung&lt;/button&gt;
+    &lt;div class=&quot;btn-group&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+            Sony
+        &lt;/button&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Tablet&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Smartphone&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="collapse">
+                <h4 class="heading"># Collapse</h4>
+                <ul>
+                    <li><code>collapse</code> : add to <code>&lt;div&gt;</code> to make collapsible element</li>
+                </ul>
+                <ul>
+                    <li><code>data-toggle=&quot;collapse&quot;</code> : to control (show/hide) collapsible content add attribute to <code>&lt;button&gt;/&lt;a&gt;</code></li>
+                    <li><code>data-target=&quot;#id&quot;</code> : add attribute to connect button with collapsible content (<code>&lt;div id=&quot;demo&quot;&gt;</code>)</li>
+                    <li><code>hide</code> (default) : hide content</li>
+                    <li><code>show</code> : show content</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;button data-toggle=&quot;collapse&quot; data-target=&quot;#demo&quot;&gt;Collapsible&lt;/button&gt;
+&lt;div id=&quot;demo&quot; class=&quot;collapse&quot;&gt;
+    Text Here
+&lt;/div&gt;
+</code></pre>
+                <p><strong>Note :</strong> for <code>&lt;a&gt;</code> href attribute can be used instead of data-target attribute -</p>
+                <pre class="code-box code-box-color"><code>&lt;a href=&quot;#demo&quot; data-toggle=&quot;collapse&quot;&gt;Collapsible&lt;/a&gt;
+&lt;div id=&quot;demo&quot; class=&quot;collapse&quot;&gt;
+    Text Here
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Accordion (Collaspible Cards) :</h5>
+                    <pre class="code-box code-box-color"><code>&lt;div id=&quot;accordion&quot;&gt;
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-header&quot;&gt;
+            &lt;a class=&quot;card-link&quot; data-toggle=&quot;collapse&quot; href=&quot;#collapseOne&quot;&gt;
+                Collapsible Group Item #1
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;collapseOne&quot; class=&quot;collapse show&quot; data-parent=&quot;#accordion&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                Lorem ipsum..
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-header&quot;&gt;
+            &lt;a class=&quot;collapsed card-link&quot; data-toggle=&quot;collapse&quot; href=&quot;#collapseTwo&quot;&gt;
+                Collapsible Group Item #2
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;collapseTwo&quot; class=&quot;collapse&quot; data-parent=&quot;#accordion&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                Lorem ipsum..
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="navs">
+                <h4 class="heading"># Navs</h4>
+                <ul>
+                    <li><code>nav</code> : add to <code>&lt;ul&gt;</code> to create horiz nav</li>
+                    <li><code>nav-item</code> : add to each <code>&lt;li&gt;</code> for nav items</li>
+                    <li><code>nav-link</code> : add to each link (<code>&lt;a&gt;)</code> of <code>&lt;li&gt;</code></li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                <div>
+                    <h5>Nav Alignment :</h5>
+                    <ul>
+                        <li><code>justify-content-center</code> : add to <code>&lt;ul&gt;</code> for center aligned nav</li>
+                        <li><code>justify-content-end</code> : add to <code>&lt;ul&gt;</code> for right aligned nav</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav justify-content-center&quot;&gt; ... &lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Vertical Nav :</h5>
+                    <ul>
+                        <li><code>flex-column</code> : add to <code>&lt;ul&gt;</code> for vertical nav</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav flex-column&quot;&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Nav Tabs :</h5>
+                    <ul>
+                        <li><code>nav-tabs</code> : add to <code>&lt;ul&gt;</code> for turn nav menu into navigation tabs</li>
+                    </ul>
+                    <p>Add <code>.active</code> class to indicate active tab.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Nav Pills :</h5>
+                    <ul>
+                        <li><code>nav-pills</code> : add to <code>&lt;ul&gt;</code> for turn nav menu into navigation pills</li>
+                    </ul>
+                    <p>Add <code>.active</code> class to indicate active tab.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Justified Tabs/Pills :</h5>
+                    <p>Tabs or pills of equal width.</p>
+                    <ul>
+                        <li><code>nav-justified</code> : add to <code>&lt;ul&gt;</code> for nav-tabs/pills of equal width tabs</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills nav-justified&quot;&gt; ... &lt;/ul&gt;
+&lt;ul class=&quot;nav nav-tabs nav-justified&quot;&gt; ... &lt;/ul&gt;
+</code></pre>
+                </div>
+                <div>
+                    <div>
+                        <h6>Pills with Dropdown -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-pills&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item dropdown&quot;&gt;
+        &lt;a class=&quot;nav-link dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;Dropdown&lt;/a&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                    <div>
+                        <h6>Tabs with Dropdown -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item dropdown&quot;&gt;
+        &lt;a class=&quot;nav-link dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;Dropdown&lt;/a&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h6>Toggleable / Dynamic Tabs -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;!-- Nav Tabs --&gt;
+&lt;ul class=&quot;nav nav-tabs&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; data-toggle=&quot;tab&quot; href=&quot;#home&quot;&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; data-toggle=&quot;tab&quot; href=&quot;#menu&quot;&gt;Menu&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- Tab Panes Content --&gt;
+&lt;div class=&quot;tab-content&quot;&gt;
+    &lt;div class=&quot;tab-pane container active&quot; id=&quot;home&quot;&gt;...&lt;/div&gt;
+    &lt;div class=&quot;tab-pane container fade&quot; id=&quot;menu&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h6>Toggleable / Dynamic Pills :</h6>
+                        <pre class="code-box code-box-color"><code>&lt;!-- Nav Pills --&gt;
+&lt;ul class=&quot;nav nav-pills&quot;&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link active&quot; data-toggle=&quot;pill&quot; href=&quot;#home&quot;&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; data-toggle=&quot;pill&quot; href=&quot;#menu&quot;&gt;Menu&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- Tab Panes Content --&gt;
+&lt;div class=&quot;tab-content&quot;&gt;
+    &lt;div class=&quot;tab-pane container active&quot; id=&quot;home&quot;&gt;...&lt;/div&gt;
+    &lt;div class=&quot;tab-pane container fade&quot; id=&quot;menu&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="navbar">
+                <h4 class="heading"># Navbar</h4>
+                <ul>
+                    <li><code>navbar</code> : add to <code>&lt;nav&gt;</code> to create navbar</li>
+                    <li><code>navbar-expand-sm|md|lg|xl</code> : responsive expandable bar, stacks vertically on sm screens</li>
+                    <li><code>navbar-nav</code> : add to <code>&lt;ul&gt;</code> for navbar menu</li>
+                    <li><code>nav-items</code> : add to each <code>&lt;li&gt;</code> for nav items</li>
+                    <li><code>nav-links</code> : add to link <code>(&lt;a&gt;)</code> inside <code>&lt;li&gt;</code></li>
+                    <li><code>navbar-dark</code> : add to <code>&lt;nav&gt;</code> for white text navbar</li>
+                    <li><code>navbar-light</code> : add to <code>&lt;nav&gt;</code> for dark text navbar</li>
+                </ul>
+                <ul>
+                    <li><code>active|disabled</code> : add to link <code>(&lt;a&gt;)</code> for disable|active nav-item</li>
+                </ul>
+                <p>Use contextual color class for colored navbar.</p>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm navbar-dark bg-light&quot;&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+                <div>
+                    <h5>Navbar Brand/Logo :</h5>
+                    <ul>
+                        <li><code>navbar-brand</code> : add to <code>&lt;a&gt;/&lt;span&gt;</code> for navigation brand/logo and place inside <code>&lt;nav&gt;</code> on top</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
+    ...
+&lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Navbar Text :</h5>
+                    <ul>
+                        <li><code>navbar-text</code> : add inside <code>&lt;nav&gt;</code> for text to navbar</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span class=&quot;navbar-text&quot;&gt;
+        Navbar text
+    &lt;/span&gt;
+&lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Vertical Navbar :</h5>
+                    <ul>
+                        <li>remove <code>navbar-expand-sm|md|lg|xl</code> to create vertical navbar</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar bg-light&quot;&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Center Navbar :</h5>
+                    <ul>
+                        <li><code>justify-content-center</code> : add to <code>&lt;nav&gt;</code> for center aligned navbar</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-light justify-content-center&quot;&gt; ... &lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Collapsing Navigation Bar :</h5>
+                    <ul>
+                        <li><code>navbar-toggler</code> : add to <code>&lt;button&gt;</code> to create collapsible navbar</li>
+                        <li><code>navbar-toggler-icon</code> : add in <code>&lt;span&gt;</code> inside button for collapse icon</li>
+                        <li><code>collapse</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;ul&gt;</code></li>
+                        <li><code>navbar-collapse</code> : add to parent <code>&lt;div&gt;</code> of <code>&lt;ul&gt;</code></li>
+                    </ul>
+                    <ul>
+                        <li>add <code>data-toggle=&quot;collapse&quot;</code> to <code>&lt;button&gt;</code> for collapsing navbar</li>
+                        <li>add <code>data-target=&quot;#thetarget&quot;</code> to <code>&lt;button&gt;</code> for selecting nav menu</li>
+                        <li>remove <code>.navbar-expand-md</code> class to always hide <code>nav-menu</code> items</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-md bg-dark navbar-dark&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Navbar&lt;/a&gt;
+    &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#collapsibleNavbar&quot;&gt;
+        &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;collapsibleNavbar&quot;&gt;
+        &lt;ul class=&quot;navbar-nav&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Fixed Navigation Bar :</h5>
+                    <ul>
+                        <li><code>fixed-top</code> : add to <code>&lt;nav&gt;</code> for navigation bar fixed at top</li>
+                        <li><code>fixed-bottom</code> : add to <code>&lt;nav&gt;</code> for navigation bar fixed at bottom</li>
+                        <li><code>sticky-top</code> : add to <code>&lt;nav&gt;</code> for navigation bar to stay top while scroll</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;
+    ...
+&lt;/nav&gt;
+</code></pre>
+                </div>
+                <div>
+                    <div>
+                        <h6>Navbar With Dropdown -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item dropdown&quot;&gt;
+            &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;navbardrop&quot; data-toggle=&quot;dropdown&quot;&gt;
+                Dropdown link
+            &lt;/a&gt;
+            &lt;div class=&quot;dropdown-menu&quot;&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h6>Navbar With Forms &amp; Buttons -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark&quot;&gt;
+    &lt;form class=&quot;form-inline&quot; action=&quot;/action_page.php&quot;&gt;
+        &lt;input class=&quot;form-control mr-sm-2&quot; type=&quot;text&quot; placeholder=&quot;Search&quot;&gt;
+        &lt;button class=&quot;btn btn-success&quot; type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/nav&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="carousel">
+                <h4 class="heading"># Carousel</h4>
+                <p>Slideshow sliding through elements.</p>
+                <ul>
+                    <li><code>carousel</code> : add to <code>&lt;div&gt;</code> for creating carousel of image</li>
+                    <li><code>slide</code> : add with corousel for make slide of images</li>
+                    <li><code>carousel-indicators</code> : add to <code>&lt;ul&gt;</code> inside <code>&lt;div&gt;</code> for indicators for carousel (little dots at bottom of each slide)</li>
+                    <li><code>carousel-inner</code> : add to <code>&lt;div&gt;</code> to define slides to carousel</li>
+                    <li><code>carousel-item</code> : add to <code>&lt;div&gt;</code> for content of each slide</li>
+                    <li><code>carousel-control-prev</code> : add to <code>&lt;a&gt;</code> for left (previous) button to carousel</li>
+                    <li><code>carousel-control-next</code> : add to <code>&lt;a&gt;</code> for right (next) button to carousel</li>
+                    <li><code>carousel-control-prev-icon</code> : used together with .carousel-control-prev to create &quot;previous&quot; button</li>
+                    <li><code>carousel-control-next-icon</code> : used together with .carousel-control-next to create &quot;next&quot; button</li>
+                    <li><code>slide</code> : add to CSS transition &amp; animation effect when sliding from one item to next</li>
+                </ul>
+                <div>
+                    <strong>Note :</strong>
+                    <ol>
+                        <li>Add <code>data-ride=&quot;carousel&quot;</code> in <code>.carousel</code> class.</li>
+                        <li>Add <code>data-slide-to=&quot;0&quot;</code> no to each <code>&lt;li&gt;</code> item.</li>
+                    </ol>
+                </div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div id=&quot;demo&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
+    &lt;!-- Indicators --&gt;
+    &lt;ul class=&quot;carousel-indicators&quot;&gt;
+        &lt;li data-target=&quot;#demo&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;
+        &lt;li data-target=&quot;#demo&quot; data-slide-to=&quot;1&quot;&gt;&lt;/li&gt;
+        &lt;li data-target=&quot;#demo&quot; data-slide-to=&quot;2&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;!-- The slideshow --&gt;
+    &lt;div class=&quot;carousel-inner&quot;&gt;
+        &lt;div class=&quot;carousel-item active&quot;&gt;
+            &lt;img src=&quot;la.jpg&quot; alt=&quot;Los Angeles&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;carousel-item&quot;&gt;
+            &lt;img src=&quot;chicago.jpg&quot; alt=&quot;Chicago&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;carousel-item&quot;&gt;
+            &lt;img src=&quot;ny.jpg&quot; alt=&quot;New York&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Left and right controls --&gt;
+    &lt;a class=&quot;carousel-control-prev&quot; href=&quot;#demo&quot; data-slide=&quot;prev&quot;&gt;
+        &lt;span class=&quot;carousel-control-prev-icon&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&quot;carousel-control-next&quot; href=&quot;#demo&quot; data-slide=&quot;next&quot;&gt;
+        &lt;span class=&quot;carousel-control-next-icon&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Add Caption :</h5>
+                    <ul>
+                        <li><code>carousel-caption</code> : add within each <code>&lt;div class=&quot;carousel-item&quot;&gt;</code> to create caption for each slide</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div id=&quot;demo&quot; class=&quot;carousel slide&quot; data-ride=&quot;carousel&quot;&gt;
+    &lt;ul class=&quot;carousel-indicators&quot;&gt;
+        &lt;li data-target=&quot;#demo&quot; data-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;carousel-inner&quot;&gt;
+        &lt;div class=&quot;carousel-item active&quot;&gt;
+            &lt;img src=&quot;la.jpg&quot; alt=&quot;Los Angeles&quot; width=&quot;1100&quot; height=&quot;500&quot;&gt;
+            &lt;div class=&quot;carousel-caption&quot;&gt;
+                &lt;h3&gt;Los Angeles&lt;/h3&gt;
+                &lt;p&gt;We had such a great time in LA!&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class=&quot;carousel-control-prev&quot; href=&quot;#demo&quot; data-slide=&quot;prev&quot;&gt;
+        &lt;span class=&quot;carousel-control-prev-icon&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&quot;carousel-control-next&quot; href=&quot;#demo&quot; data-slide=&quot;next&quot;&gt;
+        &lt;span class=&quot;carousel-control-next-icon&quot;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="modal">
+                <h4 class="heading"># Modal</h4>
+                <ul>
+                    <li><code>modal</code> : add to <code>&lt;div&gt;</code> to create modal</li>
+                    <li><code>modal-dialog</code> : add to <code>&lt;div&gt;</code> inside .modal for modal elements</li>
+                    <li><code>modal-content</code> : add to <code>&lt;div&gt;</code> inside .modal-dialog for modal content</li>
+                    <li><code>modal-header</code> : add to <code>&lt;div&gt;</code> inside .modal-content for modal header</li>
+                    <li><code>modal-title</code> : add to <code>&lt;div&gt;/&lt;h&gt;</code> inside .modal-header for header title</li>
+                    <li><code>modal-body</code> : add to <code>&lt;div&gt;</code> inside .modal-content for modal body</li>
+                    <li><code>modal-footer</code> : add to <code>&lt;div&gt;</code> inside .modal-content for modal footer</li>
+                </ul>
+                <div>
+                    <strong>Note :</strong>
+                    <ol>
+                        <li>for opening modal add <code>&lt;button&gt;</code> &amp; add data-toggle=&quot;modal&quot; &amp; target=&quot;#id&quot; to <code>&lt;button&gt;</code>.</li>
+                        <li>for close button add <code>&lt;button&gt;</code> inside header or footer &amp; add data-dismiss=&quot;modal&quot; to <code>&lt;button&gt;</code>.</li>
+                    </ol>
+                </div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;!-- Button to Open the Modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-toggle=&quot;modal&quot; data-target=&quot;#myModal&quot;&gt;
+    Open modal
+&lt;/button&gt;
+&lt;!-- The Modal --&gt;
+&lt;div class=&quot;modal&quot; id=&quot;myModal&quot;&gt;
+    &lt;div class=&quot;modal-dialog&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+            &lt;!-- Modal Header --&gt;
+            &lt;div class=&quot;modal-header&quot;&gt;
+                &lt;h4 class=&quot;modal-title&quot;&gt;Modal Heading&lt;/h4&gt;
+                &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot;&gt;&amp;times;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;!-- Modal body --&gt;
+            &lt;div class=&quot;modal-body&quot;&gt;
+                Modal body..
+            &lt;/div&gt;
+            &lt;!-- Modal footer --&gt;
+            &lt;div class=&quot;modal-footer&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot; data-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Add Open/Close Animation :</h5>
+                    <ul>
+                        <li><code>fade</code> : add with <code>.modal</code> class for open/close fading animation</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal fade&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Modal Size :</h5>
+                    <ul>
+                        <li><code>modal-sm|lg|xl</code> (default md) : add with <code>.modal-dialog</code> class for sizing modal</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-sm&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Centered Modal :</h5>
+                    <ul>
+                        <li><code>modal-dialog-centered</code> : add with <code>.modal-dialog</code> for center modal vertically &amp; horizontally within page</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-dialog-centered&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Scrolling Modal :</h5>
+                    <ul>
+                        <li><code>modal-dialog-scrollable</code> : add with <code>.modal-dialog</code> to only scroll inside modal body instead of page itself</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;modal-dialog modal-dialog-scrollable&quot;&gt; ... &lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="tooltip">
+                <h4 class="heading"># Tooltip</h4>
+                <ul>
+                    <li><code>data-toggle=&quot;tooltip&quot;</code> : add attribute to element to create tooltip</li>
+                    <li><code>title=&quot;Hover Text&quot;</code> : add attribute to element for hover text</li>
+                    <li><code>data-placement=&quot;top|bottom|left|right&quot;</code> : add attribute to element for placement of tooltip</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Hooray!&quot;&gt;Hover over me&lt;/a&gt;
+
+&lt;a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Hooray!&quot;&gt;Hover&lt;/a&gt;
+</code></pre>
+                <p><strong>Note :</strong> Tooltips must be initialised with jQuery; select the specified element & call the tooltip() method. The following code will enable all tooltips in the document -</p>
+                <pre class="code-box code-box-color"><code>&lt;script&gt;
+$(document).ready(function(){
+    $(&#39;[data-toggle=&quot;tooltip&quot;]&#39;).tooltip();
+});
+&lt;/script&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="popover">
+                <h4 class="heading"># Popover</h4>
+                <ul>
+                    <li><code>data-toggle=&quot;popover&quot;</code> : add attribute to element to create popover</li>
+                    <li><code>title=&quot;text&quot;</code> : add attribute to element for popover header text</li>
+                    <li><code>data-content=&quot;content text&quot;</code> : add attribute to element for popover body text</li>
+                    <li><code>data-placement=&quot;top|bottom|left|right&quot;</code> : add attribute to element for placement of popover</li>
+                    <li><code>data-trigger=&quot;focus&quot;</code> : add attribute to element to close popover when clicking outside element</li>
+                    <li><code>data-trigger=&quot;hover&quot;</code> : add attribute to element for popover to be display when mouse-over element</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;a href=&quot;#&quot; data-toggle=&quot;popover&quot; title=&quot;Popover Header&quot; data-content=&quot;Some content inside popover&quot;&gt;Toggle popover&lt;/a&gt;
+
+&lt;a href=&quot;#&quot; data-toggle=&quot;popover&quot; title=&quot;Header&quot; data-placement=&quot;top&quot; data-content=&quot;Content&quot;&gt;Click&lt;/a&gt;
+
+&lt;a href=&quot;#&quot; title=&quot;Dismissible popover&quot; data-toggle=&quot;popover&quot; data-trigger=&quot;focus&quot; data-content=&quot;Click anywhere in document to close this popover&quot;&gt;Click&lt;/a&gt;
+
+&lt;a href=&quot;#&quot; title=&quot;Dismissible Popover&quot; data-toggle=&quot;popover&quot; data-trigger=&quot;hover&quot; data-content=&quot;Click anywhere in document to close this popover&quot;&gt;Click&lt;/a&gt;
+</code></pre>
+                <p><strong>Note :</strong> Popovers must be initialised with jQuery, select the specified element and call the popover() method. The following code will enable all popovers in this document -</p>
+                <pre class="code-box code-box-color"><code>&lt;script&gt;
+$(document).ready(function(){
+    $(&#39;[data-toggle=&quot;popover&quot;]&#39;).popover();
+});
+&lt;/script&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="toast">
+                <h4 class="heading"># Toast</h4>
+                <ul>
+                    <li><code>toast</code> : add to element <code>(&lt;div&gt;)</code> to create toast</li>
+                    <li><code>toast-header</code> : add to element <code>(&lt;div&gt;)</code> inside <code>.toast</code> for toast header</li>
+                    <li><code>toast-body</code> : add to element <code>(&lt;div&gt;)</code> inside <code>.toast</code> for toast body</li>
+                    <li><code>data-autohide=&quot;false&quot;</code> : add attribute with <code>.toast</code> for toasts to show by default (default hidden)</li>
+                    <li><code>data-dismiss=&quot;toast&quot;</code> : add attribute to <code>&lt;button&gt;</code> to close toast</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;toast&quot;&gt;
+    &lt;div class=&quot;toast-header&quot;&gt;
+        Toast Header
+    &lt;/div&gt;
+    &lt;div class=&quot;toast-body&quot;&gt;
+        Some text inside the toast body
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;toast&quot; data-autohide=&quot;false&quot;&gt;
+    &lt;div class=&quot;toast-header&quot;&gt;
+        &lt;strong class=&quot;mr-auto text-primary&quot;&gt;Toast Header&lt;/strong&gt;
+        &lt;small class=&quot;text-muted&quot;&gt;5 mins ago&lt;/small&gt;
+        &lt;button type=&quot;button&quot; class=&quot;ml-2 mb-1 close&quot; data-dismiss=&quot;toast&quot;&gt;&amp;times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;toast-body&quot;&gt;
+        Some text inside the toast body
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <p><strong>Note :</strong> Toasts must be initialised with jQuery; select the specified element & call the toast() method. The following code will show all "toasts" in the document -</p>
+                <pre class="code-box code-box-color"><code>&lt;script&gt;
+$(document).ready(function(){
+    $(&#39;.toast&#39;).toast(&#39;show&#39;);
+});
+&lt;/script&gt;
+</code></pre>
+            </div>
+
+            <div class="sections" id="scrollspy">
+                <h4 class="heading"># Scrollspy</h4>
+                <ul>
+                    <li><code>data-spy=&quot;scroll&quot;</code> : add attribute to scrollable element Ex. <code>&lt;body&gt;</code></li>
+                    <li><code>data-target=&quot;#id|.class&quot;</code> : add attribute to target navigation bar and set class/id</li>
+                    <li><code>data-offset=&quot;value&quot;</code> : set number of pixels to offset from top when calculating position of scroll (optional)</li>
+                </ul>
+                <p><strong>Note :</strong> Scrollable element must match id/class of links inside navbar&#39;s list items (<code>&lt;div id=&quot;section1&quot;&gt;</code> matches <code>&lt;a href=&quot;#section1&quot;&gt;</code>).</p>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;body data-spy=&quot;scroll&quot; data-target=&quot;.navbar&quot; data-offset=&quot;50&quot;&gt;
+&lt;nav class=&quot;navbar navbar-expand-sm bg-dark navbar-dark fixed-top&quot;&gt;  
+    &lt;ul class=&quot;navbar-nav&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link&quot; href=&quot;#section1&quot;&gt;Section 1&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&quot;nav-item dropdown&quot;&gt;
+            &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;navbardrop&quot; data-toggle=&quot;dropdown&quot;&gt;Section 2&lt;/a&gt;
+            &lt;div class=&quot;dropdown-menu&quot;&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;#section21&quot;&gt;Link 1&lt;/a&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;#section22&quot;&gt;Link 2&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;div id=&quot;section1&quot; class=&quot;container-fluid bg-success&quot; style=&quot;padding-top:70px;padding-bottom:70px&quot;&gt;
+    &lt;h1&gt;Section 1&lt;/h1&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;section21&quot; class=&quot;container-fluid bg-danger&quot; style=&quot;padding-top:70px;padding-bottom:70px&quot;&gt;
+    &lt;h1&gt;Section 2 Submenu 1&lt;/h1&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&quot;section22&quot; class=&quot;container-fluid bg-info&quot; style=&quot;padding-top:70px;padding-bottom:70px&quot;&gt;
+    &lt;h1&gt;Section 2 Submenu 2&lt;/h1&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+    &lt;p&gt;Try to scroll this section and look at navigation bar while scrolling!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+                <div>
+                    <h6>Vertical Navigation Bar -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;body data-spy=&quot;scroll&quot; data-target=&quot;#myScrollspy&quot; data-offset=&quot;1&quot;&gt;
+&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;nav class=&quot;col-sm-3 col-4&quot; id=&quot;myScrollspy&quot;&gt;
+            &lt;ul class=&quot;nav nav-pills flex-column&quot;&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;
+                    &lt;a class=&quot;nav-link active&quot; href=&quot;#section1&quot;&gt;Section 1&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;nav-item dropdown&quot;&gt;
+                    &lt;a class=&quot;nav-link dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;Section 2&lt;/a&gt;
+                    &lt;div class=&quot;dropdown-menu&quot;&gt;
+                        &lt;a class=&quot;dropdown-item&quot; href=&quot;#section21&quot;&gt;Link 1&lt;/a&gt;
+                        &lt;a class=&quot;dropdown-item&quot; href=&quot;#section22&quot;&gt;Link 2&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;div class=&quot;col-sm-9 col-8&quot;&gt;
+            &lt;div id=&quot;section1&quot; class=&quot;bg-success&quot;&gt;    
+                &lt;h1&gt;Section 1&lt;/h1&gt;
+                &lt;p&gt;Try to scroll this section and look at navigation list while scrolling!&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;section21&quot; class=&quot;bg-danger&quot;&gt;         
+                &lt;h1&gt;Section 2-1&lt;/h1&gt;
+                &lt;p&gt;Try to scroll this section and look at navigation list while scrolling!&lt;/p&gt;
+            &lt;/div&gt;    
+            &lt;div id=&quot;section22&quot; class=&quot;bg-info&quot;&gt;         
+                &lt;h1&gt;Section 2-2&lt;/h1&gt;
+                &lt;p&gt;Try to scroll this section and look at navigation list while scrolling!&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="media-objects">
+                <h4 class="heading"># Media Objects</h4>
+                <ul>
+                    <li><code>media</code> : add to <code>&lt;div&gt;</code> element for creating media &amp; must be add inside container</li>
+                    <li><code>media-body</code> : add to <code>&lt;div&gt;</code> inside <code>.media</code> for adding content</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
+    &lt;img src=&quot;img_avatar3.png&quot; alt=&quot;John Doe&quot; class=&quot;mr-3 mt-3 rounded-circle&quot; style=&quot;width:60px;&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;John Doe &lt;small&gt;&lt;i&gt;Posted on February 19, 2016&lt;/i&gt;&lt;/small&gt;&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Nested Media Objects :</h5>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
+    &lt;img src=&quot;img_avatar3.png&quot; alt=&quot;John Doe&quot; class=&quot;mr-3 mt-3 rounded-circle&quot; style=&quot;width:60px;&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;John Doe &lt;small&gt;&lt;i&gt;Posted on February 19, 2016&lt;/i&gt;&lt;/small&gt;&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;div class=&quot;media p-3&quot;&gt;
+            &lt;img src=&quot;img_avatar2.png&quot; alt=&quot;Jane Doe&quot; class=&quot;mr-3 mt-3 rounded-circle&quot; style=&quot;width:45px;&quot;&gt;
+            &lt;div class=&quot;media-body&quot;&gt;
+                &lt;h4&gt;Jane Doe &lt;small&gt;&lt;i&gt;Posted on February 20 2016&lt;/i&gt;&lt;/small&gt;&lt;/h4&gt;
+                &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt; 
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Right-Aligned Media Image :</h5>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;media border p-3&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;John Doe &lt;small&gt;&lt;i&gt;Posted on February 19, 2016&lt;/i&gt;&lt;/small&gt;&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;img src=&quot;img_avatar3.png&quot; alt=&quot;John Doe&quot; class=&quot;ml-3 mt-3 rounded-circle&quot; style=&quot;width:60px;&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Top, Middle or Bottom Alignment :</h5>
+                    <h6>Media Top -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
+    &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-start mr-3&quot; style=&quot;width:60px&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;Media Top&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Media Middle -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
+    &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-center mr-3&quot; style=&quot;width:60px&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;Media Middle&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Media Bottom -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;media&quot;&gt;
+    &lt;img src=&quot;img_avatar1.png&quot; class=&quot;align-self-end mr-3&quot; style=&quot;width:60px&quot;&gt;
+    &lt;div class=&quot;media-body&quot;&gt;
+        &lt;h4&gt;Media Bottom&lt;/h4&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="forms">
+                <h4 class="heading"># Forms</h4>
+                <ul>
+                    <li><code>form-group</code> : add wrapper <code>&lt;div&gt;</code> with this class to each form&#39;s element for full width stacked form</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;email&quot;&gt;Email address:&lt;/label&gt;
+        &lt;input type=&quot;email&quot; class=&quot;form-control&quot; placeholder=&quot;Enter email&quot; id=&quot;email&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;pwd&quot;&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;Enter password&quot; id=&quot;pwd&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group form-check&quot;&gt;
+        &lt;label class=&quot;form-check-label&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot;&gt; Remember me
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+                <div>
+                    <h5>Inline Form :</h5>
+                    <ul>
+                        <li><code>form-inline</code> : add to <code>&lt;form&gt;</code> for inline forms</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form class=&quot;form-inline&quot; action=&quot;/action_page.php&quot;&gt; ... &lt;/form&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Form Row/Column :</h5>
+                    <ul>
+                        <li><code>row|form-row</code> : add to wrapper <code>&lt;div&gt;</code> to create row form element</li>
+                        <li><code>col</code> : to add <code>&lt;div&gt;</code> inside .row to create col for each element</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;form-row&quot;&gt;
+        &lt;div class=&quot;col&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;email&quot; placeholder=&quot;Enter email&quot; name=&quot;email&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col&quot;&gt;
+            &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;Enter password&quot; name=&quot;pswd&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Form Validation :</h5>
+                    <ul>
+                        <li><code>was-validated</code> : add to <code>&lt;form&gt;</code> for validate before submision</li>
+                        <li><code>needs-validation</code> : add to <code>&lt;form&gt;</code> for validate after submision</li>
+                    </ul>
+                    <ul>
+                        <li><code>valid-feedback</code> : add to seperate <code>&lt;div&gt;</code> with message for feedback if form is valid</li>
+                        <li><code>invalid-feedback</code> : add to seperate <code>&lt;div&gt;</code> with message for feedback if form is invalid</li>
+                    </ul>
+                    <div>
+                        <h6>Validate Before Submission -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot; class=&quot;was-validated&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;uname&quot;&gt;Username:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;uname&quot; placeholder=&quot;Enter username&quot; name=&quot;uname&quot; required&gt;
+        &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+        &lt;div class=&quot;invalid-feedback&quot;&gt;Please fill out this field.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;pwd&quot;&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;pwd&quot; placeholder=&quot;Enter password&quot; name=&quot;pswd&quot; required&gt;
+        &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+        &lt;div class=&quot;invalid-feedback&quot;&gt;Please fill out this field.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group form-check&quot;&gt;
+        &lt;label class=&quot;form-check-label&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; name=&quot;remember&quot; required&gt; I agree on blabla.
+            &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+            &lt;div class=&quot;invalid-feedback&quot;&gt;Check this checkbox to continue.&lt;/div&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h6>Validate After Submission -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;form action=&quot;/action_page.php&quot; class=&quot;needs-validation&quot; novalidate&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;uname&quot;&gt;Username:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;uname&quot; placeholder=&quot;Enter username&quot; name=&quot;uname&quot; required&gt;
+        &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+        &lt;div class=&quot;invalid-feedback&quot;&gt;Please fill out this field.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;pwd&quot;&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;pwd&quot; placeholder=&quot;Enter password&quot; name=&quot;pswd&quot; required&gt;
+        &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+        &lt;div class=&quot;invalid-feedback&quot;&gt;Please fill out this field.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group form-check&quot;&gt;
+        &lt;label class=&quot;form-check-label&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; name=&quot;remember&quot; required&gt; I agree on blabla.
+            &lt;div class=&quot;valid-feedback&quot;&gt;Valid.&lt;/div&gt;
+            &lt;div class=&quot;invalid-feedback&quot;&gt;Check this checkbox to continue.&lt;/div&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script&gt;
+// Disable form submissions if there are invalid fields -
+(function() {
+    &#39;use strict&#39;;
+    window.addEventListener(&#39;load&#39;, function() {
+        // Get the forms we want to add validation styles to -
+        var forms = document.getElementsByClassName(&#39;needs-validation&#39;);
+        // Loop over them and prevent submission -
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener(&#39;submit&#39;, function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add(&#39;was-validated&#39;);
+            }, false);
+        });
+    }, false);
+})();
+&lt;/script&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="form-inputs">
+                <h4 class="heading"># Form Inputs</h4>
+                <ul>
+                    <li><code>form-control</code> : add to <code>&lt;input&gt;</code> to style inputs with full-width &amp; proper padding</li>
+                </ul>
+                <div>
+                    <h5>Form Control Sizing :</h5>
+                    <ul>
+                        <li><code>form-control-sm|lg</code> : add to <code>&lt;input&gt;</code> for input on specific screen size</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;input type=&quot;text&quot; class=&quot;form-control form-control-sm&quot;&gt;
+&lt;input type=&quot;text&quot; class=&quot;form-control form-control&quot;&gt;
+&lt;input type=&quot;text&quot; class=&quot;form-control form-control-lg&quot;&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Form Control Types :</h5>
+                    <h6>Form Control with Plain text -</h6>
+                    <ul>
+                        <li><code>form-control-plaintext</code> : add to <code>&lt;input&gt;</code> for plain text form without border</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;input type=&quot;text&quot; class=&quot;form-control-plaintext&quot;&gt;
+</code></pre>
+                    <h6>Form Control File -</h6>
+                    <ul>
+                        <li><code>form-control-file</code> : for input type file</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;input type=&quot;file&quot; class=&quot;form-control-file border&quot;&gt;
+</code></pre>
+                    <h6>Form Control Range -</h6>
+                    <ul>
+                        <li><code>form-control-range</code> : for input type range</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;input type=&quot;range&quot; class=&quot;form-control-range&quot;&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Inputs Types :</h5>
+                    <h6>Text/Password -</h6>
+                    <ul>
+                        <li><code>form-control</code> : add to <code>&lt;input&gt;</code></li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-group&quot;&gt;
+  &lt;label for=&quot;usr&quot;&gt;Name:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;usr&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-group&quot;&gt;
+  &lt;label for=&quot;pwd&quot;&gt;Password:&lt;/label&gt;
+  &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;pwd&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Textarea -</h6>
+                    <ul>
+                        <li><code>form-control</code> : add to <code>&lt;textarea&gt;</code></li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-group&quot;&gt;
+  &lt;label for=&quot;comment&quot;&gt;Comment:&lt;/label&gt;
+  &lt;textarea class=&quot;form-control&quot; rows=&quot;5&quot; id=&quot;comment&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Checkboxes -</h6>
+                    <ul>
+                        <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create checkbox</li>
+                        <li><code>form-check-label</code> : add to <code>&lt;label&gt;</code> to set label of checkbox</li>
+                        <li><code>form-check-input</code> : add to <code>&lt;input&gt;</code> type checkbox for checkbox selection</li>
+                        <li><code>disabled</code> : add to <code>&lt;input&gt;</code> to disable check item</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-check&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot;&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot;&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot; disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Inline Checkbox -</h6>
+                    <ul>
+                        <li><code>form-check-inline</code> : add to wrapper <code>&lt;div&gt;</code> to create inline checkboxes</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-check-inline&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot;&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check-inline&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot;&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check-inline&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; value=&quot;&quot; disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Radio Buttons -</h6>
+                    <ul>
+                        <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create radio button</li>
+                        <li><code>form-check-label</code> : add to <code>&lt;label&gt;</code> to set label of radio button</li>
+                        <li><code>form-check-input</code> : add to <code>&lt;input&gt;</code> type radio</li>
+                        <li><code>disabled</code> : add to <code>&lt;input&gt;</code> to disable check item</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-check&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot;&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot;&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check disabled&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot; disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Inline Radio Buttons -</h6>
+                    <ul>
+                        <li><code>form-check-inline</code> : add to wrapper <code>&lt;div&gt;</code> to create inline radio buttons</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-check-inline&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot;&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check-inline&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot;&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;form-check-inline disabled&quot;&gt;
+  &lt;label class=&quot;form-check-label&quot;&gt;
+      &lt;input type=&quot;radio&quot; class=&quot;form-check-input&quot; name=&quot;optradio&quot; disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt; 
+</code></pre>
+                    <h6>Selection Lists -</h6>
+                    <ul>
+                        <li><code>form-check</code> : add to wrapper <code>&lt;div&gt;</code> to create select list</li>
+                        <li><code>form-control</code> : add to <code>&lt;select&gt;</code> for styling options</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;form-group&quot;&gt;
+  &lt;label for=&quot;sel1&quot;&gt;Select list:&lt;/label&gt;
+  &lt;select class=&quot;form-control&quot; id=&quot;sel1&quot;&gt;
+      &lt;option&gt;1&lt;/option&gt;
+      &lt;option&gt;2&lt;/option&gt;
+      &lt;option&gt;3&lt;/option&gt;
+      &lt;option&gt;4&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="input-group">
+                <h4 class="heading"># Input Group</h4>
+                <ul>
+                    <li><code>input-group</code> : add to wrapper <code>&lt;div&gt;</code> container to enhance input by adding icon/text/button in front/behind input field as help text</li>
+                    <li><code>input-group-prepend</code> : add to <code>&lt;div&gt;</code> for help text front of input</li>
+                    <li><code>input-group-append</code> : add to <code>&lt;div&gt;</code> for help text behind input</li>
+                    <li><code>input-group-text</code> : add to <code>&lt;span&gt;</code> for specified help text</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;input-group mb-3&quot;&gt;
+        &lt;div class=&quot;input-group-prepend&quot;&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;@&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;input-group mb-3&quot;&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Your Email&quot;&gt;
+        &lt;div class=&quot;input-group-append&quot;&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;@example.com&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                <div>
+                    <h5>Input Group Sizing :</h5>
+                    <ul>
+                        <li><code>input-group-sm|lg</code> : add with <code>.input-group</code> for sizing input groups (default md)</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;input-group mb-3 input-group-sm&quot;&gt;
+         &lt;div class=&quot;input-group-prepend&quot;&gt;
+             &lt;span class=&quot;input-group-text&quot;&gt;Small&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Multiple Inputs &amp; Helpers :</h5>
+                    <h6>Multiple Inputs -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;input-group mb-3&quot;&gt;
+        &lt;div class=&quot;input-group-prepend&quot;&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;Person&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;First Name&quot;&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Last Name&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                    <h6>Multiple Helper Text -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;input-group mb-3&quot;&gt;
+        &lt;div class=&quot;input-group-prepend&quot;&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;One&lt;/span&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;Two&lt;/span&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;Three&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot;&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Input Group with Checkboxes &amp; Radios :</h5>
+                    <h6>Checkboxes -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
+    &lt;div class=&quot;input-group-prepend&quot;&gt;
+        &lt;div class=&quot;input-group-text&quot;&gt;
+            &lt;input type=&quot;checkbox&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Some text&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Radios -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
+    &lt;div class=&quot;input-group-prepend&quot;&gt;
+        &lt;div class=&quot;input-group-text&quot;&gt;
+            &lt;input type=&quot;radio&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Some text&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Input Group Buttons :</h5>
+                    <h6>Basic Button -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
+    &lt;div class=&quot;input-group-prepend&quot;&gt;
+        &lt;button class=&quot;btn btn-outline-primary&quot; type=&quot;button&quot;&gt;Basic Button&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Some text&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Go Button -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Search&quot;&gt;
+    &lt;div class=&quot;input-group-append&quot;&gt;
+        &lt;button class=&quot;btn btn-success&quot; type=&quot;submit&quot;&gt;Go&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Ok &amp; Cancel Button -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mb-3&quot;&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Something clever..&quot;&gt;
+    &lt;div class=&quot;input-group-append&quot;&gt;
+        &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;OK&lt;/button&gt;
+        &lt;button class=&quot;btn btn-danger&quot; type=&quot;button&quot;&gt;Cancel&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Input Group with Dropdown Button -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;input-group mt-3 mb-3&quot;&gt;
+    &lt;div class=&quot;input-group-prepend&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn btn-outline-secondary dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+            Dropdown button
+        &lt;/button&gt;
+        &lt;div class=&quot;dropdown-menu&quot;&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 1&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 2&lt;/a&gt;
+            &lt;a class=&quot;dropdown-item&quot; href=&quot;#&quot;&gt;Link 3&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Username&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6>Input Group Labels -</h6>
+                    <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;label for=&quot;demo&quot;&gt;Write your email here:&lt;/label&gt;
+    &lt;div class=&quot;input-group mb-3&quot;&gt;
+        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Email&quot; id=&quot;demo&quot; name=&quot;email&quot;&gt;
+        &lt;div class=&quot;input-group-append&quot;&gt;
+            &lt;span class=&quot;input-group-text&quot;&gt;@example.com&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="custom-forms">
+                <h4 class="heading"># Custom Forms</h4>
+                <ul>
+                    <li><code>custom-control</code> : add to wrapper <code>&lt;div&gt;</code> around <code>&lt;input&gt;</code> to create custom forms</li>
+                    <li><code>custom-control-inline</code> : add with <code>.custom-control</code> to create inline custom form element</li>
+                    <li><code>custom-control-label</code> : add to <code>&lt;label&gt;</code> inside <code>.custom-control</code> for label text</li>
+                </ul>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;custom-control custom-radio custom-control-inline&quot;&gt;
+        &lt;input type=&quot;radio&quot; class=&quot;custom-control-input&quot; id=&quot;customRadio&quot; name=&quot;example&quot; value=&quot;customEx&quot;&gt;
+        &lt;label class=&quot;custom-control-label&quot; for=&quot;customRadio&quot;&gt;Custom radio 1&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;custom-control custom-radio custom-control-inline&quot;&gt;
+        &lt;input type=&quot;radio&quot; class=&quot;custom-control-input&quot; id=&quot;customRadio2&quot; name=&quot;example&quot; value=&quot;customEx&quot;&gt;
+        &lt;label class=&quot;custom-control-label&quot; for=&quot;customRadio2&quot;&gt;Custom radio 2&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                <div>
+                    <div>
+                        <h5>Custom Checkbox :</h5>
+                        <ul>
+                            <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
+                            <li><code>custom-checkbox</code> : add with <code>.custom-control</code> for custom checkboxes</li>
+                        </ul>
+                        <h6>Ex :</h6>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;custom-control custom-checkbox&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; id=&quot;customCheck&quot; name=&quot;example1&quot;&gt;
+        &lt;label class=&quot;custom-control-label&quot; for=&quot;customCheck&quot;&gt;Check this custom checkbox&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h5>Custom Switch :</h5>
+                        <ul>
+                            <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
+                            <li><code>custom-switch</code> : add with <code>.custom-control</code> for custom switch</li>
+                        </ul>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;custom-control custom-switch&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; id=&quot;switch1&quot;&gt;
+        &lt;label class=&quot;custom-control-label&quot; for=&quot;switch1&quot;&gt;Toggle me&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h5>Custom Radio buttons :</h5>
+                        <ul>
+                            <li><code>custom-control-input</code> : add to <code>&lt;input&gt;</code></li>
+                            <li><code>custom-radio</code> : add with <code>.custom-control</code> for custom radio buttons</li>
+                        </ul>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;custom-control custom-radio&quot;&gt;
+        &lt;input type=&quot;radio&quot; class=&quot;custom-control-input&quot; id=&quot;customRadio&quot; name=&quot;example1&quot; value=&quot;customEx&quot;&gt;
+        &lt;label class=&quot;custom-control-label&quot; for=&quot;customRadio&quot;&gt;Custom radio&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h5>Custom Select Menu :</h5>
+                        <ul>
+                            <li><code>custom-select</code> : add to <code>&lt;select&gt;</code> element for custom select menu</li>
+                            <li><code>custom-select-sm|lg</code> : add to <code>&lt;select&gt;</code> element for sizing custom select menu (default md)</li>
+                        </ul>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;select name=&quot;cars&quot; class=&quot;custom-select&quot;&gt;
+        &lt;option selected&gt;Custom Select Menu&lt;/option&gt;
+        &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
+        &lt;option value=&quot;fiat&quot;&gt;Fiat&lt;/option&gt;
+        &lt;option value=&quot;audi&quot;&gt;Audi&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+                        <h6>Small Custom Select Menu -</h6>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;select name=&quot;cars&quot; class=&quot;custom-select-sm&quot;&gt;
+        &lt;option selected&gt;Small Custom Select Menu&lt;/option&gt;
+        &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
+        &lt;option value=&quot;fiat&quot;&gt;Fiat&lt;/option&gt;
+        &lt;option value=&quot;audi&quot;&gt;Audi&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h5>Custom Range :</h5>
+                        <ul>
+                            <li><code>custom-range</code> : add to <code>&lt;input&gt;</code> type range for custom range</li>
+                        </ul>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;label for=&quot;customRange&quot;&gt;Custom range&lt;/label&gt;
+    &lt;input type=&quot;range&quot; class=&quot;custom-range&quot; id=&quot;customRange&quot; name=&quot;points1&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+                    </div>
+                    <div>
+                        <h5>Custom File Upload :</h5>
+                        <ul>
+                            <li><code>custom-file</code> : add to wrapper <code>&lt;div&gt;</code> element for custom file upload</li>
+                            <li><code>custom-file-input</code> : add to <code>&lt;input&gt;</code> type file for custom file upload</li>
+                        </ul>
+                        <pre class="code-box code-box-color"><code>&lt;form&gt;
+    &lt;div class=&quot;custom-file&quot;&gt;
+        &lt;input type=&quot;file&quot; class=&quot;custom-file-input&quot; id=&quot;customFile&quot;&gt;
+        &lt;label class=&quot;custom-file-label&quot; for=&quot;customFile&quot;&gt;Choose file&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+// Add the following code if you want the name of the file appear on select -
+$(&quot;.custom-file-input&quot;).on(&quot;change&quot;, function() {
+    var fileName = $(this).val().split(&quot;\\&quot;).pop();
+    $(this).siblings(&quot;.custom-file-label&quot;).addClass(&quot;selected&quot;).html(fileName);
+});
+&lt;/script&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="flexbox">
+                <h4 class="heading"># Flexbox</h4>
+                <ul>
+                    <li><code>d-flex</code> : add it to <code>&lt;div&gt;</code> to create flexbox container &amp; transforms direct children into flex items</li>
+                    <li><code>d-md|sm|lg|xl-flex</code> : add it to <code>&lt;div&gt;</code> to create flexbox container on specific screen size</li>
+                </ul>
+                <p><strong>Note :</strong> max columns are 12.</p>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex p-3 bg-secondary text-white&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                <div>
+                    <h5>Inine Flexbox :</h5>
+                    <ul>
+                        <li><code>d-inline-flex</code> : add it to <code>&lt;div&gt;</code> to create inline flexbox container</li>
+                        <li><code>d-sm|md|lg|xl-inline-flex</code> : add it to <code>&lt;div&gt;</code> to create inline flexbox container on specific screen size</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-inline-flex p-3 bg-secondary text-white&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Horizontal Direction Flexbox Items :</h5>
+                    <ul>
+                        <li><code>flex-row</code> : add with <code>.d-flex</code> to display flex items horizontally (side by side)</li>
+                        <li><code>flex-row-reverse</code> : add with <code>.d-flex</code> to right-align horizontal direction</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-row bg-secondary&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Vertical Direction Flexbox Items :</h5>
+                    <ul>
+                        <li><code>flex-column</code> : add with <code>.d-flex</code> to display flex items vertically (on top of each other)</li>
+                        <li><code>flex-column-reverse</code> : add with <code>.d-flex</code> to reverse vertical direction</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-column&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Justify Content Flex Items (align) :</h5>
+                    <ul>
+                        <li><code>justify-content-start|end|center|between|around</code> : add with <code>.d-flex</code> to justify inside content to following</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex justify-content-start&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;d-flex justify-content-center&quot;&gt;...&lt;/div&gt;
+&lt;div class=&quot;d-flex justify-content-end&quot;&gt;...&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Fill/Equal Width Flex Items :</h5>
+                    <ul>
+                        <li><code>flex-fill</code> : add to each flex item to force them into equal widths</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info flex-fill&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning flex-fill&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary flex-fill&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Grow &amp; Shrink :</h5>
+                    <ul>
+                        <li><code>flex-grow-1</code> : add to flex item to take up rest of space</li>
+                        <li><code>flex-shrink-1</code> : add to flex item to make it shrink if necessary</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary flex-grow-1&quot;&gt;Flex item 2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Order :</h5>
+                    <ul>
+                        <li><code>order</code> : add to flex items to change visual order of specific flex item</li>
+                    </ul>
+                    <p><strong>Note :</strong> Valid classes are from 0-12. The lowest number has the highest priority, i.e., order-1 is shown before order-2.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-secondary&quot;&gt;
+    &lt;div class=&quot;p-2 bg-info order-3&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-warning order-2&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 bg-primary order-1&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Wrap :</h5>
+                    <p>Controls how flex items are wrapped in flex containers.</p>
+                    <ul>
+                        <li><code>flex-nowrap</code> : add with <code>d-flex</code> to no wrapping to flex container (default)</li>
+                        <li><code>flex-wrap</code> : add with <code>d-flex</code> to wrap flex container</li>
+                        <li><code>flex-wrap-reverse</code> : add with <code>d-flex</code> to reverse wrap flex container</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-wrap&quot;&gt;..&lt;/div&gt;
+&lt;div class=&quot;d-flex flex-wrap-reverse&quot;&gt;..&lt;/div&gt;
+&lt;div class=&quot;d-flex flex-nowrap&quot;&gt;..&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Auto Margins :</h5>
+                    <p>Add auto margins to flex items with <code>.mr-auto</code>, push items to right -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-secondary&quot;&gt;
+  &lt;div class=&quot;p-2 mr-auto bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+  &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+  &lt;div class=&quot;p-2 bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <p>Add auto margins to flex items with <code>.ml-auto</code>, push items to left -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-secondary&quot;&gt;
+  &lt;div class=&quot;p-2 bg-info&quot;&gt;Flex item 1&lt;/div&gt;
+  &lt;div class=&quot;p-2 bg-warning&quot;&gt;Flex item 2&lt;/div&gt;
+  &lt;div class=&quot;p-2 ml-auto bg-primary&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Align Content :</h5>
+                    <p>Controls the vertical alignment of gathered flex items.</p>
+                    <ul>
+                        <li><code>align-content-start|end|center|between|around|stretch</code> : add with <code>d-flex</code> for vertical alignment of gathered flex items</li>
+                    </ul>
+                    <p><strong>Note :</strong> These classes have no effect on single rows of flex items.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex flex-wrap align-content-start&quot;&gt;..&lt;/div&gt;
+&lt;div class=&quot;d-flex flex-wrap align-content-end&quot;&gt;..&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Align Items :</h5>
+                    <p>Controls the vertical alignment of single rows of flex items.</p>
+                    <ul>
+                        <li><code>align-items-start|end|center|baseline|stretch</code> : add with <code>d-flex</code> for vertical alignment of single rows of flex items</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex align-items-start&quot;&gt;..&lt;/div&gt;
+&lt;div class=&quot;d-flex align-items-end&quot;&gt;..&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Flex Align Self :</h5>
+                    <div>Controls the vertical alignment of a specified flex item.</div>
+                    <ul>
+                        <li><code>align-self-start|end|center|baseline|stretch</code> : add with <code>d-flex</code> for vertical alignment of specified flex item</li>
+                    </ul>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;d-flex bg-light&quot; style=&quot;height:150px&quot;&gt;
+    &lt;div class=&quot;p-2 border&quot;&gt;Flex item 1&lt;/div&gt;
+    &lt;div class=&quot;p-2 border align-self-start&quot;&gt;Flex item 2&lt;/div&gt;
+    &lt;div class=&quot;p-2 border&quot;&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+                <div>
+                    <h5>Responsive Flex :</h5>
+                    <p><strong>Note :</strong> * = <code>sm|md|lg|xl</code></p>
+                    <h6>Flex Container -</h6>
+                    <ul>
+                        <li><code>d-*-flex</code> : creates flexbox container for different screens</li>
+                        <li><code>d-*-inline-flex</code> : ceates inline flexbox container for different screens</li>
+                    </ul>
+                    <h6>Direction -</h6>
+                    <ul>
+                        <li><code>flex-*-row</code> : display flex items horizontally on different screens</li>
+                        <li><code>flex-*-row-reverse</code> : display flex items horizontally, and right-aligned, on different screens</li>
+                        <li><code>flex-*-column</code> : display flex items vertically on different screens</li>
+                        <li><code>flex-*-column-reverse</code> : display flex items vertically, with reversed order, on different screens screens</li>
+                    </ul>
+                    <h6>Justified Content -</h6>
+                    <ul>
+                        <li><code>justify-content-*-start</code> : display flex items from the start (left-aligned) on different screens</li>
+                        <li><code>justify-content-*-end</code> : display flex items at the end (right-aligned) on different screens</li>
+                        <li><code>justify-content-*-center</code> : display flex items in the center of flex container on different screens</li>
+                        <li><code>justify-content-*-between</code> : display flex items in &quot;between&quot; on different screens</li>
+                        <li><code>justify-content-*-around</code> : display flex items &quot;around&quot; on different screens</li>
+                    </ul>
+                    <h6>Fill/Equal Width -</h6>
+                    <ul>
+                        <li><code>flex-*-fill</code> : force flex items into equal widths on different screens</li>
+                    </ul>
+                    <h6>Grow -</h6>
+                    <ul>
+                        <li><code>flex-*-grow-0</code> : don&#39;t make items grow on different screens</li>
+                        <li><code>flex-*-grow-1</code> : make items grow on different screens</li>
+                    </ul>
+                    <h6>Shrink -</h6>
+                    <ul>
+                        <li><code>flex-*-shrink-0</code> : don&#39;t make items shrink on diferent screens</li>
+                        <li><code>flex-*-shrink-1</code> : make items shrink on different screens</li>
+                    </ul>
+                    <h6>Order -</h6>
+                    <ul>
+                        <li><code>order-*-0-12</code> : change order from 0 to 12 on small screens</li>
+                    </ul>
+                    <h6>Wrap -</h6>
+                    <ul>
+                        <li><code>flex-*-nowrap</code> : don&#39;t wrap items on different screens</li>
+                        <li><code>flex-*-wrap</code> : wrap items on different screens</li>
+                        <li><code>flex-*-wrap-reverse</code> : reverse wrapping of items on different screens</li>
+                    </ul>
+                    <h6>Align Content -</h6>
+                    <ul>
+                        <li><code>align-content-*-start</code> : align gathered items from start on different screens</li>
+                        <li><code>align-content-*-end</code> : align gathered items at the end on different screens</li>
+                        <li><code>align-content-*-center</code> : align gathered items in the center on different screens</li>
+                        <li><code>align-content-*-around</code> : align gathered items &quot;around&quot; on different screens</li>
+                        <li><code>align-content-*-stretch</code> : stretch gathered items on different screens</li>
+                    </ul>
+                    <h6>Align Items -</h6>
+                    <ul>
+                        <li><code>align-items-*-start</code> : align single rows of items from the start on different screens</li>
+                        <li><code>align-items-*-end</code> : align single rows of items at the end on different screens</li>
+                        <li><code>align-items-*-center</code> : align single rows of items in the center on different screens</li>
+                        <li><code>align-items-*-baseline</code> : align single rows of items on the baseline on different screens</li>
+                        <li><code>align-items-*-stretch</code> : stretch single rows of items on different screens</li>
+                    </ul>
+                    <h6>Align Self -</h6>
+                    <ul>
+                        <li><code>align-self-*-start</code> : align flex item from the start on different screens</li>
+                        <li><code>align-self-*-end</code> : lign flex item at the end on different screens</li>
+                        <li><code>align-self-*-center</code> : align flex item in the center on different screens</li>
+                        <li><code>align-self-*-baseline</code> : align flex item on the baseline on different screens</li>
+                        <li><code>align-self-*-stretch</code> : stretch flex item on different screens</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="grid">
+                <h4 class="heading"># Grid</h4>
+                <ul>
+                    <li><code>row</code> : add to <code>&lt;div&gt;</code> to create horizontal groups of columns</li>
+                    <li><code>col</code> : add to <code>&lt;div&gt;</code> inside <code>.row</code> to create column (must be immediate childs of row)</li>
+                    <li><code>col-sm|md|lg|xl</code> : create responsive col - decide by us create equal of width</li>
+                    <li><code>col-sm|md|lg|xl-n</code> : responsive col that spans 1-12 rows (n = 1-12)</li>
+                    <li><code>no-gutters</code> : add with <code>.row</code> to remove gutters (extra space)</li>
+                </ul>
+                <div>
+                    <strong>Note :</strong>
+                    <ol>
+                        <li>Rows must be placed in <code>container</code> or <code>container-fluid</code>.</li>
+                        <li>Cols spanned must be sum to 12.</li>
+                        <li>* = <code>sm|md|lg|xl</code></li>
+                    </ol>
+                </div>
+                <div>
+                    <h6>Ex :</h6>
+                    <h6 class="justify">Create unequal col of 25% 50% 25% :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-md-3&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">Create col of equal width (auto layout col) :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-*&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">Stacked horizontally on large screens and stacked on top of each other on small screens :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-6&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-sm-6&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">4 columns of 25% width each (auto layout col) :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-sm&quot;&gt;1 of 4&lt;/div&gt;
+    &lt;div class=&quot;col-sm&quot;&gt;2 of 4&lt;/div&gt;
+    &lt;div class=&quot;col-sm&quot;&gt;3 of 4&lt;/div&gt;
+    &lt;div class=&quot;col-sm&quot;&gt;4 of 4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">Nested Columns :</h6>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-8&quot;&gt;
+        col-8
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-6&quot;&gt;col-6&lt;/div&gt;
+            &lt;div class=&quot;col-6&quot;&gt;col-6&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-4&quot;&gt;col-4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">On Xtra Small Screen Devices :</h6>
+                    <p>Two cols of 25% 75% split on all devices (xsm, sm, md, lg, xl).</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-3 bg-success&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-9 bg-warning&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">On Small Screen Devices :</h6>
+                    <p>Two cols of 25% 75% split on sm (md, lg, xl) devices, on x-sm devices it will automatically stack 100% width.</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-3 bg-success&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-sm-9 bg-warning&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">On Medium Screen Devices :</h6>
+                    <p>
+                        On sm size, look at classes with <code>-sm-</code> in them and use those &amp; on md size look at classes with <code>-md-</code> in them and use those. 25% 75% split on sm devices &amp; 50% 50% split on md (lg, xl)
+                        devices. on x-sm devices, it will automatically stack (100%) -
+                    </p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-3 col-md-6&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-sm-9 col-md-6&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <p>Using Only Medium. md, lg, xl devices it split 50% 50%, for sm, x-sm devices it will stack vertically (100% width) -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;
+        &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">On Large Screen Devices :</h6>
+                    <p>
+                        On sm size, look at classes with <code>-sm-</code>. on md size, look at classes with <code>-md-</code>. on lg size, look at classes with <code>-lg-</code>. 25% 75% split on sm devices, 50% 50% split on md devices
+                        &amp; 33% 66% split on lg &amp; xl devices. On x-sm devices, it will automatically stack (100%) -
+                    </p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-3 col-md-6 col-lg-4&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-sm-9 col-md-6 col-lg-8&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <p>Using Only Large. lg &amp; xl devices split 50% 50%, for md, sm &amp; x-sm devices it will stack vertically (100% width) -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <h6 class="justify">On Extra Large Screen Devices :</h6>
+                    <p>25% 75% split on sm devices, 50% 50% split on md devices, 33% 66% split on lg &amp; 20% 80% split on xl devices. On x-sm devices, it will automatically stack (100%) -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;container-fluid&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-sm-3 col-md-6 col-lg-4 col-xl-2&quot;&gt;
+            &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-sm-9 col-md-6 col-lg-8 col-xl-10&quot;&gt;
+            &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                    <p>Using Only XLarge. On xl devices, split 50% 50%. For lg, md, sm, x-sm devices, it will stack vertically (100% width) -</p>
+                    <pre class="code-box code-box-color"><code>&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xl-6&quot;&gt;
+        &lt;p&gt;Lorem ipsum...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-xl-6&quot;&gt;
+        &lt;p&gt;Sed ut perspiciatis...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="https://itspatkar.github.io/Cheatsheets/"><i class="bi bi-arrow-left-square-fill"></i></a>
+                <a href="#" class="float-end"><i class="bi bi-arrow-up-square-fill"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="assets/script.js"></script>
+    </body>
+</html>
