@@ -1,0 +1,3515 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>C++ Cheatsheet</title>
+
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+
+    <body data-theme="light">
+        <div class="container">
+            <!-- Theme Toggle -->
+            <div class="button float-end"><i class="bi bi-circle-half"></i></div>
+            
+            <h3 class="title">C++</h3>
+
+            <div class="section-list">
+                <ul>
+                    <!-- Basic -->
+                    <li><a href="#program-structure">Program Structure</a></li>
+                    <li><a href="#compile-execute">Compile & Execute</a></li>
+                    <li><a href="#input-output">Input &amp; Output</a></li>
+                    <li><a href="#comments">Comments</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#data-types">Data Types</a></li>
+                    <li><a href="#storage-classes">Storage Classes</a></li>
+                    <li><a href="#operators">Operators</a></li>
+                    <li><a href="#decision-making">Decision Making</a></li>
+                    <li><a href="#loops">Loops</a></li>
+                    <li><a href="#loop-control-statements">Loop Control Statements</a></li>
+                    <li><a href="#strings">Strings</a></li>
+                    <li><a href="#arrays">Arrays</a></li>
+                    <li><a href="#pointers">Pointers</a></li>
+                    <li><a href="#references">References</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#enum">Enumeration</a></li>
+                    <li><a href="#struct">Structures</a></li>
+
+                    <!-- OOP -->
+                    <li><a href="#class-objects">Class &amp; Objects</a></li>
+                    <li><a href="#constructor-destructor">Constructor &amp; Destructor</a></li>
+                    <li><a href="#inheritance">Inheritance</a></li>
+                    <li><a href="#polymorphism">Polymorphism</a></li>
+                    <li><a href="#abstract-class">Abstract Classes</a></li>
+                    <li><a href="#abstraction">Abstraction</a></li>
+                    <li><a href="#encapsulation">Encapsulation</a></li>
+
+                    <!-- Advanced -->
+                    <li><a href="#exception-handling">Exception Handling</a></li>
+                    <li><a href="#file-streams">Files & Streams</a></li>
+                    <li><a href="#dynamic-memory">Dynamic Memory</a></li>
+                    <li><a href="#template">Templates</a></li>
+                    <li><a href="#namespaces">Namespaces</a></li>
+                    <li><a href="#preprocessor">Preprocessor</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="program-structure">
+                <h4 class="heading"># Program Structure</h4>
+                <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+int main(){
+    cout << "Hello World" << endl;
+
+    return 0;
+}</code></pre>
+            </div>
+
+            <div class="sections" id="compile-execute">
+                <h4 class="heading"># Compile & Execute</h4>
+                <p>The g++ is a compiler that is used to compile programs written in the C++ programming language. It is part of the GNU Compiler Collection (GCC).</p>
+                <h5>&bull; Compiling Program :</h5>
+                <div class="code-box"><code>g++ file.cpp</code></div>
+                <div class="code-box"><code>g++ file.cpp -o exe_name</code></div>
+                
+                <h5>&bull; Executing Program :</h5>
+                <div class="code-box"><code>./a.out</code></div>
+                <div class="code-box"><code>./exe_name</code></div>
+            </div>
+
+            <div class="sections" id="input-output">
+                <h4 class="heading"># Input &amp; Output</h4>
+                <p>The <code>iostream</code> (or input-output stream) is a C++ Standard Library (or header file) that provides definitions for the <code>istream</code> and <code>ostream</code> classes. It is used to read input from a stream of characters, such as a console or file, and write output data to the console or file.</p>
+                <div>
+                    <h5>&bull; Ostream Class :</h5>
+                    <p>The <code>ostream</code> (or output stream) is used to write a stream of characters as output to the console or a file.</p>
+                    <ul>
+                        <li>
+                            <p><b>Console Output :</b> The <code>cout</code> (or console-output) is a predefined object of the ostream class. It is used with a stream insertion operator (<code>&lt;&lt;</code>) to display output.</p>
+                            <pre class="code-box code-box-color"><code>cout << "Hello World";
+cout << "\nValue of X is " << x;</code></pre>
+                        </li>
+                        <li>
+                            <p><b>End Line :</b> The <code>endl</code> (or end-line) is a predefined object of the ostream class. It is used to insert new line characters and flush the stream.</p>
+                            <pre class="code-box code-box-color"><code>cout << "Hello World" << endl;</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>&bull; Istream Class :</h5>
+                    <p>The <code>istream</code> (or input stream) is used to handle input operations from a stream of characters (such as the console or a file).</p>
+                    <ul>
+                        <li>
+                            <p><b>Console Input :</b> The <code>cin</code> (or console input) is a predefined object of the istream class. It is used with the stream extraction operator (<code>&gt;&gt;</code>) to read input from the console.</p>
+                            <pre class="code-box code-box-color"><code>cin >> n;
+cin >> a >> b >> c;</code></pre>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>&bull; Escape Sequences :</h5>
+                    <p>The escape sequences are special non-printing characters that are used to control the printing behavior of the output stream objects.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Escape Char</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>\a</code></td>
+                                    <td>Alarm or beep sound</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\b</code></td>
+                                    <td>Backspace</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\f</code></td>
+                                    <td>Form feed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\n</code></td>
+                                    <td>New line</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\r</code></td>
+                                    <td>Return</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\t</code></td>
+                                    <td>Tab space</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\\</code></td>
+                                    <td>Backslash</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\'</code></td>
+                                    <td>Single quote</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\?</code></td>
+                                    <td>Question mark</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\nnn</code></td>
+                                    <td>Octal number</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\xhh</code></td>
+                                    <td>Hexadecimal number</td>
+                                </tr>
+                                <tr>
+                                    <td><code>\0</code></td>
+                                    <td>Null</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="comments">
+                <h4 class="heading"># Comments</h4>
+                <div>
+                    <h5>&bull; Single-Line Comment :</h5>
+                    <p><code>//</code> is used for single-line comment.</p>
+                    <pre class="code-box code-box-color"><code>// This is single-line comment.
+
+cout << "Hello World"; // This is comment</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Multi-Line Comment :</h5>
+                    <p><code>/* */</code> is used for multi-line comment.</p>
+                    <pre class="code-box code-box-color"><code>/* This is
+multi-line comment. */
+
+int x = 22; /* This is multi-line
+comment. */</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="variables">
+                <h4 class="heading"># Variables</h4>
+                <div>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>data_type variable_name;</code></div>
+                    <pre class="code-box code-box-color"><code>int a;
+int x, y, z = 17;
+int n = 22;
+string name = "Mandar";</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Local &amp; Global Variables :</h5>
+                    <p>The <strong>Local variables</strong> are declared inside a function or block and can be used only by statements that are inside that function or block. The <strong>Global variables</strong> are defined outside of all the functions, can be accessed by any function, and hold their value throughout the life of program.</p>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+// Global Variables :
+float f = 17.22;
+int n = 0;
+
+int main(){
+    // Local Variables :
+    int x, y = 22;
+    float a, b;
+    a = b = 22.17;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="data-types">
+                <h4 class="heading"># Data Types</h4>
+                <p>A data type specifies the type of data that a variable can store such as integer, floating, character, etc.</p>
+                <div>
+                    <h5>&bull; Primitive Data Types :</h5>
+                    <p>A primitive type is predefined and built into a programming language. It is named with a reserved keyword.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date Type</th>
+                                    <th>Size</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>bool</code></td>
+                                    <td>1 byte</td>
+                                    <td>boolean values (<code>true</code> or <code>false</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>char</code></td>
+                                    <td>1 byte</td>
+                                    <td>single character, letter, number or ASCII values</td>
+                                </tr>
+                                <tr>
+                                    <td><code>int</code></td>
+                                    <td>4 byte</td>
+                                    <td>integers (non-decimals)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>float</code></td>
+                                    <td>4 byte</td>
+                                    <td>fractional numbers (upto 7 decimal digits)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>double</code></td>
+                                    <td>8 byte</td>
+                                    <td>fractional numbers (upto 15 decimal digits)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>void</code></td>
+                                    <td>-</td>
+                                    <td>represents no type or absence of type</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Data Type Modifier :</h5>
+                    <p>Modifiers are prefix keywords that change the properties of the basic primitive data type.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date Type</th>
+                                    <th>Size</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>signed</code></td>
+                                    <td>4 byte</td>
+                                    <td>only negative numbers</td>
+                                </tr>
+                                <tr>
+                                    <td><code>unsigned</code></td>
+                                    <td>4 byte</td>
+                                    <td>only positive numbers</td>
+                                </tr>
+                                <tr>
+                                    <td><code>short</code></td>
+                                    <td>2-4 byte</td>
+                                    <td>small numbers (machine dependent)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>long</code></td>
+                                    <td>4-8 byte</td>
+                                    <td>large numbers (machine dependent)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Date Type Qualifiers :</h5>
+                    <p>A type qualifier is used to refine the declaration of a variable, a function, and parameters.</p>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Keyword</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>const</code></td>
+                                    <td>constant (read-only variables that can't be reassigned)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>volatile</code></td>
+                                    <td>volatile variables' value could change unexpectedly, and no optimization is done on them.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>restrict</code></td>
+                                    <td>restrict is used for pointers, which tells the compiler that a restricted pointer is the only way to access the object pointed at it (no other pointer can point to the same object).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre class="code-box code-box-color"><code>const int COUNT = 1;</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Typedef Keyword :</h5>
+                    <p>The <code>typedef</code> keyword assigns a new name or alias to an existing data type.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>typedef type newname;</code></div>
+                    <pre class="code-box code-box-color"><code>typedef int feet;
+feet distance;
+distance = 2002;
+
+cout << "Distance = " << distance << endl;</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="storage-classes">
+                <h4 class="heading"># Storage Classes</h4>
+                <p>The Storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ program.</p>
+                <h6>Syntax :</h6>
+                <div class="code-box"><code>class type name</code></div>
+                <h6>C++ uses 5 storage classes, namely -</h6>
+                <ul>
+                    <li>
+                        <h6>Automatic :</h6> 
+                        <p>It is the default storage class for all local variables.</p>
+                    </li>
+                    <li>
+                        <h6>External :</h6>
+                        <p>It specifies that the symbol has external linkage to an external file or scope. The external storage class simply tells us that the variable is defined elsewhere and not within the same block where it is used.</p>
+                    </li>
+                    <li>
+                        <h6>Static :</h6>
+                        <p>When a variable is declared static, a single copy of the variable is created (memory is allocated only once) and shared among all objects at the class level. All instances of the class share the same static variable. The static is a property of the class, not the object, and hence the object of the class can't use it to access it; it can be called using the class name. The value of static variables and data members persists until the end of the program.</p>
+                    </li>
+                    <li>
+                        <h6>Register :</h6>
+                        <p>Register variables are stored in the processor register instead of memory <strong>(deprecated)</strong>.</p>
+                    </li>
+                    <li>
+                        <h6>Mutable :</h6>
+                        <p>It allows a member of an object to override a const member function (applies only to class objects).</p>
+                    </li>
+                </ul>
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Lifetime</th>
+                                <th>Visibility</th>
+                                <th>Default Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>auto</code></td>
+                                <td>function/block</td>
+                                <td>local</td>
+                                <td>garbage</td>
+                            </tr>
+                            <tr>
+                                <td><code>extern</code></td>
+                                <td>throughout program</td>
+                                <td>global</td>
+                                <td>zero</td>
+                            </tr>
+                            <tr>
+                                <td><code>static</code></td>
+                                <td>throughout program</td>
+                                <td>local</td>
+                                <td>zero</td>
+                            </tr>
+                            <tr>
+                                <td><code>register</code></td>
+                                <td>function/block</td>
+                                <td>local</td>
+                                <td>garbage</td>
+                            </tr>
+                            <tr>
+                                <td><code>mutable</code></td>
+                                <td>class</td>
+                                <td>local</td>
+                                <td>garbage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>auto int x;
+register int amount = 0;
+static int count = 1;</code></pre>
+            </div>
+
+            <div class="sections" id="operators">
+                <h4 class="heading"># Operators</h4>
+                <div>
+                    <h5>&bull; Arithmetic Operators :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>Addition</td>
+                                </tr>
+                                <tr>
+                                    <td><code>-</code></td>
+                                    <td>Substraction</td>
+                                </tr>
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>Multiplication</td>
+                                </tr>
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>Division</td>
+                                </tr>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>Modulus</td>
+                                </tr>
+                                <tr>
+                                    <td><code>++</code></td>
+                                    <td>Increment</td>
+                                </tr>
+                                <tr>
+                                    <td><code>--</code></td>
+                                    <td>Decrement</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Relational Operators :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>==</code></td>
+                                    <td>Equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!=</code></td>
+                                    <td>Not equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code>></code></td>
+                                    <td>Greater than</td>
+                                </tr>
+                                <tr>
+                                    <td><code><</code></td>
+                                    <td>Less than</td>
+                                </tr>
+                                <tr>
+                                    <td><code>>=</code></td>
+                                    <td>Greater than or equal to</td>
+                                </tr>
+                                <tr>
+                                    <td><code><=</code></td>
+                                    <td>Less than or equal to</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Logical Operators :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&&</code></td>
+                                    <td>Logical and</td>
+                                </tr>
+                                <tr>
+                                    <td><code>||</code></td>
+                                    <td>Logical or</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!</code></td>
+                                    <td>Logical not</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Bitwise Operators :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&</code></td>
+                                    <td>Bitwise AND</td>
+                                </tr>
+                                <tr>
+                                    <td><code>|</code></td>
+                                    <td>Bitwise OR</td>
+                                </tr>
+                                <tr>
+                                    <td><code>^</code></td>
+                                    <td>Bitwise XOR</td>
+                                </tr>
+                                <tr>
+                                    <td><code>~</code></td>
+                                    <td>One's Complement (unary)</td>
+                                </tr>
+                                <tr>
+                                    <td><code><<</code></td>
+                                    <td>Left Shift Operator</td>
+                                </tr>
+                                <tr>
+                                    <td><code>>></code></td>
+                                    <td>Right Shift Operator</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Sizeof Operator :</h5>
+                    <p>The <code>sizeof()</code> operator or function returns the amount of memory that is allocated to data types in bytes.</p>
+                    <pre class="code-box code-box-color"><code>int x = 22;
+cout << sizeof(x);</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Ternary Operator :</h5>
+                    <div class="code-box"><code>[condition] ? [expr_1] : [expr_2]</code></div>
+                    <p>If the condition is true, then expression 1 is evaluated; otherwise, expression 2 is evaluated.</p>
+                    <pre class="code-box code-box-color"><code>int a=5, b=10, large;
+large = a > b ? a : b;
+
+cout << "Largest number is " << large << endl;</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Type Casting Operator :</h5>
+                    <p>Typecasting is the conversion of one data type into another by using a casting operator.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>type(expression)</code></div>
+                    <div class="code-box"><code>(type)expression</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>// Casting float into int:
+cout << int(22.17);
+cout << (int)17.22;
+</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Membership Operator :</h5>
+                    <p>The <strong>dot operator</strong> (<code>.</code>) and the <strong>arrow operator</strong> (<code>-></code>) are used to reference individual members of classes, structures, and unions. To access members through a pointer, the arrow operator is used.</p>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+   int roll;
+   char name[20];
+};
+
+int main(){
+    // Using dot operator :
+    struct Classroom s = { 17, "Mandar" };
+    cout << "Roll: " << s.roll << "\nName: "<< s.name << endl;
+
+    // Using arrow operator (pointer) :
+    struct Classroom *sp = &s;
+    cout << "Roll: " << sp->roll << "\nName: "<< sp->name;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Referencing &amp; Dereferencing Operator :</h5>
+                    <p>The <strong>referencing operator</strong> (<code>&</code>) is used for accessing the memory location of a variable, and the <strong>dereferncing operator</strong> (<code>*</code>) is used for accessing the value stored at the memory location.</p>
+                    <pre class="code-box code-box-color"><code>// Referencing:
+int v = 22;
+cout << "Address of v is " << &v;
+
+// Dereferencing:
+cout << "\nValue of v is " << *(&v);</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Scope Resolution Operator :</h5>
+                    <p>The scope resolution operator (<code>::</code>) is used to access variables, functions, or classes defined in a specific scope or namespace. It can be used to define the member function outside of the class and to access the static members of a class.</p>
+                    <pre class="code-box code-box-color"><code>int x = 100;
+
+int main(){
+    int x = 50;
+    cout << "Local X is " << x << endl;
+    cout << "Global X is " << ::x << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="decision-making">
+                <h4 class="heading"># Decision Making</h4>
+                <div>
+                    <h5>&bull; If Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if(condition){
+    // statements_if_true
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int a=10, b=20;
+
+if(a > b){
+    cout << "A is larger than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; If-Else Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if(condition){
+    // statements_if_true
+} else {
+    // statements_if_false
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int a=10, b=20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else {
+    cout << "A is smaller than B";
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Else-If Statement :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>if(condition){
+    // statements_if_true
+} else if (condition) {
+    // statements_if_true
+} else {
+    // statements_if_false
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int a=10, b=20;
+
+if(a > b){
+    cout << "A is greater than B";
+} else if (a < b) {
+    cout << "A is smaller than B";
+} else {
+    cout << "A is equal to B";
+}</code></pre>
+               </div>
+               <div>
+                    <h5>&bull; Nested If-Else :</h5>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int age = 22;
+
+if(age > 0){
+    if(age < 18)
+        cout << "You are young";
+    else if ( age >= 18)
+        cout << "You are adult";
+} else {
+    if(age < 0)
+        cout << "Age cannot be negative";
+    else
+        cout << "Age cannot be zero";
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Switch Case :</h5>
+                    <p>A switch statement allows a variable to be tested for equality against a list of values.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>switch(expression){
+    case constant-expression-1 :
+        statement(s);
+        break;
+    case constant-expression-2 :
+        statement(s);
+        break;
+    case constant-expression-N :
+        statement(s);
+        break;
+
+    default :
+        statement(s);
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int day = 3;
+
+switch(day){
+    case 1 :
+        cout << "Mon";
+        break;
+    case 2 :
+        cout << "Tue";
+        break;
+    case 3 :
+        cout << "Wed";
+        break;
+    case 4 :
+        cout << "Thu";
+        break;
+    case 5 :
+        cout << "Fri";
+        break;
+    case 6 :
+        cout << "Sat";
+        break;
+    case 7 :
+        cout << "Sun";
+        break;
+
+    default :
+        cout << "Incorrect Day!";
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="loops">
+                <h4 class="heading"># Loops</h4>
+                <div>
+                    <h5>&bull; While Loop :</h5>
+                    <p>Generally, when the number of iterations is unknown, the while loop is used.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>while(condition) {
+    statement(s);
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 5){
+    cout << "Hello World";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Do-While Loop :</h5>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>do {
+    statement(s);
+} while(condition);</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+do {
+    cout << "Hello World";
+    n++;
+} while(n <= 5)</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; For Loop :</h5>
+                    <p>Generally, when the number of iterations is known, the for loop is used.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>for ( init; condition; increment ){
+    statement(s);
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++){
+    cout << "Hello World";
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Nested Loops :</h5>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>for(int i=1; i<=5; i++)
+    for(int j=1; j<=i; j++)
+        cout << "Hello World";</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="loop-control-statements">
+                <h4 class="heading"># Loop Control Statements</h4>
+                <div>
+                    <h5>&bull; Break Statement :</h5>
+                    <p>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>break;</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 100){
+    if (n == 22) break;
+    cout << "Hello World";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Continue Statement :</h5>
+                    <p>This causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>continue;</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n = 1;
+while(n <= 100){
+    if (n%2 == 0) continue;
+    cout << "Hello World";
+    n++;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Goto Statement :</h5>
+                    <p>Transfers control to the labelled statement.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>goto label;
+labal:
+    statement(s);</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n;
+INPUT:
+cout << "Enter Odd Number :";
+cin >> n;
+if (n%2 == 0) goto INPUT;</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="strings">
+                <h4 class="heading"># Strings</h4>
+                <p>Strings are one-dimensional arrays of characters terminated by the null character '\0'. There are two ways of using strings in C++ :</p>
+                <ol>
+                    <li>String as Char Array (C-style)</li>
+                    <li>String Class (recommended)</li>
+                </ol>
+                <div>
+                    <h5>&bull; String as Char Array :</h5>
+                    <p>Declaring a string as a character array as in the C language</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>char name[];</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>char greet[] = "Hello World";
+char name[10];
+name = "Mandar";</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; String Class :</h5>
+                    <p>The standard C++ library provides a string class. For this, we must include the library/header file <code>&lt;string&gt;</code>.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>string name;</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+
+int main(){
+    string greet = "Hello World";
+    
+    cout << greet << endl;
+    cout << "String Length is " << greet.length() << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; String Functions :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Function</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>str.length()</code></td>
+                                    <td>Returns the length of string</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.append(string)</code></td>
+                                    <td>Appends the string at the end of str.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.copy(string,len,pos)</code></td>
+                                    <td>Copies c-style string of size (len) from position (pos) to str</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.replace(pos,len,string)</code></td>
+                                    <td>Replace string of size (len) from position (pos) in str</td>
+                                </tr>
+                                <tr>
+                                    <tr>
+                                    <td><code>str.compare(str2)</code></td>
+                                    <td>Returns 0 if both are the same; less than 0 if str&lt;str2; greater than 0 if str&gt;str2.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.find(string)</code></td>
+                                    <td>Find first occurance of string in str and returns the position</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.substr(pos,len)</code></td>
+                                    <td>Returns sub-string of length (len) from the string from position (pos)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>str.c_str()</code></td>
+                                    <td>Returns C string equivalent (null-terminated sequence of characters)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="arrays">
+                <h4 class="heading"># Arrays</h4>
+                <p>An array is a fixed-size sequential collection of elements of the same type. All arrays consist of contiguous memory locations. Array indexes start with 0: [0] is the first element. Arrays cannot be reinitialized.</p>
+                <h6>Declaring array :</h6>
+                <div class="code-box"><code>type name[size];</code></div>
+                <h6>Initializing array :</h6>
+                <pre class="code-box"><code>type name[N] = { element1, element2, ..., elementN };
+type name[] = { element1, element2, ..., elementN };</code></pre>
+                <h6>Array Indexing :</h6>
+                <pre class="code-box"><code>array[index];</code></pre>
+                <h6>Size of array :</h6>
+                <div class="code-box"><code>sizeof(array) / sizeof(type);</code></div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>int num[] = { 1, 2, 3, 4, 5 };
+int n = num[2];
+
+int square_num[5];
+int size = sizeof(square_num) / sizeof(int);
+for (int i = 0; i < size; i++)
+    square_num[i] = (i+1)*(i+1);
+
+for(int i=0; i < size; i++)
+    cout << square_num[i] << " ";</code></pre>
+                <div>
+                    <h5>&bull; Multi-dimensional Arrays :</h5>
+                    <p>A multi-dimensional array is an array of arrays.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box"><code>type name[size1][size2]...[sizeN];</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int arr[4][2] = { {1,2}, {3,4}, {5,6}, {7,8} };
+for( int i=0; i<4; i++)
+    for( int j=0; j<2; j++)
+        cout << arr[i][j] << " ";</code></pre>
+                </div>
+                <div>
+                    <div>
+                        <h5>&bull; Pointer to Array :</h5>
+                        <pre class="code-box code-box-color"><code>int num[5] = { 1, 2, 3, 4, 5};
+int *p;
+p = num;
+
+cout << "Array values using pointer:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(p + i) << endl;
+
+cout << "Array values using num as address:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(num + i) << endl;
+
+cout << "Array values by incrementing pointer address:" << endl;
+for ( int i = 0; i < 5; i++ )
+    cout << *(p++) << endl;</code></pre>
+                    </div>
+                    <div>
+                        <h5>&bull; Passing Arrays to Function :</h5>
+                        <pre class="code-box code-box-color"><code>int sumOfNum(int num[], int size){
+    int sum=0;
+    for (int i=0; i < size; i++){
+        sum += num[i];
+    }
+    return sum;
+}
+
+int main(){
+    int num[5] = { 1, 2, 3, 4, 5};
+    int size = sizeof(num)/sizeof(int);
+    cout << "Sum of numbers is " << sumOfNum(num,size) << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>&bull; Return Array from Function :</h5>
+                        <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;time.h&gt;
+using namespace std;
+
+// Get array of random numbers -
+int* getArray(){
+    static int num[5];
+
+    // set the seed
+    srand((unsigned)time(NULL));
+
+    for (int i = 0; i < 5; i++)
+        num[i] = rand()%10;
+
+    return num;
+}
+
+int main(){
+    int *p;
+    p = getArray();
+    for (int i = 0; i < 5; i++)
+        cout << *(p++) << " ";
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>&bull; Array of Objects :</h5>
+                        <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int id;
+        string name;
+    public:
+        void setEmpID(int id){
+            this->id = id;
+        }
+        int getEmpID(){
+            return id;
+        }
+        void setEmpName(string name){
+            this->name = name;
+        }
+        string getEmpName(){
+            return name;
+        }
+};
+
+int main(){
+    // Creating array of type class:
+    Employee emp[4];
+
+    string emp_name[4] = {"Vinit", "Amit", "Ankit", "Sumit"};
+
+    for(int i=0; i<4; i++){
+        emp[i].setEmpID(i+101);
+        emp[i].setEmpName(emp_name[i]);
+    }
+
+    for(int i=0; i<4; i++){
+        cout << "\nEmployee ID: " << emp[i].getEmpID() << endl;
+        cout << "Employee Name: " << emp[i].getEmpName() << endl;
+    }
+
+    return 0;
+}</code></pre>
+                        <h6>Array of Objects with Parameterized Constructor :</h6>
+                        <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int id;
+        string name;
+    public:
+        Employee(int id, string name){
+            this->id = id;
+            this->name = name;
+        }
+        int getEmpID(){
+            return id;
+        }
+        string getEmpName(){
+            return name;
+        }
+};
+
+int main(){
+    // Creating array of type class with constructor:
+    Employee emp[4] = { Employee(101,"Vinit"), Employee(102,"Amit"), Employee(103,"Sumit"), Employee(104,"Ankit") };
+
+    for(int i=0; i<4; i++){
+        cout << "\nEmployee ID: " << emp[i].getEmpID() << endl;
+        cout << "Employee Name: " << emp[i].getEmpName() << endl;
+    }
+
+    return 0;
+}</code></pre>
+                        <h6>Dynamic Array of Objects using new Keyword :</h6>
+                        <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int id;
+        string name;
+    public:
+        void setEmpID(int id){
+            this->id = id;
+        }
+        int getEmpID(){
+            return id;
+        }
+        void setEmpName(string name){
+            this->name = name;
+        }
+        string getEmpName(){
+            return name;
+        }
+};
+
+int main(){
+    // Creating dynamic array of type class:
+    Employee* emp = new Employee[4];
+
+    string emp_name[4] = {"Vinit", "Amit", "Ankit", "Sumit"};
+
+    for(int i=0; i<4; i++){
+        emp[i].setEmpID(i+101);
+        emp[i].setEmpName(emp_name[i]);
+    }
+
+    for(int i=0; i<4; i++){
+        cout << "\nEmployee ID: " << emp[i].getEmpID() << endl;
+        cout << "Employee Name: " << emp[i].getEmpName() << endl;
+    }
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="pointers">
+                <h4 class="heading"># Pointers</h4>
+                <p>A pointer is a variable which holds the memory address of another variable, i.e., it stores the address of a memory location.</p>
+                <ul class="justify">
+                    <li><strong>Referencing:</strong> The referencing is accessing the memory address of the variable. The reference operator (<code>&</code>) is used for this.</li>
+                    <li><strong>Dereferencing:</strong> The dereferencing involves accessing the value of a variable stored at a memory location. A dereferencing operator (<code>*</code>) is used for this.</li>
+                    <li>Pointers are used for dynamic memory allocation and deallocation.</li>
+                </ul>
+                <h6>Syntax :</h6>
+                <div class="code-box"><code>type *name;</code></div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>int n = 22;
+// Referencing:
+int *p = &n;
+
+cout << "Adrress: " << p;
+// Dereferencing:
+cout << "\nValue: " << *p;</code></pre>
+                <div>
+                    <h5> &bull; Pointer to Pointer :</h5>
+                    <p>A pointer to a pointer is a form of multiple indirection or a chain of pointers where pointer contains the adress of another pointer.</p>
+                    <h6>Syntax :</h6>
+                    <div class="code-box code-box-color"><code>type **name;</code></div>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>int n = 22;
+int *p = &n;
+int **pp = &p;
+
+cout << "n = " << n << endl;
+cout << "p = " << *p << endl;
+cout << "pp = " << **pp << endl;</code></pre>
+                </div>
+                <div>
+                    <h6>Types of Pointers :</h6>
+                    <ul>
+                        <li>
+                            <h6> NULL Pointer :</h6>
+                            <p>A pointer that is assigned NULL is called a null pointer. It does not point to any memory location; it represents an invalid memory location. It is used to initialise a pointer when that pointer has not been assigned any valid address yet.</p>
+                            <div class="code-box code-box-color"><code>int *p = NULL;</code></div>
+                        </li>
+                        <li>
+                            <h6> Void Pointer :</h6>
+                            <p>A pointer with no associated data type is referred to as a void pointer. It can point to data of any type. We cannot directly dereference a void pointer; it must first be typecast before dereferencing.</p>
+                            <pre class="code-box code-box-color"><code>int n = 22;
+void *p = &n;
+cout << *(int*)p << endl;</code></pre>
+                        </li>
+                        <li>
+                            <h6> Wild Pointer :</h6>
+                            <p>Wild pointers are also known as uninitialized pointers. These pointers usually point to some arbitrary memory location and may cause the program to crash or misbehave.</p>
+                        </li>
+                        <li>
+                            <h6> Dangling Pointer :</h6>
+                            <p>A dangling pointer is a pointer that points to some non-existing memory location.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sections" id="references">
+                <h4 class="heading"># References</h4>
+                <p>A reference variable is an alias, that is, another name for an already existing variable.</p>
+                <h6>Syntax :</h6>
+                <div class="code-box"><code>type &name = var;</code></div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>string food = "Veg Rice";
+string &meal = food;</code></pre>
+            </div>
+
+            <div class="sections" id="functions">
+                <h4 class="heading"># Functions</h4>
+                <p>Functions are blocks of statements that perform a specific task. It is reusable code that can be called anywhere in the program.</p>
+                <h6>Syntax :</h6>
+                <h6>Function Declaration (prototype) :</h6>
+                <div class="code-box"><code>return_type functionName(parameter_list);</code></div>
+                <h6>Function Definition :</h6>
+                <pre class="code-box"><code>return_type functionName(){
+    // body of function
+}</code></pre>
+                <h6>Function Calling :</h6>
+                <div class="code-box"><code>functionName();</code></div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>// Function declaration:
+void greet();
+int sum(int, int);
+
+// Function definition:
+void greet(){
+    cout << "Hello World";
+}
+int sum(int a, int b){
+    return a+b;
+}
+
+int main(){
+    // Calling function:
+    greet();
+    sum(17,22);
+
+    return 0;
+}</code></pre>
+                <div>
+                    <h5>&bull; Return Values :</h5>
+                    <p>A function with a return type other than void returns a value.</p>
+                    <pre class="code-box code-box-color"><code>int sum(int a, int b){
+    return a+b;
+}
+
+int main(){
+    cout << "Addition is " << sum(1,2) << endl;
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Parameters vs Arguments :</h5>
+                    <p>When a function is called, the values that are passed in the call are called <b>arguments</b>. They are also called <b>actual parameters</b>. The values that are written at the time of the function prototype and the definition of the function are called <b>parameters</b>. They are also called <b>formal parameters</b>.</p>
+                    <pre class="code-box code-box-color"><code>// Here name is parameter
+void greet(string name){
+    cout << "Hello " << name << endl;
+}
+
+int main(){
+    string name = "Mandar";
+
+    // Here name is argument
+    greet(name);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Function Arguments :</h5>
+                    <p>Arguments are passed to functions as formal parameters while calling the function. There are three ways in which we can pass parameters to a function.</p>
+                    <ol>
+                        <li>
+                            <h6>Call by Value :</h6>
+                            <p>This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</p>
+                            <pre class="code-box code-box-color"><code>void swap(int a, int b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+int main(){
+    int a=17, b=22;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b << endl;
+    swap(a, b);
+    cout << "After Swapping :\nA = " << a << "\nB = " << b << endl;
+
+    return 0;
+}</code></pre>
+                        </li>
+                        <li>
+                            <h6>Call by Pointer :</h6>
+                            <p>This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</p>
+                            <pre class="code-box code-box-color"><code>void swap(int *a, int *b){
+    *a = *a + *b;
+    *b = *a - *b;
+    *a = *a - *b;
+}
+int main(){
+    int a=17, b=22;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b << endl;
+    swap(&a, &b);
+    cout << "After Swapping :\nA = " << a << "\nB = " << b << endl;
+
+    return 0;
+}</code></pre>
+                        </li>
+                        <li>
+                            <h6>Call by Reference :</h6>
+                            <p>This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</p>
+                            <pre class="code-box code-box-color"><code>void swap(int &a, int &b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+int main(){
+    int a=17, b=22;
+    cout << "Before Swapping :\nA = " << a << "\nB = " << b << endl;
+    swap(a, b);
+    cout << "After Swapping :\nA = " << a << "\nB = " << b << endl;
+
+    return 0;
+}</code></pre>
+                        </li>
+                    </ol>
+                </div>
+                <div>
+                    <h5>&bull; Default Values for Parameters :</h5>
+                    <p>When no parameters are passed or some arguments are left blank while calling the function, the default values are used.</p>
+                    <pre class="code-box code-box-color"><code>int sum(int a=2, int b=9){
+    return a+b;
+}
+int main(){
+    cout << "Sum is " << sum(1,2);
+    cout << "\nSum is " << sum(22);
+    cout << "\nSum is " << sum();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Function Overloading :</h5>
+                    <p>Function overloading is a feature of object-oriented programming. When two or more functions have the same name but different numbers and types of parameters, the corresponding function is overloaded based on the parameters; this is called function overloading. This is an example of a compile-time polymorphism.</p>
+                    <pre class="code-box code-box-color"><code>void sum(){
+    int a, b;
+    cout << "\nEnter Two Numbers : ";
+    cin >> a >> b;
+    cout << "Sum is " << a+b;
+}
+int sum(int a, int b){
+    return a+b;
+}
+int sum(int a, int b, int c){
+    return a+b+c;
+}
+float sum(float a, float b){
+    return a+b;
+}
+
+int main(){
+    cout << "Sum is " << sum(2,9);
+    cout << "\nSum is " << sum(1,2,3);
+    cout << "\nSum is " << sum(3.2f,2.4f);
+    sum();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Recursion :</h5>
+                    <p>The process in which a function calls itself directly or indirectly is called recursion, and the corresponding function is called a recursive function.</p>
+                    <pre class="code-box code-box-color"><code>int sum(int n){
+    if(n != 0) return n + sum(n-1);
+    else return n;
+}
+
+int main(){
+    cout << "Sum is " << sum(10);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Inline Function :</h5>
+                    <p>In an inline function, when it is called, the whole code of the inline function gets inserted or substituted at the point of the inline function call by the compiler. Inlining is only a request to the compiler, not a command, and the compiler may ignore the request for inlining.</p>
+                    <pre class="code-box code-box-color"><code>inline int max(int a, int b){
+    return (a > b) ? a : b;
+}
+
+int main(){
+    cout << "Max of number is " << max(12,10) << endl;
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Functions vs Methods :</h5>
+                    <p>A <b>function</b> is defined without any class and is called by its name only. A <b>method</b> also works the same as that of a function, but it is defined inside a class and invoked by its reference or object only.</p>
+                    <pre class="code-box code-box-color"><code>class Name {
+    public:
+        // printm is method
+        void printm(string name){
+            cout << name << endl;
+        }
+};
+
+// printf is function
+void printf(string name){
+    cout << name << endl;
+}
+
+int main(){
+    Name ob;
+    // printm is method
+    ob.printm("Mandar");
+
+    // printf is function
+    printf("Patkar");
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="enum">
+                <h4 class="heading"># Enumeration</h4>
+                <p>An enumeration is a user-defined data type that consists of integral constants. Default values are 0, 1, 2, and so on. To define an enumeration, the keyword <code>enum</code> is used.</p>
+                <h6>Syntax :</h6>
+                <div class="code-box">enum EnumName { list_of_names } var_list;</div>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>enum Week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+
+enum Color { Red, Green, Blue };
+
+int main(){
+    Week day;
+    day = Monday;
+    cout << "Day is " << day << endl;
+
+    Color clr = Blue;
+    cout << "Color is " << clr << endl;
+    
+    return 0;
+}</code></pre>
+            </div>
+
+            <div class="sections" id="struct">
+                <h4 class="heading"># Structures</h4>
+                <p>Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is referred to as a member of the structure. A structure can contain many different data types (int, string, bool, etc.). To access members of a structure, the member access operator (<code>.</code>) is used. We can't assign a character array (a string) to a structure, but we can copy it.</p>
+                <h6>Syntax :</h6>
+                <pre class="code-box"><code>struct Name {
+    type name;
+    type name;
+    ....;
+} var;</code></pre>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+struct Books {
+    int book_id;
+    char title[50];
+    char author[50];
+} book1;
+
+int main(){
+    // Book 1 Specification:
+    book1.book_id = 01;
+    strcpy( book1.title, "The C++ Programming Language");
+    strcpy( book1.author, "Bjarne Stroustrup");
+    cout << "Title: " << book1.title << endl;
+    cout << "Author: " << book1.author << endl;
+
+    // Book 2 Specification: (short-hand syntax)
+    struct Books book2 = { 02, "Beginning C++ Programming", "Richard Grimes"}; 
+    cout << "Title: " << book2.title << endl;
+    cout << "Author: " << book2.author << endl;
+
+    return 0;
+}</code></pre>
+                <div>
+                    <h5>&bull; Self Referential Structure :</h5>
+                    <p>Self-referential structures are those structures in which one or more pointers point to another structure of the same type.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box"><code>struct Name {
+    int p;
+    struct Name *pointer;
+};</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+    int roll;
+    char name[10];
+    struct Classroom *ptr;
+};
+
+int main(){
+    struct Classroom c1 = { 22, "Mandar", NULL };
+
+    c1.ptr = &c1;
+    cout << "Roll: " << c1.ptr->roll << "\nName: "<< c1.ptr->name;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Passing Structure as Function Argument :</h5>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom c){
+    cout << "Roll: " << c.roll << endl;
+    cout << "Name: "<< c.name << endl;
+}
+
+int main(){
+    struct Classroom c1 = {22, "Mandar"};
+    print(c1);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Passing Array of Structures as Argument :</h5>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom c[]){
+    for (int i=0; i<2; i++){
+        cout << "Roll: " << c[i].roll << endl;
+        cout << "Name: "<< c[i].name << endl;
+    }
+}
+
+int main(){
+    struct Classroom c[2] = { {17, "Vinit"}, {22, "Vinita"} };
+    print(c);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Return Structure Variable :</h5>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+    int roll;
+    char name[10];
+};
+
+struct Classroom edit(struct Classroom c){
+    c.roll=22;
+    strcpy(c.name,"Vinita");
+    
+    return c;
+}
+
+void print(struct Classroom c){
+    cout << "Roll: " << c.roll << "\nName: "<< c.name << endl;
+}
+
+int main(){
+    struct Classroom c1 = {17, "Vinit"};
+    print(c1);
+
+    c1=edit(c1);
+    print(c1);
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Passing Pointer to Structure as Argument :</h5>
+                    <pre class="code-box code-box-color"><code>struct Classroom {
+    int roll;
+    char name[10];
+};
+
+void print(struct Classroom *c_ptr){
+    cout << "Roll: " << c_ptr->roll << endl;
+    cout << "Name: "<< c_ptr->name << endl;
+}
+
+int main(){
+    struct Classroom c1 = {22, "Mandar"};
+    print(&c1);
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="class-objects">
+                <h4 class="heading"># Class &amp; Objects</h4>
+                <div>
+                    <h5>&bull; Class :</h5>
+                    <p>A class is a blueprint or template for creating objects that define a set of properties and methods that are common to all objects of that type. It serves as a blueprint that defines the characteristics and behaviours of objects.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        // Fields :
+        int roll = 22;
+        string name = "Mandar";
+
+    public:
+        // Methods :
+        int printRoll(){
+            return roll;
+        }
+        string printName(){
+            return name;
+        }
+        void studentInfo();
+};</code></pre>
+                    <h6>Scope Resolution Operator :</h6>
+                    <p>Method definition outside class using the scope resolution operator (<code>::</code>).</p>
+                    <pre class="code-box code-box-color"><code>void Student::studentInfo(){
+    cout << "Roll : " << printRoll() << endl;
+    cout << "Name : " << printName() << endl;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Objects :</h5>
+                    <p>An object is an instance of a class that encapsulates data and behaviour. An object is created from a class blueprint and can be used to access the properties and methods defined in the class. When a class is defined, no memory is allocated, but when it is instantiated (i.e., an object is created), memory is allocated.</p>
+                    <pre class="code-box code-box-color"><code>// Creating Object :
+Student s1;
+
+// Calling method with Objects :
+s1.studentInfo();</code></pre>
+                    <h6>Pointer to Object :</h6>
+                    <pre class="code-box code-box-color"><code>// Creating object:
+Student s1;
+
+// Creating pointer object:
+Student *p_ob;
+p_ob = &s1;
+
+// Calling method with pointer object:
+p_ob->studentInfo();</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Access Specifiers :</h5>
+                    <p>Access specifiers define how the members (attributes and methods) of a class can be accessed. Default access specifier is private.</p>
+                    <ul class="justify">
+                        <li><strong>public</strong>: members are accessible from outside the class.</li>
+                        <li><strong>protected</strong>: members cannot be accessed from outside the class; however, they can be accessed in inherited classes.</li>
+                        <li><strong>private</strong>: members cannot be accessed (or viewed) from outside the class.</li>
+                    </ul>
+                    <pre class="code-box code-box-color"><code>class MyClass {
+    public: // Public access specifier
+        int pu;
+    protected: // Protected access specifier
+        int pt;
+    private: // Private access specifier
+        int pr;
+};
+
+int main(){
+    MyClass ob;
+    ob.pu = 25; // Allowed (public)
+    ob.pt = 75; // Error: Not allowed (protected)
+    ob.pr = 50; // Error: Not allowed (private)
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; This Keyword :</h5>
+                    <p>The keyword <code>this</code> is a pointer that refers to the current instance of the class. The compiler supplies this pointer implicitly along with the names of functions. It is passed as a hidden argument to all non-static member function calls and is available as a local variable within the body of all non-static functions.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+
+    public:
+        // Constructor :
+        Student(int roll, string name){
+            this->roll = roll;
+            this->name = name;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+
+        void print(){
+            this->studentInfo();
+        }
+};
+
+int main(){
+    Student s1(22, "Mandar");
+    s1.print();
+    
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Static Members :</h5>
+                    <p>When a variable or method is declared <code>static</code>, a single copy of the variable is created (memory is allocated only once) and shared among all objects at the class level. All instances of the class share the same static variable. The static is a property of the class, not the object, and hence the object of the class can't use it to access it; it can be called using the class name. The value of static variables and data members persists until the end of the program.</p>
+                    <div>
+                        <h6>Static Variable :</h6>
+                        <pre class="code-box code-box-color"><code>class MyClass {
+    public:
+        // static variable :
+        static int count;
+
+        MyClass(){
+            count++;
+        }
+
+        void printCount(){
+            cout << count << " objects created" << endl;
+        }
+};
+
+// Initialize static member :
+int MyClass::count = 0;
+
+int main(){
+    MyClass ob1, ob2;
+    ob1.printCount();
+
+    MyClass ob3;
+    ob3.printCount();
+
+    MyClass ob4, ob5;
+    cout << "Total objects : " << MyClass::count << endl;
+
+    return 0;
+}</code></pre>
+                        <h6>Static Method :</h6>
+                        <pre class="code-box code-box-color"><code>class MyClass {
+    public:
+        // static variable :
+        static int count;
+
+        MyClass(){
+            count++;
+        }
+
+        static void printCount(){
+            cout << count << " objects created" << endl;
+        }
+};
+
+// Initialize static member :
+int MyClass::count = 0;
+
+int main(){
+    MyClass ob1;
+    MyClass::printCount();
+
+    MyClass ob2, ob3;
+    MyClass::printCount();
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Friend Class & Function :</h5>
+                    <p>A friend class or function can access the private and protected members of a class. It is declared using the <code>friend</code> keyword inside the body of the class. A friend function can be a member of another class or a global function.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box code-box-color"><code>class ClassName {
+    friend return_type functionName(arguments);
+}</code></pre>
+                    <div>
+                        <h6>Friend Class :</h6>
+                        <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+    public:
+        // Constructor :
+        Student(int roll, string name){
+            this->roll = roll;
+            this->name = name;
+        }
+
+    friend class Info;
+};
+
+class Info {
+    public:
+        void studentInfo(){
+            Student s(22, "Mandar");
+            cout << "Roll : " << s.roll << endl;
+            cout << "Name : " << s.name << endl;
+        }
+};
+
+int main(){
+    Info ob;
+    ob.studentInfo();
+
+    return 0;
+}</code></pre>
+                        <h6>Friend Function :</h6>
+                        <pre class="code-box code-box-color"><code>class B;
+
+class A {
+    private:
+        int x;
+    public:
+        // Constructor :
+        A() : x(10){}
+
+    friend void addNum(A, B);
+};
+
+class B {
+    private:
+        int y;
+    public:
+        // Constructor :
+        B() : y(20){}
+
+    friend void addNum(A, B);
+};
+
+void addNum(A a, B b){
+    cout << "Addition is " << a.x + b.y << endl;
+}
+
+int main(){
+    A a;
+    B b;
+    addNum(a,b);
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="constructor-destructor">
+                <h4 class="heading"># Constructor &amp; Destructor</h4>
+                <div>
+                    <h5>&bull; Constructor :</h5>
+                    <p>It is a special method that is automatically called when an object of a class is created. The constructor has the same name as the class, it is always public, and it does not have any return value.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+
+    public:
+        // Constructor (parameterized) :
+        Student(int r, string n){
+            cout << "Constructor is called" << endl;
+            roll = r;
+            name = n;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+};
+
+int main(){
+    Student s1(22, "Mandar");
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Copy Constructor :</h5>
+                    <p>The copy constructor is a constructor that creates an object by initialising it with an already created object of the same class. The copy constructor takes a reference to an object of the same class as an argument. There will always be only one copy constructor which can be either defined by the user or the compiler. The compiler implicitly defines the default copy constructor if it is not defined by the programmer.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+
+    public:
+        // Constructor :
+        Student(int r, string n){
+            roll = r;
+            name = n;
+        }
+
+        // User Defined Copy Constructor (explicitly defined) :
+        Student(const Student &s){
+            roll = s.roll;
+            name = s.name;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+};
+
+int main(){
+    Student s1(22, "Mandar");
+    s1.studentInfo();
+
+    // Copy Constructor :
+    Student s2=s1;
+    s2.studentInfo();
+
+    Student s3(s2);
+    s3.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Initialization List :</h5>
+                    <p>The initialization lists are used to initialise fields.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+        int std;
+
+    public:
+        // Constructor: Initialization List :
+        Student(int r, string n, int s): name(n), std(s){
+            roll = r;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+            cout << "Std : " << std << "th" << endl;
+        }
+};
+
+int main(){
+    Student s1(22, "Mandar", 9);
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                    <h6>Initialization List in Inheritance :</h6>
+                    <pre class="code-box code-box-color"><code>class School {
+    private:
+        string sch_name;
+    public:
+        School(string name) : sch_name(name) {}
+
+        string schoolName(){
+            return sch_name;
+        }
+};
+
+class Student : public School {
+    private:
+        int roll;
+        string name;
+        int std;
+
+    public:
+        // Constructor: Initialization List :
+        Student(string sch_name, int r, string n, int s): School(sch_name), name(n), std(s){
+            roll = r;
+        }
+
+        void studentInfo(){
+            cout << "School : " << schoolName() << endl;
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+            cout << "Std : " << std << "th" << endl;
+        }
+};
+
+int main(){
+    Student s1("Vartak", 22, "Mandar", 9);
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Destructor :</h5>
+                    <p>It is a special method that is automatically called when an object of its class goes out of scope. The destructor has the same name as the class, is preceded by a tilde (<code>~</code>) symbol, is always public, and does not have any return value.</p>
+                    <pre class="code-box code-box-color"><code>class Student {
+    private:
+        int roll;
+        string name;
+
+    public:
+        // Constructor :
+        Student(int r, string n){
+            cout << "Constructor is called" << endl;
+            roll = r;
+            name = n;
+        }
+
+        void studentInfo(){
+            cout << "Roll : " << roll << endl;
+            cout << "Name : " << name << endl;
+        }
+
+        // Destructor :
+        ~Student(){
+            cout << "Destructor is called" << endl;
+        }
+};
+
+int main(){
+    Student s1(22, "Mandar");
+    s1.studentInfo();
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="inheritance">
+                <h4 class="heading"># Inheritance</h4>
+                <p>Inheritance is a feature or a process in which new classes are created from existing ones. The new class created is called a "derived class" or "child class," and the existing class is known as the "base class" or "parent class." The derived class is now said to be inherited from the base class. The inherited class acquires all the properties and behaviours of the parent class. This allows programmers to reuse, extend, or modify the attributes and behaviours of existing classes. The private members of the base class are never inherited.</p>
+                <div>
+                    <h6> &bull; Visibility of Inherited Members :</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Base Class Visibility</th>
+                                    <th colspan="3">Derived Class Visibility</th>
+                                </tr>
+                                <tr>
+                                    <th>Public</th>
+                                    <th>Private</th>
+                                    <th>Protected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Public</td>
+                                    <td>Public</td>
+                                    <td>Private</td>
+                                    <td>Protected</td>
+                                </tr>
+                                <tr>
+                                    <td>Protected</td>
+                                    <td>Protected</td>
+                                    <td>Private</td>
+                                    <td>Protected</td>
+                                </tr>
+                                <tr>
+                                    <td>Private</td>
+                                    <td>Not Inherited</td>
+                                    <td>Not Inherited</td>
+                                    <td>Not Inherited</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h6>C++ supports five types of inheritance :</h6>
+                    <ol>
+                        <li>Single Inheritance</li>
+                        <li>Multiple Inheritance</li>
+                        <li>Multilevel Inheritance</li>
+                        <li>Hierarchical Inheritance</li>
+                        <li>Hybrid Inheritance</li>
+                    </ol>
+                    <div>
+                        <h5>1. Single Inheritance :</h5>
+                        <p>Single inheritance is defined as the inheritance in which a derived class is inherited from only one base class.</p>
+                        <pre class="code-box code-box-color"><code>// Base or Parent Class :
+class Bank {
+    private:
+        string bank_name;
+    public:
+        Bank(string bank) : bank_name(bank) {}
+        string printBank(){
+            return bank_name;
+        }
+};
+
+// Derived or Child Class :
+class Account : public Bank {
+    private:
+        string type;
+        int num;
+    public:
+        Account(string bank, string type, int num) : Bank(bank), type(type), num(num) {}
+        string printAccountType(){
+            return type;
+        }
+        int printAccountNum(){
+            return num;
+        }
+};
+
+int main(){
+    Account person1("SBI","Saving",1234);
+
+    cout << "Bank : " << person1.printBank() << endl;
+    cout << "Account Type : " << person1.printAccountType() << endl;
+    cout << "Account Number : " << person1.printAccountNum() << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>2. Multiple Inheritance :</h5>
+                        <p>Multiple inheritance is defined as the inheritance in which a derived class is inherited from two or more base classes.</p>
+                        <pre class="code-box code-box-color"><code>// Base Class 1 :
+class Father {
+    private:
+        string fname = "Vinit Patil";
+    public:
+        string printFName(){
+            return fname;
+        }
+};
+
+// Base Class 2 :
+class Mother {
+    private:
+        string mname = "Vinita Patil";
+    public:
+        string printMName(){
+            return mname;
+        }
+};
+
+// Derived Class :
+class Son : public Father, public Mother {
+    private:
+        string sname = "Amit Patil";
+    public:
+        string printSName(){
+            return sname;
+        }
+};
+
+int main(){
+    Son s1;
+
+    cout << "Name : " << s1.printSName() << endl;
+    cout << "Father Name : " << s1.printFName() << endl;
+    cout << "Mother Name : " << s1.printFName() << endl;
+
+    return 0;
+}</code></pre>
+                        <div>
+                            <h5>Ambiguity in Inheritance :</h5>
+                            <p>In multiple inheritances, when one class is derived from two or more base classes, there may be a possibility that the base classes have functions with the same name, and the derived class may not have functions with the same name as those of its base classes. If the derived class object needs to access one of the similarly named member functions of the base classes then it results in ambiguity because the compiler gets confused about which base’s class member function should be called. To solve this ambiguity scope resolution operator (<code>::</code>) is used.</p>
+                            <h6>Syntax :</h6>
+                            <div class="code-box"><code>objectName.ClassName::functionName();</code></div>
+                            <h6>Ex :</h6>
+                            <pre class="code-box code-box-color"><code>// Base Class 1 :
+class Father {
+    private:
+        string fname = "Vinit Patil";
+    public:
+        string printName(){
+            return fname;
+        }
+};
+
+// Base Class 2 :
+class Mother {
+    private:
+        string mname = "Vinita Patil";
+    public:
+        string printName(){
+            return mname;
+        }
+};
+
+// Derived Class :
+class Son : public Father, public Mother {
+    private:
+        string sname = "Amit Patil";
+    public:
+        string printSName(){
+            return sname;
+        }
+};
+
+int main(){
+    Son s1;
+
+    cout << "Name : " << s1.printSName() << endl;
+
+    // Resolve ambiguity using scope resolution operator :
+    cout << "Father Name : " << s1.Father::printName() << endl;
+    cout << "Mother Name : " << s1.Mother::printName() << endl;
+
+    return 0;
+}</code></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h5>3. Multilevel Inheritance :</h5>
+                        <p>Multilevel inheritance is defined as the inheritance in which a derived class is inherited from another derived class.</p>
+                        <pre class="code-box code-box-color"><code>// Base Class :
+class GrandFather {
+    public:
+        int age_g;
+        GrandFather(int g) : age_g(g) {}
+        string gname = "Avnish Patil";
+        string printGName(){
+            return gname;
+        }
+};
+
+// Derived & Base Class :
+class Father : public GrandFather {
+    public:
+        int age_f;
+        Father(int g, int f) : GrandFather(g), age_f(f) {}
+        string fname = "Vinit Patil";
+        string printFName(){
+            return fname;
+        }
+};
+
+// Derived Class :
+class Son : public Father {
+    public:
+        int age_s;
+        Son(int g, int f, int s) : Father(g,f), age_s(s) {}
+        string sname = "Amit Patil";
+        string printSName(){
+            return sname;
+        }
+};
+
+int main(){
+    Son s1(95,75,30);
+
+    cout << "I am " << s1.printSName() << " my age is " << s1.age_s << endl;
+    cout << "My father name is " << s1.printFName() << " his age is " << s1.age_f << endl;
+    cout << "My grand father name is " << s1.printGName() << " his age is " << s1.age_g << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>4. Hierarchical Inheritance :</h5>
+                        <p>Hierarchical inheritance is defined as the type of inheritance in which more than one derived class is inherited from only one base class.</p>
+                        <pre class="code-box code-box-color"><code>// Base Class :
+class Father {
+    private:
+        string fname = "Vinit Patil";
+    public:
+        string printFName(){
+            return fname;
+        }
+};
+
+// Derived Class 1 :
+class Son : public Father {
+    private:
+        string sname = "Amit Patil";
+    public:
+        string printSName(){
+            return sname;
+        }
+};
+
+// Derived Class 2 :
+class Daughter : public Father {
+    private:
+        string dname = "Amita Patil";
+    public:
+        string printDName(){
+            return dname;
+        }
+};
+
+int main(){
+    Son s1;
+    cout << "Father Name : " << s1.printFName() << endl;
+    cout << "Son Name : " << s1.printSName() << endl;
+
+    Daughter d1;
+    cout << "\nFather Name : " << d1.printFName() << endl;
+    cout << "Daughter Name : " << d1.printDName() << endl;
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h5>5. Hybrid Inheritance :</h5>
+                        <p>Inheritance that combines multiple types of inheritance is known as hybrid inheritance.</p>
+                        <pre class="code-box code-box-color"><code>class Shape {
+    public:
+        Shape(){
+            cout << "This is Shape" << endl;
+        }
+};
+
+class Circle : public Shape {
+    public:
+        Circle(){
+            cout << "This is Circle" << endl;
+        }
+};
+
+class Rectangle : public Shape {
+    public:
+        Rectangle(){
+            cout << "This is Rectangle" << endl;
+        }
+};
+
+class Square : public Rectangle {
+    public:
+        Square(){
+            cout << "This is Square" << endl;
+        }
+};
+
+int main(){
+    // Single Inheritance : Shape -> Circle
+    Circle c1;
+
+    // Hierarchical Inheritance : Shape -> Circle & Rectangle
+    Circle c2
+    Rectangle r1;
+
+    // Multilevel Inheritance : Shape -> Rectangle -> Square
+    Square s1;
+
+    return 0;
+}</code></pre>
+                        <h5>Virtual Inheritance :</h5>
+                        <p>Virtual inheritance is a C++ technique that ensures only one copy or instance of a base class's member variables should be present in the inheritance hierarchy, even if the class is inherited multiple times. This is done with the <code>virtual</code> keyword. Objects of class Cuboid have two paths to call constructor of class Shape; hence, it will result in ambiguity, called the "diamond problem." Virtual inheritance can be used to resolve this ambiguity in inheritance.</p>
+                        <pre class="code-box code-box-color"><code>class Shape {
+    public:
+        Shape(){
+            cout << "This is Shape" << endl;
+        }
+};
+
+class Rectangle : virtual public Shape {
+    public:
+        Rectangle(){
+            cout << "This is Rectangle" << endl;
+        }
+};
+
+class Square : virtual public Rectangle {
+    public:
+        Square(){
+            cout << "This is Square" << endl;
+        }
+};
+
+class Cuboid : virtual public Rectangle, virtual public Square {
+    public:
+        Cuboid(){
+            cout << "This is Cuboid" << endl;
+        }
+};
+
+int main(){
+    /*      Shape
+            /   \
+    Rectangle   Square
+            \   /
+            Cuboid
+    */
+
+    Cuboid cb;
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="polymorphism">
+                <h4 class="heading"># Polymorphism</h4>
+                <p>The word "polymorphism" means having many forms. That is, the same entity (function or operator) behaves differently in different scenarios, so a single action can be performed in different ways.</p>
+                <h6>Types of polymorphism :</h6>
+                <ol>
+                    <li>Compile-time Polymorphism</li>
+                    <li>Runtime Polymorphism</li>
+                </ol>
+                <div>
+                    <h5>&bull; Compile-time Polymorphism :</h5>
+                    <p>Compile-time polymorphism, also called static polymorphism, is resolved (which method to execute) during compile time and is achieved through method overloading and operator overloading. It is also called static binding or early binding. Binding is the association of names with classes. In the case of static binding, names can be associated with classes during compilation time.</p>
+                    <div>
+                        <h6>1. Method Overloading :</h6>
+                        <p>Method overloading is a feature of object-oriented programming. When two or more methods have the same name but different numbers and types of parameters, the corresponding method is overloaded based on the parameters; this is called method overloading. This is an example of a compile-time polymorphism.</p>
+                        <pre class="code-box code-box-color"><code>class Sum {
+    public:
+        void sum(){
+            int a, b;
+            cout << "\nEnter Two Numbers : ";
+            cin >> a >> b;
+            cout << "Sum is " << a+b << endl;
+        }
+        int sum(int a, int b){
+            return a+b;
+        }
+        int sum(int a, int b, int c){
+            return a+b+c;
+        }
+        float sum(float a, float b){
+            return a+b;
+        }
+};
+
+int main(){
+    Sum s1;
+
+    cout << "Sum is " << s1.sum(2,9);
+    cout << "\nSum is " << s1.sum(1,2,3);
+    cout << "\nSum is " << s1.sum(3.2f,2.4f);
+    s1.sum();
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h6>2. Operator Overloading :</h6>
+                        <p>The C++ language has the ability to provide the operators with a special meaning for a data type; this ability is known as "operator overloading." Operators can be used for user-defined classes. It is an idea of giving special meaning to an existing operator in C++ without changing its original meaning.</p>
+                        <h6>Operators that cannot be overloaded :</h6>
+                        <ol>
+                            <li>Scope Resolution (<code>::</code>)</li>
+                            <li>Member Selection (<code>.</code>)</li>
+                            <li>Member Selection through Pointer (<code>.*</code>)</li>
+                            <li>Ternary Operator (<code>?:</code>)</li>
+                            <li>Sizeof Operator (<code>sizeof()</code>)</li>
+                        </ol>
+                        <h6>Types of operator overloading :</h6>
+                        <ul>
+                            <li>
+                                <h6>Unary Operator Overloading :</h6>
+                                <p>The unary increment operator (<code>++</code>) is overloaded for incrementing objects.</p>
+                                <pre class="code-box code-box-color"><code>class OperatorOL {
+    private:
+        int count = 0;
+    public:
+        // Operator ++ overloaded :
+        void operator ++ (){
+            ++count;
+        }
+
+        int printCount(){
+            return count;
+        }
+};
+
+int main(){
+    OperatorOL ob;
+
+    while(ob.printCount() < 5)
+        ++ob;
+    
+    cout << "Count = " << ob.printCount() << endl;
+
+    return 0;
+}</code></pre>
+                            </li>
+                            <li>
+                                <h6>Binary Operator Overloading :</h6>
+                                <p>The binary addition operator (<code>+</code>) is overloaded for the addition of two objects.</p>
+                                <pre class="code-box code-box-color"><code>class Complex {
+    private:
+        int real, imag;
+    public:
+        Complex(int r, int i){
+            real = r;
+            imag = i;
+        }
+
+        void print(){
+            cout << real << " + i" << imag << endl;
+        }
+
+        // Operator + overloaded :
+        Complex operator + (const Complex& c2){
+            Complex c3(0,0);
+            c3.real = real + c2.real;
+            c3.imag = imag + c2.imag;
+
+            return c3;
+        }
+};
+
+int main(){
+    Complex c1(2,4), c2(3,5);
+    Complex c3 = c1 + c2;
+
+    c1.print();
+    c2.print();
+    c3.print();
+
+    return 0;
+}</code></pre>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Runtime Polymorphism :</h5>
+                    <p>Runtime polymorphism, also called dynamic polymorphism, is resolved during runtime and is achieved through method overriding and virtual functions. It is also called dyanamic binding or late binding, as the names can be associated with the classes during runtime.</p>
+                    <div>
+                        <h6>1. Method Overriding :</h6>
+                        <p>Method overriding is defined as the redefinition of a base-class method in its derived class with the same signature, i.e., the same return type and parameters.</p>
+                        <pre class="code-box code-box-color"><code>class Base {
+    public:
+        void print(){
+            cout << "This is Base Class" << endl;
+        }
+};
+
+class Derived : public Base {
+    public:
+        void print(){
+            cout << "This is Derived Class" << endl;
+        }
+};
+
+int main(){
+    Derived ob;
+    ob.print();
+
+    // Access base class method :
+    ob.Base::print();
+
+    return 0;
+}</code></pre>
+                    </div>
+                    <div>
+                        <h6>2. Virtual Function :</h6>
+                        <p>The keyword <code>virtual</code> represents that method being overridden. A virtual function is a member function of a class, and it can be overridden in its derived class. Virtual functions cannot be static.</p>
+                        <pre class="code-box code-box-color"><code>class Base {
+    public:
+        // Virtual Function :
+        virtual void print(){
+            cout << "This is Base Class - Virtual" << endl;
+        }
+        // Non-Virtual Function :
+        void printN(){
+            cout << "This is Base Class - Non Virtual" << endl;
+        }
+};
+
+class Derived : public Base {
+    public:
+        void print(){
+            cout << "This is Derived Class - Virtual" << endl;
+        }
+        void printN(){
+            cout << "This is Derived Class - Non Virtual" << endl;
+        }
+};
+
+int main(){
+    Derived d;
+    Base *bptr = &d;
+  
+    // Virtual function, binded at runtime :
+    bptr->print();
+  
+    // Non-virtual function, binded at compile time :
+    bptr->printN();
+
+    return 0;
+}</code></pre>
+                        <h6>Identifier Override :</h6>
+                        <p>In C++, the <code>override</code> identifier is used to explicitly indicate that a virtual function in a derived class is intended to override a virtual function with the same name and signature in its base class.</p>
+                        <pre class="code-box code-box-color"><code>class Shape {
+    public:
+        virtual void draw(){
+            cout<<"Can not draw an unknown Shape!" << endl;
+        }
+};
+
+class Rectangle : public Shape {
+    public:
+        void draw() override {
+            cout << "Drawing Rectangle..." << endl;
+        }
+};
+
+int main(){
+    Rectangle rect;
+    rect.draw();
+
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="abstract-class">
+                <h4 class="heading"># Abstract Classes</h4>
+                <p>An abstract class is a class that cannot be instantiated but can be inherited to provide an interface or blueprint for other classes. An abstract class contains at least one pure virtual function. A pure virtual function (or abstract function) is one that can be overridden in the derived class but cannot be defined in its base class, as there is no meaningful definition you could give for the function in the base class. A virtual function can be declared "pure" by using the operator <code>=0</code> at the end, indicating that it has no implementation and must be overridden by any class that inherits from it.<br>
+                Any class that implements an abstract class must provide an implementation for all of the pure virtual functions declared in it. If the pure virtual function is not defined in its derived class, then the derived class also becomes an abstract class. Abstract classes can have both abstract and non-abstract methods. The non-abstract methods have a default implementation in the abstract class and can be used by the subclasses as is, or overridden if necessary.</p>
+                <pre class="code-box code-box-color"><code>// Abstract Class :
+class Shape {
+    public:
+        // Non-Abstract Function :
+        void print(){
+            cout << "Inherating shape class..." << endl;
+        }
+        // Virtual Function :
+        virtual void draw(){
+            cout << "Drawing shape..." << endl;
+        }
+        // Pure Virtual Function :
+        virtual void area() = 0;
+};
+
+class Rectangle : public Shape {
+    private:
+        int length, breadth;
+    public:
+        Rectangle(int l, int b){
+            length = l;
+            breadth = b;
+        }
+        void draw(){
+            cout << "Drawing rectangle..." << endl;
+        }
+        void area(){
+            cout << "Area of rectangle is " << length*breadth << endl;
+        }
+};
+
+int main(){
+    Rectangle r1(3,8);
+    r1.print();
+    r1.draw();
+    r1.area();
+
+    return 0;
+}</code></pre>
+                <div>
+                    <h5>&bull; Interfaces :</h5>
+                    <p>An interface in object-oriented programming is a collection of abstract methods (methods without implementation) and constant variables. It provides a common set of methods that can be implemented by multiple classes. In C++, an interface is an abstract class that has only pure virtual functions.</p>
+                    <pre class="code-box code-box-color"><code>// Interface Class :
+class Shape {
+    public:
+        // Pure virtual function :
+        virtual void draw() = 0;
+        virtual float area() = 0;
+};
+
+class Rectangle : public Shape {
+    private:
+        int length, breadth;
+    public:
+        Rectangle(int l, int b){
+            length = l;
+            breadth = b;
+        }
+        void draw(){
+            cout << "Drawing Rectangle..." << endl;
+        }
+        float area(){
+            return length*breadth;
+        }
+};
+
+class Circle : public Shape {
+    private:
+        int radius;
+    public:
+        Circle(int r){
+            radius = r;
+        }
+        void draw(){
+            cout << "Drawing Circle..." << endl;
+        }
+        float area(){
+            return 3.14*radius*radius;
+        }
+};
+
+int main(){
+    // Rectangle:
+    Rectangle r1(3,8);
+    r1.draw();
+    cout << "Area of rectangle is " << r1.area() << endl;
+
+    // Circle:
+    Circle c1(4);
+    c1.draw();
+    cout << "Area of circle is " << c1.area() << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="abstraction">
+                <h4 class="heading"># Abstraction</h4>
+                <p>Abstraction is a feature of OOP; it shows only the necessary details to the user by hiding the actual implementation. Abstraction in C++ is achieved through classes, header files, and access specifiers. It is implemented by using abstract classes and interfaces. In abstraction, problems are solved at the design or interface level. It avoids code duplication and increases code reusability. In a nutshell, abstraction hides implementation with the help of abstract classes and interfaces.</p>
+                <h6>Types of abstraction :</h6>
+                <ul>
+                    <li><b>Data abstraction:</b> This type only shows the required information about the data and hides the unnecessary data.</li>
+                    <li><b>Control Abstraction:</b> This type only shows the required information about the implementation and hides unnecessary information.</li>
+                </ul>
+                <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int ctc; // in LPA
+    public:
+        virtual string domain() = 0;
+        void setCTC(int ctc){
+            this->ctc = ctc;
+        }
+        int getCTC(){
+            return ctc;
+        }
+        void employeeInfo(){
+            cout << "Employee Domain: " << this->domain() << endl;
+            cout << "Employee CTC: " << this->getCTC() << " LPA" << endl;
+        }
+};
+
+class Sofware : public Employee {
+    public:
+        string domain(){
+            return "Sofware Development";
+        }
+};
+
+class Marketting : public Employee {
+    public:
+        string domain(){
+            return "Marketting";
+        }
+};
+
+int main(){
+    // Software :
+    Sofware eng;
+    eng.setCTC(18);
+    eng.employeeInfo();
+
+    // Marketting :
+    Marketting mrk;
+    mrk.setCTC(15);
+    mrk.employeeInfo();
+
+    return 0;
+}</code></pre>
+            </div>
+
+            <div class="sections" id="encapsulation">
+                <h4 class="heading"># Encapsulation</h4>
+                <p>The wrapping or binding of fields (state) and methods (behaviour) together into a single unit is called encapsulation. This keeps data safe from outside interference and misuse. Encapsulation means restricting direct access to certain components of an object so that users can’t access the state values for all variables and helps in data hiding. Encapsulation is implemented using an access modifier, i.e., private, protected, and public. During encapsulation, problems are solved at the implementation level. In a nutshell, encapsulation is hiding the data with the help of getter and setter.</p>
+                <h6>Ex : Below is an example of data hiding using access modifiers.</h6>
+                <p>In this program, the variable salary is made private so that it can be accessed and manipulated only by using the getter and setter methods that are present within the class. Therefore, we can say that the variable salary and the getter as well as setter methods have been bound together, which is nothing but encapsulation.</p>
+                <pre class="code-box code-box-color"><code>class Employee {
+    private:
+        int salary;
+    public:
+        // Setter :
+        void setSalary(int sal){
+            salary = sal;
+        }
+        // Getter :
+        int getSalary(){
+            return salary;
+        }
+};
+
+int main(){
+    Employee emp;
+    emp.setSalary(80000);
+    cout << "Salary is " << emp.getSalary() << endl;
+
+    return 0;
+}</code></pre>
+            </div>
+
+            <div class="sections" id="exception-handling">
+                <h4 class="heading"># Exception Handling</h4>
+                <p>An exception is an error that arises during the execution of a program. Exception handling is the process of handling errors at runtime so that the normal flow of a program can be maintained. C++ exception handling is built upon three keywords: <code>try</code>, <code>catch</code>, and <code>throw</code>.</p>
+                <ul class="justify">
+                    <li><code>try</code> : a try block is used to place code that may result in an exception.</li>
+                    <li><code>catch</code> : a catch block is used to handle the exception.</li>
+                    <li><code>throw</code> : throw keyword throws an exception.</li>
+                </ul>
+                <h6>Syntax :</h6>
+                <pre class="code-box"><code>try {
+    // Block of code to try
+} catch(Exceptions) {
+    // Block of code to handle errors
+}</code></pre>
+                <h6>Ex :</h6>
+                <pre class="code-box code-box-color"><code>try {
+    float x=5, y=0;
+    if (y == 0)
+        throw "Error: Division By Zero!";
+    else
+        cout << "Division is" << x/y;
+} catch(const char *E) {
+    cout << E << endl;
+}</code></pre>
+                <h6>Catch All Types of Exceptions :</h6>
+                <pre class="code-box code-box-color"><code>try {
+    int age = 16;
+    if (age >= 18)
+        cout << "Access Granted" << endl;
+    else
+        throw 404;
+} catch (...) {
+    cout << "Access Denied! You must be at least 18 years old." << endl;
+}</code></pre>
+                <h6>Multiple Catch Statements :</h6>
+                <pre class="code-box code-box-color"><code>try {
+    int age;
+    cout << "Enter Age: ";
+    cin >> age;
+    if (age == 0)
+        throw "Error: Age cannot be zero!";
+    else if (age < 0)
+        throw std::runtime_error("Runtime Error: Age cannot be negative!");
+    else
+        cout << "Your age is " << age << endl;
+} catch (const char *E){
+    cout << E << endl;
+} catch (std::runtime_error& E){
+    cout << E.what() << endl;
+} catch (...){
+    cout << "Unkwown Error!" << endl;
+}</code></pre>
+                <div>
+                    <h5>&bull; User-Defined Exceptions :</h5>
+                    <p>The new exception can be defined by overriding and inheriting exception class functionality.</p>
+                    <pre class="code-box code-box-color"><code>// User-Defined Error Class :
+class ZeroDivisionError : public exception {
+    public:
+        const char* what() const throw () {
+            return "Error: Attempted to divide by zero!";
+        }
+};
+
+int main(){
+    try {
+        int x, y;
+        cout << "Enter Two Numbers: ";
+        cin >> x >> y;
+        if (y == 0){
+            throw ZeroDivisionError();
+        }
+        else
+            cout << "Division is " << (float)x/y << endl;
+    } catch (ZeroDivisionError& E){
+        cout << E.what() << endl;
+    }
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="file-streams">
+                <h4 class="heading"># Files & Streams</h4>
+                <p>A standard C++ library called fstream is used to read and write from a file.</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>ifstream</code></td>
+                                <td>Reads from files</td>
+                            </tr>
+                            <tr>
+                                <td><code>ofstream</code></td>
+                                <td>Creates and writes to files</td>
+                            </tr>
+                            <tr>
+                                <td><code>fstream</code></td>
+                                <td>Creates, reads, and writes to files</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h5>&bull; Read Operation :</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+using namespace std;
+
+int main(){
+    // Creating object of ifstream class:
+    ifstream infile;
+
+    // Opening file to read:
+    infile.open("sample.txt",ios::in);
+
+    // Reading file:
+    string text;
+    while(getline(infile,text))
+        cout << text << endl;
+
+    return 0;
+}</code></pre>
+                    <h6>File Modes :</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Mode Flag</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>ios::app</code></td>
+                                    <td>Append mode. All output to that file to be appended to the end</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ios::ate</code></td>
+                                    <td>Open a file for output and move the read/write control to the end of the file</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ios::in</code></td>
+                                    <td>Open a file for reading</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ios::out</code></td>
+                                    <td>Open a file for writing</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ios::trunc</code></td>
+                                    <td>If the file already exists, its contents will be truncated before opening the file</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; Write Operation :</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+using namespace std;
+
+int main(){
+    // Crearing file:
+    ofstream outfile("sample.txt");
+
+    // Write to the file:
+    outfile << "I am learning C++\n";
+    outfile << "C++ is the fast and efficient language.";
+
+    // Closing file:
+    outfile.close();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Read-Write Operation :</h5>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+using namespace std;
+
+int main(){
+    string fname;
+    char lname[20];
+
+    // User Input:
+    cout << "Enter First Name: ";
+    getline(cin,fname); // Receive string
+    cout << "Enter Last  Name: ";
+    cin.getline(lname, 20); // Receive char array
+
+    // Writing file:
+    ofstream outfile;
+    outfile.open("name.txt");
+    outfile << fname+" "+lname;
+    outfile.close();
+
+    // Reading file:
+    ifstream infile;
+    infile.open("name.txt");
+    string line;
+    while(getline(infile,line))
+        cout << line << endl;
+    infile.close();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Function getline() :</h5>
+                    <p>It is a pre-defined function defined in the <code>&lt;string.h&gt;</code> header file that is used to accept a line or a string from the input stream until the delimiting character is encountered. The cin is an object that is used to take input from the user but does not allow the user to take the input in multiple lines. To accept the multiple lines, we use the <code>getline()</code> function.</p>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+using namespace std;
+
+int main(){
+    string name;
+    cout << "Enter Full Name: ";
+    cin >> name;
+    cout << name << endl;
+    cin.ignore();
+
+    cout << "Enter : ";
+    getline(cin, name);
+    cout << name << endl;
+
+    return 0;
+}
+</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="dynamic-memory">
+                <h4 class="heading"># Dynamic Memory</h4>
+                <p>Memory allocated during runtime is called dynamic memory, and the process of allocating memory at the time of execution is called dynamic memory allocation. C++ allows us to allocate the memory at run time. This is known as dynamic memory allocation. In C++, the memory is allocated and then deallocated dynamically using the <code>new</code> and <code>delete</code> operators.</p>
+                <ul>
+                    <li>
+                        <h6>New Operator :</h6>
+                        <p>The <code>new</code> operator allocates memory to a variable. The new operator returns the address of the memory location, and it is stored in pointer.</p>
+                        <pre class="code-box"><code>pointer_var = new data_type;</code></pre>
+                    </li>
+                    <li>
+                        <h6>Delete Operator :</h6>
+                        <p>The <code>delete</code> operator is used to deallocate the memory taken by the new operator. It returns the memory to the operating system. This is known as memory deallocation.</p>
+                        <pre class="code-box"><code>delete pointer_var;</code></pre>
+                    </li>
+                </ul>
+                <h6>Ex :</h6>
+                <div>
+                    <pre class="code-box code-box-color"><code>// Addition of two integers using dyanamic memory:
+int *p_a, *p_b;
+p_a = new int;
+p_b = new int;
+
+cout << "Enter Two Numbers: ";
+cin >> *p_a >> *p_b;
+
+cout << "Addition is " << *p_a+*p_b << endl;
+
+delete p_a, p_b;</code></pre>
+                    <h6>Memory allocation for the arrays :</h6>
+                    <pre class="code-box code-box-color"><code>// Addition of 5 integers (array) using dyanamic memory:
+int sum = 0;
+int *p_arr;
+p_arr = new int[5];
+
+cout << "Enter 5 Numbers: ";
+for(int i=0; i<5; i++){
+    cin >> *(p_arr+i);
+    sum += *(p_arr+i);
+}
+
+cout << "Addition is " << sum << endl;
+
+delete[] p_arr;</code></pre>
+                    <h6>Memory allocation for the objects :</h6>
+                    <pre class="code-box code-box-color"><code>class Sum {
+    public:
+        int a, b;
+        Sum(int a, int b){
+            this->a = a;
+            this->b = b;
+        }
+        void sum(){
+            cout << "Addition is " << a+b << endl;
+        }
+};
+
+int main(){
+    Sum *p_sm = new Sum(22,17);
+    p_sm->sum();
+
+    delete p_sm;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="template">
+                <h4 class="heading"># Templates</h4>
+                <p>Templates are the foundation of generic programming, which involves writing code in a way that is independent of any particular type. A template is a blueprint or formula for creating a generic class or function. The library containers like iterators and algorithms are examples of generic programming and have been developed using the template concept.</p>
+                <h6>There are two ways we can implement templates:</h6>
+                <ol>
+                    <li>Function Template</li>
+                    <li>Class Template</li>
+                </ol>
+                <div>
+                    <h5>&bull; Function Template :</h5>
+                    <p>Generic functions use the concept of a function template. Generic functions define a set of operations that can be applied to various types of data. The type of data that the function will operate on depends on the type of data passed as a parameter. A generic function is created by using the keyword <code>template</code>.</p>
+                    <h6>Syntax :</h6>
+                    <p>The type is only a placeholder for the data type, which the compiler will automatically replace with the actual data type. It is used within the function definition. And <code>typename</code> is a keyword.</p>
+                    <pre class="code-box code-box-color"><code>template &lt;typename type&gt;
+return_type functionName(parameters_list){
+    // body of function
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>// Function Template:
+template &lt;typename T&gt;
+T maxn(T a, T b){
+    return a > b ? a : b;
+}
+
+int main(){
+    cout << maxn(2,4) << endl; // for int:
+    cout << maxn&lt;int&gt;(4,8) << endl;
+    cout << maxn(5.5,4.25) << endl; // for float:
+    cout << maxn("hello","world") << endl; // for string:
+
+    return 0;
+}</code></pre>
+                    <h6>Function Template with Multiple Parameters :</h6>
+                    <pre class="code-box code-box-color"><code>template &lt;typename T1, typename T2&gt;
+float add(T1 a, T2 b){
+    return a+b;
+}
+
+int main(){
+    cout << add(2,4) << endl; // for int
+    cout << add(20.25,10) << endl; // for float & int
+
+    return 0;
+}</code></pre>
+                    <h6>Function Template Overloading :</h6>
+                    <pre class="code-box code-box-color"><code>template &lt;typename T1, typename T2&gt;
+float add(T1 a, T2 b){
+    return a+b;
+}
+
+template &lt;typename T1, typename T2, typename T3&gt;
+float add(T1 a, T2 b, T3 c){
+    return (a > b) ? (a > c ? a : c) : (b > c ? b : c);
+}
+
+int main(){
+    cout << add(2,4) << endl;
+    cout << add(20.25,10) << endl;
+    cout << add(2,4,6) << endl;
+    cout << add(10,12.5,12) << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Class Template :</h5>
+                    <p>When a class uses the concept of a template, then the class is known as a generic class. A class template starts with the keyword <code>template</code>, followed by the template parameter(s) inside <code>&lt;&gt;</code>, which is followed by the class declaration.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box code-box-color"><code>template &lt;typename type&gt;
+class ClassName {
+    // Class Definition
+}</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color">// Class Template:
+template &lt;typename T&gt;
+class Generic {
+    private:
+        T num1, num2;
+    public:
+        Generic(T n1, T n2){
+            num1 = n1;
+            num2 = n2;
+        }
+        T add(){
+            return num1+num2;
+        }
+};
+
+int main(){
+    Generic&lt;int&gt; obi(2,4);
+    cout << obi.add() << endl;
+
+    Generic&lt;float&gt; obf(2.5,4.5);
+    cout << obf.add() << endl;
+
+    return 0;
+}<code></code></pre>
+                    <h6>Class Template with Multiple Parameters :</h6>
+                    <pre class="code-box code-box-color"><code>template &lt;typename T1, typename T2&gt;
+class Generic {
+    private:
+        T1 num1;
+        T2 num2;
+    public:
+        Generic(T1 n1, T2 n2){
+            num1 = n1;
+            num2 = n2;
+        }
+        float add(){
+            return num1+num2;
+        }
+};
+
+int main(){
+    Generic&lt;int,int&gt; ob(2,4);
+    cout << ob.add() << endl;
+
+    Generic&lt;float,int&gt; ob2(2.5,2);
+    cout << ob2.add() << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="namespaces">
+                <h4 class="heading"># Namespaces</h4>
+                <p>A namespace is a collection of related names or identifiers (such as variables, functions, classes, etc.) under a single name. It helps to separate identifiers with the same name in other namespaces or the global namespace. A namespace defines a scope. A namespace definition begins with the keyword <code>namespace</code>, followed by the namespace name. To call the namespace-enabled version of either function or variable, prepend the scope resolution operator (<code>::</code>) and the namespace name. Namespaces can be nested.</p>
+                <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+// Namespace integers :
+namespace integers {
+    int add(int a, int b){
+        return a+b;
+    }
+}
+
+// Namespace floats :
+namespace floats {
+    float add(float a, float b){
+        return a+b;
+    }
+}
+
+int main(){
+    // Integer addition:
+    cout << integers::add(5,10) << endl;
+
+    // Float addition:
+    cout << floats::add(5.20,15.25) << endl;
+
+    return 0;
+}</code></pre>
+                <div>
+                    <h5>&bull; Using Directive :</h5>
+                    <p>The prepending of namespaces can be avoided by the <code>using</code> namespace directive. This directive tells the compiler that the subsequent code is making use of names in the specified namespace.</p>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream>&gt;
+using namespace std;
+
+namespace morning {
+    void greet(){
+        cout << "Good Morning!" << endl;
+    }
+}
+
+namespace evening {
+    void greet(){
+        cout << "Good Evening!" << endl;
+    }
+}
+
+using namespace morning;
+
+int main(){
+    greet();
+
+    return 0;
+}</code></pre>
+                </div>
+                <div>
+                    <h5>&bull; Discontiguous Namespaces :</h5>
+                    <p>A namespace can be defined in several parts, and a namespace is made up of the sum of its separately defined parts. The separate parts of a namespace can be spread over multiple files. The following namespace definition either defines a new namespace or adds new elements to an existing one.</p>
+                    <pre class="code-box code-box-color"><code>namespace integers {
+    int subtract(int a, int b){
+        return a-b;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="sections" id="preprocessor">
+                <h4 class="heading"># Preprocessor</h4>
+                <p>The preprocessors are the directives, which give instructions to the compiler to preprocess the information before actual compilation starts. The preprocessor directives are preceded by a hash sign (<code>#</code>), and no semicolon (<code>;</code>) is expected at the end of a preprocessor directive as it is not a program statement.</p>
+                <h6>Types of preprocessor directives:</h6>
+                <ul>
+                    <li>Macros</li>
+                    <li>File Inclusion</li>
+                    <li>Conditional Compilation</li>
+                </ul>
+                <div>
+                    <h5> &bull; Macros :</h5>
+                    <p>A macro is a piece of code that is defined using the <code>#define</code> directive, and it is replaced with its corresponding value at compile time. The <code>#define</code> directive is used to define the preprocessor macro by creating symbolic constants, and the <code>#undef</code> directive is used to undefine the macro.</p>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box code-box-color"><code>// Define Macro :
+#define identifier replacement
+
+// Undefine Macro :
+#undef identifier</code></pre>
+                    <h6>Ex :</h6>
+                    <pre class="code-box code-box-color"><code>#include&lt;iostream&gt;
+using namespace std;
+
+// Define macro :
+#define PI 3.14159
+#define NEWLINE '\n'
+#define MAX(a,b) (a > b ? a : b)
+
+int main(){
+    cout << "Value of Pi = " << PI << NEWLINE;
+
+    cout << "Max NO = " << MAX(10,25) << NEWLINE;
+
+    return 0;
+}</code></pre>
+                    <div>
+                        <h6>Predefined C++ Macros :</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Macro</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>__LINE__</code></td>
+                                        <td>current line number of program when it is being compiled</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__FILE__</code></td>
+                                        <td>current file name of program when it is being compiled</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__DATE__</code></td>
+                                        <td>date of the translation of source file into object code as a string (format: month day year)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__TIME__</code></td>
+                                        <td>time at which program was compiled as a string (format: hh:mm:ss)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h6>Ex :</h6>
+                        <pre class="code-box code-box-color"><code>cout << "Line : " << __LINE__ << endl;
+cout << "FILE : " << __FILE__ << endl;
+cout << "DATE : " << __DATE__ << endl;
+cout << "TIME : " << __TIME__ << endl;</code></pre>
+                    </div>
+                </div>
+                <div>
+                    <h5>&bull; File Inclusion :</h5>
+                    <p>A file inclusion directive (<code>#include</code>) is a preprocessor directive that tells the compiler to include the contents of another file in the source code program. There are two types of files that can be included by the user in the program:</p>
+                    <ul>
+                        <li>
+                            <p><b>Header Files or Standard Library :</b> These files contain definitions of pre-defined functions that are built into the C++ language.</p>
+                            <h6>Syntax :</h6>
+                            <div class="code-box code-box-color"><code>#include &lt;file_name&gt;</code></div>
+                        </li>
+                        <li>
+                            <p><b>User-Defined Files :</b> When a program becomes very large and complex, it is a good practice to divide it into smaller files and include them whenever needed. These types of files are user-defined files.</p>
+                            <h6>Syntax :</h6>
+                            <div class="code-box code-box-color"><code>#include "file_name"</code></div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5> &bull; Conditional Compilation :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Directive</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>#ifdef MACRO</code></td>
+                                    <td>check whether MACRO is defined by #define or not</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#ifndef MACRO</code></td>
+                                    <td>check whether MACRO is not defined by #define</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#endif</code></td>
+                                    <td>terminate macro condition</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#if [condition]</code></td>
+                                    <td>check whether condition is true (similar to if statement)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#else</code></td>
+                                    <td>code to execute when condition is false</td>
+                                </tr>
+                                <tr>
+                                    <td><code>#elif [condition]</code></td>
+                                    <td>similar to else-if statement</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6>Syntax :</h6>
+                    <pre class="code-box code-box-color"><code>#ifdef MACRO
+    // true_if_macro_defined
+#endif</code></pre>
+                    <h6>Ex : ifdef</h6>
+                    <pre class="code-box code-box-color"><code>#define PI 3.14159
+
+#ifdef PI
+    #undef PI
+#endif
+
+int main(){
+    // this will throw an error as PI is undefined
+    cout << "Value of PI is " << PI << endl;
+
+    return 0;
+}</code></pre>
+                    <h6>Ex : ifndef</h6>
+                    <pre class="code-box code-box-color"><code>#ifndef PI
+    #define PI 3.14159
+#endif
+
+int main(){
+    cout << "Value of PI is " << PI << endl;
+
+    return 0;
+}</code></pre>
+                    <h6>Ex : if</h6>
+                    <pre class="code-box code-box-color"><code>#define NUM 10
+
+#if NUM == 10
+    #undef NUM
+    #define NUM 20
+#endif
+
+int main(){
+    cout << NUM << endl;
+
+    return 0;
+}</code></pre>
+                    <h6>Ex : elif</h6>
+                    <pre class="code-box code-box-color"><code>#define NUM 10
+
+#if NUM == 5
+    #undef NUM
+    #define NUM 10
+#elif NUM == 10
+    #undef NUM
+    #define NUM 15
+#endif
+
+int main(){
+    cout << NUM << endl;
+
+    return 0;
+}</code></pre>
+                    <h6>Ex : else</h6>
+                    <pre class="code-box code-box-color"><code>#ifdef NUM
+    #undef NUM
+    #define NUM 10
+#else
+    #define NUM 15
+#endif
+
+int main(){
+    cout << NUM << endl;
+
+    return 0;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="https://itspatkar.github.io/Cheatsheets/"><i class="bi bi-arrow-left-square-fill"></i></a>
+                <a href="#" class="float-end"><i class="bi bi-arrow-up-square-fill"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="assets/script.js"></script>
+    </body>
+</html>
