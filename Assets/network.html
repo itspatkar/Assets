@@ -24,27 +24,106 @@
             
             <div class="section-list">
                 <ul>
+                    <li><a href="#internet">Internet</a></li>
                     <li><a href="#network-node">Networking Nodes</a></li>
-                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="internet">
+                <h4 class="heading"># Internet</h4>
+                <p>The internet is a global network of interconnected computers and devices that use standardized communication protocols to exchange data and information. For effective communication and organization on a network, devices need to have clear identification and be recognizable by others which is typically occurs through unique identifiers assigned to each device, such as IP addresses or MAC addresses. These identifiers enable devices to send and receive data, facilitating communication and maintaining order within the network.</p>
+                <ul>
+                    <li>
+                        <h5>IP Address :</h5>
+                        <ul>
+                            <li>An IP (or Internet Protocol) address is a unique numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication.</li>
+                            <li>It serves two main purposes: identifying the host or network interface and providing the location of the device in the network.</li>
+                            <li>It is calculated through a technique known as IP addressing & subnetting.</li>
+                            <li>A device's IP address can be changed, but two devices cannot have the same IP address within the same network.</li>
+                            <li>An IP address is of two types: public or private. A public address is used to identify the device on the Internet, whereas a private address is used to identify a device amongst other devices on a local network.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>MAC Address :</h5>
+                        <ul>
+                            <li>A MAC (Media Access Control) address is a unique identifier assigned to a network interface controller (NIC) for communication at the data link layer of a network segment. It serves as a hardware address that distinguishes one device from another on a network.</li>
+                            <li>The MAC address is a twelve-character hexadecimal number split into two's and separated by a colon.</li>
+                            <li>The first six characters represent the vendor/company that made the network interface, and the last six is a unique number.</li>
+                            <li>MAC addresses can be faked or spoofed in a process known as spoofing. This spoofing occurs when a networked device pretends to identify another using its MAC address.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h5>Port Address :</h5>
+                        <ul>
+                            <li>***</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             
             <div class="sections" id="network-node">
                 <h4 class="heading"># Networking Nodes</h4>
-                <p>A node is a connection point inside a network that can receive, send, create, or store data. Each node requires you to provide some form of identification to receive access, like an IP address. A node is essentially any network device that can recognize, process, and transmit information to any other network node.</p>
-                <ul class="justify">
-                    <li>A blockchain is a distributed database that maintains a continuously growing list of records, called blocks, secured from tampering and revision.</li>
-                    <li>Each block contains a timestamp and a link to a previous block.</li>
-                    <li>A blockchain is typically managed by a peer-to-peer network collectively adhering to a protocol for validating new blocks.</li>
-                    <li>Once recorded, information cannot be altered without the alteration of all subsequent blocks.</li>
-                </ul>
+                <p>A node in a network is a point where data can be received, sent, created, or stored. It needs identification like an IP address for access and can be any device that processes and shares information with other nodes.</p>
                 <div>
-                    <h5>&bull; Genesis Block :</h5>
-                    <p>The Genesis Block, also known as Block 0, is the very first block upon which additional blocks in a blockchain are added. It is effectively the ancestor that every other block can trace its lineage back to since every block references the one preceding it. The Genesis Block is a critical element of a blockchain network because it serves as the foundation for the entire network.</p>
-                </div>
-                <div>
-                    <h5>&bull; Blockchain Explorer :</h5>
-                    <p>A blockchain explorer is a platform that allows people to search and navigate a blockchain. They're not necessary for using the blockchain. However, they offer a valuable service to those who wish to inspect a blockchain in detail. You can view transactions on the blockchain, smart contract code, account balances, and more.</p>
+                    <ul class="justify">
+                        <li>
+                            <h6>Repeater :</h6>
+                            <ul>
+                                <li>The repeater regenerates the signal over the same network as the signal becomes weak or corrupted when sent over a long distance.</li>
+                                <li>Layer 1 device - Physical layer</li>
+                                <li>Has no memory</li>
+                                <li>Half duplex mode</li>
+                                <li>Two port (input and output)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Hub :</h6>
+                            <ul>
+                                <li>Hubs are essentially multi-port repeaters used to setup LANs.</li>
+                                <li>Layer 1 device - Physical layer</li>
+                                <li>Has no momory</li>
+                                <li>Half duplex mode</li>
+                                <li>Has muliple ports</li>
+                                <li>Supports only broadcasting, thus flooding the network.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Bridge :</h6>
+                            <ul>
+                                <li>Repeater + Functionality of Reading MAC Address, Used for Interconnecting Two LANs on the Same Protocol.</li>
+                                <li>Layer 2 device - Data link layer</li>
+                                <li>Has momory - stores MAC address table</li>
+                                <li>Full duplex mode</li>
+                                <li>Multi-port device</li>
+                                <li>Supports unicasting, multicasting and broadcasting.</li>
+                                <li>Uses MAC address to communicate.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Switch :</h6>
+                            <ul>
+                                <li>Used to connect devices together on a network to establish a LAN (switching is deciding the best route for data transmission).</li>
+                                <li>Layer 2 device - Data link layer</li>
+                                <li>Has momory - stores MAC address table</li>
+                                <li>Full duplex mode</li>
+                                <li>Multi-port device</li>
+                                <li>Supports unicasting, multicasting and broadcasting.</li>
+                                <li>Uses MAC address to communicate.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>Router :</h6>
+                            <ul>
+                                <li>Use to connect two or more different LANs using different protocols (forwarding data packets between computer networks).</li>
+                                <li>Layer 3 device - Network layer</li>
+                                <li>Has momory - stores routing table</li>
+                                <li>Full duplex mode</li>
+                                <li>Multi-port device</li>
+                                <li>Supports unicasting, multicasting and broadcasting.</li>
+                                <li>Uses IP address to communicate.</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

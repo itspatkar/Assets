@@ -2,35 +2,14 @@
 # Networking
 
 
-## Internet
-The internet is a global network of interconnected computers and devices that communicate with each other using standardized protocols.
-
-
-To communicate and maintain order, devices must be both identifying and identifiable on a network.
-Every human has an individual set of fingerprints which means that even if they change their name, there is still an identity behind it. Devices have the same thing: two means of identification, with one being permeable. These are:
-- IP Address
-- MAC Address
-
-### IP Address
-IP address (or Internet Protocol) address can be used as a way of identifying a host on a network for a period of time, where that IP address can then be associated with another device without the IP address changing.
-An IP address is a set of numbers that are divided into four octets. The value of each octet will summarise to be the IP address of the device on the network. This number is calculated through a technique known as IP addressing & subnetting, but that is for another day. What's important to understand here is that IP addresses can change from device to device but cannot be active simultaneously more than once within the same network. IP Addresses follow a set of standards known as protocols. These protocols are the backbone of networking and force many devices to communicate in the same language.
-The devices can be on both a private and public network. Depending on where they are will determine what type of IP address they have: a public or private IP address.
-A public address is used to identify the device on the Internet, whereas a private address is used to identify a device amongst other devices.
-
-Internet Protocol addressing scheme -
-- IPv4 : numbering system of 2^32 IP addresses
-- IPv6 : numbering system of 2^128 IP addresses
-
 #### PING
 Ping uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.
 
-### MAC Address
-Devices on a network will all have a physical network interface, which is a microchip board found on the device's motherboard. This network interface is assigned a unique address at the factory it was built at, called a MAC (Media Access Control ) address. The MAC address is a twelve-character hexadecimal number (a base sixteen numbering system used in computing to represent numbers) split into two's and separated by a colon. The first six characters represent the vendor/company that made the network interface, and the last six is a unique number.
-However, an interesting thing with MAC addresses is that they can be faked or "spoofed" in a process known as spoofing. This spoofing occurs when a networked device pretends to identify as another using its MAC address. Every node in the LAN is identified with the help of MAC address. 
 
 ### Ports Address/Number
-In node multiple processes are running, data which is sent or received must be reach to the right process. Every process in the node is uniquely identified using port number.
-
+A port address is a numeric value used to uniquely identify different communication endpoints in a network. In the context of the Internet Protocol (IP), ports are part of the addressing information that is used to route data packets to the correct destination.
+In node multiple processes are running, data which is sent or received must be reach to the right process. 
+Every process in the node is uniquely identified using port number.
 
 ### Requests And Responses
 When we access a website, your browser will need to make requests to a web server for assets such as HTML, Images, and download the responses. Before that, you need to tell the browser specifically how and where to access these resources, this is where URLs will help.
@@ -133,62 +112,3 @@ a small piece of data that is stored on your computer. Cookies are saved when yo
 ---
 
 <!-- You can also use an OpenVPN connection and use your own computer. Follow the steps on the OpenVPN page for further instructions on connecting. Once connected to our network via OpenVPN, deploy the machine on this task and paste its IP into your own browser. -->
-
-
-------------------
-
-### Networking Nodes/Devices:
-A node is a connection point inside a network that can receive, send, create, or store data. Each node requires you to provide some form of identification to receive access, like an IP address. A node is essentially any network device that can recognize, process, and transmit information to any other network node.
-
-#### Hub
-- used to setup LANs
-- Layer 1 device
-- Works at physical layer
-- has no memory
-- only broadcasting (thus floods the network)
-- LAN
-- half duplex
-- has muliple ports
-- star topology
-
-#### Switch
-- used to connect devices together on network to establish LAN (switching is deciding best route for data transmission)
-- Layer 2 device
-- Works at data link layer
-- has memory - stores MAC address table
-- unicasting, multicasting and broadcasting
-- LAN
-- full duplex
-- uses MAC address to communicate
-
-#### Multi-Layer Switch - layer 2 switch
-
-#### Bridge
-- Repeater + Functionality of reading MAC address
-- used for interconnecting 2 LANs on same protocol
-- layer 2 device
-- two port devices
-
-#### Router
-- use to connect two or more different LANs - different protocols (forwards data packets between computer networks)
-- layer 3 device
-- works at network layer
-- has memory - stores routing table
-- uses IP address to communicate
-- LAN, MAN, WAN
-- full deplex
-
-#### Brouter
-
-#### Repeater
-- repeater regenerates the signal over the same network as signal become weak or corrupted when sent at long distance
-- operates at physical layer
-
-#### Modem
-
-#### Firewall
-
-#### Wireless Access Points (WAP)
-
-
-
