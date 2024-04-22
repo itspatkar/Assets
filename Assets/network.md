@@ -1,32 +1,8 @@
 
 # Networking
 
-
 #### PING
 Ping uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.
-
-
-### Ports Address/Number
-A port address is a numeric value used to uniquely identify different communication endpoints in a network. In the context of the Internet Protocol (IP), ports are part of the addressing information that is used to route data packets to the correct destination.
-In node multiple processes are running, data which is sent or received must be reach to the right process. 
-Every process in the node is uniquely identified using port number.
-
-### Requests And Responses
-When we access a website, your browser will need to make requests to a web server for assets such as HTML, Images, and download the responses. Before that, you need to tell the browser specifically how and where to access these resources, this is where URLs will help.
-
-
-### Uniform Resource Locator (URL)
-A URL is predominantly an instruction on how to access a resource on the internet.
-
-Ex:  http://user:password@tryhackme.com:80/view-room?id=1#task3
-
-- Scheme: This instructs on what protocol to use for accessing the resource such as HTTP, HTTPS, FTP (File Transfer Protocol).
-- User: Some services require authentication to log in, you can put a username and password into the URL to log in.
-- Host: The domain name or IP address of the server you wish to access.
-- Port: The Port that you are going to connect to, usually 80 for HTTP and 443 for HTTPS, but this can be hosted on any port between 1 - 65535.
-- Path: The file name or location of the resource you are trying to access.
-- Query String: Extra bits of information that can be sent to the requested path. For example, /blog?id=1 would tell the blog path that you wish to receive the blog article with the id of 1.
-- Fragment: This is a reference to a location on the actual page requested. This is commonly used for pages with long content and can have a certain part of the page directly linked to it, so it is viewable to the user as soon as they access the page.
 
 - URL Headers
 - Request Method
@@ -107,8 +83,3 @@ a small piece of data that is stored on your computer. Cookies are saved when yo
 - CDN (Content Delivery Networks) : A CDN can be an excellent resource for cutting down traffic to a busy website. It allows you to host static files from your website, such a JavaScript, CSS, Images, Videos, and host them across thousands of servers all over the world. When a user requests one of the hosted files, the CDN works out where the nearest server is physically located and sends the request there instead of potentially the other side of the world.
 
 - Virtual Hosts : Web servers can host multiple websites with different domain names; to achieve this, they use virtual hosts. The web server software checks the hostname being requested from the HTTP headers and matches that against its virtual hosts (virtual hosts are just text-based configuration files). If it finds a match, the correct website will be provided. If no match is found, the default website will be provided instead.
-
-
----
-
-<!-- You can also use an OpenVPN connection and use your own computer. Follow the steps on the OpenVPN page for further instructions on connecting. Once connected to our network via OpenVPN, deploy the machine on this task and paste its IP into your own browser. -->

@@ -25,6 +25,7 @@
             <div class="section-list">
                 <ul>
                     <li><a href="#internet">Internet</a></li>
+                    <li><a href="#url">URL</a></li>
                     <li><a href="#network-node">Networking Nodes</a></li>
                 </ul>
             </div>
@@ -55,12 +56,30 @@
                     <li>
                         <h5>Port Address :</h5>
                         <ul>
-                            <li>***</li>
+                            <li>A port address is a numeric value used to uniquely identify different communication endpoints in a network.</li>
+                            <li>In a node, multiple processes are running, and data that is sent or received must reach the right process.</li>
+                            <li>Every process in the node is uniquely identified using a port number, which is used to route data packets to the correct destination.</li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            
+
+            <div class="sections" id="url">
+                <h4 class="heading"># URL</h4>
+                <p>A URL (or Uniform Resource Locator) is predominantly an instruction on how to access a resource on the internet.</p>
+                <h6>Ex :</h6>
+                <div class="code-box">http://user:password@example.com:80/view?id=1#task2</div>
+                <ul>
+                    <li><b>Scheme (<code>http</code>) :</b> This instructs on what protocol to use for accessing the resource such as HTTP, HTTPS, FTP.</li>
+                    <li><b>User (<code>user:password</code>) :</b> Some services require authentication to log in, you can put a username and password into the URL to log in.</li>
+                    <li><b>Host (<code>example.com</code>) :</b> The domain name or IP address of the server you wish to access.</li>
+                    <li><b>Port (<code>80</code>) :</b> The Port that you are going to connect to, usually 80 for HTTP and 443 for HTTPS.</li>
+                    <li><b>Path (<code>/view</code>) :</b> The file name or location of the resource you are trying to access.</li>
+                    <li><b>Query String (<code>/view?id=1</code>) :</b> Extra bits of information that can be sent to the requested path.</li>
+                    <li><b>Fragment (<code>#task2</code>) :</b> This is a reference to a location on the actual page requested.</li>
+                </ul>
+            </div>
+
             <div class="sections" id="network-node">
                 <h4 class="heading"># Networking Nodes</h4>
                 <p>A node in a network is a point where data can be received, sent, created, or stored. It needs identification like an IP address for access and can be any device that processes and shares information with other nodes.</p>
