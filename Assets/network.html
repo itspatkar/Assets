@@ -26,6 +26,7 @@
                 <ul>
                     <li><a href="#internet">Internet</a></li>
                     <li><a href="#url">URL</a></li>
+                    <li><a href="#dns">DNS</a></li>
                     <li><a href="#network-node">Networking Nodes</a></li>
                 </ul>
             </div>
@@ -33,7 +34,7 @@
             <div class="sections" id="internet">
                 <h4 class="heading"># Internet</h4>
                 <p>The internet is a global network of interconnected computers and devices that use standardized communication protocols to exchange data and information. For effective communication and organization on a network, devices need to have clear identification and be recognizable by others which is typically occurs through unique identifiers assigned to each device, such as IP addresses or MAC addresses. These identifiers enable devices to send and receive data, facilitating communication and maintaining order within the network.</p>
-                <ul>
+                <ul class="justify">
                     <li>
                         <h5>IP Address :</h5>
                         <ul>
@@ -42,6 +43,7 @@
                             <li>It is calculated through a technique known as IP addressing & subnetting.</li>
                             <li>A device's IP address can be changed, but two devices cannot have the same IP address within the same network.</li>
                             <li>An IP address is of two types: public or private. A public address is used to identify the device on the Internet, whereas a private address is used to identify a device amongst other devices on a local network.</li>
+                            <li><b>Ping :</b> The <code>ping</code> command is used to test the reachability of a host on an Internet Protocol (IP) network. It uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.</li>
                         </ul>
                     </li>
                     <li>
@@ -69,7 +71,7 @@
                 <p>A URL (or Uniform Resource Locator) is predominantly an instruction on how to access a resource on the internet.</p>
                 <h6>Ex :</h6>
                 <div class="code-box">http://user:password@example.com:80/view?id=1#task2</div>
-                <ul>
+                <ul class="justify">
                     <li><b>Scheme (<code>http</code>) :</b> This instructs on what protocol to use for accessing the resource such as HTTP, HTTPS, FTP.</li>
                     <li><b>User (<code>user:password</code>) :</b> Some services require authentication to log in, you can put a username and password into the URL to log in.</li>
                     <li><b>Host (<code>example.com</code>) :</b> The domain name or IP address of the server you wish to access.</li>
@@ -77,6 +79,26 @@
                     <li><b>Path (<code>/view</code>) :</b> The file name or location of the resource you are trying to access.</li>
                     <li><b>Query String (<code>/view?id=1</code>) :</b> Extra bits of information that can be sent to the requested path.</li>
                     <li><b>Fragment (<code>#task2</code>) :</b> This is a reference to a location on the actual page requested.</li>
+                </ul>
+            </div>
+
+            <div class="sections" id="dns">
+                <h4 class="heading"># DNS</h4>
+                <p>The Domain Name System (DNS) is the phonebook of the Internet. Humans access information online through domain names, like google.com. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load Internet resources. DNS servers eliminate the need for humans to memorize IP addresses such as <code>192.168.1.1</code> (in IPv4).</p>
+                <ul class="justify">
+                    <li><b>Domain Name Resolution :</b> When a domain name is entered into a web browser, the device first checks its local DNS cache to see if the corresponding IP address exists. If not, it sends a request to a DNS server.</li>
+                    <li><b>DNS Server Lookup :</b> The device sends a query to a DNS server, provided by the Internet Service Provider (ISP). If the DNS server has the requested information in its cache, it returns the IP address to the device. If not, it queries other DNS servers until it finds the information or determines that it doesn't exist.</li>
+                    <li><b>Response :</b> Once the DNS server has the IP address corresponding to the requested domain name, it sends that information back to the device. The device can then connect to the server hosting the requested website and access the website.</li>
+                    <li><b>NSLookup :</b> The <code>nslookup</code> is used for querying Domain Name System (DNS) servers to obtain information about domain names, IP addresses, and DNS records. It stands for Name Server Lookup.</li>
+                    <li>
+                        <p><b>Domain Hierarchy :</b> Domain Hierarchy refers to the structure and organization of domain names within the Domain Name System (DNS).</p>
+                        <div class="code-box">www.example.com</div>
+                        <ul>
+                            <li>Top-Level Domain (TLD)</li>
+                            <li>Second-Level Domain (SLD)</li>
+                            <li>Subdomain (SD)</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
 

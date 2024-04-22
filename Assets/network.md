@@ -1,20 +1,6 @@
 
 # Networking
 
-#### PING
-Ping uses ICMP (Internet Control Message Protocol) packets to determine the performance of a connection between devices, for example, if the connection exists or is reliable.
-
-- URL Headers
-- Request Method
-- Status Code
-- Web Server
-
-
-### DNS (nslookup)
-- DNS: The Domain Name System (DNS) is the phonebook of the Internet. Humans access information online through domain names, like google.com. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load Internet resources. DNS servers eliminate the need for humans to memorize IP addresses such as 192.168.1.1 (in IPv4).
-- DNS Servers
-- Domain Hierarchy (TLD - Top-Level Domain, Second-Level Domain, Subdomain)
-
 
 ### Protocols
 It is set of rules that governs data communication
