@@ -1,10 +1,6 @@
 
 # Networking
 
-
-### Protocols
-It is set of rules that governs data communication
-
 #### HTTP
 - HyperText Transfer Protocol (HTTP) - 80 : Hypertext Transfer Protocol (HTTP) is the protocol that specifies how a web browser and a web server communicate. Your web browser requests content from the TryHackMe web server using the HTTP protocol.
 - HyperText Transfer Protocol Secure (HTTPS) - 443 : HTTPS is the secure version of HTTP. HTTPS data is encrypted so it not only stops people from seeing the data you are receiving and sending, but it also gives you assurances that you're talking to the correct web server and not something impersonating it.

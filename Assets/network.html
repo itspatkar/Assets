@@ -27,6 +27,7 @@
                     <li><a href="#internet">Internet</a></li>
                     <li><a href="#url">URL</a></li>
                     <li><a href="#dns">DNS</a></li>
+                    <li><a href="#protocol">Protocols</a></li>
                     <li><a href="#network-node">Networking Nodes</a></li>
                 </ul>
             </div>
@@ -92,14 +93,89 @@
                     <li><b>NSLookup :</b> The <code>nslookup</code> is used for querying Domain Name System (DNS) servers to obtain information about domain names, IP addresses, and DNS records. It stands for Name Server Lookup.</li>
                     <li>
                         <p><b>Domain Hierarchy :</b> Domain Hierarchy refers to the structure and organization of domain names within the Domain Name System (DNS).</p>
-                        <div class="code-box">www.example.com</div>
+                        <div class="code-box">page.example.com</div>
                         <ul>
-                            <li>Top-Level Domain (TLD)</li>
-                            <li>Second-Level Domain (SLD)</li>
-                            <li>Subdomain (SD)</li>
+                            <li>Top-Level Domain (<code>.com</code>)</li>
+                            <li>Second-Level Domain (<code>example</code>)</li>
+                            <li>Subdomain (<code>page</code>)</li>
                         </ul>
                     </li>
                 </ul>
+            </div>
+
+            <div class="sections" id="protocol">
+                <h4 class="heading"># Protocols</h4>
+                <p>In computer networking, protocols are a set of rules or conventions that govern how data is transmitted between devices on a network.<br>
+                There are numerous protocols at different layers of the networking stack, such as -</p>
+                <ul>
+                    <li>
+                        <b>Internet Protocol (IP) :</b>
+                        <p>Fundamental protocol responsible for addressing and routing packets of data so they can travel across networks and reach their intended destinations.</p>
+                    </li>
+                    <li>
+                        <b>Transmission Control Protocol (TCP) :</b>
+                        <p>TCP is a protocol that operates at a higher level than IP and is responsible for establishing and maintaining connections between devices, ensuring reliable and ordered delivery of data. If data is lost or corrupted during transmission, TCP detects this and retransmits the lost or corrupted packets. TCP is connection-oriented, meaning a connection is established and maintained until the application programs at each end have finished exchanging messages. This connection's establishment and termination involve a handshake process. TCP is used in web browsers (in HTTP), email, file transfer, and instant/realtime messaging.</p>
+                    </li>
+                    <li>
+                        <b>User Datagram Protocol (UDP) :</b>
+                        <p>UDP is a connectionless protocol, which means it doesn't establish a connection before sending data and doesn't guarantee delivery of packets or the order of packets. Each UDP packet is independent of the others. UDP offers lower latency compared to TCP due to its connectionless nature, no handshake, minimal overhead, and no retransmissions. It is often used for time-sensitive applications where speed is prioritized over reliability. UDP is commonly used in VoIP applications, video streaming, online gaming, DNS, and DHCP.</p>
+                    </li>
+                    <li>
+                        <b>Hypertext Transfer Protocol (HTTP) :</b>
+                        <p>The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web. It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.</p>
+                    </li>
+                    <li>
+                        <b>Simple Mail Transfer Protocol (SMTP) :</b>
+                        <p>SMTP, or Simple Mail Transfer Protocol, is a communication protocol used for transmitting electronic mail (email) between computers over a network. It defines how email messages should be formatted and transmitted.</p>
+                    </li>
+                    <li>
+                        <b>File Transfer Protocol (FTP) :</b>
+                        <p>FTP, or File Transfer Protocol, is a standard network protocol used for transferring files between a client and a server on a computer network. It specifies how files should be transferred and accessed.</p>
+                    </li>
+                    <li>
+                        <b>Dynamic Host Configuration Protocol (DHCP) :</b>
+                        <p>It is a network management protocol used to automatically assign IP addresses and other network configuration information to devices on a network. DHCP eliminates the need for manual configuration of network settings.</p>
+                    </li>
+                </ul>
+                <div>
+                    <h5>Default Port for Protocols :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Protocol</th>
+                                    <th>Default Port</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>HTTP</td>
+                                    <td>80</td>
+                                </tr>
+                                <tr>
+                                    <td>HTTPS</td>
+                                    <td>443</td>
+                                </tr>
+                                <tr>
+                                    <td>FTP</td>
+                                    <td>21</td>
+                                </tr>
+                                <tr>
+                                    <td>SFTP</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>SSH</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>DNS</td>
+                                    <td>53</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div class="sections" id="network-node">
