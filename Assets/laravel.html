@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title>Laravel Cheatsheet</title>
+
+        <!-- Bootstrap CDN -->  
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+
+    <body data-theme="light">
+        <div class="container">
+            <!-- Theme Toggle -->
+            <div class="button float-end"><i class="bi bi-circle-half"></i></div>
+
+            <h3 class="title">Laravel</h3>
+            
+            <div class="sections">
+                <p>Laravel is an open-source PHP web framework used for building web applications, based on the Model-View-Controller (MVC) architectural pattern. Laravel offers a wide range of features, including routing, middleware, authentication, sessions, caching, database management (with Eloquent ORM), and templating with Blade.</p>
+            </div>
+
+            <div class="section-list">
+                <ul>
+                    <li><a href="#folder-structure">Folder Structure</a></li>
+                </ul>
+            </div>
+
+            <div class="sections" id="folder-structure">
+                <h4 class="heading"># Folder Structure</h4>
+                <ul>
+                    <li>
+                        <p><b><code>app</code> :</b> This directory contains the core code of your application. It includes subdirectories like:</p>
+                        <ul>
+                            <li><b><code>Console</code> :</b> Contains Artisan commands.</li>
+                            <li><b><code>Exceptions</code> :</b> Custom exception handlers.</li>
+                            <li><b><code>Http</code> :</b> Contains controllers, middleware, and form requests.</li>
+                            <li><b><code>Models</code> :</b> Contains the Eloquent ORM models.</li>
+                            <li><b><code>Providers</code> :</b> Service providers for application bootstrapping.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b><code>bootstrap</code> :</b> Contains the application's bootstrap files, including app.php, which bootstraps the Laravel framework.</p>
+                    </li>
+                    <li>
+                        <p><b><code>config</code> :</b> Configuration files for various parts of the application, such as database, cache, and session configuration.</p>
+                    </li>
+                    <li>
+                        <p><b><code>database</code> :</b> Contains database migrations, seeds, and factories.</p>
+                        <ul>
+                            <li><b><code>migrations</code> :</b> Database migration files.</li>
+                            <li><b><code>seeds</code> :</b> Database seeders.</li>
+                            <li><b><code>factories</code> :</b> Model factories for generating test data.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b><code>public</code> :</b> This is the web server's document root. It contains the entry point (index.php) and publicly accessible assets like CSS, JavaScript, and image files.</p>
+                    </li>
+                    <li>
+                        <p><b><code>resources</code> :</b> Contains non-PHP resources that the application uses, such as views, language files, and assets.</p>
+                        <ul>
+                            <li><b><code>css, js, sass</code> :</b> Contains CSS and JavaScript assets.</li>
+                            <li><b><code>lang</code> :</b> Language files for localization.</li>
+                            <li><b><code>views</code> :</b> Blade templates for generating HTML.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b><code>routes</code> :</b> Contains route definitions for the application.</p>
+                        <ul>
+                            <li><b><code>web.php</code> :</b> Routes for web interface.</li>
+                            <li><b><code>api.php</code> :</b> Routes for API endpoints.</li>
+                            <li><b><code>console.php</code> :</b> Routes for Artisan commands.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b><code>storage</code> :</b> Contains application storage, such as logs, temporary files, and uploaded files.</p>
+                        <ul>
+                            <li><b><code>app</code> :</b> Application-specific files generated by the application.</li>
+                            <li><b><code>framework</code> :</b> Cache, sessions, and views used by the framework.</li>
+                            <li><b><code>logs</code> :</b> Application log files.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b><code>tests</code> :</b> Contains PHPUnit test cases for the application.</p>
+                    </li>
+                    <li>
+                        <p><b><code>vendor</code> :</b> Contains Composer dependencies.</p>
+                    </li>
+                    <li>
+                        <p><b><code>.env</code> :</b> Environment configuration file.</p>
+                    </li>
+                    <li>
+                        <p><b><code>artisan</code> :</b> CLI utility for interacting with your Laravel application.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav>
+                <a href="https://itspatkar.github.io/Cheatsheets/"><i class="bi bi-arrow-left-square-fill"></i></a>
+                <a href="#" class="float-end"><i class="bi bi-arrow-up-square-fill"></i></a>
+            </nav>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="assets/script.js"></script>
+    </body>
+</html>
