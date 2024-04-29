@@ -39,23 +39,23 @@
                 <h4 class="heading"># Folder Structure</h4>
                 <ul>
                     <li>
-                        <p><b><code>app</code> :</b> This directory contains the core code of your application. It includes subdirectories like:</p>
+                        <p><b><code>app</code> :</b> This directory contains the core code of the application. It includes subdirectories, like</p>
                         <ul>
-                            <li><b><code>Console</code> :</b> Contains Artisan commands.</li>
-                            <li><b><code>Exceptions</code> :</b> Custom exception handlers.</li>
+                            <li><b><code>Console</code> :</b> Contains custom Artisan commands generated using the <code>make:command</code> command.</li>
+                            <li><b><code>Exceptions</code> :</b> Contains custom exception handlers generated using the <code>make:exception</code> command..</li>
                             <li><b><code>Http</code> :</b> Contains controllers, middleware, and form requests.</li>
                             <li><b><code>Models</code> :</b> Contains the Eloquent ORM models.</li>
-                            <li><b><code>Providers</code> :</b> Service providers for application bootstrapping.</li>
+                            <li><b><code>Providers</code> :</b> Contains service providers for application bootstrapping.</li>
                         </ul>
                     </li>
                     <li>
-                        <p><b><code>bootstrap</code> :</b> Contains the application's bootstrap files, including app.php, which bootstraps the Laravel framework.</p>
+                        <p><b><code>bootstrap</code> :</b> Contains the application's bootstrap files, including <code>app.php</code>, which bootstraps the Laravel framework.</p>
                     </li>
                     <li>
                         <p><b><code>config</code> :</b> Configuration files for various parts of the application, such as database, cache, and session configuration.</p>
                     </li>
                     <li>
-                        <p><b><code>database</code> :</b> Contains database migrations, seeds, and factories.</p>
+                        <p><b><code>database</code> :</b> Contains database migrations, seeds, and model factories.</p>
                         <ul>
                             <li><b><code>migrations</code> :</b> Database migration files.</li>
                             <li><b><code>seeds</code> :</b> Database seeders.</li>
@@ -63,10 +63,10 @@
                         </ul>
                     </li>
                     <li>
-                        <p><b><code>public</code> :</b> This is the web server's document root. It contains the entry point (index.php) and publicly accessible assets like CSS, JavaScript, and image files.</p>
+                        <p><b><code>public</code> :</b> This is the web server's document root. It contains the entry point (<code>index.php</code>), which is the entry point for all requests entering the application and configures autoloading and publicly accessible assets like CSS, JavaScript, and image files.</p>
                     </li>
                     <li>
-                        <p><b><code>resources</code> :</b> Contains non-PHP resources that the application uses, such as views, language files, and assets.</p>
+                        <p><b><code>resources</code> :</b> Contains resources that the application uses, such as views, language files, and assets.</p>
                         <ul>
                             <li><b><code>css, js, sass</code> :</b> Contains CSS and JavaScript assets.</li>
                             <li><b><code>lang</code> :</b> Language files for localization.</li>
@@ -76,7 +76,7 @@
                     <li>
                         <p><b><code>routes</code> :</b> Contains route definitions for the application.</p>
                         <ul>
-                            <li><b><code>web.php</code> :</b> Routes for web interface.</li>
+                            <li><b><code>web.php</code> :</b> Routes for the web interface.</li>
                             <li><b><code>api.php</code> :</b> Routes for API endpoints.</li>
                             <li><b><code>console.php</code> :</b> Routes for Artisan commands.</li>
                         </ul>
@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li>
-                        <p><b><code>tests</code> :</b> Contains PHPUnit test cases for the application.</p>
+                        <p><b><code>tests</code> :</b> The tests directory contains your automated tests, such as PHPUnit test cases for the application.</p>
                     </li>
                     <li>
                         <p><b><code>vendor</code> :</b> Contains Composer dependencies.</p>
@@ -99,7 +99,7 @@
                         <p><b><code>.env</code> :</b> Environment configuration file.</p>
                     </li>
                     <li>
-                        <p><b><code>artisan</code> :</b> CLI utility for interacting with your Laravel application.</p>
+                        <p><b><code>artisan</code> :</b> Command line utility for interacting with your Laravel application.</p>
                     </li>
                 </ul>
             </div>
