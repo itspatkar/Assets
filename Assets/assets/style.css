@@ -89,6 +89,7 @@ thead {
     color: var(--code-box-color);
 }
 code {
+    white-space: nowrap;
     color: var(--code-box-color);
 }
 .code-box-color {

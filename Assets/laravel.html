@@ -116,13 +116,12 @@
                 </ul>
                 <pre class="code-box code-box-color"><code>Route::get('/view/{id}', function(string $id){
     return "User" . $id;
-});
-</code></pre>
+});</code></pre>
             </div>
 
             <div class="sections" id="blade">
                 <h4 class="heading"># Blades</h4>
-                <p>A route is a way of mapping HTTP request URIs to a specific controller action or a closure.Blade is the simple yet powerful templating engine that is included with Laravel. All Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to the application. Blade template files use the <code>.blade.php</code> file extension and are typically stored in the <code>resources/views</code> directory.</p>
+                <p>Blade is the simple yet powerful templating engine that is included with Laravel. All Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to the application. Blade template files use the <code>.blade.php</code> file extension and are typically stored in the <code>resources/views</code> directory.</p>
                 <h5>Blade Directives</h5>
                 <p>In addition to template inheritance and displaying data, Blade also provides convenient shortcuts for common PHP control structures, such as conditional statements and loops called blade directives.</p>
                 <ul>
@@ -269,6 +268,16 @@
 @endempty</code></pre>
                     </li>
                 </ul>
+                <div>
+                    <h5>Passing Data Route to View :</h5>
+                    <h6>Route -</h6>
+                    <pre class="code-box code-box-color"><code>Route::get('/users', function(){
+    $name = "User Name";
+    return view('userpage', ['user' => $name]);
+});</code></pre>
+                    <h6>Blade - <code>userpage.blade.php</code></h6>
+                    <pre class="code-box code-box-color"><code>{{ "Welcome " . $user }}</code></pre>
+                </div>
             </div>
 
             <!-- Navigation Buttons -->
