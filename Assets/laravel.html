@@ -29,6 +29,7 @@
                     <li><a href="#route">Routes</a></li>
                     <li><a href="#blade">Blades</a></li>
                     <li><a href="#composer">Composer</a></li>
+                    <li><a href="#artisan">Artisan</a></li>
                 </ul>
             </div>
 
@@ -288,7 +289,61 @@
                 <ul>
                     <li>
                         <h6>Create Laravel Project :</h6>
-                        <div class="code-box"><code>composer create-project laravel/laravel [Project Name]</code></div>
+                        <div class="code-box"><code>composer create-project laravel/laravel [Project-Name]</code></div>
+                    </li>
+                    <li>
+                        <h6>Install Dependency :</h6>
+                        <div class="code-box"><code>composer install</code></div>
+                    </li>
+                    <li>
+                        <h6>Update Dependency :</h6>
+                        <div class="code-box"><code>composer update</code></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sections" id="artisan">
+                <h4 class="heading"># Artisan</h4>
+                <p>Artisan is the command-line interface included with Laravel. Artisan exists at the root of your application as the artisan script and provides a number of helpful commands that can assist in building the application.</p>
+                <h5>Artisan Commands :</h5>
+                <ul>
+                    <li>
+                        <h6>Run Project :</h6>
+                        <div class="code-box"><code>php artisan serve</code></div>
+                    </li>
+                    <li>
+                        <h6>Create Controller :</h6>
+                        <div class="code-box"><code>php artisan make:controller [Controller-Name]<code></div>
+                    </li>
+                    <li>
+                        <h6>Create Resource Controller :</h6>
+                        <div class="code-box"><code>php artisan make:controller [Resource-Controller] --resource</code></div>
+                    </li>
+                    <li>
+                        <h6>Create Resource Controller :</h6>
+                        <div class="code-box"><code>php artisan make:controller [Resource-Controller] --resource</code></div>
+                    </li>
+                    <li>
+                        <h6>Create Component :</h6>
+                        <div class="code-box"><code>php artisan make:component [input]</code></div>
+                    </li>
+                    <li>
+                        <h6>Create ORM Model :</h6>
+                        <div class="code-box"><code>php artisan make:model [Model]</code></div>
+                    </li>
+                    <li>
+                        <h6>Create Migration Table :</h6>
+                        <div class="code-box"><code>php artisan make:migration [create-user-table]</code></div>
+                    </li>
+                    <li>
+                        <h6>Run Migrations :</h6>
+                        <div class="code-box"><code>php artisan migrate</code></div>
+                    </li>
+                    <li>
+                        <h6>Create Import/Export Model :</h6>
+                        <pre class="code-box"><code>php artisan make:import [ModelImport] --model=[Model]
+
+php artisan make:export [ModelExport] --model=[Model]</code></pre>
                     </li>
                 </ul>
             </div>
@@ -304,3 +359,5 @@
         <script src="assets/script.js"></script>
     </body>
 </html>
+
+<!-- php artisan key:generate -->
