@@ -17,7 +17,7 @@ passwd <username>
 # Get SSH Port:
 nmap localhost
 
-# Open Command Prompt in Windows and connect to SSH: ssh <username>@<ip_address> -p <ssh_port>
+# Open Terminal in Linux or Command Prompt in Windows and connect to SSH: ssh <username>@<ip_address> -p <ssh_port>
 # Type 'yes' and password for conformation
 ssh u0_a123@192.168.1.201 -p 8022
 
