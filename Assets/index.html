@@ -14,12 +14,12 @@
         <!-- CSS -->
         <style type="text/css">
         	body {
-        		margin: 0 1rem;
+        		margin: 1rem 0;
         		text-align: center;
         	}
         	ul {
         		list-style-type: none;
-        		padding: 15px 5px;
+        		padding: 5px 15px;
         	}
         	li {
 			    display: block;
@@ -30,7 +30,7 @@
 			    transition: color 0.4s;
 			}
 			li:hover {
-			    border-color: #E9ECEF;
+			    background-color: #E9ECEF;
 			}
 			a {
 				text-decoration: none;
@@ -63,6 +63,7 @@
                     var a = document.createElement('a');
                     a.textContent = item.name;
                     a.href = item.url;
+                    a.target = "_blank";
                     li.appendChild(a);
                     dataList.appendChild(li);
 	            });
