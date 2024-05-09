@@ -1,10 +1,6 @@
 <!-- https://tryhackme.com/r/resources/blog/free_path -->
-<!-- https://tryhackme.com/path/outline/web -->
-<!-- https://tryhackme.com/r/room/ohsint?ref=blog.tryhackme.com -->
-<!-- https://tryhackme.com/r/room/burpsuitebasics -->
 
-
-### Cyber Security Terminology
+### Terminology
 
 - Offensive Security (Red Team) - Attacking : Offensive security is the process of breaking into computer systems, exploiting software bugs, and finding loopholes in applications to gain unauthorized access to them.
 
@@ -36,13 +32,12 @@
 
 - SQLi (Structured Query Language Injection) : SQLi is an attack on a web application database server that causes malicious queries to be executed. When a web application communicates with a database using input from a user that hasn't been properly validated, there runs the potential of an attacker being able to steal, delete or alter private and customer data and also attack the web application authentication methods to private or customer areas. - If web server of dbms throws sql error directly then it has sql injection vulnerability.
 
-- Burp Suite : Burp Suite is an integrated platform for performing security testing of web applications. It includes various tools for scanning, fuzzing, intercepting, and analysing web traffic. It is used by security professionals worldwide to find and exploit vulnerabilities in web applications. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server.
-
-
 ---
+
 
 ### Tools
 
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
 - exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
+- Burp Suite : Burp Suite is an integrated platform for performing security testing of web applications. It includes various tools for scanning, fuzzing, intercepting, and analysing web traffic. It is used by security professionals worldwide to find and exploit vulnerabilities in web applications. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server.
