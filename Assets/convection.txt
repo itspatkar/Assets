@@ -1,0 +1,7 @@
+variables, namespaces: lower_snake_case
+constants: UPPER_SNAKE_CASE
+functions: camelCase
+class, structs, enums: PascalCase
+instances: camelCase
+exceptions: PascalCase
+files, modules, library: lower_snake_case
