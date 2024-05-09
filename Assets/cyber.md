@@ -32,6 +32,10 @@
 
 - SQLi (Structured Query Language Injection) : SQLi is an attack on a web application database server that causes malicious queries to be executed. When a web application communicates with a database using input from a user that hasn't been properly validated, there runs the potential of an attacker being able to steal, delete or alter private and customer data and also attack the web application authentication methods to private or customer areas. - If web server of dbms throws sql error directly then it has sql injection vulnerability.
 
+- Proxy : Proxy server is a system or router that provides a gateway between users and the internet. Therefore, it helps prevent cyber attackers from entering a private network. It is a server, referred to as an “intermediary” because it goes between end-users and the web pages they visit online.
+
+- Web Socket
+
 ---
 
 
