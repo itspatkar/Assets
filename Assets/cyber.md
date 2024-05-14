@@ -36,11 +36,13 @@
 
 - Web Socket
 
-- SSL/TLS
+- SSL/TLS 
 
 - VPN
 
-- ONION Routing and TOR
+- TOR (The Onion Router): TOR Network and Browser
+
+- Proxychains
 
 ---
 
