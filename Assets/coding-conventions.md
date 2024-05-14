@@ -6,4 +6,3 @@
 - **Class/Structs/Enums/Exceptions :** `PascalCase`
 - **Instances/Objects :** `camelCase`
 - **Files/Modules/Libraries :** `lower_snake_case`
-

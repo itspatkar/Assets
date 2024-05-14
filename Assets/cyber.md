@@ -36,8 +36,13 @@
 
 - Web Socket
 
----
+- SSL/TLS
 
+- VPN
+
+- ONION Routing and TOR
+
+---
 
 ### Tools
 
