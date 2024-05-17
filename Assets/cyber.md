@@ -51,5 +51,8 @@
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
 - exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
+- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
+- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
+- jSQL
 
 - Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
