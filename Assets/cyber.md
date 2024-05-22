@@ -22,6 +22,10 @@
 
 - IDOR : Insecure direct object references (IDOR) are a type of access control vulnerability that arises when an application uses user-supplied input to access objects directly. Broken access control means that an attacker can access information or perform actions not intended for them.
 
+- Firewall : A security system that monitors and controlls incoming an outgoing network traffic.
+
+- Ethernet : A standard way to connect devices in a wired network using cables and hubs.
+
 - Virus : Virus is a piece of code (part of a program) that attaches itself to a program. It is designed to spread from one computer to another; moreover, it works by altering, overwriting, and deleting files once it infects a computer. The result ranges from the computer becoming slow to unusable.
 
 - Trojan Horse : Trojan Horse is a program that shows one desirable function but hides a malicious function underneath. For example, a victim might download a video player from a shady website that gives the attacker complete control over their system.
@@ -38,7 +42,7 @@
 
 - SSL/TLS 
 
-- VPN
+- VPN : Establishes a secure connection over public network, enabling secure remove access.
 
 - TOR (The Onion Router): TOR Network and Browser
 
