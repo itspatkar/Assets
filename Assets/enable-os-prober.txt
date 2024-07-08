@@ -6,3 +6,6 @@ GRUB_DISABLE_OS_PROBER=false
 
 # Regenerate GRUB Config
 sudo update-grub
+
+# Reboot System
+reboot

@@ -15,3 +15,6 @@ station wlan0 connect <NetworkName>
 
 # Show connected network
 station wlan0 show
+
+# Exit iwctl
+exit
