@@ -1,9 +1,0 @@
-com.coloros.weather.service
-com.coloros.weather2
-com.finshell.fin
-com.glance.internet
-com.heytap.browser
-com.oplus.games
-com.opos.cs
-com.realmestore.app
-com.redteamobile.roaming
