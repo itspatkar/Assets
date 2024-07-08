@@ -1,12 +1,4 @@
 
-sudo xbps-remove -Su
-
-sudo xbps-install fish-shell
-chsh -s /bin/fish mandar
-set -U fish_greeting
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-omf install mars
-
 sudo xbps-install git file-roller zip tar xz unzip curl xkill android-tools lxqt-sudo gparted mtools filezilla gcc 
 
 sudo xbps-install xfce4-clipman-plugin xfce4-pulseaudio-plugin thunar-archive-plugin xfce4-screenshooter lightdm-gtk-greeter-settings
@@ -15,11 +7,11 @@ sudo xbps-install papirus-icon-theme papirus-folders cantarell-fonts dejavu-font
 
 sudo xbps-install chromium vscode telegram-desktop ssr mpv deadbeef viewnior cheese
 
+sudo xbps-install fzf fzy lsof btop scrcpy
+
 sudo xbps-install void-repo-nonfree
 sudo xbps-remove -S
 sudo xbps-install sublime-text4
 
 sudo xbps-install bluez blueman
 sudo ln -s /etc/sv/bluetoothd/ /var/service/
-
-sudo xbps-install fzf fzy lsof btop scrcpy

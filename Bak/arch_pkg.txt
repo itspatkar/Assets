@@ -1,0 +1,21 @@
+
+# Utilities
+git zip tar xz unzip file-roller curl xkill fzf fzy lsof btop scrcpy
+
+# Install Applications
+gparted mtools filezilla chromium vscode telegram-desktop
+
+# Media
+ssr mpv deadbeef viewnior cheese
+
+# Devel
+gcc android-tools
+
+# XFCE
+xfce4-clipman-plugin xfce4-pulseaudio-plugin thunar-archive-plugin xfce4-screenshooter
+
+# Ricing
+lightdm-gtk-greeter-settings papirus-icon-theme
+
+# Fonts
+noto-fonts ttf-roboto ttf-opensans ttf-droid ttf-ibm-plex ttf-dejavu ttf-liberation ttf-terminus-nerd ttf-go-nerd ttf-ubuntu-font-family ttf-font-awesome
