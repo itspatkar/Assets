@@ -9,3 +9,11 @@ sudo mount /dev/sda1 /mnt/boot/efi/
 
 # Chroot Into Mounted System:
 sudo xchroot /mnt /bin/bash
+
+# Do your work...
+
+# Exit Chroot Env
+exit
+
+# Unmount Partitions
+umount -R /mnt

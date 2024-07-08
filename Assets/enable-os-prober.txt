@@ -1,0 +1,8 @@
+# Install os-prober
+sudo pacman -S os-prober
+
+# Enable OS-Prober Execution on GRUB - Uncomment or Add below line
+GRUB_DISABLE_OS_PROBER=false
+
+# Regenerate GRUB Config
+sudo update-grub
