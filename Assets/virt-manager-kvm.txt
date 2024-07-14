@@ -1,0 +1,51 @@
+
+# Install KVM and required packages
+sudo pacman -Syu
+sudo pacman -S archlinux-keyring
+sudo pacman -S virt-manager virt-viewer qemu dnsmasq bridge-utils openbsd-netcat dmidecode vde2 edk2-ovmf ebtables iptables libguestfs
+
+# Start KVM libvirt service
+sudo systemctl enable libvirtd.service
+sudo systemctl start libvirtd.service
+
+# Check libvirt service status
+systemctl status libvirtd.service
+
+
+# Enable normal user account to use KVM
+
+# Open: /etc/libvirt/libvirtd.conf and uncomment below lines
+sudo vim /etc/libvirt/libvirtd.conf
+
+# Set the UNIX domain socket group ownership to libvirt, (around line 85)
+unix_sock_group = "libvirt"
+
+# Set the UNIX socket permissions for the R/W socket (around line 102)
+unix_sock_rw_perms = "0770"
+
+# Add user account to libvirt group.
+sudo usermod -aG libvirt $(whoami)
+
+# Restart libvirt daemon
+sudo systemctl restart libvirtd.service
+
+
+# Add user to qemu.conf
+sudo usermod -aG kvm $USER
+
+# Open: /etc/libvirt/qemu.conf and uncomment below lines
+sudo vim /etc/libvirt/qemu.conf
+
+# Uncomment and Set: user = "root" and group = "root" to user
+user = "<user>"
+group = "<user>"
+
+
+# Set default network to active on boot
+sudo virsh net-list --all
+sudo virsh net-start default
+sudo virsh net-autostart default
+
+
+# Restart system
+sudo shutdown -r now
