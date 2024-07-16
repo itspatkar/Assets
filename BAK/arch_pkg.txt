@@ -19,3 +19,4 @@ lightdm-gtk-greeter-settings papirus-icon-theme
 
 # Fonts
 noto-fonts ttf-roboto ttf-opensans ttf-droid ttf-ibm-plex ttf-dejavu ttf-liberation ttf-terminus-nerd ttf-go-nerd ttf-ubuntu-font-family ttf-font-awesome
+
