@@ -9,7 +9,7 @@ gparted mtools filezilla chromium vscode telegram-desktop
 ssr mpv deadbeef viewnior cheese
 
 # Devel
-gcc android-tools
+gcc android-tools gvfs-mtp
 
 # XFCE
 xfce4-clipman-plugin xfce4-pulseaudio-plugin thunar-archive-plugin xfce4-screenshooter
