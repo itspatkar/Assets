@@ -1,0 +1,8 @@
+# Cyber Security Tools
+
+- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
+- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
+- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
+- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
+- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
+- jSQL :
