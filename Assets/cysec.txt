@@ -11,3 +11,8 @@
 
 # Information Gathering:
 - whois
+
+
+# Linux
+cat /proc/cpuinfo
+cat /proc/meminfo
