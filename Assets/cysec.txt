@@ -9,10 +9,23 @@
 - Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
 
 
-# Information Gathering:
-- whois
-
-
 # Linux
 cat /proc/cpuinfo
 cat /proc/meminfo
+
+
+# Information Gathering:
+- whois : get whois information/record for domain
+- nslookup : query internet domain name servers (IP address)
+- host : use for DNS lookups and convert names to IP addresses
+- fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
+- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
+- sitereport.netcraft.com : infrastructure and technologies used by site
+- shodan : search engine specifically designed to find devices connected to the internet
+- recon-ng is a full-featured web reconnaissance framework used for penetration testing, vulnerability assessment and OSINT
+- Google Dorks : advanced search queries on Google to find specific information that is not easily accessible through regular searches used for OSINT
+- www.exploit-db.com : Exploit-DB is archive of exploits, security vulnerabilities, and proof-of-concept code that is used by security professionals
+- nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
+
+- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network.
+- nmap : Network Mapper is network scanning tool that identifies devices, open ports, and services of target hosts on network. It can detect OS and service versions and automate network scanning.
