@@ -1,18 +1,3 @@
-# Cyber Security Tools
-
-- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
-- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
-- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
-- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
-- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
-- jSQL :
-- Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
-
-
-# Linux
-cat /proc/cpuinfo
-cat /proc/meminfo
-
 
 # Information Gathering:
 - whois : get whois information/record for domain
@@ -26,6 +11,26 @@ cat /proc/meminfo
 - Google Dorks : advanced search queries on Google to find specific information that is not easily accessible through regular searches used for OSINT
 - www.exploit-db.com : Exploit-DB is archive of exploits, security vulnerabilities, and proof-of-concept code that is used by security professionals
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
+- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning.
+
+# Vulnerability Scanning
+
+# Network Traffic Capture
+- wireshark
+- dnsspoof
+
+------------------------------------------------
 
 - tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network.
-- nmap : Network Mapper is network scanning tool that identifies devices, open ports, and services of target hosts on network. It can detect OS and service versions and automate network scanning.
+- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
+- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
+- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
+- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
+- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
+- jSQL :
+- Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
+
+
+# Linux
+cat /proc/cpuinfo
+cat /proc/meminfo
