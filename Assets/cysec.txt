@@ -1,8 +1,10 @@
 
-# Information Gathering:
+# Information Gathering
 - whois : get whois information/record for domain
 - nslookup : query internet domain name servers (IP address)
 - host : use for DNS lookups and convert names to IP addresses
+- dig : Domain Information Groper (dig) used for retrieving information about DNS name servers
+- traceroute : route packets trace to network host
 - fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
 - theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 - sitereport.netcraft.com : infrastructure and technologies used by site
@@ -13,7 +15,13 @@
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
 - nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning.
 
-# Vulnerability Scanning
+# Deprecated tools
+- ifconfig : Interface Configuration (ifconfig) used to configure network interfaces (deprecated)
+- nslookup : Name Server Lookup (Nslookup) used to query DNS server interactively (deprecated)
+- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships etc (deprecated)
+- route : display IP/kernel routing table (deprecated)
+- arp : display and manipulate Address Resolution Protocol (ARP) cache. ARP is protocol used to map IP addresses to MAC addresses on local network ()
+
 
 # Network Traffic Capture
 - wireshark
