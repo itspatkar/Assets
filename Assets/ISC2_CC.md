@@ -1,22 +1,4 @@
 
-An asset is anything with value, and a security practitioner may need to protect assets.
-A threat is something or someone that poses risk to the organization; this is the definition of a threat.
-A laptop, and the data on it, are assets, not threats. All the other answers are examples of threats because they all have the potential to cause adverse impact to the organization and its assets.
-An event that has a significant probability of occurring ("high-likelihood") and also has a severe negative consequence (high-impact) poses the most risk.
-Applying a security solution (a type of control) is an example of mitigation.
-Sophia is accepting the risk that the money will be lost, even though the likelihood is high; Sophia has decided that the potential benefit (winning the bet), while low in likelihood, is worth the risk.
-Phrenal has decided there is an acceptable level of risk associated with the online sale of the laptop; this is within Phrenal's risk tolerance.
-A software firewall is a technical control because it is a part of the IT environment.
-
-
-Procedure - steps to follow under circumstances
-Standard - set of rules by council/body
-Law - governing body as mandate
-Policy - organization
-
-
--------------------------------------
-
 # Incident Respone
 
 - Breanch : Incident Terminology While security professionals strive to protect systems from malicious attacks or human carelessness, inevitably, things go wrong. For this reason, security professionals also play the role of first responders. An understanding of incident response starts with knowing the terms used to describe various cyberattacks. The loss of control, compromise, unauthorized disclosure, unauthorized acquisition, or any similar occurrence where: a person other than an authorized user accesses or potentially accesses personally identifiable information; or an authorized user accesses personally identifiable information for other than an authorized purpose. NIST SP 800-53 Rev. 5
