@@ -48,7 +48,7 @@ SQL Injection : Structured Query Language Injection (SQLi) is an attack on a web
 
 TOR : The Onion Router (TOR) is a network technology designed to improve your privacy and security on the internet by creating an anonymous communication pathway. It works by routing your internet traffic through a series of volunteer-operated servers (nodes) that encrypt and re-encrypt the data multiple times, making it very difficult to trace back to the original user.
 
-- Log
+- Logs/Audits
 - Firewall
 - Endpoint
 - NTP
