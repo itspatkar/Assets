@@ -57,3 +57,4 @@ TOR : The Onion Router (TOR) is a network technology designed to improve your pr
 - SIEM
 - Malware/Virus
 - Patch/Update/Rollback
+- Digital Signature and Certificates
