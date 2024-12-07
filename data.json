@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Adguard DNS",
+        "url": "https://adguard-dns.io/en/public-dns.html",
+        "description": "Adguard Public DNS"
+    },
+    {
+        "name": "C++ Reference",
+        "url": "https://cplusplus.com/reference/",
+        "description": "C++ Reference"
+    },
+    {
+        "name": "Engineer Guy’s Page",
+        "url": "https://taplink.cc/theengineerguy_",
+        "description": "Free Resources"
+    },
+    {
+        "name": "Everything Curl",
+        "url": "https://everything.curl.dev/",
+        "description": "Everything Curl - Documentation"
+    },
+    {
+        "name": "PHP Cheatsheet",
+        "url": "https://www.php.engineer/php-cheat-sheet",
+        "description": "PHP Cheatsheet"
+    },
+    {
+	"name": "RedHat Topics",
+	"url": "https://www.redhat.com/en/topics",
+	"description": "RedHat's Technology Topics"
+    },
+    {
+        "name": "SQL Tutorial",
+        "url": "https://gvwilson.github.io/sql-tutorial",
+        "description": "SQL Tutorial"
+    }
+]
