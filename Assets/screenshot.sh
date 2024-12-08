@@ -1,0 +1,1 @@
+xfce4-screenshooter --clipboard --no-border --window --save /home/mandar/Pictures/"Screenshot_$(date -d "today" +"%Y-%m-%d_%H-%M-%S").png"

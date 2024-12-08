@@ -1,17 +1,33 @@
 
-# Information Gathering
-- whois : get whois information/record for domain
-- nslookup : query internet domain name servers (IP address)
-- host : use for DNS lookups and convert names to IP addresses
-- dig : Domain Information Groper (dig) used for retrieving information about DNS name servers
-- traceroute : route packets trace to network host
-- fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
-- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
-- sitereport.netcraft.com : infrastructure and technologies used by site
-- shodan : search engine specifically designed to find devices connected to the internet
-- recon-ng is a full-featured web reconnaissance framework used for penetration testing, vulnerability assessment and OSINT
-- Google Dorks : advanced search queries on Google to find specific information that is not easily accessible through regular searches used for OSINT
-- www.exploit-db.com : Exploit-DB is archive of exploits, security vulnerabilities, and proof-of-concept code that is used by security professionals
+# Footprinting and Reconnaissance  (OSINT - Information Gathering)
+- Google Dorks / Search Engines (advanced search queries on Google to find specific information that is not easily accessible through regular searches)
+	- www.exploit-db.com (Exploit-DB is archive of exploits, security vulnerabilities, and proof-of-concept code)
+- Internet Services
+	- www.netcraft.com/tools - Domains, Subdomains, Hosts, Infrastructure, Technologies used by site
+	- dnsdumpster.com - Domains, Subdomains and Hosts
+	- search.censys.io - Domains, Subdomains and Hosts
+	- pentest-tools.com
+	- www.social-searcher.com - Social Accounts
+	- whois.domaintools.com - WHOIS
+	- www.pingplotter.com - DNS Footprinting
+	- mxtoolbox.com - Email Footprinting
+	- socialcatfish.com - Email Footprinting
+	- www.ip2location.com - Email Footprinting, Email Header Tracer
+- Tools
+	- sherlock - Social media accounts, personal info
+	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
+	- nslookup : query internet domain name servers (set type=a/cname)
+	- whois : get whois information/record for domain
+	- host : use for DNS lookups and convert names to IP addresses
+	- dig : Domain Information Groper (dig) used for retrieving information about DNS name servers
+	- traceroute : route packets trace to network host
+	- fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
+	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
+	- shodan : search engine specifically designed to find devices connected to the internet
+
+
+------------------------------------------------
+
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
 - nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning.
 
@@ -26,6 +42,7 @@
 # Network Traffic Capture
 - wireshark
 - dnsspoof
+
 
 ------------------------------------------------
 
