@@ -59,3 +59,9 @@
 # Linux
 cat /proc/cpuinfo
 cat /proc/meminfo
+
+
+------------------------------------------------
+
+The systematic notification, identification, deployment, installation and verification of operating system and application software code revisions. These revisions are known as patches, hot fixes, and service packs. Source: CNSSI 4009
+https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html#the-canonical-patch-format
