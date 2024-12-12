@@ -1,0 +1,5 @@
+# NMap
+
+- scan Open Ports: nmap <ip>
+- OS detection: nmap -O <ip>
+- OS+Service Version: nmap -O -sV <ip>

@@ -1,51 +1,41 @@
 
 # Footprinting and Reconnaissance  (OSINT - Information Gathering)
-- Google Dorks / Search Engines (advanced search queries on Google to find specific information that is not easily accessible through regular searches)
-	- www.exploit-db.com (Exploit-DB is archive of exploits, security vulnerabilities, and proof-of-concept code)
-- Internet Services
-	- www.netcraft.com/tools - Domains, Subdomains, Hosts, Infrastructure, Technologies used by site
-	- dnsdumpster.com - Domains, Subdomains and Hosts
-	- search.censys.io - Domains, Subdomains and Hosts
-	- pentest-tools.com
+
+- Extract meta deta from files
+- Web Services:
+	- Advance search using Search Engines, Image Searches, Reverse Search
+	- FTP Search Engine (NAPALM FTP Indexer, FreewareWeb FTP File Search, Mamont, Globalfilesearch.com)
+	- Google Dorks (advanced search operators/queries in Google Search Engine to find information - files, open FTP ports, services)
+	- www.exploit-db.com (Exploit-DB is online archive of exploits, security vulnerabilities, and proof-of-concept code)
+	- www.exploit-db.com/google-hacking-database (GHDB - Google Hacking Database is collection of advanced search queries Google Dorks)
 	- www.social-searcher.com - Social Accounts
 	- whois.domaintools.com - WHOIS
-	- www.pingplotter.com - DNS Footprinting
-	- mxtoolbox.com - Email Footprinting
-	- socialcatfish.com - Email Footprinting
+	- www.netcraft.com/tools - Domains, Subdomains, Hosts, Infrastructure, Technologies used by site
+	- dnsdumpster.com
+	- search.censys.io
+	- pentest-tools.com
 	- www.ip2location.com - Email Footprinting, Email Header Tracer
-- Tools
+	- mxtoolbox.com
+	- socialcatfish.com
+	- traceroute : route packets trace to network host
+	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
+- CLI Tools:
 	- sherlock - Social media accounts, personal info
-	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
-	- nslookup : query internet domain name servers (set type=a/cname)
+	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 	- whois : get whois information/record for domain
+	- nslookup : query internet domain name servers (set type=a/cname)
 	- host : use for DNS lookups and convert names to IP addresses
 	- dig : Domain Information Groper (dig) used for retrieving information about DNS name servers
-	- traceroute : route packets trace to network host
 	- fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
-	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
-	- shodan : search engine specifically designed to find devices connected to the internet
+	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
+	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
 
 
-------------------------------------------------
+--------------------------------------------------------------
 
+
+- www.pingplotter.com
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
-- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning.
-
-# Deprecated tools
-- ifconfig : Interface Configuration (ifconfig) used to configure network interfaces (deprecated)
-- nslookup : Name Server Lookup (Nslookup) used to query DNS server interactively (deprecated)
-- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships etc (deprecated)
-- route : display IP/kernel routing table (deprecated)
-- arp : display and manipulate Address Resolution Protocol (ARP) cache. ARP is protocol used to map IP addresses to MAC addresses on local network ()
-
-
-# Network Traffic Capture
-- wireshark
-- dnsspoof
-
-
-------------------------------------------------
-
 - tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network.
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
@@ -56,12 +46,31 @@
 - Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
 
 
+# Network Traffic Capture
+- wireshark
+- dnsspoof
+
+
+# Deprecated tools
+- ifconfig : Interface Configuration (ifconfig) used to configure network interfaces (deprecated)
+- nslookup : Name Server Lookup (Nslookup) used to query DNS server interactively (deprecated)
+- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships etc (deprecated)
+- route : display IP/kernel routing table (deprecated)
+- arp : display and manipulate Address Resolution Protocol (ARP) cache. ARP is protocol used to map IP addresses to MAC addresses on local network ()
+
 # Linux
 cat /proc/cpuinfo
 cat /proc/meminfo
 
+# Win
+Disable Fast Startup
+Disable Startup Services
+WinR + mrt
 
-------------------------------------------------
 
-The systematic notification, identification, deployment, installation and verification of operating system and application software code revisions. These revisions are known as patches, hot fixes, and service packs. Source: CNSSI 4009
-https://www.kernel.org/doc/html/v4.17/process/submitting-patches.html#the-canonical-patch-format
+nc -lvp 1234
+nc -lvp 1234 -e /bin/bash
+nc -lvp 1234 > file
+
+nc <ip> 1234
+nc <ip> < file
