@@ -1,48 +1,58 @@
 
-# Footprinting and Reconnaissance  (OSINT - Information Gathering)
+# Footprinting and Reconnaissance (OSINT - Information Gathering)
 
 - Extract meta deta from files
+- Online blogs, groups, and forums
 - Web Services:
-	- Advance search using Search Engines, Image Searches, Reverse Search
+	- Advance search using Search Engines, Image Searches, Reverse Search, People search services, Job and other portals
 	- FTP Search Engine (NAPALM FTP Indexer, FreewareWeb FTP File Search, Mamont, Globalfilesearch.com)
+	- IoT Search Engines (Shodan, Censys, ZoomEye - manufacturer details, geographical location, IP address, hostname, open ports of IoT device)
 	- Google Dorks (advanced search operators/queries in Google Search Engine to find information - files, open FTP ports, services)
 	- www.exploit-db.com (Exploit-DB is online archive of exploits, security vulnerabilities, and proof-of-concept code)
 	- www.exploit-db.com/google-hacking-database (GHDB - Google Hacking Database is collection of advanced search queries Google Dorks)
+	- archive.org (Digital Library & Internet Archive Wayback Machine that explores archived versions of websites)
 	- www.social-searcher.com - Social Accounts
 	- whois.domaintools.com - WHOIS
-	- www.netcraft.com/tools - Domains, Subdomains, Hosts, Infrastructure, Technologies used by site
+	- search.censys.io - Domains, Subdomains, Hosts, OS, Infrastructure, Technologies used by site
+	- www.netcraft.com/tools
 	- dnsdumpster.com
-	- search.censys.io
 	- pentest-tools.com
 	- www.ip2location.com - Email Footprinting, Email Header Tracer
 	- mxtoolbox.com
 	- socialcatfish.com
-	- traceroute : route packets trace to network host
 	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
+	- www.semrush.com : SEO, content marketing, competitor research, PPC and social media marketing
+
 - CLI Tools:
+	- whois : get whois information/record for domain
+	- host : use for DNS lookups and convert names to IP addresses and vice versa
+	- dig : Domain Information Groper (dig) retrieves information about DNS name servers
+	- traceroute : route packets trace to network host
+	- ip : show / manipulate routing, network devices, interfaces and tunnels (replaces deprecated: ifconfig, route, arp)
+	- ifconfig : Interface Configuration (ifconfig) configures network interfaces (deprecated)
+	- nslookup : Name Server Lookup (nsookup) queries DNS Servers interactively (deprecated)
+	- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships, etc. (deprecated)
+	- route : show / manipulate the IP routing table (deprecated)
+	- arp : show / manipulate Address Resolution Protocol (ARP) cache (deprecated)
+	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
+	- nslookup : query internet domain name servers (set type=a/cname)
+	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
+	- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images
+	- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
+	- fierce : DNS reconnaissance tool locate non-contiguous IP space and hostnames against specified domains
+	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
 	- sherlock - Social media accounts, personal info
 	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
-	- whois : get whois information/record for domain
-	- nslookup : query internet domain name servers (set type=a/cname)
-	- host : use for DNS lookups and convert names to IP addresses
-	- dig : Domain Information Groper (dig) used for retrieving information about DNS name servers
-	- fierce : DNS scanner - locate non-contiguous IP space and hostnames against specified domains
-	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
-	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
+	- sublist3r : fast subdomains enumeration tool for penetration testers
+	- photon : retrieve archived URLs of the target website from archive.org
 
 
 --------------------------------------------------------------
 
-
-- www.pingplotter.com
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
-- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network.
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
-- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
-- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images.
 - sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
 - crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
-- jSQL :
 - Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
 
 
@@ -50,13 +60,6 @@
 - wireshark
 - dnsspoof
 
-
-# Deprecated tools
-- ifconfig : Interface Configuration (ifconfig) used to configure network interfaces (deprecated)
-- nslookup : Name Server Lookup (Nslookup) used to query DNS server interactively (deprecated)
-- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships etc (deprecated)
-- route : display IP/kernel routing table (deprecated)
-- arp : display and manipulate Address Resolution Protocol (ARP) cache. ARP is protocol used to map IP addresses to MAC addresses on local network ()
 
 # Linux
 cat /proc/cpuinfo
