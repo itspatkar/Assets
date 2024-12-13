@@ -3,6 +3,7 @@
 
 - Extract meta deta from files
 - Online blogs, groups, and forums
+- Source code–based repositories (internal servers, self-hosted, third-party hosting - GitHub, GitLab, SourceForge, BitBucket) contain sensitive data, configuration files, private Secure Shell (SSH), Secure Sockets Layer (SSL) keys, source-code files, dynamic libraries
 - Web Services:
 	- Advance search using Search Engines, Image Searches, Reverse Search, People search services, Job and other portals
 	- FTP Search Engine (NAPALM FTP Indexer, FreewareWeb FTP File Search, Mamont, Globalfilesearch.com)
@@ -22,7 +23,6 @@
 	- socialcatfish.com
 	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
 	- www.semrush.com : SEO, content marketing, competitor research, PPC and social media marketing
-
 - CLI Tools:
 	- whois : get whois information/record for domain
 	- host : use for DNS lookups and convert names to IP addresses and vice versa
