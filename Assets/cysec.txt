@@ -39,14 +39,32 @@
 	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
 	- nslookup : query internet domain name servers (set type=a/cname)
 	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
-	- fierce : DNS reconnaissance tool locate non-contiguous IP space and hostnames against specified domains
-	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
-	- sherlock - Search on social media accounts - personal info
-	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
-	- sublist3r : fast subdomains enumeration tool for penetration testers
 	- photon : retrieve archived URLs of the target website from archive.org
+	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
+	- sherlock - Search on social media accounts - personal info
+	- fierce : DNS reconnaissance tool locate non-contiguous IP space and hostnames against specified domains
+	- dnsrecon : DNS (Domain Name System) reconnaissance tool
+	- recon-ng : web reconnaissance framework used for penetration testing, vulnerability assessment
+	- maltego : used to determine the relationships and real world links between people, groups of people, organizations, websites, Internet infrastructure, documents
+	- FOCA : Fingerprinting Organizations with Collected Archives is a tool used mainly to find metadata and hidden information in the documents it scans
+	- subfinder : subdomain discovery tool that helps attackers find valid subdomains for websites
+	- sublist3r : fast subdomains enumeration tool for penetration testers
+	- Recon-Dog : all-in-one tool for all basic information gathering needs. It uses APIs to collect information about the target system. (Censys - IP address, NS lookup, Port scan, Detect CMS - detect 400+ content management systems, Whois lookup, Detect honeypot - shodan.io to check if the target is a honeypot, Find subdomains - Uses findsubdomains.com to find subdomains, Reverse IP lookup - Performs a reverse IP lookup to find domains associated with an IP address, Detect technologies - Uses wappalyzer.com to detect 1000+ technologies)
+	- BillCipher : information gathering tool for a website or IP address. (DNS lookup, Whois lookup, port scanning, zone transfer, host finder, and reverse IP lookup)
+AI Tools:
+	- taranis.ai : advanced open source intelligence (OSINT) tool that leverages artificial intelligence to gather, analyze, and interpret publicly available data
+	- ossinsight.io :  OSS Insight uses AI to provide in-depth insights into the GitHub ecosystem, analyzing over 5 billion GitHub events
+	- dorkgpt.com : AI-powered tool designed to assist Google Dorking, a technique used to find information that is not easily accessible through regular search queries
+	- dorkgenius.com : AI-powered tool that automates Google Dorking and helps users generate advanced search queries to find specific information on the internet
+	- googlewordsniper.eu : Google Word Sniper helps to refine search queries for more effective Google results. It identifies targeted keywords and phrases, making it easier to find specific information, hidden content, and niche data.
+	- cylect.io : advanced AI-powered OSINT tool that integrates multiple databases into a user-friendly interface, providing a vast collection of resources for ethical hackers and enabling efficient and confident OSINT investigations
+	- chatpdf.com : OSINT tool that leverages AI to analyze and extract information from PDF documents through a conversational interface
+	- www.bardeen.ai : automation tool that can be used for OSINT by enabling users to streamline and automate data collection and analysis processes from various online sources
+	- cobwebs.com : PenLink Cobwebs is an advanced AI-powered OSINT tool that specializes in gathering and analyzing data from various online sources. It offers comprehensive capabilities for collecting, processing, and visualizing information to support cybersecurity investigations.
+	- exploreai.vercel.app : Explore AI is an AI-powered YouTube search engine that uses artificial intelligence to search for and extract information from YouTube videos, making it easier to access information for ethical hacking purposes.
+	- app.anypicker.com : AnyPicker is a powerful visual web scraper and AI OSINT tool designed to extract data from websites without requiring coding skills.
 
- 
+
 --------------------------------------------------------------
 
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
@@ -77,3 +95,24 @@ nc -lvp 1234 > file
 
 nc <ip> 1234
 nc <ip> < file
+
+DNS lookup is used to find the IP addresses for a given domain name, and a reverse DNS operation is performed to obtain the domain name of a given IP address. 
+DNSRecon, Reverse Lookup, puredns, Reverse IP Domain Check, and Reverse IP Lookup to perform reverse DNS lookup on the target host.
+
+# OSINT Framework (https://osintframework.com)
+Tools listed includes the following indicators:
+(T) - Indicates a link to a tool that must be installed and run locally
+(D) - Google Dork
+(R) - Requires registration
+(M) - Indicates a URL that contains the search term and the URL itself must be edited manually
+
+Sudomy https://github.com
+BillCipher https://github.com
+whatweb https://github.com
+Raccoon https://github.com
+Recon-Dog https://github.com
+Web Check https://web-check.xyz
+OSINT.SH https://osint.sh
+
+
+Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
