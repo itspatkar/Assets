@@ -1,8 +1,7 @@
 
 # Footprinting and Reconnaissance (OSINT - Information Gathering)
 
-- Extract meta deta from files
-- Online blogs, groups, and forums
+- People search sites, social media, online blogs, forums, groups
 - Source code–based repositories (internal servers, self-hosted, third-party hosting - GitHub, GitLab, SourceForge, BitBucket) contain sensitive data, configuration files, private Secure Shell (SSH), Secure Sockets Layer (SSL) keys, source-code files, dynamic libraries
 - Web Services:
 	- Advance search using Search Engines, Image Searches, Reverse Search, People search services, Job and other portals
@@ -23,6 +22,9 @@
 	- socialcatfish.com
 	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
 	- www.semrush.com : SEO, content marketing, competitor research, PPC and social media marketing
+- Extract meta-deta from files
+	- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images
+	- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
 - CLI Tools:
 	- whois : get whois information/record for domain
 	- host : use for DNS lookups and convert names to IP addresses and vice versa
@@ -37,16 +39,14 @@
 	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
 	- nslookup : query internet domain name servers (set type=a/cname)
 	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
-	- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images
-	- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
 	- fierce : DNS reconnaissance tool locate non-contiguous IP space and hostnames against specified domains
 	- recon-ng - web reconnaissance framework used for penetration testing, vulnerability assessment
-	- sherlock - Social media accounts, personal info
+	- sherlock - Search on social media accounts - personal info
 	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 	- sublist3r : fast subdomains enumeration tool for penetration testers
 	- photon : retrieve archived URLs of the target website from archive.org
 
-
+ 
 --------------------------------------------------------------
 
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
