@@ -1,5 +1,14 @@
 # NMap
-- scan Open Ports: nmap <ip>
+- Scan Open Ports: nmap <ip>
+- Host discovery (active/live hosts) - Ping Scan (s-scan type, n-skip dns resolution)
+    - ICMP Echo (ping sweep): nmap -sn -PE <ip/range>
+    - ICMP Timestamp: nmap -sn -PP <ip>
+    - ICMP Address Map: nmap -sn -PM <ip>
+    - ARP (preferred): nmap -sn -PR <ip>
+    - UDP: nmap -sn –PU <ip>
+    - TCP SYN (passive): nmap -sn –PS <ip>
+    - TCP ACK: nmap -sn –PA <ip>
+    - IP Protocol: nmap -sn –PO <ip>
 - OS detection: nmap -O <ip>
 - OS+Service Version: nmap -O -sV <ip>
 - nmap -T4 -A -v <ip>

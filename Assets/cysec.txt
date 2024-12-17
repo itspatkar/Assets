@@ -73,8 +73,18 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 - hping3 : network tool used for testing and analyzing network security by crafting custom TCP/IP packets. It can send packets using different protocols (TCP, UDP, ICMP, and raw IP)
 - Metasploit : an open-source project that provides the infrastructure, content, and tools to perform penetration tests and extensive security auditing
 
+- angryip.org : Angry IP scanner is an IP address and port scanner. It can scan IP addresses in any range as well as any of their ports.
 
-sx (https://github.com) ▪ RustScan (https://github.com) ▪ MegaPing (http://magnetosoft.com) ▪ SolarWinds®Engineer's Toolset (https://www.solarwinds.com) ▪ PRTG Network Monitor (https://www.paessler.com)
+
+sx (https://github.com)
+RustScan (https://github.com)
+MegaPing (http://magnetosoft.com)
+PRTG Network Monitor (https://www.paessler.com)
+SolarWinds Engineer’s Toolset (https://www.solarwinds.com)
+NetScanTools Pro (https://www.netscantools.com)
+Colasoft Ping Tool (https://www.colasoft.com)
+Advanced IP Scanner (https://www.advanced-ip-scanner.com)
+OpUtils (https://www.manageengine.com)
 
 
 --------------------------------------------------------------
