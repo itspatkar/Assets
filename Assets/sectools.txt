@@ -2,3 +2,4 @@
 - scan Open Ports: nmap <ip>
 - OS detection: nmap -O <ip>
 - OS+Service Version: nmap -O -sV <ip>
+- nmap -T4 -A -v <ip>

@@ -31,14 +31,13 @@
 	- dig : Domain Information Groper (dig) retrieves information about DNS name servers
 	- traceroute : route packets trace to network host
 	- ip : show / manipulate routing, network devices, interfaces and tunnels (replaces deprecated: ifconfig, route, arp)
+	- arp : show / manipulate Address Resolution Protocol (ARP) cache
+	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
 	- ifconfig : Interface Configuration (ifconfig) configures network interfaces (deprecated)
 	- nslookup : Name Server Lookup (nsookup) queries DNS Servers interactively (deprecated)
 	- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships, etc. (deprecated)
 	- route : show / manipulate the IP routing table (deprecated)
-	- arp : show / manipulate Address Resolution Protocol (ARP) cache (deprecated)
-	- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
 	- nslookup : query internet domain name servers (set type=a/cname)
-	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
 	- photon : retrieve archived URLs of the target website from archive.org
 	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 	- sherlock - Search on social media accounts - personal info
@@ -63,6 +62,19 @@ AI Tools:
 	- cobwebs.com : PenLink Cobwebs is an advanced AI-powered OSINT tool that specializes in gathering and analyzing data from various online sources. It offers comprehensive capabilities for collecting, processing, and visualizing information to support cybersecurity investigations.
 	- exploreai.vercel.app : Explore AI is an AI-powered YouTube search engine that uses artificial intelligence to search for and extract information from YouTube videos, making it easier to access information for ethical hacking purposes.
 	- app.anypicker.com : AnyPicker is a powerful visual web scraper and AI OSINT tool designed to extract data from websites without requiring coding skills.
+
+
+--------------------------------------------------------------
+
+# Network Scanning
+Network scanning refers to a set of procedures used for identifying hosts, ports, and services in a network.
+
+- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
+- hping3 : network tool used for testing and analyzing network security by crafting custom TCP/IP packets. It can send packets using different protocols (TCP, UDP, ICMP, and raw IP)
+- Metasploit : an open-source project that provides the infrastructure, content, and tools to perform penetration tests and extensive security auditing
+
+
+sx (https://github.com) ▪ RustScan (https://github.com) ▪ MegaPing (http://magnetosoft.com) ▪ SolarWinds®Engineer's Toolset (https://www.solarwinds.com) ▪ PRTG Network Monitor (https://www.paessler.com)
 
 
 --------------------------------------------------------------
