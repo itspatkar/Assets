@@ -138,3 +138,6 @@ OSINT.SH https://osint.sh
 
 
 Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
+
+
+Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com
