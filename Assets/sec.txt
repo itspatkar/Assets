@@ -101,6 +101,16 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - showmount : show mount information for an NFS server (showmount -e <ip>)
 - RPCScan : RPCScan communicates with RPC services and checks misconfigurations on NFS shares
 - SuperEnum : SuperEnum includes a script that performs the basic enumeration of any open port
+- DNS Zone Transfer with Dig
+	- dig ns <ip>
+	- dig @<domain_name_server> <ip> axfr
+- DNS Zone Transfer with DNSRecon: dnsrecon -t axfr -d <ip>
+- DNS Cache Snooping
+	- Non-recursive method: dig @<dns_server_ip> <ip> A +norecurse
+	- Recursive method: dig @<dns_server_ip> <ip> A +recurse
+- DNSSEC Zone Walking
+	- LDNS: ldns-walk @<dns_server_ip> <ip>
+	- DNSRecon: dnsrecon -z -d <ip>
 
 
 --------------------------------------------------------------

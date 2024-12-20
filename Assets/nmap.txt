@@ -150,11 +150,16 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 - OS Discovery: nmap --script smb-os-discovery.nse <ip>
 - NetBios Enumeration: nmap -p 137,138,139 --script nbstat.nse <ip>
 - SNMP Enumeration: nmap -p 161 --script snmp-info <ip>
-  - Hosted SNMP services: nmap -p 161 --script=snmp-processes <ip>
-  - SNMP server type and OS: nmap -p 161 --script=snmp-sysdescr <ip>
-  - List all applications: nmap -p 161 --script=snmp-win32-software <ip>
+  - Hosted SNMP services: nmap -p 161 --script snmp-processes <ip>
+  - SNMP server type and OS: nmap -p 161 --script snmp-sysdescr <ip>
+  - List all applications: nmap -p 161 --script snmp-win32-software <ip>
 - LDAP Enumeration: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <ip>
-- NTP Enumeration: nmap -p 123 --script=ntp-info <ip>
-  - NTP Version: nmap -p 123 --script=ntp-version <ip>
-  - NTP Amplification Vulnerabilities: nmap -p 123 --script=ntp-monlist <ip>
-- NFS Enumeration: nmap -p 2049 --script=nfs-showmount <ip>
+- NTP Enumeration: nmap -p 123 --script ntp-info <ip>
+  - NTP Version: nmap -p 123 --script ntp-version <ip>
+  - NTP Amplification Vulnerabilities: nmap -p 123 --script ntp-monlist <ip>
+- NFS Enumeration: nmap -p 2049 --script nfs-showmount <ip>
+- SMTP Enumeration:
+  - lists all SMTP commands available in the Nmap directory: nmap -p 25, 365, 587 -script smtp-commands <ip>
+  - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <ip>
+  - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <ip>
+  - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <ip>
