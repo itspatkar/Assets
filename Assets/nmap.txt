@@ -128,9 +128,10 @@ EXAMPLES:
 SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 
 
-----------------------------------
+--------------------------------------
 
-- Default Nmap scan (nmap <ip>) is TCP Connect Scan (Full Open Scan)
+- Default Nmap scan (nmap <ip>) is TCP Connect Scan/Full Open Scan (nmap -sT -p 1-1024 <ip>)
+
 
 # HOST DISCOVERY:
 For Security & Stealthiness: ARP (nmap -sn -PR) is the most secure and reliable for local networks.
@@ -143,3 +144,17 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 - Inverse TCP Flag (Xmas/FIN/NULL/Maimon): Sends unusual or malformed TCP flag combinations. These methods are intended to confuse or bypass firewalls and IDS. More stealthy and may avoid detection by some IDS/IPS systems, but they’re not invisible.
 - TCP ACK Flag: TCP ACK scans are generally used for firewall detection rather than for host discovery. It’s not the most stealthy scan, but it can help you understand the firewall rules on the target.
 - Spoofed TCP - IDLE/IPID Header (nmap -sI): Advanced stealth scan that uses a third-party host (the zombie) to send packets to the target, which makes it appear as if the scan is coming from the zombie instead of the attacker. Extremely stealthy, as the source IP is spoofed, and the victim doesn’t know the actual scanning machine.
+
+
+# NMap Script Engine
+- OS Discovery: nmap --script smb-os-discovery.nse <ip>
+- NetBios Enumeration: nmap -p 137,138,139 --script nbstat.nse <ip>
+- SNMP Enumeration: nmap -p 161 --script snmp-info <ip>
+  - Hosted SNMP services: nmap -p 161 --script=snmp-processes <ip>
+  - SNMP server type and OS: nmap -p 161 --script=snmp-sysdescr <ip>
+  - List all applications: nmap -p 161 --script=snmp-win32-software <ip>
+- LDAP Enumeration: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <ip>
+- NTP Enumeration: nmap -p 123 --script=ntp-info <ip>
+  - NTP Version: nmap -p 123 --script=ntp-version <ip>
+  - NTP Amplification Vulnerabilities: nmap -p 123 --script=ntp-monlist <ip>
+- NFS Enumeration: nmap -p 2049 --script=nfs-showmount <ip>

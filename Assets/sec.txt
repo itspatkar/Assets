@@ -89,16 +89,29 @@ OpUtils (https://www.manageengine.com)
 
 --------------------------------------------------------------
 
+# Enumeration
+Enumeration is the process of extracting usernames, machine names, network resources, shares, and services from a system or network. In the enumeration phase, an attacker creates active connections with the system and sends directed queries to gain more information about the target. 
+
+- nbtscan : Scan network for NetBIOS name information
+- snmp-check : SNMP device enumerator
+- snmpwalk : retrieve a subtree of management values using SNMP GETNEXT requests
+- ldapsearch : LDAP search tool (ldapsearch -h ldap://<ip> -x)
+- ntptrace : trace chain of NTP servers back to primary source
+- rpcinfo : report RPC information - NFS (rpcinfo -p <ip>)
+- showmount : show mount information for an NFS server (showmount -e <ip>)
+- RPCScan : RPCScan communicates with RPC services and checks misconfigurations on NFS shares
+- SuperEnum : SuperEnum includes a script that performs the basic enumeration of any open port
+
+
+--------------------------------------------------------------
+
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
 - crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
 - Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
-
-
-# Network Traffic Capture
-- wireshark
-- dnsspoof
+- Wireshark : Network Traffic Capture
+- dnsspoof : Network Traffic Capture
 
 
 # Linux
