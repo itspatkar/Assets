@@ -163,3 +163,13 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
   - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <ip>
   - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <ip>
   - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <ip>
+- DNS Enumeration:
+  - nmap --script broadcast-dns-service-discovery <ip>
+  - Retrieve all subdomains associated with target: nmap -T4 -p 53 --script dns-brute <ip>
+  - Check whether DNS recursion is enabled: nmap -Pn -sU -p 53 --script dns-recursion <ip>
+  - DNS Security Extensions (DNSSEC) Enumeration: nmap -sU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=<subdomain> <ip>
+  - DNS zone transfer enumeration: nmap -p 53 --script dns-zone-transfer <ip>
+- IPsec enumeration (IKE version running): nmap -sU -p 500 –script ike-version <ip>
+- SMB Enumeration:
+  - Enumerate SMB server's protocols and versions: nmap -p 139,445 –-script smb-protocols <ip>
+  - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <ip>

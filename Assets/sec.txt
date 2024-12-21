@@ -111,6 +111,24 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - DNSSEC Zone Walking
 	- LDNS: ldns-walk @<dns_server_ip> <ip>
 	- DNSRecon: dnsrecon -z -d <ip>
+- DNS Enumeration with OWASP Amass
+	- amass enum -d <ip>
+	- Passive: amass enum -passive -d <ip>
+	- Active enumeration through brute-forcing with specified wordlist: amass enum -active -d <ip> /usr/share/wordlists/amass/all.txt
+- IPsec Enumeration - ISAKMP Port status: nmap –sU –p 500 <ip>
+- ike-scan : Discover and fingerprint IKE (Internet Key Exchange) hosts (IPsec VPN servers)
+- VoIP Enumeration with Session Initiation Protocol (SIP) protocol: svmap <ip>
+- RPC Enumeration (Identify RPC service running):
+	- nmap -sR <ip>
+	- nmap -T4 –A <ip>
+- SMB Enumeration (SMB service running): nmap -p 445 -A <ip>
+
+
+- Knock (https://github.com) 
+- Raccoon (https://github.com) 
+- Subfinder (https://github.com) 
+- Turbolist3r (https://github.com)
+- Citrix
 
 
 --------------------------------------------------------------
@@ -163,4 +181,4 @@ OSINT.SH https://osint.sh
 Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
 
 
-Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com
+Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com)
