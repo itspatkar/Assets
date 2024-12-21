@@ -95,7 +95,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - nbtscan : Scan network for NetBIOS name information
 - snmp-check : SNMP device enumerator
 - snmpwalk : retrieve a subtree of management values using SNMP GETNEXT requests
-- ldapsearch : LDAP search tool (ldapsearch -h ldap://<ip> -x)
+- ldapsearch : LDAP search tool (ldapsearch ldap://<ip> -x)
 - ntptrace : trace chain of NTP servers back to primary source
 - rpcinfo : report RPC information - NFS (rpcinfo -p <ip>)
 - showmount : show mount information for an NFS server (showmount -e <ip>)
