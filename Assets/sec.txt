@@ -133,6 +133,77 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 --------------------------------------------------------------
 
+# Vulnerability Analysis/Assessment
+
+# Vulnerability Classification
+- Misconfigurations/Weak Configurations
+    - Network Misconfigurations
+        - Insecure Protocols
+        - Open Ports and Services
+        - Errors
+        - Weak Encryption
+    - Host Misconfigurations
+        - Open Permissions
+        - Unsecured Root Accounts
+- Application Flaws
+	- Buffer Overflows
+	- Memory Leaks (Valgrind)
+	- Resource Exhaustion
+	- Integer Overflows
+	- Null Pointer/Object Dereference
+	- DLL (Dynamic Link Library) Injection
+	- Race Conditions
+		- Time of Check/Time of Use
+	- Improper Input Handling
+	- Improper Error Handling
+	- Code Signing Weakness
+- Poor Patch Management
+	- Unpatched Servers
+	- Unpatched Firmware
+	- Unpatched OS
+	- Unpatched Applications
+- Design Flaws
+- Third-Party Risks
+	- Vendor management
+		- System integration
+		- Lack of vendor support
+	- Supply-chain risks
+	- Outsourced code development
+	- Data storage
+	- Cloud-based vs. On-premises risks
+- Default Installations/Default Configurations
+- Operating System Flaws
+- Default Passwords
+- Zero-Day Vulnerabilities
+- Legacy Platform Vulnerabilities
+- System Sprawl/Undocumented Assets
+- Improper Certificate and Key Management
+
+# Vulnerability Scoring Systems and Databases
+- Common Vulnerability Scoring System (CVSS) - www.first.org
+- Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
+- National Vulnerability Database (NVD) - nvd.nist.gov
+- Common Weakness Enumeration (CWE) - cwe.mitre.org
+
+# Vulnerability Research Resources
+- Microsoft Security Response Center (MSRC) - msrc.microsoft.com
+
+
+- Packet Storm (https://packetstormsecurity.com) 
+- Dark Reading (https://www.darkreading.com) 
+- Trend Micro (https://www.trendmicro.com) 
+- Security Magazine (https://www.securitymagazine.com) 
+- PenTest Magazine (https://pentestmag.com) 
+- SC Magazine (https://www.scmagazine.com) 
+- Exploit Database (https://www.exploit-db.com) 
+- Help Net Security (https://www.helpnetsecurity.com) 
+- HackerStorm (https://www.hackerstorm.co.uk)
+- Computerworld (https://www.computerworld.com) 
+- D’Crypt (https://www.d-crypt.com)
+
+
+--------------------------------------------------------------
+
 - nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
 - gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
 - sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
