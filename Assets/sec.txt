@@ -188,6 +188,42 @@ Enumeration is the process of extracting usernames, machine names, network resou
 # Vulnerability Research Resources
 - Microsoft Security Response Center (MSRC) - msrc.microsoft.com
 
+# Types of Vulnerability Scanning
+- External Scanning
+- Internal Scanning
+- Host-based scanning
+- Network-based Scanning
+- Application Scanning
+- Database Scanning
+- Wireless Network Scanning
+- Distributed Scanning
+- Credentialed/Authenticated Scanning
+- Non-Credentialed/Unauthenticated Scanning
+- Manual Scanning
+- Automated Scanning
+- Cloud-based Scanning
+- Mobile Application Scanning
+- Physical Security Vulnerability Scanning
+- IoT Device Vulnerability Scanning
+
+# Vulnerability Assessment Solutions
+- Product-Based Solutions
+- Service-Based Solutions
+- Tree-Based Assessment
+- Inference-Based Assessment
+
+# Types of Vulnerability Assessment Tools
+- Host-Based Vulnerability Assessment Tools
+- Depth Assessment Tools
+- Application-Layer Vulnerability Assessment Tools
+- Scope Assessment Tools
+- Active and Passive Tools
+- Location and Data Examination Tools
+	- Network-Based Scanner
+	- Agent-Based Scanner
+	- Proxy Scanner
+	- Cluster scanner
+
 
 - Packet Storm (https://packetstormsecurity.com) 
 - Dark Reading (https://www.darkreading.com) 
@@ -200,6 +236,10 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - HackerStorm (https://www.hackerstorm.co.uk)
 - Computerworld (https://www.computerworld.com) 
 - D’Crypt (https://www.d-crypt.com)
+
+ - Nessus
+ - Qualys
+ - GFI
 
 
 --------------------------------------------------------------
