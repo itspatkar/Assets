@@ -1,15 +1,15 @@
 
 # Footprinting and Reconnaissance (OSINT - Information Gathering)
 
-- People search sites, social media, online blogs, forums, groups
-- Source code–based repositories (internal servers, self-hosted, third-party hosting - GitHub, GitLab, SourceForge, BitBucket) contain sensitive data, configuration files, private Secure Shell (SSH), Secure Sockets Layer (SSL) keys, source-code files, dynamic libraries
+- Online platforms: Social media, people search sites and services, job portals, blogs, forums, groups, articles, etc
+- Source code–based repositories (internal servers, self-hosted, third-party hosting - GitHub, GitLab, SourceForge, BitBucket) contain sensitive data, configuration files, SSH, SSL keys, source-code files, dynamic libraries
 - Web Services:
-	- Advance search using Search Engines, Image Searches, Reverse Search, People search services, Job and other portals
+	- Advance Search using Search Engines, Image Searches, Reverse Search
 	- FTP Search Engine (NAPALM FTP Indexer, FreewareWeb FTP File Search, Mamont, Globalfilesearch.com)
 	- IoT Search Engines (Shodan, Censys, ZoomEye - manufacturer details, geographical location, IP address, hostname, open ports of IoT device)
-	- Google Dorks (advanced search operators/queries in Google Search Engine to find information - files, open FTP ports, services)
+	- Google Dorks (Advanced search operators/queries in Google Search Engine to find information - sites, links, files, open FTP ports, services)
 	- www.exploit-db.com (Exploit-DB is online archive of exploits, security vulnerabilities, and proof-of-concept code)
-	- www.exploit-db.com/google-hacking-database (GHDB - Google Hacking Database is collection of advanced search queries Google Dorks)
+	- www.exploit-db.com/google-hacking-database (GHDB - Google Hacking Database is collection of advanced search queries - Google Dorks)
 	- archive.org (Digital Library & Internet Archive Wayback Machine that explores archived versions of websites)
 	- www.social-searcher.com - Social Accounts
 	- whois.domaintools.com - WHOIS
@@ -21,8 +21,8 @@
 	- mxtoolbox.com
 	- socialcatfish.com
 	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
-	- www.semrush.com : SEO, content marketing, competitor research, PPC and social media marketing
-- Extract meta-deta from files
+	- www.semrush.com - SEO, content marketing, competitor research, PPC and social media marketing
+- Extract Meta-deta from files:
 	- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images
 	- pdfinfo : Portable Document Format (PDF) document information extractor (poppler-utils)
 - CLI Tools:
@@ -52,7 +52,7 @@
 	- BillCipher : information gathering tool for a website or IP address. (DNS lookup, Whois lookup, port scanning, zone transfer, host finder, and reverse IP lookup)
 AI Tools:
 	- taranis.ai : advanced open source intelligence (OSINT) tool that leverages artificial intelligence to gather, analyze, and interpret publicly available data
-	- ossinsight.io :  OSS Insight uses AI to provide in-depth insights into the GitHub ecosystem, analyzing over 5 billion GitHub events
+	- ossinsight.io : OSS Insight uses AI to provide in-depth insights into the GitHub ecosystem, analyzing over 5 billion GitHub events
 	- dorkgpt.com : AI-powered tool designed to assist Google Dorking, a technique used to find information that is not easily accessible through regular search queries
 	- dorkgenius.com : AI-powered tool that automates Google Dorking and helps users generate advanced search queries to find specific information on the internet
 	- googlewordsniper.eu : Google Word Sniper helps to refine search queries for more effective Google results. It identifies targeted keywords and phrases, making it easier to find specific information, hidden content, and niche data.
@@ -76,15 +76,15 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 - angryip.org : Angry IP scanner is an IP address and port scanner. It can scan IP addresses in any range as well as any of their ports.
 
 
-sx (https://github.com)
-RustScan (https://github.com)
-MegaPing (http://magnetosoft.com)
-PRTG Network Monitor (https://www.paessler.com)
-SolarWinds Engineer’s Toolset (https://www.solarwinds.com)
-NetScanTools Pro (https://www.netscantools.com)
-Colasoft Ping Tool (https://www.colasoft.com)
-Advanced IP Scanner (https://www.advanced-ip-scanner.com)
-OpUtils (https://www.manageengine.com)
+- sx (https://github.com)
+- RustScan (https://github.com)
+- MegaPing (http://magnetosoft.com)
+- PRTG Network Monitor (https://www.paessler.com)
+- SolarWinds Engineer’s Toolset (https://www.solarwinds.com)
+- NetScanTools Pro (https://www.netscantools.com)
+- Colasoft Ping Tool (https://www.colasoft.com)
+- Advanced IP Scanner (https://www.advanced-ip-scanner.com)
+- OpUtils (https://www.manageengine.com)
 
 
 --------------------------------------------------------------
@@ -224,6 +224,10 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Proxy Scanner
 	- Cluster scanner
 
+# Vulnerability Assessment Tools
+- nikto : Scan web server for known vulnerabilities
+- skipfish : web application security scanner
+- OpenVAS Source: https://www.openvas.org 
 
 - Packet Storm (https://packetstormsecurity.com) 
 - Dark Reading (https://www.darkreading.com) 
@@ -237,9 +241,33 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - Computerworld (https://www.computerworld.com) 
 - D’Crypt (https://www.d-crypt.com)
 
- - Nessus
- - Qualys
- - GFI
+- Nessus
+- Qualys
+- GFI
+- InsightVM (https://www.rapid7.com) 
+- Acunetix Web Vulnerability Scanner (https://www.acunetix.com) 
+- Nexpose (https://www.rapid7.com) 
+- Sniper (https://sn1persecurity.com) 
+- Tripwire IP360 (https://www.tripwire.com) 
+- SAINT Security Suite (https://www.carson-saint.com) 
+- BeSECURE (https://www.beyondsecurity.com) 
+- Core Impact Pro (https://www.coresecurity.com) 
+- Intruder (https://www.intruder.io) 
+- ManageEngine Vulnerability Manager Plus (https://www.manageengine.com) 
+- Astra Pentest (https://www.getastra.com) 
+- Skybox (https://www.skyboxsecurity.com) 
+- MaxPatrol TM (https://www.ptsecurity.com)
+
+- Equixly https://equixly.com
+- SmartScanner https://www.thesmartscanner.com
+- CodeDefender https://codedefender.ro
+- DryRun Security https://www.dryrun.security
+- Hackules https://hackules.com
+- Corgea https://corgea.com
+- Pentest Copilot https://copilot.bugbase.ai
+- Fluxguard https://fluxguard.com
+- Beagle Security https://beaglesecurity.com
+- Coderbuds https://coderbuds.com
 
 
 --------------------------------------------------------------
