@@ -64,33 +64,70 @@ AI Tools:
 	- app.anypicker.com : AnyPicker is a powerful visual web scraper and AI OSINT tool designed to extract data from websites without requiring coding skills.
 
 
---------------------------------------------------------------
+# OSINT Framework (https://osintframework.com)
+Tools listed includes the following indicators:
+(T) - Indicates a link to a tool that must be installed and run locally
+(D) - Google Dork
+(R) - Requires registration
+(M) - Indicates a URL that contains the search term and the URL itself must be edited manually
+
+
+Sudomy https://github.com
+BillCipher https://github.com
+whatweb https://github.com
+Raccoon https://github.com
+Recon-Dog https://github.com
+Web Check https://web-check.xyz
+OSINT.SH https://osint.sh
+
+
+Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
+
+
+--------------------------------------------------
 
 # Network Scanning
 Network scanning refers to a set of procedures used for identifying hosts, ports, and services in a network.
 
-- nmap : Network Mapper is network scanning tool that identifies devices, open ports, services of target hosts on network and it can detect OS and service versions and automate network scanning
-- hping3 : network tool used for testing and analyzing network security by crafting custom TCP/IP packets. It can send packets using different protocols (TCP, UDP, ICMP, and raw IP)
+- nmap : Network Mapper scans networks to identify devices, open ports, services, and detect OS and service versions, automating network scanning
+- hping3 : network tool used for security auditing and testing. It sends custom TCP/IP packets to hosts for tasks such as port scanning, firewall testing, network performance analysis, and DoS testing
 - Metasploit : an open-source project that provides the infrastructure, content, and tools to perform penetration tests and extensive security auditing
+- sx : command-line network scanner (github.com/v-byte-cpu/sx)
+- Angry IP Scanner : Fast, lightweight tool for discovering devices on a network, scanning IPs, ports, and gathering host information (angryip.org)
+- RustScan : Fast, modern port scanner designed to perform high-speed scanning of open ports on target machines (github.com/RustScan/RustScan)
 
-- angryip.org : Angry IP scanner is an IP address and port scanner. It can scan IP addresses in any range as well as any of their ports.
-
-
-- sx (https://github.com)
-- RustScan (https://github.com)
+# Windows Specific/Paid Tools:
 - MegaPing (http://magnetosoft.com)
+- OpUtils (https://www.manageengine.com)
+- SolarWinds Engineer’s Toolset (https://www.solarwinds.com/free-tools)
+- NetScanTools Tools (https://www.netscantools.com/freeware.html)
 - PRTG Network Monitor (https://www.paessler.com)
-- SolarWinds Engineer’s Toolset (https://www.solarwinds.com)
-- NetScanTools Pro (https://www.netscantools.com)
 - Colasoft Ping Tool (https://www.colasoft.com)
 - Advanced IP Scanner (https://www.advanced-ip-scanner.com)
-- OpUtils (https://www.manageengine.com)
 
 
---------------------------------------------------------------
+- nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
+- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
+- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
+- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
+- Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
+- Wireshark : Network Traffic Capture
+- dnsspoof : Network Traffic Capture
+
+
+
+Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com)
+
+
+--------------------------------------------------
 
 # Enumeration
 Enumeration is the process of extracting usernames, machine names, network resources, shares, and services from a system or network. In the enumeration phase, an attacker creates active connections with the system and sends directed queries to gain more information about the target. 
+
+- knockpy : Knock is a tool designed to quickly enumerate subdomains of a target domain through passive reconnaissance and dictionary scanning (passive)
+- raccoon : Raccoon is a high-performance offensive security tool for reconnaissance and vulnerability scanning (active)
+- subfinder : Fast passive subdomain enumeration tool that discovers valid subdomains using online passive sources (passive)
+- turbolist3r : TurboList3r is a subdomain enumeration tool with automated analysis, focused on subdomain takeover
 
 - nbtscan : Scan network for NetBIOS name information
 - snmp-check : SNMP device enumerator
@@ -124,18 +161,20 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - SMB Enumeration (SMB service running): nmap -p 445 -A <ip>
 
 
-- Knock (https://github.com) 
-- Raccoon (https://github.com) 
-- Subfinder (https://github.com) 
-- Turbolist3r (https://github.com)
-- Citrix
+--------------------------------------------------
+
+# Digital Forensics & Data Recovery
+
+- teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
+- photorec : PhotoRec is used to recover files from corrupted or formatted disks, or when the file system is damaged
+- FTK : Forensic Toolkit is a forensic suite used for analyzing disk drives, memory, and emails
 
 
---------------------------------------------------------------
+--------------------------------------------------
 
 # Vulnerability Analysis/Assessment
 
-# Vulnerability Classification
+# Vulnerability Classification:
 - Misconfigurations/Weak Configurations
     - Network Misconfigurations
         - Insecure Protocols
@@ -179,16 +218,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - System Sprawl/Undocumented Assets
 - Improper Certificate and Key Management
 
-# Vulnerability Scoring Systems and Databases
-- Common Vulnerability Scoring System (CVSS) - www.first.org
-- Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
-- National Vulnerability Database (NVD) - nvd.nist.gov
-- Common Weakness Enumeration (CWE) - cwe.mitre.org
-
-# Vulnerability Research Resources
-- Microsoft Security Response Center (MSRC) - msrc.microsoft.com
-
-# Types of Vulnerability Scanning
+# Types of Vulnerability Scanning:
 - External Scanning
 - Internal Scanning
 - Host-based scanning
@@ -206,13 +236,13 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - Physical Security Vulnerability Scanning
 - IoT Device Vulnerability Scanning
 
-# Vulnerability Assessment Solutions
+# Vulnerability Assessment Solutions:
 - Product-Based Solutions
 - Service-Based Solutions
 - Tree-Based Assessment
 - Inference-Based Assessment
 
-# Types of Vulnerability Assessment Tools
+# Types of Vulnerability Assessment Tools:
 - Host-Based Vulnerability Assessment Tools
 - Depth Assessment Tools
 - Application-Layer Vulnerability Assessment Tools
@@ -224,10 +254,12 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Proxy Scanner
 	- Cluster scanner
 
-# Vulnerability Assessment Tools
-- nikto : Scan web server for known vulnerabilities
-- skipfish : web application security scanner
-- OpenVAS Source: https://www.openvas.org 
+
+# Vulnerability Scoring Systems and Databases
+- Common Vulnerability Scoring System (CVSS) - www.first.org
+- Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
+- National Vulnerability Database (NVD) - nvd.nist.gov
+- Common Weakness Enumeration (CWE) - cwe.mitre.org
 
 - Packet Storm (https://packetstormsecurity.com) 
 - Dark Reading (https://www.darkreading.com) 
@@ -240,6 +272,10 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - HackerStorm (https://www.hackerstorm.co.uk)
 - Computerworld (https://www.computerworld.com) 
 - D’Crypt (https://www.d-crypt.com)
+
+
+# Vulnerability Research Resources
+- Microsoft Security Response Center (MSRC) - msrc.microsoft.com
 
 - Nessus
 - Qualys
@@ -258,6 +294,13 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - Skybox (https://www.skyboxsecurity.com) 
 - MaxPatrol TM (https://www.ptsecurity.com)
 
+
+# Vulnerability Assessment Tools
+- nikto : Scan web server for known vulnerabilities
+- skipfish : web application security scanner
+
+- OpenVAS Source: https://www.openvas.org 
+
 - Equixly https://equixly.com
 - SmartScanner https://www.thesmartscanner.com
 - CodeDefender https://codedefender.ro
@@ -270,16 +313,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - Coderbuds https://coderbuds.com
 
 
---------------------------------------------------------------
-
-- nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
-- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
-- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
-- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
-- Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
-- Wireshark : Network Traffic Capture
-- dnsspoof : Network Traffic Capture
-
+--------------------------------------------------
 
 # Linux
 cat /proc/cpuinfo
@@ -300,24 +334,3 @@ nc <ip> < file
 
 DNS lookup is used to find the IP addresses for a given domain name, and a reverse DNS operation is performed to obtain the domain name of a given IP address. 
 DNSRecon, Reverse Lookup, puredns, Reverse IP Domain Check, and Reverse IP Lookup to perform reverse DNS lookup on the target host.
-
-# OSINT Framework (https://osintframework.com)
-Tools listed includes the following indicators:
-(T) - Indicates a link to a tool that must be installed and run locally
-(D) - Google Dork
-(R) - Requires registration
-(M) - Indicates a URL that contains the search term and the URL itself must be edited manually
-
-Sudomy https://github.com
-BillCipher https://github.com
-whatweb https://github.com
-Raccoon https://github.com
-Recon-Dog https://github.com
-Web Check https://web-check.xyz
-OSINT.SH https://osint.sh
-
-
-Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
-
-
-Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com)
