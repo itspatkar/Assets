@@ -84,14 +84,14 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 
 
 # Paid Tools:
-- MegaPing (http://magnetosoft.com)
-- OpUtils (https://www.manageengine.com)
-- SolarWinds Engineer’s Toolset (https://www.solarwinds.com/free-tools)
-- NetScanTools Tools (https://www.netscantools.com/freeware.html)
-- PRTG Network Monitor (https://www.paessler.com)
-- Colasoft Ping Tool (https://www.colasoft.com)
-- Advanced IP Scanner (https://www.advanced-ip-scanner.com)
-- Splunk Enterprise Security (https://www.splunk.com)
+- MegaPing (magnetosoft.com)
+- OpUtils (www.manageengine.com)
+- SolarWinds Engineer’s Toolset (www.solarwinds.com/free-tools)
+- NetScanTools Tools (www.netscantools.com/freeware.html)
+- PRTG Network Monitor (www.paessler.com)
+- Colasoft Ping Tool (www.colasoft.com)
+- Advanced IP Scanner (www.advanced-ip-scanner.com)
+- Splunk Enterprise Security (www.splunk.com)
 
 
 --------------------------------------------------
@@ -220,69 +220,28 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Proxy Scanner
 	- Cluster scanner
 
-
 # Vulnerability Scoring Systems and Databases
 - Common Vulnerability Scoring System (CVSS) - www.first.org
 - Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
 - National Vulnerability Database (NVD) - nvd.nist.gov
 - Common Weakness Enumeration (CWE) - cwe.mitre.org
-
-- Packet Storm (https://packetstormsecurity.com) 
-- Dark Reading (https://www.darkreading.com) 
-- Trend Micro (https://www.trendmicro.com) 
-- Security Magazine (https://www.securitymagazine.com) 
-- PenTest Magazine (https://pentestmag.com) 
-- SC Magazine (https://www.scmagazine.com) 
-- Exploit Database (https://www.exploit-db.com) 
-- Help Net Security (https://www.helpnetsecurity.com) 
-- HackerStorm (https://www.hackerstorm.co.uk)
-- Computerworld (https://www.computerworld.com) 
-- D’Crypt (https://www.d-crypt.com)
-
+- Exploit Database - www.exploit-db.com
 
 # Vulnerability Research Resources
 - Microsoft Security Response Center (MSRC) - msrc.microsoft.com
-
-- Nessus
-- Qualys
-- GFI
-- InsightVM (https://www.rapid7.com) 
-- Acunetix Web Vulnerability Scanner (https://www.acunetix.com) 
-- Nexpose (https://www.rapid7.com) 
-- Sniper (https://sn1persecurity.com) 
-- Tripwire IP360 (https://www.tripwire.com) 
-- SAINT Security Suite (https://www.carson-saint.com) 
-- BeSECURE (https://www.beyondsecurity.com) 
-- Core Impact Pro (https://www.coresecurity.com) 
-- Intruder (https://www.intruder.io) 
-- ManageEngine Vulnerability Manager Plus (https://www.manageengine.com) 
-- Astra Pentest (https://www.getastra.com) 
-- Skybox (https://www.skyboxsecurity.com) 
-- MaxPatrol TM (https://www.ptsecurity.com)
-
+- HackerStorm - www.hackerstorm.co.uk
 
 # Vulnerability Assessment Tools
 - nikto : Scan web server for known vulnerabilities
 - skipfish : web application security scanner
-
-- OpenVAS Source: https://www.openvas.org 
-
-- Equixly https://equixly.com
-- SmartScanner https://www.thesmartscanner.com
-- CodeDefender https://codedefender.ro
-- DryRun Security https://www.dryrun.security
-- Hackules https://hackules.com
-- Corgea https://corgea.com
-- Pentest Copilot https://copilot.bugbase.ai
-- Fluxguard https://fluxguard.com
-- Beagle Security https://beaglesecurity.com
-- Coderbuds https://coderbuds.com
+- Snort : Open Source Network Intrusion Prevention System (IPS)
+- SmartScanner : AI-powered web vulnerability scanner that detects a wide range of threats, from SQL Injection and XSS to misconfigurations and cryptographic flaws. It supports various technologies, including REST APIs, modern frameworks, and popular CMS platforms, offering an intuitive interface and detailed reports. (www.thesmartscanner.com)
+- OpenVAS (www.openvas.org)
 
 
 --------------------------------------------------
 
 # Attack Tools
-
 - nc : Netcat is a versatile networking tool for establishing arbitrary TCP and UDP connections, allowing reading from and writing to network connections
 - gobuster : Gobuster is a Go-based tool for brute-forcing URIs, DNS subdomains, virtual hosts, and discovering open Amazon S3 buckets, Google Cloud buckets, and TFTP servers
 - sqlmap : sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers

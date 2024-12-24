@@ -128,17 +128,16 @@ EXAMPLES:
 SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 
 
---------------------------------------
+--------------------------------------------------
 
 - Default Nmap scan (nmap <ip>) is TCP Connect Scan/Full Open Scan (nmap -sT -p 1-1024 <ip>)
-
 
 # HOST DISCOVERY:
 For Security & Stealthiness: ARP (nmap -sn -PR) is the most secure and reliable for local networks.
 TCP SYN (nmap -sn -PS) is a good alternative when you need to bypass ICMP filters but need to remain stealthy.
 ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by firewalls but may bypass some filters.
 
-# Port Scan/Type
+# Port Scan/Type:
 - TCP Connect/Full Open Scan (nmap -sT): Completes the full three-way handshake (SYN->SYN-ACK->ACK). If successful, the port is open. Not stealthy.
 - TCP SYN (nmap -sS): Instead of completing the three-way handshake, Nmap only sends a SYN packet (SYN -> no ACK), and if the port is open, the target will respond with a SYN-ACK. Nmap then sends a RST (reset) packet to terminate the connection before it completes the handshake. The SYN scan is stealthy because it doesn’t complete the handshake, making it harder to detect by basic IDS/IPS but not 100% invisible.
 - Inverse TCP Flag (Xmas/FIN/NULL/Maimon): Sends unusual or malformed TCP flag combinations. These methods are intended to confuse or bypass firewalls and IDS. More stealthy and may avoid detection by some IDS/IPS systems, but they’re not invisible.
@@ -146,31 +145,31 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 - Spoofed TCP - IDLE/IPID Header (nmap -sI): Advanced stealth scan that uses a third-party host (the zombie) to send packets to the target, which makes it appear as if the scan is coming from the zombie instead of the attacker. Extremely stealthy, as the source IP is spoofed, and the victim doesn’t know the actual scanning machine.
 
 
-# NMap Script Engine
+# NMap Script Engine:
 - OS Discovery: nmap --script smb-os-discovery.nse <ip>
 - NetBios Enumeration: nmap -p 137,138,139 --script nbstat.nse <ip>
 - SNMP Enumeration: nmap -p 161 --script snmp-info <ip>
-  - Hosted SNMP services: nmap -p 161 --script snmp-processes <ip>
-  - SNMP server type and OS: nmap -p 161 --script snmp-sysdescr <ip>
-  - List all applications: nmap -p 161 --script snmp-win32-software <ip>
+    - Hosted SNMP services: nmap -p 161 --script snmp-processes <ip>
+    - SNMP server type and OS: nmap -p 161 --script snmp-sysdescr <ip>
+    - List all applications: nmap -p 161 --script snmp-win32-software <ip>
 - LDAP Enumeration: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <ip>
 - NTP Enumeration: nmap -p 123 --script ntp-info <ip>
-  - NTP Version: nmap -p 123 --script ntp-version <ip>
-  - NTP Amplification Vulnerabilities: nmap -p 123 --script ntp-monlist <ip>
+    - NTP Version: nmap -p 123 --script ntp-version <ip>
+    - NTP Amplification Vulnerabilities: nmap -p 123 --script ntp-monlist <ip>
 - NFS Enumeration: nmap -p 2049 --script nfs-showmount <ip>
 - SMTP Enumeration:
-  - lists all SMTP commands available in the Nmap directory: nmap -p 25, 365, 587 -script smtp-commands <ip>
-  - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <ip>
-  - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <ip>
-  - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <ip>
+    - lists all SMTP commands available in the Nmap directory: nmap -p 25, 365, 587 -script smtp-commands <ip>
+    - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <ip>
+    - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <ip>
+    - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <ip>
 - DNS Enumeration:
-  - nmap --script broadcast-dns-service-discovery <ip>
-  - Retrieve all subdomains associated with target: nmap -T4 -p 53 --script dns-brute <ip>
-  - Check whether DNS recursion is enabled: nmap -Pn -sU -p 53 --script dns-recursion <ip>
-  - DNS Security Extensions (DNSSEC) Enumeration: nmap -sU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=<subdomain> <ip>
-  - DNS zone transfer enumeration: nmap -p 53 --script dns-zone-transfer <ip>
+    - nmap --script broadcast-dns-service-discovery <ip>
+    - Retrieve all subdomains associated with target: nmap -T4 -p 53 --script dns-brute <ip>
+    - Check whether DNS recursion is enabled: nmap -Pn -sU -p 53 --script dns-recursion <ip>
+    - DNS Security Extensions (DNSSEC) Enumeration: nmap -sU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=<subdomain> <ip>
+    - DNS zone transfer enumeration: nmap -p 53 --script dns-zone-transfer <ip>
 - IPsec enumeration (IKE version running): nmap -sU -p 500 –script ike-version <ip>
 - SMB Enumeration:
-  - Enumerate SMB server's protocols and versions: nmap -p 139,445 –-script smb-protocols <ip>
-  - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <ip>
+    - Enumerate SMB server's protocols and versions: nmap -p 139,445 –-script smb-protocols <ip>
+    - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <ip>
 - Vulnerability Scan: nmap -sV –script vuln <domain> -oN output.txt
