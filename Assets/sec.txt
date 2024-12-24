@@ -21,6 +21,9 @@
 	- mxtoolbox.com
 	- socialcatfish.com
 	- shodan.io : search engine designed to detect devices and networks with vulnerabilities (connected to internet)
+	- web-check.xyz : All-in-one OSINT tool for analysing any website
+	- osint.sh : All in one Information Gathering Tools
+	- osintframework.com : Collections of OSINT frameworks focused on gathering information from free tools and resources
 	- www.semrush.com - SEO, content marketing, competitor research, PPC and social media marketing
 - Extract Meta-deta from files:
 	- exiftool : ExifTool is used to read and write metadata in various file types, such as JPEG images
@@ -41,6 +44,7 @@
 	- photon : retrieve archived URLs of the target website from archive.org
 	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 	- sherlock - Search on social media accounts - personal info
+	- whatweb : WhatWeb is a next-generation web scanner that identifies technologies used by websites
 	- fierce : DNS reconnaissance tool locate non-contiguous IP space and hostnames against specified domains
 	- dnsrecon : DNS (Domain Name System) reconnaissance tool
 	- recon-ng : web reconnaissance framework used for penetration testing, vulnerability assessment
@@ -48,8 +52,9 @@
 	- FOCA : Fingerprinting Organizations with Collected Archives is a tool used mainly to find metadata and hidden information in the documents it scans
 	- subfinder : subdomain discovery tool that helps attackers find valid subdomains for websites
 	- sublist3r : fast subdomains enumeration tool for penetration testers
-	- Recon-Dog : all-in-one tool for all basic information gathering needs. It uses APIs to collect information about the target system. (Censys - IP address, NS lookup, Port scan, Detect CMS - detect 400+ content management systems, Whois lookup, Detect honeypot - shodan.io to check if the target is a honeypot, Find subdomains - Uses findsubdomains.com to find subdomains, Reverse IP lookup - Performs a reverse IP lookup to find domains associated with an IP address, Detect technologies - Uses wappalyzer.com to detect 1000+ technologies)
-	- BillCipher : information gathering tool for a website or IP address. (DNS lookup, Whois lookup, port scanning, zone transfer, host finder, and reverse IP lookup)
+	- Recon-Dog : Reconnaissance Swiss Army Knife - uses APIs to collect information about the target system, including Censys, NS Lookup, Port Scan, CMS Detection, Whois Lookup, Honeypot Detection, Subdomain Finder, Reverse IP Lookup, and Technology Detection
+	- BillCipher : Information gathering tools: DNS, Whois, GeoIP, Subnet, Port Scanner, Page Links, Zone Transfer, HTTP Header, Host Finder, IP Locator, Shared DNS, Robots.txt, Reverse IP, Email Finder, Subdomains, Admin Login, CloudFlare Bypass, Website Copier, Host Info
+	- Wireshark : Wireshark is a network protocol analyzer that interactively captures and analyzes network traffic
 AI Tools:
 	- taranis.ai : advanced open source intelligence (OSINT) tool that leverages artificial intelligence to gather, analyze, and interpret publicly available data
 	- ossinsight.io : OSS Insight uses AI to provide in-depth insights into the GitHub ecosystem, analyzing over 5 billion GitHub events
@@ -64,26 +69,6 @@ AI Tools:
 	- app.anypicker.com : AnyPicker is a powerful visual web scraper and AI OSINT tool designed to extract data from websites without requiring coding skills.
 
 
-# OSINT Framework (https://osintframework.com)
-Tools listed includes the following indicators:
-(T) - Indicates a link to a tool that must be installed and run locally
-(D) - Google Dork
-(R) - Requires registration
-(M) - Indicates a URL that contains the search term and the URL itself must be edited manually
-
-
-Sudomy https://github.com
-BillCipher https://github.com
-whatweb https://github.com
-Raccoon https://github.com
-Recon-Dog https://github.com
-Web Check https://web-check.xyz
-OSINT.SH https://osint.sh
-
-
-Sudomy (https://github.com) ▪ theHarvester (https://www.edge-security.com) ▪ whatweb (https://github.com) ▪ Raccoon (https://github.com) ▪ Orb (https://github.com) ▪ Web Check (https://web-check.xyz) ▪ OSINT.SH (https://osint.sh)
-
-
 --------------------------------------------------
 
 # Network Scanning
@@ -95,8 +80,10 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 - sx : command-line network scanner (github.com/v-byte-cpu/sx)
 - Angry IP Scanner : Fast, lightweight tool for discovering devices on a network, scanning IPs, ports, and gathering host information (angryip.org)
 - RustScan : Fast, modern port scanner designed to perform high-speed scanning of open ports on target machines (github.com/RustScan/RustScan)
+- scanlogd : TCP port scan detection tool that detects and logs TCP port scans
 
-# Windows Specific/Paid Tools:
+
+# Paid Tools:
 - MegaPing (http://magnetosoft.com)
 - OpUtils (https://www.manageengine.com)
 - SolarWinds Engineer’s Toolset (https://www.solarwinds.com/free-tools)
@@ -104,19 +91,7 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 - PRTG Network Monitor (https://www.paessler.com)
 - Colasoft Ping Tool (https://www.colasoft.com)
 - Advanced IP Scanner (https://www.advanced-ip-scanner.com)
-
-
-- nc : Netcat is networking utility used for port scanning, file transfers, and creating simple network servers or clients
-- gobuster : Gobuster is a tool used in penetration testing and cybersecurity assessments. It's primarily designed for discovering web content, directories, and files on web servers.
-- sqlmap : SQLMap is an open-source penetration testing tool that automates the process of detecting and exploiting SQL injection vulnerabilities in web applications.
-- crunch : Crunch command generates wordlists based on specified character sets, minimum and maximum lengths, and specific patterns. These wordlists can be used for dictionary attacks.
-- Burp Suite : Burp Suite is a Java-based framework designed to serve as a comprehensive solution for conducting web application penetration testing. Burp Suite captures and enables manipulation of all the HTTP/HTTPS traffic between a browser and a web server. This fundamental capability forms the backbone of the framework. The ability to intercept, view, and modify web requests before they reach the target server or even manipulate responses before they are received by our browser makes Burp Suite an invaluable tool for manual web application testing. It includes various tools for scanning, fuzzing, intercepting, and analyzing web traffic.
-- Wireshark : Network Traffic Capture
-- dnsspoof : Network Traffic Capture
-
-
-
-Splunk Enterprise Security (https://www.splunk.com) ▪ Scanlogd (https://github.com) ▪ Vectra Detect (https://www.vectra.ai) ▪ IBM Security QRadar XDR (https://www.ibm.com) ▪ Cynet 360 AutoXDRTM (https://www.cynet.com)
+- Splunk Enterprise Security (https://www.splunk.com)
 
 
 --------------------------------------------------
@@ -159,15 +134,6 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- nmap -sR <ip>
 	- nmap -T4 –A <ip>
 - SMB Enumeration (SMB service running): nmap -p 445 -A <ip>
-
-
---------------------------------------------------
-
-# Digital Forensics & Data Recovery
-
-- teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
-- photorec : PhotoRec is used to recover files from corrupted or formatted disks, or when the file system is damaged
-- FTK : Forensic Toolkit is a forensic suite used for analyzing disk drives, memory, and emails
 
 
 --------------------------------------------------
@@ -315,22 +281,18 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 --------------------------------------------------
 
-# Linux
-cat /proc/cpuinfo
-cat /proc/meminfo
+# Attack Tools
 
-# Win
-Disable Fast Startup
-Disable Startup Services
-WinR + mrt
+- nc : Netcat is a versatile networking tool for establishing arbitrary TCP and UDP connections, allowing reading from and writing to network connections
+- gobuster : Gobuster is a Go-based tool for brute-forcing URIs, DNS subdomains, virtual hosts, and discovering open Amazon S3 buckets, Google Cloud buckets, and TFTP servers
+- sqlmap : sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers
+- dnsspoof : dnsspoof is a DNS spoofer that intercepts DNS responses from the router and replaces them with spoofed DNS responses
 
+# Assist Tools:
+- Burp Suite : Burp Suite is a Java-based framework for web application penetration testing, allowing interception and manipulation of HTTP/HTTPS traffic between a browser and server. It includes tools for scanning, fuzzing, and analyzing web traffic, making it essential for manual web testing.
+- crunch : crunch command generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
 
-nc -lvp 1234
-nc -lvp 1234 -e /bin/bash
-nc -lvp 1234 > file
-
-nc <ip> 1234
-nc <ip> < file
-
-DNS lookup is used to find the IP addresses for a given domain name, and a reverse DNS operation is performed to obtain the domain name of a given IP address. 
-DNSRecon, Reverse Lookup, puredns, Reverse IP Domain Check, and Reverse IP Lookup to perform reverse DNS lookup on the target host.
+# Digital Forensics & Data Recovery:
+- teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
+- photorec : PhotoRec is used to recover files from corrupted or formatted disks, or when the file system is damaged
+- FTK : Forensic Toolkit is a forensic suite used for analyzing disk drives, memory, and emails
