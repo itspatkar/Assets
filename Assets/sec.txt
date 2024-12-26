@@ -234,9 +234,11 @@ Enumeration is the process of extracting usernames, machine names, network resou
 # Vulnerability Assessment Tools
 - nikto : Scan web server for known vulnerabilities
 - skipfish : web application security scanner
+- OpenVAS (www.openvas.org)
+	- sudo docker run -d -p 443:443 --name openvas mikesplain/openvas
+	- Launch OpenVAS: https://127.0.0.1 (Username: admin; Password: admin)
 - Snort : Open Source Network Intrusion Prevention System (IPS)
 - SmartScanner : AI-powered web vulnerability scanner that detects a wide range of threats, from SQL Injection and XSS to misconfigurations and cryptographic flaws. It supports various technologies, including REST APIs, modern frameworks, and popular CMS platforms, offering an intuitive interface and detailed reports. (www.thesmartscanner.com)
-- OpenVAS (www.openvas.org)
 
 
 --------------------------------------------------
@@ -255,3 +257,17 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
 - photorec : PhotoRec is used to recover files from corrupted or formatted disks, or when the file system is damaged
 - FTK : Forensic Toolkit is a forensic suite used for analyzing disk drives, memory, and emails
+
+
+--------------------------------------------------
+
+# System Hacking
+
+- Password Attacks
+	- Windows (Tools to Extract the Password Hashes)
+		- pwdump7 : Extracts LM and NTLM password hashes of local user accounts from the Security Account Manager (SAM) database
+		- Mimikatz : Extract plaintext passwords, hashes, PINs, and Kerberos tickets from memory, as well as perform pass-the-hash, pass-the-ticket, and create Golden Tickets
+		- DSInternals : Directory Services Internals PowerShell Module and Framework
+	- Hashcat : Password recovery utility
+	- hashcat-utils : Advanced password cracking
+	- PyCrack : Advanced password-cracking tool with support for brute force, dictionary, and random attacks, capable of cracking files and hashes such as PDF, ZIP, MS Excel, MS Word, MS PowerPoint, MD5, SHA-224, SHA-256, etc.

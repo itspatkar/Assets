@@ -1,0 +1,5 @@
+
+- Password Attacks
+    - active online attacks include password guessing, dictionary and brute-forcing attacks, password spraying, mask attack, hash injection, LLMNR/NBT-NS poisoning, use of Trojans/spyware/keyloggers, internal monologue attacks, Markov-chain attacks, Kerberos password cracking, NTLM relay attack, etc.
+    - passive online attacks include wire sniffing, man-in-the-middle attacks, replay attacks, etc
+    - Offline attacks refer to password attacks in which an attacker tries to recover cleartext passwords from a password hash dump. Attackers use pre-computed hashes from rainbow tables to perform offline and distributed network attacks.
