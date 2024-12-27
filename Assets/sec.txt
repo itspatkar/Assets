@@ -113,17 +113,17 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - showmount : show mount information for an NFS server (showmount -e <ip>)
 - RPCScan : RPCScan communicates with RPC services and checks misconfigurations on NFS shares
 - SuperEnum : SuperEnum includes a script that performs the basic enumeration of any open port
-- DNS Zone Transfer with Dig
+- DNS Zone Transfer with Dig:
 	- dig ns <ip>
 	- dig @<domain_name_server> <ip> axfr
 - DNS Zone Transfer with DNSRecon: dnsrecon -t axfr -d <ip>
-- DNS Cache Snooping
+- DNS Cache Snooping:
 	- Non-recursive method: dig @<dns_server_ip> <ip> A +norecurse
 	- Recursive method: dig @<dns_server_ip> <ip> A +recurse
-- DNSSEC Zone Walking
+- DNSSEC Zone Walking:
 	- LDNS: ldns-walk @<dns_server_ip> <ip>
 	- DNSRecon: dnsrecon -z -d <ip>
-- DNS Enumeration with OWASP Amass
+- DNS Enumeration with OWASP Amass:
 	- amass enum -d <ip>
 	- Passive: amass enum -passive -d <ip>
 	- Active enumeration through brute-forcing with specified wordlist: amass enum -active -d <ip> /usr/share/wordlists/amass/all.txt
@@ -133,7 +133,9 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - RPC Enumeration (Identify RPC service running):
 	- nmap -sR <ip>
 	- nmap -T4 –A <ip>
-- SMB Enumeration (SMB service running): nmap -p 445 -A <ip>
+- SMB Enumeration (SMB service running):
+	- nmap -p 445 -A <ip>
+	- enum4linux : enumerate information from Windows and Samba systems
 
 
 --------------------------------------------------
@@ -251,7 +253,6 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # Assist Tools:
 - Burp Suite : Burp Suite is a Java-based framework for web application penetration testing, allowing interception and manipulation of HTTP/HTTPS traffic between a browser and server. It includes tools for scanning, fuzzing, and analyzing web traffic, making it essential for manual web testing.
-- crunch : crunch command generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
 
 # Digital Forensics & Data Recovery:
 - teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
@@ -263,11 +264,54 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # System Hacking
 
-- Password Attacks
-	- Windows (Tools to Extract the Password Hashes)
+- Password Attacks Tools
+	- Windows
 		- pwdump7 : Extracts LM and NTLM password hashes of local user accounts from the Security Account Manager (SAM) database
-		- Mimikatz : Extract plaintext passwords, hashes, PINs, and Kerberos tickets from memory, as well as perform pass-the-hash, pass-the-ticket, and create Golden Tickets
+		- Rubeus : Retrieve a TGT based on a user password/hash
 		- DSInternals : Directory Services Internals PowerShell Module and Framework
+		- Mimikatz : Extract plaintext passwords, hashes, PINs, and Kerberos tickets from memory, as well as perform pass-the-hash, pass-the-ticket, and create Golden Tickets
+	- crunch : crunch command generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
+	- CeWL (Custom Word List Generator)
+	- Impacket : Impacket is a collection of Python classes for working with network protocols
+	- Responder : LLMNR, NBT-NS and MDNS poisoner
+	- John the Ripper : Advanced offline password cracker, which supports hundreds of hash and cipher types
 	- Hashcat : Password recovery utility
 	- hashcat-utils : Advanced password cracking
+	- Hydra : fast and flexible password-cracking tool used for brute-force and dictionary attacks on various network services and protocols
 	- PyCrack : Advanced password-cracking tool with support for brute force, dictionary, and random attacks, capable of cracking files and hashes such as PDF, ZIP, MS Excel, MS Word, MS PowerPoint, MD5, SHA-224, SHA-256, etc.
+	- Aircrack-ng
+	- Ncrack
+	- adfsbrute
+	- CrackMapExec
+
+- Password Attacks
+	- Active Online (Windows)
+		- Hash Injection/Pass-the-Hash (PtH) Attack : Technique where an attacker uses a stolen NTLM hash instead of the plaintext password to authenticate and gain access to systems or resources - Mimikatz and Impacket (psexec.py)
+		- LLMNR/NBT-NS Poisoning : Network attack that exploits the LLMNR and NBT-NS protocols to capture authentication credentials (NTLM hashes) from target system - Responder
+		- Internal Monologue Attack : Stealthy technique used to extract NTLM hashes from compromised Windows machine without generating network traffic - Invoke-InternalMonologue
+		- Cracking Kerberos Password : Attack involves brute-forcing or dictionary attacks on the encrypted password hashes associated with Kerberos authentication tickets to reveal plaintext passwords
+			- AS-REP Roasting (Cracking TGT): Extract user accounts hash that do not require preauthentication then crack encrypted TGT hash (JtR/Hashcat) - Impacket (GetNPUsers.py)
+			- Kerberoasting (Cracking TGS): Attacker authenticates to the Kerberos network, obtains a TGT, requests TGS tickets for specific services encrypted with service account hashes, and extracts them using tools like Rubeus (gain access to higher-privileged service accounts)
+		- Pass-the-Ticket Attack : Using a stolen Kerberos ticket (TGT or TGS) to authenticate to other services or systems without needing the user's password, allowing attackers to gain unauthorized access using the victim's ticket - Mimikatz, Rubeus, Windows Credentials Editor
+		- NTLM Relay Attack : Network attack where an attacker intercepts and relays NTLM authentication traffic to authenticate as the victim on another system without cracking the credentials - Responder, Impacket (ntlmrelayx)
+	- Passive Online
+		- Wire Sniffing : Packet sniffing is a form of wire sniffing or wiretapping in which hackers sniff credentials during transit by capturing Internet packets - Wireshark, tcpdump
+		- Man-in-the-Middle and Replay Attacks
+	- Offline
+		- Rainbow Table Attack : Password-cracking technique that uses precomputed hash-value pairs stored in a table to quickly match and reverse hash values into plaintext passwords, bypassing the need for real-time brute-forcing - RainbowCrack (rtgen)
+		- Distributed Network Attack : Brute-force technique that uses multiple distributed systems to crack encrypted files or passwords by leveraging their combined computational power - Exterro Password Recovery Toolkit (PRTK)
+
+- Password Recovery Tools
+	- Elcomsoft Distributed Password Recovery (www.elcomsoft.com)
+	- Passware Kit Forensic (www.passware.com)
+	- hashcat (hashcat.net)
+	- PCUnlocker (www.top-password.com)
+	- Lazesoft Recover My Password (www.lazesoft.com)
+	- Passper WinSenior (passper.imyfone.com)
+
+- Default Passwords
+	- www.fortypoundhead.com 
+	- cirt.net 
+	- www.routerpasswords.com 
+	- default-password.info 
+	- 192-168-1-1ip.mobi
