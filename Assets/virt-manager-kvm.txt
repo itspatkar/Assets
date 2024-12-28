@@ -3,25 +3,37 @@
 sudo pacman -Syu
 sudo pacman -S virt-manager libvirt virt-viewer qemu dnsmasq bridge-utils
 
-# Optional
-sudo pacman -S archlinux-keyring vde2 edk2-ovmf libguestfs openvswitch openbsd-netcat dmidecode ebtables iptables
-
 # Start KVM libvirt service
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
+sudo systemctl enable libvirtd
+sudo systemctl start libvirtd
 
 # Check libvirt service status
-systemctl status libvirtd.service
+systemctl status libvirtd
 
 
-# Enable normal user account to use KVM
-
-# Add user to libvirt group
+# Enable normal user account to use KVM - Add user to libvirt and kvm group
 sudo usermod -aG libvirt $(whoami)
-
-# Add user to kvm (qemu.conf)
 sudo usermod -aG kvm $USER
 
+
+# Restart libvirt daemon
+sudo systemctl restart libvirtd
+
+
+# Set default network to active on boot
+sudo virsh net-list --all
+sudo virsh net-autostart default
+sudo virsh net-start default
+
+
+# Restart system
+sudo shutdown -r now
+
+
+--------------------------------------------------
+
+# Optional
+sudo pacman -S archlinux-keyring vde2 edk2-ovmf libguestfs openvswitch openbsd-netcat dmidecode ebtables iptables safe-rm xz-utils
 
 # Open: /etc/libvirt/libvirtd.conf and uncomment below lines
 sudo vim /etc/libvirt/libvirtd.conf
@@ -32,7 +44,6 @@ unix_sock_group = "libvirt"
 # Set the UNIX socket permissions for the R/W socket (around line 102)
 unix_sock_rw_perms = "0770"
 
-
 # Open: /etc/libvirt/qemu.conf and uncomment below lines
 sudo vim /etc/libvirt/qemu.conf
 
@@ -40,16 +51,6 @@ sudo vim /etc/libvirt/qemu.conf
 user = "<user>"
 group = "<user>"
 
-
-# Restart libvirt daemon
-sudo systemctl restart libvirtd.service
-
-
-# Set default network to active on boot
-sudo virsh net-list --all
-sudo virsh net-start default
-sudo virsh net-autostart default
-
-
-# Restart system
-sudo shutdown -r now
+# Ensure KVM's/QEMU's default networking is enabled and has started
+sudo virsh -c qemu:///system net-autostart default
+sudo virsh -c qemu:///system net-start default

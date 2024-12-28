@@ -224,10 +224,12 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # Vulnerability Scoring Systems and Databases
 - Common Vulnerability Scoring System (CVSS) - www.first.org
-- Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
+- MITRE Common Vulnerabilities and Exposures (CVE) - cve.mitre.org
 - National Vulnerability Database (NVD) - nvd.nist.gov
 - Common Weakness Enumeration (CWE) - cwe.mitre.org
 - Exploit Database - www.exploit-db.com
+- Vulnerability Database - vuldb.com
+- Open Source Vulnerability Database - osv.dev
 
 # Vulnerability Research Resources
 - Microsoft Security Response Center (MSRC) - msrc.microsoft.com
@@ -264,6 +266,8 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # System Hacking
 
+## Gaining Access:
+
 - Password Recovery/Cracking/Attacks Tools
 	- Windows
 		- pwdump7 : extracts LM and NTLM password hashes of local user accounts from the Security Account Manager (SAM) database
@@ -276,6 +280,9 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- L0phtCrack : L0phtCrack is a tool designed to audit passwords and recover applications
 		- Responder : LLMNR, NBT-NS and MDNS poisoner
 		- brutus : brute-force password-cracking tool, primarily designed for older Windows systems
+		- Vindicate : LLMNR/NBNS/mDNS Spoofing Detection Toolkit for network administrators
+		- Respounder : detects presence of responder in the network
+		- got-responded : detect LLMNR and NBT-NS spoofing
 	- crunch : generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
 	- CeWL : Custom Word List Generator generates custom wordlists by crawling websites and extracting words based on specified parameters
 	- hashID : tool to identify different types of hashes
@@ -321,3 +328,6 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Offline
 		- Rainbow Table Attack : Password-cracking technique that uses precomputed hash-value pairs stored in a table to quickly match and reverse hash values into plaintext passwords, bypassing the need for real-time brute-forcing - RainbowCrack (rtgen)
 		- Distributed Network Attack : Brute-force technique that uses multiple distributed systems to crack encrypted files or passwords by leveraging their combined computational power - Exterro Password Recovery Toolkit (PRTK)
+
+- Vulnerability Exploitation
+	- WES-NG : Windows Exploit Suggester - Next Generation is python-based tool that analyzes the output of the Windows systeminfo utility to identify vulnerabilities affecting the system and corresponding exploits
