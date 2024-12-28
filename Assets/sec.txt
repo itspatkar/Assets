@@ -264,25 +264,46 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # System Hacking
 
-- Password Attacks Tools
+- Password Recovery/Cracking/Attacks Tools
 	- Windows
-		- pwdump7 : Extracts LM and NTLM password hashes of local user accounts from the Security Account Manager (SAM) database
-		- Rubeus : Retrieve a TGT based on a user password/hash
+		- pwdump7 : extracts LM and NTLM password hashes of local user accounts from the Security Account Manager (SAM) database
+		- Rubeus : retrieve a TGT based on a user password/hash
+		- Mimikatz : extract plaintext passwords, hashes, PINs, and Kerberos tickets from memory, as well as perform pass-the-hash, pass-the-ticket, and create Golden Tickets
 		- DSInternals : Directory Services Internals PowerShell Module and Framework
-		- Mimikatz : Extract plaintext passwords, hashes, PINs, and Kerberos tickets from memory, as well as perform pass-the-hash, pass-the-ticket, and create Golden Tickets
-	- crunch : crunch command generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
-	- CeWL (Custom Word List Generator)
-	- Impacket : Impacket is a collection of Python classes for working with network protocols
-	- Responder : LLMNR, NBT-NS and MDNS poisoner
-	- John the Ripper : Advanced offline password cracker, which supports hundreds of hash and cipher types
+		- adfsbrute : script to test credentials against Active Directory Federation Services (ADFS), allowing password spraying or bruteforce attacks
+		- CrackMapExec : CME is versatile post-exploitation and lateral movement tool designed for penetration testing in Active Directory environments
+		- Impacket : Impacket is a collection of Python classes for working with network protocols
+		- L0phtCrack : L0phtCrack is a tool designed to audit passwords and recover applications
+		- Responder : LLMNR, NBT-NS and MDNS poisoner
+		- brutus : brute-force password-cracking tool, primarily designed for older Windows systems
+	- crunch : generates wordlists based on specified character sets, lengths, and patterns for use in dictionary attacks
+	- CeWL : Custom Word List Generator generates custom wordlists by crawling websites and extracting words based on specified parameters
+	- hashID : tool to identify different types of hashes
+	- John the Ripper : advanced offline password cracker that supports hundreds of hash and cipher types
 	- Hashcat : Password recovery utility
-	- hashcat-utils : Advanced password cracking
-	- Hydra : fast and flexible password-cracking tool used for brute-force and dictionary attacks on various network services and protocols
-	- PyCrack : Advanced password-cracking tool with support for brute force, dictionary, and random attacks, capable of cracking files and hashes such as PDF, ZIP, MS Excel, MS Word, MS PowerPoint, MD5, SHA-224, SHA-256, etc.
-	- Aircrack-ng
-	- Ncrack
-	- adfsbrute
-	- CrackMapExec
+	- hashcat-utils : powerful and versatile password recovery utility supporting a wide range of hash algorithms
+	- RainbowCrack : password-cracking tool that uses rainbow tables to recover plaintext passwords from their hashed values
+	- Hydra : fast and flexible password-cracking tool used for brute-force and dictionary attacks against various network services and protocols
+	- Patator : multi-purpose brute-forcer with modular design and flexible usage
+	- Ncrack : high-speed network authentication cracking tool
+	- PyCrack : Advanced password-cracking tool supporting brute force, dictionary, and random attacks, capable of cracking files and hashes (e.g. PDF, ZIP, MS Excel, MS Word, MS PowerPoint, MD5, SHA-224, SHA-256, etc.)
+	- Aircrack-ng : complete suite of tools to assess WiFi network security
+	- BruteX : automates brute-force attacks against all services running on target
+	- Secure Shell Bruteforcer : SSB - faster & simpler way to bruteforce SSH server
+
+- Password Recovery Tools (Windows)
+	- Elcomsoft Distributed Password Recovery (www.elcomsoft.com)
+	- Lazesoft Recover My Password (www.lazesoft.com)
+	- Passper WinSenior (passper.imyfone.com)
+	- Passware Kit Forensic (www.passware.com)
+	- PCUnlocker (www.top-password.com)
+
+- Default Passwords
+	- 192-168-1-1ip.mobi
+	- cirt.net
+	- default-password.info
+	- www.fortypoundhead.com
+	- www.routerpasswords.com
 
 - Password Attacks
 	- Active Online (Windows)
@@ -300,18 +321,3 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Offline
 		- Rainbow Table Attack : Password-cracking technique that uses precomputed hash-value pairs stored in a table to quickly match and reverse hash values into plaintext passwords, bypassing the need for real-time brute-forcing - RainbowCrack (rtgen)
 		- Distributed Network Attack : Brute-force technique that uses multiple distributed systems to crack encrypted files or passwords by leveraging their combined computational power - Exterro Password Recovery Toolkit (PRTK)
-
-- Password Recovery Tools
-	- Elcomsoft Distributed Password Recovery (www.elcomsoft.com)
-	- Passware Kit Forensic (www.passware.com)
-	- hashcat (hashcat.net)
-	- PCUnlocker (www.top-password.com)
-	- Lazesoft Recover My Password (www.lazesoft.com)
-	- Passper WinSenior (passper.imyfone.com)
-
-- Default Passwords
-	- www.fortypoundhead.com 
-	- cirt.net 
-	- www.routerpasswords.com 
-	- default-password.info 
-	- 192-168-1-1ip.mobi
