@@ -1,12 +1,37 @@
 
-# Metasploit Framework (MSF)
+# Metasploit Framework (https://www.metasploit.com)
+
 Metasploit is a powerful open-source framework widely used for penetration testing, exploit development, and vulnerability assessment. It offers tools and modules for discovering, exploiting, and validating security vulnerabilities in systems, networks, and applications.
 
+- Payload Module: Payload module establishes a communication channel between the Metasploit framework and the victim host
+- Auxiliary Module: Auxiliary modules can be used to perform arbitrary, one-off actions such as port scanning, denial of service, and even fuzzing
+- NOPS Module: NOPS modules generate a no-operation instruction used for blocking out buffers
+- Encoder Module: Encoder modules are used to encode payloads to avoid detection by antivirussoftware, intrusion detection systems (IDS), and other security mechanisms
+- Evasion Module: Evasion modules are designed to modify the behavior and characteristics of payloads and exploits to avoid detection by securitysystems, such as antivirus, IDS, and endpoint protection platforms
+- Post-exploitation Module: 
 
-# Enumeration
-- Port Scanning - Outputs the list of open ports from the target <ip>:
-    - msfconsole -q -x "use auxiliary/scanner/portscan/tcp; set RHOSTS <ip>; run; exit"
-- Enumerate SMTP Users - Outputs the list of valid SMTP users from the target SMTP server:
-    - msfconsole -q -x "use auxiliary/scanner/smtp/smtp_enum; set RHOSTS <ip>; run; exit"
-- VoIP Enumeration - SIP Username Enumerator to scan numeric usernames/extensions of VoIP phones:
-    - msfconsole -q -x "use auxiliary/scanner/sip/enumerator; use auxiliary/scanner/sip/options; set RHOSTS <ip>; run; exit"
+
+# Auxiliary Module
+- Enumeration
+    - Port Scanning - Outputs the list of open ports from the target <ip>:
+        msfconsole -q -x "use auxiliary/scanner/portscan/tcp; set RHOSTS <ip>; run; exit"
+    - Enumerate SMTP Users - Outputs the list of valid SMTP users from the target SMTP server:
+        msfconsole -q -x "use auxiliary/scanner/smtp/smtp_enum; set RHOSTS <ip>; run; exit"
+    - VoIP Enumeration - SIP Username Enumerator to scan numeric usernames/extensions of VoIP phones:
+        msfconsole -q -x "use auxiliary/scanner/sip/enumerator; use auxiliary/scanner/sip/options; set RHOSTS <ip>; run; exit"
+
+# Evasion Module
+- Modifies Windows executable to bypass Windows Defender: evasion/windows/windows_defender_exe
+- Attempts to disable antivirus software on target system: evasion/windows/antivirus_disable
+- Attempts to disable antivirus software in Unix-based systems: evasion/unix/antivirus_disable
+
+# Post-exploitation Module
+- Windows Gather Modules:
+    - Enumerates users currently logged into system: post/windows/gather/enum_logged_on_users
+    - Collects various credentials stored in target system: post/windows/gather/credentials/credential_collector
+- Linux Gather Modules:
+    - Collects various configuration files from target system: post/linux/gather/enum_configs
+    - Dumps password hashes from target Linux system: post/linux/gather/hashdump
+- Network Pivoting Modules:
+    - Adds route to target local network through compromised system: post/multi/manage/autoroute
+    - Sets up port-forwarding rule for pivoting through compromised machine: post/windows/manage/portproxy

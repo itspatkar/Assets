@@ -1,0 +1,43 @@
+Web Application Firewall (WAF)
+
+    Purpose: Protects web applications from attacks like SQL injection, cross-site scripting (XSS), and more.
+    Features:
+        Filters HTTP/HTTPS traffic.
+        Enforces application-specific security rules.
+
+
+Network Access Control (NAC)
+
+    Purpose: Ensures that only authorized and compliant devices can access the network.
+    Features:
+        Device authentication before granting access.
+        Quarantines non-compliant devices for remediation.
+
+Security Information and Event Management (SIEM)
+
+    Purpose: Centralized logging and analysis of security events across the organization.
+    Features:
+        Aggregates logs from multiple devices.
+        Correlates events to identify potential security incidents.
+        Provides dashboards for monitoring and alerting.
+
+
+Next-Generation Firewall (NGFW)
+
+    Purpose: An advanced version of a firewall with integrated features.
+    Features:
+        Deep packet inspection.
+        Application awareness and control.
+        Integrated IDS/IPS functionality.
+
+
+---------------
+
+Firewall (Network Firewall and Host-based Firewall)
+Intrusion Detection System (IDS)
+Intrusion Prevention System (IPS)
+Virtual Private Network (VPN)
+Web Application Firewall (WAF)
+Network Access Control (NAC)
+Endpoint Detection and Response (EDR)
+Next-Generation Firewall (NGFW)

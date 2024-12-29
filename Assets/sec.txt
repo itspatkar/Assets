@@ -329,5 +329,9 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Rainbow Table Attack : Password-cracking technique that uses precomputed hash-value pairs stored in a table to quickly match and reverse hash values into plaintext passwords, bypassing the need for real-time brute-forcing - RainbowCrack (rtgen)
 		- Distributed Network Attack : Brute-force technique that uses multiple distributed systems to crack encrypted files or passwords by leveraging their combined computational power - Exterro Password Recovery Toolkit (PRTK)
 
-- Vulnerability Exploitation
+- Vulnerability Exploitation Tools
 	- WES-NG : Windows Exploit Suggester - Next Generation is python-based tool that analyzes the output of the Windows systeminfo utility to identify vulnerabilities affecting the system and corresponding exploits
+
+- AI-Powered Vulnerability Exploitation Tools
+	- Nebula : AI-Powered Ethical Hacking Assistant
+	- DeepExploit : DeepExploit utilizes a deep learning model to automate vulnerability identification and exploitation
