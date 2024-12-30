@@ -31,7 +31,7 @@ Next-Generation Firewall (NGFW)
         Integrated IDS/IPS functionality.
 
 
----------------
+--------------------------------------------------
 
 Firewall (Network Firewall and Host-based Firewall)
 Intrusion Detection System (IDS)
@@ -41,3 +41,18 @@ Web Application Firewall (WAF)
 Network Access Control (NAC)
 Endpoint Detection and Response (EDR)
 Next-Generation Firewall (NGFW)
+
+--------------------------------------------------
+
+# Linux
+cat /proc/cpuinfo
+cat /proc/meminfo
+
+# Win
+Disable Fast Startup
+Disable Startup Services
+WinR + mrt
+
+Endpoint Detection and Response (EDR) and Security Information and Event Management (SIEM)
+
+Rubber duck usb
