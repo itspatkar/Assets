@@ -341,12 +341,17 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Types:
 			- Stack Based Buffer Overflow (smaller, static buffers)
 			- Heap Based Buffer Overflow (larger, dynamic buffers)
-		- Steps involved in exploiting Windows based buffer overflow vulnerability:
-			- Perform spiking: wit netcat
-			- Perform fuzzing: Fuzzing sends data to cause a buffer overflow, overwriting the EIP and revealing its location to inject shellcode
-			- Identify the offset: Attackers use Metasploit's pattern_create and pattern_offset tools to identify the offset and exact location where the EIP register is being overwritten
-			- Overwrite the EIP register: Overwriting the EIP identifies whether a register can be controlled and overwritten with malicious shellcode
-			- Identify bad characters: Before injecting the shellcode into the EIP register, attackers identify bad characters that may cause issues in the shellcode
-			- Identify the right module: Identify the right module of a vulnerable server that lacks memory protection
-			- Generate shellcode: Generate the shellcode (with the msfvenom command) and inject it into the EIP register to gain shell access to the target vulnerable server
-			- Gain root access
+		- Windows Buffer Overflow Exploitation
+			- Steps involved in exploiting Windows based buffer overflow vulnerability:
+				- Perform spiking: wit netcat
+				- Perform fuzzing: Fuzzing sends data to cause a buffer overflow, overwriting the EIP and revealing its location to inject shellcode
+				- Identify the offset: Attackers use Metasploit's pattern_create and pattern_offset tools to identify the offset and exact location where the EIP register is being overwritten
+				- Overwrite the EIP register: Overwriting the EIP identifies whether a register can be controlled and overwritten with malicious shellcode
+				- Identify bad characters: Before injecting the shellcode into the EIP register, attackers identify bad characters that may cause issues in the shellcode
+				- Identify the right module: Identify the right module of a vulnerable server that lacks memory protection
+				- Generate shellcode: Generate the shellcode (with the msfvenom command) and inject it into the EIP register to gain shell access to the target vulnerable server
+				- Gain root access
+		- Return-Oriented Programming (ROP) Attack
+		- Bypassing ASLR (Address Space Layout randomization) and DEP (Data Execution Prevention) Security Mechanism
+			- Heap Spraying - flooding free space of target process’s memory heap
+			- JIT (Just-In-Time) Spraying - execute arbitrary code by exploiting vulnerabilities in JIT compilation (web browsers)
