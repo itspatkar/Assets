@@ -343,7 +343,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 			- Heap Based Buffer Overflow (larger, dynamic buffers)
 		- Windows Buffer Overflow Exploitation
 			- Steps involved in exploiting Windows based buffer overflow vulnerability:
-				- Perform spiking: wit netcat
+				- Perform spiking: with netcat
 				- Perform fuzzing: Fuzzing sends data to cause a buffer overflow, overwriting the EIP and revealing its location to inject shellcode
 				- Identify the offset: Attackers use Metasploit's pattern_create and pattern_offset tools to identify the offset and exact location where the EIP register is being overwritten
 				- Overwrite the EIP register: Overwriting the EIP identifies whether a register can be controlled and overwritten with malicious shellcode
@@ -355,4 +355,5 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Bypassing ASLR (Address Space Layout randomization) and DEP (Data Execution Prevention) Security Mechanism
 			- Heap Spraying - flooding free space of target process’s memory heap
 			- JIT (Just-In-Time) Spraying - execute arbitrary code by exploiting vulnerabilities in JIT compilation (web browsers)
-		- Exploit Chaining
+	- Exploit Chaining
+	- Domain Mapping and Exploitation with Bloodhound
