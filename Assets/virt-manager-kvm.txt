@@ -10,21 +10,17 @@ sudo systemctl start libvirtd
 # Check libvirt service status
 systemctl status libvirtd
 
-
 # Enable normal user account to use KVM - Add user to libvirt and kvm group
 sudo usermod -aG libvirt $(whoami)
 sudo usermod -aG kvm $USER
 
-
 # Restart libvirt daemon
 sudo systemctl restart libvirtd
-
 
 # Set default network to active on boot
 sudo virsh net-list --all
 sudo virsh net-autostart default
 sudo virsh net-start default
-
 
 # Restart system
 sudo shutdown -r now

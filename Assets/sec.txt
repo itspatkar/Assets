@@ -355,3 +355,4 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Bypassing ASLR (Address Space Layout randomization) and DEP (Data Execution Prevention) Security Mechanism
 			- Heap Spraying - flooding free space of target process’s memory heap
 			- JIT (Just-In-Time) Spraying - execute arbitrary code by exploiting vulnerabilities in JIT compilation (web browsers)
+		- Exploit Chaining
