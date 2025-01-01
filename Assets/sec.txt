@@ -420,3 +420,25 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- flawfinder : program that examines C/C++ source code and reports possible security weaknesses sorted by risk level
 		- Splint : tool for statically checking C programs for security vulnerabilities and coding mistakes
 		- Valgrind : An instrumentation framework for building dynamic analysis tools, Valgrind includes tools that can automatically detect memory management and threading bugs, as well as profile programs in detail (valgrind.org/info/tools.html)
+
+
+## Privilege Escalation
+
+- Types of Privilege Escalation
+	- Horizontal Privilege Escalation
+	- Vertical Privilege Escalation (Elevation of Privileges)
+- Methods of Privilege Escalation (Same Level Privileges)
+	- Privilege Escalation by Exploiting Vulnerabilities
+	- Privilege Escalation Using DLL (Dynamic Link Library) Hijacking - Windows:
+		- Spartacus : An automated DLL/COM hijacking toolkit that analyzes SysInternals Process Monitor logs to identify, exploit, and generate payloads for DLL and COM hijacking vulnerabilities
+		- DLLirant : Tool to automatize the DLL Hijacking and DLL Proxying researches on a specified binary 
+		- ImpulsiveDLLHijack : Automates the discovery and exploitation of DLL hijacking vulnerabilities in target binaries, with the hijacked paths identified later being weaponized during Red Team operations to evade EDR systems
+		- PowerSploit : PowerShell Post-Exploitation Framework that is a collection of Microsoft PowerShell modules that aid penetration testers during all phases of an assessment
+	- Privilege Escalation Using Dylib (dynamic library) Hijacking - MacOS:
+		- Dylib Hijack Scanner : Scans a computer for applications that are either susceptible to dylib hijacking or have already been hijacked
+	- Privilege Escalation Using Spectre and Meltdown Vulnerabilities:
+		- Spectre and Meltdown are vulnerabilities found in the design of modern processor chips (AMD, ARM, and Intel). These vulnerabilities arise from performance and CPU optimizations in processors, such as branch prediction, out-of-order execution, caching, and speculative execution. Attackers can exploit these vulnerabilities to gain unauthorized access and steal sensitive system information, such as credentials and secret keys stored in the application's memory, to escalate privileges.
+		- Spectre Vulnerability: Attackers can exploit this vulnerability to read adjacent memory locations of a process, accessing unauthorized information, and may even gain access to kernel memory or perform web-based attacks using JavaScript.
+		- Meltdown Vulnerability: Attackers can exploit this vulnerability to escalate privileges by forcing an unprivileged process to read adjacent memory locations, such as kernel and physical memory, thereby revealing critical system information like credentials and private keys.
+	- Privilege Escalation Using Named Pipe Impersonation - Windows:
+		- In Windows OS, named pipes are used to facilitate legitimate communication between running processes.
