@@ -336,7 +336,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Nebula : AI-Powered Ethical Hacking Assistant
 	- DeepExploit : DeepExploit utilizes a deep learning model to automate vulnerability identification and exploitation
 
-- Vulnerability Exploitation Attacks
+- Vulnerability Exploitation Attacks/Tools
 	- Buffer Overflow
 		- Types:
 			- Stack Based Buffer Overflow (smaller, static buffers)
@@ -357,3 +357,66 @@ Enumeration is the process of extracting usernames, machine names, network resou
 			- JIT (Just-In-Time) Spraying - execute arbitrary code by exploiting vulnerabilities in JIT compilation (web browsers)
 	- Exploit Chaining
 	- Domain Mapping and Exploitation with Bloodhound
+	- Post Active Directory (AD) Enumeration using PowerView
+		- Note: Disable the security monitoring option: Set-MpPreference -DisableRealtimeMonitoring $true
+		- Enumerating Domain Users:
+			- Get-NetUser : Retrieves information related to the current domain user
+			- Get-NetLoggedon -ComputerName <computer-name> : Retrieves information related to the current active domain users
+			- Get-UserProperty –Properties pwdlastset : Retrieves the date and time of the password last set for each domain user
+			- Find-LocalAdminAccess : Retrieves users having local administrative privileges in the current domain (requires administrator privileges)
+			- Invoke-EnumerateLocalAdmin : Retrieves users having local administrative privileges in the network/domain (requires administrator privileges)
+			- Get-NetSession -ComputerName <computer_name> : Retrieves information related to the current user logged into the machine
+		- Enumerating Domains:
+			- Get-ADDomain : Retrieves information related to the current domain including its domain controllers (DCs)
+			- Get-NetDomain : Retrieves information related to the current domain including its network/domain controllers
+			- Get-DomainSID : Retrieves the security ID (SID) of the current domain
+		- Enumerating Domain Policy:
+			- Get-DomainPolicy : Retrieves the policy used by the current domain
+			- (Get-DomainPolicy)."SystemAccess" : Retrieves information related to the policy configurations of the domain’s system access
+			- (Get-DomainPolicy)."kerberospolicy : Retrieves information related to the domain’s Kerberos policy
+		- Enumerating Domain Controllers (DCs)
+			- Get-NetDomainController : Retrieves information related to the current domain controller (DC)
+		- Enumerating Domain Computers:
+			- Get-NetComputer : Retrieves the list of all computers existing in the current domain
+			- Get-NetComputer | select operatingsystem,dnshostname : Retrieves the list of all operating systems and DNS host names in the current domain
+			- Get-NetComputer - OperatingSystem "*Server 2022*" : Retrieves all the domain computers running on Windows Server 2022
+			- Get-NetComputer -Ping : Retrieves all the live hosts or pingable host systems available in the current domain
+		- Enumerating Domain Groups :
+			- Get-NetGroup : Retrieves the list of all groups existing in the current domain
+			- Get-NetGroup -Domain <targetdomain> : Retrieves the list of all groups existing in the specified domain
+			- Get-NetGroup 'Domain Administrators' : Retrieves all information related to the specified group
+			- Get-NetGroup “*admin*” : Retrieves all the groups containing admin in the group name
+			- Get-NetGroupMember - GroupName "Domain Admins" : Retrieves all the members in the specified group
+			- Get-NetGroup -UserName <"username"> : Retrieves the group name of the specified domain user
+			- Get-NetLocalGroup - ComputerName <computername> : Retrieves all the group names of the specified domain computer
+			- Get-NetLoggedon - ComputerName <DomainName> : Retrieves all the active logged-in users of the specified domain (requires administrator privileges)
+			- Get-LastLoggedOn - ComputerName <DomainName> : Retrieves the last-logged-in user of the specified domain
+		- Enumerating Domain Shares:
+			- Invoke-ShareFinder -Verbose : Retrieves shares on the hosts in the current domain
+			- Get-NetShare : Retrieves all the network shares existing in the current domain
+			- Get-NetFileServer -Verbose : Retrieves the file server of the current domain
+			- Invoke-FileFinder : Retrieves all the files in the current domain including files that store credentials
+			- Find-DomainShare : Retrieves the shares in the domain
+		- Enumerating Group Policies and OUs:
+			- Get-NetGPO Get-NetGPO| select displayname : Retrieves the list of all the GPOs present in the current domain
+			- Get-NetOU : Retrieves all the OUs present in the current domain
+		- Enumerating Access-Control Lists (ACLs):
+			- Get-NetPGO | %(Get-ObjectAcl -ResolveGUIDs -Name $_.Name) : numerating Access-Control Lists
+			- Get-ObjectAcl - SamAccountName "users" - ResolveGUIDs : Retrieves the details of the ACLs for a specific group (users)
+			- Get-NetGPO | %{Get-ObjectAcl -ResolveGUIDs - Name $_.Name} : Retrieves the users who have modification rights for a group
+			- Invoke-ACLScanner - ResolveGUIDs : Retrieves all information about ACEs
+			- Get-PathAcl -Path \\Windows11\Users : Retrieves the ACL linked with a specific path (works only with the shared folder)
+			- Get-Acl : Retrieves the security descriptions for a resource such as a file or registry key
+		- Enumerating Domain Trust and Forests:
+			- Get-NetForest : Retrieves the information of the current forestRetrieves the information of the current forest
+			- Get-NetForest -Forest <forest> : Retrieves the information of the specified forest
+			- Get-NetForestDomain : Retrieves all domains in the current forest
+			- Get-NetForestCatalog : Retrieves the details of the global catalogs for the current forest
+			- Get-NetForestCatalog - Forest <forest> : Retrieves the details of the global catalogs for the specified forest
+	- linWinPwn : Bash script that integrates Active Directory tools for enumeration (LDAP, RPC, ADCS, MSSQL, Kerberos), vulnerability checks (noPac, ZeroLogon, MS17-010, MS14-068), object modifications (password change, group additions, RBCD, Shadow Credentials), and password dumping (secretsdump, lsassy, nanodump, DonPAPI)
+	- GhostPack Seatbelt : Seatbelt performs a number of security-oriented host-survey "safety checks" relevant from both offensive and defensive security perspectives (github.com/GhostPack/Seatbelt)
+	- Buffer Overflow Detection Tools:
+		- OllyDbg : OllyDbg is an assembler-level debugger for Microsoft Windows that dynamically traces stack frames and program execution, logging arguments of known functions
+		- flawfinder : program that examines C/C++ source code and reports possible security weaknesses sorted by risk level
+		- Splint : tool for statically checking C programs for security vulnerabilities and coding mistakes
+		- Valgrind : An instrumentation framework for building dynamic analysis tools, Valgrind includes tools that can automatically detect memory management and threading bugs, as well as profile programs in detail (valgrind.org/info/tools.html)
