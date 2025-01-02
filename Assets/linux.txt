@@ -1,0 +1,87 @@
+# Packages
+
+gvfs-mtp mtools android-tools gcc
+fzf fzy lsof btop scrcpy
+ssr mpv deadbeef viewnior cheese
+xfce4-clipman-plugin xfce4-pulseaudio-plugin thunar-archive-plugin xfce4-screenshooter
+lightdm-gtk-greeter-settings papirus-icon-theme
+noto-fonts ttf-roboto ttf-opensans ttf-droid ttf-ibm-plex ttf-dejavu ttf-liberation ttf-terminus-nerd ttf-go-nerd ttf-ubuntu-font-family ttf-font-awesome
+
+
+# Void Linux
+sudo xbps-install git file-roller zip tar xz unzip curl xkill android-tools lxqt-sudo gparted mtools filezilla gcc 
+
+sudo xbps-install xfce4-clipman-plugin xfce4-pulseaudio-plugin thunar-archive-plugin xfce4-screenshooter lightdm-gtk-greeter-settings
+
+sudo xbps-install papirus-icon-theme papirus-folders cantarell-fonts dejavu-fonts-ttf font-awesome5 font-go-ttf font-ibm-plex-ttf noto-fonts-emoji noto-fonts-ttf ttf-ubuntu-font-family fonts-roboto-ttf fonts-droid-ttf
+
+sudo xbps-install chromium vscode telegram-desktop ssr mpv deadbeef viewnior cheese
+
+sudo xbps-install fzf fzy lsof btop scrcpy
+
+sudo xbps-install void-repo-nonfree
+sudo xbps-remove -S
+sudo xbps-install sublime-text4
+
+sudo xbps-install bluez blueman
+sudo ln -s /etc/sv/bluetoothd/ /var/service/
+
+-------
+
+# Chroot
+
+- Mount Root Partition: sudo mount /dev/sda2 /mnt/
+- Create EFI Mount Point: sudo mkdir -p /mnt/boot/efi/
+- Mount EFI: sudo mount /dev/sda1 /mnt/boot/efi/
+- Chroot Into Mounted System: sudo xchroot /mnt /bin/bash
+- Do your work... 
+- Exit Chroot Env: exit
+- Unmount Partitions: umount -R /mnt
+
+-------
+
+# IWCTL
+
+- Start iwctl: iwctl
+- List devices: device list
+- Scan wireless networks: station wlan0 scan
+- List wireless networks: station wlan0 get-networks
+- Connect to network (Enter password in prompt if any): station wlan0 connect <NetworkName>
+- Show connected network: station wlan0 show
+- Exit iwctl: exit
+
+-------
+
+# Enable OS Prober
+
+- Install os-prober: sudo pacman -S os-prober
+- Enable OS-Prober Execution on GRUB - Uncomment or Add this line: GRUB_DISABLE_OS_PROBER=false
+- Regenerate GRUB Config: sudo update-grub
+- Reboot System: reboot
+
+-------
+
+# Fish Setup
+
+- Install Fish Shell: sudo pacman -S fish
+- List installed shells: cat /etc/shells
+- Change default shell: chsh -s <shell_path> <user>
+- Remove default fish greeting: set -U fish_greeting
+- Install OMF Framework: curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+- Install OMF Theme: omf install mars
+
+-------
+
+# SSH Connection
+
+- Required packges: openssh, nmap
+- Start SSH Server: sshd
+- Get current user: whoami
+- Set user password (if not already set): passwd <user>
+- Get SSH Port: nmap localhost
+- Open Terminal and Connect to SSH: ssh <user>@<ip_address> -p <ssh_port>
+- Close SSH Server: pkill sshd
+
+-------
+
+xfce4-screenshooter --clipboard --no-border --window --save /home/user/Pictures/"Screenshot_$(date -d "today" +"%Y-%m-%d_%H-%M-%S").png"

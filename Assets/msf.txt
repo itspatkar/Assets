@@ -37,6 +37,8 @@ Metasploit is a powerful open-source framework widely used for penetration testi
 - Network Pivoting Modules:
     - Adds route to target local network through compromised system: post/multi/manage/autoroute
     - Sets up port-forwarding rule for pivoting through compromised machine: post/windows/manage/portproxy
+- Discover Live Hosts in Network:
+    - run post/windows/gather/arp_scanner RHOSTS <target_subnet_range>
 
 
 --------------------------------------------------

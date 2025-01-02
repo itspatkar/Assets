@@ -425,9 +425,9 @@ Enumeration is the process of extracting usernames, machine names, network resou
 ## Privilege Escalation
 
 - Types of Privilege Escalation
-	- Horizontal Privilege Escalation
+	- Horizontal Privilege Escalation (Same Level Privileges)
 	- Vertical Privilege Escalation (Elevation of Privileges)
-- Methods of Privilege Escalation (Same Level Privileges)
+- Methods of Privilege Escalation
 	- Privilege Escalation by Exploiting Vulnerabilities
 	- Privilege Escalation Using DLL (Dynamic Link Library) Hijacking - Windows:
 		- Spartacus : An automated DLL/COM hijacking toolkit that analyzes SysInternals Process Monitor logs to identify, exploit, and generate payloads for DLL and COM hijacking vulnerabilities
@@ -442,3 +442,23 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Meltdown Vulnerability: Attackers can exploit this vulnerability to escalate privileges by forcing an unprivileged process to read adjacent memory locations, such as kernel and physical memory, thereby revealing critical system information like credentials and private keys.
 	- Privilege Escalation Using Named Pipe Impersonation - Windows:
 		- In Windows OS, named pipes are used to facilitate legitimate communication between running processes.
+		- In this technique, messages are exchanged between processes using a file. For example, if process A wants to send a message to process B, it writes the message to a file, and process B reads the message from that file.
+	- Privilege Escalation by Exploiting Misconfigured Services - Windows:
+		- Unquoted Service Paths: In Windows, services with unquoted executable paths can be exploited by attackers to elevate privileges when running under SYSTEM privileges.
+		- Service Object Permissions: Misconfigured service permissions can allow attackers to modify or reconfigure service attributes, add users to the administrator group, and elevate privileges.
+		- Unattended Installs: Unattended installation information, such as configuration settings used during the installation process, is stored in the Unattend.xml file and can be exploited by attackers to escalate privileges.
+		- Modifiable Registry Autoruns and Configurations: Modifying certain registry entries that control the execution of programs, often exploiting weak or misconfigured permissions to gain higher privileges, execute malicious code, or persist on the system.
+	- Pivoting and Relaying to Hack External Machines:
+		- Pivoting and relaying are techniques used to gather detailed information about a target network after successfully compromising a target system. The compromised system acts as a bridge, enabling attackers to penetrate deeper into the target network and access other systems and resources that would otherwise be inaccessible from the attacking system.
+		- Pivoting: Attackers use the pivoting technique to compromise a system, gain remote shell access on it, and further bypass the firewall to pivot via the compromised system to access other vulnerable systems in the network.
+		- Relaying: Attackers use the relaying technique to access resources present on other systems via the compromised system in such a way that the requests to access the resources are coming from the initially compromised system.
+	- Privilege Escalation Using Misconfigured NFS - Windows:
+		- Attackers attempt to enumerate a misconfigured Network File System (NFS) to exploit it and gain root-level access to a remote server, as such misconfigurations allow them to escalate privileges from a regular or low-privileged user account.
+	- Privilege Escalation by Bypassing User Account Control (UAC):
+		- When attackers fail to escalate privileges with a simple payload, they attempt to evade Windows security features like UAC and exploit certain Windows applications to gain system-level access without triggering a UAC notification, even when UAC protection is enabled.
+		- Techniques to Bypassing UAC Protection Using Metasploit:
+			- Bypassing UAC Protection - exploit/windows/local/bypassuac
+			- Through FodHelper Registry Key - exploit/windows/local/bypassuac_fodhelper
+			- Through Eventvwr Registry Key - exploit/windows/local/bypassuac_eventvwr
+			- Through COM Handler Hijacking - exploit/windows/local/bypassuac_comhijack
+			- Via Memory Injection - exploit/windows/local/bypassuac_injection
