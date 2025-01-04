@@ -462,3 +462,31 @@ Enumeration is the process of extracting usernames, machine names, network resou
 			- Through Eventvwr Registry Key - exploit/windows/local/bypassuac_eventvwr
 			- Through COM Handler Hijacking - exploit/windows/local/bypassuac_comhijack
 			- Via Memory Injection - exploit/windows/local/bypassuac_injection
+	- Privilege Escalation by Abusing Boot or Logon Initialization Scripts:
+		- Attackers exploit boot or logon initialization scripts to escalate privileges or maintain persistence on a target system. These scripts also enable attackers to perform various administrative tasks, allowing them to execute other programs on the system.
+		- Windows Logon Script : Attackers establish persistence and escalate privileges on a system by embedding the path to their script in the registry key (HKEY_CURRENT_USER\Environment\UserInitMprLogonScript)
+		- Mac Logon Script : In macOS, logon scripts are known as login hooks and allow attackers to establish persistence on a system, as they are executed automatically during system login. Attackers exploit these hooks to inject a malicious payload, elevate privileges, and maintain persistence.
+		- Network Logon Scripts : Network logon scripts are assigned through Active Directory or GPOs. Attackers exploit these scripts to obtain local or administrator credentials, depending on the access configuration.
+		- RC Scripts : Attackers exploit RC scripts by embedding a malicious binary, shell, or path in RC scripts such as rc.common or rc.local on Unix-based systems to escalate privileges and maintain persistence.
+		- Startup Items : Attackers create malicious files or folders within the /Library/StartupItems directory to maintain persistence. Startup items are executed during bootup with root-level privileges.
+	- Privilege Escalation by Modifying Domain Policy:
+		- The domain policy consists of configuration settings that can be applied between domains in a forest environment. Attackers modify domain settings by altering group policies and trust relationships between domains. They may also deploy a fake domain controller to maintain a foothold and escalate privileges.
+		- Group Policy Modification:
+			- Group policies manage resources and configuration settings such as security options, registry keys, and domain members. By default, all user accounts have read access to GPOs, while write access is restricted to specific users or groups within the domain.
+			- Attackers exploit the path <DOMAIN>\SYSVOL\<DOMAIN>\Policies\ to access and modify domain group policies, enabling activities like creating new accounts, disabling or modifying internal tools, transferring ingress tools, executing unwanted services, and extracting passwords in plaintext.
+			- At <GPO_PATH>\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml, attackers can modify the file to create a malicious scheduled task or job using scripts like New-GPOImmediateTask.
+			- At <GPO_PATH>\MACHINE\Microsoft\Windows NT\SecEdit\GptTmpl.inf, attackers may alter user rights (e.g., SeEnableDelegationPrivilege) to create a backdoor and then control the user account to modify group policy settings.`
+		- Domain Trust Modification:
+			- Domain trust objects provide information such as credentials, accounts, and authentication and authorization mechanisms used by domains. C:\Windows\system32>nltest /domain_trusts
+			- Attackers use this utility to gather information about trusted domains and leverage it to add a domain trust or modify existing trust settings, enabling privilege escalation through Kerberoasting and pass-the-ticket attacks.
+	- Retrieving Password Hashes of Other Domain Controllers Using DCSync Attack:
+		- A domain controller (DC) in a Windows environment securely validates user requests, manages user accounts, provides authentication, and enforces domain security policies. Directory replication ensures data consistency across DCs, so updates like password changes are reflected across all controllers.
+		- The DCSync attack targets selective DCs. Attackers with privileged access and domain replication rights use replication protocols to create a virtual DC. This allows them to request and extract sensitive data, such as NTLM password hashes. With this information, attackers can perform golden ticket attacks, account manipulation, LOTL attacks, and deploy ransomware.
+		- Attackers use Mimikatz to perform DCSync attacks. Mimikatz includes a DCSync command that employs the Microsoft Directory Replication Service Remote Protocol (MS-DRSR) to mimic the behavior of a legitimate domain controller (DC).
+		- Retrieve the NTLM password hashes of an administrator account: mimikatz “lsadump::dcsync /domain:(domain name) /user:Administrator”
+	- Privilege Escalation by Abusing Active Directory Certificate Services (ADCS):
+		- Active Directory Certificate Services (ADCS) is commonly deployed across the AD environment to manage certificates for applications, users, systems, and other entities within the network.
+		- Misconfigured ADCS templates can create critical vulnerabilities that attackers can exploit for malicious activities, such as stealing credentials, escalating privileges, and establishing persistence.
+		- Attackers can use tools like Certipy to identify and exploit misconfigured ADCS templates.
+		- Certipy : Certipy is an offensive tool used for enumerating and exploiting Active Directory Certificate Services (ADCS).
+	
