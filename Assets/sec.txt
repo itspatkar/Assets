@@ -489,4 +489,44 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Misconfigured ADCS templates can create critical vulnerabilities that attackers can exploit for malicious activities, such as stealing credentials, escalating privileges, and establishing persistence.
 		- Attackers can use tools like Certipy to identify and exploit misconfigured ADCS templates.
 		- Certipy : Certipy is an offensive tool used for enumerating and exploiting Active Directory Certificate Services (ADCS).
-	
+	- Other Privilege Escalation Techniques:
+		- Access Token Manipulation:
+			- In Windows operating systems, access tokens determine the security context of a process or thread, including the user's identity and privileges. After a user is authenticated, the system generates an access token, which is used by every process the user executes. The system verifies the access token when a process accesses a secured object.
+			- Any Windows user can modify these access tokens, making the process appear to belong to a different user than the one who started it, thus adopting the new token's security context. For example, administrators typically log in as normal users and use the "runas" command to execute tools with elevated privileges. Attackers can exploit this to access other users' tokens or generate spoofed tokens, escalating privileges and performing malicious actions while evading detection.
+		- Parent PID Spoofing:
+			- Attackers attempt to bypass internal security mechanisms and escalate privileges by spoofing the parent process ID (PPID) of a newly created process. New processes typically inherit their PPID from their parent unless explicitly specified. This can be done by providing a PPID for the new process via the CreateProcess API. The API call includes specific arguments that determine which PPID to use.
+			- The PPID can be set to that of system processes like svchost.exe or consent.exe, which are associated with Windows User Account Control (UAC). Attackers exploit these methods to bypass security restrictions on process spawning, evade tools that analyze parent-child relationships, and maintain persistence for privilege escalation.
+		- Application Shimming:
+			- Windows operating systems use the Windows Application Compatibility Framework, which includes "shims," to ensure compatibility between older and newer versions. For example, shimming allows programs designed for Windows XP to run on Windows 11. Shims act as a buffer between the program and the OS, checking if the program requires access to the shim database and using API hooking to redirect code for compatibility.
+			- Shims installed by the default Windows installer (sbinst.exe) are stored at %WINDIR%\AppPatch\sysmain.sdb and in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB. Running in user mode, shims can't modify the kernel but can be exploited to bypass UAC, inject malicious DLLs, capture memory addresses, and more. Attackers use these to disable Windows Defender, escalate privileges, install backdoors, and perform other malicious activities.
+		- Filesystem Permission Weakness:
+			- Many processes in Windows operating systems automatically execute binaries as part of their functionality or to perform specific actions. If the filesystem permissions for these binaries are misconfigured, an attacker can replace the legitimate binary with a malicious one, and the process will execute it.
+			- If the process running the binary has elevated permissions, the malicious binary will also execute with those higher privileges, potentially including SYSTEM privileges. Attackers exploit this vulnerability to replace legitimate binaries with malicious ones, enabling privilege escalation. This technique is often used to manipulate Windows service binaries and self-extracting installers.
+		- Path Interception:
+			- Path interception is a technique where an attacker places a malicious executable in a specific path, causing the application to execute it instead of the legitimate target. Attackers can exploit various flaws or misconfigurations to perform path interception, such as unquoted paths (e.g., service paths and shortcut paths), misconfigured path environment variables, and search order hijacking.
+		- Abusing Accessibility Features:
+			- Attackers can establish persistence and escalate privileges by embedding and executing malicious code within Windows accessibility features. These features can be activated using key combinations even before a user logs into the system, allowing attackers to manipulate them and gain backdoor access without needing to log in.
+			- In a Windows environment, these programs are typically stored in C:\Windows\System32\ and can be triggered by pressing specific keys during system reboot. Attackers can escalate privileges by replacing one of the accessibility features with cmd.exe or by modifying registry entries to launch malicious binaries when the key combination is pressed at the login screen. This technique enables attackers to gain system-level access.
+			- Accessibility features abused by attackers:
+				- On-screen keyboard: C:\Windows\System32\osk.exe
+				- Magnifier: C:\Windows\System32\Magnify.exe
+				- Narrator: C:\Windows\System32\Narrator.exe
+				- Display switcher: C:\Windows\System32\DisplaySwitch.exe
+				- App switcher: C:\Windows\System32\AtBroker.exe
+				- Sticky keys: C:\Windows\System32\sethc.exe
+		- SID-History Injection:
+			- In Windows, a Security Identifier (SID) is a unique value assigned to each user and group account by the domain controller (DC) at the time of creation. Active Directory (AD) accounts can store multiple SID values in the SID-history attribute, which is used when migrating a user from one domain to another.
+			- Attackers exploit this feature by injecting the SID of an administrator or equivalent account with higher privileges into the compromised user account's SID-history attribute. This injection can elevate the user's privileges, allowing the attacker to access restricted resources or remote systems. Attackers can also move laterally within the domain by using further techniques, such as accessing remote services, SMB/Windows admin shares, or Windows Remote Management.
+		- COM Hijacking:
+			- The Component Object Model (COM) is an interface framework in Windows environments that allows one software component to interact with another without being aware of its actual implementation. Attackers exploit COM objects by hijacking valid references and replacing them with their own, allowing them to infect the target system and achieve persistence.
+			- This process involves modifying or replacing object references with malicious content in the Windows Registry. When a user executes the commonly used object, the malicious code is automatically triggered, enabling the attacker to maintain persistence and potentially escalate privileges associated with the object.
+			- COM hijacking techniques:
+				- Exploiting the registry loading process by creating a malicious user object under the HKEY_CURRENT_USER\Software\Classes\CLSID\ registry key, which is loaded by the system before the HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\ registry key.
+				- Interchanging legitimate DLLs or executable names with malicious payloads, causing the payloads to execute when the legitimate DLLs or executables are run.
+				- Exploiting orphaned requests made by system components that are not yet defined in the registry, creating malicious COM objects for those requests in the HKEY_CURRENT_USER registry and mapping them to malicious payloads hidden in the file system.
+		- Scheduled Tasks in Windows:
+			- Scheduled tasks allow users to automate routine tasks on a computer. Windows includes utilities such as at and schtasks. A user with administrator privileges can use these utilities, along with Task Scheduler, to schedule programs or scripts to run at specific dates and times. If the user provides proper authentication, they can also schedule tasks remotely using Remote Procedure Call (RPC).
+			- Attackers can exploit this technique to execute malicious programs at system startup, maintain persistence, perform remote execution, escalate privileges, etc.
+		- Scheduled Tasks in Linux:
+			- Linux utilizes cron or crond, an instruction-based utility, for automating task scheduling. Attackers exploit this utility to trigger malicious payloads when a specific task is scheduled for execution. The scheduler allows users with administrator privileges to configure cron jobs and execute them at specified times. cron runs commands from the crontab file, typically located at /etc/crontab.
+			- Attackers can escalate privileges by modifying scripts executed by cron in /etc/crontab. By altering these scripts, attackers can ensure malicious code is executed automatically during system reboot, potentially gaining root privileges.
