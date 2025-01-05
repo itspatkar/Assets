@@ -587,3 +587,10 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- Windows Exploit Suggester : This tool compares a target's patch levels against the Microsoft vulnerability database to detect potential missing patches. It also notifies the user if public exploits or Metasploit modules are available for the missing bulletins.
 	- PowerSploit : PowerShell Post-Exploitation Framework that is a collection of Microsoft PowerShell modules that aid penetration testers during all phases of an assessment
 	- FullPowers : Proof-of-Concept tool I made for automatically recovering the default privilege set of a service account including SeAssignPrimaryToken and SeImpersonate.
+- Tools for Defending against DLL and Dylib Hijacking
+	- Dependency Walker : Scans Windows modules, builds a dependency tree, lists exported functions, and helps troubleshoot issues like missing modules, import/export mismatches, and initialization failures.
+	- Dylib Hijack Scanner : Dylib Hijack Scanner (DHS) is a utility that scans the computer for applications that are either susceptible to dylib hijacking or have been hijacked.
+	- DLL Hijack Audit Kit : A toolkit that detects applications vulnerable to DLL hijacking (released in 2010).
+	- DLLSpy : A tool that detects DLL hijacking in running processes, services, and their binaries.
+	- InSpectre : Examine and understand the hardware and software capabilities of any Windows system to prevent Meltdown and Spectre attacks.
+	- Spectre & Meltdown Checker : A shell script to assess a system's resilience against the various transient execution CVEs published since early 2018 and provide guidance on how to mitigate them.

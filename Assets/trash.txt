@@ -56,3 +56,7 @@ WinR + mrt
 Endpoint Detection and Response (EDR) and Security Information and Event Management (SIEM)
 
 Rubber duck usb
+
+--------------
+
+Deploy network surveillance tools such as Sean Metcalf and StealthDEFEND to accumulate DC IP addresses and decide which IP addresses need to be included in the replication list.
