@@ -144,14 +144,14 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 # Vulnerability Classification:
 - Misconfigurations/Weak Configurations
-    - Network Misconfigurations
-        - Insecure Protocols
-        - Open Ports and Services
-        - Errors
-        - Weak Encryption
-    - Host Misconfigurations
-        - Open Permissions
-        - Unsecured Root Accounts
+	- Network Misconfigurations
+		- Insecure Protocols
+		- Open Ports and Services
+		- Errors
+		- Weak Encryption
+	- Host Misconfigurations
+		- Open Permissions
+		- Unsecured Root Accounts
 - Application Flaws
 	- Buffer Overflows
 	- Memory Leaks (Valgrind)
@@ -498,7 +498,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 			- The PPID can be set to that of system processes like svchost.exe or consent.exe, which are associated with Windows User Account Control (UAC). Attackers exploit these methods to bypass security restrictions on process spawning, evade tools that analyze parent-child relationships, and maintain persistence for privilege escalation.
 		- Application Shimming:
 			- Windows operating systems use the Windows Application Compatibility Framework, which includes "shims," to ensure compatibility between older and newer versions. For example, shimming allows programs designed for Windows XP to run on Windows 11. Shims act as a buffer between the program and the OS, checking if the program requires access to the shim database and using API hooking to redirect code for compatibility.
-			- Shims installed by the default Windows installer (sbinst.exe) are stored at %WINDIR%\AppPatch\sysmain.sdb and in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB. Running in user mode, shims can't modify the kernel but can be exploited to bypass UAC, inject malicious DLLs, capture memory addresses, and more. Attackers use these to disable Windows Defender, escalate privileges, install backdoors, and perform other malicious activities.
+			- Shims installed by the default Windows installer (sbinst.exe) are stored at %WINDIR%\AppPatch\sysmain.sdb and in the registry at HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB. Running in user mode, shims can't modify the kernel but can be exploited to bypass UAC, inject malicious DLLs, capture memory addresses, etc. Attackers use these to disable Windows Defender, escalate privileges, install backdoors, and perform other malicious activities.
 		- Filesystem Permission Weakness:
 			- Many processes in Windows operating systems automatically execute binaries as part of their functionality or to perform specific actions. If the filesystem permissions for these binaries are misconfigured, an attacker can replace the legitimate binary with a malicious one, and the process will execute it.
 			- If the process running the binary has elevated permissions, the malicious binary will also execute with those higher privileges, potentially including SYSTEM privileges. Attackers exploit this vulnerability to replace legitimate binaries with malicious ones, enabling privilege escalation. This technique is often used to manipulate Windows service binaries and self-extracting installers.
@@ -530,3 +530,60 @@ Enumeration is the process of extracting usernames, machine names, network resou
 		- Scheduled Tasks in Linux:
 			- Linux utilizes cron or crond, an instruction-based utility, for automating task scheduling. Attackers exploit this utility to trigger malicious payloads when a specific task is scheduled for execution. The scheduler allows users with administrator privileges to configure cron jobs and execute them at specified times. cron runs commands from the crontab file, typically located at /etc/crontab.
 			- Attackers can escalate privileges by modifying scripts executed by cron in /etc/crontab. By altering these scripts, attackers can ensure malicious code is executed automatically during system reboot, potentially gaining root privileges.
+		- Launch Daemon:
+			- During the macOS boot process, launchd is executed to complete the system initialization. It loads parameters for each launch-on-demand system-level daemon found in /System/Library/LaunchDaemons and /Library/LaunchDaemons. These daemons have associated property list files (plists), which are linked to executables that run during boot.
+			- Attackers can create and install a new launch daemon configured to execute at boot time by using launchd or launchctl to load plists into the appropriate directories. Weak configurations may allow attackers to alter the executable of an existing launch daemon, enabling them to maintain persistence or escalate privileges.
+		- Plist Modification:
+			- In macOS, plist (property list) files contain all the necessary information to configure applications and services. These files specify when programs should execute, the executable file path, program parameters, essential OS permissions, etc. Plist files are stored in specific locations, such as /Library/Preferences (which execute with elevated privileges) and ~/Library/Preferences (which execute with user-level privileges).
+			- Attackers can access and modify these plist files to execute malicious code on behalf of a legitimate user, using them as a persistence mechanism and to escalate privileges.
+		- Setuid and Setgid:
+			- In Linux and macOS, when an application uses the setuid or setgid flags, the application executes with the privileges of the owning user or group, respectively. Normally, applications run under the current user’s privileges. However, there are situations where programs need to be executed with elevated privileges, even though the user running the program does not require them.
+			- In such cases, the setuid or setgid flags can be set for the application. An attacker can exploit applications with the setuid or setgid flags to execute malicious code with elevated privileges.
+		- Web Shell:
+			- A web shell is a web-based script that provides access to a web server. Web shells can be created on various operating systems, including Windows, Linux, and macOS. Attackers use web shells to inject malicious scripts onto a web server, enabling them to maintain persistent access and escalate privileges. A web shell acts as a backdoor, allowing attackers to gain access and control over a remote server.
+			- Typically, a web shell runs under the current user’s privileges. Using a web shell, an attacker can escalate privileges by exploiting local system vulnerabilities. Once privileges are escalated, the attacker can install malicious software, modify user permissions, add or remove users, steal credentials, read emails, etc.
+		- Abusing Sudo Rights:
+			- Sudo (substitute user do) is a UNIX and Linux-based system utility that allows users to run commands as a superuser or root, using the security privileges of another user. The /etc/sudoers file contains the configuration for sudo rights, detailing access permissions, including which commands can be run with or without a password, for each user or group.
+			- Attackers can exploit sudo to escalate their privileges and run programs that normal users are not authorized to execute. For example, if an attacker has sudo rights to run the cp command, they could overwrite the /etc/sudoers or /etc/shadow files with their own malicious files. By modifying the content of the sudoers file, the attacker could alter permissions to run restricted commands or programs, enabling further attacks on the system.
+		- Abusing SUID and SGID Permissions:
+			- Set User Identification (SUID) and Set Group Identification (SGID) are access permissions assigned to program files in UNIX-based systems. These permissions allow users to execute a program with temporarily elevated or root privileges in order to perform a specific task. Files with SUID and SGID rights run with higher privileges than those of the user running the program.
+			- In Linux, certain commands and binaries can be exploited by attackers to escalate their privileges from non-root users to root, if the SUID and SGID flags are set. Some of the executable commands that attackers can use to spawn a shell and escalate privileges include nmap, vim, less, more, bash, cat, cp, echo, find, nano, and others.
+			- Find SUID and SGID files in the target system:
+				- Find SUID: find / -perm -u=s -type f 2>/dev/null
+				- Find GUID: find / -perm -g=s -type f 2>/dev/null
+		- Kernel Exploits:
+			- Kernel exploits refer to programs that take advantage of vulnerabilities in the kernel to execute arbitrary commands or code with elevated privileges. By successfully exploiting these kernel vulnerabilities, attackers can gain superuser or root-level access to the target system. To execute a kernel exploit, attackers typically need specific configuration details of the target system.
+			- OS, kernel version, and architecture of the target system:
+				- OS: cat /etc/issue
+				- Kernel version: uname -a
+				- Architecture: cat /proc/version
+			- Detect kernel exploits for escalating privileges: www.exploit-db.com -> linprivchecker.py
+		- Abusing '.' in the Path:
+			- Adding . to the PATH allows users to execute binaries or scripts from the current directory. While convenient, this practice poses a security risk. If an attacker gains access to a system where a privileged user runs scripts from various directories, they can manipulate the PATH to include a malicious directory.
+			- For example, by placing a malicious script named ls in the attacker-controlled directory, the system will execute it instead of the legitimate ls command. This enables the attacker to run arbitrary commands, potentially escalating privileges if the user has elevated permissions.
+		- Abusing Elevation Control Mechanism on macOS:
+			- Attackers may exploit the AuthorizationExecuteWithPrivileges API for privilege escalation. This API is designed to allow developers to perform operations requiring root privileges, such as software installation or updates. However, it lacks proper validation to verify whether root access requests come from a trusted source.
+			- Attackers can exploit this vulnerability to gain root privileges, enabling them to install malicious software and establish persistence on victim systems. When this API is invoked, the user is prompted for their credentials without any verification of the program’s source or integrity. Additionally, the program using the API may load world-writable files, which can be modified by attackers to execute malicious actions with elevated privileges.
+		- Process Injection via Ptrace System Calls:
+			- Attackers may exploit the ptrace (process trace) system call to inject malicious code into running processes, allowing them to evade process-based defenses and potentially escalate privileges. The ptrace system call enables attackers to debug a process, monitoring and manipulating its memory and register values.
+			- Typically, ptrace injection involves writing arbitrary code into a running process (e.g., using malloc) and then using PTRACE_SETREGS to set the register that contains the next instruction to execute. Alternatively, attackers can use PTRACE_POKETEXT or PTRACE_POKEDATA to copy data into specific addresses in the target process's memory, such as the address of the next instruction to execute.
+		- Abusing Microsoft Software Installer (MSI):
+			- In Windows, MSI files act as databases that contain the dependencies and instructions necessary for installing and removing software. They also allow developers to execute additional scripts during installation, removal, or repair through Custom Actions. During software installation, MSI files are stored in the C:\Windows\Installer directory with randomized names and a .msi extension.
+			- This setup enables regular users to use the "repair" functionality to fix issues like missing files, broken shortcuts, invalid registry entries, and other malfunctions. When invoked, the "repair" process can trigger critical actions, including file creation and execution, under the NT AUTHORITY\SYSTEM account, even when initiated by a standard user.
+			- If not properly managed, this can pose significant risks. Poorly configured Custom Actions running as NT AUTHORITY\SYSTEM can be exploited by attackers to elevate privileges. Misconfigurations may allow file operations in directories writable by standard users, enabling attackers to modify files used by NT AUTHORITY\SYSTEM and execute arbitrary code, ultimately escalating their privileges.
+		- Abusing Windows Filtering Platform (WFP) - NoFilter Attack:
+			- The NoFilter attack is a privilege escalation technique that exploits the Windows Filtering Platform (WFP) on Windows 11 systems to gain system-level privileges. This method allows attackers to infiltrate deep into the operating system, run malicious child processes, execute malware with NT AUTHORITY\SYSTEM privileges, or even impersonate other logged-in users to maintain persistence without detection.
+			- In this attack, the attacker first identifies the BfeRpcOpenToken method in the WFP by invoking WinAPI through RPC mapping using tools like RPC Mapper. The attacker then exploits the WFP to retrieve a handle to the access token of another process with system-level privileges from the NT handle table. After obtaining the handle to the targeted access token, the attacker uses it to create a copy of the token.
+			- Methods for duplicating the acquired access token without triggering detection:
+				- Token duplication via WfpAle component : This involves calling the WfpAleProcessTokenReference method in Windows, which causes the TCP/IP driver to duplicate the token and store it in the hash table. The LUID returned by the driver can be used to retrieve the duplicated access token.
+				- Token duplication via IPsec connection : This method involves manipulating a user service to create an IPsec connection with the TCP/IP driver, which then duplicates the token and stores it in the hash table. Since the LUID of the token is not returned in this process, the token can only be retrieved by brute-forcing the LUID, which ranges from 1 to 4096.
+			- Once the token is duplicated, the attacker can escalate privileges and perform high-level operations on the system, including duplicating tokens from services like LSM, Schedule, and Winmgmt.
+- Privilege Escalation Tools
+	- BeRoot : Post-exploitation tool designed to identify common misconfigurations that could lead to privilege escalation, focusing solely on potential escalation paths without performing any exploitation or comprehensive system assessment.
+	- pwncat : Pwncat is a command and control framework that enhances a basic reverse or bind shell by providing raw terminal access, automated enumeration, file transfer, persistence installation, and privilege escalation capabilities, turning it into a fully-featured exploitation platform.
+	- linpostexp : Linux post exploitation enumeration and exploit checking tools (github.com/reider-roque/linpostexp)
+	- traitor : Automated Linux privilege escalation tool that exploits common misconfigurations and vulnerabilities, such as gtfobins, pwnkit, dirty pipe, and vulnerable +w docker.sock permissions, to quickly escalate privileges and gain a root shell.
+	- PEASS-ng : Privilege Escalation Awesome Scripts - Next Generation is a collection of post-exploitation tools designed to aid in privilege escalation on Windows and Linux systems. It automates the discovery of potential privilege escalation vectors by scanning for misconfigurations, vulnerable services, weak permissions, and known exploits, providing detailed information and scripts to escalate privileges.
+	- Windows Exploit Suggester : This tool compares a target's patch levels against the Microsoft vulnerability database to detect potential missing patches. It also notifies the user if public exploits or Metasploit modules are available for the missing bulletins.
+	- PowerSploit : PowerShell Post-Exploitation Framework that is a collection of Microsoft PowerShell modules that aid penetration testers during all phases of an assessment
+	- FullPowers : Proof-of-Concept tool I made for automatically recovering the default privilege set of a service account including SeAssignPrimaryToken and SeImpersonate.
