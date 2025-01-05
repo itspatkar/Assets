@@ -594,3 +594,15 @@ Enumeration is the process of extracting usernames, machine names, network resou
 	- DLLSpy : A tool that detects DLL hijacking in running processes, services, and their binaries.
 	- InSpectre : Examine and understand the hardware and software capabilities of any Windows system to prevent Meltdown and Spectre attacks.
 	- Spectre & Meltdown Checker : A shell script to assess a system's resilience against the various transient execution CVEs published since early 2018 and provide guidance on how to mitigate them.
+
+
+## Maintaining Access
+Use Different Techniques to Conceal Malicious Programs and Maintain Remote Access to the System.
+
+- Executing Applications
+	- When attackers execute malicious applications remotely on a victim’s machine, it is referred to as "owning" the system, enabling them to gather information for exploitation or privacy breaches, gain unauthorized access to system resources, exfiltrate data, capture screenshots, and install backdoors for sustained access.
+	- Malicious Programs Executed by Attackers on Target Systems:
+		- Backdoors
+		- Crackers
+		- Keyloggers
+		- Spyware
