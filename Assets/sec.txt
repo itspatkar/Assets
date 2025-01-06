@@ -713,3 +713,15 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Avast One (www.avast.com) 
 		- MacScan 3 (www.securemac.com) 
 		- Malwarebytes (www.malwarebytes.com)
+- Hiding Files
+	- Rootkits
+		- A rootkit is a stealthy malware program that enables attackers to gain and maintain unauthorized root-level access to a system while hiding their presence and malicious activities by modifying operating system components and utilities.
+		- System hooking is the process of modifying and replacing the original function pointer with one provided by the rootkit in stealth mode. Inline function hooking is a technique in which a rootkit modifies some of the bytes of a function within core system DLLs (such as kernel32.dll and ntdll.dll), inserting an instruction so that any process calls are directed to the rootkit first.
+		- Types of Rootkits:
+			- Hypervisor-Level Rootkit : Hypervisor-level rootkits exploit hardware features like Intel VT and AMD-V to run in Ring-1, hosting the target OS as a virtual machine and intercepting all its hardware calls by altering the boot sequence to load themselves instead of the original virtual machine monitor.
+			- Hardware/Firmware Rootkit : Hardware or firmware rootkits embed persistent malware in hardware components like the BIOS, hard drive, or network card, evading detection by hiding in firmware, which is rarely inspected for code integrity.
+			- Kernel-Level Rootkit : A kernel-level rootkit operates in Ring-0 with the highest OS privileges, modifying kernel code or adding malicious code via device drivers (Windows) or loadable kernel modules (Linux). These rootkits are hard to detect, can destabilize the system if buggy, and can intercept or manipulate OS operations.
+			- Boot-Loader-Level Rootkit : Boot-loader-level rootkits, or bootkits, operate by modifying or replacing the legitimate boot loader, allowing them to activate before the OS starts.
+			- Application-Level/User-Mode Rootkit : An application-level/user-mode rootkit runs in Ring-3 alongside other applications, exploiting API behavior to replace standard application files (application binaries) or modify existing applications with patches or injected malicious code.
+			- Library-Level Rootkits : Library-level rootkits operate high in the OS, patching, hooking, or replacing system calls with backdoor versions to conceal the attacker’s presence by hiding information.
+			- Memory Rootkits : Memory rootkits, or volatile rootkits, are malware that reside solely in a system's RAM, leaving no traces on disk. Unlike traditional rootkits, they operate entirely in volatile memory, making them more elusive and harder to detect.
