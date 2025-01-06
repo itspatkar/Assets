@@ -62,9 +62,3 @@ Instant messages
 Keyscan_dump command to sniff user keystrokes on the target machine. This command dumps all the sniffed keystrokes and displays them on the console.
 Use the keyscan_stop command to stop sniffing keystrokes.
 Attackers can also automate the entire sniffing and data dumping process using the Metasploit lockout_keylogger exploit.
-
-
-
-Popular Rootkit: FudModule Rootkit
-▪ FudModule Rootkit exploits the zero-day admin-to-kernel vulnerability in the Windows AppLocker driver
-▪ It employs DKOM techniques to disrupt various kernel security mechanisms to gain kernel-level access
