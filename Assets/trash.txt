@@ -54,9 +54,11 @@ Disable Startup Services
 WinR + mrt
 
 Endpoint Detection and Response (EDR) and Security Information and Event Management (SIEM)
+Data execution prevention (DEP) and address space layout randomization (ASLR)
 
-Rubber duck usb
+Internet relay chat (IRC)
+Instant messages
 
---------------------------------------------------
-
-rootkits, steganography, NTFS data streams
+Keyscan_dump command to sniff user keystrokes on the target machine. This command dumps all the sniffed keystrokes and displays them on the console.
+Use the keyscan_stop command to stop sniffing keystrokes.
+Attackers can also automate the entire sniffing and data dumping process using the Metasploit lockout_keylogger exploit.

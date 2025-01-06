@@ -606,3 +606,110 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Crackers
 		- Keyloggers
 		- Spyware
+	- Remote Code Execution Techniques:
+		- Exploitation for Client Execution:
+			- Web-Browser-Based Exploitation
+			- Office-Applications-Based Exploitation (MS Office, Email Applications)
+			- Third-Party Applications-Based Exploitation (Adobe Reader, Flash, etc.)
+		- Service Execution
+			- System services are backend programs in an OS. Attackers exploit them by running binaries or commands that interact with tools like the Service Control Manager, creating or modifying services to escalate privileges or maintain access.
+		- Windows Management Instrumentation (WMI)
+			- WMI, a Windows feature, manages system resources locally and remotely. Attackers exploit it to access systems, gather data, and execute code to maintain access.
+		- Windows Remote Management (WinRM)
+			- WinRM is a Windows protocol that enables users to run executable files and modify system services or the registry on remote systems. Attackers exploit WinRM to execute payloads and facilitate lateral movement.
+	- Tools for Executing Applications:
+		- Dameware Remote Support - Solarwinds
+		- Ninja : A privilege escalation detection and prevention system for GNU/Linux hosts
+		- Pupy : Open-source, cross-platform remote administration tool (RAT) and post-exploitation framework that executes in memory, leaves a low footprint, and supports multiple communication transports and process migration
+		- PsExec : PsExec is a lightweight telnet-replacement utility that allows you to execute processes on remote systems with full interactivity, without needing to install client software on the remote machines
+	- Keyloggers
+		- Types of Keystroke Loggers:
+			- Hardware Keylogger
+				- PC/BIOS Keylogger
+				- Keylogger Keyboard
+				- External Keylogger
+					- PS/2 and USB Keylogger
+					- Acoustic/CAM Keylogger
+					- Bluetooth Keylogger
+					- Wi-Fi Keylogger
+			- Software Keylogger
+				- Application Keylogger
+				- Kernel/Rootkit/Device Driver Keylogger
+				- Hypervisor-based Keylogger
+				- Form Grabbing Based Keylogger
+				- JavaScript Based Keylogger
+				- Memory Injection Based Keylogger
+		- Keyloggers:
+			- KeyGrabber (www.keydemon.com) - HW
+			- KeyGrabber USB (www.keelog.com) - HW
+			- KeyCarbon (www.keykatcher.com) - HW
+			- Keyboard logger (www.detective-store.com) - HW
+			- KeyGhost (www.keyghost.com) - HW
+			- KEYKatcher (keykatcher.com) - HW
+			- Spyrix Personal Monitor (www.spyrix.com) - SW Windows
+			- REFOG Personal Monitor (www.refog.com) - SW Windows
+			- All In One Keylogger (www.relytec.com) - SW Windows
+			- Revealer Keylogger Pro (www.logixoft.com) - SW Windows
+			- NetBull (www.netbull.com) - SW Windows
+			- Spytector (www.spytector.com) - SW Windows
+			- Hoverwatch (www.refog.com) - SW Mac
+			- Spyrix Keylogger for Mac (www.spyrix.com) - SW Mac
+			- CleverControl (clevercontrol.com) - SW Mac
+			- FlexiSPY (www.flexispy.com) - SW Mac
+			- KidLogger (kidlogger.net) - SW Mac
+			- Perfect Keylogger for Mac (www.blazingtools.com) - SW Mac
+	- Spywares
+		- Types of Spyware:
+			- Desktop Spyware
+			- Email Spyware
+			- Internet Spyware
+			- Child-Monitoring Spyware
+			- Screen-Capturing Spyware
+			- USB Spyware
+			- Audio Spyware
+			- Video Spyware
+			- Print Spyware
+			- Telephone/Cellphone Spyware
+			- GPS Spyware
+		- Spyware Tools:
+			- Spytech SpyAgent (www.spytech-web.com)
+			- Spyrix Personal Monitor (www.spyrix.com)
+			- CurrentWare (www.currentware.com)
+			- FlexiSPY (www.flexispy.com)
+			- NetVizor (www.netvizor.net)
+			- SoftActivity Monitor (www.softactivity.com)
+			- SoftActivity TS Monitor (www.softactivity.com)
+			- USB Monitor (www.hhdsoftware.com)
+			- USBDeview (www.nirsoft.net)
+			- Advanced USB Port Monitor (www.aggsoft.com)
+			- Free USB Analyzer (freeusbanalyzer.com)
+			- TheOneSpy (www.theonespy.com)
+			- Snooper (www.snooper.se)
+			- iSpy (www.ispyconnect.com)
+			- Perfect IP Camera Viewer (www.perfect-surveillance.com)
+			- Optiview VMS (optiviewusa.com)
+			- Eyeline Video Surveillance Software (www.nchsoftware.com)
+			- mSpy (www.mspy.com)
+			- XNSPY (xnspy.com)
+			- iKeyMonitor (ikeymonitor.com)
+			- ONESPY (onespy.in)
+			- Highster Mobile (www.highstermobiles.com)
+			- SPYERA (spyera.com)
+			- Snoopza (snoopza.com)
+			- MobiStealth (www.mobistealth.com)
+			- FlexiSPY (www.flexispy.com)
+			- Mobile Tracker Free (mobile-tracker-free.com)
+	- Anti-Keyloggers (Anti-Keystroke Loggers)
+		- Zemana AntiLogger (zemana.com)
+		- GuardedID (www.guardedid.com) 
+		- KeyScrambler (www.qfxsoftware.com) 
+		- Oxynger KeyShield (www.oxynger.com) 
+		- Ghostpress (schiffer.tech) 
+		- SpyShelter (www.spyshelter.com)
+	- Anti-Spyware
+		- SUPERAntiSpyware (www.superantispyware.com)
+		- Kaspersky Total Security 20 (support.kaspersky.com) 
+		- SecureAnywhere Internet Security Complete (www.webroot.com) 
+		- Avast One (www.avast.com) 
+		- MacScan 3 (www.securemac.com) 
+		- Malwarebytes (www.malwarebytes.com)
