@@ -801,7 +801,6 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Null Cipher : This technique hides a message within a large amount of irrelevant data. The original message is mixed with the unused data in a specific order—horizontally, diagonally, vertically, or in reverse—making it unintelligible to anyone who does not know the correct order.
 						- Grille Cipher : This technique encrypts plaintext by writing it onto a sheet of paper through a pierced (or stenciled) sheet of paper, cardboard, or a similar material. The message can be deciphered using an identical grille. This system is difficult to crack, as only someone with the correct grille can extract the hidden message.
 					- Jargon Code : In this type of steganography, a specific language or jargon is used that is meaningful only to a particular group of people, while remaining incomprehensible to others. A jargon code functions similarly to a substitution cipher but replaces entire words instead of individual letters.
-		- Whitespace Steganography : Whitespace steganography hides messages in ASCII text by appending invisible spaces and tabs to the ends of lines. Since these characters are not typically visible in text viewers, the message remains hidden from casual observers. With built-in encryption, the message remains unreadable even if detected.
 		- Types of Steganography based on Cover Medium:
 			- Image Steganography :
 				- Image File Steganography Techniques:
@@ -812,17 +811,25 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 							- Fast Fourier transformation
 							- Discrete cosine transformation
 							- Wavelet transformation
-			- Document steganography :
-			- Folder Steganography :
-			- Video Steganography :
-			- Audio Steganography :
-			- Whitespace Steganography :
-			- Web Steganography :
-			- Spam/Email Steganography :
-			- Natural Text Steganography :
-			- Hidden OS Steganography :
-			- C++ Source-Code Steganography :
-			- Compressed Data Steganography :
+			- Document steganography
+			- Folder Steganography
+			- Video Steganography
+			- Audio Steganography
+				- Audio Steganography Methods:
+					- Echo Data Hiding : The echo data hiding method embeds secret information in audio by adding an echo with controlled parameters - amplitude, decay rate, and delay. Imperceptible delay times encode binary data, while the parameters remain below audible thresholds, ensuring the hidden data blends seamlessly with the carrier signal.
+					- Spread Spectrum Method:
+						- Direct-Sequence Spread Spectrum (DSSS) : DSSS is a frequency modulation technique that spreads a low-bandwidth signal over a broad frequency range, allowing multiple users to share a single channel. In DSSS steganography, secret messages are embedded in radio wave frequencies, though the method may introduce some random noise to the signal.
+						- Frequency-Hopping Spread Spectrum (FHSS) : In FHSS, the frequency spectrum of an audio file is rapidly altered, hopping between different frequencies. This spread spectrum method is crucial for secure communications in both commercial and military applications.
+						- LSB Coding : LSB encoding embeds a secret binary message in the least significant bit of each audio signal sample, enabling the hiding of large data volumes. While using the last two bits increases capacity, it risks adding noise. However, its poor resistance to manipulation makes it less reliable, as channel noise and resampling can easily reveal hidden data.
+						- Tone Insertion : This method embeds data in an audio signal by inserting inaudible low-power tones, concealed by louder audio signals. It is difficult for eavesdroppers to detect the secret message, offering protection against attacks like low-pass filtering and bit truncation. Audio steganography software uses this technique to embed secret data in audio files.
+						- Phase Encoding : Phase coding substitutes the phase of an audio segment with a reference phase to represent data. It encodes secret message bits as phase shifts in the phase spectrum of a digital signal, achieving soft encoding with a favorable signal-to-noise ratio.
+			- Whitespace Steganography : Whitespace steganography hides messages in ASCII text by appending invisible spaces and tabs to the ends of lines. Since these characters are not typically visible in text viewers, the message remains hidden from casual observers. With built-in encryption, the message remains unreadable even if detected.
+			- Web Steganography : In web steganography, a user hides web objects behind other objects and uploads them to a web server.
+			- Spam/Email Steganography
+			- Natural Text Steganography : Natural text steganography is the process of converting sensitive information into user-defined free text, such as a play.
+			- Hidden OS Steganography : Hidden OS steganography is the process of concealing one operating system within another.
+			- C++ Source-Code Steganography : In C++ source-code steganography, a user hides a set of tools within the source code files.
+			- Compressed Data Steganography : In compressed data steganography, information is hidden in the least significant or reserved bits of compressed files. This technique leverages file compression methods (e.g., ZIP, RAR, JPEG, PNG) to conceal secret data, making it undetectable to unauthorized parties.
 		- Steganography Tools:
 			- Whitespace:
 				- Snow : SNOW conceals messages in ASCII text by appending invisible whitespace (spaces and tabs) to the end of lines, hiding the message from casual observers. If its built-in encryption is used, the message remains unreadable even if detected, exploiting the steganographic nature of whitespace.
@@ -830,7 +837,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- OpenStego : OpenStego is a steganography application that allows data hiding by embedding any data within an image file and watermarking by adding an invisible signature to image files, which can be used to detect unauthorized copying.
 				- Steghide : Steghide is a steganography program that can hide data within various image and audio files. It preserves color and sample frequencies, making the embedded data resistant to first-order statistical tests.
 				- StegOnline : StegOnline is an open-source, web-based steganography toolkit designed to simplify the creation and solving of steganography challenges.
-				- SSuite Picsel : SSuite Picsel secures all your text messages using steganographic encryption.
+				- SSuite Picsel : SSuite Picsel secures text messages using steganographic encryption.
 				- CryptaPix : CryptaPix is an image file management and encryption program for Windows that organizes, prints, and secures digital photos and downloaded image files.
 				- Gifshuffle : Gifshuffle conceals messages in GIF images by shuffling the colormap, leaving the image visually unchanged. It supports all GIF images, including those with transparency and animation, and also provides compression and encryption for the hidden message.
 				- Coagula
@@ -840,3 +847,49 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Office XML : Office XML Steganography Tool adds a file to a Microsoft Office document and edits the [Content_Types].xml to prevent Office programs from flagging the file as corrupted.
 				- Snow : SNOW conceals messages in ASCII text by appending invisible whitespace (spaces and tabs) to the end of lines, hiding the message from casual observers. If its built-in encryption is used, the message remains unreadable even if detected, exploiting the steganographic nature of whitespace.
 				- Data Stash : Data Stash is a steganographic security tool that hides sensitive data files within other files using steganography. A large bitmap, database file, or any other file can be selected as a receptacle, and data files can be added using an easy drag-and-drop mechanism.
+			- Video:
+				- OmniHide Pro : OmniHide PRO conceals secret files within ordinary images, videos, or music files. The resulting stego file can be used or shared like any normal file, keeping its hidden content undetectable. It also secures the hidden file with a password for added protection.
+				- RT Steganography : Real-Time Steganography in Video Streaming Technology enables the transmission of hidden data (text, binary, etc.) within a video while it is being streamed to the recipient.
+				- StegoStick : A steganographic tool that allows users to hide any file within another file. It is based on image, audio, and video steganography, enabling users to conceal files or messages within image formats (BMP, JPG, GIF), audio/video formats (MPG, WAV, etc.), or other file formats (PDF, EXE, CHM, etc.).
+				- OpenPuff : OpenPuff is a professional steganography tool used to hide data within carrier files such as images, audio, videos, or other media formats. It supports multi-level security by combining password protection, cryptographic techniques, and carrier chaining (splitting the hidden data across multiple carriers).
+				- MSU StegoVideo : MSU StegoVideo is a unique tool for hiding any file within a video sequence, available as a VirtualDub filter or standalone executable.
+			- Audio:
+				- DeepSound : DeepSound is a steganography tool and audio converter that hides secret data within audio files. It also extracts hidden files directly from audio files or CD tracks.
+				- BitCrypt : BitCrypt is an advanced encryption utility that enables the undetectable storage and transmission of information. It can be used to store plaintext securely, hiding it from third parties, or to transmit information over the Internet.
+				- StegoStick : A steganographic tool that allows users to hide any file within another file. It is based on image, audio, and video steganography, enabling users to conceal files or messages within image formats (BMP, JPG, GIF), audio/video formats (MPG, WAV, etc.), or other file formats (PDF, EXE, CHM, etc.).
+				- MP3Stego : MP3Stego hides information in MP3 files during the compression process by first compressing and encrypting the data, then embedding it into the MP3 bitstream.
+				- QuickCrypto : Hide files on the system so only the owner can recover and access them. Conceal sensitive data (text and any file type) within innocent 'carrier' files like JPEG, GIF, BMP, MP3, and WAV. Easily blend encrypted files and messages into various other files.
+				- Spectrology : Images to audio files with corresponding spectrograms encoder.
+			- Folder:
+				- GiliSoft File Lock Pro : It is a military-grade encryption tool that secures files by locking folders on internal and external drives, including USB, flash, thumb, memory cards, and network drives. It encrypts, hides, and makes files, folders, and drives read-only, as well as password-protects them.
+				- Folder Lock : File locking software that Locks folders and Encrypts files.
+				- Hide Folders 5 : Hide Folders is a software application that password-protects private information on a hard drive, allowing files and folders to be made inaccessible, invisible, or protected from modification or removal.
+				- InvisibleSecrets : Encrypt file contents, hide files and emails, and prevent unauthorized access to private documents.
+				- QuickCrypto : Hide files on the system so only the owner can recover and access them. Conceal sensitive data (text and any file type) within innocent 'carrier' files like JPEG, GIF, BMP, MP3, and WAV. Easily blend encrypted files and messages into various other files.
+			- Spam/Email:
+				- Spam Mimic : Spam Mimic is a spam "grammar" for a mimic engine created by Peter Wayner. It encodes secret messages into innocent-looking spam emails. The tool's encoder hides the secret message within spam, using elements like a password, fake PGP, fake Russian text, and spacing.
+		- Steganalysis:
+			- Steganalysis is the process of detecting and extracting covert messages hidden using steganography. It identifies hidden messages embedded in images, text, audio, and video carrier mediums, serving as the reverse process of steganography.
+			- Steganalysis has two aspects: detection and distortion of messages. In the detection phase, the analyst examines the relationships between the steganography tools, stego-media, cover, and message. In the distortion phase, the analyst manipulates the stego-media to extract the embedded message and determines if it is useless and should be removed.
+			- Steganalysis Methods/ Attacks on Steganography:
+				- Stego-only : In a stego-only attack, the steganalyst or attacker only has access to the stego-medium or stego-object, with no additional information. The goal is to try every possible steganography algorithm and related attack to recover the hidden information.
+				- Known-stego : This attack allows the attacker to know the steganography algorithm, as well as both the original and stego-objects, enabling the extraction of the hidden information using the available data.
+				- Known-message : The known-message attack assumes access to both the message and the stego-medium. With this information, the attacker can detect the technique used to hide the message.
+				- Known-cover : In a known-cover attack, attackers have access to both the stego-object and the original cover medium. This allows them to compare the two and detect changes in the medium's format to uncover the hidden message.
+				- Chosen-message : In this attack, the steganalyst uses a known message to generate a stego-object with various steganography tools, aiming to identify the algorithm used to hide the information. The goal is to detect patterns in the stego-object that may indicate the specific steganography tools or algorithms employed.
+				- Chosen-stego : The chosen-stego attack occurs when the steganalyst knows both the stego-object and the steganography tool or algorithm used to hide the message.
+				- Chi-square : The chi-square method uses probability analysis to test whether a stego-object and the original data are identical. If the difference is nearly zero, no data is embedded; otherwise, the stego-object contains hidden data.
+				- Distinguishing Statistical : In the distinguishing statistical method, the steganalyst or attacker analyzes statistical changes caused by the embedded algorithm, along with the length of the hidden data, to detect the presence of embedded information.
+				- Blind Classifier : In the blind classifier method, a blind detector is provided with the original or unmodified data to learn its characteristics from multiple perspectives. The output is then used to train a classifier to detect differences between the stego-object and the original data.
+			- Detecting Steganography:
+				- Text File : In text steganography, data is hidden by altering character positions, which can be detected through patterns, language use, line height, or unusual blank spaces. A simple word processor may reveal these alterations by displaying spaces, tabs, and other hidden characters. Detection can focus on unusual patterns, extra spaces, and invisible characters in the stego-object.
+				- Image File : Hidden information in an image can be detected by analyzing changes in size, file format, timestamps, and the color palette. Key detection indicators include display distortions, image degradation, anomalies in color composition, luminance, pixel relationships, and exaggerated noise. Statistical analysis helps identify steganography by examining the least significant bits (LSBs), which become non-random when a secret message is embedded. By comparing LSBs with random values, statistical methods can reveal hidden data, particularly when encrypted data with high entropy is used.
+				- Audio File : Audio steganography embeds confidential information, such as private documents and files, into digital sound. Statistical analysis can detect it by examining LSB modifications and scanning inaudible frequencies for hidden data. Odd distortions and patterns in the audio signal often reveal the presence of secret information.
+				- Video File : Detection of secret data in video files combines methods used for both image and audio files. Special code signs and gestures can also assist in identifying hidden information.
+		- Steganography Detection Tools:
+			- zsteg : The zsteg tool is used to detect stegano-hidden data in PNG and BMP image files.
+			- StegoVeritas : StegoVeritas is a versatile steganography tool that supports multiple image types and default actions, with options for tasks like extracting LSB, color mapping, and more.
+			- Stegextract : Stegextract is a Bash script that extracts hidden files and strings from images, supporting PNG, JPG, and GIF formats. It retrieves trailing data after the image's closing bytes and any hidden files embedded within the image.
+			- StegoHunt MP : StegoHunt MP is the next generation of WetStone’s industry-leading steganography detection and steganalysis suite. It effectively detects the presence of steganography and data-hiding programs, as well as the carrier files in which hidden data payloads may reside.
+			- Steganography Studio : Steganography Studio is a tool for learning, using, and analyzing key steganographic algorithms. It implements several highly configurable algorithms with various filters, as well as advanced image analysis algorithms for detecting hidden information.
+			- Virtual Steganographic Laboratory (VSL) : The Virtual Steganographic Laboratory (VSL) is a graphical block diagramming tool that enables the use, testing, and adjustment of methods for both image steganography and steganalysis. VSL features a simple GUI and a modular, plug-in architecture.
