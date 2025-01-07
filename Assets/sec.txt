@@ -621,7 +621,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Dameware Remote Support - Solarwinds
 		- Ninja : A privilege escalation detection and prevention system for GNU/Linux hosts
 		- Pupy : Open-source, cross-platform remote administration tool (RAT) and post-exploitation framework that executes in memory, leaves a low footprint, and supports multiple communication transports and process migration
-		- PsExec : PsExec is a lightweight telnet-replacement utility that allows you to execute processes on remote systems with full interactivity, without needing to install client software on the remote machines
+		- PsExec : PsExec is a lightweight telnet-replacement utility that allows an attacker to execute processes on remote systems with full interactivity, without needing to install client software on the remote machines.
 	- Keyloggers
 		- Types of Keystroke Loggers:
 			- Hardware Keylogger
@@ -730,7 +730,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Fire Chili Rootkit : The Fire Chili rootkit is a sophisticated malware that exploits the Log4Shell vulnerability to enable espionage and data exfiltration. Operating at the kernel level, it allows attackers to intercept, modify, or hide system calls, processes, and network connections, providing long-term remote control and data theft capabilities. (www.fortinet.com)
 			- CopperStealer : CopperStealer is a type of malware designed to steal sensitive information from infected systems, primarily focusing on credentials such as login details, cookies, and saved passwords from web browsers. The CopperStealer rootkit is a variant of the CopperStealer malware that incorporates rootkit functionalities. It not only steals sensitive information like login credentials, cookies, and cryptocurrency wallet data but also uses rootkit techniques to hide its presence on the infected system.
 			- Syslogk : The Syslogk rootkit is a sophisticated piece of malware targeting Linux systems, designed to operate covertly and evade detection. It installs itself as a kernel module, allowing it to intercept and manipulate system logs, effectively concealing its presence and activities. Syslogk enhances its stealth by removing its own entry from the list of installed kernel modules, making it challenging for system administrators to detect.
-			-  Adore-Ng Rootkit : The Adore-Ng rootkit is a Linux-based rootkit originally developed as an open-source tool to conceal the presence of malicious software and activities on a compromised system. It is an enhanced version of the Adore rootkit. Operating at the kernel level, Adore-Ng allows attackers to intercept and modify critical system operations, making it difficult for security tools and system administrators to detect.
+			- Adore-Ng Rootkit : The Adore-Ng rootkit is a Linux-based rootkit originally developed as an open-source tool to conceal the presence of malicious software and activities on a compromised system. It is an enhanced version of the Adore rootkit. Operating at the kernel level, Adore-Ng allows attackers to intercept and modify critical system operations, making it difficult for security tools and system administrators to detect.
 			- Stealthy Universal Rootkit : The Stealthy Universal Rootkit (SUR) is a covert and versatile rootkit targeting multiple operating systems, including Windows, Linux, and macOS. Operating at the kernel level, it manipulates system processes and files while evading detection using advanced techniques. SUR ensures persistent access, allowing attackers to remotely control the system, exfiltrate data, and install additional malware, all while remaining hidden from security tools.
 			- Reptile Rootkit : The Reptile rootkit is a Linux-based rootkit that operates at the kernel level, allowing attackers to gain persistent control over a system while remaining hidden. It uses advanced stealth techniques to conceal files, processes, and network connections, making it difficult to detect and remove, while providing remote access to compromised systems.
 			- CosmicStrand : The CosmicStrand rootkit is a UEFI-based rootkit that infects a computer's firmware, giving attackers deep, persistent control over the system. It operates below the OS level, evading detection by security software and surviving OS reinstallation. This rootkit allows remote control, data theft, and the installation of additional malware, making it a significant security threat.
@@ -750,3 +750,33 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- TDSSKiller (usa.kaspersky.com)
 			- Malwarebytes Anti-Rootkit (www.malwarebytes.com)
 			- AVG Rootkit Scanner (www.avg.com)
+	- NTFS Data Stream
+		- The NTFS filesystem stores files using two primary data streams: the first holds the security descriptor, such as file permissions, and the second contains the actual file data. Alternate Data Streams (ADS), a feature of NTFS, attach additional data to a file without altering its size, functionality, or visibility in file-browsing utilities. ADS stores metadata such as file attributes, timestamps, and word count and can also be used to embed additional data or malicious code. By forking data into existing files, ADS remains undetected in standard file inspection and provides attackers with a method to hide malicious code, rootkits, or hacker tools. This enables the execution of malicious content without detection by users or system administrators.
+		- NTFS data streams allow attackers to hide files undetectable by standard file explorers or security software, as explorers only display root files and ignore linked streams. If a virus embeds itself in an ADS, it remains hidden, as users and default operations interact only with the main data stream.
+		- Create NTFS Streams:
+			- Open Notepad: notepad myfile.txt:lion.txt
+			- Click ‘Yes’ to create the new file, enter some data, and save it
+			- View the file size of myfile.txt—it should show as zero
+			- The same command can be used to view or modify hidden stream data
+		- NTFS Stream Manipulation:
+			- Hiding Trojan.exe (Malicious Program) in Readme.txt (Stream):
+				- Move the contents of Trojan.exe into an alternate data stream of Readme.txt:
+					- c:\> type c:\Trojan.exe > c:\Readme.txt:Trojan.exe
+					- The type command hides a file in an alternate data stream (ADS) associated with an existing file. The colon (:) operator is used to specify and create or access the ADS.
+			- Creating a Link to the Trojan.exe Stream in the Readme.txt File:
+				- After hiding the Trojan.exe file within the Readme.txt file's stream, create a symbolic link to launch Trojan.exe directly from the stream. This provides a shortcut to access the hidden stream.
+					- C:\> mklink backdoor.exe Readme.txt:Trojan.exe
+			- Executing the Trojan:
+				- C:\>backdoor.exe
+		- NTFS Streams Detector:
+			- Tripwire File Integrity Manager - file integrity checker
+			- EventSentry SysAdmin Tools - manipulate hidden streams
+			- adslist.exe - manipulate hidden streams
+			- Sysinternals’ Streams Utility - identifying and analyzing ADS within system
+			- Stream Armor (securityxploded.com)
+			- LADS (www.aldeid.com)
+			- Stream Detector (www.novirusthanks.org)
+			- GMER (www.gmer.net)
+			- ADS Scanner (www.pointstone.com)
+			- Streams (learn.microsoft.com)
+			- AlternateStreamView (www.nirsoft.net)
