@@ -97,7 +97,7 @@ Network scanning refers to a set of procedures used for identifying hosts, ports
 --------------------------------------------------
 
 # Enumeration
-Enumeration is the process of extracting usernames, machine names, network resources, shares, and services from a system or network. In the enumeration phase, an attacker creates active connections with the system and sends directed queries to gain more information about the target. 
+Enumeration is the process of extracting usernames, machine names, network resources, shares, and services from a system or network. In the enumeration phase, an attacker creates active connections with the system and sends directed queries to gain more information about the target.
 
 - knockpy : Knock is a tool designed to quickly enumerate subdomains of a target domain through passive reconnaissance and dictionary scanning (passive)
 - raccoon : Raccoon is a high-performance offensive security tool for reconnaissance and vulnerability scanning (active)
@@ -780,3 +780,63 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- ADS Scanner (www.pointstone.com)
 			- Streams (learn.microsoft.com)
 			- AlternateStreamView (www.nirsoft.net)
+	- Steganography
+		- Steganography is a technique for hiding a secret message within an ordinary message, such as embedding data in a graphic image, to maintain data confidentiality. It is commonly used by attackers to conceal sensitive information, including lists of compromised servers, source code for hacking tools, or plans for future attacks.
+		- Steganography hides the existence of a message by replacing bits of unused data in ordinary files, such as graphics, sound, text, audio, or video, with hidden information. The concealed data can take the form of plaintext, ciphertext, or even another image.
+		- Classification of Steganography:
+			- Technical : Technical steganography employs physical or chemical methods, such as invisible ink, microdots, and computer-based techniques, to conceal the existence of a message. Examples include invisible ink, microdots, and computer-based methods.
+				- Computer-based Steganography Techniques:
+					- Substitution Techniques : In this technique, the attacker encodes secret information by replacing insignificant bits with the hidden message. If the receiver knows the locations where the secret information is embedded, they can extract the hidden message.
+					- Transform Domain Techniques : The transform domain technique hides information in significant parts of the cover image, such as during cropping, compression, or other image processing operations, making it more resistant to attacks. Transformations can be applied either to specific blocks of the image or to the entire image.
+					- Spread Spectrum Techniques : This technique is less susceptible to interception and jamming. It involves communication signals occupying more bandwidth than necessary to transmit the information. The sender increases the bandwidth using a code independent of the data, while the receiver employs synchronized reception with the same code to extract the information from the spread spectrum signal.
+					- Statistical Techniques : This technique leverages “1-bit” steganography schemes by modifying the cover so that transmitting a “1” significantly alters certain statistical characteristics. When no transmission occurs, the cover remains unchanged, allowing differentiation between modified and unmodified covers. The extraction process relies on hypothesis testing from mathematical statistics.
+					- Distortion Techniques : In this technique, the user applies a series of modifications to the cover to create a stego-object, with the modifications representing the transformation of a specific message. Decoding requires knowledge of the original cover, allowing the receiver to measure the differences between the original and the received cover to reconstruct the sequence of modifications.
+					- Cover Generation Techniques : In this technique, digital objects are specifically designed to serve as covers for secret communication. The information is encoded in a way that ensures the creation of a suitable cover for concealing the secret message.
+			- Linguistic : This type of steganography conceals a message within the carrier of another file, often utilizing text-based or language-driven methods.
+				- Semagram : Semagrams are a steganography technique that conceals information using signs or symbols. In this method, the user embeds objects or symbols within the data, altering its appearance to convey a predetermined meaning.
+					- Visual Semagram : This technique conceals information within drawings, paintings, letters, music notes, or symbols.
+					- Text Semagram : A text semagram hides a message by altering the appearance of the carrier text, such as changing font sizes and styles, adding extra spaces or white spaces, and incorporating flourishes in letters or handwritten text.
+				- Open Codes : Open code conceals a secret message within a legitimate carrier message, designed in a pattern that is unclear to the average reader. The carrier message, also known as overt communication, hides the secret message, referred to as covert communication.
+					- Covered Ciphers : This technique conceals the message within a carrier medium that is visible to everyone. The hidden message can be extracted by anyone who knows the method used to embed it.
+						- Null Cipher : This technique hides a message within a large amount of irrelevant data. The original message is mixed with the unused data in a specific order—horizontally, diagonally, vertically, or in reverse—making it unintelligible to anyone who does not know the correct order.
+						- Grille Cipher : This technique encrypts plaintext by writing it onto a sheet of paper through a pierced (or stenciled) sheet of paper, cardboard, or a similar material. The message can be deciphered using an identical grille. This system is difficult to crack, as only someone with the correct grille can extract the hidden message.
+					- Jargon Code : In this type of steganography, a specific language or jargon is used that is meaningful only to a particular group of people, while remaining incomprehensible to others. A jargon code functions similarly to a substitution cipher but replaces entire words instead of individual letters.
+		- Whitespace Steganography : Whitespace steganography hides messages in ASCII text by appending invisible spaces and tabs to the ends of lines. Since these characters are not typically visible in text viewers, the message remains hidden from casual observers. With built-in encryption, the message remains unreadable even if detected.
+		- Types of Steganography based on Cover Medium:
+			- Image Steganography :
+				- Image File Steganography Techniques:
+					- Least-Significant-Bit Insertion : The least-significant-bit (LSB) insertion technique is a widely used method in image steganography, where the rightmost bit of each pixel holds secret data. In this method, the binary data of the message is divided and embedded into the LSB of each pixel in a predetermined sequence. Modifying the LSB causes minimal changes to the image, resulting in no visible difference to the human eye and making detection difficult.
+					- Masking and Filtering : Masking and filtering techniques exploit human vision's inability to detect subtle changes in images. Similar to watermarks on paper, these methods use grayscale images or digital watermarks to conceal information. Masking hides secret data by embedding it within an image file.
+					- Algorithms and Transformation : The algorithms and transformation technique hides secret information during image compression by applying compression algorithms and transformation functions. This method uses mathematical functions to conceal data by embedding it in the least significant coefficients during the compression process.
+						- Types of Transformation used in the Compression Algorithm:
+							- Fast Fourier transformation
+							- Discrete cosine transformation
+							- Wavelet transformation
+			- Document steganography :
+			- Folder Steganography :
+			- Video Steganography :
+			- Audio Steganography :
+			- Whitespace Steganography :
+			- Web Steganography :
+			- Spam/Email Steganography :
+			- Natural Text Steganography :
+			- Hidden OS Steganography :
+			- C++ Source-Code Steganography :
+			- Compressed Data Steganography :
+		- Steganography Tools:
+			- Whitespace:
+				- Snow : SNOW conceals messages in ASCII text by appending invisible whitespace (spaces and tabs) to the end of lines, hiding the message from casual observers. If its built-in encryption is used, the message remains unreadable even if detected, exploiting the steganographic nature of whitespace.
+			- Image:
+				- OpenStego : OpenStego is a steganography application that allows data hiding by embedding any data within an image file and watermarking by adding an invisible signature to image files, which can be used to detect unauthorized copying.
+				- Steghide : Steghide is a steganography program that can hide data within various image and audio files. It preserves color and sample frequencies, making the embedded data resistant to first-order statistical tests.
+				- StegOnline : StegOnline is an open-source, web-based steganography toolkit designed to simplify the creation and solving of steganography challenges.
+				- SSuite Picsel : SSuite Picsel secures all your text messages using steganographic encryption.
+				- CryptaPix : CryptaPix is an image file management and encryption program for Windows that organizes, prints, and secures digital photos and downloaded image files.
+				- Gifshuffle : Gifshuffle conceals messages in GIF images by shuffling the colormap, leaving the image visually unchanged. It supports all GIF images, including those with transparency and animation, and also provides compression and encryption for the hidden message.
+				- Coagula
+			- Document:
+				- StegoStick : A steganographic tool that allows users to hide any file within another file. It is based on image, audio, and video steganography, enabling users to conceal files or messages within image formats (BMP, JPG, GIF), audio/video formats (MPG, WAV, etc.), or other file formats (PDF, EXE, CHM, etc.).
+				- StegJ : A cross-platform steganography software written entirely in Java, featuring robust AES support.
+				- Office XML : Office XML Steganography Tool adds a file to a Microsoft Office document and edits the [Content_Types].xml to prevent Office programs from flagging the file as corrupted.
+				- Snow : SNOW conceals messages in ASCII text by appending invisible whitespace (spaces and tabs) to the end of lines, hiding the message from casual observers. If its built-in encryption is used, the message remains unreadable even if detected, exploiting the steganographic nature of whitespace.
+				- Data Stash : Data Stash is a steganographic security tool that hides sensitive data files within other files using steganography. A large bitmap, database file, or any other file can be selected as a receptacle, and data files can be added using an easy drag-and-drop mechanism.
