@@ -1120,10 +1120,57 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Display list of event logs: wevtutil el
 				- Clear the event logs: wevtutil cl <log_name>
 			- Manually Clearing Event Logs:
-				- 
-		- Manipulating Logs : An attacker alters logs to prevent detection and avoid legal consequences.
-		- Covering Tracks on the Network : An attacker employs techniques such as reverse HTTP shells, reverse ICMP tunnels, DNS tunneling, and manipulation of TCP parameters to hide their activities on the network.
-		- Covering Tracks on the OS : An attacker uses NTFS streams to conceal and hide malicious files on the target system.
-		- Deleting Files: An attacker uses command-line tools, such as Cipher.exe, to delete data and prevent its recovery in the future.
-		- Disabling Windows Functionality : An attacker disables Windows features, such as last access timestamps, hibernation, virtual memory, and system restore points, to cover their tracks.
-		- Hiding Artifacts : Attackers conceal their malicious artifacts within legitimate OS artifacts to evade detection.
+				- Windows:
+					- Navigate to Start -> Control Panel -> System and Security -> Windows Tools -> double-click Event Viewer
+					- Delete the all the log entries logged while compromising the system
+				- Linux:
+					- Navigate to the /var/log directory on the Linux system
+					- Open the plaintext file containing log messages with text editor /var/log/<filename.log>
+					- Delete all the log entries logged while compromising the system
+		- Manipulating Logs:
+			- An attacker alters logs to prevent detection and avoid legal consequences.
+		- Covering Tracks on the Network:
+			- An attacker employs techniques such as reverse HTTP shells, reverse ICMP tunnels, DNS tunneling, and manipulation of TCP parameters to hide their activities on the network.
+		- Covering Tracks on the OS:
+			- An attacker uses NTFS streams to conceal and hide malicious files on the target system.
+			- Covering BASH Shell Tracks:
+				- BASH is an sh-compatible shell that stores command history in a file located at ~/.bash_history
+				- Disabling history: export HISTSIZE=0
+				- Clear stored history: history –c
+				- Clear history of current shell: history -w
+				- Clear user's complete history: cat /dev/null > ~/.bash_history && history -c && exit
+				- Shred history file (making its content unreadable): shred ~/.bash_history
+				- Shred history file and clear evidence of command: shred ~/.bash_history && cat /dev/null > ~/.bash_history && history -c && exit
+		- Deleting Files:
+			- An attacker uses command-line tools, such as Cipher.exe, to delete data and prevent its recovery in the future.
+		- Disabling Windows Functionality:
+			- An attacker disables Windows features, such as last access timestamps, hibernation, virtual memory, and system restore points, to cover their tracks.
+			- Clear Online Tracks from Privacy Settings (Windows 11):
+				- Right-click on the Start button, select Settings, and navigate to Personalization.
+				- In the Personalization section, click on Start in the left pane.
+				- Turn off both "Show most used apps" and "Show recently opened items in Start, Jump Lists, and File Explorer."
+			- Clear Online Tracks From the Registry (Windows 11):
+				- Open the Registry Editor by pressing Win + R, typing regedit, and pressing Enter.
+				- Navigate to: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
+				- Locate and remove the key for "RecentDocs".
+				- Delete all values except for "(Default)".
+		- Hiding Artifacts:
+			- Attackers conceal their malicious artifacts within legitimate OS artifacts to evade detection.
+		- Clear Online Tracks:
+			- Attackers can erase online traces stored on the target computer, including web history, logs, cookies, cache, download records, and timestamps of visited sites. This prevents victims from detecting the online activities conducted by the attackers.
+			- Ways to Clear:
+				- Use private browsing
+				- Delete history in the address field
+				- Disable stored history
+				- Delete private data
+				- Clear cookies on exit
+				- Clear cache on exit
+				- Delete downloads
+				- Disable password manager
+				- Clear data in the password manager
+				- Delete saved sessions
+				- Delete user JavaScript
+				- Set up multiple users
+				- Remove Most Recently Used (MRU)
+				- Clear toolbar data from browsers
+				- Turn off AutoComplete
