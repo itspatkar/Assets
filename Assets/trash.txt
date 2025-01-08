@@ -44,10 +44,6 @@ Next-Generation Firewall (NGFW)
 
 --------------------------------------------------
 
-# Linux
-cat /proc/cpuinfo
-cat /proc/meminfo
-
 # Win
 Disable Fast Startup
 Disable Startup Services

