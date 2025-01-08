@@ -893,3 +893,76 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- StegoHunt MP : StegoHunt MP is the next generation of WetStone’s industry-leading steganography detection and steganalysis suite. It effectively detects the presence of steganography and data-hiding programs, as well as the carrier files in which hidden data payloads may reside.
 			- Steganography Studio : Steganography Studio is a tool for learning, using, and analyzing key steganographic algorithms. It implements several highly configurable algorithms with various filters, as well as advanced image analysis algorithms for detecting hidden information.
 			- Virtual Steganographic Laboratory (VSL) : The Virtual Steganographic Laboratory (VSL) is a graphical block diagramming tool that enables the use, testing, and adjustment of methods for both image steganography and steganalysis. VSL features a simple GUI and a modular, plug-in architecture.
+- Establishing Persistence
+	- Maintaining Persistence Using Windows Sticky Keys:
+		- In Windows, the Sticky Keys feature allows users to use modifier keys like Ctrl, Alt, and Shift without pressing them simultaneously. Attackers can exploit this feature to maintain persistence. After gaining access to a remote system, attackers can escalate their privileges using the BypassUAC exploit in Metasploit. Once privileges are escalated, they can use the Sticky Keys module in Metasploit to maintain persistence on the compromised system. When the attacker restarts the system and presses the Shift key five times, a Command Prompt window opens with system-level access.
+	- Maintaining Persistence by Abusing Boot or Logon Autostart Executions:
+		- Attackers exploit system boot or logon autostart programs to escalate privileges and maintain persistence by applying custom configuration settings on a compromised machine. This allows attackers to automatically run programs during system boot or logon. They typically use two methods to abuse autostart execution: registry run keys and startup folders.
+		- Executing Logon Autostart:
+			- Registry Run Keys:
+				- Enumerating Assign Permissions Using WinPEAS:
+					- Attackers can use the WinPEAS script to identify potential paths for privilege escalation within Windows.
+					- Enumerate permissions: winPEASx64.exe quiet applicationinfo
+					- This command enables attackers to enumerate all permissions assigned to a valid user for a specific service.
+			- Startup Folder:
+				- Attackers can inject malicious applications into the startup folder, causing them to run automatically when a user signs into their account. They can escalate privileges by exploiting and manipulating the startup folder's locations.
+				- Abusing Startup Folder Using icacls:
+					- Misconfigured locations in a startup folder can be exploited by attackers to inject malicious payloads, such as Remote Access Trojans (RATs), enabling them to maintain persistence.
+					- Enumerate permissions: icacls "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+				- Using Sysinternals tool (accesschk.exe) for Identifying Permissions:
+					- accesschk.exe /accepteula "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+	- Domain Dominance Through Different Paths:
+		- Domain dominance is the process of gaining control over critical assets, such as domain controllers, on a target system to access other networked resources. Attackers often use social engineering techniques to launch domain dominance attacks by compromising an internal user.
+		- Domain Dominance Techniques:
+			- Remote Code Execution:
+				- Attackers attempt to execute malicious code on the target domain controller (DC) via the command-line interface (CLI) to initiate a domain dominance attack. By leveraging this technique, attackers can maintain persistence, enabling them to carry out malicious activities over an extended period without detection.
+				- Steps:
+					- Create a Dummy Process and User on the Target DC - Use WMI to create a dummy user and process on the target domain controller (DC):
+						- wmic /node:<DomainControllerName> process call create "net user /add PiratedProcess Du^^Y01"
+						- Here, PiratedProcess is the username, and Du^^Y01 is the password for the dummy user created on the target DC.
+					- Add the User to the "Admins" Group: PsExec.exe \\<DomainControllerName> -accepteula net localgroup "Admins" PiratedProcess /add
+					- Identify the Created User in Active Directory Users and Computers (ADUC) - Navigate to Active Directory Users and Computers (ADUC) and locate the user created using the above command.
+					- Verify Membership in the "Admins" Group - Open the properties window for the created user in ADUC. Navigate to the Member Of tab to confirm their membership in the "Admins" group.
+					- After successfully adding a new user to the "Admins" group, the attacker uses the newly created credentials to maintain persistence on the target domain controller (DC).
+			- Abusing Data Protection API (DPAPI):
+				- The Data Protection API (DPAPI) is a unified framework in Windows environments that securely stores cryptographically protected files, browser passwords, and other sensitive data. Windows domain controllers (DCs) hold a master key that can decrypt DPAPI-protected files.
+				- Recover the master key with Mimikatz using the password of a compromised user.
+				- Retrieve all local master keys with compromised admin credentials: sekurlsa::dpapi
+				- Retrieve all backup master keys: lsadump::backupkeys /system:dc01.offense.local /export
+				- Cross-check whether the secured master keys have been obtained by navigating to the directory containing the mimikatz.exe file and looking for file formats such as .der, .key, .pvk, and .pfx. By obtaining the master key, the attacker can decrypt any DPAPI-encrypted file from any device on the network, enabling them to maintain persistence.
+			- Malicious Replication:
+				- It allows attackers to create an exact copy of user data using administrative credentials. Attackers often target sensitive accounts, such as "krbtgt," to replicate them.
+				- Malicious replication: Invoke-Mimikatz -command '"lsadump::dcsync /domain:<Target Domain> /user:<krbtgt>\<Any Domain User>"
+			- Skeleton Key Attack:
+				- A skeleton key is a type of malware that attackers use to inject false credentials into domain controllers, creating a backdoor password. It is a memory-resident virus that allows an attacker to obtain a master password, enabling them to authenticate as a legitimate user within the domain.
+				- Working of the Skeleton Key Attack:
+					- This attack is straightforward and only requires executing misc::skeleton on each domain controller.
+					- Invoke-Mimikatz -Command '"privilege::debug" "misc::skeleton"' - <target domain controller name>
+					- With this, the attacker can masquerade as any user using the default Mimikatz credentials.
+					- Attackers can also execute skeleton key attacks by patching the Local Security Authority Subsystem Service (LSASS). They leverage their access to the domain to install malware on the domain controllers (DCs), which then auto-patches the LSASS, generating a new skeleton key or master password that works for all users.
+					- The error shown in the above screenshot appears if LSASS has already been patched with skeleton keys. Alternatively, attackers can use the Empire tool, which includes a module that automates the process by running Mimikatz entirely in memory, preventing the binary from being dropped on the domain controller (DC).
+					- powershell/persistence/misc/skeleton_key
+			- Golden Ticket Attack:
+				- A golden ticket attack is a post-exploitation technique used by attackers to gain complete control over the entire Active Directory (AD). Attackers execute this attack by exploiting the Kerberos authentication protocol, forging Ticket Granting Tickets (TGTs) after compromising a Key Distribution Center (KDC) account (KRBTGT), which grants access to various resources. This attack enables attackers to maintain persistence and gather more information within the AD by masquerading as privileged users.
+				- Working of Golden Ticket Attack:
+					- Attackers typically compromise a valid user account either through phishing emails or by exploiting vulnerabilities or security misconfigurations.
+					- Attackers gather domain information, such as the domain name and domain security identifier (SID), using the whoami command.
+					- Elevate privileges to the domain administrator-level account to steal the NTLM hash of KRBTGT. Use Mimikatz to perform a pass-the-hash or DCSync attack to extract KRBTGT's password hash:
+					- lsadump::dcsync /domain:<domain_name> /user:krbtgt
+					- After obtaining the password hashes, use the Mimikatz command to create a golden ticket by impersonating an administrator-level user. This grants access to any resource, group, or domain within the environment:
+					- kerberos::golden /domain:<domain_name> /sid:<SID> /rc4:<KRBTGT_hash> /id:<value> /user:<username>
+					- The final step can also be executed using the NTLM hashes obtained from a malicious replication process.
+					- Attackers maintain persistence by configuring the ticket's validity period. 
+			- Silver Ticket Attack:
+				- A silver ticket attack is a post-exploitation technique used by attackers to steal legitimate users’ credentials and forge a fake Kerberos Ticket Granting Service (TGS) ticket. To initiate this attack, the attacker must have access to credentials obtained from a local service account or the system’s SAM database. The attacker then creates a forged Kerberos TGS ticket using the Mimikatz tool to establish a connection with the target service.
+				- The attacker initially compromises the target system through techniques such as phishing or vulnerability exploitation. After gaining access to a networked system, the attacker initiates the silver ticket attack by forging a false Kerberos silver ticket.
+					- The attacker gathers domain information, such as the domain name and domain security identifier (SID), using the whoami command.
+					- The attacker obtains additional details about the service or service type to target.
+					- The attacker deploys password-cracking tools, such as Mimikatz, on the compromised system to extract the Kerberos service’s local NTLM password hash.
+					- The attacker initiates offline password attacks, such as Kerberoasting, to obtain a raw or plaintext password for the service.
+					- The attacker forges a Kerberos TGS ticket using Mimikatz to establish a connection with the target service.
+					- The attacker uses both the forged TGS and the hash data to authenticate the local service as a legitimate user.
+					- The attacker exploits the TGS to elevate privileges and permissions.
+					- Note: Privilege Attribute Certificate (PAC) validation requests and PAC validation responses are optional in a silver ticket attack.
+					- If an attacker successfully elevates privileges and obtains admin rights to execute code on a local machine, they can run the following command to retrieve the NTLM hashes of the AD system’s password:
+					- mimikatz “privilege::debug” “sekurlsa::logonpasswords”
