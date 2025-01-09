@@ -58,3 +58,4 @@ Instant messages
 Keyscan_dump command to sniff user keystrokes on the target machine. This command dumps all the sniffed keystrokes and displays them on the console.
 Use the keyscan_stop command to stop sniffing keystrokes.
 Attackers can also automate the entire sniffing and data dumping process using the Metasploit lockout_keylogger exploit.
+Use user and entity behavior analytics (UEBA) tools to detect user behavior anomalies indicating attempts to cover tracks.

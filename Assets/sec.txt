@@ -475,7 +475,7 @@ Enumeration is the process of extracting usernames, machine names, network resou
 			- Group policies manage resources and configuration settings such as security options, registry keys, and domain members. By default, all user accounts have read access to GPOs, while write access is restricted to specific users or groups within the domain.
 			- Attackers exploit the path <DOMAIN>\SYSVOL\<DOMAIN>\Policies\ to access and modify domain group policies, enabling activities like creating new accounts, disabling or modifying internal tools, transferring ingress tools, executing unwanted services, and extracting passwords in plaintext.
 			- At <GPO_PATH>\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml, attackers can modify the file to create a malicious scheduled task or job using scripts like New-GPOImmediateTask.
-			- At <GPO_PATH>\MACHINE\Microsoft\Windows NT\SecEdit\GptTmpl.inf, attackers may alter user rights (e.g., SeEnableDelegationPrivilege) to create a backdoor and then control the user account to modify group policy settings.`
+			- At <GPO_PATH>\MACHINE\Microsoft\Windows NT\SecEdit\GptTmpl.inf, attackers may alter user rights (e.g., SeEnableDelegationPrivilege) to create a backdoor and then control the user account to modify group policy settings.
 		- Domain Trust Modification:
 			- Domain trust objects provide information such as credentials, accounts, and authentication and authorization mechanisms used by domains. C:\Windows\system32>nltest /domain_trusts
 			- Attackers use this utility to gather information about trusted domains and leverage it to add a domain trust or modify existing trust settings, enabling privilege escalation through Kerberoasting and pass-the-ticket attacks.
@@ -1131,20 +1131,102 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- An attacker alters logs to prevent detection and avoid legal consequences.
 		- Covering Tracks on the Network:
 			- An attacker employs techniques such as reverse HTTP shells, reverse ICMP tunnels, DNS tunneling, and manipulation of TCP parameters to hide their activities on the network.
+			- Using Reverse HTTP Shells:
+				- The attacker installs a reverse HTTP shell on the victim’s machine, designed to request commands from an external controller operating the reverse HTTP shell. In this setup, the victim acts as a web client executing HTTP GET requests, while the attacker functions as a web server, responding to these requests. This type of traffic is often perceived as normal by an organization’s network perimeter security controls, such as DMZs, firewalls, and similar systems.
+			- Using Reverse ICMP Tunnels:
+				- The attacker employs an ICMP tunneling technique, using ICMP echo and ICMP reply packets to carry TCP payloads, enabling stealthy access to or control of a system. The victim's system is manipulated to encapsulate the TCP payload within an ICMP echo packet, which is then sent to the proxy server. Many organizations have security mechanisms that focus on inspecting incoming ICMP packets but neglect outgoing ICMP packets, allowing attackers to bypass firewalls with relative ease.
+			- Using DNS Tunneling:
+				- Attackers can leverage DNS tunneling to embed malicious content or data from other programs within DNS queries and responses. This technique establishes a covert channel to communicate with remote servers and applications. Through this back channel, attackers can exfiltrate stolen, confidential, or sensitive information from the targeted server.
+			- Using TCP Parameters:
+				- Attackers can exploit TCP parameters to distribute payloads and establish covert channels.
+				- The TCP fields where data can be concealed include:
+					- IP Identification Field : This method involves transferring a payload bit by bit over an established session between two systems. In this approach, one character is encapsulated within each packet.
+					- TCP Acknowledgment Number : This method is more complex as it involves the use of a bounce server. The bounce server receives packets from the victim and forwards them to the attacker. In this approach, one hidden character is relayed by the bounce server per packet.
+					- TCP Initial Sequence Number : This method does not require an established connection between the two systems. In this approach, one hidden character is encapsulated within each SYN request and reset packet.
 		- Covering Tracks on the OS:
-			- An attacker uses NTFS streams to conceal and hide malicious files on the target system.
-			- Covering BASH Shell Tracks:
-				- BASH is an sh-compatible shell that stores command history in a file located at ~/.bash_history
-				- Disabling history: export HISTSIZE=0
-				- Clear stored history: history –c
-				- Clear history of current shell: history -w
-				- Clear user's complete history: cat /dev/null > ~/.bash_history && history -c && exit
-				- Shred history file (making its content unreadable): shred ~/.bash_history
-				- Shred history file and clear evidence of command: shred ~/.bash_history && cat /dev/null > ~/.bash_history && history -c && exit
+			- Windows:
+				- NTFS includes a feature called Alternate Data Streams (ADS), which can be exploited by attackers to hide malicious files within legitimate files.
+				- Hide file using NTFS:
+					- Open the Command Prompt with elevated privileges.
+					- Run command: type C:\SecretFile.txt > C:\LegitFile.txt:SecretFile.txt
+					- In this case, the "SecretFile.txt" is hidden within "LegitFile.txt" on the C: drive.
+					- View the hidden file by hidden file's name: more < C:\LegitFile.txt:SecretFile.txt
+				- Modifying Date and Time (changing the access time of specific files):
+					- timestomp file_name.doc -z “<Date> <time>”
+					- powershell -Command (Get-Item $File_name).LastWriteTime = $(Get-Date).AddHours(-10)
+					- Change access time: touch -a -d '<date> <time>' $File_name
+					- Change date and time of last modification: touch -m -d '<date> <time>' $File_name
+			- UNIX/LINUX:
+				- In UNIX, files can be hidden by simply appending a dot (.) at the beginning of the file name.
+				- Covering BASH Shell Tracks:
+					- BASH is an sh-compatible shell that stores command history in a file located at ~/.bash_history
+					- Disabling history: export HISTSIZE=0
+					- Clear stored history: history –c
+					- Clear history of current shell: history -w
+					- Clear user's complete history: cat /dev/null > ~/.bash_history && history -c && exit
+					- Shred history file (making its content unreadable): shred ~/.bash_history
+					- Shred history file and clear evidence of command: shred ~/.bash_history && cat /dev/null > ~/.bash_history && history -c && exit
 		- Deleting Files:
-			- An attacker uses command-line tools, such as Cipher.exe, to delete data and prevent its recovery in the future.
+			- Delete Files using Cipher.exe:
+				- Cipher.exe is an in-built Windows command-line tool that can be used to securely delete data by overwriting it, making it difficult to recover in the future.
+				- To overwrite deleted files in specific folder: cipher /w:<drive_letter>:\<folder_name>
+				- To overwrite all the deleted files in drive: cipher /w:<drive_letter>
 		- Disabling Windows Functionality:
 			- An attacker disables Windows features, such as last access timestamps, hibernation, virtual memory, and system restore points, to cover their tracks.
+			- Disable the Last Access Timestamp:
+				- The last access timestamp of a file records the date and time when the file was last opened for reading or writing. Each time a user accesses the file, the timestamp is updated.
+				- Fsutil is a Windows utility used to configure NTFS volume behavior parameters, such as DisableLastAccess, which controls the enabling or disabling of the last access timestamp.
+				- Disable last access updates: fsutil behavior set disablelastaccess 1
+				- Enable last access updates: fsutil behavior set disablelastaccess 0
+			- Disable Windows Hibernation:
+				- The hibernation file (Hiberfil.sys) is a hidden system file located in the root directory of the drive where the operating system is installed. This file stores the contents of the system's RAM on the hard disk when the user selects to hibernate the system.
+				- Windows hibernation can be disabled using either the Registry Editor or the powercfg command.
+				- Disable Windows hibernation through the Registry Editor:
+					- Open the Registry Editor and navigate to the path: Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power
+					- In the right pane, double-click on HibernateEnabledDefault; the Edit DWORD (32-bit) Value dialog box will appear.
+					- In the Value data field, enter 0 to disable hibernation.
+					- Click OK to apply the changes.
+				- Disable Windows hibernation using powercfg:
+					- Launch the Command Prompt with administrator privileges.
+					- Disable hibernation: powercfg.exe /hibernate off
+			- Disable Windows Virtual Memory (Paging File)
+				- Virtual memory, also called the paging file, is a special file in Windows used as compensation when physical memory (RAM) falls short of available space. For example, if an attacker has an encrypted file and wants to read it, it must first be decrypted. The decrypted data may remain in the paging file even after the attacker logs out of the system.
+				- Disable paging:
+					- Open the Control Panel and navigate to: System and Security -> System -> Advanced system settings
+					- A System Properties dialog box will appear. In the Advanced tab, click Settings under the Performance section.
+					- The Performance Options dialog box will appear. Go to the Advanced tab and click Change under the Virtual Memory section.
+					- In the Virtual Memory dialog box, uncheck Automatically manage paging file size for all drives.
+					- Select the drive where paging should be disabled, then check the option No paging file and click Set.
+					- In the System Properties window, click Yes.
+					- Finally, click OK to apply the changes.
+			- Disable System Restore Points:
+				- System restore points contain information about hidden data and previously deleted files, which poses a risk for attackers, as deleted files can be recovered from earlier restore points.
+				- Disable system restore points:
+					- Open the Control Panel and navigate to: System and Security -> System -> System Protection
+					- A System Properties dialog box will appear. In the System Protection tab, select the drive and click Configure
+					- Under the Restore Settings section, select the Disable system protection option and click the Delete button.
+					- The System Protection wizard will appear; click Continue to delete all restore points on the drive.
+					- Click OK to apply the changes.
+					- Repeat the above steps for all disk partitions.
+			- Disable Windows Thumbnail Cache:
+				- Thumbs.db is a Windows file that stores thumbnails of document types such as PPTX and DOCX, as well as graphic files like GIF, JPEG, PNG, and TIFF. This thumbnail file contains information about files that were previously deleted or accessed on the system.
+				- For example, if an attacker used an image file to hide a malicious file and later deleted it, a thumbnail of this image would be stored inside the thumbs.db file, revealing that the deleted file was previously used on the system.
+				- Disable the thumbnail cache:
+					- Press the Windows + R keys to open the Run dialog box.
+					- Type gpedit.msc and press Enter or click OK.
+					- The Local Group Policy Editor window will appear. Navigate to: User Configuration -> Administrative Templates -> Windows Components -> File Explorer
+					- Double-click on the "Turn off the caching of thumbnails in hidden thumbs.db files" setting in the right pane.
+					- Select Enabled to turn off the thumbnail cache.
+					- Click OK to apply the changes.
+			- Disable Windows Prefetch Feature:
+				- Prefetch is a Windows feature that stores data about applications typically used by system users. This stored data helps enhance system performance by reducing the time required to load or start applications.
+				- For example, if an attacker installs and then uninstalls a malicious application, a record of that application may still be stored in the Prefetch file. These Prefetch files can be useful for security personnel in recovering information about deleted applications during the investigation of a security incident.
+				- Disable the Prefetch feature:
+					- Press the Windows + R keys to open the Run dialog box.
+					- Type services.msc and press Enter or click OK.
+					- Search for the SysMain (Superfetch) service, then double-click it to open the SysMain Properties (Local Computer) window.
+					- In the Startup type drop-down menu, select Disabled.
+					- Click OK to apply the changes.
 			- Clear Online Tracks from Privacy Settings (Windows 11):
 				- Right-click on the Start button, select Settings, and navigate to Personalization.
 				- In the Personalization section, click on Start in the left pane.
@@ -1154,8 +1236,45 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Navigate to: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 				- Locate and remove the key for "RecentDocs".
 				- Delete all values except for "(Default)".
+		- Delete Windows History:
+			- Deleting Windows Activity History:
+				- Attackers can cover their tracks by deleting the Windows Activity history after unauthorized system use, thereby removing evidence of their activities. Since the Windows Activity history records user activities, including file access, application usage, and browsing history, erasing this data can help conceal their presence and actions on the compromised system.
+				- Delete Windows Activity History:
+					- Open the Settings by clicking the Start button or by pressing the Win + I keys together.
+					- In the Settings window, click on Privacy & security in the left pane, then click on the Activity history section in the right pane.
+					- Click the Clear button under the Clear activity history section.
+					- Click OK on the pop-up to confirm clearing the activity history.
+					- Once the process is complete, a checkmark will appear next to the Clear button, indicating the action was successful.
+		- Deleting Incognito History:
+			- Attackers use incognito mode to prevent the browser from storing browsing history, cookies, and other site data locally on the device. Incognito mode helps attackers conceal their online activities from others who may have access to the device.
+			- Deleting Incognito History in Windows:
+				- Open the Start menu, search for Command Prompt, and select Run as administrator.
+				- Display the list of recently visited domains, including those accessed in incognito mode: ipconfig /displaydns
+				- Clear all DNS cache entries and remove traces of recent browsing history: ipconfig /flushdns
+			- Deleting Incognito History in macOS:
+				- Open the Applications folder, select Utilities, and run Terminal.
+				- Delete the incognito browsing history: sudo killall -INFO mDNSResponder
 		- Hiding Artifacts:
-			- Attackers conceal their malicious artifacts within legitimate OS artifacts to evade detection.
+			- Attackers often attempt to conceal artifacts related to their malicious activities in order to bypass security controls. Every operating system hides artifacts, such as internal task execution data and critical system files. Attackers take advantage of this feature to hide their own artifacts - such as directories, user accounts, files, folders, or other system-related elements - within existing system artifacts to evade detection.
+			- Hiding Artifacts in Windows:
+				- Hiding Files and Folders: attrib +h +s +r <FolderName>
+				- Hiding Users:
+					- Create hidden user account: net user <UserName> /add
+					- Activate the account for exploitation: net user <UserName> /active:yes
+					- Hide the account when it is not required: net user <UserName> /active:no
+				- Hiding User Accounts:
+					- Open Registry Editor and navigate to following location: HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Winlogon
+					- Right-click on Winlogon, hover over New, and select Key.
+					- Rename the newly created key to <Account1>. Next, right-click on <Account1>, hover over New, and select Key, then rename it to <Account2>.
+					- Right-click on <Account2>, hover over New, and select DWORD (32-bit) Value.
+					- Rename the new DWORD value to <UserName>, where <UserName> is the name of the user account to hide.
+			- Hiding Artifacts in Linux:
+				- Hiding Files and Folders:
+					- In Linux, files or folders can be hidden by prefixing the file name with a dot (.)
+			- Hiding Artifacts in macOS:
+				- Hiding Files and Folder:
+					- Hide files: defaults write com.apple.finder AppleShowAllFiles FALSE killall Finder
+					- Hide specified file (Add space at the end): chflags hidden <filename>
 		- Clear Online Tracks:
 			- Attackers can erase online traces stored on the target computer, including web history, logs, cookies, cache, download records, and timestamps of visited sites. This prevents victims from detecting the online activities conducted by the attackers.
 			- Ways to Clear:
@@ -1174,3 +1293,44 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Remove Most Recently Used (MRU)
 				- Clear toolbar data from browsers
 				- Turn off AutoComplete
+	- Anti-forensics for Covering Tracks:
+		- Anti-forensics is a set of techniques used by attackers or perpetrators to conceal their malicious activities. By employing anti-forensics methods, attackers erase, alter, or conceal various actions taken to compromise a target system or network.
+		- Anti-forensics Techniques:
+			- Data/File Deletion : When a file is deleted from the hard drive, the operating system removes the pointer to the file. In the case of the Windows operating system, deleted data remains in the Recycle Bin if attackers use the normal delete operation, rather than the Shift+Delete operation. To prevent the recovery of such deleted files, attackers may hide or delete the metadata associated with the files in the Recycle Bin.
+			- Password Protection : Attackers use password protection techniques to conceal malicious activities, prevent the reverse engineering of applications, prevent information extraction from network devices, and prevent access to critical files and folders on the system or hard disk.
+			- Steganography : Attackers use steganography to hide information when encryption is unfeasible. Attackers can embed information such as the source code for a hacking tool, a list of compromised servers, plans for future attacks, and communication or coordination channels as part of a steganographic attempt.
+			- Data Hiding in File System Structures : Data hiding is an anti-forensic technique employed by attackers to render data inaccessible. $BadClus is a sparse file that allows attackers to hide unlimited data, as they can allocate additional clusters to $BadClus to conceal more data. Some hard disks have Host-Protected Areas (HPAs), where developers can store data they want to protect (and hide) from normal use. An attacker with malicious intent can exploit these areas to hide illicit data. In addition to these techniques, attackers use DPAs (Data Partition Areas) and slack spaces to hide data that are not visible to either the BIOS or the operating system, requiring special tools to detect and view.
+			- Minimizing Footprint : Attackers often leave minimal or no footprints after executing an attack. The goal is to carry out the attack without raising alarms and then eliminate all traces of their actions. To minimize footprints, attackers utilize various resources, such as stolen identities, virtual machines, cloud infrastructure, untraceable cryptocurrencies, and running operating systems from Live USBs or External HDD.
+			- Trail Obfuscation : The purpose of trail obfuscation is to delete evidence and conceal the traces of malicious activities to evade detection by defensive systems. Attackers perform trail obfuscation through log tampering, generating false email headers, modifying timestamps, and altering various file headers. Tools such as Timestomp and Transmogrify are used by attackers to modify, edit, and delete date and time metadata on files, making it difficult for security professionals to trace the attacker’s origin.
+				- Trail obfuscation using other tools and techniques:
+					- Log cleaners
+					- Zombie accounts
+					- Spoofing
+					- Trojan commands
+					- Misinformation
+			- Artifact Wiping : Artifact wiping refers to the process of permanently deleting or destroying evidence data using file-wiping and disk-cleaning utilities, disk degaussing/destruction, and disk formatting techniques. The primary purpose of artifact wiping is to eliminate traces of unauthorized activities on a computer system or storage device, making it difficult for security professionals to accurately reconstruct events and identify the culprit.
+				- Attackers use various tools for artifact wiping:
+					- BCWipe
+					- Total WipeOut
+					- DriveScrubber
+					- Disk Wipe
+					- KillDisk
+					- R-Wipe & Clean
+					- BitRaser File Eraser
+					- Blancco File Eraser
+			- Overwriting Data/Metadata : Data overwriting is one of the most common and widely used anti-forensic techniques employed by attackers. In this technique, attackers overwrite all addressable locations on digital storage media with random characters. They may also use standard data-wiping tools and techniques, such as simple deletion, data shredding, and data wiping, which perform multiple overwrites on the media to cover their tracks. As a result, it becomes difficult for security professionals and defensive systems to retrieve traces of the attack from the digital media.
+			- Program Packers : Attackers use program packers to hide their data by compressing files with various cryptographic algorithms. This technique allows attackers to conceal evidence files in containers, making them difficult to detect. Password-protected program packers can present a challenge for security professionals, as they must first decrypt the password to unpack the file. These packers also help attackers conceal tools used in the attack, making it harder to trace them through reverse engineering attempts.
+				- Attackers use various packers:
+					- UPX
+					- PECompact
+					- BurnEye
+					- Exe Stealth Packer
+					- Smart Packer Pro
+			- Access Anonymization : Access anonymization refers to techniques used by attackers to hide their digital footprints by anonymizing their access to systems, networks, or data. This process aims to make it more difficult for security professionals to trace malicious activities back to specific individuals or entities. Attackers use tools such as proxy servers, anonymization services, Tor networks, traffic padding, and anonymous communication channels for access anonymization.
+	- Track-Covering Tools: Track-covering tools help attackers clean up all traces of computer and internet activities on the target system. These tools free cache space, delete cookies, clear internet history and shared temporary files, erase logs, and discard junk files.
+		- CCleaner : CCleaner is a system optimization, privacy, and cleaning tool. It removes traces of temporary files, unused files, log files, registry entries, memory dumps, and online activities such as internet history.
+		- DBAN : Delete information stored on hard disk drives (HDDs, not SSDs) and remove viruses and spyware from Microsoft Windows installations.
+		- Privacy Eraser Free : A single, all-encompassing privacy suite that cleans up internet browsing history, cookies, saved passwords, recent documents, clipboard data, Windows run history, etc.
+		- Wipe : Efficiently managing storage space by removing temporary files, caches, cookies, and browsing history. Additionally, eliminating unnecessary data minimizes the risk of unauthorized access, ensuring online activities remain confidential and protected from potential threats (privacyroot.com)
+		- BleachBit : BleachBit is an open-source tool designed for Linux and Windows systems. It frees cache, deletes cookies, clears internet history, shreds temporary files, deletes logs, and discards junk. It wipes clean traces from thousands of applications, including Firefox, Adobe Flash, Google Chrome, Opera, and more. Beyond simply deleting files, BleachBit includes advanced features such as shredding files to prevent recovery, wiping free disk space to hide traces of files deleted by other applications, and vacuuming Firefox to improve its performance.
+		- east-tec Eraser : east-tec Eraser is a privacy protection software that erases all files that store evidence of computer and internet activities. It helps keep PC clean by deleting large amounts of unnecessary data stored on computer, with or without approval.
