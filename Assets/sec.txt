@@ -1345,4 +1345,32 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 
 - Malware
 	- Malware is malicious software designed to damage or disable computer systems, giving the malware creator limited or full control over the system for malicious activities such as theft or fraud. It may delete files, slow down computers, steal personal information, send spam, or commit fraud.
-	
+	- Techniques for Distributing Malware on the Web (Security Threat Report - www.sophos.com):
+		- Black Hat Search Engine Optimization (SEO) : Black hat SEO (also referred to as unethical SEO) uses aggressive SEO tactics, such as keyword stuffing, inserting doorway pages, page swapping, and adding unrelated keywords, to get higher search engine rankings for malware pages.
+		- Social Engineered Click-jacking : Attackers inject malware into websites that appear legitimate to trick users into clicking them. When clicked, the malware embedded in the link executes without the user's knowledge or consent.
+		- Spear-phishing Sites : This technique is used to mimic legitimate institutions, such as banks, to steal passwords, credit card and bank account information, and other sensitive data.
+		- Malvertising : This technique involves embedding malware-laden advertisements in legitimate online advertising channels to spread malware to the systems of unsuspecting users.
+		- Compromised Legitimate Websites : Often, attackers use compromised websites to infect systems with malware. When an unsuspecting user visits the compromised website, they unknowingly install the malware on their system, after which the malware performs malicious activities.
+		- Drive-by Downloads : This refers to the unintentional downloading of software via the Internet. In this case, an attacker exploits flaws in browser software to install malware simply by visiting a website.
+		- Spam Emails : The attacker attaches a malicious file to an email attachment or embeds the malware in the email body and sends the email to multiple target addresses. The victim is tricked into clicking the attachment, thus executing the malware and compromising their machine.
+		- Rich Text Format (RTF) Injection : RTF injection involves exploiting features of Microsoft Office, such as RTF template files stored locally or on a remote machine. RTF templates are used to specify the document format. Attackers inject malicious macros into RTF files and host them on their servers. When a user opens the document, the malicious template is automatically retrieved from the remote server, evading security systems.
+	- Components of Malware Malware:
+		- Crypter : It is a software program designed to conceal the existence of malware. Attackers use this software to evade antivirus detection and protect the malware from reverse engineering or analysis, making it difficult for security mechanisms to detect.
+		- Downloader : It is a type of Trojan that downloads other malware or malicious code and files from the Internet. Usually, attackers install a downloader when they first gain access to a system.
+		- Dropper : It is a covert carrier of malware. Attackers embed malicious malware files inside droppers, which can perform the installation task covertly. Attackers must first install the malware program or code on the system to execute the dropper. The dropper can transport malware and execute it on a target system without being detected by antivirus scanners.
+		- Exploit : It is the part of the malware that contains code or a sequence of commands that can take advantage of a bug or vulnerability to breach the system’s security. Based on the type of vulnerabilities exploited, exploits are categorized into local exploits and remote exploits.
+		- Injector : This program injects exploits or malicious code from the malware into other vulnerable running processes and alters the execution method to hide or prevent its removal.
+		- Obfuscator: It is a program that conceals the malicious code of malware using various techniques, making it difficult for security mechanisms to detect or remove it.
+		- Packer: This software compresses the malware file, converting the code and data into an unreadable format. It uses compression techniques to pack the malware.
+		- Payload : It is the part of the malware that performs the desired activity when activated. It may be used to delete or modify files, degrade system performance, open ports, change settings, etc., in order to compromise system security.
+		- Malicious Code : This is a piece of code that defines the basic functionality of the malware and contains commands that lead to security breaches.
+	- Potentially Unwanted Applications (PUAs):
+		- Potentially unwanted applications or programs (PUAs or PUPs), also known as grayware or junkware, are potentially harmful applications that may pose significant risks to the security and privacy of data stored on the system where they are installed.
+		- Types of PUAs:
+			- Adware : These PUAs display unsolicited advertisements offering free sales, issue bogus reminders about outdated software or OS, and show pop-ups for online services while browsing websites. They may disrupt normal activities and lure victims into clicking on malicious URLs.
+			- Torrent : When using torrent applications to download large files, the user may be compelled to download unwanted programs that have peer-to-peer file sharing features.
+			- Marketing : Marketing PUAs track users' online activities and transmit browser details along with information about personal interests to third-party app owners. These applications then use this data to market products and resources tailored to users’ preferences.
+			- Cryptomining : Cryptomining PUAs exploit victims' system resources and may access financial data to perform digital cryptocurrency mining, such as generating bitcoins.
+			- Dialers : Dialers, or spyware dialers, are programs that automatically install and configure themselves on a system to make calls to a set of contacts at various locations without the user's consent. These dialers can result in massive telephone bills and are often difficult to detect and remove.
+- Advanced Persistent Threats
+	- Advanced Persistent Threats (APTs) are a type of network attack in which an attacker gains unauthorized access to a target network and remains undetected for an extended period. The primary objective of APTs is to steal sensitive information rather than to sabotage the organization or its network.
