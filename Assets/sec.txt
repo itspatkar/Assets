@@ -331,6 +331,9 @@ Enumeration is the process of extracting usernames, machine names, network resou
 
 - Vulnerability Exploitation Tools
 	- WES-NG : Windows Exploit Suggester - Next Generation is python-based tool that analyzes the output of the Windows systeminfo utility to identify vulnerabilities affecting the system and corresponding exploits
+	- Reverse Shell Generator : Online Reverse Shell generator with Local Storage functionality, URI & Base64 Encoding, MSFVenom Generator, and Raw Mode.
+		- www.revshells.com
+		- Local: docker run -d -p 80:80 reverse_shell_generator
 
 - AI-Powered Vulnerability Exploitation Tools
 	- Nebula : AI-Powered Ethical Hacking Assistant
@@ -1334,3 +1337,12 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Wipe : Efficiently managing storage space by removing temporary files, caches, cookies, and browsing history. Additionally, eliminating unnecessary data minimizes the risk of unauthorized access, ensuring online activities remain confidential and protected from potential threats (privacyroot.com)
 		- BleachBit : BleachBit is an open-source tool designed for Linux and Windows systems. It frees cache, deletes cookies, clears internet history, shreds temporary files, deletes logs, and discards junk. It wipes clean traces from thousands of applications, including Firefox, Adobe Flash, Google Chrome, Opera, and more. Beyond simply deleting files, BleachBit includes advanced features such as shredding files to prevent recovery, wiping free disk space to hide traces of files deleted by other applications, and vacuuming Firefox to improve its performance.
 		- east-tec Eraser : east-tec Eraser is a privacy protection software that erases all files that store evidence of computer and internet activities. It helps keep PC clean by deleting large amounts of unnecessary data stored on computer, with or without approval.
+
+
+--------------------------------------------------
+
+# Malware Threats
+
+- Malware
+	- Malware is malicious software designed to damage or disable computer systems, giving the malware creator limited or full control over the system for malicious activities such as theft or fraud. It may delete files, slow down computers, steal personal information, send spam, or commit fraud.
+	
