@@ -1446,3 +1446,8 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Command Shell Trojans:
 			- A command shell Trojan provides remote control of a victim's machine by installing a Trojan server that opens a port for the attacker to connect. The attacker’s machine runs the client to launch the command shell on the victim's system.
 			- Command Shell Trojans: Netcat, DNS Messenger, GCat
+	- Infect Systems Using Trojan:
+		- Step 1: Creating Trojan:
+			- Attackers can create Trojans using various Trojan horse construction kits, such as DarkHorse Trojan Virus Maker, njRAT, and Trojan Horse Construction Kit. Crafting a new Trojan packet enhances the likelihood of successfully compromising the target system, as security mechanisms may fail to detect it. These Trojans can be delivered to the victim’s machine via a dropper or downloader.
+			- Trojan Horse Construction Kits: DarkHorse Trojan Virus Maker, njRAT, Trojan Horse Construction Kit, Social Engineering Toolkit (SET), THorse, Senna Spy Trojan Generator, THOSE RAT, Umbra Loader - Botnet Trojan Maker, VenomRAT
+			- njRAT : njRAT is a remote access trojan (RAT) with robust data-stealing capabilities. It can log keystrokes, access a victim's camera, steal credentials stored in browsers, upload and download files, perform process and file manipulations, and view the victim's desktop. Additionally, this RAT can be used to control botnets (networks of compromised computers), enabling attackers to update, uninstall, disconnect, restart, and close the RAT, as well as rename its campaign ID.
