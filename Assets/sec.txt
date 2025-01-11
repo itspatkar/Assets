@@ -1374,3 +1374,75 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Dialers : Dialers, or spyware dialers, are programs that automatically install and configure themselves on a system to make calls to a set of contacts at various locations without the user's consent. These dialers can result in massive telephone bills and are often difficult to detect and remove.
 - Advanced Persistent Threats
 	- Advanced Persistent Threats (APTs) are a type of network attack in which an attacker gains unauthorized access to a target network and remains undetected for an extended period. The primary objective of APTs is to steal sensitive information rather than to sabotage the organization or its network.
+- Trojan
+	- A Trojan is a program that conceals malicious or harmful code within an apparently harmless program or data, which can later gain control of the system and cause damage. Trojans are activated when a user performs certain predefined actions.
+	- Trojans operate with the same level of privileges as the victim. For instance, if a victim has the privileges to delete files, transmit information, modify existing files, or install programs (including those that provide unauthorized network access or execute privilege escalation attacks), the Trojan, once it infects the system, inherits these privileges. Additionally, it may attempt to exploit vulnerabilities to gain even higher levels of access than the user running it.
+	- Trojans Are Used For:
+		- Steal sensitive information such as account data, including login credentials, email addresses, and passwords.
+		- Record screenshots, audio, and video from the victim's PC.
+		- Disable firewalls and antivirus software.
+		- Create backdoors to gain remote access.
+		- Exploit the victim's PC as a proxy server for relaying attacks.
+		- Use the victim's PC as part of a botnet to carry out DDoS (Distributed Denial of Service) attacks.
+		- Generate fake traffic to execute DoS (Denial of Service) attacks.
+		- Use the victim's PC for spamming and sending bulk email messages.
+		- Delete or replace critical operating system files.
+		- Encrypt the victim's machine, rendering it inaccessible to the victim, and prevent access to its contents.
+	- Common Ports Used by Trojans:
+		- Ports serve as entry and exit points for data traffic. There are two types of ports: hardware ports and software ports. In an operating system, ports are software-based and typically function as entry and exit points for application traffic.
+	- Types of Trojans:
+		- Remote Access Trojans:
+			- Remote Access Trojans (RATs) provide attackers with full control over the victim's system, allowing them to remotely access files, private conversations, accounting data, and more. The RAT functions as a server and listens on a port that is typically not meant to be accessible to internet attackers.
+			- Remcos RAT : Remcos RAT (Remote Control and Monitoring System) is a powerful remote access trojan (RAT) designed to provide attackers with full control over an infected system. It is typically used for cyber espionage, theft of sensitive data, or other malicious activities. Key features of Remcos RAT include remote control, keylogging, screen capture, audio and video recording, file management, persistence, password stealing, data exfiltration, proxies and VPNs, and encryption.
+			- Additional RATs: Parallax RAT, AsyncRAT, Xeno RAT, Kedi RAT, AhMyth, MagicRAT, NetSupport RAT, StrRAT and Ratty, MINEBRIDGE
+		- Backdoor Trojans:
+			- A backdoor is a program that allows unauthorized access to a system by bypassing standard authentication mechanisms or conventional security measures, such as IDS and firewalls, without detection. Backdoors are used by attackers for uninterrupted access to the target machine. In these types of breaches, hackers exploit backdoor programs to gain access to the victim's computer or network.
+			- TinyTurla-NG (TTNG) : TinyTurla-NG (TTNG) is a backdoor Trojan operated by the Turla APT group, a Russian cyber-espionage threat actor. This backdoor Trojan enables attackers to gain remote access and control over infected systems, facilitating the exfiltration of sensitive data, execution of commands, and the conduct of various malicious activities. Attackers use compromised WordPress-based websites as command-and-control (C2) endpoints for the TTNG backdoor.
+			- Additional Backdoor Trojans: SmokeLoader, BazarLoader, Kovter, POWERSTATS v3, RogueRobin, ServHelper, SpeakUp linux backdoor, Winnti backdoor, Daxin, SysJoker, PortDoor, GoldenSpy
+		- Botnet Trojans:
+			- Attackers, also known as "bot herders," use botnet Trojans to infect a large number of computers across a wide geographical area, creating a network of bots (or a "bot herd") that can be controlled via a command-and-control (C&C) center.
+			- RDDoS : RDDoS is a botnet Trojan capable of executing commands and carrying out DDoS attacks on target systems. It leverages online parameters that enable attackers to differentiate between types of infected devices. Additionally, it can distinguish between sandboxes and real devices based on the operating parameters embedded in the online packages.
+			- Additional Botnet Trojans: Horabot, hailBot, kiraiBot, catDDoS, ZeroBot, XorDdos, Nexus Android botnet, Satori, Torii botnet, Qakbot, Hide n Seek, Ramnit, Panda, BetaBot
+		- Rootkit Trojans:
+			- A "rootkit" combines "root" (administrator access) and "kit" (tools for gaining access). It is a powerful backdoor that targets the root or OS, providing attackers full control. Unlike typical backdoors, rootkits are hard to detect, as they do not appear in services, task lists, or registries.
+			- Reptile Rootkit : Reptile is a kernel module rootkit primarily designed to target Linux-based systems. It offers advanced features, including a reverse shell and the ability to conceal its presence. Attackers can use the reverse shell to gain control of the target system.
+			- Additional Rootkit Trojans: CEIDPageLock, Wingbird, GrayFish, Finfisher, ZeroAccess, Whistler, Fire Chili rootkit, Purple Fox Rootkit, Dubbed Demodex Rootkit, MoonBounce, Moriya, iLOBleed
+		- E-Banking Trojans:
+			- E-banking Trojans are a major threat to online banking. They intercept the victim's account information before it is encrypted and sent to the attacker's command-and-control center. Banking Trojans steal users' information through methods such as keylogging, form data capture, inserting fraudulent form fields, screen captures, video recording, mimicking financial websites, redirecting to banking sites, and man-in-the-middle attacks.
+			- CHAVECLOAK : CHAVECLOAK is a banking Trojan that uses advanced techniques to exfiltrate financial data from targeted users. The attack begins with the download of a malicious ZIP file disguised as a PDF, which then employs methods like DLL side-loading to execute the malware.
+			- Additional E-Banking Trojans: Grandoreiro, Ursnif (Gozi), Nexus, DanaBot, QakBot (Qbot), Ramnit, IcedID, Emotet
+		- Point-of-Sale Trojans:
+			- As the name suggests, point-of-sale (POS) Trojans are financial malware that target POS and payment devices like credit/debit card readers. Attackers use POS Trojans to compromise these devices and steal sensitive information, such as credit card numbers, cardholder names, and CVV codes.
+			- Prilex POS : Prilex is a Brazilian threat actor group that primarily targets POS terminals to steal sensitive information. The attackers often pose as POS technicians, tricking targets into installing malicious software disguised as a required update. They may either visit stores in person as technical specialists or request remote access by having vendors install remote desktop apps like AnyDesk.
+			- Additional POS Trojans: LockPOS, BlackPOS, FastPOS, PunkeyPOS, CenterPOS, MalumPOS
+		- Defacement:
+			- Defacement Trojans, once spread through a system, can destroy or alter database content. They are particularly dangerous when targeting websites, as they modify the underlying HTML, altering the site's content.
+			- Restorator : Restorator is a utility for editing Windows resources in applications and components (e.g., .exe, .dll, .res, .rc, and .dcr files). It enables users to modify, add, or remove resources like text, images, icons, sounds, videos, versions, dialogs, and menus in most programs. This tool is useful for translation, localization, customization, design enhancement, and development.
+		- Service Protocol Trojans:
+			- Service Protocol Trojans exploit vulnerable service protocols like VNC, HTTP/HTTPS, and ICMP to attack the victim’s machine.
+			- VNC Trojans : A VNC Trojan starts a VNC server daemon on the victim's system, allowing the attacker to connect via any VNC viewer. Since VNC is a legitimate utility, this Trojan is difficult for antivirus software to detect. Well-known financial malware like Vultur, Dridex, and Gozi use a hidden virtual network computing (HVNC) module, enabling attackers to gain user-level access to an infected PC.
+			- HTTP/HTTPS Trojans : HTTP/HTTPS Trojans bypass firewalls by working in reverse, unlike a standard HTTP tunnel. They use web-based interfaces and port 80. The Trojan executes on the internal host, spawning a child program at a scheduled time. Since the child program appears as a legitimate user to the firewall, it is granted internet access. However, it then runs a local shell, connects to the attacker’s web server via a seemingly legitimate HTTP request, and sends a ready signal.
+			- SHTTPD : SHTTPD is a lightweight HTTP server that can be embedded into any program. It can be wrapped in a legitimate program (e.g., chess.exe), and when executed, it turns the computer into an invisible web server.
+			- HTTP RAT : HTTP RAT uses web interfaces and port 80 to gain access, functioning like an HTTP tunnel but in reverse. These Trojans are particularly dangerous as they can operate virtually anywhere with internet access.
+			- ICMP Trojans : The Internet Control Message Protocol (ICMP) is an essential part of IP, required for all IP modules. It is a connectionless protocol that sends error messages to unicast addresses and encapsulates packets within IP datagrams.
+		- Mobile Trojans:
+			- Mobile Trojans are malicious apps that target mobile phones. The attacker tricks the victim into installing the app, which then performs various attacks, including stealing banking and social networking credentials, encrypting data, and locking the device.
+			- Chameleon : Chameleon is a banking Trojan targeting Android devices, distributed through various methods, primarily phishing pages. It adapts to multiple commands, including verifying app package names, and mainly targets mobile banking apps. By using the proxy feature, it can manipulate the device as the victim, enabling attackers to carry out device takeover (DTO) and account takeover (ATO) attacks through Accessibility Service privileges.
+			- Additional Mobile Trojans: Vultur, PixPirate, GoldPickaxe, GoldDigger, SpyNote, Anatsa, Xenomorph
+		- IoT Trojans:
+			- The Internet of Things (IoT) refers to the interconnection of physical devices, buildings, and other items embedded with electronics. IoT Trojans are malicious programs that target IoT networks, using a botnet to attack other machines outside the network.
+			- OpenSSH Trojan : Microsoft researchers have uncovered a sophisticated cyberattack targeting Linux-based systems and IoT devices exposed to the internet. The attackers exploited a modified version of OpenSSH to gain control and install cryptomining malware. A backdoor was deployed to run malicious tools, including rootkits and an IRC bot, hijacking the compromised devices' computing resources for cryptomining.
+			- Additional IoT Trojans: Ttint, XorDdos, Mozi, Silex BrickerBot, Torii botnet, Bashlite IoT Malware, Gafgy Botnet, Katana, BotenaGo, Dark Nexus
+		- Security Software Disabler Trojans: 
+			- Security software disabler Trojans disable security programs like firewalls and IDS by either shutting them down or killing their processes. These entry Trojans pave the way for attackers to launch subsequent attacks on the target system.
+			- Security Software Disabler Trojans: Chameleon, CertLock, GhostHook
+		- Destructive Trojans:
+			- Destructive Trojans are designed solely to delete files on a target system. Often undetected by antivirus software, they randomly delete files, folders, registry entries, and data on local and network drives, potentially causing OS failure.
+			- Destructive Trojans: SilverRAT, HermeticWiper, WhisperGate, FoxBlade
+		- DDoS Attack Trojans:
+			- These Trojans are designed to carry out DDoS attacks on target machines, networks, or websites. They turn the victim into a zombie, awaiting commands from a DDoS server on the internet.
+			- Mirai IoT botnet Trojan : The Mirai IoT botnet Trojan remains one of the most notorious DDoS attack Trojans.
+			- DDoS attack Trojans: RDDoS, Horabot, hailBot, kiraiBot, and catDDoS
+		- Command Shell Trojans:
+			- A command shell Trojan provides remote control of a victim's machine by installing a Trojan server that opens a port for the attacker to connect. The attacker’s machine runs the client to launch the command shell on the victim's system.
+			- Command Shell Trojans: Netcat, DNS Messenger, GCat
