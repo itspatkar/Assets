@@ -64,29 +64,3 @@ Autorun.inf file:
 [autorun]
 open=setup.exe
 icon=setup.exe
-
----------------------------------------------------------------------------------
-
-STEP 1: Create a new Trojan packet using njRAT
-STEP 2: Employ a dropper such as Amadeyor SecuriDropper, or a downloader such as Downloader.DN, to install the malicious code on the target system
-STEP 3: Employ a wrapper, such as IExpress Wizard, to bind the Trojan to a legitimate file 
-STEP 4: Employ a crypter, such as The Attacker-Crypter, to encrypt the Trojan 
-STEP 5: Propagate the Trojan by various methods, such as emails or USB 
-STEP 6: Deploy the Trojan on the victim’s machine by executing a dropper or downloader on the target machine 
-STEP 7: Execute the damage routine
-
--------
-
-Step 1: 
-
-Step 2: Employ a dropper such as Amadey or SecuriDropper, or a downloader such as Downloader.DN, to install the malicious code on the target system.The dropper appears to users as a legitimate application or a well-known and trusted file. However, when it is run, it extracts the malware components hidden in it and executes them, usually without saving them to the disk, to avoid detection. Droppers include images, games, or benign messages in their packages, which serve as a decoy to divert users’ attention from malicious activities. Downloaders are malware transporters that do not contain the actual malware file; however, they contain the link from where the actual Trojan can be downloaded. When a downloader is executed on the target machine, it connects back to the attacker’s server and downloads the intended Trojan on the victim’s machine. Droppers can easily evade firewalls; however, a downloader can be detected with the help of network analyzer tools.
-
-Step 3: Employ a wrapper, such as IExpress Wizard, to help bind the Trojan executable to legitimate files for installation on the target system.
-
-Step 4: Employ a crypter, such as The Attacker-Crypter, to encrypt the Trojan to evade detection by firewalls and IDS.
-
-Step 5: Propagate the Trojan by implementing various methods such as sending it via overt and covert channels, exploit kits, emails, and instant messengers, thereby tricking users into downloading and executing it. An active Trojan can perform malicious activities such as irritating users with constant pop-ups, changing desktops, changing or deleting files, stealing data, and creating backdoors.
-
-Step 6: Deploy the Trojan on the victim’s machine by executing the dropper or downloader software to disguise it. The deployed file contains wrapped and encrypted malware.
-
-Step 7: Execute the damage routine. Most malware contain a damage routine that delivers payloads. Some payloads just display images or messages, whereas others can even delete files, reformat hard drives, or cause other damage. The damage routine can also include malware beaconing.

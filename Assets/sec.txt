@@ -1451,3 +1451,34 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Attackers can create Trojans using various Trojan horse construction kits, such as DarkHorse Trojan Virus Maker, njRAT, and Trojan Horse Construction Kit. Crafting a new Trojan packet enhances the likelihood of successfully compromising the target system, as security mechanisms may fail to detect it. These Trojans can be delivered to the victim’s machine via a dropper or downloader.
 			- Trojan Horse Construction Kits: DarkHorse Trojan Virus Maker, njRAT, Trojan Horse Construction Kit, Social Engineering Toolkit (SET), THorse, Senna Spy Trojan Generator, THOSE RAT, Umbra Loader - Botnet Trojan Maker, VenomRAT
 			- njRAT : njRAT is a remote access trojan (RAT) with robust data-stealing capabilities. It can log keystrokes, access a victim's camera, steal credentials stored in browsers, upload and download files, perform process and file manipulations, and view the victim's desktop. Additionally, this RAT can be used to control botnets (networks of compromised computers), enabling attackers to update, uninstall, disconnect, restart, and close the RAT, as well as rename its campaign ID.
+		- Step 2: Employing a Dropper or Downloader:
+			- After creating Trojans, attackers use droppers like Amadey or SecuriDropper, or downloaders like Downloader.DN, to deliver them to the victim’s machine. Droppers appear as legitimate files but execute hidden malware without saving it to disk, often using decoys like images or games. Downloaders, by contrast, contain links to retrieve the Trojan from an attacker’s server. While droppers evade firewalls, downloaders are more susceptible to detection using network analyzer tools.
+			- Droppers : Droppers are programs designed to conceal malware payloads that disrupt target systems. They often include features to evade antivirus detection and perform stealthy installations. Droppers load their code into memory, extract the malware payload, write it to the file system, and then execute the payload to initiate the malware installation.
+			- Droppers: Amadey, SecuriDropper, PindOS JavaScript dropper, SharkBot, Dropper.AIF, NullMixer
+			- Downloaders : A downloader is a program designed to download and install harmful software, such as malware. Unlike droppers, downloaders do not carry malware themselves, which allows new or unknown downloaders to bypass anti-malware scanners. Attackers use downloaders as part of a payload or alongside other harmful programs to stealthily install malware. Downloaders are often disguised as legitimate files, such as "accounts.exe" or "invoices," and attached to emails.
+			- Downloaders: Fruity Trojan downloader, Downloader.DN, InfoStealer.XY, sLoad
+		- Step 3: Employing Wrapper:
+			- Wrappers bind Trojan executables with legitimate-looking .EXE files, such as games or office software. When run, the Trojan installs in the background while the legitimate program runs in the foreground. Tools like petite.exe can compress and conceal Trojans, helping them bypass antivirus detection. Wrappers can also bundle multiple executables, with some running hidden processes alongside visible ones.
+			- Covert Wrapper Programs - IExpress Wizard : The IExpress Wizard is a wrapper tool that helps users create self-extracting packages capable of automatically installing embedded files, including setup files or Trojans. IExpress can delete the setup files after execution, erasing traces of the Trojan. It can also run a program or extract hidden files. These embedded Trojans often evade detection by antivirus software.
+			- Wrapper Tools: GuLoader, RDP Wrapper & Autoupdate, SystemBC, Trickbot, FinFisher
+		- Step 4: Employ Crypter:
+			- Attackers use a crypter, such as The Attacker-Crypter, to encrypt a Trojan and evade detection by firewalls and IDS. A crypter is software that encrypts the original binary code of an .exe file. It allows attackers to hide viruses, spyware, keyloggers, RATs, and other malicious software, making them undetectable by antivirus programs.
+			- Attacker-Crypter : AttackerCrypter can encrypt executables to bypass traditional detection mechanisms using various techniques. It also allows attackers to execute custom PowerShell code or select the desired payload type through its interface. Additionally, it can notify the attacker of the methods being executed on the target system.
+			- Crypter Tools: Muck Crypter, Pure Crypter, DarkTortilla, Line Crypter, Trickbot/Conti
+		- Step 5: Propagating and Deploying Trojan:
+			- After creating a Trojan and using a dropper/downloader, wrapper, and crypter, the attacker must transfer and deploy the package on the target machine. The Trojan can be propagated through various methods, including overt and covert channels, exploit kits, emails, USB drives, proxy servers, and instant messaging, tricking users into downloading and executing it. Once active, the Trojan can perform malicious actions, such as displaying annoying pop-ups, altering desktops, modifying or deleting files, stealing data, and creating backdoors.
+			- Covert Channels Tools: Racoon , QEMU, ELECTRICFISH
+			- Proxy Server Trojans: SocksEscort, QakBot, Stantinko Botnet
+			- Propagate and Deploy Trojans: Lord, Underminer Exploit Kit, RIG Exploit kit, Magnitude, Angler, Fallout, Nuclear, Neutrino, Terror, Sundown
+	- Techniques for Evading Antivirus Software:
+		- Break the Trojan file into multiple parts and zip them into a single file.
+		- Always create a custom Trojan and embed it into an application, as antivirus programs may fail to recognize new Trojans due to the absence of their signatures in the database.
+		- Modify the Trojan's syntax:
+			- Convert the .EXE file to a VBScript.
+			- Rename the .EXE extension to .DOC.EXE, .PPT.EXE, or .PDF.EXE. Since Windows hides "known extensions" by default, these files will appear as .DOC, .PPT, or .PDF, disguising their true nature.
+		- Modify the Trojan's content using a hex editor to alter its binary code, making it harder for antivirus programs to detect.
+		- Alter the checksum and encrypt the file to prevent detection by antivirus software, as this changes the file's signature and makes it appear different.
+		- Avoid using Trojans downloaded from the web, as antivirus software can easily detect these pre-existing versions.
+		- Use binder and splitter tools to modify the first few bytes of Trojan programs, making them harder for antivirus software to detect.
+		- Perform code obfuscation or morphing to disguise the Trojan's true functionality, making it harder for antivirus software to distinguish between malicious and harmless programs.
+	- Exploit Kits
