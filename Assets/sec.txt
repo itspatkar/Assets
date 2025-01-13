@@ -1481,4 +1481,157 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Avoid using Trojans downloaded from the web, as antivirus software can easily detect these pre-existing versions.
 		- Use binder and splitter tools to modify the first few bytes of Trojan programs, making them harder for antivirus software to detect.
 		- Perform code obfuscation or morphing to disguise the Trojan's true functionality, making it harder for antivirus software to distinguish between malicious and harmless programs.
-	- Exploit Kits
+	- Exploit Kits:
+		- An exploit kit, also known as a crimeware toolkit, is used to exploit security vulnerabilities in software applications, such as Adobe Reader and Adobe Flash Player. These kits distribute malware, including spyware, viruses, Trojans, worms, bots, backdoors, buffer overflow scripts, or other malicious payloads, to the target system. Exploit kits come with pre-written exploit code, making them easy to use even for attackers without advanced IT or security expertise. Additionally, they provide a user-friendly interface to track infection statistics and a remote mechanism to control compromised systems.
+		- BotenaGo Exploit Kit : The BotenaGo exploit kit, written in the Go programming language, contains over 30 variants of exploits and is capable of attacking millions of IoT and routing devices worldwide. BotenaGo was first discovered in November 2021 and was initially detected as Mirai botnet malware by antivirus software. After successfully embedding a backdoor in a victim's device, attackers can exploit the device using preconfigured exploit functions in the source code.
+	- Exploit Kits: Lord, Underminer Exploit Kit, RIG Exploit kit, Magnitude, Angler, Fallout, Nuclear, Neutrino, Terror, Sundown
+- Viruses
+	- A virus is a self-replicating program that creates copies of itself by attaching to another program, a computer's boot sector, or a document. Viruses are commonly transmitted through file downloads, infected disks or flash drives, and email attachments. Indications of a virus attack include frequent antivirus alerts, unusual hard drive activity, reduced storage space, and the appearance of unwanted pop-up windows.
+	- Types of Viruses : Viruses are categorized based on their functionality and targets.
+		- System or Boot Sector Virus:
+			- The most common virus targets are system sectors, including the master boot record (MBR) and DOS boot sector, as these are critical during system booting. MBRs are especially vulnerable since their corruption can cause complete data loss. System sectors are only 512 bytes, so viruses hide their code elsewhere on the disk. Boot sector viruses, often spread via email attachments and USB drives, reside in memory and sometimes infect files, making them multipartite. These viruses move the MBR to a new location, placing their code in the original spot, ensuring their execution before the MBR during booting.
+			- Virus Removal: System sector viruses often create the illusion that the system is virus-free. One way to address these viruses is to avoid using the Windows operating system and switch to Linux or macOS, as Windows is more susceptible to such attacks. Linux and macOS have built-in safeguards that offer better protection against these viruses. Another effective approach is to perform regular antivirus scans to detect and remove infections.
+		- File Virus:
+			- File viruses infect executable or interpreted files such as COM, EXE, SYS, OVL, OBJ, PRG, MNU, and BAT files. They can be either direct-action (non-resident) or memory-resident. File viruses insert their code into executable files, typically targeting those with extensions like .COM or .EXE. When the infected program runs, the virus executes alongside it, spreading to other files.
+			- These viruses are challenging to remove because overwriting them renders the original program unusable. Some file viruses save the program's original instructions, allowing it to execute normally and concealing the infection. Using stealth techniques, they hide in memory and prevent detection, showing no file length increase during directory listings. They can also intercept file read requests, returning the original file to the user to avoid suspicion. File viruses are versatile and capable of infecting many file types due to the variety of infection techniques available.
+		- Multipartite Virus:
+			- A multipartite virus, also known as a multipart or hybrid virus, combines the characteristics of file infectors and boot record infectors, targeting both the boot sector and executable files simultaneously. When the virus infects the boot sector, it can spread to system files, and infected system files can, in turn, reinfect the boot sector. This type of virus repeatedly reinfects the system if it is not completely eradicated.
+		- Macro Virus:
+			- Macro viruses infect applications like Microsoft Word by automatically executing actions when triggered. Most are written in Visual Basic for Applications (VBA) and target templates or convert infected documents into template files, disguising themselves as regular documents
+			- Although generally less harmful than other viruses, macro viruses often spread via email. Pure data files cannot spread viruses, but users may overlook the distinction between data and executable files due to the extensive use of macro languages in programs. This blurring occurs when default macros are set to run automatically upon loading a file, creating an opportunity for exploitation. Virus writers target universal programs with macro capabilities, such as Microsoft Word, Excel, and other Office applications, as well as Windows Help files, which can also contain macro code.
+		- Cluster Virus:
+			- Cluster viruses infect files without altering them or creating additional files. They store their code on the hard drive and overwrite directory entry pointers, redirecting the disk read process to the virus code instead of the intended program. Although this modification affects all programs, only one copy of the virus exists on the disk.
+			- A cluster virus, such as Dir-2, executes itself when any program is launched, then passes control to the actual program. If the virus infects memory, it manipulates access to the disk's directory structure. Booting from a clean USB drive and running utilities like CHKDSK can reveal issues, such as cross-linked files. Accepting the utility's offer to "fix" these problems can cause the virus to spread, infecting all executable files, leading to data loss or uniform file sizes.
+		- Stealth/Tunneling Virus:
+			- Stealth viruses evade antivirus detection by altering service call interrupts and replacing system requests with their own code. They provide false information to conceal their presence, hiding modifications and taking control of system functions. For example, they can hide file size changes or temporarily relocate a copy of themselves to another drive, replacing the infected file with an uninfected one.
+			- These viruses also reside in memory and control system functions that read files or sectors. When a program requests modified information, the virus provides false data to the requesting program. Rootkits, often carriers of stealth viruses, are installed by Trojans and allow the virus to hide and persist undetected.
+			- Virus Removal:
+				- Always perform a cold boot (boot from a write-protected USB).
+				- Avoid using DOS commands like FDISK to fix the virus.
+				- Use antivirus software for detection and removal.
+		- Encryption Virus:
+			- Encryption viruses, or cryptolocker viruses, infiltrate systems via freeware, shareware, torrents, fake ads, email spam, and more. These viruses consist of an encrypted copy and a decryption module, with the decryption module remaining constant while the encryption uses different keys.
+			- When the virus is injected into the system, the decryption module executes first, decrypting the virus body, which then replicates or becomes resident on the machine. Each infected file is encrypted with a unique key using XOR with a randomized key. These viruses block access to the system or limit functionality, using encryption to evade detection by virus scanners. While virus scanners can't detect the encrypted virus via signatures, they can identify the decryption module.
+		- Sparse Infector Virus:
+			- Sparse infector viruses spread infection by minimizing their chance of detection. These viruses infect infrequently, only under specific conditions or when file sizes fall within a certain range.
+			- The sparse infector virus operates in two ways:
+				- It replicates occasionally (e.g., every tenth program executed or on a specific day of the week).
+				- It selects files to infect based on set conditions (e.g., infecting files under 128 KB in size).
+			- For example, an attacker may send a sparse infector virus to a target machine, setting it to execute on the 15th day of every month. This tactic reduces the likelihood of detection by antivirus software, allowing the virus to infect the system successfully.
+		- Polymorphic Virus:
+			- Polymorphic viruses encrypt their code and use a decryption module to decode it during infection. To avoid detection, these viruses modify their code each time they replicate by altering both the encryption module and the instruction sequence. Random number generators drive this process.
+			- A polymorphic virus consists of three components: the encrypted virus code, the decryptor routine, and the mutation engine. The decryptor routine decrypts the virus code after gaining control of the system, while the mutation engine generates random decryption routines that change with each infection.
+			- When a program infected with a polymorphic virus is executed, the decryptor takes control, decrypting the virus code and mutation engine. The virus then replicates in RAM and generates new, randomized decryption routines for further infections. This encryption and mutation process makes polymorphic viruses difficult to detect, as no two infections appear the same to antivirus software.
+		- Metamorphic Virus:
+			- Metamorphic viruses are designed to completely rewrite themselves each time they infect a new executable file. These sophisticated viruses use metamorphic engines to reprogram their code, translating it into a temporary variant before converting it back to the original code. This technique maintains the original algorithm while avoiding detection by antivirus software through pattern recognition. Metamorphic viruses are more advanced and effective than polymorphic viruses.
+			- The transformation of virus bodies depends on the technique employed, with methods for metamorphosing viruses:
+				- Disassembler
+				- Expander
+				- Permutator
+				- Assembler
+			- Virus bodies are transformed through the following steps:
+				- Inserts dead code
+				- Reshapes expressions
+				- Reorders instructions
+				- Modifies variable names
+				- Encrypts program code
+				- Modifies program control structure
+		- Overwriting File or Cavity Virus:
+			- Some programs contain empty spaces. Cavity viruses, also known as space fillers, overwrite part of the host file with a constant value (usually nulls) without increasing the file size, thus preserving its functionality. By maintaining a constant file size during infection, the virus can evade detection. Cavity viruses are rarely encountered due to the limited availability of suitable hosts and the complexity of their code.
+			- A new design for Windows files, called the Portable Executable (PE) format, improves program loading speeds. However, it creates a gap in the file during execution, which cavity viruses can exploit to insert themselves.
+		- Companion Virus/Camouflage Virus:
+			- The companion virus stores itself with the same filename as the target program file. It infects the computer when the file is executed and modifies the hard disk data. Companion viruses use DOS to run COM files before EXE files. The virus installs an identical COM file and infects EXE files.
+			- Here’s how it works: Suppose a companion virus is running on the PC and decides to infect a file. It looks around and finds a file called notepad.exe. It then creates a file called notepad.com, which contains the virus. The virus typically places this file in the same directory as the .exe file, although it can also place it in any directory on the DOS path. When typing "notepad" and pressing Enter, DOS executes notepad.com instead of notepad.exe (DOS executes COM files first, followed by EXE, then BAT files with the same root name if they are in the same directory).
+			- The virus runs, potentially infecting more files, before finally loading and executing notepad.exe. The user is likely to fail to notice any issues. A companion virus can be easily detected by the presence of the extra COM file in the system.
+		- Shell Virus:
+			- The shell virus code forms a shell around the target host program’s code, making itself the original program and treating the host code as a subroutine. Nearly all boot sector viruses are shell viruses.
+		- File Extension Virus:
+			- File extension viruses alter the extensions of files. The .TXT extension is typically safe, as it indicates a plain text file. However, with extensions hidden, a file named BAD.TXT.VBS would appear as BAD.TXT. If one forgot that extensions were turned off, one might mistakenly think it’s a text file and open it. In reality, it is an executable Visual Basic Script virus file that could cause severe damage.
+			- The guidelines to secure files against virus infections:
+				- Turn off "Hide file extensions" in Windows (Go to Control Panel -> Appearance and Personalization -> Show hidden files and folders -> View tab -> Uncheck "Hide extensions for known file types").
+				- Scan all files on the system using reliable antivirus software, as this may take a considerable amount of time.
+		- FAT Virus:
+			- A FAT virus targets the File Allocation Table (FAT), a system used in Microsoft and other computer systems to access stored information. By attacking the FAT, the virus can cause severe damage. It may embed itself in files, trigger when the FAT accesses them, or directly attack the FAT. These viruses often overwrite files or directories, leading to permanent data loss.
+			- A powerful FAT virus can render a computer unusable, requiring reformatting. It destroys the index, making file location impossible, and can spread by corrupting files as the FAT accesses them. Symptoms include missing or inaccessible files and changes to the FAT architecture, such as a shift from FAT32 to FAT12.
+		- Logic Bomb Virus:
+			- A logic bomb is a virus triggered by a specific event, such as launching an application or reaching a particular date/time, using logic to execute the trigger.
+			- When a logic bomb is programmed to activate on a specific date, it is known as a time bomb. Time bombs are typically set to trigger on significant dates.
+			- For example, cybercriminals may use spyware to secretly install a keylogger on a computer. The keylogger captures keystrokes, including usernames and passwords. The logic bomb is set to activate when visiting a site that requires login credentials, like a banking site or social network. Once triggered, the logic bomb executes the keylogger, captures credentials, and sends them to a remote attacker.
+		- Web Scripting Virus:
+			- A web scripting virus is a type of security vulnerability that breaches web browser security through a website, allowing attackers to inject client-side scripts into web pages. This can bypass access controls and steal information from the browser. Web scripting viruses typically target sites with large user bases, such as social networking, user review, and email sites, and can spread faster than other types of viruses. A common example is DDoS, which can send spam, damage data, and defraud users.
+			- There are two types of web scripting viruses: non-persistent and persistent. Non-persistent viruses attack without knowledge, while persistent viruses steal cookies and hijack sessions, enabling attackers to impersonate and cause significant damage.
+			- Prevention : To prevent these viruses and exploits, safely validate untrusted HTML inputs, enforce cookie security, disable scripts, and use antivirus programs with real-time protection for web browsers. Avoid unknown websites and use World of Trust to verify site safety. Signs of a web scripting virus include redirected searches, changes to the homepage or background, slow performance, and random program closures. Modern browsers offer add-ons like Adblock Plus to block scripts.
+		- Email Virus:
+			- An email virus is malicious code sent as an email attachment that, when activated, can damage files, steal data, or spread by emailing itself to contacts. These viruses can create pop-ups, crash systems, or steal personal information. They may appear as emails from unknown senders, have nonsensical subject lines, or be disguised to look like messages from trusted sources.
+			- To avoid email virus attacks, avoid opening attachments unless the sender and content are verified. Use antivirus software to scan attachments before opening.
+		- Armored Virus:
+			- Armored viruses are designed to evade detection by confusing or deceiving antivirus systems, making it difficult to identify the source of the infection. These viruses mislead antivirus programs by masking their true location, often appearing to be elsewhere while residing on the system itself.
+			- The following basic techniques are employed by armored viruses:
+				- Anti-disassembly : This technique uses specially crafted code or data to generate incorrect program listings in disassembly analysis tools.
+				- Anti-debugging : These techniques ensure the program is not running under a debugger, slowing reverse engineering without fully preventing it.
+				- Anti-heuristics : These methods modify machine code to resist heuristic analysis, protecting the program from programmer and debugger intervention.
+				- Anti-emulation : These techniques fingerprint the emulated system environment to avoid dynamic analysis and protect intellectual property from emulation-assisted reverse engineering.
+		- Add-on Virus:
+			- Add-on viruses either append their code to the host code without altering it or relocate the host code to insert their own code at the beginning.
+		- Intrusive Virus:
+			- Intrusive viruses overwrite the host code, either partially or entirely, with their own code.
+		- Direct Action or Transient Virus:
+			- Direct action or transient viruses transfer control from the host code to the virus code in memory. These viruses select target programs to modify and corrupt them. Their lifespan depends on the lifespan of their host, as they execute only when the attached program runs and terminate when the program ends. During execution, the virus may spread to other programs. These viruses are called transient or direct because they operate for a short period and directly access the disk to search for programs to infect.	
+		- Terminate and Stay Resident Virus (TSR):
+			- A terminate-and-stay-resident (TSR) virus remains in the target machine’s memory throughout the entire session, even after the host program has executed and terminated. By staying in memory, the TSR virus retains some control over system processes. Typically, it incorporates interrupt vectors into its code, redirecting execution to the virus when an interrupt occurs. To completely remove a TSR virus from the system, a reboot is required, as it leaves no trace in memory after the system restarts.
+			- The following steps are used by TSR viruses to infect files:
+				- Gain control of the system.
+				- Allocate a portion of memory for their code.
+				- Transfer and activate themselves in the allocated memory.
+				- Hook the code execution flow to their own code.
+				- Replicate and infect files.
+	- Infect Systems Using Virus:
+		- Step 1: Create a virus using tools such as JPS Virus Maker, Virus Maker, or Virus-Builder. These tools enable customization and crafting of a virus into a single executable file. The behavior of the virus depends on the options provided by the virus maker tool.
+		- Step 2: Once the virus is created, it can be packed using a binder or virus packager tool.
+		- Step 3: Send it to the victim's machine via email, chat, a mapped network drive, or another method that appears legitimate to the victim.
+		- Step 4: When the victim opens and executes the received file, which appears legitimate, the target system becomes infected.
+	- Virus Maker Tools: JPS Virus Maker, TeraBIT Virus Maker, Batch Virus Generator
+	- Propagating and Deploying Virus:
+		- Virus Hoaxes:
+			- Techniques such as virus hoaxes and fake antivirus software are commonly used by attackers to introduce viruses into victims' systems. Virus hoaxes can be nearly as damaging as real viruses, causing significant loss of productivity and bandwidth as naive users react to them and forward them to others. Due to the fear viruses often create, they have become a frequent subject of hoaxes. Virus hoaxes are false alarms that claim to report nonexistent viruses.
+			- The following are key features of virus hoaxes:
+				- These warning messages, which spread quickly, claim that a specific email should not be opened, as doing so would damage the system.
+				- In some cases, these warning messages themselves contain virus attachments.
+			- Verify the identity of the person posting the warning and check for technical details in virus-related messages. Cross-check information from suspicious newsgroups or unfamiliar sources. If the message comes from a government body, ensure it references the relevant federal regulation. These steps help ensure the information's reliability.
+			- Google Critical Security Alert Scam:
+				- Google Critical Security Alert is a service provided by Google to notify users of any activity related to their accounts, such as logging in, changing passwords, or updating personal information. Attackers create fake alert emails to deceive victims, claiming these activities have occurred. When users view the fake alert and click the link provided, they can become infected.
+				- The example shows a hoax email with the subject "New device signed in to." If the victim overlooks the email's source and clicks the "Check activity" button, they fall into the trap.
+			- Additional Virus Hoaxes: WhatsApp Seismic Waves Card, McAfee Virus Pop-Up Scam, McAfee Scam - Sinister Email
+		- Fake Antivirus:
+			- Fake antivirus software is a type of internet fraud that mimics legitimate antivirus programs. It often appears in banner ads, pop-ups, email links, and search results. These programs encourage users to install them, perform updates, or remove viruses, but once clicked, they redirect users to a page prompting payment details.-
+			- Once installed, fake antivirus software can steal sensitive information, corrupt files, and spread malware. Recently, fake antivirus apps have become widespread in the mobile space, with two-thirds of antivirus apps in the Android Play Store identified as fake, according to AV-Comparatives research.
+			- Antivirus 10 : Antivirus 10 is fake antivirus software that pretends to be a legitimate antivirus suite. It is distributed as a potentially unwanted program (PUP) alongside regular software applications. Antivirus 10 initially imitates a system scan and displays fake threats found on the system. It generates fake system warnings, firewall alerts, unwanted redirects to malicious websites, and antivirus pop-ups, urging users to purchase the full version.
+			- Additional Fake Antivirus Programs: AVLab Internet Security, Smart Security, PC Analyzer Tool, Live Protection Suite
+- Ransomware
+	- Ransomware is a type of malware that restricts access to a computer system's files and folders, demanding an online ransom payment from the victim to the malware creator(s) in exchange for removing the restrictions. Ransomware may encrypt files on the system's hard drive or simply lock the system and display messages designed to trick the user into paying the ransom.
+	- In a web browser, a text file or webpage displays the ransomware's demands. The messages often appear to be from companies or law enforcement personnel, falsely claiming that the victim's system is being used for illegal purposes or contains illegal content (e.g., pornographic videos, pirated software). Alternatively, the message may be a fake Microsoft product activation notice, falsely claiming that the installed Office software is counterfeit and requires reactivation. These messages aim to trick victims into paying money to undo the restrictions imposed on their systems. Ransomware exploits victims' fear, trust, surprise, and embarrassment to coerce them into paying the ransom.
+	- Mallox Ransomware:
+		- Mallox is a ransomware strain targeting Microsoft Windows systems, first identified in June 2021. It infects networks with vulnerable MS-SQL servers and spreads through emails, software cracking tools, and downloads from untrusted sites. Mallox encrypts files on the infected system, appending the “.mallox” extension (e.g., "sample.txt" becomes "sample.txt.mallox"). Some variants use extensions like “.malox,” “.malloxx,” or “.maloxx.” It also creates a ransom note, “RECOVERY INFORMATION.txt,” with instructions for contacting the attacker. Victims are directed to the Mallox ransomware TOR website via the Tor Browser to pay the ransom.
+	- STOP/Djvu Ransomware :
+		- The STOP/DJVU ransomware, first identified in February 2018, has since evolved into over 600 variants. It earned the "Djvu" nickname by adding the .djvu extension, a legitimate file format used by AT&T. This variant uses RSA encryption and multiple layers of obfuscation, hindering analysis. Primarily targeting Windows systems, STOP/DJVU downloads additional programs to encrypt files, with variants using extensions like .looy, .vook, .kool, and others. After encryption, a "_readme.txt" file appears with ransom instructions. It spreads mainly through spam emails with malicious attachments and fake file types on torrent sites.
+	- Additional Ransomware: ESXiArgs, Qilin, Akira, Royal, NoEscape, CatB, Dodge Ransomware, Rhysida, BianLian, BlackCat
+	- Ransomware Families: Mallox, Phobos, Xorist, LockBit Black, DarkSide RaaS, Conti, Cerber, Thanos, RansomEXX, NETWALKER, QNAPCrypt, Maze
+	- Infect Systems Using Ransomware:
+		- Step 1: Create ransomware using tools such as Chaos Ransomware Builder v4.
+		- Step 2: Transfer the ransomware to the victim’s machine using various techniques, such as attaching it to an email or through physical means, such as a hard drive or USB drive, making it appear legitimate.
+		- Step 3: When the victim downloads and opens the malicious file, the ransomware infects the system by encrypting system files based on the number of files and the encryption algorithm.
+		- Step 4: After the infection, a window appears instructing the victim to pay a ransom to decrypt the files.
+- Computer Worms
+	- Computer worms are malicious programs that independently replicate, execute, and spread across network connections, consuming available computing resources without human interaction.
+	- Worms are a subtype of viruses. A worm does not require a host to replicate; however, in some cases, the worm's payload may infect the host machine as well. Attackers use worm payloads to install backdoors on infected computers, turning them into zombies and creating a botnet. These botnets can then be used to perform further cyberattacks.
+	- Computer Worms: SSH-Snake, Raspberry Robin, P2PInfect
+	- Infect Systems Using Worm:
+		- Step 1: Create a worm using tools such as Internet Worm Maker Thing or Batch Worm Generator. Write the code with specific features designed to exploit vulnerabilities in system software or network protocols.
+		- Step 2: Deploy the worm via phishing emails, malicious websites, network shares, or infected USB drives. The worm is attached to a file or link that appears legitimate to users. Use specific packers and crypters, such as BitCrypter or H-Crypt, to encrypt the worm and evade detection by security solutions.
+		- Step 3: Once the user clicks on the phishing link or downloads a file from a malicious website/USB, the worm infects the system by executing its payload, typically using exploit code and an automated script to execute upon download.
+		- Step 4: After infection, the worm scans for other vulnerable devices on the network without human intervention. It uses various methods, such as scanning for open ports or known vulnerabilities, to identify targets.
+		- Step 5: The worm copies itself to identified vulnerable devices, propagating its infection and continuing the cycle.
+		- Step 6: The worm installs backdoors or alters system settings to remain active, continuously stealing and exfiltrating data from the infected devices.
+	- Worm Maker - Internet Worm Maker Thing:
+		- Internet Worm Maker Thing is an open-source tool used to create worms that can infect a victim's drives and files, display messages, disable antivirus software, and more. This tool includes a compiler that can easily convert a batch virus into an executable to evade antivirus software or serve other purposes.
+	- Worm Makers: Batch Worm Generator
