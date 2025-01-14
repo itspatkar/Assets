@@ -1635,3 +1635,56 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 	- Worm Maker - Internet Worm Maker Thing:
 		- Internet Worm Maker Thing is an open-source tool used to create worms that can infect a victim's drives and files, display messages, disable antivirus software, and more. This tool includes a compiler that can easily convert a batch virus into an executable to evade antivirus software or serve other purposes.
 	- Worm Makers: Batch Worm Generator
+- Fileless Malware
+	- Fileless malware, also known as non-malware, compromises legitimate software, applications, and system protocols to carry out malicious activities. It exploits existing vulnerabilities to infiltrate the system and resides in the system’s RAM. This type of malware injects malicious code into active processes such as Microsoft Word, Flash, Adobe PDF Reader, JavaScript, and PowerShell.
+	- Fileless malware does not rely on files and leaves no traces, making it difficult to detect and remove with traditional anti-malware solutions. As a result, this type of malware is highly resistant to computer forensic techniques. It primarily resides in volatile memory locations, such as running processes, the system registry, and service areas.
+	- The primary reasons for using fileless malware:
+		- Stealth : Fileless malware exploits legitimate system tools, making it extremely difficult to detect, block, or prevent such attacks.
+		- Living-off-the-land (LOL): Fileless malware takes advantage of system tools that are already installed by default. This eliminates the need for attackers to create or install custom tools on the target system.
+		- Trustworthiness: The system tools leveraged by fileless malware are frequently used and trusted, leading security tools to incorrectly assume that these tools are running for legitimate purposes.
+		- Persistence without files: Despite not storing files on disk, fileless malware can achieve persistence by inserting malicious code into the registry or scheduling tasks. This allows the malware to remain active even after a system reboot, without leaving behind traditional forensic evidence.
+		- Simplified infection process: Fileless attacks can originate from something as simple as a phishing email leading to a malicious website. The website exploits browser vulnerabilities to execute code directly in memory, streamlining the initial infection vector and bypassing the need to trick users into downloading or executing files.
+		- Increased success rate in targeted attacks: The stealthy nature of fileless malware makes it highly effective in targeted attacks, such as espionage and sophisticated cyber-espionage campaigns. It enables attackers to maintain a low profile while exploring the target environment and moving laterally across the network.
+		- Challenges in forensic analysis and incident response: The transient nature of fileless malware complicates forensic analysis and incident response. With no files to analyze and memory contents often lost upon system reboot, it becomes more difficult for security teams to determine the scope of an attack and develop indicators of compromise (IoCs) for future defenses.
+	- Fileless Propagation Techniques used by Attackers:
+		- Phishing emails: Used to deliver malicious links or attachments that execute fileless attacks in memory.
+		- Exploitation of legitimate applications: Leveraging trusted applications like Microsoft Word and JavaScript to execute malicious code.
+		- Native applications: Utilizing built-in tools such as PowerShell and Windows Management Instrumentation (WMI) to execute attacks.
+		- Infection through lateral movement: Spreading malware across the network by exploiting infected systems.
+		- Malicious websites: Creating fraudulent websites that exploit browser or plugin vulnerabilities to execute malicious code in memory.
+		- Registry manipulation: Modifying the Windows registry to bypass User Account Control (UAC), application whitelisting, or other running processes to maintain persistence.
+		- Memory code injection: Injecting code directly into memory to evade standard security measures, including local shellcode injection, remote thread injection, and process hollowing.
+		- Script-based injection: Using scripts, such as PowerShell or JavaScript, to execute malicious activities without leaving file traces.
+		- Reflective DLL injection: Loading dynamic link libraries (DLLs) directly into memory without writing them to disk.
+		- Exploiting non-malicious files: Leveraging seemingly harmless files, such as PDFs or Windows shortcut files (.lnk), to initiate attacks.
+	- Taxonomy of Fileless Malware Threats:
+		- Fileless malware can be categorized based on its point of entry, which refers to how it gains access to the target system. It can infiltrate the system through exploits, compromised hardware, or the normal execution of applications or scripts.
+		- According to the above categorization, fileless malware threats can be classified into three types based on the amount of evidence they leave on the victim’s machine:
+			- Type 1: No File Activity Performed
+				- This type of malware never writes files to disk. For example, malicious packets may exploit a vulnerability to install a backdoor in kernel memory, or malware may be embedded in the device’s firmware. Since anti-malware solutions cannot scan firmware, these threats are difficult to detect and prevent.
+			- Type 2: Indirect File Activity
+				- This type of malware achieves a fileless presence on the target machine through the use of files. For example, an attacker may inject a malicious PowerShell command into the WMI repository to configure a filter that executes periodically.
+			- Type 3: Required Files to Operate
+				- This type of malware requires files to operate but does not execute attacks directly from them. For example, an attacker may exploit a document with an embedded macro, Java/Flash file, or EXE file to inject a malicious payload into the target host, then maintain persistence without relying on any files.
+		- Classification of fileless malware threats based on their point of entry:
+			- Exploits : Exploits can be either file-based or network-based. File-based malware targets system executables, Flash, Java, documents, etc., to run shellcode that injects a malicious payload into memory. This type of malware uses files to gain initial access to the target machine. Network-based malware, on the other hand, exploits vulnerabilities in network communication protocols, such as SMB, to deliver malicious payloads.
+			- Hardware : Device-based malware infects firmware on network cards and hard disks to deliver a malicious payload. CPU-based malware exploits firmware used for management operations to execute malicious code within the CPU. USB-based malware rewrites USB firmware with malicious code that directly interacts with the operating system and installs a malicious payload on the target machine. Similarly, fileless malware can exploit BIOS-based firmware or conduct hypervisor-based attacks that target virtual machines.
+			- Execution and Injection : This malware can be file-based, macro-based, script-based, or disk-based. File-based malware exploits executables, DLLs, LNK files, etc., to inject a malicious payload into memory or running processes. Macro-based malware tricks victims into clicking malicious links that execute payloads via macros. Script-based malware is used once an attacker gains a foothold, injecting payloads by running scripts on the command prompt. Disk-based malware rewrites the boot record with malicious code to gain access and install the payload.
+	- Fileless Malware Works:
+		- Point of Entry:
+			- Memory Exploits: Fileless malware uses various techniques to inject and execute itself in the process memory of legitimate system processes. It exploits the memory and privileges of whitelisted system tools, such as Windows Management Instrumentation (WMI), PowerShell, Command.exe, PsExec, etc.
+			- Malicious Websites:
+				- Fileless threats can originate from exploit-hosting websites that appear legitimate. Upon visiting, the exploit kit scans for vulnerabilities like outdated Flash or Java plugins. If successful, it uses native tools like PowerShell to download and execute the payload directly in memory, without writing files to disk.
+				- Fileless malware can also exploit script-based programs, such as PowerShell, macros, JavaScript, and VBScript. These scripts may inject code or connect to malicious sites to download additional binaries or scripts, delivering the actual payload.
+			- Phishing Emails/Malicious Documents: Attackers may embed malicious macros, such as VBScript or JavaScript, in Microsoft Office documents (Word, PowerPoint, Excel) or PDFs and use social engineering techniques to trick users into enabling the macros. While the attack begins with a document or file, it becomes a fileless threat once the malicious script executes from memory using whitelisted tools like PowerShell.
+		- Code Execution:
+			- Code Injection: Fileless threats employ techniques like process hollowing and reflective DLL injection to load shellcode directly into memory without writing any files to disk.
+			- Script-based Injection: Fileless malware often arrives as an email attachment. When opened, the embedded script runs in memory, invoking whitelisted applications like PowerShell, mshta.exe, JavaScript, WScript, or VBScript to connect to malicious websites and download additional scripts for payload delivery. Since these operations occur entirely in memory, traditional anti-malware solutions struggle to detect them.
+		- Persistence:
+			- Fileless malware is typically non-persistent, as it resides in memory and is removed upon system restart. However, attackers can achieve persistence by storing malicious scripts in built-in Windows tools like the registry, WMI, or Task Scheduler, enabling them to execute even after a reboot.
+			- Windows Registry: Attackers can store malicious scripts in Windows AutoStart registry keys, ensuring they are loaded and executed every time the system restarts.
+			- Windows Management Instrumentation (WMI): Fileless malware exploits WMI, a tool commonly used for automating system administration tasks, to achieve and maintain persistence. Attackers store malicious scripts in WMI repositories, which are periodically triggered through WMI bindings.
+			- Windows Task Scheduler: Attackers can use the Task Scheduler to configure malicious scripts to execute automatically at specified intervals.
+		- Achieving Objectives:
+			- By maintaining persistence, attackers can bypass security solutions and accomplish various objectives, including data exfiltration, credential theft, reconnaissance, and cyber espionage on target systems and networks.
+	- Launching Fileless Malware:
