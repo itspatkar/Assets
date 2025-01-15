@@ -1854,7 +1854,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- .data: Holds the program's global data, accessible by the system from anywhere.
 						- .rsrc: Contains resources used by the executable, such as icons, images, menus, and strings, and provides support for multiple languages.
 					- PE Extraction Tools:
-						- PE Explorer : PE Explorer allows you to open, view, and edit various 32-bit Windows executable file types (also called PE files), including common types like EXE, DLL, and ActiveX Controls, as well as less familiar types such as SCR (Screensavers), CPL (Control Panel Applets), SYS, MSSTYLES, BPL, DPL, etc.
+						- PE Explorer : PE Explorer allow to open, view, and edit various 32-bit Windows executable file types (also called PE files), including common types like EXE, DLL, and ActiveX Controls, as well as less familiar types such as SCR (Screensavers), CPL (Control Panel Applets), SYS, MSSTYLES, BPL, DPL, etc.
 						- Portable Executable Scanner (pescan) (tzworks.net)
 						- Resource Hacker (www.angusj.com)
 				- Identifying File Dependencies:
@@ -1884,7 +1884,25 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Radare2 (rada.re)
 						- OllyDbg (www.ollydbg.de)
 						- WinDbg (www.windbg.org)
-				- Analyzing ELF Executable Files
+				- Analyzing ELF Executable Files:
+					- ELF (Executable and Linkable Format) is a generic executable file format used in Linux. It consists of three main components: an ELF header, sections, and segments, each playing an independent role in the loading and execution of ELF executables. Static analysis of an ELF file involves examining the file without running or installing it. This process includes accessing the binary code and extracting valuable artifacts from the program. The results of the analysis help determine whether the file is malicious.
+					- If the ELF file is identified as malicious, the information extracted during static analysis may be insufficient to fully understand the behavior and purpose of the malware, necessitating further dynamic analysis in a secure or isolated environment.
+					- Static Analysis of ELF Files Using readelf:
+						- The readelf tool displays information about one or more ELF object files. Options control what information is displayed. The tool supports both 32-bit and 64-bit ELF files. Security professionals can use readelf to extract static artifacts from an ELF executable.
+						- Identifying Symbols in ELF Executables:
+							- Extracting symbols is the process of retrieving data types such as functions and variables used in the source code. These symbols provide insight into the functions and variables implemented by the developers, helping to understand the code's functionality.
+							- Extract Symbols from ELF Executable: readelf -s <malware_sample>
+						- Identifying Program Headers in ELF Executables:
+							- The program headers in an ELF executable reveal the memory layout of the binary code. They help determine whether the ELF executable file is properly packed. To view this information, the readelf tool can be used with the -l option, followed by the ELF executable file name.
+							- Retrieve ELF Program Headers: readelf -l <malware_sample>
+						- Identifying ELF File Headers:
+							- The ELF executable file header contains general information, such as the binary's entry point, program headers, and table locations. This data helps determine the file's architecture and the machine for which it is designed to run.
+							- Retrieve Information Contained in ELF File Header: readelf --file-header <malware_sample>
+						- Extracting Strings from ELF Executable Files:
+							- String extraction involves collecting vital information from a suspected ELF executable file. Strings such as symbols, section names, and function names reveal the purpose of the binary code. Linux includes a default command called strings, which extracts these strings and saves them in a .txt file.
+							- Extract Strings from ELF Executable File: strings malware_sample > str.txt
+						- Analyzing String Reuse Using Intezer:
+							- Intezer is a malware analysis platform that scans files, URLs, endpoints, and memory dumps. It extracts strings from uploaded malware samples and identifies whether those strings are used in other files. By analyzing unknown malware that is difficult to trace, it reduces the effort required by malware analysts.
 				- Analyzing Mach-O executable Files
 				- Analyzing Malicious MS Office Documents
 				- Analyzing Suspicious PDF Documents
