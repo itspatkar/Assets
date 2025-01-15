@@ -2,7 +2,7 @@ Web Application Firewall (WAF)
 
     Purpose: Protects web applications from attacks like SQL injection, cross-site scripting (XSS), and more.
     Features:
-        Filters HTTP/HTTPS traffic.
+        Filters HTTP/(.
         Enforces application-specific security rules.
 
 
@@ -66,3 +66,12 @@ open=setup.exe
 icon=setup.exe
 
 Attackers can use AI-based malware to perform various activities such as data infiltration, data theft, espionage, resource exploitation and disrupt the entire environment. Popular variants of AI-based malware include BlackMamba, WormGPT, FraudGPT, Stuxnet, DeepLocker, and Mylobott. 
+
+
+
+
+
+ 
+
+
+Disassembling and Debugging Tools

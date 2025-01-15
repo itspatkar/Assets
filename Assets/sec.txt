@@ -1805,17 +1805,89 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- However, some malware can perform malicious activities without needing installation. Therefore, investigators should always conduct static analysis in a controlled environment.
 			- This method uses various tools and techniques to quickly determine whether a file is malicious. Analyzing the binary code provides insights into the malware’s functionality, network signatures, exploit packaging techniques, dependencies, etc.
 			- Static Malware Analysis Techniques:
-				- File fingerprinting
-				- Local and online malware scanning
-				- Performing strings search
-				- Identifying packing/obfuscation methods
-				- Finding the portable executables (PE) information
-				- Identifying file dependencies
-				- Malware disassembly
+				- File Fingerprinting:
+					- File fingerprinting is the process of computing the hash value of a given binary code and using it to uniquely identify malware or periodically verify whether any changes have been made to the binary code during analysis. Tools like HashMyFiles can be used to calculate various hash values for the malware file.
+					- File Fingerprinting Tools:
+						- HashMyFiles : HashMyFiles generates hash values (MD5, SHA-1, CRC32, SHA-256, SHA-512, SHA-384) and provides file details such as full path, creation/modification dates, file size, attributes, version, and extension for searching and comparison.
+						- Hashing (github.com)
+						- SHA-256 hash calculator (xorbin.com)
+						- Hash Tool (www.digitalvolcano.co.uk)
+						- MD5sums (www.pc-tools.net)
+						- tools4noobs - Online hash calculator (www.tools4noobs.com)
+				- Local and Online Malware Scanning:
+					- Scan the binary code locally using well-known and up-to-date antivirus software. If the code under analysis is a component of a well-known malware, it may already have been discovered and documented by antivirus vendors. Alternatively, the code can be uploaded to online services like VirusTotal for scanning by a wide range of antivirus engines.
+					- Local and Online Malware Scanning Tools:
+						- VirusTotal : VirusTotal is a free service that analyzes suspicious files and URLs, detecting threats like viruses, worms, and Trojans. It provides a report showing the number of engines marking the file as malicious, the malware name, and additional details such as the target machine, compilation timestamp, file type, compatible processors, entry point, PE sections, DLLs, PE resources, hash values, accessed IP addresses, program code, and established connections.
+						- Any.Run (app.any.run) 
+						- Hybrid Analysis (www.hybrid-analysis.com) 
+						- JOESandbox Cloud (www.joesandbox.com) 
+						- Jotti (virusscan.jotti.org) 
+						- Valkyrie Sandbox (valkyrie.comodo.com) 
+						- Online Scanner (www.fortiguard.com)
+				- Performing Strings Search:
+					- Software programs often include strings that serve as commands for specific functions, such as printing output or conveying information to users. In some cases, these strings can reveal malicious intent, such as accessing internal memory or cookie data, which may be embedded in the compiled binary code. Analyzing embedded strings in an executable file can expose readable text, including status updates, error messages, or other clues about the program's basic functionality.
+					- In malware analysis, searching for malicious strings can help identify the harmful actions a program might perform. For example, if a program accesses a URL, the corresponding URL string will often be stored within it. It is essential to remain vigilant when examining strings and to also search for embedded and encrypted strings to detect suspicious files. Tools like BinText can be used to extract these embedded strings from executable files, aiding in the analysis process.
+					- String Searching Tools:
+						- BinText Source : BinText is a text extractor that can retrieve text from any file. It can detect plain ASCII text, Unicode text, and resource strings, providing valuable information for each item.
+						- FLOSS (github.com)
+						- Strings (learn.microsoft.com)
+						- Free EXE DLL Resource Extract (resourceextract.com)
+						- FileSeek (www.fileseek.ca)
+						- Hex Workshop (www.hexworkshop.com)
+				- Identifying Packing/Obfuscation Methods:
+					- Attackers often use packers to compress, encrypt, or modify a malware executable to avoid detection. Obfuscation techniques also conceal the execution of the program. When the user runs a packed program, it first executes a small wrapper to decompress the packed file and then runs the unpacked file.
+					- This process complicates reverse engineering, making it more difficult to uncover the program's logic and metadata through static analysis. Tools like PEiD can help detect common packers, cryptors, and compilers used for PE executable files. Identifying the packer simplifies the task of choosing the appropriate tool for unpacking the code.
+					- Packaging/ Obfuscation Tools:
+						- PEiD : PEiD is a free tool that provides details about Windows executable files. It can identify signatures associated with over 600 different packers and compilers. The tool also displays information about the type of packer used to pack the program, along with additional details such as the entry point, file offset, EP section, and the subsystem used for packing.
+						- Detect It Easy (DIE) : DIE is an application used to determine the types of files. In addition to Windows, it is available for Linux and macOS. With its open architecture for signatures, users can easily add custom algorithms for detecting or modifying existing signatures. DIE detects a file's compiler, linker, packer, and more using a signature-based detection method.
+						- Macro_ Pack (github.com)
+						- UPX (upx.github.io)
+						- ASPack (www.aspack.com)
+						- VMprotect (vmpsoft.com)
+						- ps2-packer (github.com)
+				- Finding Portable Executables (PE) Information:
+					- The Portable Executable (PE) format is an executable file format used by Windows OS, storing the information required by the system to manage executable code. It contains metadata that helps reveal additional details about the file.
+					- Analyzing the metadata of PE files (the Windows binary in PE format) provides information such as creation and modification times, import and export functions, compilation time, DLLs, linked files, strings, menus, and symbols. The PE format includes a header and sections that store metadata about the file and its code mapping within the OS. Tools like PE Explorer can be used to extract this information.
+					- The PE file format contains the following sections:
+						- .text: Contains the instructions and program code executed by the CPU.
+						- .rdata: Stores import and export information, along with other read-only data used by the program.
+						- .data: Holds the program's global data, accessible by the system from anywhere.
+						- .rsrc: Contains resources used by the executable, such as icons, images, menus, and strings, and provides support for multiple languages.
+					- PE Extraction Tools:
+						- PE Explorer : PE Explorer allows you to open, view, and edit various 32-bit Windows executable file types (also called PE files), including common types like EXE, DLL, and ActiveX Controls, as well as less familiar types such as SCR (Screensavers), CPL (Control Panel Applets), SYS, MSSTYLES, BPL, DPL, etc.
+						- Portable Executable Scanner (pescan) (tzworks.net)
+						- Resource Hacker (www.angusj.com)
+				- Identifying File Dependencies:
+					- Software programs rely on various inbuilt libraries of the operating system to perform specific actions. To function correctly, programs often need to interact with internal system files. File dependencies provide information about the system files required by the program, including the process of registration and their locations on the machine. Identifying these dependencies is crucial, as they contain information about the runtime requirements of an application and may offer insights into potential malware within the file.
+					- File dependencies include linked libraries, functions, and function calls. By checking the dynamically linked list in a malware executable, it is possible to determine the libraries and functions the program uses, which can help estimate its behavior. Understanding the various DLLs used to load and run the program is essential. Tools like DependencyWalker can help identify the dependencies within an executable file.
+					- List of Standard dlls:
+						- Kernel32.dll : Core functionality, such as access and manipulation of memory, files, and hardware
+						- Advapi32.dll : Provides access to advanced core Windows components such as the Service Manager and Registry
+						- User32.dll : User-interface components, such as buttons, scrollbars, and components for controlling and responding to user actions
+						- Gdi32.dll : Functions for displaying and manipulating graphics
+						- Ntdll.dll : Interface to the Windows kernel
+						- WSock32.dll / Ws2_32.dll : Networking DLLs that help to connect to a network or perform network-related tasks
+						- Wininet.dll : Supports higher-level networking functions
+					- Dependency Extraction Tools:
+						- Dependency Walker : Dependency Walker lists all the dependent modules of an executable file and builds hierarchical tree diagrams. It also records all the functions exported by each module and tracks their calls. Additionally, it detects common application issues such as missing or invalid modules, import/export mismatches, circular dependency errors, mismatched machine modules, and module initialization failures.
+						- Dependency-check (jeremylong.github.io)
+						- Dependency Finder (depfind.sourceforge.io)
+						- PE Explorer Dependency Scanner (www.pe-explorer.com)
+						- RetireJS (retirejs.github.io)
+				- Malware Disassembly:
+					- Static analysis also involves dismantling an executable into its binary format to study its functionalities and features. Disassembling the binary code allows for the analysis of the assembly code instructions. This process helps identify the programming language used for the malware, as well as the APIs that reveal its functionality.
+					- Tools like IDA can reverse machine code into assembly language. Once the assembly code is reconstructed, the program's logic can be inspected to assess its threat potential. This analysis is often performed using debugging tools such as OllyDbg.
+					- Disassembling and Debugging Tools:
+						- IDA Pro : IDA Pro is a multi-platform disassembler and debugger used to explore binary programs when the source code is not available, creating maps of their execution. It displays instructions in the same way a processor executes them, using a symbolic representation called assembly language. This makes it easier to identify harmful or malicious processes.
+						- Ghidra (ghidra-sre.org)
+						- x64dbg (x64dbg.com)
+						- Radare2 (rada.re)
+						- OllyDbg (www.ollydbg.de)
+						- WinDbg (www.windbg.org)
 				- Analyzing ELF Executable Files
-				- Analyzing Mach-O executable files
-				- Analyzing malicious MS Office documents
-				- Analyzing suspicious PDF documents
+				- Analyzing Mach-O executable Files
+				- Analyzing Malicious MS Office Documents
+				- Analyzing Suspicious PDF Documents
 		- Dynamic Analysis:
 	- Supporting Tools for Malware Analysis:
 		- Virtual Machines Tools:
