@@ -69,19 +69,3 @@ Attackers can use AI-based malware to perform various activities such as data in
 
 --------------------------------------------------
 
- The Windows registry stores OS and program configuration details, such as settings and options
-• Malware uses the registry to perform harmful activity continuously by storing entries into the registry and ensuring that the malicious program runs automatically whenever the computer or device boots
-• Use registry entry monitoring tools such as jv16 PowerTools to examine the changes made by the malware to the system’s registry
-
-
-Registry Monitoring Tools 
-• Reg Organizer (https://www.chemtable.com) 
-• Registry Viewer (https://www.exterro.com) 
-• RegScanner (https://www.nirsoft.net) 
-• Registry Monitoring Tool (https://www.solarwinds.com) 
-• regshot (https://sourceforge.net) 
-
-jv16 PowerTools
-It is a registry cleaner used to find registry errors and unneeded registry junk. It also helps in detecting registry entries created by the malware
-
-

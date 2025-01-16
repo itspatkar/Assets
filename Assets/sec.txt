@@ -1996,7 +1996,40 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 								- ESET SysInspector (www.eset.com)
 								- System Explorer (systemexplorer.net)
 						- Windows Registry Monitoring:
+							- The Windows registry stores operating system and program configuration details, including settings and options. If the malware is a program, its functionality may also be stored in the registry. Malware often leverages the registry to persistently perform harmful activities by creating entries that ensure the malicious program runs automatically whenever the computer or device boots.
+							- Windows automatically executes instructions in specific sections of the registry, including:
+								- Run
+								- RunServices
+								- RunOnce
+								- RunServicesOnce
+								- HKEY_CLASSES_ROOT\exefile\shell\open\command ("%1" %*)
+							- Malware often inserts instructions in these sections to carry out malicious activities. A solid understanding of the Windows registry, its structure, and its inner workings is essential for analyzing potential malware. Scanning for suspicious registry entries can aid in detecting malware infections. Tools like RegScanner can be used to examine registry values for any entries that appear suspicious or indicative of a malware infection.
+							- To detect and analyze changes made by malware to the system registry, use registry monitoring tools such as jv16 PowerTools.
+							- Registry Monitoring Tools:
+								- jv16 PowerTools : jv16 PowerTools is a PC system utility software designed to optimize system by removing unnecessary files and data, cleaning the Windows registry, automatically fixing system errors, and improving overall performance. It includes features for scanning and monitoring the registry, which can help detect malicious registry entries created by malware. The "Clean and Speed Up My Computer" feature in the Registry Cleaner is specifically designed to fix registry errors, resolve system issues, and remove registry leftovers, as well as unnecessary files like old log files and temporary files. It serves as a powerful registry cleaner for identifying registry errors and eliminating unneeded registry junk.
+								- Reg Organizer (www.chemtable.com)
+								- Registry Viewer (www.exterro.com)
+								- RegScanner (www.nirsoft.net)
+								- Registry Monitoring Tool (www.solarwinds.com)
+								- regshot (sourceforge.net)
 						- Windows Services Monitoring:
+							- Attackers design malware and other malicious code to install and run on a computer as services. Since most services operate in the background to support processes and applications, malicious services can remain hidden while performing harmful activities without user intervention or input.
+							- Malware often spawns Windows services to enable attackers to remotely control the victim’s machine and execute malicious instructions. To avoid detection, malware may disguise its processes by renaming them to resemble legitimate Windows services. Additionally, malware can use rootkit techniques to manipulate registry keys, such as HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services, to hide its processes and services.
+							- These malicious services often run under privileged accounts, such as the SYSTEM account, granting them greater access than standard user accounts and making them more dangerous than typical malware or executable files. Attackers further conceal their actions by naming malicious services similarly to legitimate Windows services.
+							- To identify and trace malicious services initiated by malware during dynamic analysis, use Windows service monitoring tools like Windows Service Manager (SrvMan). These tools detect service changes and scan for suspicious Windows services.
+							- Windows Service Monitoring Tools:
+								- Windows Service Manager (SrvMan):
+									- SrvMan offers both GUI and command-line modes. It can also run arbitrary Win32 applications as services, automatically closing the main application window when the service is stopped.
+									- SrvMan's command-line interface can be used to perform the following tasks:
+										- Create services
+										- Delete services
+										- Start, stop, or restart services
+										- Install and start a legacy driver with a single command
+								- Netwrix Service Monitor (www.netwrix.com)
+								- AnVir Task Manager (www.anvir.com)
+								- Service+ (www.activeplus.com)
+								- Advanced Windows Service Manager (securityxploded.com)
+								- Process Hacker (processhacker.sourceforge.io)
 						- Startup Programs Monitoring:
 						- Event Logs Monitoring/Analysis:
 						- Installation Monitoring:
