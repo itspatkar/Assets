@@ -1975,22 +1975,40 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Host integrity monitoring is the process of studying changes that occur across a system or machine after a series of actions or incidents. It involves taking snapshots of the system before and after the event using the same tools, then analyzing the changes to evaluate their impact on the system and its properties.
 					- In malware analysis, host integrity monitoring helps to understand the runtime behavior of a malware file, including its activities, propagation techniques, URLs accessed, downloads initiated, and other actions it performs. This process detects changes made to the system's entities, such as files, processes, or configurations, during the analysis.
 					- Host Integrity Monitoring includes the following:
-						- Port Monitoring
-						- Process Monitoring
-						- Windows Registry Monitoring
-						- Windows Services Monitoring
-						- Startup Programs Monitoring
-						- Event Logs Monitoring/Analysis
-						- Installation Monitoring
-						- Files and Folders Monitoring
-						- Device Drivers Monitoring
-						- Network Traffic Monitoring/Analysis
-						- DNS Monitoring/Resolution
-						- API Calls Monitoring
-						- System Calls Monitoring
-						- Scheduled Tasks Monitoring
-						- Browser Activity Monitoring
-	- Supporting Tools for Malware Analysis:
+						- Port Monitoring:
+							- Malware programs compromise the system and open input/output ports to establish connections with remote systems, networks, or servers to carry out various malicious activities. These open ports can also serve as backdoors for other harmful malware or programs. Open ports act as communication channels, allowing malware to connect back to its handlers by opening unused ports on the victim's machine. Scanning for suspicious ports can help identify such malware.
+							- During dynamic analysis, malware activity can be monitored for attempts to access particular ports using port monitoring tools like TCPView or command-line utilities such as netstat. These tools provide details such as the protocol used, local and remote addresses, and the connection's state. Additional information, such as process name, process ID, and remote connection protocol, may also be available. Port monitoring tools should be used to scan for suspicious ports and check for connections to unknown or suspicious IP addresses.
+							- Port Monitoring Tools:
+								- Netstat : It displays active TCP connections, ports on which the computer is listening, Ethernet statistics, the IP routing table, IPv4 statistics (for IP, ICMP, TCP, and UDP protocols), and IPv6 statistics (for IPv6, ICMPv6, TCP over IPv6, and UDP over IPv6 protocols). When used without parameters, netstat displays only active TCP connections.
+								- TCPView : TCPView is a Windows program that provides detailed listings of all TCP and UDP endpoints on the system, including local and remote addresses, as well as the state of TCP connections. It offers a subset of the netstat program that comes with Windows. The TCPView download also includes Tcpvcon, a command-line version with the same functionality. When TCPView is run, it enumerates all active TCP and UDP endpoints, resolving IP addresses to their domain name equivalents.
+								- CurrPorts (www.nirsoft.net)
+								- TCP Port/Telnet Monitoring (www.dotcom-monitor.com)
+								- PRTG's Network Monitor (www.paessler.com)
+								- SolarWinds Open Port Scanner (www.solarwinds.com)
+						- Process Monitoring:
+							- Malware can enter a system through images, music files, videos, and other files downloaded from the Internet. It often disguises itself as legitimate Windows services and hides its processes to avoid detection. Some malware uses Portable Executable (PE) files to inject itself into various processes (such as explorer.exe or web browsers). While these malicious processes are visible, they appear legitimate, allowing them to bypass desktop firewalls. Attackers may use rootkit techniques to conceal malware, making it harder for antivirus software to detect.
+							- Process monitoring is crucial for understanding the processes initiated by malware and the ones it takes over after execution. It is also important to monitor child processes, associated handles, loaded libraries, functions, and the execution flow of boot-time processes to fully define the nature of a file or program. By gathering information on processes running before and after malware execution, and comparing them, analysts can more quickly identify all the processes that malware starts. Using process-monitoring tools such as Process Monitor helps in detecting suspicious processes and speeding up the analysis.
+							- Process Monitoring Tools:
+								- Process Monitor : Process Monitor is a Windows monitoring tool that displays real-time file system, registry, and process/thread activity. It combines the functionality of two legacy Sysinternals utilities, Filemon and Regmon, while adding several enhancements, including advanced and non-destructive filtering, comprehensive event properties (such as session IDs and usernames), reliable process information, full thread stacks with integrated symbol support for each operation, and the ability to log events simultaneously to a file. These unique features make Process Monitor an essential tool in system troubleshooting and malware analysis toolkits.
+								- Process Explorer (learn.microsoft.com)
+								- OpManager (www.manageengine.com)
+								- Monit (mmonit.com)
+								- ESET SysInspector (www.eset.com)
+								- System Explorer (systemexplorer.net)
+						- Windows Registry Monitoring:
+						- Windows Services Monitoring:
+						- Startup Programs Monitoring:
+						- Event Logs Monitoring/Analysis:
+						- Installation Monitoring:
+						- Files and Folders Monitoring:
+						- Device Drivers Monitoring:
+						- Network Traffic Monitoring/Analysis:
+						- DNS Monitoring/Resolution:
+						- API Calls Monitoring:
+						- System Calls Monitoring:
+						- Scheduled Tasks Monitoring:
+						- Browser Activity Monitoring:
+	- Supporting Tools for Malware Analysis::
 		- Virtual Machines Tools:
 			- VirtualBox
 			- VMware Workstation
