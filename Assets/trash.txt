@@ -68,9 +68,3 @@ icon=setup.exe
 Attackers can use AI-based malware to perform various activities such as data infiltration, data theft, espionage, resource exploitation and disrupt the entire environment. Popular variants of AI-based malware include BlackMamba, WormGPT, FraudGPT, Stuxnet, DeepLocker, and Mylobott. 
 
 --------------------------------------------------
-
-• YARA (Yet Another Recursive Acronym) is a powerful tool used for identifying and classifying malware samples
-•
-It works by allowing users to create rules that describe patterns of interest in files, which can include specific strings, binary sequences, or a combination of characteristics that typically appear in malware
-Structure of YARA rules:
-Rule Header: Includes the rule's name and optional tags Metadata: Includes any key-value pairs that provide additional information about the rule String: Defines the strings to search for in the files Condition: Defines the logic that must be met for the rule to match

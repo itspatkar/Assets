@@ -1964,6 +1964,32 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Strings: This section defines the strings to search for in the files. Strings can be text, hexadecimal, or regular expressions.
 						- Condition: This section defines the logic that must be met for the rule to match. It typically involves checking whether one or more of the defined strings are present in the file.
 		- Dynamic Analysis:
+			- In dynamic analysis, malware is executed in a controlled environment to understand its behavior after infection. This type of analysis requires a safe environment, such as virtual machines and sandboxes, to prevent the malware from spreading. The environment should be designed with tools that can capture every action of the malware in detail and provide relevant feedback. Virtual systems are typically used as the foundation for conducting these experiments.
+			- Dynamic analysis is performed to gather valuable information about the malware's activity, such as files and folders created, ports and URLs accessed, functions and libraries called, applications and tools used, information transferred, settings modified, and processes and services started.
+			- The environment for dynamic analysis should be set up in a way that prevents malware from propagating to the production network and ensures that the testing system can be restored to a previous state if anything goes wrong during the test.
+			- Dynamic Analysis Consists of Two Stages:
+				- System Baselining:
+					- Baselining refers to the process of capturing the system's state (taking a snapshot) at the beginning of the malware analysis, which can later be compared with the system's state after executing the malware. The main purpose of system baselining is to identify significant changes from the baseline state, helping to understand the impact the malware has had on the system.
+					- System baselining involves recording details such as the file system, registry, open ports, network activity, and other relevant system information.
+				- Host Integrity Monitoring:
+					- Host integrity monitoring is the process of studying changes that occur across a system or machine after a series of actions or incidents. It involves taking snapshots of the system before and after the event using the same tools, then analyzing the changes to evaluate their impact on the system and its properties.
+					- In malware analysis, host integrity monitoring helps to understand the runtime behavior of a malware file, including its activities, propagation techniques, URLs accessed, downloads initiated, and other actions it performs. This process detects changes made to the system's entities, such as files, processes, or configurations, during the analysis.
+					- Host Integrity Monitoring includes the following:
+						- Port Monitoring
+						- Process Monitoring
+						- Windows Registry Monitoring
+						- Windows Services Monitoring
+						- Startup Programs Monitoring
+						- Event Logs Monitoring/Analysis
+						- Installation Monitoring
+						- Files and Folders Monitoring
+						- Device Drivers Monitoring
+						- Network Traffic Monitoring/Analysis
+						- DNS Monitoring/Resolution
+						- API Calls Monitoring
+						- System Calls Monitoring
+						- Scheduled Tasks Monitoring
+						- Browser Activity Monitoring
 	- Supporting Tools for Malware Analysis:
 		- Virtual Machines Tools:
 			- VirtualBox
