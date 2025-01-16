@@ -1943,6 +1943,26 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Review the source code of all VBA macros to determine if the document contains auto-executable macros, obfuscated strings, or indicators of compromise (IOCs), such as filenames, IP addresses, or URLs. Use the following command:
 						- python3 olevba.py ‘<path_to_suspect_document>
 				- Analyzing Suspicious PDF Documents:
+					- PDF documents are commonly used for both personal and business purposes, making them a frequent target for attackers to hide malicious scripts that execute when the document is opened. When analyzing a suspicious PDF file, it is important to perform scans using various tools to determine if it contains malicious scripts. Extract these scripts to assess their potential impact on the system and network.
+					- To identify potentially malicious elements in PDF files, tools like PDFiD can scan for specific keywords and object types commonly associated with exploits. Additionally, tools such as PDFStreamDumper allow for deeper analysis, including the inspection and extraction of streams and objects within a PDF.
+					- Testing the File with PDFiD to Analyze PDF Keywords:
+						- The tool will display the structure of the file, including its contents, such as the header, objects, and any scripts present.
+						- Test the suspect PDF file with the PDFiD tool to identify any malicious components:
+						- python3 pdfid.py '<path_to_suspect_PDF_file>'
+					- Finding Suspicious Objects with PDFStreamDumper:
+						- Tools like PDFStreamDumper can be used to explore the internal elements of a suspect PDF file, including objects, streams, and embedded obfuscated scripts. After opening the file in PDFStreamDumper, review the objects one by one along with their stream details to identify any malicious components.
+						- The analysis of the fifth object in the infected.pdf file using PDFStreamDumper reveals that it contains a JavaScript header, with its data stream starting in the sixth object. Scanning the sixth object for readable strings, as shown in the screenshot below, indicates the use of the util.printf() function, which can display gathered system data.
+					- Scanning the File for Exploits:
+						- Scan the suspect PDF file for any potential exploits using the PDFStreamDumper tool. To do this, click the Exploits_Scan button in the toolbar. The tool will then compare the file against a set of known PDF exploit signatures and generate the results in a Notepad file.
+				- Analyzing Suspicious Documents Using YARA:
+					- YARA (Yet Another Recursive Acronym) is a powerful tool used to identify and classify malware samples. It allows users to create rules that describe patterns of interest in files, such as specific strings, binary sequences, or combinations of characteristics commonly found in malware. These rules are then used to scan files and detect matches, indicating the presence of malicious content.
+					- Key features of YARA include its ability to perform both string and binary pattern matching, support for complex conditions and Boolean expressions, and the capability to scan files, directories, and even memory. The tool is highly flexible and can be integrated into various security workflows and automation scripts, making it an essential asset for malware analysis and other cybersecurity operations.
+					- Structure of YARA Rules:
+						- A YARA rule is structured with specific sections, including the rule header, metadata, strings, and conditions.
+						- Rule Header: This section includes the rule's name and optional tags.
+						- Metadata: This section is optional and can include key-value pairs that provide additional information about the rule.
+						- Strings: This section defines the strings to search for in the files. Strings can be text, hexadecimal, or regular expressions.
+						- Condition: This section defines the logic that must be met for the rule to match. It typically involves checking whether one or more of the defined strings are present in the file.
 		- Dynamic Analysis:
 	- Supporting Tools for Malware Analysis:
 		- Virtual Machines Tools:
