@@ -1927,6 +1927,21 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 							- Hopper Disassembler is a reverse engineering tool that enables security analysts to disassemble, decompile, and debug application binaries. It analyzes function prologues to extract procedural information, including basic blocks and local variables. By integrating with LLDB or GDB debuggers, Hopper facilitates reverse engineering and dynamic analysis of Mach-O binaries. The tool presents code in various representations for enhanced analysis.
 						- pagestuff
 				- Analyzing Malicious MS Office Documents:
+					- The use of MS Office documents, such as Word documents and PowerPoint presentations, is widespread across organizations. Attackers often exploit these documents to distribute and install malware. When analyzing malware, it is crucial to understand the structure of various MS Office documents and effectively analyze any malicious files.
+					- Oletools is a Python-based suite designed to analyze Microsoft OLE2 files, commonly found in MS Office documents. It enables cybersecurity professionals to extract, parse, and detect malicious content within these files. By analyzing macros, embedded objects, and metadata, Oletools identifies potentially harmful elements, such as hidden scripts or exploit code. This makes it a vital tool for uncovering and mitigating threats from malicious Office documents, frequently used in phishing attacks and malware distribution.
+					- Finding Suspicious Components:
+						- Use the Python-based tool oleid to analyze malicious Office documents and review components that may be classified as suspicious or malicious. The oleid tool is specifically designed for examining OLE files.
+						- Shows that malicious Word document named Infected.docx contains VBA macros: python3 oleid.py ‘<path_to_suspect_document>’
+					- Finding Macro Streams:
+						- The next step is to parse the malicious Office document using oledump to identify streams containing macros.
+						- Identify Streams Containing Macros: python3 oledump.py ‘<path_to_suspect_document>’
+					- Dumping Macro Streams:
+						- Extract the contents of a specific macro stream using oledump:
+						- python3 oledump.py -s <stream number> <path_to_suspect_document>
+					- Identifying Suspicious VBA Keywords:
+						- The olevba tool can be used to view the source code of all VBA macros embedded in a document and identify suspicious VBA keywords and obfuscation techniques commonly used by malware.
+						- Review the source code of all VBA macros to determine if the document contains auto-executable macros, obfuscated strings, or indicators of compromise (IOCs), such as filenames, IP addresses, or URLs. Use the following command:
+						- python3 olevba.py ‘<path_to_suspect_document>
 				- Analyzing Suspicious PDF Documents:
 		- Dynamic Analysis:
 	- Supporting Tools for Malware Analysis:

@@ -66,3 +66,5 @@ open=setup.exe
 icon=setup.exe
 
 Attackers can use AI-based malware to perform various activities such as data infiltration, data theft, espionage, resource exploitation and disrupt the entire environment. Popular variants of AI-based malware include BlackMamba, WormGPT, FraudGPT, Stuxnet, DeepLocker, and Mylobott. 
+
+--------------------------------------------------
