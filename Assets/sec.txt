@@ -2031,6 +2031,39 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 								- Advanced Windows Service Manager (securityxploded.com)
 								- Process Hacker (processhacker.sourceforge.io)
 						- Startup Programs Monitoring:
+							- Malware can modify system settings and add itself to the startup menu, enabling malicious activities each time the system starts. Therefore, it is essential to scan for suspicious startup programs manually or use startup monitoring tools, such as Autoruns for Windows, to detect malware effectively.
+							- Manually Detect Hidden Malware:
+								- Check Startup Program Entries in the Registry:
+									- Startup items, including programs, shortcuts, folders, and drivers, are configured to run automatically when users log into a Windows operating system (e.g., Windows 11). These items can be added by installed programs or drivers, or manually by the user. Programs configured to run at Windows 11 startup can be found in specific registry entries, such as the Windows startup settings, Explorer startup settings, and Internet Explorer (IE) startup settings.
+									- Windows Startup Setting
+									- Explorer Startup Setting
+									- Microsoft Edge Startup Settings
+								- Check Automatically Loaded Device Drivers:
+									- Navigate to C:\Windows\System32\drivers to review the device drivers automatically loaded by the system.
+								- Check boot.ini or BCD (Boot Manager) Entries:
+									- Open Command Prompt with administrative privileges
+									- Type bcdedit and press Enter
+									- This will display all the boot manager entries
+								- Check Windows Services That Start Automatically:
+									- Open the Run dialog by pressing Win + R
+									- Type services.msc and press Enter
+									- In the Services window, sort the services by Startup Type to view the list of services configured to start automatically when the system boots.
+								- Check the Startup Folder:
+									- Startup folders contain applications or shortcuts to applications that are configured to run automatically when the system boots. To check the startup applications in Windows 11, examine the following locations:
+										- C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+										- C:\Users\(User-Name)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+									- Another method to access the startup folders:
+										- Press Windows + R to open the Run dialog box.
+										- Type shell:startup and click OK to navigate directly to the startup folder.
+							- Startup Program Monitoring Tool:
+								- Autoruns for Windows:
+									- This utility can identify the location of any startup monitor, display the programs configured to run during system bootup or login, and show the entries in the order that Windows processes them. Once a program is included in the startup folder, Run, RunOnce, or other registry keys, users can configure Autoruns to display additional locations, such as Explorer shell extensions, toolbars, browser helper objects, Winlogon notifications, and auto-start services.
+									- The Hide Signed Microsoft Entries option in Autoruns helps users focus on third-party auto-start items added to their system. It also provides support for reviewing auto-start entries configured for other user accounts on the system.
+								- WinPatrol (www.bleepingcomputer.com)
+								- Autorun Organizer (www.chemtable.com)
+								- Quick Startup (www.glarysoft.com)
+								- StartEd Pro (www.outertech.com)
+								- Chameleon Startup Manager (www.chameleon-managers.com)
 						- Event Logs Monitoring/Analysis:
 						- Installation Monitoring:
 						- Files and Folders Monitoring:
