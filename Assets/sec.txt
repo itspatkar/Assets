@@ -2065,14 +2065,90 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 								- StartEd Pro (www.outertech.com)
 								- Chameleon Startup Manager (www.chameleon-managers.com)
 						- Event Logs Monitoring/Analysis:
+							- Log analysis involves examining computer-generated records or activities to identify malicious or suspicious events. This process provides detailed information about activities or events, which can reveal possible attacks, such as Trojans or worms in the system. It serves as a vital source of information for identifying security gaps and detecting threats.
+							- Log analysis can uncover zero-day backdoor Trojans or other potential attacks, such as failed authentication or login attempts, by analyzing logs from various components. Logs from security-critical components, including firewall systems, IDS/IPS, web servers, and authentication servers, are particularly valuable. They often contain details such as file types, ports, timestamps, and registry entries.
+							- In Windows, system logs, application logs, access logs, audit logs, and security logs can be analyzed using the Event Viewer under the Windows Logs section. To streamline the process, use log analysis tools like Splunk to identify suspicious logs or events with malicious intent.
+							- Locating System Logs:
+								- System Logs: Start -> Event Viewer -> Windows Logs
+								- System Security Logs: Start -> Event Viewer -> Windows Logs -> Security
+								- Applications and Services Logs: Start -> Event Viewer -> Applications and Services Logs
+							- Log Monitoring/Analysis Tools:
+								- Splunk : It is an SIEM tool that automatically collects event logs from all systems within a network. To enable monitoring, Splunk forwarders must be installed on all systems in the network. These forwarders transfer real-time event logs from the network systems to the central Splunk dashboard.
+								- ManageEngine Event Log Analyzer (www.manageengine.com)
+								- Solarwinds Loggly (www.loggly.com)
+								- Netwrix Event Log Manager (www.netwrix.com)
+								- New Relic (newrelic.com)
 						- Installation Monitoring:
+							- When a system or user installs or uninstalls a software application, traces of the application data may remain on the system. To identify these traces, it is essential to know which folders were modified or created during the installation process, as well as files and folders that were not removed by the uninstallation process.
+							- Installation monitoring is useful for detecting hidden or background installations carried out by malware. Tools such as SysAnalyzer can be used to monitor the installation of malicious executables and help identify suspicious activity.
+							- Installation Monitoring Tools:
+								- Mirekusoft Install Monitor : Mirekusoft Install Monitor automatically tracks what is placed on a system and allows for complete uninstallation. It monitors resources such as files and registry entries created during program installation and provides detailed information about installed software. Additionally, it determines the disk, CPU, and memory consumption of programs and tracks how frequently different programs are used. A program tree is included as a useful feature to show which programs were installed together.
+								- Advanced Uninstaller PRO (www.advanceduninstaller.com)
+								- REVO UNINSTALLER PRO (www.revouninstaller.com)
+								- Comodo Programs Manager (www.comodo.com)
 						- Files and Folders Monitoring:
+							- Malware programs often modify system files and folders after infecting a computer. They may alter these files and folders to store information, making it important to identify and analyze them to uncover any relevant data. These files and folders may also contain hidden program code or malicious strings, which the malware could execute on a specified schedule.
+							- To detect changes in system files and folders, use file and folder integrity checkers such as PA File Sight, Tripwire, and Netwrix Auditor. These tools can also help identify suspicious files and folders, detect Trojans, and monitor system file modifications.
+							- File and Folder Integrity Checking Tools:
+								- PA File Sight : PA File Sight is a protection and auditing tool designed to detect and prevent malicious activities, including ransomware attacks originating from the network. It blocks compromised computers from accessing files on other protected servers and detects users copying files, with an option to block such access. The tool provides real-time alerts, enabling immediate investigation by appropriate staff, and monitors file activities such as deleting, moving, or reading files.
+								- Tripwire File Integrity Monitoring (www.tripwire.com)
+								- Netwrix Auditor (www.netwrix.com)
+								- Verisys Integrity Suite (www.ionxsolutions.com)
+								- CSP File Integrity Checker (www.cspsecurity.com)
+								- NNT Change Tracker (www.newnettechnologies.com)
 						- Device Drivers Monitoring:
+							- Malware can be installed on a system alongside device drivers downloaded from untrusted sources, with attackers using these drivers as a shield to evade detection. To identify suspicious device drivers, driver monitoring tools such as DriverView and Driver Detective can be used to scan and verify their authenticity and ensure they were downloaded from the publisher’s original site (legitimacy).
+							- Windows System Drivers Path: Go to Run -> Type msinfo32 and Enter -> Software Environment -> System Drivers
+							- Device Driver Monitoring Tools:
+								- DriverView : The DriverView utility displays a list of all device drivers currently loaded on the system, along with details such as the driver's load address, description, version, product name, and manufacturer.
+								- Driver Booster (www.iobit.com)
+								- Driver Reviver (www.reviversoft.com)
+								- Driver Easy (www.drivereasy.com)
+								- Driver Fusion (treexy.com)
+								- Driver Genius (www.driver-soft.com)
 						- Network Traffic Monitoring/Analysis:
+							- Network analysis is the process of capturing and carefully examining network traffic to identify malware activity. It helps determine the type of traffic, network packets, or data transmitted across the network. Malware often relies on the network for activities such as propagation, downloading malicious content, transmitting sensitive information, and enabling remote control by attackers. Some malware connects back to its handlers and sends confidential information.
+							- To monitor network traffic directed to malicious remote addresses, use network scanners and packet sniffers. Network monitoring tools such as SolarWinds NetFlow Traffic Analyzer, Capsa Network Analyzer, and Wireshark can be used to capture live network traffic to and from the victim’s system during the execution of suspicious programs. This helps in understanding the malware’s network artifacts, signatures, functions, and other characteristics.
+							- Network Activity Monitoring Tools:
+								- SolarWinds NetFlow Traffic Analyzer : NetFlow Traffic Analyzer collects traffic data, converts it into a usable format, and presents it to the user through a web-based interface for easy monitoring of network traffic. It offers features such as network traffic analysis, bandwidth monitoring, application traffic alerting, performance analysis, CBQoS policy optimization, and the identification of malicious or malformed traffic flows to enhance network performance and security.
+								- Caspa Network Analyzer (www.colasoft.com)
+								- Wireshark (www.wireshark.org)
+								- PRTG Network Monitor (kb.paessler.com)
+								- GFI LanGuard (www.gfi.com)
+								- insightIDR (www.rapid7.com)
 						- DNS Monitoring/Resolution:
+							- DNSChanger is a malicious software capable of altering the system's DNS server settings, giving attackers control over the DNS server used on the victim’s system.
+							- Use DNS monitoring tools such as DNSQuerySniffer and DNSstuff to verify the DNS servers the malware attempts to connect to and identify the type of connection. Attackers can then control the websites the user attempts to access, redirect them to fraudulent sites, or interfere with their online browsing activities.
+							- DNS Monitoring/Resolution Tools:
+								- DNSQuerySniffer : DNSQuerySniffer is a network sniffer utility that displays DNS queries sent from system. For each DNS query, it shows the following information: host name, port number, query ID, request type (A, AAAA, NS, MX, etc.), request time, response time, duration, response code, number of records, and the content of the returned DNS records.
+								- DNSstuff (www.dnsstuff.com)
+								- UltraDNS (vercara.com)
+								- Sonar Lite Web App (constellix.com)
+								- DNSCheck.co (www.dnscheck.co)
+								- Dotcom-Monitor (www.dotcom-monitor.com)
 						- API Calls Monitoring:
+							- Application Programming Interfaces (APIs) are components of the Windows OS that allow external applications to access OS information, such as file systems, threads, errors, the registry, kernel, buttons, mouse pointers, network services, web, and the Internet. Malware programs exploit these APIs to access OS information and damage the system.
+							- To understand how malware interacts with the OS and the activities it performs, it's important to gather and analyze the APIs related to the malware. Tools such as API Monitor can be used to monitor API calls made by applications.
+							- API Call Monitoring Tools:
+								- API Monitor : API Monitor is a software tool that allows to monitor and display Win32 API calls made by applications. It can trace any exported API and provides a wide range of information, including the function name, call sequence, input and output parameters, function return values, and more. It is a valuable tool for developers to understand how Win32 applications operate and to learn their behaviors.
+								- API Call Monitoring (apicontext.com)
+								- Runscope (www.runscope.com)
+								- AlertSite (smartbear.com)
 						- System Calls Monitoring:
+							- Syscalls (system calls) serve as an interface between an application and the kernel, providing a way for processes activated by the OS to request specific resources. System calls are generated by an application or program when it requires access to system resources. These calls are typically triggered during context switching between user mode and kernel mode.
+							- Monitoring system calls is essential for detecting malware and understanding its behavior. It can also help identify the type of damage caused by malware to the system. Tools such as strace can be used to view or trace system calls in a Linux environment.
+							- System Calls Monitoring Tools:
+								- strace : The strace tool intercepts and records the system calls made by a process, as well as the signals received by the process. It prints the name of each system call, its arguments, and its return value to standard error or to a file specified using the -o option.
+									- Attaching the strace tool to the active process: strace -p <ProcessID>
+									- View only system calls accessing a specific or given path: strace -P <given_path> ls /var/empty
+									- Count time, calls, and errors for each system call: strace -c ls > /dev/null
+									- Extract system calls and save the output in text file: strace -o out.txt ./<sample file>
 						- Scheduled Tasks Monitoring:
+							- Malware can use time-based or action-based triggers as scheduled tasks. Attackers design malware to remain inactive until a specific date or event triggers its execution using Windows Task Scheduler. To detect such malware, it’s essential to check for scheduled tasks, such as logic bombs, which can execute under different triggers. Command-line tools like schtasks and Windows Task Scheduler can display a list of all system scheduled tasks. Additionally, ADAudit Plus can help detect suspicious scheduled tasks.
+							- Windows Scheduled Task Monitoring Tools:
+								- ADAudit Plus (www.manageengine.com)
+								- CronitorCLI (cronitor.io)
+								- SolarWinds Windows Scheduled Task Monitor (www.solarwinds.com)
 						- Browser Activity Monitoring:
 	- Supporting Tools for Malware Analysis::
 		- Virtual Machines Tools:
