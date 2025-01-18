@@ -41,6 +41,7 @@ Web Application Firewall (WAF)
 Network Access Control (NAC)
 Endpoint Detection and Response (EDR)
 Next-Generation Firewall (NGFW)
+File Integrity Monitoring (FIM)
 
 --------------------------------------------------
 
@@ -66,5 +67,7 @@ open=setup.exe
 icon=setup.exe
 
 Attackers can use AI-based malware to perform various activities such as data infiltration, data theft, espionage, resource exploitation and disrupt the entire environment. Popular variants of AI-based malware include BlackMamba, WormGPT, FraudGPT, Stuxnet, DeepLocker, and Mylobott. 
+
+Disable macros and use only digitally signed, trusted macros.
 
 --------------------------------------------------

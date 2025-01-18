@@ -2212,5 +2212,69 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Analysts can then examine the collected data to gain insights into the malware's behavior, attack techniques, capabilities, and intent, which can help in developing effective countermeasures to mitigate the threats posed by the malware.
 		- However, malware code instrumentation is a challenging process due to the complexity of analyzing and modifying binary code, and attackers may employ anti-analysis techniques to evade detection and thwart instrumentation efforts. Tools like Frida and HawkEye can be used to perform code instrumentation.
 		- Code Instrumentation Tools:
-			- HawkEye : HawkEye is a dynamic malware instrumentation tool based on the frida.re framework. It allows you to hook common functions to log malware activities and output the results in a well-organized webpage report. HawkEye can run in two modes: spawning a malware sample in a new process by providing its path, or hooking a running process using its PID.
+			- HawkEye : HawkEye is a dynamic malware instrumentation tool based on the frida.re framework. It allows to hook common functions to log malware activities and output the results in a well-organized webpage report. HawkEye can run in two modes: spawning a malware sample in a new process by providing its path, or hooking a running process using its PID.
 			- Frida
+	- Trojan Analysis: Coyote:
+		- Attackers have developed “Coyote,” a sophisticated banking Trojan with advanced evasion techniques to bypass security and steal financial data from internet banking users. Unlike traditional malware using Delphi or MSI installers, Coyote employs the Squirrel installer for Windows applications and uses Nim as its cross-platform loader.
+	- Virus Analysis: GhostLocker 2.0:
+		- GhostLocker 2.0, developed by the GhostSec hacktivist group, is an updated ransomware written in Golang with advanced tools for tracking payouts and campaigns. It spreads via compromised software supply chains and vulnerable RDP configurations, enabling lateral movement and data encryption. GhostLocker 2.0 uses double extortion, demanding ransoms while threatening to leak sensitive data. In November 2023, GhostSec announced this update and hinted at developing GhostLocker V3.
+	- Fileless Malware Analysis: PyLoose:
+		- PyLoose is a Python-based fileless malware designed to target cloud workloads for long-term cryptomining. It injects malicious Python code and uses memfd to load an XMRig miner directly into system memory, making it undetectable by antivirus solutions. The malware was first identified in mid-2023 using the Wiz Runtime Sensor.
+	- AI-based Malware Analysis: FakeGPT:
+		- In February 2023, a sophisticated malware campaign called FakeGPT was discovered, exploiting ChatGPT’s popularity to distribute a malicious Chrome extension named "Quick Access to Chat GPT." The extension provided access to a fake ChatGPT platform designed to compromise Facebook accounts. It installed a covert Facebook app backdoor, granting attackers super-admin rights to high-profile business accounts. This allowed them to build a botnet and a malicious advertising mechanism, using victims’ resources to spread paid ads in a self-replicating, wormlike manner.
+	- Anti-Malware Software:
+		- Anti-Trojan Software:
+			- Avast One (www.avast.com)
+			- Bitdefender Total Security (www.bitdefender.com)
+			- Panda Dome (www.pandasecurity.com)
+			- NortonTM 360 (us.norton.com)
+			- G DATA Total Security (www.gdatasoftware.com)
+			- TotalAV (www.totalav.com)
+			- Surfshark Antivirus (surfshark.com)
+			- NordVPN Threat Protection (nordvpn.com)
+			- Sophos (www.sophos.com)
+			- Trend Micro Maximum Security (www.trendmicro.com)
+			- Malwarebytes (www.malwarebytes.com) 
+			- Avira (www.avira.com)
+			- Emsisoft Anti-Malware Home (www.emsisoft.com) 
+			- HitmanPro (www.hitmanpro.com)
+		- Antivirus Software:
+			- McAfee® Total Protection (www.mcafee.com)
+			- Kaspersky Anti-Virus (www.kaspersky.com)
+			- Norton AntiVirus Plus (us.norton.com)
+			- Bitdefender Antivirus Plus (www.bitdefender.com)
+			- Avast Premier Antivirus (www.avast.com)
+			- Intego (www.intego.com)
+			- TotalAV Antivirus Pro (www.totalav.com)
+			- Webroot SecureAnywhere Antivirus (www.webroot.com)
+			- ESET Internet Security (www.eset.com)
+			- Avira Antivirus Pro (www.avira.com)
+			- Panda Total protection (www.pandasecurity.com)
+		- Fileless Malware Detection Tools:
+			- Cynet Next-Gen Antivirus (NGAV) (www.cynet.com)
+			- Apex One (www.trendmicro.com)
+			- Cortex XDR (www.paloaltonetworks.com)
+			- ManageEngine Next-Gen Antivirus (NGAV) (www.manageengine.com)
+			- Kaspersky Total Security (www.kaspersky.com)
+			- Xcitium Advanced (EPP+EDR) (www.xcitium.com)
+		- Fileless Malware Protection Tools:
+			- Microsoft Defender for Endpoint (www.microsoft.com)
+			- FortiEDR (www.fortinet.com)
+			- Kaspersky End Point Security for Business (www.kaspersky.com)
+			- Sophos Intercept X (www.sophos.com)
+			- CylanceENDPOINTTM (www.blackberry.com)
+			- IBM Security QRadar EDR (www.ibm.com)
+		- AI-Powered Malware Detection and Analysis Tools:
+			- Malware.AI (www.malware.ai)
+			- Sophos Intercept X (www.sophos.com)
+			- Elastic Security (www.elastic.co)
+			- Bitdefender GravityZone (www.bitdefender.com)
+			- Vipre Endpoint Security (vipre.com)
+			- Webroot SecureAnywhere (www.webroot.com)
+		- Endpoint Detection and Response (EDR/XDR) Tools:
+			- CrowdStrike Falcon® Insight XDR (www.crowdstrike.com)
+			- Microsoft Defender for Endpoint (www.microsoft.com)
+			- Tanium Endpoint Management (www.tanium.com)
+			- Cisco XDR (www.cisco.com)
+			- Trellix Endpoint Security (ENS) (www.trellix.com)
+			- VMware Carbon Black (www.vmware.com)
