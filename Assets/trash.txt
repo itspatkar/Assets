@@ -70,4 +70,7 @@ Attackers can use AI-based malware to perform various activities such as data in
 
 Disable macros and use only digitally signed, trusted macros.
 
+njRAT
+JPS Virus Maker
+
 --------------------------------------------------
