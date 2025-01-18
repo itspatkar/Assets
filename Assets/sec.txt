@@ -2150,7 +2150,16 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 								- CronitorCLI (cronitor.io)
 								- SolarWinds Windows Scheduled Task Monitor (www.solarwinds.com)
 						- Browser Activity Monitoring:
-	- Supporting Tools for Malware Analysis::
+							- Malware can exploit browsers to connect with C&C servers, malicious websites, and other DNS servers to download harmful files. It is essential to inspect suspicious browsing activities to identify malicious traffic and system vulnerabilities. Since browsers typically use ports 80, 443, or 8080 to connect to C&C servers, checking for any unusual activity occurring through these ports is crucial.
+							- Additionally, web caches can be examined, web access at firewalls monitored, and web traffic filtered by URL and malicious strings found in web logs. Network monitoring tools such as Wireshark and Colasoft Portable Network Analyzer can be used to analyze browsing activities.
+							- Monitoring Tools:
+								- Wireshark : Wireshark is a widely used network protocol analyzer capable of capturing real-time browser traffic passing through a network. It sorts the captured traffic using filters, enabling analysts to identify malicious communication with C&C servers and malicious IP addresses.
+								- Colasoft Portable Network Analyzer (www.colasoft.com)
+								- OmniPeek (www.liveaction.com)
+								- Observer Analyzer (www.viavisolutions.com)
+								- PRTG Network Monitor (www.paessler.com)
+								- NetFlow Analyzer (www.manageengine.com)
+	- Supporting Tools for Malware Analysis:
 		- Virtual Machines Tools:
 			- VirtualBox
 			- VMware Workstation
@@ -2172,3 +2181,36 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Macrium Reflect Server
 			- R-Drive Image
 			- O&O DiskImage 18 Server
+	- Virus Detection Methods:
+		- Scanning:
+			- A virus scanner is essential software for detecting and preventing viruses. Without a scanner, the system is highly susceptible to virus attacks. Antivirus tools should run continuously and be updated regularly to keep the scan engine and virus signature database current.
+			- Virus writers often modify existing viruses to create new variants, aiming to evade detection. To counter this, modern scanners use advanced techniques like code analysis, examining various parts of executable files to enhance virus recognition.
+		- Integrity checking:
+			- Integrity-checking products function by reading and recording integrated data to develop a signature or baseline for files and system sectors. However, a limitation of basic integrity checkers is their inability to distinguish between file corruption caused by bugs and that caused by viruses. To address this, some integrity checkers combine antivirus techniques with integrity checking, creating a hybrid tool.
+		- Interception:
+			- The primary objective of an interceptor is to deflect logic bombs and Trojans. It achieves this by monitoring and controlling requests to the operating system for network access or actions that could threaten programs. When such a request is detected, the interceptor prompts the user to decide whether to allow it.
+			- However, there is no reliable method to intercept direct branches to low-level code or direct input/output instructions executed by a virus. Additionally, some viruses are capable of disabling the monitoring program itself, further complicating detection and prevention.
+		- Code Emulation:
+			- Code emulation allows antivirus software to use a virtual machine to simulate CPU and memory activities. In this process, the virus code is executed within the virtual machine rather than the actual processor. This approach is particularly effective against encrypted and polymorphic viruses. Over time, the decrypted virus body is exposed and can be detected by the scanner. Code emulation can also identify metamorphic viruses, whether they use single or multiple encryption layers.
+			- However, a drawback of code emulation is its inefficiency when dealing with viruses that have very long decryption loops, as the process becomes significantly slower.
+		- Heuristic Analysis:
+			- This method aids in detecting new or unknown viruses, often variants of an existing virus family. Heuristic analysis can be either static or dynamic. In static analysis, the antivirus tool examines the file format and code structure to assess whether the code is malicious. In dynamic analysis, the antivirus tool emulates the execution of suspicious code to determine its behavior.
+			- A major drawback of heuristic analysis is its susceptibility to false positives, where benign code is incorrectly identified as malicious. This can lead users to mistrust positive test results, potentially dismissing a real threat as a false alarm.
+	- Malware Code Emulation:
+		- Malware code emulation is a technique used to perform static or dynamic malware analysis on suspected malware samples. It creates an isolated virtual environment to execute a malware sample by mimicking its hardware and software requirements without interrupting its actual functionality. This method allows for thorough examination without compromising the host system.
+		- Unlike sandboxing, which uses an isolated environment with a real operating system to run malware samples for behavior analysis, code emulation temporarily simulates components such as processors, memory, hard disks, network devices, operating systems, antivirus software, and system registries. This approach enables greater control over the malware's execution and provides more flexibility in the analysis.
+		- Malware emulators offer the ability to set breakpoints to pause execution, allowing the malware to bypass anti-malware techniques. They can emulate and run malware on multiple operating systems, requiring fewer resources than sandboxes. Additionally, emulators can operate on any host system, making them a versatile tool for malware analysis.
+		- Malware Code Emulator Tools:
+			- SCEMU : SCEMU is an x86 32/64-bit emulator designed to securely emulate malware. It includes all necessary dependencies and contains no unsafe blocks. SCEMU can execute up to 2,000,000 instructions per second, utilizing the iced-x86 Rust Disassembler Library. Additionally, it supports known Metasploit payloads, such as shellcodes and encoders. SCEMU visualizes the output in a colorized format and allows users to pause execution at any point to explore the system's state.
+			- Unicorn
+			- QEMU
+			- Windows_Malware_Emulator
+			- Speakeasy
+			- Kaspersky Lab Emulator
+	- Malware Code Instrumentation:
+		- Malware code instrumentation is a technique used in cybersecurity to analyze and understand the behavior of malicious software by injecting additional code or instructions at specific points within the binary code. These instructions enable the capture of critical events or actions performed by malware during execution, such as logging function calls, tracking memory allocations, monitoring network communications, and recording file system interactions in real time.
+		- Analysts can then examine the collected data to gain insights into the malware's behavior, attack techniques, capabilities, and intent, which can help in developing effective countermeasures to mitigate the threats posed by the malware.
+		- However, malware code instrumentation is a challenging process due to the complexity of analyzing and modifying binary code, and attackers may employ anti-analysis techniques to evade detection and thwart instrumentation efforts. Tools like Frida and HawkEye can be used to perform code instrumentation.
+		- Code Instrumentation Tools:
+			- HawkEye : HawkEye is a dynamic malware instrumentation tool based on the frida.re framework. It allows you to hook common functions to log malware activities and output the results in a well-organized webpage report. HawkEye can run in two modes: spawning a malware sample in a new process by providing its path, or hooking a running process using its PID.
+			- Frida
