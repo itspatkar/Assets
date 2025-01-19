@@ -12,3 +12,5 @@ File Integrity Monitoring (FIM)
 Data Execution Prevention (DEP)
 
 --------------------------------------------------
+
+Once a switch turns into a hub, it starts broadcasting all packets it receives to all the computers in the network. By default, promiscuous mode is turned off in network machines; therefore, the NICs accept only those packets that are addressed to a user’s machine and discard the packets sent to the other machines. A sniffer turns the NIC of a system to promiscuous mode so that it listens to all the data transmitted on its segment. A sniffer can constantly monitor all the network traffic to a computer through the NIC by decoding the information encapsulated in the data packets. Attackers configure the NIC in their machines to run in promiscuous mode so that the card starts accepting all the packets. Thus, the attacker can view all the packets that are being transmitted in the network.
