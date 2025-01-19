@@ -1763,6 +1763,9 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- AI-Generated Videos: Malware Spread Through YouTube:
 			- Attackers use AI-generated video tools like Synthesia and D-ID to create human-like personas and exploit trust. They masquerade as software tutorial creators, offering cracked versions of popular software such as Photoshop, Autodesk 3ds Max, and AutoCAD.
 			- In the video description, they include links to "free" versions of the software, which, when clicked, install stealer malware such as Vidar, RedLine, or Raccoon. These malware variants infiltrate the system and extract sensitive data, including usernames and passwords. The stolen data is analyzed using AI on the C2 server for further attacks.
+		- Stuxnet
+		- DeepLocker
+		- Mylobott
 - Malware Analysis
 	- Malware analysis is the process of reverse engineering a specific piece of malware to determine its origin, functionality, and potential impact.
 	- Analyzing malware on production devices connected to production networks is highly dangerous. Therefore, malware samples should always be analyzed in a controlled testing environment with an isolated network to prevent potential harm.
@@ -1837,9 +1840,9 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Identifying Packing/Obfuscation Methods:
 					- Attackers often use packers to compress, encrypt, or modify a malware executable to avoid detection. Obfuscation techniques also conceal the execution of the program. When the user runs a packed program, it first executes a small wrapper to decompress the packed file and then runs the unpacked file.
 					- This process complicates reverse engineering, making it more difficult to uncover the program's logic and metadata through static analysis. Tools like PEiD can help detect common packers, cryptors, and compilers used for PE executable files. Identifying the packer simplifies the task of choosing the appropriate tool for unpacking the code.
-					- Packaging/ Obfuscation Tools:
-						- PEiD : PEiD is a free tool that provides details about Windows executable files. It can identify signatures associated with over 600 different packers and compilers. The tool also displays information about the type of packer used to pack the program, along with additional details such as the entry point, file offset, EP section, and the subsystem used for packing.
+					- Packaging/Obfuscation Tools:
 						- Detect It Easy (DIE) : DIE is an application used to determine the types of files. In addition to Windows, it is available for Linux and macOS. With its open architecture for signatures, users can easily add custom algorithms for detecting or modifying existing signatures. DIE detects a file's compiler, linker, packer, and more using a signature-based detection method.
+						- PEiD : PEiD is a free tool that provides details about Windows executable files. It can identify signatures associated with over 600 different packers and compilers. The tool also displays information about the type of packer used to pack the program, along with additional details such as the entry point, file offset, EP section, and the subsystem used for packing.
 						- Macro_ Pack (github.com)
 						- UPX (upx.github.io)
 						- ASPack (www.aspack.com)

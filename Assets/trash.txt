@@ -1,38 +1,5 @@
-Web Application Firewall (WAF)
-
-    Purpose: Protects web applications from attacks like SQL injection, cross-site scripting (XSS), and more.
-    Features:
-        Filters HTTP/(.
-        Enforces application-specific security rules.
-
-
-Network Access Control (NAC)
-
-    Purpose: Ensures that only authorized and compliant devices can access the network.
-    Features:
-        Device authentication before granting access.
-        Quarantines non-compliant devices for remediation.
 
 Security Information and Event Management (SIEM)
-
-    Purpose: Centralized logging and analysis of security events across the organization.
-    Features:
-        Aggregates logs from multiple devices.
-        Correlates events to identify potential security incidents.
-        Provides dashboards for monitoring and alerting.
-
-
-Next-Generation Firewall (NGFW)
-
-    Purpose: An advanced version of a firewall with integrated features.
-    Features:
-        Deep packet inspection.
-        Application awareness and control.
-        Integrated IDS/IPS functionality.
-
-
---------------------------------------------------
-
 Firewall (Network Firewall and Host-based Firewall)
 Intrusion Detection System (IDS)
 Intrusion Prevention System (IPS)
@@ -42,35 +9,6 @@ Network Access Control (NAC)
 Endpoint Detection and Response (EDR)
 Next-Generation Firewall (NGFW)
 File Integrity Monitoring (FIM)
-
---------------------------------------------------
-
-# Win
-Disable Fast Startup
-Disable Startup Services
-WinR + mrt
-
-Endpoint Detection and Response (EDR) and Security Information and Event Management (SIEM)
-Data execution prevention (DEP) and address space layout randomization (ASLR)
-
-Internet relay chat (IRC)
-Instant messages
-
-Keyscan_dump command to sniff user keystrokes on the target machine. This command dumps all the sniffed keystrokes and displays them on the console.
-Use the keyscan_stop command to stop sniffing keystrokes.
-Attackers can also automate the entire sniffing and data dumping process using the Metasploit lockout_keylogger exploit.
-Use user and entity behavior analytics (UEBA) tools to detect user behavior anomalies indicating attempts to cover tracks.
-
-Autorun.inf file:
-[autorun]
-open=setup.exe
-icon=setup.exe
-
-Attackers can use AI-based malware to perform various activities such as data infiltration, data theft, espionage, resource exploitation and disrupt the entire environment. Popular variants of AI-based malware include BlackMamba, WormGPT, FraudGPT, Stuxnet, DeepLocker, and Mylobott. 
-
-Disable macros and use only digitally signed, trusted macros.
-
-njRAT
-JPS Virus Maker
+Data Execution Prevention (DEP)
 
 --------------------------------------------------
