@@ -2354,3 +2354,28 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 	- SPAN Port:
 		- The Switched Port Analyzer (SPAN) is a Cisco switch feature, also known as "port mirroring," that monitors network traffic on one or more switch ports. A SPAN port is configured to receive copies of every packet that passes through the switch. It helps analyze and debug data, identify errors, and investigate unauthorized network access.
 		- When port mirroring is enabled, the network switch sends a copy of packets from the source port(s) to the destination port, where a network analyzer examines them. While there can be multiple source ports, there must be only one destination port. Source ports are those from which network packets are monitored and mirrored. This feature allows simultaneous monitoring of traffic from multiple ports, such as all ports in a specific virtual local area network (VLAN).
+	- Wiretapping:
+		- Wiretapping, or telephone tapping, refers to the monitoring of telephone or Internet conversations by a third party with covert intentions. To carry out wiretapping, the attacker first selects a target individual or network host on the network to wiretap and then connects a listening device (hardware, software, or a combination of both) to the circuit carrying information between the target phones or hosts.
+		- Typically, this involves intercepting a small portion of the electrical signals transmitted through telephone wires to eavesdrop on the conversation. This allows attackers to monitor, intercept, access, and record information flowing through the communication system.
+		- Wiretapping without a warrant or the consent of the individuals involved in the conversation is a criminal offense in most countries and is punishable according to the laws of the respective country.
+		- Wiretapping Methods:
+			- Official tapping of telephone lines
+			- Unofficial tapping of telephone lines
+			- Recording conversations
+			- Direct line wiretap
+			- Radio wiretap
+		- Types of Wiretapping:
+			- Active Wiretapping: In hacking terminology, active wiretapping is a Man-in-the-Middle (MITM) attack. It allows an attacker to monitor and record the traffic or data flow in a communication system. The attacker can also alter or inject data into the communication or traffic.
+			- Passive Wiretapping: Passive wiretapping refers to snooping or eavesdropping. It allows an attacker to monitor and record traffic. By observing the recorded traffic, the attacker can search for passwords or other sensitive information.
+	- Lawful Interception:
+		- Lawful interception (LI) refers to the legal interception of data communication between two endpoints for surveillance purposes on traditional telecommunications, VoIP, data, and multiservice networks. LI involves obtaining data from a communication network for analysis or use as evidence.
+		- It is commonly used in activities such as infrastructure management, protection, and addressing cybersecurity-related issues. In this process, the network operator or service provider grants legal access to private network data, enabling the monitoring of private communications, such as telephone calls and email messages. These operations are conducted by law enforcement agencies (LEAs).
+		- This type of interception is necessary solely for monitoring messages exchanged over suspicious channels where users are engaged in illegal activities. Countries worldwide are making efforts to standardize procedures for such interception.
+		- The solution comprises a tap/access switch and multiple systems for reconstructing intercepted data. The tap/access switch collects traffic from the Internet service provider (ISP) network, sorts it by IP domain, and forwards it to E-Detective (ED) systems. These systems decode and reconstruct the intercepted traffic into its original format. This process is supported by protocols such as POP3, IMAP, SMTP, P2P, FTP, and Telnet. A Centralized Management Server (CMS) oversees all ED systems.
+	- Sniffing Techniques:
+		- MAC Flooding:
+			- Attackers use the MAC flooding technique to force a switch to function as a hub, allowing them to easily sniff the traffic.
+			- MAC Address/CAM Table:
+				- Each switch has a fixed-size dynamic Content Addressable Memory (CAM) table, which stores information such as MAC addresses associated with physical ports and their corresponding virtual LAN (VLAN) parameters.
+				- When a machine sends data to another machine within a network, the data passes through the switch. The switch searches its CAM table for the destination MAC address (found in the Ethernet frame). Once the MAC address is located, the switch forwards the data to the machine through the port associated with that MAC address.
+				- This method of data transfer in a switched network is more secure than in a hub-based network, where the hub forwards/broadcasts incoming traffic to all machines in the network.

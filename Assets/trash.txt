@@ -12,3 +12,13 @@ File Integrity Monitoring (FIM)
 Data Execution Prevention (DEP)
 
 --------------------------------------------------
+
+CAM table is limited in size. If the CAM table is flooded with more MAC addresses than it can hold, the switch will turn into a hub.
+Once the CAM table fills up on a switch, additional ARP request traffic floods every port on the switch. Thereafter, the switch broadcasts all incoming traffic to all ports.
+
+
+A CAM table’s limited size renders it susceptible to attacks from MAC flooding, which bombards the switch with fake source MAC addresses until the CAM table is full.
+
+This causes the switch to reset to its learning mode, causing the switch to broadcast on every port similar to a hub, thereby enabling the attacker to monitor the frames sent from the victim host to another host without any CAM table entry. This attack also fills the CAM tables of adjacent switches. 
+
+The CAM table does this to ensure the delivery of data to the intended host. Attackers exploit this vulnerability in the CAM table to sniff network data. An attacker who can connect to the shared switch of the Ethernet segment can easily sniff network data.
