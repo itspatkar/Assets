@@ -2376,6 +2376,39 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- MAC Flooding:
 			- Attackers use the MAC flooding technique to force a switch to function as a hub, allowing them to easily sniff the traffic.
 			- MAC Address/CAM Table:
-				- Each switch has a fixed-size dynamic Content Addressable Memory (CAM) table, which stores information such as MAC addresses associated with physical ports and their corresponding virtual LAN (VLAN) parameters.
-				- When a machine sends data to another machine within a network, the data passes through the switch. The switch searches its CAM table for the destination MAC address (found in the Ethernet frame). Once the MAC address is located, the switch forwards the data to the machine through the port associated with that MAC address.
+				- In a switched network, an Ethernet switch has a fixed-size dynamic Content Addressable Memory (CAM) table, which stores information such as MAC addresses associated with physical ports and their corresponding virtual LAN (VLAN) parameters.
+				- A switch acts as an intermediate device between one or more computers in a network. When a machine sends data to another machine within a network, the data passes through the switch. The switch searches its CAM table for the destination MAC address (found in the Ethernet frame). Once the MAC address is located, the switch forwards the data to the machine through the port associated with that MAC address.
 				- This method of data transfer in a switched network is more secure than in a hub-based network, where the hub forwards/broadcasts incoming traffic to all machines in the network.
+			- The CAM table on a switch has a limited size. When the CAM table reaches its capacity, any additional ARP request traffic is flooded to all ports on the switch. If the CAM table is flooded with more MAC addresses than it can store, the switch turns into a hub. This enables an attacker to intercept frames sent between a victim host and another host without a corresponding CAM table entry. Once this occurs, the switch broadcasts all incoming traffic to every port, similar to a hub, to ensure data delivery to the intended recipient. This attack also fills the CAM tables of adjacent switches.
+			- Attackers exploit this vulnerability through MAC flooding, which involves sending a large volume of fake source MAC address and IP pairs to the switch, causing the CAM table to overflow. An attacker with access to the shared switch within the Ethernet segment can then easily intercept and analyze network traffic.
+			- No issues occur until the MAC address table is full. However, once the MAC address table is full, any further requests may force the switch to enter fail-open mode. In the fail-open mode, the switch begins functioning like a hub. The attacker can then configure the machine’s NIC to promiscuous mode to enable the machine to accept and process all the traffic. This enables the attackers to sniff the traffic easily and steal sensitive information.
+			- Switch MAC Flooding with macof:
+				- macof is a Unix/Linux tool included in the dsniff collection. It floods the local network with random MAC and IP addresses, causing certain switches to fail and enter repeating (fail-open) mode, which facilitates traffic sniffing. The tool overwhelms the switch’s CAM tables by sending forged MAC entries at a rate of approximately 131,000 per minute. Once the MAC table is full and the switch switches to hub-like behavior, an attacker can intercept and monitor the broadcasted data.
+				- macof -i eth0 -n 10
+			- Switch Port Stealing:
+				- The switch port stealing sniffing technique uses MAC flooding to intercept packets. The attacker floods the switch with forged gratuitous ARP packets, using the target MAC address as the source and the attacker’s own MAC address as the destination. This causes a race condition between the attacker’s flooded packets and the target host’s packets, forcing the switch to constantly update its MAC address table, binding the target MAC address to multiple ports.
+				- If the attacker acts quickly, they can redirect packets intended for the target host to their own switch port. At this point, the attacker "steals" the target host's switch port and sends an ARP request to discover the target host’s IP address. When the attacker receives an ARP reply, it indicates that the target host’s switch port binding has been restored, and the attacker can now sniff the packets sent to the targeted host.
+			- Defending Against MAC Attacks:
+				- Defending Against MAC Attacks with Port Security:
+					- Port security limits MAC address access to a switch port. By assigning secure MAC addresses to a port, only packets with matching source MAC addresses are allowed. - A security violation occurs if:
+						- The maximum number of secure MAC addresses is reached
+						- A machine tries to access the port with an unrecognized MAC address
+					- Secure MAC addresses can be configured in three ways:
+						- Manually via the switch port configuration
+						- Dynamically, based on connected devices’ MAC addresses
+						- A mix of static and dynamic configurations
+					- Port security helps prevent MAC flooding attacks by limiting the number of allowed MAC addresses and locking down the port, sending an SNMP trap when a violation occurs.
+				- Configuring Port Security on Cisco Switch:
+					- interface interface_id : Enter interface configuration mode and select the physical interface to configure (e.g., gigabitethernet 3/1).
+					- switchport mode access : Set the interface mode to access. By default, an interface in dynamic desirable mode cannot be configured as a secure port.
+					- switchport port-security : Enable port security on the selected interface.
+					- switchport port-security maximum {1-3072} : Sets the maximum number of secure MAC addresses allowed on the interface. The range is 1 to 3072, with a default of 1.
+					- switchport port-security violation {restrict | shutdown} : Configures the violation mode, specifying the action to be taken when a security violation is detected. Options are {restrict | shutdown}.
+					- switchport port-security limit rate invalid-source-mac : Sets the rate limit for invalid packets (those with unauthorized MAC addresses).
+					- switchport port-security mac-address mac_address : Manually enters a secure MAC address for the interface. This can be used to limit the number of secure MAC addresses.
+					- switchport port-security mac-address sticky : Enables sticky learning for the first MAC address on the interface, allowing it to be added dynamically to the secure MAC address table.
+					- end : Exits interface configuration mode and returns to privileged EXEC mode.
+					- show port-security address / show port-security address interface interface_id : Verifies the port security configuration and displays the secure MAC addresses associated with the interface.
+					- switchport port-security aging time 2 : Configures the aging time for secure MAC addresses on the port.
+					- switchport port-security aging type inactivity : Sets the secure MAC address aging type to "inactivity," meaning the address will be aged out if inactive.
+					- snmp-server enable traps port-security trap-rate 5 : Controls the rate at which SNMP traps are generated for port security events.
