@@ -2412,3 +2412,10 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- switchport port-security aging time 2 : Configures the aging time for secure MAC addresses on the port.
 					- switchport port-security aging type inactivity : Sets the secure MAC address aging type to "inactivity," meaning the address will be aged out if inactive.
 					- snmp-server enable traps port-security trap-rate 5 : Controls the rate at which SNMP traps are generated for port security events.
+		- DHCP Attack:
+			- Dynamic Host Configuration Protocol (DHCP):
+				- DHCP enables communication on an IP network by automatically configuring network devices. It assigns IP addresses and other information to devices, enabling them to communicate on the network in a client-server model.
+				- DHCP serves two primary functions: delivering host-specific configuration parameters and allocating network addresses to hosts. Communication between DHCP servers and clients is carried out through a series of DHCP messages.
+				- DHCP is a client-server protocol that automatically assigns an IP address to an IP host. In addition to the IP address, the DHCP server provides configuration information, such as the default gateway and subnet mask.
+				- When a DHCP client device boots up, it initiates communication by broadcasting traffic to discover available DHCP servers on the network. This process allows DHCP to dynamically assign IP configurations to hosts connecting to a network, streamlining the administrative task of managing IP networks.
+				- DHCP servers maintain TCP/IP configuration information in a database, which includes valid TCP/IP configuration parameters, available IP addresses, and the lease durations offered by the server. The server provides address configurations to DHCP-enabled clients in the form of lease offers.

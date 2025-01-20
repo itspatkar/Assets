@@ -12,3 +12,14 @@ File Integrity Monitoring (FIM)
 Data Execution Prevention (DEP)
 
 --------------------------------------------------
+
+This is a denial-of-service (DoS) attack on the DHCP servers where the attacker broadcasts forged DHCP requests and tries to lease all the DHCP addresses available in the DHCP scope
+Therefore, the legitimate user is unable to obtain or renew an IP address requested via DHCP, and fails to get access to the network
+
+DHCP Starva tion Attack Tool: Yersinia
+• dhcpStarvation.py (https://github.com)
+• Metasploit (https://www.metasploit.com)
+• Hyenae (https://sourceforge.net)
+• DHCPig (https://github.com)
+
+----
