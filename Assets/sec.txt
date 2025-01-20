@@ -2419,3 +2419,29 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- DHCP is a client-server protocol that automatically assigns an IP address to an IP host. In addition to the IP address, the DHCP server provides configuration information, such as the default gateway and subnet mask.
 				- When a DHCP client device boots up, it initiates communication by broadcasting traffic to discover available DHCP servers on the network. This process allows DHCP to dynamically assign IP configurations to hosts connecting to a network, streamlining the administrative task of managing IP networks.
 				- DHCP servers maintain TCP/IP configuration information in a database, which includes valid TCP/IP configuration parameters, available IP addresses, and the lease durations offered by the server. The server provides address configurations to DHCP-enabled clients in the form of lease offers.
+			- DHCP Starvation Attack:
+				- In a DHCP starvation attack, an attacker floods the DHCP server with numerous DHCP requests, exhausting all the available IP addresses that the server can allocate. As a result, the server becomes unable to issue additional IP addresses, leading to a DoS attack. Consequently, legitimate users are unable to obtain or renew their IP addresses and fail to access the network. The attacker achieves this by broadcasting DHCP requests with spoofed MAC addresses, using tools such as Yersinia, Hyenae, and Gobbler.
+				- DHCP starvation attack tools send a large number of requests to a DHCP server, leading to exhaustion of the server’s address pool. Subsequently, the DHCP server is unable to allocate configurations to new clients.
+				- DHCP Starvation Attack Tools:
+					- Yersinia : Yersinia is a network tool designed to exploit vulnerabilities in various network protocols, such as DHCP. It serves as a robust framework for analyzing and testing deployed networks and systems.			
+					- dhcpStarvation.py (github.com)
+					- Metasploit (www.metasploit.com)
+					- Hyenae (sourceforge.net)
+					- DHCPig (github.com)
+			- Rogue DHCP Server Attack:
+				- This attack works alongside a DHCP starvation attack. After exhausting the DHCP server’s IP address pool, an attacker sets up a rogue DHCP server on the network, impersonating a legitimate server. The rogue server assigns IP addresses and network information to clients, acting as the default gateway. Clients receiving configurations from the rogue server become vulnerable to attacks such as MITM, as their traffic is routed through the attacker’s server.
+				- The rogue DHCP server competes with the legitimate DHCP server to respond to clients’ discovery requests. If the rogue server responds faster, the client accepts its response, potentially disrupting network access or causing a DoS attack. The rogue server can capture and forward client traffic, making the attack difficult to detect. Additionally, it can direct clients to fake websites to steal credentials.
+				- To mitigate rogue DHCP server attacks, designate interfaces connected to unauthorized servers as untrusted. This blocks all incoming DHCP server messages from such interfaces, preventing malicious configurations.
+				- DHCP Attack Tools:
+					- mitm6 (github.com)
+					- Ettercap (www.ettercap-project.org)
+					- Gobbler (sourceforge.net)
+			- Defend Against DHCP Starvation and Rogue Server Attacks:
+				- Defend Against DHCP Starvation:
+					- Enable port security to protect against DHCP starvation attacks. Port security limits the maximum number of MAC addresses allowed on a switch port. When this limit is exceeded, the switch drops subsequent packets from additional MAC addresses, safeguarding the server from DHCP starvation attacks.
+					- IOS Switch Commands: The Internetwork Operating System (IOS) provides a comprehensive set of switch commands used to configure, manage, and troubleshoot Cisco network switches effectively.
+				- Defend Against Rogue Server Attack:
+					- The DHCP snooping feature available on switches helps mitigate rogue DHCP servers. It is configured on the port where the valid DHCP server is connected. Once configured, DHCP snooping prevents other ports on the switch from responding to DHCP Discover packets sent by clients. As a result, even if an attacker manages to set up a rogue DHCP server and connects it to the switch, it will not be able to respond to DHCP Discover packets.
+					- IOS Global Commands: IOS Global Commands are a set of commands that can be configured at the global level in Cisco devices; can be used to defend against rogue server attacks by configuring security features, such as DHCP snooping and port security, to prevent unauthorized servers from responding to client requests and compromising the network.
+					- MAC Limiting Configuration on Juniper Switches: MAC Limiting Configuration on Juniper switches is a security feature that restricts the number of MAC addresses learned on a port, preventing unauthorized devices from connecting and protecting the network from MAC flooding attacks and unauthorized access.
+					- Configuring DHCP Filtering on Switch: DHCP filtering allows administrators to control whether traffic is forwarded between trusted nodes. When DHCP filtering is applied, the switch verifies the legitimacy of DHCP packets/messages before forwarding them to the client. With this filtering, the client can receive the correct port number and IP address from the legitimate DHCP server.
