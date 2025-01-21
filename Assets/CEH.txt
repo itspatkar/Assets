@@ -2573,3 +2573,5 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Regularly Update and Patch Network Devices : Keep the firmware and software of network devices up to date to protect against known vulnerabilities.
 				- Restrict Network Access : Limit physical access to network ports and devices to prevent unauthorized STP configuration changes.
 				- Network Segmentation : Reduce the scope of STP attacks by dividing larger broadcast domains into smaller, more manageable segments.
+		- DNS Poisoning:
+			-
