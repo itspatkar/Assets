@@ -2493,7 +2493,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- NetProbe (github.com)
 				- ARP-GUARD (arp-guard.com)
 		- MAC Spoofing/Duplicating:
-			- MAC Spoofing/duplicating refers to the  spoofing a MAC address with the MAC address of a legitimate user on the network. A MAC duplicating attack involves monitoring a network for the MAC addresses of legitimate clients that are connected. A MAC duplicating attack is launched by sniffing the network for the MAC addresses of clients actively associated with a switch port and then reusing one of those addresses. By intercepting the traffic on the network, a malicious user can spoof a legitimate user’s MAC address and receive all traffic intended for that user.
+			- MAC Spoofing/duplicating refers to the spoofing a MAC address with the MAC address of a legitimate user on the network. A MAC duplicating attack involves monitoring a network for the MAC addresses of legitimate clients that are connected. A MAC duplicating attack is launched by sniffing the network for the MAC addresses of clients actively associated with a switch port and then reusing one of those addresses. By intercepting the traffic on the network, a malicious user can spoof a legitimate user’s MAC address and receive all traffic intended for that user.
 			- In this attack, the attacker first identifies the MAC addresses of clients that are actively connected to a switch port. The attacker then spoofs one of those MAC addresses, impersonating the legitimate client. If the spoofing is successful, the attacker can intercept all traffic destined for the legitimate client. As a result, the attacker gains unauthorized access to the network and can impersonate someone else. This technique may also be used to bypass MAC filtering on wireless access points.
 			- MAC Spoofing Technique (Windows):
 				- Method 1: Changing the MAC Address Using the Network Interface Card's Clone MAC Address Feature
@@ -2516,6 +2516,18 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Change MAC Address (lizardsystems.com)
 				- Mac Changer (github.com)
 				- Automatic Media Access Control Address Spoofing Tool (AMC) (github.com)
+			- Defend Against MAC Spoofing:
+				- DHCP Snooping Binding Table: DHCP snooping filters untrusted DHCP messages and builds a DHCP binding table. This table includes MAC addresses, IP addresses, lease times, binding types, VLAN numbers, and interface information, corresponding to untrusted switch interfaces. It acts as a firewall between untrusted hosts and DHCP servers, helping to differentiate between trusted and untrusted interfaces.
+				- Dynamic ARP Inspection (DAI): This system checks the IP–MAC address binding for each ARP packet. During DAI, the system automatically drops packets with invalid IP–MAC address bindings.
+				- IP Source Guard: IP Source Guard restricts IP traffic on untrusted Layer 2 ports by filtering traffic based on the DHCP snooping binding database. It prevents spoofing attacks when an attacker attempts to spoof or use another host's IP address.
+				- Encryption: Encrypt communications between access points and devices to prevent MAC spoofing. Use secure encryption protocols like WPA3 to protect against MAC address spoofing, which can occur through traffic interception and manipulation.
+				- Retrieving MAC Address: Always retrieve the MAC address directly from the Network Interface Card (NIC), rather than from the operating system.
+				- IEEE 802.1X Implementation: This network protocol enforces port-based Network Access Control (PNAC), controlling access to the network at the entry point where users join.
+				- AAA (Authentication, Authorization, and Accounting): Implement AAA servers to filter MAC addresses, ensuring secure authentication and monitoring.
+				- Network Access Control (NAC): NAC systems enforce security policies on devices attempting to access the network. It can detect and prevent unauthorized access due to MAC spoofing.
+				- Rate Limiting and Traffic Analysis: Implement rate limiting on network devices to mitigate the effects of MAC flooding attacks.
+				- Regular Network Audits and Security Assessments: Conduct regular network audits to identify unknown devices, unexpected traffic patterns, and non-compliance with security policies. This helps identify potential vulnerabilities before they can be exploited.
+				- Port Security: Configure port security on switches to limit the number of allowed MAC addresses per port and specify permitted MAC addresses, enhancing security.
 		- IRDP Spoofing:
 			- ICMP Router Discovery Protocol (IRDP) is a routing protocol that enables a host to discover the IP addresses of active routers on its subnet by processing router advertisement and solicitation messages. Attackers can exploit this protocol to remotely add default route entries on a system by spoofing router advertisement messages.
 			- Since IRDP does not require authentication, the target host prioritizes the attacker-defined default route over the one provided by the DHCP server. Attackers achieve this by setting a high preference level and route lifetime, ensuring that the target host selects it as the preferred route.
@@ -2537,7 +2549,27 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Double Tagging is an attack where an attacker adds and manipulates tags in an Ethernet frame to enable traffic flow through any VLAN in the network. The attacker sends an Ethernet frame containing two 802.1Q tags: an outer tag corresponding to the attacker’s native VLAN and an inner tag for the target VLAN the attacker wants to access.
 					- When the switch receives the frame, it removes the outer tag (as it matches the native VLAN) and forwards the frame with the inner tag intact to all trunk interfaces. This allows the attacker to bypass VLAN segmentation, jumping from their native VLAN to the target VLAN and sending traffic to other VLANs.
 					- This attack is only possible if the switch ports are configured to use native VLANs.
+			- Defend Against VLAN Hopping:
+				- Configuring a Switch to Prevent Switch Spoofing Attacks:
+					- Explicitly configure the ports as access ports and ensure that they are set not to negotiate trunks.
+					- Ensure that all trunk ports are explicitly configured to prevent trunk negotiation.
+				- Configuring a Switch to Prevent Double Tagging Attacks:
+					- Specify a default VLAN to be used if an interface stops trunking.
+					- Change the native VLANs on all trunk ports to an unused VLAN ID.
+					- Explicitly tag the native VLANs on all trunk ports.
+					- Use Private VLANs: Configure private VLANs to isolate ports within the same VLAN from each other.
+					- Regularly Audit and Monitor VLAN Configurations: Perform regular audits of VLAN and switch configurations to ensure compliance with security policies.
 		- STP Attack:
 			- In a Spanning Tree Protocol (STP) attack, attackers connect a rogue switch to the network to change the STP operation and sniff all network traffic. STP is used in LAN-switched networks to prevent network loops and ensure optimized traffic paths, enhancing overall network performance. In this process, one switch is designated as the root bridge, and other switches select a root port, the port closest to the root bridge.
 			- The root bridge is selected using Bridge Protocol Data Units (BPDUs), which include an identification number known as a Bridge ID (BID). The BID is composed of a Bridge Priority and the MAC address. By default, the Bridge Priority value is 32769.
 			- If an attacker gains access to two switches, they can configure the rogue switch to have a lower priority than any other switch in the network, making it the root bridge. This allows the attacker to intercept and sniff all network traffic.
+			- Defend Against STP Attacks:
+				- To Prevent an STP Attack, the Following Security Features Should Be Implemented:
+				- BPDU Guard : Enable BPDU guard on ports that should never receive a BPDU from connected devices. This feature prevents the transmission of BPDUs on PortFast-enabled ports, helping avoid potential bridging loops in the network. If BPDU guard is enabled on a switch interface and an unauthorized switch sends a BPDU, the port will enter errdisable mode, shutting it down and disabling it from sending or receiving traffic.
+				- Root Guard : Root guard protects the root bridge by ensuring it remains as the root in the STP topology. It forces interfaces to become designated ports (forwarding ports) to prevent nearby switches from becoming the root switch. If a port with root guard enabled receives a superior BPDU, it moves into a "loop inconsistent" state (not errdisabled), thus preventing an STP topology change. The port remains down only for the specific switch or switches attempting to change the STP topology, and stays down until the issue is resolved.
+				- Loop Guard : Loop guard enhances network stability by preventing bridging loops, often protecting against malfunctioning switches.
+				- UDLD (Unidirectional Link Detection) : UDLD detects unidirectional links and disables the affected interfaces in the network. These unidirectional links can cause STP topology loops.
+				- Deploy PortFast : Apply PortFast to all access ports to reduce the time spent in the listening and learning STP states. However, ensure BPDU Guard is enabled to mitigate risks.
+				- Regularly Update and Patch Network Devices : Keep the firmware and software of network devices up to date to protect against known vulnerabilities.
+				- Restrict Network Access : Limit physical access to network ports and devices to prevent unauthorized STP configuration changes.
+				- Network Segmentation : Reduce the scope of STP attacks by dividing larger broadcast domains into smaller, more manageable segments.
