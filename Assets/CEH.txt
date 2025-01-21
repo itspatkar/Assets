@@ -2574,4 +2574,51 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Restrict Network Access : Limit physical access to network ports and devices to prevent unauthorized STP configuration changes.
 				- Network Segmentation : Reduce the scope of STP attacks by dividing larger broadcast domains into smaller, more manageable segments.
 		- DNS Poisoning:
-			-
+			- DNS is a protocol that translates domain names (e.g., www.eccouncil.org) into IP addresses (e.g., 208.66.172.56). It uses DNS tables, which store domain names and their corresponding IP addresses in a distributed database.
+			- DNS poisoning, also known as DNS spoofing, occurs when an attacker deceives a DNS server into accepting false information as legitimate. This allows the attacker to redirect victims to a malicious server instead of the intended one.
+			- The attacker achieves this by manipulating DNS table entries, substituting a legitimate IP address with a fraudulent one at the DNS level, where domain names are resolved into numeric IP addresses. They may also create fake DNS entries for the malicious server, using domain names identical to the target server.
+			- As a result, the victim unknowingly connects to the attacker’s server. Once the connection is established, the attacker can compromise the victim’s system, steal sensitive data, or perform further malicious actions.
+			- DNS Poisoning Techniques:
+				- Intranet DNS Spoofing
+					- An attacker can perform an intranet DNS spoofing attack on a switched LAN using the ARP poisoning technique. To execute this attack, the attacker must be connected to the LAN and able to sniff network traffic or packets. By intercepting the DNS request ID from the intranet, the attacker can send a malicious reply to the sender faster than the legitimate DNS server, redirecting the victim to a malicious destination.
+					- The attacker uses tools like arpspoof or dnsspoof to poison the router and redirect DNS requests from clients to the attacker’s machine. When a client sends a DNS request to the router, the compromised router forwards the request to the attacker’s machine. The attacker then responds with a fake DNS reply, redirecting the client to a fraudulent website controlled by the attacker.
+					- On this fake website, the attacker can capture all information submitted by the client, such as passwords or other sensitive data. After extracting the required information, the attacker may redirect the client to the legitimate website to avoid suspicion.
+				- Internet DNS Spoofing:
+					- Internet DNS poisoning, also known as remote DNS poisoning, allows attackers to perform DNS spoofing attacks on one or multiple victims worldwide. To execute this attack, the attacker sets up a rogue DNS server with a static IP address. The attack is often facilitated using Trojans that modify the victim’s DNS settings when their system connects to the internet.
+					- This attack, a form of a Man-in-the-Middle (MITM) attack, involves the attacker altering the victim’s primary DNS entries, replacing the legitimate DNS server's IP address with a fake IP address that resolves to the attacker’s system. As a result, the victim’s traffic is redirected to the attacker’s system, enabling the attacker to intercept and steal confidential information.
+				- Proxy Server DNS Poisoning:
+					- In the proxy server DNS poisoning technique, the attacker sets up a proxy server on their system and configures it with a fraudulent DNS, making its IP address the primary DNS entry. Using a Trojan, the attacker alters the victim's proxy server settings to route traffic through the malicious proxy.
+					- The proxy server acts as the primary DNS, redirecting the victim’s traffic to a fake website controlled by the attacker. There, the attacker can intercept and steal confidential information. After capturing the data, the attacker may forward the request to the legitimate website to avoid suspicion.
+				- DNS Cache Poisoning:
+					- DNS cache poisoning involves altering or adding forged DNS records in a DNS resolver’s cache to redirect DNS queries to malicious sites. The DNS system uses cache memory to store recently resolved domain names and their corresponding IP addresses, enabling faster responses by avoiding repeated lookups.
+					- In this attack, the attacker populates the DNS cache with forged entries, including domain names and fake IP addresses. When a user sends a request, the resolver checks its cache. If the requested domain is found, the resolver quickly returns the cached entry, reducing traffic and response time.
+					- Attackers exploit this mechanism by injecting false entries into the cache. If the DNS resolver cannot verify that a response came from an authoritative source, it caches the incorrect entries locally and serves them to users making the same request. As a result, the resolver replaces the legitimate IP address with a fake one. When users request the poisoned domain, the resolver directs them to the attacker’s malicious server instead of the intended one.
+					- SAD DNS Attack:
+						- SAD DNS is a modern variant of DNS cache poisoning, where attackers inject malicious DNS records into a DNS cache to redirect traffic to their own servers. This technique allows attackers to deceive client browsers, leading them to fake websites containing malicious content instead of legitimate ones.
+						- Attackers exploit side channels, vulnerabilities in DNS resolvers like dnsmasq, unbound, and BIND on newer operating systems, and outdated DNS software used for resolving queries to carry out SAD DNS attacks.
+			- DNS Poisoning Tools:
+				- DerpNSpoof : DerpNSpoof is a DNS poisoning tool used to spoof DNS query packets for a specific IP address or a group of hosts within a network. Attackers can use this tool to create a list of fake DNS records and load it during execution to redirect victims to malicious or unintended websites.
+				- dnsspoof : dnsspoof is a DNS spoofing tool that intercepts DNS responses from a router and replaces them with forged DNS responses.
+				- arpspoof : arpspoof redirects packets from a target host (or all hosts) on a LAN that are intended for another host by forging ARP replies. This tool is highly effective for sniffing traffic on a switched network.
+				- deserter (github.com)
+				- PolarDNS (github.com)
+				- Ettercap (www.ettercap-project.org)
+				- Evilgrade (github.com)
+				- DNS Goisoner (github.com)
+			- Defend Against DNS Spoofing:
+				- Implement Domain Name System Security Extensions (DNSSEC) to authenticate DNS responses.
+				- Use Secure Socket Layer (SSL) to encrypt and secure traffic.
+				- Resolve all DNS queries through a local DNS server.
+				- Block DNS requests to external servers to prevent unauthorized lookups.
+				- Configure firewalls to restrict external DNS lookups.
+				- Enable DNS NXDOMAIN rate limiting to mitigate exploitation attempts.
+				- Use static ARP and IP tables for added protection.
+				- Prevent outgoing traffic from using UDP port 53 as the default source port.
+				- Regularly audit DNS servers to identify and remove vulnerabilities.
+				- Deploy sniffing detection tools to monitor for suspicious activity.
+				- Restrict DNS zone transfers to a limited set of trusted IP addresses.
+				- Reduce the timeout period for outstanding queries to mitigate SAD DNS attacks.
+				- Keep DNS servers updated with the latest patches to prevent security breaches.
+				- Disable the “Hosts” file resolution on both clients and servers.
+				- Use DNS resolvers with security features like DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT) to encrypt DNS queries and prevent manipulation.
+				- Configure Access Control Lists (ACLs) on DNS servers to accept queries only from trusted sources.
