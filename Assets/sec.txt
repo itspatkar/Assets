@@ -2445,3 +2445,50 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- IOS Global Commands: IOS Global Commands are a set of commands that can be configured at the global level in Cisco devices; can be used to defend against rogue server attacks by configuring security features, such as DHCP snooping and port security, to prevent unauthorized servers from responding to client requests and compromising the network.
 					- MAC Limiting Configuration on Juniper Switches: MAC Limiting Configuration on Juniper switches is a security feature that restricts the number of MAC addresses learned on a port, preventing unauthorized devices from connecting and protecting the network from MAC flooding attacks and unauthorized access.
 					- Configuring DHCP Filtering on Switch: DHCP filtering allows administrators to control whether traffic is forwarded between trusted nodes. When DHCP filtering is applied, the switch verifies the legitimacy of DHCP packets/messages before forwarding them to the client. With this filtering, the client can receive the correct port number and IP address from the legitimate DHCP server.
+		- ARP Poisoning:
+			- Address Resolution Protocol (ARP):
+				- The ARP is a stateless TCP/IP protocol that maps IP addresses to hardware addresses (MAC addresses) used by a data link protocol. It resolves IP addresses to MAC addresses to enable communication within a network. In addition to switches, host machines also use ARP to obtain MAC addresses.
+				- A host machine uses ARP when it needs to send a packet to another device. The host must specify the destination MAC address in the packet. The operating system maintains an ARP table, which is populated with information from responses to ARP requests. This table maps IP addresses to their corresponding MAC addresses, facilitating efficient communication within the network.
+				- The process of obtaining a MAC address using ARP begins with the source machine sending an ARP request containing its own MAC and IP addresses along with the destination IP address to the switch. The switch updates its CAM table with the source MAC and port; if the MAC address is not already in the table, it adds the entry and broadcasts the ARP request to the network. Each device on the network compares the destination IP in the request with its own IP address. The device with the matching IP sends an ARP reply back to the switch, which updates its CAM table with the responder's MAC and forwards the reply to the source machine. The source then updates its ARP table with the responder's MAC address, enabling communication between the devices.
+			- ARP Spoofing Attack:
+				- ARP spoofing is a method used to attack an Ethernet LAN. ARP resolves IP addresses to MAC (hardware) addresses of interfaces to enable data transmission. However, ARP packets can be forged to redirect data to an attacker’s machine. ARP spoofing involves constructing a large number of forged ARP request and reply packets to overload a switch.
+				- When a machine sends an ARP request, it assumes the ARP reply comes from the correct device. However, ARP lacks any mechanism to verify the authenticity of the responding device. Even systems that have not sent an ARP request can accept unsolicited ARP replies from other devices. Attackers exploit this flaw by crafting malformed ARP replies containing spoofed IP and MAC addresses. Assuming the reply is legitimate, the victim's computer adds the spoofed entry to its ARP table.
+				- Once the ARP table is populated with these spoofed entries, the switch enters forwarding mode, allowing the attacker to intercept all data flowing from the victim's machine without their awareness. This technique is also referred to as ARP cache poisoning.
+				- ARP spoofing serves as a precursor for attacks such as DoS, MITM, and session hijacking. When a legitimate user initiates a session with another user within the same Layer 2 broadcast domain, the switch broadcasts an ARP request using the recipient's IP address. The sender waits for the recipient to respond with a MAC address. An attacker listening on this unprotected Layer 2 broadcast domain can intercept the request and reply by spoofing the intended recipient’s IP address.
+				- The attacker may also run a packet sniffer and configure the machine’s NIC to promiscuous mode, enabling them to capture all network traffic.
+			- Threats of ARP Poisoning:
+				- Packet Sniffing: Capturing and analyzing network traffic, often to extract sensitive information.
+				- Session Hijacking: Stealing valid session information to gain unauthorized access to an application.
+				- VoIP Call Tapping: Exploiting port mirroring to monitor all network traffic and selectively record VoIP traffic based on MAC addresses.
+				- Manipulating Data: ARP spoofing enables attackers to capture and modify data or disrupt the flow of traffic.
+				- Man-in-the-Middle (MITM) Attack: The attacker positions themselves between the victim and the server to intercept and potentially alter communication.
+				- Data Interception: Captures IP addresses, MAC addresses, and VLAN information connected to a network switch.
+				- Connection Hijacking: Exploits the flexibility of hardware addresses, which are meant to be unique and fixed. If a host changes its hostname or protocol, an attacker can manipulate the connection, taking complete control of a client’s session.
+				- Connection Resetting: Incorrect routing information caused by hardware or software errors can disrupt connections. If a host fails to initiate a connection, it should inform the Address Resolution module to delete its entry. Data reception from the host will reset the connection timeout in the ARP table. If the host remains inactive for a certain period, the ARP entry is deleted automatically.
+				- Stealing Passwords: Attackers use forged ARP replies to trick target hosts into sending sensitive information, such as usernames and passwords.
+				- DoS Attack: Attackers associate multiple IP addresses with a single MAC address of the target host, overwhelming it with traffic and causing service disruptions.
+			- ARP Spoofing/ Poisoning Tools:
+				- arpspoof:
+					- arpspoof redirects packets from a target host (or all hosts) on a LAN that are intended for another host by forging ARP replies. This tool is highly effective for sniffing traffic on a switched network.
+					- arpspoof –i [Interface] –t [Target Host]
+				- Habu:
+					- Habu is a versatile hacking toolkit that offers various commands to perform a wide range of attacks and analyses. Its capabilities include ARP poisoning and traffic sniffing, DHCP discovery and starvation, subdomain identification, certificate cloning, TCP analysis (including ISN and flags), username verification on social networks, and web technology identification.
+				- bettercap (github.com)
+				- Ettercap (www.ettercap-project.org)
+				- RITM (github.com)
+				- ARP Spoofer (github.com)
+				- larp (github.com)
+			- Defend Against ARP Poisoning:
+				- Implement Dynamic ARP Inspection Using DHCP Snooping Binding Table:
+					- Dynamic ARP Inspection (DAI) prevents ARP poisoning by validating ARP packets in a network. When enabled on a VLAN, all ports are untrusted by default, and DAI uses the DHCP snooping binding table to verify MAC-IP bindings. DHCP snooping must be activated first, as it collects MAC addresses, IP addresses, and VLAN interfaces by monitoring DHCP exchanges. Without it, ARP-based communication between VLAN devices may fail, potentially causing a self-imposed DoS.
+					- DAI inspects ARP packets against the snooping database and discards those with invalid bindings, reducing MITM attack risks. For networks with static IPs or switches without DAI, static mapping of IP-MAC pairs can be used to mitigate attacks. Custom scripts can also monitor ARP tables, comparing current entries against known MAC-IP pairs to detect mismatches and drop malicious packets. These methods safeguard servers and gateways from ARP poisoning.
+				- Configuring DHCP Snooping and Dynamic ARP Inspection on Cisco Switches:
+					- Dynamic ARP Inspection (DAI) requires DHCP snooping to be enabled first. DHCP snooping is a security feature that builds a binding table by tracking IP-to-switch-port mappings and filters untrusted DHCP messages. It inspects DHCP traffic at the Layer 2 level, ensuring secure IP allocation.
+					- To configure DHCP snooping, enable it both globally and for the desired VLANs. Once DHCP snooping is active, DAI can be configured to validate ARP packets and prevent ARP poisoning attacks.
+			- ARP Spoofing Detection Tools:
+				- Capsa Portable Network Analyzer : Capsa, a portable network performance analysis and diagnostics tool, offers packet capture and analysis capabilities through an intuitive interface. It enables efficient network monitoring and protection in critical business environments. Capsa assists security professionals in swiftly detecting ARP poisoning and ARP flooding attacks and identifying their sources.
+				- Wireshark (www.wireshark.org)
+				- OpUtils (www.manageengine.com)
+				- netspionage (github.com)
+				- NetProbe (github.com)
+				- ARP-GUARD (arp-guard.com)
