@@ -2492,3 +2492,52 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- netspionage (github.com)
 				- NetProbe (github.com)
 				- ARP-GUARD (arp-guard.com)
+		- MAC Spoofing/Duplicating:
+			- MAC Spoofing/duplicating refers to the  spoofing a MAC address with the MAC address of a legitimate user on the network. A MAC duplicating attack involves monitoring a network for the MAC addresses of legitimate clients that are connected. A MAC duplicating attack is launched by sniffing the network for the MAC addresses of clients actively associated with a switch port and then reusing one of those addresses. By intercepting the traffic on the network, a malicious user can spoof a legitimate user’s MAC address and receive all traffic intended for that user.
+			- In this attack, the attacker first identifies the MAC addresses of clients that are actively connected to a switch port. The attacker then spoofs one of those MAC addresses, impersonating the legitimate client. If the spoofing is successful, the attacker can intercept all traffic destined for the legitimate client. As a result, the attacker gains unauthorized access to the network and can impersonate someone else. This technique may also be used to bypass MAC filtering on wireless access points.
+			- MAC Spoofing Technique (Windows):
+				- Method 1: Changing the MAC Address Using the Network Interface Card's Clone MAC Address Feature
+					- If network interface card supports cloning the MAC address, follow these steps:
+					- Open Control Panel: Go to Network and Sharing Center under Network and Internet
+					- Access Ethernet Properties: Click Ethernet connection -> Properties -> Configure
+					- Set the MAC Address: In the Advanced tab, select Network Address, enter the new MAC address without colons (e.g., 001A2B3C4D5E), and click OK
+					- Verify Changes: Use ipconfig/all or net config rdr in Command Prompt
+					- Reboot if Needed: Restart system if changes are visible; otherwise, try Method 2 (registry)
+				- Method 2: Change MAC Address in the Registry
+					- Open Registry Editor: Press Win + R, type regedit, and hit Enter
+					- Navigate to Key: Go to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}
+					- Find the Adapter: Look for subkeys (0000, 0001, etc.) and check DriverDesc to identify the correct adapter
+					- Add NetworkAddress: Right-click the subkey -> New -> String Value, name it NetworkAddress, and modify it to enter the new MAC address (e.g., 001A2B3C4D5E)
+					- Apply Changes: Disable and re-enable the adapter or reboot the system
+			- MAC Spoofing Tools:
+				- MAC Address Changer : MAC Address Changer is a lightweight application that allows users to change or spoof the MAC address of network adapters. It is often utilized in network-related activities, including testing network security or simulating different devices. The tool can generate a randomized MAC address and restore the original address when needed.
+				- SMAC (smac-tool.com)
+				- Technitium MAC Address Changer (TMAC) (technitium.com)
+				- Change MAC Address (lizardsystems.com)
+				- Mac Changer (github.com)
+				- Automatic Media Access Control Address Spoofing Tool (AMC) (github.com)
+		- IRDP Spoofing:
+			- ICMP Router Discovery Protocol (IRDP) is a routing protocol that enables a host to discover the IP addresses of active routers on its subnet by processing router advertisement and solicitation messages. Attackers can exploit this protocol to remotely add default route entries on a system by spoofing router advertisement messages.
+			- Since IRDP does not require authentication, the target host prioritizes the attacker-defined default route over the one provided by the DHCP server. Attackers achieve this by setting a high preference level and route lifetime, ensuring that the target host selects it as the preferred route.
+			- This attack is only possible if the attacker is on the same network as the victim. On Windows systems configured as DHCP clients, the OS validates received router advertisements. If only one entry is present, Windows checks whether the source IP is within the subnet. If it is, the default route is added; otherwise, the advertisement is ignored.
+			- By sending spoofed IRDP router advertisements, attackers can redirect all data packets through their system. This enables them to sniff traffic and extract sensitive information.
+			- IRDP spoofing can facilitate various attacks:
+				- Passive Sniffing: In switched networks, attackers reroute outbound traffic from target hosts through their machine, enabling traffic interception.
+				- MITM (Man-in-the-Middle): Attackers intercept and act as a proxy between victims and destinations, potentially modifying traffic.
+				- DoS (Denial of Service): Attackers add incorrect route entries to the victim’s routing table, disrupting network communication.
+			- To prevent IRDP spoofing attacks, disable IRDP on hosts if the operating system supports/allows it.
+		- VLAN Hopping:
+			- VLAN hopping is a network attack technique used to gain unauthorized access to resources on a Virtual Local Area Network (VLAN). The goal of a VLAN hopping attack is to access traffic from other VLANs within the same network, which is otherwise inaccessible. Such attacks often exploit poor VLAN implementations or misconfigurations.
+			- This attack bypasses network segmentation controls designed to isolate traffic for security and management purposes. Attackers use VLAN hopping to steal sensitive information (e.g., passwords), modify, corrupt, or delete data, install malicious code or programs, or spread malware such as viruses, Trojans, and worms throughout the network.
+			- VLAN Hopping Methods:
+				- Switch Spoofing:
+					- Switch Spoofing is an attack where an attacker connects a rogue switch to the network, tricking a legitimate switch into creating a trunk link between them. Once the trunk link is established, traffic from multiple VLANs can be sent through the rogue switch, enabling the attacker to sniff and view the packet content.
+					- This attack is successful only if the legitimate switch is configured to negotiate trunk connections or if its interface is set to modes like “dynamic auto,” “dynamic desirable,” or “trunk.”
+				- Double Tagging:
+					- Double Tagging is an attack where an attacker adds and manipulates tags in an Ethernet frame to enable traffic flow through any VLAN in the network. The attacker sends an Ethernet frame containing two 802.1Q tags: an outer tag corresponding to the attacker’s native VLAN and an inner tag for the target VLAN the attacker wants to access.
+					- When the switch receives the frame, it removes the outer tag (as it matches the native VLAN) and forwards the frame with the inner tag intact to all trunk interfaces. This allows the attacker to bypass VLAN segmentation, jumping from their native VLAN to the target VLAN and sending traffic to other VLANs.
+					- This attack is only possible if the switch ports are configured to use native VLANs.
+		- STP Attack:
+			- In a Spanning Tree Protocol (STP) attack, attackers connect a rogue switch to the network to change the STP operation and sniff all network traffic. STP is used in LAN-switched networks to prevent network loops and ensure optimized traffic paths, enhancing overall network performance. In this process, one switch is designated as the root bridge, and other switches select a root port, the port closest to the root bridge.
+			- The root bridge is selected using Bridge Protocol Data Units (BPDUs), which include an identification number known as a Bridge ID (BID). The BID is composed of a Bridge Priority and the MAC address. By default, the Bridge Priority value is 32769.
+			- If an attacker gains access to two switches, they can configure the rogue switch to have a lower priority than any other switch in the network, making it the root bridge. This allows the attacker to intercept and sniff all network traffic.
