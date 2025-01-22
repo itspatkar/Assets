@@ -174,3 +174,4 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
     - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <ip>
 - SSH Enumeration: nmap --script ssh-brute -p 22 <ip>
 - Vulnerability Scan: nmap -sV –script vuln <domain> -oN output.txt
+- Detect NIC in Promiscuous Mode: nmap --script sniffer-detect <ip/range>

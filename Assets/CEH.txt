@@ -2622,3 +2622,67 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Disable the “Hosts” file resolution on both clients and servers.
 				- Use DNS resolvers with security features like DNS-over-HTTPS (DoH) or DNS-over-TLS (DoT) to encrypt DNS queries and prevent manipulation.
 				- Configure Access Control Lists (ACLs) on DNS servers to accept queries only from trusted sources.
+	- Sniffing Tools:
+		- Wireshark:
+			- Wireshark enables the capture and interactive analysis of network traffic on a computer network. It uses WinPcap to capture packets on supported networks. Wireshark can monitor live network traffic across various types of networks, including Ethernet, IEEE 802.11, PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, and FDDI. The captured files can also be programmatically edited through the command line. Additionally, a robust set of display filters allows for customized data presentation and refined analysis.
+			- Follow TCP Stream in Wireshark:
+				- Wireshark’s "Follow TCP Stream" feature displays TCP port data as seen at the application layer. It can identify passwords in Telnet sessions or interpret data streams. To use it, select a TCP packet and navigate to Analyze ➔ Follow ➔ TCP Stream. Wireshark applies a display filter and shows stream content in sequence, with formats like ASCII, hex, or raw.
+				- Attackers may exploit network traffic to capture credentials and monitor user activity, extracting sensitive information.
+			- Display Filters in Wireshark:
+				- Wireshark includes display filters that filter network traffic based on criteria such as protocol type, IP address, or port. Display filters adjust the view of packets in captured files. To apply a filter, enter a protocol name (e.g., ARP, HTTP, TCP, UDP, DNS, or IP) in Wireshark's filter box. Multiple filters can be used simultaneously for more refined analysis.
+				- Display filters:
+					- Filtering by Protocol: arp, http, tcp, udp, dns, and ip
+					- Monitoring Specific Ports: tcp.port == 23
+					- Filtering by Multiple IP Addresses: ip.addr == 10.0.0.4 or ip.addr == 10.0.0.5
+					- Filtering by IP Address: ip.addr == 10.0.0.4
+		- Capsa Portable Network Analyzer:
+			- Capsa, a portable network performance analysis and diagnostics tool, offers packet capture and analysis through an intuitive interface. It enables users to monitor and secure networks in critical business environments.
+			- However, attackers can also exploit this tool to sniff packets from a target network and identify vulnerabilities.
+		- OmniPeek:
+			- OmniPeek Network Analyzer offers real-time visibility and expert analysis across all parts of a target network. It helps analyze, troubleshoot, and resolve performance bottlenecks across multiple network segments. Analytic plug-ins enhance OmniPeek's capabilities, providing advanced visualization and search functionality.
+			- The Google Maps plug-in further extends its utility by displaying the locations of public IP addresses from captured packets directly within the OmniPeek capture window.
+			- Attackers could misuse OmniPeek to monitor and analyze network traffic in real time, identify the source locations of traffic, extract sensitive information, and exploit network vulnerabilities.
+		- RITA (Real Intelligence Threat Analytics) (github.com)
+		- Observer Analyzer (www.viavisolutions.com)
+		- PRTG Network Monitor (www.paessler.com)
+		- Network Performance Monitor (www.solarwinds.com)
+		- Xplico (www.xplico.org)
+	- Defend Against Sniffing:
+		- Countermeasures to Defend Against Sniffing:
+			- Restrict physical access to network media to prevent the installation of packet sniffers.
+			- Use end-to-end encryption to protect confidential information.
+			- Permanently add the MAC address of the gateway to the ARP cache.
+			- Use static IP addresses and ARP tables to prevent attackers from adding spoofed ARP entries to the network.
+			- Disable network identification broadcasts and restrict the network to authorized users to prevent discovery via sniffing tools.
+			- Use IPv6 instead of IPv4, as IPsec is optional in IPv4 but mandatory in IPv6.
+			- Employ switches instead of hubs, as switches deliver data only to the intended recipient.
+			- Utilize security tools such as PGP, S/MIME, VPNs, IPSec, SSL/TLS, SSH, and one-time passwords (OTPs).
+			- Use SNMPv3 instead of SNMPv1 or SNMPv2 for managing networked devices.
+			- Encrypt wireless traffic using strong protocols such as WPA2 or WPA3.
+			- Retrieve MAC addresses directly from NICs to prevent MAC address spoofing.
+			- Use tools to detect NICs operating in promiscuous mode.
+			- Avoid broadcasting session set identifiers (SSIDs).
+			- Implement a MAC filtering mechanism on routers.
+			- Deploy network scanning and monitoring tools to detect malicious intrusions, rogue devices, and sniffers.
+			- Avoid accessing unsecured or open Wi-Fi networks.
+			- Use VLANs and network segmentation to divide the network into smaller, secure segments, limiting the scope for sniffers.
+			- Regularly monitor and audit network traffic for unusual patterns indicative of sniffing activities.
+		- Detect Sniffing:
+			- Detecting a sniffer is difficult as it only captures data in promiscuous mode, without transmitting any traffic. Promiscuous mode allows a network device to intercept all packets, bypassing destination address validation. To detect sniffers, check for systems in promiscuous mode. Standalone sniffers are hard to detect, but reverse DNS lookup can help identify non-standalone sniffers.
+			- Sniffer Detection Methods:
+				- Ping Method:
+					- To detect a sniffer on a network, identify systems running in promiscuous mode. The ping method can help identify systems in promiscuous mode, which in turn can reveal sniffers installed on the network.
+					- Send a ping request to the suspected machine using its IP address and an incorrect MAC address. The Ethernet adapter will reject the packet because the MAC address does not match. However, a machine running a sniffer will respond, as it does not reject packets with a different MAC address. This response can help identify the sniffer on the network.
+				- DNS Method:
+					- The reverse DNS lookup is the opposite of the standard DNS lookup method. Sniffers that perform reverse DNS lookups can increase network traffic, which may indicate their presence. This increased traffic suggests that computers on the network are in promiscuous mode.
+					- Reverse DNS lookups can be performed remotely or locally. To detect them, monitor the organization’s DNS server for incoming reverse DNS lookups. Another method is to send ICMP requests to a non-existing IP address. The machine performing the reverse DNS lookup will respond to the ping, thus identifying it as hosting a sniffer.
+					- For local reverse DNS lookups, configure the detector in promiscuous mode. Send an ICMP request to a non-existing IP address and check the response. If the system responds, it indicates that the machine is performing reverse DNS lookups locally. A machine generating reverse DNS lookup traffic is likely running a sniffer.
+				- ARP Method:
+					- This technique sends a non-broadcast ARP request to all nodes on the network. The node running in promiscuous mode will cache the local ARP address and then broadcast a ping message using the local IP address but a different MAC address. Only the node with the cached MAC address will respond to the broadcast ping request.
+					- A machine in promiscuous mode will reply to the ping message because it has the correct information about the host in its cache, while other machines will send an ARP probe to identify the source of the ping request. This process helps detect the node where the sniffer is running.
+			- Promiscuous Detection Tools:
+				- Nmap:
+					- Nmap’s NSE (Nmap Scripting Engine) script allows checking whether a system on a local Ethernet network has its network card in promiscuous mode.
+					- Detect NIC in Promiscuous Mode: nmap --script=sniffer-detect <ip/range>
+				- NetScanTools Pro:
+					- NetScanTools Pro includes the Promiscuous Mode Scanner tool to scan the subnet for network interfaces listening to all Ethernet packets in promiscuous mode. Security professionals use NetScanTools Pro to scan the subnet with modified ARP packets and identify devices responding to each type of ARP packet.
