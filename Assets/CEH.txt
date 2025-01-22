@@ -2686,3 +2686,99 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Detect NIC in Promiscuous Mode: nmap --script=sniffer-detect <ip/range>
 				- NetScanTools Pro:
 					- NetScanTools Pro includes the Promiscuous Mode Scanner tool to scan the subnet for network interfaces listening to all Ethernet packets in promiscuous mode. Security professionals use NetScanTools Pro to scan the subnet with modified ARP packets and identify devices responding to each type of ARP packet.
+
+
+--------------------------------------------------
+
+# Social Engineering
+
+- Social engineering is the art of manipulating and convincing individuals to disclose confidential information. Social engineers exploit the fact that people are often unaware of the value of the information they possess and may be careless about safeguarding it. By using social engineering tactics, attackers can deceive individuals and exploit human vulnerabilities to gain access to sensitive information, authorizations, and credentials.
+- Before conducting a social engineering attack, the attacker collects information about the target organization from various sources:
+	- The organization’s official websites, where details such as employee IDs, names, and email addresses may be publicly available.
+	- Advertisements published through media, which may reveal information about the organization’s products, services, and offers.
+	- Blogs, forums, and other online platforms where employees might share personal or organizational details.
+- Once sufficient information has been gathered, the attacker carries out social engineering attacks using techniques such as impersonation, piggybacking, tailgating, reverse social engineering, and other methods.
+- Types of Social Engineering:
+	- Human-based Social engineering:
+		- Impersonation: The attacker pretends to be a legitimate or authorized individual. This impersonation can be carried out in person or through communication channels such as phone, email, or other mediums. By impersonating someone trustworthy, attackers can deceive their targets into disclosing sensitive information.
+		- Vishing: Vishing (voice or VoIP phishing) is an impersonation technique used in electronic fraud, where the attacker manipulates individuals into revealing personal and financial information through voice technology, such as telephone systems or VoIP. The attacker often employs caller ID spoofing to forge identification.
+		- Eavesdropping: The unauthorized listening to conversations or reading of messages. It involves intercepting audio, video, or written communications through channels such as telephone lines, email, instant messaging, and other forms of communication.
+		- Shoulder Surfing: A direct observation technique involving watching over someone's shoulder to obtain sensitive information, such as passwords, PINs, or account numbers. This can also be carried out from a distance using vision-enhancing tools such as binoculars.
+		- Dumpster Diving: The act of searching through someone else’s trash to find valuable information. This technique involves retrieving items such as phone bills, contact details, financial records, operational documents, or other sensitive information from a target company’s trash bins, printer bins, or user desks (e.g., sticky notes).
+		- Reverse Social Engineering: The attacker poses as an authority figure, prompting the target to seek their advice. During this process, the target may willingly provide the information the attacker is attempting to obtain.
+		- Piggybacking: An unauthorized individual gains access to a secure area by being intentionally or unintentionally allowed entry by an authorized person. For example, the unauthorized person might say, “I forgot my ID badge at home. Please help me.”
+		- Tailgating: The attacker, often wearing a fake ID badge, gains access to a secured area by closely following an authorized person through a door that requires key access.
+		- Diversion Theft: The attacker deceives a delivery person into rerouting a genuine consignment to a location other than the intended destination.
+		- Honey Trap: Attackers target an individual within a company by pretending to be an attractive person online. They initiate a fake online relationship to extract confidential information about the target company. In some cases, attackers lure end users with enticing offers in exchange for critical information such as login credentials and other sensitive data.
+		- Baiting: A physical device, such as a USB flash drive containing malicious files, is strategically placed in a location where it can be easily found, enticing individuals to pick it up and use it.
+		- Bait and Switching: Bait and switching is a social engineering technique where the attacker captures the victim's attention by presenting an enticing offer through a clickable link or file download. The victim, lured by the offer, clicks the link or downloads the file, at which point the attacker executes their malicious goals—such as installing malware, stealing sensitive information, or compromising the victim’s security.
+		- Quid Pro Quo: Attackers call multiple random numbers within a company, pretending to be from technical support. They offer assistance or services to end users in exchange for confidential data, such as login credentials or other sensitive information.
+		- Elicitation: Attackers extract information from the victim by engaging them in casual, non-threatening conversations. By understanding the victim’s interests, attackers tailor their approach to elicit the relevant information without raising suspicion.
+	- Computer-based Social Engineering:
+		- Phishing:
+			- Phishing is the practice of sending fraudulent emails that appear to be from legitimate sources, with the goal of acquiring a user’s personal or account information. Phishing emails or pop-ups often redirect users to counterfeit webpages that mimic trusted sites, where they are prompted to submit sensitive personal information.
+			- Types of Phishing:
+				- Spear Phishing: A targeted phishing attack directed at specific individuals or groups within an organization. Attackers craft messages with personalized, socially engineered content to deceive their targets and steal sensitive information.
+				- Whaling: An attacker targets high-profile individuals, such as CEOs, CFOs, politicians, or celebrities, who have access to confidential and highly valuable information. Through email or website spoofing, the attacker deceives the victim into revealing critical corporate or personal data.
+				- Pharming:
+					- Pharming is a social engineering technique where the attacker executes malicious programs on a victim’s computer or server. When the victim enters a URL or domain name, their traffic is automatically redirected to an attacker-controlled website. This type of attack is also referred to as “Phishing without a Lure.” The attacker uses this method to steal sensitive information such as credentials, banking details, and other data related to web-based services.
+					- DNS Cache Poisoning:
+						- In a DNS cache poisoning attack, the attacker targets a DNS server and modifies the IP address associated with a legitimate website (e.g., www.targetwebsite.com) to redirect to a malicious website (e.g., www.hackerwebsite.com).
+						- When the victim enters the legitimate website’s URL in the browser's address bar, the browser sends a request to the DNS server to obtain the IP address of the target website. However, the DNS server, already compromised by the attacker, returns the fake IP address.
+						- As a result, the victim is redirected to the attacker-controlled fake website, where sensitive information may be stolen or malicious actions performed.
+					- Host File Modification:
+						- In a host file modification attack, the attacker sends malicious code to the victim, often as an email attachment. When the victim clicks on the attachment, the code executes and alters the local host file on the user’s computer.
+						- Once the host file is compromised, any attempt by the victim to access a legitimate website by entering its URL in the browser’s address bar results in automatic redirection to a fraudulent website controlled by the attacker.
+						- Pharming attacks can also be carried out using malware, such as Trojan horses or worms, which modify host files or other system settings to achieve the same malicious outcome.
+				- Spimming: A variant of spam that exploits instant messaging platforms to flood networks with spam messages. Attackers use bots to harvest instant messaging IDs and spread malicious or unwanted content across the platform.
+				- Clone Phishing: An attacker creates a nearly identical copy of a legitimate email or communication. This clone includes a malicious link or attachment, often replacing elements from the original message to point to a harmful destination.
+				- E-wallet Phishing: Attackers target electronic wallet users by sending phishing emails or messages, pretending to be a legitimate e-wallet provider to steal sensitive financial information.
+				- Tabnabbing and Reverse Tabnabbing:
+					- Tabnabbing: A malicious webpage tricks users by altering its content to resemble a familiar site (e.g., a bank login page) when the user switches back to the tab, capturing their credentials.
+					- Reverse Tabnabbing: A seemingly legitimate website deceives users into opening a malicious link, which then changes the content of the original tab into a phishing site.
+				- Consent Phishing: Attackers exploit the OAuth authentication protocol used by web services. They create a fake, legitimate-looking application or website and lure victims to it, tricking them into granting access to sensitive information.
+				- Search Engine Phishing: Attackers manipulate search engine results to lead users to fraudulent websites designed to steal sensitive information or distribute malware. This is achieved through techniques like search engine optimization (SEO) manipulation, keyword stuffing, and other methods to ensure the malicious websites rank highly in search results.
+			- Phishing Tools:
+				- ShellPhish : ShellPhish is a phishing tool used to phish user credentials from various social networking platforms such as Instagram, Facebook, Twitter, and LinkedIn. It also displays the victim system’s public IP address, browser information, hostname, geolocation, and other information.
+				- Social-Engineer Toolkit (SET) : The Social-Engineer Toolkit (SET) is an open-source, Python-driven tool designed for penetration testing through social engineering. It is a versatile framework built to execute advanced attacks against human targets, aiming to extract sensitive information. SET categorizes its attacks based on the attack vector, such as email, web, and USB attacks. The toolkit exploits human vulnerabilities, such as trust, fear, greed, and the innate helpfulness of individuals, to achieve its objectives.
+				- Dark-Phish (github.com)
+				- BLACKEYE (github.com)
+				- SocialFish (github.com)
+				- Modlishka (github.com)
+				- Trape (github.com)
+				- Gophish (getgophish.com)
+				- King Phisher (github.com)
+				- LUCY SECURITY (lucysecurity.com)
+				- Zphisher (github.com)
+		- Spam Mail : Spam consists of irrelevant, unwanted, and unsolicited emails designed to gather sensitive financial information, such as Social Security numbers or bank details. Attackers send spam messages to lure victims into sharing confidential data or to distribute email attachments containing malicious software like viruses or Trojans. Social engineers often disguise the file extensions of these attachments with long filenames to deceive the recipient.
+		- Instant Chat Messenger : In this technique, an attacker engages in conversations with selected online users through instant messaging platforms. They aim to gather personal information, such as dates of birth or maiden names, which can then be used to crack user accounts or exploit other vulnerabilities.
+		- Pop-up Window Attacks : Pop-ups are used to trick or compel users into clicking on hyperlinks that redirect them to fake web pages. These pages may request personal information or download malicious programs such as keyloggers, Trojans, or spyware. A common tactic to entice users is by displaying a warning about a problem, such as a realistic operating system or application error message, or by offering additional services.
+		- Scareware : Scareware is a type of malware that tricks users into visiting malware-infested websites, downloading malicious software, or purchasing potentially harmful programs. It often appears in the form of pop-ups that claim the user’s machine is infected with malware. These pop-ups are designed to look like legitimate alerts from reputable antivirus companies. They create a sense of urgency, prompting the victim to quickly download the suggested software to remove the supposed virus.
+		- Hoax Letters : A hoax letter is a message that warns recipients of a non-existent computer virus threat. It relies on social engineering to spread widely. While hoaxes do not usually cause physical damage or data loss, they waste time, reduce productivity, and consume valuable organizational network resources.
+		- Chain Letters : A chain letter is a message that promises free gifts, such as money or software, on the condition that the recipient forwards the email to a predetermined number of people. These messages often use emotionally compelling stories, “get-rich-quick” pyramid schemes, spiritual beliefs, or superstitious threats of bad luck if the recipient fails to pass the message along. Chain letters also rely heavily on social engineering tactics to propagate.
+		- Create Deepfake Videos:
+			- Attackers create deepfake videos of a target individual by utilizing previously recorded audio and video samples. These samples may include narratives of deceased persons, stolen online account clippings, or clips associated with unknown identities. By cloning and manipulating these clips, attackers generate highly convincing fake videos. The goal of such deepfake attempts is to deceive online users into believing they are viewing authentic content. These videos can be used for malicious purposes, such as impersonation, spreading misinformation, or committing fraud.
+			- Deepfake Video Creation Tools:
+				- DeepFaceLab (www.deepfakevfx.com)
+				- Vidnoz (www.vidnoz.com)
+				- Deepfakesweb (deepfakesweb.com)
+				- Synthesia (www.synthesia.io)
+				- DeepBrain AI (www.deepbrain.io)
+				- Hoodem (hoodem.com)
+		- Voice Cloning:
+			- Voice cloning using AI involves the use of sophisticated machine learning algorithms to create highly convincing imitations of an individual's voice. These attacks exploit techniques such as speech synthesis and neural network-based models to accurately replicate the unique characteristics of a person.
+			- Voice Cloning Tools:
+				- VEED.IO (www.veed.io)
+				- Murf.AI (murf.ai)
+				- Resemble.AI (www.resemble.ai)
+				- ElevenLabs (elevenlabs.io)
+				- PlayHT (play.ht)
+				- voice.ai (voice.ai)
+		- Perform Impersonation on Social Networking Sites:
+			- Malicious users collect confidential information from social networking sites and create accounts using another person’s name. These attackers use fraudulent profiles to build extensive networks of friends and extract sensitive information by employing various social engineering techniques.
+	- Mobile-based Social Engineering:
+		- Publishing Malicious Apps
+		- Repackaging Legitimate Apps
+		- QRLJacking
+		- Using Fake Security Applications
+		- SMiShing (SMS Phishing)

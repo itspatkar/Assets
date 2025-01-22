@@ -1,14 +1,13 @@
 
-Security Information and Event Management (SIEM)
-Firewall (Network Firewall and Host-based Firewall)
-Intrusion Detection System (IDS)
-Intrusion Prevention System (IPS)
-Virtual Private Network (VPN)
-Web Application Firewall (WAF)
-Network Access Control (NAC)
-Endpoint Detection and Response (EDR)
-Next-Generation Firewall (NGFW)
-File Integrity Monitoring (FIM)
-Data Execution Prevention (DEP)
+Implementation of certain security measures such as password change policy, information sharing policy, access privileges, unique user identification, and centralized security, prove to be beneficial.
 
---------------------------------------------------
+Like other techniques, social engineering does not deal with network security issues; instead, it deals with the psychological manipulation of a human being to extract desired information.
+
+The following are reasons why social engineering continues to be effective:
+▪ Despite various security policies, preventing social engineering is a challenge because human beings are most susceptible to variation.
+▪ It is challenging to detect social engineering attempts. Social engineering is the art and science of manipulating people into divulging information.
+▪ No method guarantees complete security from social engineering attacks.
+▪ No specific hardware or software is available to safeguard against social engineering attacks.
+▪ This approach is relatively cheap (or free) and easy to implemen
+
+----
