@@ -2776,9 +2776,57 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- voice.ai (voice.ai)
 		- Perform Impersonation on Social Networking Sites:
 			- Malicious users collect confidential information from social networking sites and create accounts using another person’s name. These attackers use fraudulent profiles to build extensive networks of friends and extract sensitive information by employing various social engineering techniques.
+		- Identity Theft:
+			- Identity theft is a crime where an imposter steals personally identifiable information, such as a person’s name, credit card number, Social Security number, or driver’s license number, to commit fraud or other crimes. Attackers may also use identity theft to impersonate employees of a target organization and gain physical access to restricted facilities.
 	- Mobile-based Social Engineering:
-		- Publishing Malicious Apps
-		- Repackaging Legitimate Apps
-		- QRLJacking
-		- Using Fake Security Applications
-		- SMiShing (SMS Phishing)
+		- Publishing Malicious Apps:
+			- An attacker creates a malicious application, such as a gaming app with appealing features, and publishes it on major application stores under a popular or misleading name. Unsuspecting users download the application, believing it to be legitimate.
+			- Once installed, the app infects the device with malware, which collects and transmits sensitive information, such as usernames, passwords, contact details, and other personal data, to the attacker.
+		- Repackaging Legitimate Apps:
+			- Malware can sometimes be hidden within legitimate apps. Platform vendors provide centralized marketplaces where users can conveniently browse and install games and applications. Developers typically submit their apps to these marketplaces.
+			- However, a malicious developer may download a legitimate app, repackage it with malware, and upload it to a third-party application store. When an unsuspecting user downloads the repackaged app, the malicious program infects the device, collects sensitive user information, and sends it to the attacker.
+		- Using Fake Security Applications:
+			- In this attack, the attacker begins by infecting the victim’s computer with malicious software. They then upload a fraudulent application to an app store. When the victim logs into their bank account, the malware displays a pop-up message instructing them to download a security application on their phone to receive an important message. Believing the pop-up to be legitimate, the victim downloads the application from the attacker’s app store.
+			- Once the application is installed, the attacker gains access to confidential information, such as the victim's bank account login credentials (username and password). When the bank sends a second authentication code to the victim via SMS, the attacker intercepts and uses this information to gain unauthorized access to the victim’s bank account.
+		- SMiShing (SMS Phishing):
+			- SMiShing, or SMS phishing, is the act of using SMS text messaging on cellular phones or other mobile devices to deceive users into taking immediate action. This may include downloading malware, visiting a malicious webpage, or calling a fraudulent phone number. SMiShing messages are carefully crafted to prompt an urgent response from the victim, often tricking them into revealing personal information, account credentials, or financial details.
+		- QRLJacking:
+			- QRLJacking is a social engineering attack that exploits the QR code login mechanism used in various web applications to hijack login sessions and gain unauthorized access to victims' accounts. This method allows attackers to take full control of the compromised accounts and steal sensitive data.
+			- Additionally, during the login process, attackers can obtain further details, such as the victim’s current GPS location, device ID, IMEI, and SIM card information. These details enable malicious activities, including unauthorized transactions, impersonation, and sending spam messages.
+			- Cloning the QR code captured from a legitimate website is a critical step in a QRLJacking attack. Attackers can use tools like QR TIGER to clone a legitimate QR code and modify it for malicious purposes.
+			- QR Code Cloning Tools:
+				- QR TIGER:
+					- QR TIGER is a QR code generator tool that enables attackers to create duplicate copies of legitimate QR codes. It can clone both static and dynamic QR codes, and generate multiple duplicates stored in a folder.
+					- Additionally, QR TIGER allows attackers to track information from dynamic QR codes, such as the number of scans, the time and location of scans, and the type of device used for scanning. This tracking capability can assist in monitoring and targeting specific users, making it a powerful tool for malicious activities.
+				- QR Code Generator (support.qr-code-generator.com)
+				- Soti MobiControl (www.soti.net)
+				- QR Code KIT (qrcodekit.com)
+- Social Engineering Countermeasures:
+	- Good policies and procedures are ineffective if they are not properly taught and reinforced with employees.
+	- After receiving training, employees should sign a statement acknowledging that they understand and will follow the policies.
+	- The main objectives of social engineering defense strategies are to raise user awareness, implement robust internal network controls, and establish secure policies, plans, and processes.
+	- Official Security Policies and Procedures
+		- Password Policies
+		- Physical Security Policies
+		- Social Engineering Campaigns
+		- Gap Analysis
+		- Remediation Strategies
+		- Training on Security Policies
+		- Implementation of Proper Access Privileges
+		- Background Checks and Proper Termination Processes
+	- Anti-Phishing Toolbar:
+		- Netcraft (www.netcraft.com):
+			- The Netcraft anti-phishing community operates like a vast neighborhood watch, empowering its most vigilant and skilled members to protect everyone within the community from phishing attacks. The Netcraft Toolbar provides real-time updates about the sites users visit and blocks dangerous websites.
+			- It also offers detailed information about popular websites, helping users make informed decisions regarding the integrity of those sites. As shown in the screenshot, Netcraft effectively protects individuals and organizations from phishing attacks and fraud.
+		- PhishTank (phishtank.com):
+			- PhishTank is a collaborative clearing house for data and information related to phishing on the internet. It offers an open API that developers and researchers can use to integrate anti-phishing data into their applications. Security professionals can use PhishTank to verify whether a URL is a phishing site or not.
+		- Scanurl (scanurl.net)
+		- Isitphishing (isitphishing.org)
+		- Threatcop (threatcop.ai)
+		- e.Veritas (www.emailveritas.com)
+		- Virustotal (www.virustotal.com)
+	- Audit Organization's Security for Phishing Attacks using OhPhish:
+		- The primary objective of conducting phishing campaigns against employees of a client organization is to assess their vulnerability to phishing attacks. This helps the organization identify potential risks and reduce the likelihood of employees falling victim to phishing attempts by cyber threat actors.
+		- OhPhish (portal.ohphish.com):
+			- OhPhish is a web-based portal designed to test employees’ susceptibility to social engineering attacks. It serves as a phishing simulation tool that allows organizations to run phishing simulation campaigns targeting their employees. The platform captures responses and generates Management Information System (MIS) reports and trends in real-time, which can be tracked by user, department, or designation.
+			- OhPhish can be utilized to audit an organization’s security against phishing attacks, using various phishing methods such as Entice to Click, Credential Harvesting, Send Attachment, Training, Vishing, and Smishing.
