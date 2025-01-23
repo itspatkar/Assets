@@ -1,0 +1,12 @@
+
+Application Layer Attacks
+• Consume the resources or services of an application, thereby making the application unavailable to other legitimate users
+The magnitude of attack is measured in requests-per-second (rps)
+
+In these attacks, the attacker attempts to exploit vulnerabilities in the application layer protocol or in the application itself to prevent legitimate users from accessing the application. 
+
+Attack Techniques
+• HTTP GET/POST attack
+• Slowloris attack
+• UDP application layer flood attack
+• DDoS extortion attack

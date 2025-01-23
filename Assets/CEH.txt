@@ -2883,3 +2883,32 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Central Source Propagation: The attacker stores the attack toolkit on a central server. When a vulnerable machine is found, the central source transfers a copy of the toolkit to the compromised system, where it is installed automatically using scripting mechanisms. The infected system then searches for other vulnerable machines to repeat the process. Common protocols used include HTTP, FTP, and RPC.
 			- Back-chaining Propagation: The attacker keeps the attack toolkit on their own system. When a vulnerable machine is discovered, the attacker’s machine establishes a connection to the compromised system and transfers the toolkit. Tools such as port listeners or intruder-installed web servers use the Trivial File Transfer Protocol (TFTP) for back-channel file transfer.
 			- Autonomous Propagation: In this method, the attacking host directly transfers the attack toolkit to the vulnerable system at the moment it breaches it, without relying on an external file source.
+- Categories of DoS/DDoS Attack Vectors:
+	- Volumetric Attacks:
+		- Volumetric attacks consume the bandwidth of a target network or service by generating a large volume of packets. The magnitude of such attacks is measured in bits per second (bps). They often target protocols like the Network Time Protocol (NTP), Domain Name System (DNS), and Simple Service Discovery Protocol (SSDP), which are stateless and lack built-in congestion avoidance mechanisms.
+		- Types of Bandwidth Depletion Attacks:
+			- Flood Attack: Zombies send large volumes of traffic to the victim’s system, exhausting its bandwidth.
+			- Amplification Attack: The attacker or zombies send messages to a broadcast IP address, amplifying malicious traffic that consumes the victim’s bandwidth.
+		- Volumetric Attack Techniques: 
+			- UDP Flood Attack
+			- ICMP Flood Attack
+			- Ping of Death (PoD) Attack
+			- Smurf Attack
+			- Pulse Wave Attack
+			- Zero-day Attack
+			- Malformed IP Packet Flood Attack
+			- Spoofed IP Packet Flood Attack
+			- NTP Amplification Attack
+	- Protocol Attacks:
+		- Protocol attacks consume resources like connection state tables in network infrastructure components such as load balancers, firewalls, and application servers. As a result, no new connections can be established because the device waits for existing connections to close or expire. The magnitude of the attack is measured in packets per second (pps) or connections per second (cps).
+		- Protocol Attack Techniques: 
+			- Synchronize (SYN) Flood Attack 
+			- Fragmentation Attack 
+			- Spoofed Session Flood Attack
+			- Acknowledgement (ACK) Flood Attack
+			- SYN-ACK Flood Attack
+			- ACK and PUSH ACK Flood Attack 
+			- TCP Connection Flood Attack 
+			- TCP State Exhaustion Attack 
+			- RST Attack 
+			- TCP SACK Panic Attack
