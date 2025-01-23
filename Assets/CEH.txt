@@ -2860,3 +2860,26 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- A botnet (short for “robot network”) is a large network of compromised systems that are “infected” with bots (also known as zombies). Attackers use these bots to form a botnet, enabling them to launch DDoS attacks, generate spam, spread malware, and commit other cybercrimes.
 		- Bots are software applications that automate tasks over the Internet. They can be used maliciously to exploit system vulnerabilities, perform illegal activities, or run hidden programs to identify weaknesses. Botnets act as agents controlled by intruders to carry out such activities.
 		- However, not all bots are malicious. They are also used for benign purposes, such as data collection, web crawling, or data mining. For example, bots may coordinate DoS attacks or assist in “web spidering.” There are various types of bots, including Internet bots, IRC bots, and chatterbots. Examples of IRC bots include Cardinal, Sopel, Eggdrop, and EnergyMech.
+		- Botnets can be used by attackers to perform the following activities:
+			- Launch DDoS attacks to overwhelm systems.
+			- Generate spam emails on a massive scale.
+			- Sniff network traffic to intercept sensitive data.
+			- Perform keylogging to capture user input, such as passwords.
+			- Spread new malware across systems.
+			- Install unwanted advertisement add-ons on victim devices.
+			- Exploit Google AdSense for fraudulent revenue.
+			- Attack IRC chat networks to disrupt communication.
+			- Manipulate online polls and games to skew results.
+			- Commit mass identity theft by harvesting personal information.
+			- Perform credential stuffing attacks using stolen login credentials.
+			- Conduct cryptocurrency mining using victim system resources.
+		- Scanning Methods for Finding Vulnerable Machines:
+			- Random Scanning: Infected machines randomly probe IP addresses in a target network to find vulnerabilities. Once a machine is compromised, malicious code is installed. This method generates high traffic and slows as uninfected IPs decrease.
+			- Hit-List Scanning: Attackers compile a list of vulnerable machines and scan for targets. Once a machine is infected, the list is divided, and the new host continues scanning. This approach rapidly infects machines.
+			- Topological Scanning: Infected machines use information (e.g., URLs) from their systems to locate and compromise new targets. This method is precise and efficient.
+			- Local Subnet Scanning: Infected machines target vulnerable systems within their local network, often bypassing firewalls. It’s often combined with other techniques.
+			- Permutation Scanning: Attackers share a pseudorandom list of IPs. Scanning starts from a random point and skips infected machines. Scanning stops after repeated encounters with infected hosts, then restarts with a new key.
+		- How Malicious Code Propagates:
+			- Central Source Propagation: The attacker stores the attack toolkit on a central server. When a vulnerable machine is found, the central source transfers a copy of the toolkit to the compromised system, where it is installed automatically using scripting mechanisms. The infected system then searches for other vulnerable machines to repeat the process. Common protocols used include HTTP, FTP, and RPC.
+			- Back-chaining Propagation: The attacker keeps the attack toolkit on their own system. When a vulnerable machine is discovered, the attacker’s machine establishes a connection to the compromised system and transfers the toolkit. Tools such as port listeners or intruder-installed web servers use the Trivial File Transfer Protocol (TFTP) for back-channel file transfer.
+			- Autonomous Propagation: In this method, the attacking host directly transfers the attack toolkit to the vulnerable system at the moment it breaches it, without relying on an external file source.
