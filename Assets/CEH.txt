@@ -2830,3 +2830,33 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- OhPhish (portal.ohphish.com):
 			- OhPhish is a web-based portal designed to test employees’ susceptibility to social engineering attacks. It serves as a phishing simulation tool that allows organizations to run phishing simulation campaigns targeting their employees. The platform captures responses and generates Management Information System (MIS) reports and trends in real-time, which can be tracked by user, department, or designation.
 			- OhPhish can be utilized to audit an organization’s security against phishing attacks, using various phishing methods such as Entice to Click, Credential Harvesting, Send Attachment, Training, Vishing, and Smishing.
+
+
+--------------------------------------------------
+
+# Denial-of-Service
+
+- A Denial-of-Service (DoS) attack is an attempt to disrupt the normal functioning of a computer system or network by reducing, restricting, or completely preventing legitimate users from accessing system resources. During a DoS attack, the attacker floods the victim’s system with illegitimate service requests or traffic, overloading its resources and causing the system to crash or perform poorly. This often results in the victim’s website becoming unavailable or its system/network performance being significantly degraded. The primary objective of a DoS attack is to deny access to legitimate users, rather than to gain unauthorized access or corrupt data.
+- DoS attacks typically target either network bandwidth or system connectivity:
+	- Bandwidth Attacks: These attacks overwhelm the network by generating an excessive volume of traffic, consuming available network resources and preventing legitimate users from accessing them.
+	- Connectivity Attacks: These attacks bombard a system with a massive number of connection requests, exhausting the operating system’s resources and preventing it from processing legitimate user requests.
+- Impacts of DoS Attacks:
+	- Resource Consumption: Depleting critical system resources, such as memory, CPU time, or data structures
+	- Bandwidth Overload: Consuming network bandwidth, disk space, or other essential resources
+	- Physical Damage: Damaging or altering network components
+	- Data Destruction: Corrupting or deleting programming and files within the affected system
+- Examples of DoS Attack Types:
+	- Flooding the victim’s system with more traffic than it can handle
+	- Overloading a service (e.g., Internet Relay Chat (IRC)) with more events than it can process
+	- Crashing a TCP/IP stack by sending corrupted packets
+	- Disrupting a service by interacting with it in an unexpected or malicious manner
+	- Causing a system to hang by forcing it into an infinite loop
+- Distributed Denial-of-Service:
+	- A Distributed Denial-of-Service (DDoS) attack is a large-scale, coordinated form of a Denial-of-Service (DoS) attack that targets the availability of a victim’s system or network resources. It is carried out indirectly through numerous compromised computers, often referred to as botnets, distributed across the Internet.
+	- By leveraging client/server technology, the attacker can significantly amplify the impact of the attack by utilizing the resources of multiple unwitting accomplice computers, which act as platforms for the assault. The overwhelming flood of incoming messages or traffic to the target system forces it to shut down or become unresponsive, effectively denying service to legitimate users.
+	- The main goal of a DDoS attack is to compromise multiple systems and use them to overwhelm a victim’s resources. Attackers identify vulnerable systems using custom scripts, gain access, and install DDoS software.
+	- The attack is initiated by sending commands to zombie agents—compromised computers controlled via a command-and-control (C&C) server. These agents send spoofed connection requests to reflector systems, impersonating the victim’s IP address. The reflectors then flood the victim with responses, overwhelming its system. This traffic overload reduces performance or causes the system to shut down.
+	- Botnets:
+		- A botnet (short for “robot network”) is a large network of compromised systems that are “infected” with bots (also known as zombies). Attackers use these bots to form a botnet, enabling them to launch DDoS attacks, generate spam, spread malware, and commit other cybercrimes.
+		- Bots are software applications that automate tasks over the Internet. They can be used maliciously to exploit system vulnerabilities, perform illegal activities, or run hidden programs to identify weaknesses. Botnets act as agents controlled by intruders to carry out such activities.
+		- However, not all bots are malicious. They are also used for benign purposes, such as data collection, web crawling, or data mining. For example, bots may coordinate DoS attacks or assist in “web spidering.” There are various types of bots, including Internet bots, IRC bots, and chatterbots. Examples of IRC bots include Cardinal, Sopel, Eggdrop, and EnergyMech.

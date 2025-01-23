@@ -1,1 +1,67 @@
-Trash
+
+Attackers can use botnets to perform the following:
+▪ DDoS attacks: Botnets can generate DDoS attacks, which consume the bandwidth of the victim’s computers. Botnets can also overload a system, wasting valuable host system resources and destroying network connectivity.
+▪ Spamming: Attackers use a SOCKS proxy for spamming. They harvest email addresses from web pages or other sources.
+▪ Sniffing traffic: A packet sniffer observes the data traffic entering a compromised machine. It allows an attacker to collect sensitive information such as credit card numbers and passwords. The sniffer also allows an attacker to steal information from one botnet and use it against another botnet. In other words, botnets can rob one another.
+▪ Keylogging: Keylogging is a method of recording the keys typed on a keyboard, and it provides sensitive information such as system passwords. Attackers use keylogging to harvest account login information for services such as PayPal.
+▪ Spreading new malware: Botnets can be used to spread new bots. 
+▪ Installing advertisement add-ons: Botnets can be used to perpetrate a “click fraud” by automating clicks.
+▪ Google AdSense abuse: Some companies permit showing Google AdSense ads on their websites for economic benefits. Botnets allow an intruder to automate clicks on an ad, producing a percentage increase in the click queue.
+▪ Attacks on IRC chat networks: Also called clone attacks, these attacks are similar to a DDoS attack. A master agent instructs each bot to link to thousands of clones within an IRC network, which can flood the network.
+▪ Manipulating online polls and games: Every botnet has a unique address, enabling it to manipulate online polls and games.
+▪ Mass identity theft: Botnets can send a large number of emails while impersonating a reputable organization such as eBay. This technique allows attackers to steal information for identity theft.
+▪ Credential stuffing: With access to a large number of compromised computers (bots), attackers can perform automated login attempts using stolen credentials on a wide variety of websites, a tactic known as credential stuffing.
+▪ Cryptocurrency mining: Attackers can install cryptocurrency mining software on compromised machines within a botnet, using their processing power to mine cryptocurrency without the knowledge or consent of the owners.
+
+---
+
+# Scanning Methods for Finding Vulnerable Machines:
+
+Random Scanning
+The infected machine probes IP addresses randomly from the target network IP range and checks for vulnerabilities
+
+In this technique, the infected machine (an attacker’s machine or a zombie) probes IP addresses randomly in the target network’s IP range and checks their vulnerability. On finding a vulnerable machine, it hacks and attempts to infect the vulnerable machine by installing the same malicious code installed on it. This technique generates significant traffic because many compromised machines probe and check the same IP addresses. Malware propagates quickly in the initial stage, and the speed of propagation reduces as the number of new IP addresses available decreases with time.
+
+
+Hit - list Scanning
+An attacker first collects a list of potentially vulnerable machines and then scans them to find vulnerable machines
+
+Through scanning, an attacker first collects a list of potentially vulnerable machines and then creates a zombie army. Subsequently, the attacker scans the list to find a vulnerable machine. On finding one, the attacker installs malicious code on it and divides the list in half. The attacker continues to scan one half, whereas the other half is scanned by the newly compromised machine. This process keeps repeating, causing the number of compromised machines to increase exponentially. This technique ensures the installation of malicious code on all the potentially vulnerable machines in the hit list within a short time.
+
+
+Topological Scanning
+It uses information obtained from an infected machine to find new vulnerable machines
+
+This technique uses the information obtained from an infected machine to find new vulnerable machines. An infected host checks for URLs in the hard drive of a machine that it wants to infect. Subsequently, it shortlists URLs and targets, and it checks their vulnerability. This technique yields accurate results, and its performance is similar to that of the hit-list scanning technique.
+
+
+Local Subnet Scanning
+The infected machine looks for new vulnerable machines in its own local network
+
+In this technique, an infected machine searches for new vulnerable machines in its local network, behind a firewall, by using the information hidden in the local addresses. Attackers use this technique in combination with other scanning mechanisms.
+
+
+Permutat ion Scanning
+It uses a pseudorandom permutation list of IP addresses to find new vulnerable machines 
+
+In this technique, attackers share a common pseudorandom permutation list of IP addresses of all machines. The list is created using a block cipher of 32 bits and a preselected key. If a compromised host is infected during either hit-list scanning or local subnet scanning, the list is scanned from immediately after the point of the compromised host to identify new targets. If a compromised host is infected during permutation scanning, scanning restarts from a random point. If an already infected machine is encountered, scanning restarts from a new random start point in the permutation list. The process of scanning stops when the compromised host consecutively encounters a predefined number of already infected machines and fails to find new targets. Thereafter, a new permutation key is generated to initiate a new scanning phase. 
+
+---
+
+How Does Malicious Code Propagate?
+Attackers use three techniques to propagate malicious code to newly discovered vulnerable systems
+- In this technique, the attacker places an attack toolkit on a central source and a copy of the attack toolkit is transferred to a newly discovered vulnerable system. Once the attacker finds a vulnerable machine, they instruct the central source to transfer a copy of the attack toolkit to the newly compromised machine, on which attack tools are automatically installed under management by a scripting mechanism. This initiates a new attack cycle, in which the newly infected machine searches for other vulnerable machines and repeats the process to install the attack toolkit. In general, this technique uses HTTP, FTP, and RPC protocols.
+
+Central Source Propagation
+Attackers place an attack toolkit on the central source, and a copy of the attack toolkit is transferred to the newly discovered vulnerable system
+- In this technique, the attacker places an attack toolkit on their own system, and a copy of the attack toolkit is transferred to a newly discovered vulnerable system. The attack tools installed on the attacking machine use some special methods to accept a connection from the compromised system and then transfer a file containing the attack tools to it. Simple port listeners containing a copy of this file or full intruder-installed web servers, both of which use the Trivial File Transfer Protocol (TFTP), support this back-channel file copy.
+
+Back-chaining Propagation
+An attacker places an attack toolkit on his/her own system, and a copy of the attack toolkit is transferred to
+the newly discovered vulnerable system
+
+Autonomous Propagation
+The attacking host itself transfers the attack toolkit to the newly discovered vulnerable system at the exact time that it breaks into that system
+- Unlike the previously discussed mechanisms, in which an external file source transfers the attack toolkit, in autonomous propagation, the attacking host itself transfers the attack toolkit to a newly discovered vulnerable system, exactly at the time it breaks into that system.
+
+---
