@@ -2981,12 +2981,54 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Attackers create a fake session by sending multiple SYN and ACK packets, along with one or more RST or FIN packets.
 			- Multiple ACK Spoofed Session Flood Attack:
 				- Attackers create a fake session by skipping SYN packets entirely and sending only multiple ACK packets along with one or more RST or FIN packets. Since SYN packets are not used and most firewalls rely on SYN packet filters to detect abnormal traffic, these attacks have a low detection rate.
-	- HTTPS GET/POST Attack
-	- Slowloris Attack
-	- UDP Application Layer Flood Attack
-	- Multi-vector Attack
-	- Peer-to-peer Attack
-	- Permanent DoS (PDoS) Attack
+	- HTTPS GET/POST Attack:
+		- HTTP attacks are Layer-7 attacks that exploit the HTTP protocol. HTTP clients, such as web browsers, connect to a web server using the HTTP protocol to send requests, such as HTTP GET or HTTP POST. Attackers take advantage of these requests to perform DoS attacks.
+		- An HTTP GET/POST attack is a sophisticated Layer-7 attack that does not rely on malformed packets, spoofing, or reflection techniques. It requires significantly less bandwidth compared to other attacks to incapacitate the targeted site or web server.
+		- The goal of this attack is to force the server to allocate as many resources as possible to process the attack, thereby denying legitimate users access to the server’s resources.
+		- HTTP GET Attack:
+			- In an HTTP GET attack, the attacker uses a time-delayed HTTP header to maintain an HTTP connection and exhaust the web server’s resources. The attacker never sends the full request to the target server, causing the server to retain the HTTP connection and wait indefinitely. This prevents the server from processing requests from legitimate users. In such attacks, network parameters may appear normal, even while the service is unavailable.
+		- HTTP POST Attack:
+			- In an HTTP POST attack, the attacker sends HTTP requests with complete headers but an incomplete message body to the target web server or application. Since the message body is incomplete, the server continues to wait for the remainder, making it unavailable to legitimate users.
+		- Additional HTTP Flood Attacks:
+			- Single-Session HTTP Flood Attack: In this type of attack, an attacker exploits vulnerabilities in HTTP 1.1 to send multiple requests within a single HTTP session, overwhelming the target server.
+			- Single-Request HTTP Flood Attack: In this attack, the attacker sends multiple HTTP requests concealed within a single HTTP packet during a single session. This technique enables attackers to remain anonymous and undetected while carrying out DDoS attacks.
+			- Recursive HTTP GET Flood Attack: Staying undetected is key for attackers. In this attack, an attacker poses as a legitimate user and performs seemingly valid actions to deceive firewalls into believing the source is legitimate. The recursive GET method collects a list of pages or images and appears to navigate through them. However, it stealthily floods the target with requests. When combined with an HTTP flood attack, recursive GET attacks can inflict significant damage on the target system.
+			- Random Recursive GET Flood Attack: This variation of the recursive GET flood attack targets forums, blogs, and other websites with sequentially numbered pages. Similar to the recursive GET flood attack, the attacker pretends to browse through pages. However, instead of following a sequence, the attacker uses random numbers from a valid page range to simulate legitimate user behavior, sending new GET requests each time. Both recursive GET and random recursive GET flood attacks overwhelm the target with a high volume of GET requests, ultimately exhausting its resources.
+	- Slowloris Attack:
+		- Slowloris is a DDoS attack tool designed to perform Layer-7 DDoS attacks, targeting web infrastructure. Unlike other tools, Slowloris uses entirely legitimate HTTP traffic to disrupt a target server.
+		- In a Slowloris attack, the attacker sends partial HTTP requests to the target web server or application. Upon receiving these requests, the target server opens multiple connections and waits for them to complete. However, the requests remain incomplete, filling up the server's maximum concurrent connection pool. As a result, additional connection attempts are denied, making the server inaccessible to legitimate users.
+	- UDP Application Layer Flood Attack:
+		- Although UDP flood attacks are primarily known for their volumetric nature, certain application layer protocols that rely on UDP can also be exploited by attackers to perform flooding attacks on target networks.
+		- Examples of UDP-based Application Layer Protocols that attackers can use to flood target networks:
+			- Character Generator Protocol (CHARGEN)
+			- Simple Network Management Protocol Version 2 (SNMPv2)
+			- Quote of the Day (QOTD)
+			- Remote Procedure Call (RPC)
+			- Simple Service Discovery Protocol (SSDP)
+			- Connection-less Lightweight Directory Access Protocol (CLDAP)
+			- Trivial File Transfer Protocol (TFTP)
+			- Network Basic Input/Output System (NetBIOS)
+			- Network Time Protocol (NTP)
+			- Quake Network Protocol
+			- Steam Protocol
+			- Voice over Internet Protocol (VoIP)
+	- Multi-Vector Attack:
+		- In multi-vector DDoS attacks, attackers combine volumetric, protocol, and application-layer attack techniques to overwhelm and disrupt the target system or service. They rapidly switch from one type of DDoS attack (e.g., SYN flood) to another (e.g., layer-7 attack). These attacks can be launched sequentially, with one vector at a time, or simultaneously through multiple vectors.
+		- The objective is to confuse the target’s IT department, forcing them to expend significant resources and divert their attention, while the attack continues to cause damage.
+	- Peer-to-Peer Attack:
+		- A peer-to-peer attack is a type of DDoS attack in which attackers exploit vulnerabilities in peer-to-peer servers to initiate an attack. They take advantage of flaws in networks using the Direct Connect (DC++) protocol, which facilitates file exchanges between instant-messaging clients. Unlike botnet-based attacks, a peer-to-peer attack does not rely on botnets or require direct communication with the clients being exploited. Instead, the attacker instructs clients from large peer-to-peer file-sharing hubs to disconnect from their network and connect to the victim’s website. As a result, thousands of computers aggressively attempt to connect to the target website, significantly degrading its performance or causing it to crash.
+		- Peer-to-peer attacks are relatively easy to identify based on their signatures. Attackers can use this method to launch large-scale DoS attacks against websites. To mitigate peer-to-peer DDoS attacks, restricting specific ports for peer-to-peer communication is an effective strategy. For example, disallowing peer-to-peer communication on port 80 minimizes the risk of attacks targeting websites.
+	- Permanent Denial-of-Service Attack (PDoS):
+		- Permanent DoS (PDoS) attacks, also known as "phlashing," specifically target hardware to cause irreversible damage to the system hardware. Unlike other types of DoS attacks that disrupt services temporarily, PDoS attacks sabotage the system’s hardware, often requiring the victim to replace or reinstall the damaged components. PDoS attacks exploit security vulnerabilities in a device’s management interfaces, such as those found in printers, routers, and other networking devices. By targeting these flaws, attackers gain unauthorized remote access and control over the victim’s hardware.
+		- This type of attack is faster and more destructive than traditional DoS attacks. Unlike DDoS attacks that rely on a network of compromised machines (zombies), PDoS attacks achieve their goal with minimal resources. Attackers commonly use a technique called “bricking,” where they render hardware completely inoperable.
+		- In a PDoS attack, the attacker sends fraudulent emails, IRC messages, tweets, or videos containing links to fake hardware updates. These updates are deliberately modified with vulnerabilities or corrupted firmware. When the victim clicks on a malicious link or pop-up and installs the fraudulent update, the attacker gains complete control of the device. This results in permanent damage, effectively rendering the system unusable.
+	- TCP SACK Panic Attack:
+		- A TCP Selective Acknowledgment (SACK) panic attack is a remote attack vector where attackers attempt to crash a target Linux machine by sending SACK packets with a malformed maximum segment size (MSS). This attack exploits an integer overflow vulnerability in the Linux Socket Buffer (SKB), which can lead to kernel panic.
+		- Linux systems commonly use the TCP SACK mechanism, where the sender is informed about successfully acknowledged packets by the receiver. This allows the sender to retransmit only those packets that were not acknowledged. Linux uses a linked-list data structure called the socket buffer to store data until it is either acknowledged or received. The socket buffer can store a maximum of 17 segments, and once packets are acknowledged, they are deleted from the buffer. However, if the socket buffer attempts to store more than 17 segments, it can cause a kernel panic due to integer overflow.
+		- Attackers exploit this vulnerability in a TCP SACK panic attack by sending specially crafted SACK packets in sequence to the target server. They set the MSS to the lowest possible value (48 bytes), which increases the number of TCP segments requiring retransmission. This overloads the socket buffer, causing it to exceed its 17-segment limit. The resulting integer overflow triggers a kernel panic, leading to a denial-of-service (DoS) condition.
+		- Because the vulnerability resides in the kernel stack, attackers can also use this method to target containers and virtual machines, further expanding the scope of the attack.
+		- Countermeasures:
+			- Implement Vulnerability Patching: Regularly update and patch Linux systems to address the vulnerabilities that enable TCP SACK panic attacks. This ensures the system is protected from known exploits.
+			- Implement Firewall Rules: Configure firewalls to block incoming packets with the lowest MSS value (e.g., 48 bytes), which are commonly used in this type of attack.
 	- Distributed Reflection DoS (DRDoS) Attack
-	- TCP SACK Panic Attack
 	- DDoS Extortion Attack
