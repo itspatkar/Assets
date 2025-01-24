@@ -2969,9 +2969,18 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- In an active TCP session, ACK and PUSH ACK flags are used to transfer data between the server and client machines until the session concludes. In an ACK and PUSH ACK flood attack, attackers send a large volume of spoofed ACK and PUSH ACK packets to the target machine, overwhelming its resources and rendering it non-functional.
 	- ACK Flood Attack:
 		- In an ACK flood attack, the attacker overwhelms the target system by sending a massive number of TCP ACK packets. These packets flood the target's network or server, consuming its bandwidth and processing resources. Since the target must process each ACK packet as part of TCP session handling, this attack can lead to performance degradation or complete denial of service, making it difficult for legitimate users to access the target system.
-	- Fragmentation Attack
 	- TCP State Exhaustion Attack
-	- Spoofed Session Flood Attack
+	- Fragmentation Attack:
+		- Fragmentation attacks disrupt a victim’s ability to reassemble fragmented packets by flooding it with TCP or UDP fragments, leading to reduced performance. In these attacks, the attacker sends a large number of oversized fragmented packets (exceeding 1500 bytes) to a target web server at a relatively low packet rate.
+		- Since network protocols permit fragmentation, these packets often bypass inspection by network devices such as routers, firewalls, and IDS/IPS. The process of reassembling and inspecting these large fragmented packets consumes excessive system resources.
+		- Additionally, the attacker randomizes the content within the packet fragments, further increasing the complexity of reassembly and inspection. This excessive resource consumption can eventually lead to system crashes or significant degradation in performance.
+	- Spoofed Session Flood Attack:
+		- In this type of attack, attackers create fake or spoofed TCP sessions by sending multiple SYN, ACK, and RST or FIN packets. This technique is used to bypass firewalls and perform DDoS attacks against target networks, ultimately exhausting its network resources.
+		- Examples of Spoofed Session Flood Attacks:
+			- Multiple SYN-ACK Spoofed Session Flood Attack:
+				- Attackers create a fake session by sending multiple SYN and ACK packets, along with one or more RST or FIN packets.
+			- Multiple ACK Spoofed Session Flood Attack:
+				- Attackers create a fake session by skipping SYN packets entirely and sending only multiple ACK packets along with one or more RST or FIN packets. Since SYN packets are not used and most firewalls rely on SYN packet filters to detect abnormal traffic, these attacks have a low detection rate.
 	- HTTPS GET/POST Attack
 	- Slowloris Attack
 	- UDP Application Layer Flood Attack

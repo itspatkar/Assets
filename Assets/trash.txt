@@ -1,12 +1,32 @@
 
-Fragmentation Attack
 
-These attacks destroy a victim’s ability to reassemble fragmented packets by flooding it with TCP or UDP fragments, resulting in reduced performance. In fragmentation attacks, the attacker sends a large number of fragmented (1500+ byte) packets to a target web server with a relatively small packet rate. Since the protocol allows fragmentation, these packets are usually pass uninspected as they pass through network equipment such as routers, firewalls, and the intrusion detection system (IDS)/intrusion prevention system (IPS). The reassembly and inspection of these large, fragmented packets consume excessive resources. Moreover, the content in the packet fragments is randomized by the attacker, which makes the reassembly and inspection consume more resources and, in turn, causes the system to crash.
+Slowloris At tack:
+In the Slowloris attack, the attacker sends partial HTTP requests to the target web server or application
+• Upon receiving the partial HTTP requests, the target server opens multiple open connections and keeps waiting for the requests to complete
+• These requests will not be complete, and as a result, the target server’s maximum concurrent connection pool will be exhausted, and additional connection attempts will be denied
 
+----
 
+HTTP GET/POST Attack
 
-Fragmentation attacks overwhelm a victim’s system by exploiting its ability to reassemble fragmented packets, leading to reduced performance. In these attacks, the attacker sends a large number of oversized fragmented packets (exceeding 1500 bytes) to a target web server at a relatively low packet rate.
+HTTP attacks are layer-7 attacks. HTTP clients, such as web browsers, connect to a web server through HTTP protocol to send HTTP requests. These requests can be either HTTP GET or HTTP POST. Attackers exploit these requests to perform DoS attacks.
 
-Since network protocols permit fragmentation, these packets often bypass inspection by network devices such as routers, firewalls, and IDS/IPS. However, reassembling and inspecting these fragmented packets demands significant system resources.
+In an HTTP GET attack, the attacker uses a time-delayed HTTP header to maintain an HTTP connection and exhaust web-server resources. The attacker never sends the full request to the target server. Consequently, the server retains the HTTP connection and waits, making it inaccessible for legitimate users. In these types of attacks, all the network parameters appear healthy while the service remains unavailable.
 
-To intensify the attack, the attacker randomizes the content within the packet fragments, further increasing the complexity of reassembly and inspection. This excessive resource consumption can ultimately lead to system crashes or significant degradation in performance.
+In an HTTP POST attack, the attacker sends HTTP requests with complete headers but an incomplete message body to the target web server or application. Because the message body is incomplete, the server waits for the rest of the body, making the web server or web application unavailable to legitimate users.
+
+An HTTP GET/POST attack is a sophisticated layer-7 attack that does not use malformed packets, spoofing, or reflection techniques. This type of attack requires less bandwidth than other attacks to bring down the targeted site or web server. This attack aims to compel the server to allocate as many resources as possible to serve the attack, thereby denying legitimate users access to the server’s resources.
+
+---
+
+HTTP GET/POST Attack
+
+HTTP attacks are Layer-7 attacks that exploit the HTTP protocol. HTTP clients, such as web browsers, connect to a web server using the HTTP protocol to send requests, such as HTTP GET or HTTP POST. Attackers take advantage of these requests to perform DoS attacks.
+
+    HTTP GET Attack:
+    In an HTTP GET attack, the attacker uses a time-delayed HTTP header to maintain an HTTP connection and exhaust the web server’s resources. The attacker never sends the full request to the target server, causing the server to retain the HTTP connection and wait indefinitely. This prevents the server from processing requests from legitimate users. In such attacks, network parameters may appear normal, even while the service is unavailable.
+
+    HTTP POST Attack:
+    In an HTTP POST attack, the attacker sends HTTP requests with complete headers but an incomplete message body to the target web server or application. Since the message body is incomplete, the server continues to wait for the remainder, making it unavailable to legitimate users.
+
+An HTTP GET/POST attack is a sophisticated Layer-7 attack that does not rely on malformed packets, spoofing, or reflection techniques. It requires significantly less bandwidth compared to other attacks to incapacitate the targeted site or web server. The goal of this attack is to force the server to allocate as many resources as possible to process the attack, thereby denying legitimate users access to the server’s resources.
