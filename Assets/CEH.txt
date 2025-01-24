@@ -2901,14 +2901,45 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- NTP Amplification Attack
 	- Protocol Attacks:
 		- Protocol attacks consume resources like connection state tables in network infrastructure components such as load balancers, firewalls, and application servers. As a result, no new connections can be established because the device waits for existing connections to close or expire. The magnitude of the attack is measured in packets per second (pps) or connections per second (cps).
-		- Protocol Attack Techniques: 
-			- Synchronize (SYN) Flood Attack 
-			- Fragmentation Attack 
+		- Protocol Attack Techniques:
+			- Synchronize (SYN) Flood Attack
+			- Fragmentation Attack
 			- Spoofed Session Flood Attack
 			- Acknowledgement (ACK) Flood Attack
 			- SYN-ACK Flood Attack
-			- ACK and PUSH ACK Flood Attack 
-			- TCP Connection Flood Attack 
-			- TCP State Exhaustion Attack 
-			- RST Attack 
+			- ACK and PUSH ACK Flood Attack
+			- TCP Connection Flood Attack
+			- TCP State Exhaustion Attack
+			- RST Attack
 			- TCP SACK Panic Attack
+	- Application Layer Attacks:
+		- In application layer attacks, the attacker exploits vulnerabilities in application layer protocols or the application itself to deny legitimate users access. Attacks on unpatched, vulnerable systems require less bandwidth to succeed compared to protocol or volumetric DDoS attacks.
+		- Application DDoS attacks target application layer resources by opening connections and leaving them open, preventing new connections from being established. These attacks are designed to disrupt a specific aspect of an application or service and can be effective with only a few attacking machines generating low traffic rates. The magnitude of such attacks is measured in requests per second (rps).
+		- These attacks are particularly difficult to detect and mitigate. Application-level flood attacks can result in service outages, such as loss of email functionality, network resources, or temporary shutdowns of applications and services.
+		- Application Layer Attack Techniques:
+			- HTTP GET/POST Attack
+			- Slowloris Attack
+			- UDP Application Layer Flood Attack
+			- DDoS Extortion Attack
+- DoS/DDoS Attack Techniques:
+	- UDP Flood Attack
+	- ICMP Flood Attack
+	- PoD Attack
+	- Smurf Attack
+	- Pulse Wave Attack
+	- Zero-day Attack
+	- NTP Amplification Attack
+	- SYN Flood Attack
+	- Fragmentation Attack
+	- ACK Flood Attack
+	- TCP State Exhaustion Attack
+	- Spoofed Session Flood Attack
+	- HTTPS GET/POST Attack
+	- Slowloris Attack
+	- UDP Application Layer Flood Attack
+	- Multi-vector Attack
+	- Peer-to-peer Attack
+	- Permanent DoS (PDoS) Attack
+	- Distributed Reflection DoS (DRDoS) Attack
+	- TCP SACK Panic Attack
+	- DDoS Extortion Attack
