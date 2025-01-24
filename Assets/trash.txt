@@ -1,0 +1,12 @@
+
+Fragmentation Attack
+
+These attacks destroy a victim’s ability to reassemble fragmented packets by flooding it with TCP or UDP fragments, resulting in reduced performance. In fragmentation attacks, the attacker sends a large number of fragmented (1500+ byte) packets to a target web server with a relatively small packet rate. Since the protocol allows fragmentation, these packets are usually pass uninspected as they pass through network equipment such as routers, firewalls, and the intrusion detection system (IDS)/intrusion prevention system (IPS). The reassembly and inspection of these large, fragmented packets consume excessive resources. Moreover, the content in the packet fragments is randomized by the attacker, which makes the reassembly and inspection consume more resources and, in turn, causes the system to crash.
+
+
+
+Fragmentation attacks overwhelm a victim’s system by exploiting its ability to reassemble fragmented packets, leading to reduced performance. In these attacks, the attacker sends a large number of oversized fragmented packets (exceeding 1500 bytes) to a target web server at a relatively low packet rate.
+
+Since network protocols permit fragmentation, these packets often bypass inspection by network devices such as routers, firewalls, and IDS/IPS. However, reassembling and inspecting these fragmented packets demands significant system resources.
+
+To intensify the attack, the attacker randomizes the content within the packet fragments, further increasing the complexity of reassembly and inspection. This excessive resource consumption can ultimately lead to system crashes or significant degradation in performance.

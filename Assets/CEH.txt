@@ -2922,16 +2922,54 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- UDP Application Layer Flood Attack
 			- DDoS Extortion Attack
 - DoS/DDoS Attack Techniques:
-	- UDP Flood Attack
-	- ICMP Flood Attack
-	- PoD Attack
-	- Smurf Attack
-	- Pulse Wave Attack
-	- Zero-day Attack
-	- NTP Amplification Attack
-	- SYN Flood Attack
+	- UDP Flood Attack:
+		- In a UDP flood attack, an attacker sends spoofed UDP packets at a very high rate to random ports on a target server, using a wide range of source IP addresses. The flood of UDP packets forces the server to repeatedly check for non-existent applications on the targeted ports.
+		- As a result, legitimate applications become inaccessible, and any attempts to access them generate an ICMP “Destination Unreachable” error reply. This attack consumes network resources and available bandwidth, eventually exhausting the network and causing it to go offline.
+	- ICMP Flood Attack:
+		- ICMP is primarily used by network administrators for IP operations, troubleshooting, and error messaging for undeliverable packets. In an ICMP flood attack, attackers send large volumes of ICMP echo request packets to a victim’s system, either directly or through reflection networks. These packets prompt the victim’s system to reply, and the resulting high traffic saturates the victim's network bandwidth, overwhelming the connection and preventing it from responding to legitimate TCP/IP requests.
+		- To mitigate ICMP flood attacks, a threshold can be set to activate ICMP flood protection when exceeded. If the ICMP threshold is surpassed, the router blocks further ICMP echo requests from all addresses in the same security zone for the remainder of the current second and the following second.
+	- Ping of Death Attack:
+		- A Ping of Death (PoD) attack involves an attacker attempting to crash, destabilize, or freeze a target system or service by sending malformed or oversized packets using a simple ping command. For instance, an attacker might send a packet with a size of 65,538 bytes to a target server. This size exceeds the RFC 791 IP limit of 65,535 bytes. When the receiving system attempts to reassemble the oversized packet, it may cause the system to crash or become unstable.
+		- In such attacks, the attacker’s identity can be easily spoofed, and the attacker typically requires only the target’s IP address, without needing detailed knowledge of the system.
+	- Smurf Attack:
+		- In a Smurf attack, the attacker spoofs the source IP address to match the victim’s IP address and sends a large number of ICMP ECHO request packets to an IP broadcast address. This action triggers all the hosts on the broadcast network to respond to the ICMP ECHO requests. Since the source IP was spoofed, the responses are directed to the victim’s machine, creating significant traffic that can overwhelm the victim’s system and potentially cause it to crash.
+	- Pulse Wave Attack:
+		- Pulse wave DDoS attacks are a sophisticated type of DDoS attack used by threat actors to disrupt the operations of target systems. Unlike traditional DDoS attacks, which involve continuous traffic flows, pulse wave attacks feature periodic, high-intensity traffic bursts that consume the entire bandwidth of the target network.
+		- Attackers send highly repetitive bursts of packets, or "pulses," to the victim at regular intervals, typically every 10 minutes. These attack sessions can last for hours or even days. A single pulse, often exceeding 300 Gbps, is sufficient to overwhelm a network's bandwidth capacity. Recovery from such attacks is extremely challenging and sometimes impossible.
+	- Zero-Day DDos Attack:
+		- Zero-day DDoS attacks exploit vulnerabilities that have no available patches or effective defensive mechanisms. Until the victim identifies the attacker’s strategy and implements a patch for the exploited vulnerability, the attacker can block access to the victim’s resources and potentially steal sensitive data. These attacks can inflict significant damage on the victim’s network infrastructure and assets.
+		- At present, there is no universal or versatile solution to fully protect networks from zero-day DDoS attacks.
+	- NTP Amplification Attack:
+		- The Network Time Protocol (NTP) is used to synchronize time across networks, including host machines, processes, and devices. It ensures precise timekeeping, which is essential for various network activities, protocols, and logs.
+		- In an NTP amplification attack, an attacker leverages a botnet to send large UDP packets with a spoofed source IP address (impersonating the victim's real IP address) to an NTP server. This attack typically exploits NTP server with its vulnerable monlist command enabled. Each UDP packet triggers a request to the NTP server via the monlist command, causing the server to generate and send large response packets. The server, unaware of the spoofed source, directs these responses to the victim’s IP address.
+		- As a result, the victim’s network is overwhelmed with large response packets, flooding its infrastructure with unwanted traffic. This leads to a denial-of-service scenario, causing severe network congestion, service disruption, and depletion of critical resources, such as bandwidth, memory, and processing power.
+		- Retrieve Monlist from an NTP Server:
+			- After executing the command, Nmap provides a list of public and private clients that have communicated with the NTP server.
+			- nmap -sU -pU:123 -Pn -n --script=ntp-monlist <ip>
+		- Countermeasures for NTP Amplification Attacks:
+			- Secure and harden NTP server configurations to prevent exploitation of the monlist command.
+			- Enable flow control mechanisms on the NTP server to limit traffic.
+			- Regularly monitor the network for abnormal behavior or suspicious activity.
+			- Implement a zero-trust network architecture to enhance security.
+			- Use firewalls to filter and restrict NTP server requests.
+	- SYN Flood Attack:
+		- In a SYN flood attack, the attacker sends a large number of SYN requests to the target server (victim) using fake source IP addresses. This attack creates incomplete TCP connections, consuming network resources and overwhelming the target system.
+		- Normally, when a client initiates a TCP connection with a server, the connection is established using the TCP three-way handshake. In a SYN flood attack, the attacker exploits this process. The attacker sends fake TCP SYN requests to the target server. When the server responds with a SYN/ACK, the attacker never completes the handshake by sending the final ACK. This leaves the server waiting indefinitely, tying up resources.
+		- SYN flooding exploits flaws in the way most systems implement the TCP three-way handshake. The attack overwhelms the server by sending an unlimited number of SYN packets faster than the system can process them. The server's listening queue becomes filled with partially open connections while it waits for ACK packets that never arrive, eventually leading to resource exhaustion and service disruption.
+		- Countermeasures for SYN Flood Attacks:
+			- Proper packet filtering is an effective solution to mitigate SYN flood attacks. Administrators can also fine-tune the TCP/IP stack to minimize the impact of these attacks while ensuring legitimate client traffic is unaffected.
+			- Some SYN flood attacks aim not to disrupt servers but to consume the entire bandwidth of an internet connection. Tools like SYN Cookies and SynAttackProtect can help counter such attacks.
+			- To further safeguard against bandwidth exhaustion, administrators can implement additional measures:
+				- Reducing the timeout period during which a pending connection remains in the "SYN RECEIVED" state in the queue.
+				- Decreasing the retransmission interval for the first ACK packet if no response is received from the client.
+				- Limiting the number of packet retransmissions or disabling retransmissions entirely.
+	- SYN-ACK Flood Attack:
+		- A SYN-ACK flood attack is similar to a SYN flood attack, but it targets the second stage of the TCP three-way handshake. In this attack, the attacker sends a large number of SYN-ACK packets to the target machine, overwhelming its resources. This flood of packets prevents the target from processing legitimate traffic, ultimately exhausting its capacity and disrupting normal operations.
+	- ACK and PUSH ACK Flood Attack:
+		- In an active TCP session, ACK and PUSH ACK flags are used to transfer data between the server and client machines until the session concludes. In an ACK and PUSH ACK flood attack, attackers send a large volume of spoofed ACK and PUSH ACK packets to the target machine, overwhelming its resources and rendering it non-functional.
+	- ACK Flood Attack:
+		- In an ACK flood attack, the attacker overwhelms the target system by sending a massive number of TCP ACK packets. These packets flood the target's network or server, consuming its bandwidth and processing resources. Since the target must process each ACK packet as part of TCP session handling, this attack can lead to performance degradation or complete denial of service, making it difficult for legitimate users to access the target system.
 	- Fragmentation Attack
-	- ACK Flood Attack
 	- TCP State Exhaustion Attack
 	- Spoofed Session Flood Attack
 	- HTTPS GET/POST Attack
