@@ -3154,3 +3154,39 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Event Log Analysis:
 				- DDoS event logs play a crucial role in forensic investigations and law enforcement, especially when an attacker causes significant financial damage. Providers can use honeypots and other network security mechanisms, such as firewalls, packet sniffers, and server logs, to store all events that occurred during the setup and execution of the attack. This allows network administrators to identify the type of DDoS attack or the combination of attacks used.
 				- Logs from routers, firewalls, and intrusion detection systems (IDS) can be analyzed to trace the source of the DoS traffic. Additionally, network administrators can work with intermediary ISPs and law enforcement agencies to trace the attacker’s IP address.
+	- Techniques to Defend Against Botnets:
+		- RFC 3704 Filtering:
+			- RFC 3704 is a basic access control list (ACL) filter designed to limit the impact of DDoS attacks by blocking traffic with spoofed addresses. This filter ensures that packets come from valid, allocated address space that matches the network topology and address allocation.
+			- A "bogon list" includes all unused or reserved IP addresses that should not originate from the Internet. Any traffic coming from these unused or reserved IP addresses is considered bogus and should be filtered by the ISP before it enters the Internet link. If a packet is sourced from an IP address on the bogon list, it is likely from a spoofed source and should be dropped by the filter.
+			- System administrators should verify that their ISP performs RFC 3704 filtering in the cloud before traffic enters their systems. Since the bogon list changes regularly, if the ISP does not perform RFC 3704 filtering, the system administrator must manage their own bogon ACL rules or switch to another ISP.
+		- Cisco IPS Source IP Reputation Filtering:
+			- Reputation services help determine whether an IP address or service is a source of threat. Cisco Global Correlation, a security feature of Cisco IPS 7.0, leverages extensive security intelligence. The Cisco SensorBase Network contains data on all known Internet threats, including botnets, malware outbreaks, dark nets, and botnet harvesters. Cisco IPS utilizes this network to filter DoS traffic before it can harm critical assets. To detect and prevent malicious activity even earlier, it integrates global threat data into its system.
+		- Black Hole Filtering:
+			- Black-hole filtering is a common technique used to defend against botnets and prevent DoS attacks. Black holes refer to network nodes where incoming traffic is discarded or dropped without notifying the source that the data did not reach its intended recipient.
+			- Undesirable traffic can be dropped before it enters a protected network using a method called remotely triggered black-hole (RTBH) filtering. Since this is a remotely triggered process, it must be implemented in collaboration with the ISP. RTBH filtering utilizes Border Gateway Protocol (BGP) host routes to direct traffic to the victim’s servers to a "null0" next hop, effectively discarding it.
+		- DDoS Prevention Offerings from ISP or DDoS Service:
+			- This method is effective in preventing IP spoofing at the ISP level. The ISP scrubs or cleans traffic before allowing it to enter a user’s Internet link. Since this service operates in the cloud, DDoS attacks do not saturate the Internet links. Additionally, some third-party providers offer cloud-based DDoS prevention services.
+			- IP Source Guard (in Cisco) or similar features in other routers can be enabled to filter traffic based on the DHCP snooping binding database or IP source bindings, preventing bots from sending spoofed packets.
+	- Additional DoS/DDoS Countermeasures:
+		- Use WPA2/WPA3 and AES 256 encryption to defend against eavesdropping.
+		- Keep software and protocols updated, and scan for anomalies.
+		- Update the kernel and disable unused or insecure services.
+		- Block inbound packets from service ports to prevent reflection attacks.
+		- Enable TCP SYN cookie protection and prevent spoofed packets at the ISP level.
+		- Use cognitive radios to handle jamming and scrambling attacks.
+		- Block ICMP traffic via firewalls and secure remote administration.
+		- Perform input validation and avoid unsafe functions like gets and strcpy.
+		- Monitor the network perimeter with advanced surveillance tools.
+		- Ensure timeout functions for semi-accessible connections.
+		- Implement distributed server models and colocation services to reduce server overload.
+		- Ensure servers are free from bottlenecks and failure points.
+		- Use third-party services for enhanced DDoS protection.
+		- Adopt multi-cloud models for application backup during DDoS attacks.
+		- Simulate DoS/DDoS attacks to prepare countermeasures.
+		- Share threat intelligence with peers and stay updated on attack trends.
+		- Use AI/ML for anomaly detection and limit network broadcasting.
+		- Disable unnecessary services like echo and chargen.
+	- DoS/DDoS Protection at ISP Level:
+		- One of the most effective ways to defend against DoS attacks is to block them at the gateway, a task typically handled by the contracted ISP. ISPs offer a "clean pipes" service-level agreement (SLA), which guarantees bandwidth for legitimate traffic rather than for all incoming traffic. In many cases, ISPs block all requests during a DDoS attack, even legitimate ones. If an ISP does not offer clean-pipes services, cloud-based subscription services can be used instead.
+		- These services act as intermediaries, receiving traffic destined for the network, filtering it, and forwarding only trusted connections. Providers such as Imperva and VeriSign offer cloud protection against DoS attacks.
+		- ISPs also offer in-the-cloud DDoS protection for Internet links to prevent saturation during an attack. This protection redirects attack traffic to the ISP’s infrastructure, where it can be filtered. Administrators can request that the ISP block the original affected IP and move their site to a new IP after performing DNS propagation.
