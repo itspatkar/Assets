@@ -1,0 +1,13 @@
+
+Sequential Change-Point Detection
+• Change-point detection algorithms isolate changes in network traffic statistics and in the traffic flow rate caused by attacks
+• The algorithms filter the target traffic data by address, port, or protocol and store the resultant flow as a time series
+• The sequential change-point detection technique uses the Cusum algorithm to identify and locate DoS attacks
+• This technique can also be used to identify the typical scanning activities of network worms
+
+Wavelet-Based Signal Analysis
+• Wavelet analysis describes an input signal in terms of spectral components
+• Analyzing each spectral window’s energy determines the presence of anomalies
+• Wavelet-based signal analysis filters out the anomalous traffic flow input signals from background noise
+
+----
