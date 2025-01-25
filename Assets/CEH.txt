@@ -3083,3 +3083,30 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- An increase in the overall number of distinct clusters (indicating a potential DDoS attack).
 				- For a higher average packet rate or activity level within a flow, the time between consecutive matching packets is shorter. Randomness in the average packet rate or activity level can signal suspicious activity. The entropy calculation method is used to measure this randomness. During an attack, the entropy of network activity levels tends to increase significantly.
 				- One major challenge in the activity profiling method is the enormous volume of network traffic. This issue can be addressed by clustering packet flows with similar characteristics. Since DoS attacks typically generate a large number of highly similar data packets, a noticeable increase in the average packet rate or packet diversity could indicate a potential DoS attack.
+			- Sequential Change-Point Detection:
+				- The sequential change-point detection technique filters network traffic based on IP addresses, targeted port numbers, and communication protocols. The traffic flow data is stored as a graph showing the traffic flow rate over time. Change-point detection algorithms are then used to isolate changes in network traffic statistics and flow rates caused by potential attacks. A sudden, drastic change in traffic flow rate may indicate a DoS attack.
+				- This technique employs the Cumulative Sum (CUSUM) algorithm to identify and locate DoS attacks. The algorithm calculates deviations between the actual and expected local average traffic in the time series. The sequential change-point detection technique is also effective at identifying typical scanning activities performed by network worms.
+			- Wavelet-Based Signal Analysis:
+				- The wavelet analysis technique examines network traffic by analyzing its spectral components. It decomposes incoming signals into various frequency bands and evaluates each frequency component separately. By analyzing the energy within each spectral window, anomalies can be detected. This technique identifies frequency components present at specific times and provides a description of those components. The presence of an unfamiliar frequency is often an indicator of suspicious network activity.
+				- A network signal typically consists of time-localized data packet flow signals and background noise. Wavelet-based signal analysis filters out anomalous traffic flow signals from background noise. Normal network traffic usually exhibits low-frequency signals, whereas during an attack, the high-frequency components of the signal tend to increase.
+	- DoS/DDoS Countermeasure Strategies:
+		- Absorbing the Attack:
+			- This strategy involves using additional capacity to absorb the attack, which requires careful preplanning and extra resources.
+			- The primary disadvantage is the ongoing cost of maintaining additional resources, even when no attacks are occurring.
+		- Degrading Services:
+			- When it is not possible to maintain all services during an attack, prioritizing critical services is a practical approach.
+			- In this strategy, critical services are identified in advance, and the network, systems, and application designs are customized to reduce or disable non-critical services. This ensures that critical services remain operational during an attack.
+		- Shutting Down Services:
+			- This strategy involves temporarily shutting down all services until the attack subsides. While not ideal, it can be a reasonable response in situations where maintaining services is impossible or would exacerbate the impact of the attack.
+	- DDoS Attack Countermeasures: 
+		- Protect Secondary Victims:
+			- Individual Users: Preventing secondary systems from participating in DDoS attacks requires regular monitoring, updated antivirus and anti-Trojan software, and applying software patches to address vulnerabilities. Users should disable unnecessary services, uninstall unused applications, and scan external files. Built-in hardware and software defenses must be properly configured and updated to block DDoS agent software and traffic. These measures ensure attackers cannot exploit secondary systems.
+			- Network Service Providers: Service providers and network administrators can adopt dynamic pricing models to encourage users to enhance their security and avoid becoming part of a DDoS attack network.
+		- Detect and Neutralize Handlers:
+			- Stopping DDoS attacks involves identifying and neutralizing handlers through traffic analysis, botnet disruption, and spoofed address detection. Handlers act as intermediaries for launching attacks. Analyzing traffic between handlers, clients, and agents can reveal infected nodes. Disabling handlers disrupts the attack network, as neutralizing a few handlers can render many agents ineffective. Detecting and filtering spoofed source addresses further mitigates DDoS attacks.
+			- Network Traffic Analysis: Analyze communication protocols and traffic patterns between handlers and clients or handlers and agents to identify network nodes potentially infected by handlers.
+			- Neutralize Botnet Handlers: Since the number of handlers is typically much smaller than the number of agents, neutralizing a few handlers can render multiple agents ineffective, disrupting DDoS attacks.
+			- Spoofed Source Address: Spoofed source addresses in DDoS packets often do not correspond to valid sub-network addresses. Identifying and filtering these addresses can help mitigate the attack.
+		- Deflect Attacks
+		- Mitigate Attacks
+		- Post-attack Forensics

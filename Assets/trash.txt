@@ -1,13 +1,39 @@
+Prevent Potential Attacks:
 
-Sequential Change-Point Detection
-• Change-point detection algorithms isolate changes in network traffic statistics and in the traffic flow rate caused by attacks
-• The algorithms filter the target traffic data by address, port, or protocol and store the resultant flow as a time series
-• The sequential change-point detection technique uses the Cusum algorithm to identify and locate DoS attacks
-• This technique can also be used to identify the typical scanning activities of network worms
+Ingress Filtering
+Ingress filtering prevents the source address spoofing of Internet traffic
+•
+It protects against flooding attacks originating from valid prefixes (IP addresses)
+•
+It allows the originator to be traced to its true source
 
-Wavelet-Based Signal Analysis
-• Wavelet analysis describes an input signal in terms of spectral components
-• Analyzing each spectral window’s energy determines the presence of anomalies
-• Wavelet-based signal analysis filters out the anomalous traffic flow input signals from background noise
 
-----
+TCP Intercept
+• TCP intercept features in routers protect TCP servers from TCP SYN-flooding attacks
+• Configuring TCP Intercept features prevents DoS attacks by intercepting and validating TCP connection requests
+
+
+Rate Lim it ing
+• Rate limiting controls the rate of outbound or inbound traffic of a network interface controller
+• It reduces the high-volume inbound traffic caused by DDoS attacks
+
+-------
+
+Prevent Potential Attacks
+
+Egress Filtering:
+Egress filtering scans outgoing IP packets, blocking those that fail to meet specifications and preventing malicious traffic from leaving the network. By ensuring packets have valid source addresses, spoofed packets from DDoS attacks can be filtered.
+
+Properly configured firewalls and restricted outbound exposure limit attackers' ability to exploit vulnerabilities, connect to other systems, or deploy additional tools, even during zero-day attacks.
+
+Egress Filtering
+• Egress filtering scans the headers of IP packets leaving a network
+• Egress filtering ensures that unauthorized or malicious traffic never leaves the internal network
+• The packets will not reach the targeted address if they do not meet the necessary specifications
+
+Prevent Potential Attacks
+
+    Egress Filtering
+    Egress filtering scans outgoing IP packets, blocking those that fail to meet specifications and preventing malicious traffic from leaving the network. By ensuring packets have valid source addresses, spoofed packets from DDoS attacks can be filtered.
+
+    Properly configured firewalls and restricted outbound exposure limit attackers' ability to exploit vulnerabilities, connect to other systems, or deploy additional tools, even during zero-day attacks.
