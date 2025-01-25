@@ -3107,6 +3107,32 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Network Traffic Analysis: Analyze communication protocols and traffic patterns between handlers and clients or handlers and agents to identify network nodes potentially infected by handlers.
 			- Neutralize Botnet Handlers: Since the number of handlers is typically much smaller than the number of agents, neutralizing a few handlers can render multiple agents ineffective, disrupting DDoS attacks.
 			- Spoofed Source Address: Spoofed source addresses in DDoS packets often do not correspond to valid sub-network addresses. Identifying and filtering these addresses can help mitigate the attack.
-		- Deflect Attacks
+		- Prevent Potential Attacks:
+			- Egress Filtering:
+				- Egress filtering inspects the headers of IP packets leaving a network. Packets that meet the specified criteria are allowed to exit the sub-network, while those that fail are blocked, ensuring that unauthorized or malicious traffic does not leave the internal network.
+				- DDoS attacks often involve spoofed IP addresses. Mitigation can be achieved by establishing protocols that ensure any outgoing packet has a source address matching the internal network. A well-configured sub-network firewall can further block many DDoS packets with spoofed source IP addresses.
+				- Even with all available patches applied, a web server may remain vulnerable to zero-day attacks known only to underground hacker communities. However, enabling egress filtering can preserve system integrity by preventing the server from connecting back to the attacker. This reduces the effectiveness of many exploit payloads. By restricting outbound traffic to only necessary connections, egress filtering limits an attacker’s ability to exploit other systems or gain further access to the network.
+			- Ingress Filtering:
+				- Ingress filtering is a packet filtering technique employed by many Internet Service Providers (ISPs) to prevent source address spoofing in Internet traffic. By ensuring that incoming packets have legitimate and verifiable source addresses, ingress filtering helps make Internet traffic traceable to its true origin.
+				- This technique indirectly combats various forms of network abuse, including flooding attacks originating from valid IP prefixes, and allows the source of the attack to be accurately identified.
+			- TCP Intercept:
+				- TCP intercept is a traffic-filtering feature used in routers to protect TCP servers from TCP SYN-flooding attacks, a type of DoS attack. In a SYN-flooding attack, the attacker sends a massive number of connection requests using unreachable return addresses. Since the return addresses are invalid, the connections cannot be established, leaving them unresolved. The server becomes overwhelmed by the large volume of unresolved connections, potentially denying service to legitimate requests. This can prevent users from connecting to websites, accessing email, using FTP services, and more.
+				- Configuring TCP intercept features helps prevent DoS attacks by intercepting and validating TCP connection requests. In TCP intercept mode, the router intercepts SYN packets sent by clients to a server and compares them with an extended access list. If a match is found, the intercept software establishes a connection with the client on behalf of the server. Similarly, it establishes a connection with the server on behalf of the client. Once both half-connections are created, the intercept software transparently combines them. This process ensures that fake connection attempts are filtered out before reaching the server, with the intercept software acting as a mediator between the client and the server throughout the connection.
+			- Rate Limiting:
+				- Rate limiting is a technique used to control the rate of outbound or inbound traffic on a network interface controller. It is an effective method for reducing high volumes of inbound traffic that can lead to DDoS attacks. This technique is particularly crucial in hardware appliances, where it is configured to limit the rate of requests at layers 4 and 5 of the Open Systems Interconnection (OSI) model.
+		- Deflect Attacks:
+			- Systems configured with limited security, known as honeypots, are designed to attract attackers. Recent research shows that a honeypot can simulate all aspects of a network, including web servers, mail servers, and clients. These systems are deliberately set up with minimal security to draw the attention of DDoS attackers, serving as tools to gather information about their techniques, tools, and behaviors by recording system activities.
+			- DDoS attackers attracted to a honeypot may install handlers or agent code within it, sparing more critical systems from compromise. Honeypots not only protect actual systems but also record detailed logs of attackers' activities, enabling the honeypot owner to track and analyze handler or agent behavior. This information can be used to bolster defenses against future DDoS attacks. A defense-in-depth approach, incorporating Internet Protocol Security (IPsec), can divert suspicious DoS traffic to multiple honeypots, enhancing security.
+			- Types of Honeypots:
+				- Low-Interaction Honeypots: Simulate specific services or applications with limited functionality to detect and log attacks.
+				- High-Interaction Honeypots: Fully simulate entire systems or networks, allowing attackers to interact more extensively.
+			- An example of a high-interaction honeypot is a honeynet. Honeynets simulate the complete layout of a computer network and are designed to "capture" attacks. Their goal is to create a controlled environment where all activities are monitored and recorded. Honeynets often contain decoy systems and even real computers running actual applications to deceive attackers and gather intelligence.
+			- DoS/DDoS Countermeasure Honeypot Tools:
+				- Blumira Honeypot Software (www.blumira.com) : Blumira honeypot software is a deception technology designed to help security professionals detect unauthorized access attempts and identify attackers’ lateral movement across an organization’s network, even if a breach has already occurred. It enhances an organization’s security posture by enabling early attack detection with minimal maintenance and overhead. When Blumira detects a honeypot security event, it promptly blocks the source IP at the switch or firewall level, mitigating potential threats effectively.
+				- KFSensor (www.kfsensor.net)
+				- Valhala Honeypot (sourceforge.net)
+				- Cowrie (github.com)
+				- HoneyHTTPD (github.com)
+				- StingBox (www.stingbox.com)
 		- Mitigate Attacks
 		- Post-attack Forensics
