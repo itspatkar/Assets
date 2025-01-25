@@ -3061,3 +3061,12 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Report immediately to law enforcement agencies and security teams upon receiving a ransom note.
 			- Conduct regular risk assessments to evaluate asset vulnerabilities.
 			- Implement mitigation strategies, such as BGP/DNS swing or always-on protection services.
+- DoS/DDoS Attack Toolkits:
+	- ISB : Attackers can use the ISB (I'm So Bored) software utility to launch DDoS attacks on a target network. The tool allows attackers to perform HTTP, UDP, TCP, and ICMP flood attacks. Additionally, it provides one-click access to commonly used network commands such as WHOIS, netstat, traceroute, and ping, which assist attackers in discovering and analyzing the target.
+	- UltraDDOS-v2 : UltraDDOS-v2 is a DDoS tool that enables attackers to launch DDoS attacks on target websites or servers. The tool features a simple GUI interface where attackers can input the target IP address, port number, and the desired number of packets to transmit.
+	- High Orbit Ion Cannon (HOIC) (sourceforge.net)
+	- Low Orbit Ion Cannon (LOIC) (sourceforge.net)
+	- HULK (github.com)
+	- Slowloris (github.com)
+	- UFONet (ufonet.03c8.net)
+	- Packet Flooder Tool (www.netscantools.com)
