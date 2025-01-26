@@ -3242,3 +3242,64 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Imperva DDoS Protection (www.imperva.com)
 		- Nexusguard (www.nexusguard.com)
 		- BlockDoS (www.blockdos.net)
+
+
+--------------------------------------------------
+
+# Session Hijacking
+
+- When a web server successfully authenticates a client, it generates a session identification token or key, which is sent to the client. These session tokens are used to differentiate and manage multiple active sessions on the server. Web servers typically rely on mechanisms to generate random tokens and implement security controls to protect these tokens during transmission.
+- Session hijacking is a type of cyberattack where an attacker takes control of an active Transmission Control Protocol (TCP) session between two computers. Since most authentication processes occur only at the start of a TCP session, an attacker can exploit this vulnerability to gain unauthorized access to a system while the session is ongoing. By intercepting and analyzing the traffic of an established TCP session, attackers can steal sensitive information, commit identity theft, or engage in fraudulent activities.
+- This attack often targets weaknesses in the session-token generation process or token security measures, allowing the attacker to acquire a valid session ID. With a stolen or guessed session ID, the attacker can impersonate the legitimate user and establish an unauthorized connection to the target server. Once this connection is established, the web server unknowingly processes the attacker’s requests as if they originated from the authenticated user. Session hijacking can enable attackers to launch various other forms of attacks, such as man-in-the-middle (MITM) attacks and denial-of-service (DoS) attacks.
+- Factors Contributing to Session Hijacking:
+	- Absence of Account Lockout for Invalid Session IDs:
+		- If a website does not implement account lockout mechanisms, attackers can repeatedly attempt to connect using varying session IDs embedded in legitimate URLs. This process, known as a brute-force attack, allows attackers to try multiple session IDs until they identify the correct one. During such attacks, the web server often fails to display warning messages or impose restrictions, enabling the attacker to eventually determine a valid session ID.
+	- Weak Session-ID Generation Algorithms or Short Session IDs:
+		- Many websites use linear or predictable algorithms to generate session IDs, often relying on easily guessed variables such as timestamps or IP addresses. By analyzing patterns and sending multiple requests, attackers can narrow the search space to forge a valid session ID. Even when a robust algorithm is used, short session IDs reduce the complexity of guessing or brute-forcing the ID, making them more vulnerable to attack.
+	- Insecure Handling of Session IDs:
+		- Attackers can exploit vulnerabilities in the handling of session IDs to retrieve stored information. For instance, by misleading a user’s browser into visiting a malicious site, attackers can intercept session IDs before they expire. Techniques like DNS poisoning, cross-site scripting (XSS), or exploiting browser vulnerabilities allow attackers to misuse session IDs for unauthorized access.
+	- Indefinite Session Timeout:
+		- Session IDs that do not have a set expiration time give attackers unlimited opportunities to guess or steal a valid session ID. For example, the "remember me" option on many websites may lead to static session IDs, which attackers can exploit if they gain access to a user’s cookie file. Additionally, if attackers compromise a proxy server that logs or caches session IDs, they can hijack sessions more easily.
+	- Vulnerability of TCP/IP Protocol:
+		- All machines using TCP/IP are inherently vulnerable to session hijacking due to design flaws in the protocol. These flaws allow attackers to intercept and manipulate communication between clients and servers.
+	- Lack of Encryption:
+		- Most countermeasures against session hijacking fail without proper encryption. On unsecured networks, attackers can easily sniff session IDs during transmission if transport-layer security, such as Secure Sockets Layer (SSL) or Transport Layer Security (TLS), is not properly configured. Even when encryption is used, attackers can gain access if session IDs include sensitive information, such as login credentials.
+- Session Hijacking Process:
+	- Session hijacking allows attackers to take over an active session after user authentication. Once hijacked, the attacker can redirect traffic, plant backdoors, or access sensitive data without raising suspicion.
+	- The process typically involves three phases:
+		- Tracking the Connection: The attacker uses tools like network sniffers or Nmap to monitor the victim’s session and capture TCP sequence (SEQ) and acknowledgment (ACK) numbers. These numbers are then used to craft valid packets to impersonate the victim.
+		- Desynchronizing the Connection:
+			- The attacker disrupts the SEQ/ACK synchronization between the target and server by:
+			- Sending Null Data: Advances the server’s SEQ/ACK numbers, desynchronizing the session.
+			- Resetting the Connection: Sends an RST flag to terminate the server’s connection with the target, then establishes a new connection with the server using spoofed packets.
+			- Avoiding Detection: Keeps the target unaware by ensuring responses from the server appear normal. Poor desynchronization may cause excess network traffic (e.g., ACK storms), revealing the attack.
+		- Injecting Malicious Packets:
+			- Once in control, the attacker can:
+			- Inject Data: Send commands or malicious payloads to the server.
+			- Act as a Man-in-the-Middle: Intercept, modify, or relay data between the target and server while maintaining control over the session.
+	- Effective encryption, secure session management, and monitoring are crucial to prevent session hijacking.
+- Packet Analysis of Local Session Hijack:
+	- Session hijacking leverages high-level attack vectors that can compromise numerous systems. Since many systems rely on TCP for data transmission over LANs or the Internet, attackers exploit vulnerabilities in the TCP three-way handshake to take control of active sessions.
+	- An attacker begins by sniffing network traffic to monitor or track an ongoing session. The next step is to desynchronize the session. If the attacker knows the Next Sequence Number (NSN) used by the client, they can hijack the session by sending a packet with the NSN before the client uses it.
+	- There are two main methods to determine sequence numbers:
+		- Sniffing Traffic: By capturing an ACK packet during the session, the attacker can calculate the NSN based on the information in the packet.
+		- Guessing Sequence Numbers: The attacker guesses sequence numbers and sends packets with those guesses. However, this method is unreliable and less effective compared to sniffing.
+	- If the attacker has access to the network and can sniff the TCP session, determining the sequence number becomes straightforward. This form of session hijacking is referred to as "local session hijacking."
+- Types of Session Hijacking:
+	- Session hijacking can be classified into two types based on the attacker’s involvement: active and passive. The key distinction is that an active hijack involves taking control of an existing session, while a passive hijack focuses on monitoring the session without interference.
+	- Passive Session Hijacking:
+		- In a passive attack, the attacker observes and records traffic during an active session without disrupting it. Using network sniffers, attackers can capture sensitive information such as user IDs and passwords, which they can later exploit to log in as a legitimate user and gain privileges.
+		- Example: Password sniffing, a common method for gaining raw access to a network.
+		- Countermeasures: Techniques like one-time passwords (e.g., S/KEY) and ticketing systems (e.g., Kerberos) can prevent sniffing attacks. However, these measures do not protect against active attacks if data is unencrypted or lacks a digital signature.
+	- Active Session Hijacking:
+		- In an active attack, the attacker takes control of an existing session by disrupting the connection or directly participating in the session.
+		- Example: A Man-in-the-Middle (MITM) attack, where the attacker intercepts and manipulates data between the server and client. To execute this, the attacker must predict the sequence number before the target responds to the server.
+		- Modern Challenges: Most modern operating systems use randomized initial sequence numbers, making sequence-number prediction significantly harder.
+- Session Hijacking in the OSI Model:
+	- Session hijacking can occur at two levels in the OSI model: the network level and the application level.
+	- Network-Level Hijacking:
+		- Network-level hijacking involves intercepting packets during the transmission between a client and server in a TCP or User Datagram Protocol (UDP) session. A successful attack enables the attacker to gather critical information, which can be further used to compromise application-level sessions.
+		- Attackers often target the network level because it does not require tailoring the attack for each specific web application. Instead, this method focuses on the shared protocol data flow common across all web applications.
+	- Application-Level Hijacking:
+		- Application-level hijacking involves gaining control over the Hypertext Transfer Protocol (HTTP) user session by obtaining session IDs. At this level, the attacker gains control of an existing session or creates new, unauthorized sessions by using the stolen data.
+		- In general, network-level and application-level hijacking are used together, depending on the system being targeted.
