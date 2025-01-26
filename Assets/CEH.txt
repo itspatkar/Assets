@@ -3190,3 +3190,55 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- One of the most effective ways to defend against DoS attacks is to block them at the gateway, a task typically handled by the contracted ISP. ISPs offer a "clean pipes" service-level agreement (SLA), which guarantees bandwidth for legitimate traffic rather than for all incoming traffic. In many cases, ISPs block all requests during a DDoS attack, even legitimate ones. If an ISP does not offer clean-pipes services, cloud-based subscription services can be used instead.
 		- These services act as intermediaries, receiving traffic destined for the network, filtering it, and forwarding only trusted connections. Providers such as Imperva and VeriSign offer cloud protection against DoS attacks.
 		- ISPs also offer in-the-cloud DDoS protection for Internet links to prevent saturation during an attack. This protection redirects attack traffic to the ISP’s infrastructure, where it can be filtered. Administrators can request that the ISP block the original affected IP and move their site to a new IP after performing DNS propagation.
+	- Enabling TCP Intercept on Cisco IOS Software:
+		- TCP intercept can be enabled by executing commands in global configuration mode.
+		- An access list serves three purposes:
+			- Interception of all connection requests.
+			- Interception of requests originating from specific networks.
+			- Interception of requests destined for specific servers.
+		- Typically, an access list defines the source as any and the destination as specific networks or servers. Since identifying the source of intercepted packets is unnecessary, source addresses are not filtered. Instead, the destination server or network to be protected is specified. TCP intercept can operate in either active intercept mode or passive watch mode, with the default being intercept mode.
+		- Active Intercept Mode: In this mode, the Cisco IOS software actively intercepts all inbound connection requests (SYN) and responds with a SYN-ACK on behalf of the server. It then waits for an ACK from the client. Upon receiving the ACK, the software completes the three-way handshake with the server by sending the original SYN. Once the handshake is complete, the two half connections (client-to-software and software-to-server) are linked.
+		- Passive Watch Mode: In this mode, connection requests pass directly to the server without active interception. The software monitors the connection setup. If the connection fails to establish within 30 seconds, the software sends a reset request to the server to clear its state.
+	- Advanced DDoS Protection Appliances:
+		- FortiDDoS 200F, 1500E, 1500E-DC, 1500F, 2000E, 2000E-DC, and VM04/08/16:
+			- FortiDDoS utilizes a massively parallel machine-learning architecture to deliver advanced, low-latency DDoS attack mitigation without the performance compromises typically associated with CPU-based systems. It inspects both inbound and outbound Layer 3, 4, and 7 packets down to the smallest sizes, ensuring fast and accurate detection and mitigation of attacks.
+		- Quantum DDoS Protector:
+			- Check Point’s Quantum DDoS Protector provides multi-layered protection to block DDoS attacks effectively.
+			- Advantages:
+				- Comprehensive Multi-Layered Protection:
+					- Implements behavioral protection by baselining multiple elements and blocking abnormal traffic.
+					- Offers automatically generated and predefined signatures.
+					- Utilizes advanced challenge/response techniques.
+				- Fast Response Time:
+					- Protects against attacks within seconds.
+					- Automatically defends against network floods and application-layer attacks.
+					- Delivers customized protection tailored to the specific security requirements of a network environment.
+					- Filters traffic quickly before it reaches the firewall, safeguarding networks and servers while blocking exploits.
+				- Flexible Deployment Options:
+					- Adaptable to meet the needs of businesses of all sizes.
+				- Seamless Integration:
+					- Fully integrated with Check Point Security Management for unified protection and management.
+		- Huawei AntiDDoS1000 DDoS Protection System:
+			- The Huawei AntiDDoS1000 DDoS protection system leverages Big Data analytics technology and supports modeling for over 60 types of network traffic to deliver second-level attack responses and comprehensive defense against more than 100 types of attacks.
+			- The AntiDDoS1000 can be deployed on a user network in in-line mode to provide real-time protection against volumetric and application-layer attacks. If attack traffic exceeds the bandwidth or defense capacity of a local scrubbing device, the AntiDDoS1000 collaborates with the upstream carrier’s or ISP’s AntiDDoS device to mitigate flood attacks and ensure service continuity.
+		- A10 Thunder TPS:
+			- The A10 Thunder Threat Protection System (TPS) ensures reliable access to critical network services by detecting and blocking external threats, such as DDoS and other cyberattacks, before they escalate into costly service disruptions.
+			- Features:
+				- Maintain Service Availability: Protects key network services from interruptions caused by malicious attacks.
+				- Defeat Growing Attacks: Effectively mitigates the increasing volume and sophistication of cyberattacks.
+				- Scalable Protection: Offers scalable solutions to meet the evolving security demands of growing networks.
+				- Reduce Security OpEx: Minimizes operational expenses associated with security management.
+	- DoS/DDoS Protection Tools:
+		- Anti DDoS Guardian (beethink.com) : Anti DDoS Guardian is a powerful DDoS attack protection tool designed to secure various systems, including IIS servers, Apache servers, game servers, Camfrog servers, mail servers, FTP servers, VOIP PBX systems, and SIP servers. It monitors each incoming and outgoing packet in real-time, displaying detailed information about network flow such as local and remote addresses. The tool effectively limits the number of network flows, client bandwidth, concurrent TCP connections, and TCP connection rates. It also controls UDP traffic by restricting bandwidth usage, connection rates, and packet rates, ensuring robust protection against potential threats.
+		- DDoS-GUARD (ddos-guard.net)
+		- DOSarrest’s DDoS Protection Service (www.dosarrest.com)
+		- Radware DefensePro X (www.radware.com)
+		- Gatekeeper (github.com)
+		- F5 DDoS Attack Protection (www.f5.com)
+	- DoS/DDoS Protection Services:
+		- Cloudflare : Cloudflare's DDoS protection service enables organizations to safeguard their networks against distributed denial-of-service attacks by leveraging its 100 Tbps global network, which blocks an average of 87 billion threats daily. The service ensures rapid mitigation within three seconds, utilizing advanced technologies such as BGP-based protection and seamless integration with Layer 7 services. This approach delivers comprehensive security while minimizing operational costs.
+		- Akamai DDoS Protection : Akamai DDoS Protection uses dedicated infrastructure to protect Internet-facing applications and systems while providing fast, secure, and reliable DNS services. It mitigates DDoS attacks and blocks malicious traffic in the cloud before they reach applications, data centers, or infrastructure, removing the need for multiple firewalls.
+		- Stormwall PRO (stormwall.network)
+		- Imperva DDoS Protection (www.imperva.com)
+		- Nexusguard (www.nexusguard.com)
+		- BlockDoS (www.blockdos.net)
