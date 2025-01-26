@@ -3303,3 +3303,27 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 	- Application-Level Hijacking:
 		- Application-level hijacking involves gaining control over the Hypertext Transfer Protocol (HTTP) user session by obtaining session IDs. At this level, the attacker gains control of an existing session or creates new, unauthorized sessions by using the stolen data.
 		- In general, network-level and application-level hijacking are used together, depending on the system being targeted.
+- Spoofing vs. Hijacking:
+	- Blind Hijacking: Blind hijacking involves predicting TCP sequence numbers to impersonate a host without observing reply packets. Attackers rely on sequence-number prediction to hijack communications, exploiting trust between users and machines. Since ARP poisoning and observing replies are impractical across networks, attackers must anticipate responses while preventing TCP/RST packets from the host.
+	- Spoofing Attacks: In spoofing, attackers impersonate users or machines to gain access by initiating new sessions with stolen credentials. IP spoofing, a simple technique, requires predicting sequence numbers to establish connections. However, spoofing without session hijacking doesn’t require sequence prediction and often involves source routing to intercept traffic. Active hijacking displaces legitimate users from sessions, leveraging their privileges, while session spoofing uses stolen authentication credentials to start new sessions.
+	- Session Hijacking: Session hijacking occurs when attackers take over active sessions after legitimate users authenticate. Displacement often involves DoS attacks, with attackers needing precise knowledge of session state and TCP sequence numbers. This method is more complex than IP spoofing due to the control required.
+	- Defenses Against Spoofing and Hijacking: Encryption (SSL, PPTP) and per-packet integrity checking prevent spoofing and hijacking by securing communications and sequence integrity. Without encryption, attackers can exploit non-encrypted TCP traffic by sniffing, predicting sequence numbers, and using ARP cache poisoning on local networks.
+- Application-Level Session Hijacking:
+	- In application-level session hijacking, an attacker steals or predicts a valid session token to gain unauthorized access to a web server or create a new unauthorized session. Typically, network-level and application-level session hijacking occur together because a successful network-level session hijack provides an attacker with sufficient information to perform application-level session hijacking. Application-level session hijacking primarily relies on HTTP sessions.
+	- Techniques To Obtain Valid Session ID:
+		- Stealing: Attackers may gain physical access to retrieve files containing session IDs or memory contents from the user’s system or the server. Alternatively, attackers can use sniffing tools like Wireshark or Riverbed Packet Analyzer Plus to capture traffic between the client and server, extracting session IDs from intercepted packets.
+		- Guessing: Attackers attempt to guess session IDs by analyzing session variables. In session hijacking scenarios, the range of possible session ID values that can be guessed is often limited. Consequently, guessing is effective only when servers employ weak or flawed session ID generation mechanisms.
+		- Brute Forcing: In a brute-force attack, an attacker systematically attempts all possible permutations of session ID values until finding one that is valid. For example, an attacker using a digital subscriber line (DSL) can generate up to 1,000 session IDs per second. This technique is particularly effective when the session ID generation algorithm is non-random. If the predicted range of session ID values is small, this attack is referred to as a session prediction attack.
+	- Session Token Compromise Methods:
+		- Session Sniffing
+		- Predictable Session Tokens
+		- Man-in-the-Middle (MITM) Attacks
+		- Man-in-the-Browser Attacks
+		- Cross-Site Scripting (XSS) Attacks
+		- Cross-Site Request Forgery (CSRF) Attacks
+		- Session Replay Attacks
+		- Session Fixation Attacks
+		- CRIME Attacks
+		- Forbidden Attacks
+		- Session Donation Attacks
+		- PetitPotam Hijacking
