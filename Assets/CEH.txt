@@ -3380,3 +3380,60 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- In a session replay attack, the user first establishes a connection with the web server, and the server requests authentication information as proof of identity.
 			- The user then sends authentication tokens to the server. During this exchange, the attacker intercepts the communication and captures the user’s authentication token.
 			- Finally, the attacker replays the request to the server using the stolen token, gaining unauthorized access.
+	- Compromising Session IDs Using Session Fixation:
+		- Web session security is designed to prevent attackers from intercepting, brute-forcing, or predicting the session ID issued by a web server to a user’s browser as proof of an authenticated session. However, this security approach overlooks the possibility of an attacker issuing a session ID to the user’s browser, forcing it to use a session ID chosen by the attacker. This type of attack is known as a session fixation attack because the attacker “fixes” the user's session ID in advance, rather than allowing the server to generate it randomly at the time of login.
+		- The goal of a session fixation attack is to hijack a valid user session by exploiting flaws in the web application's session ID management. Many web applications allow users to authenticate themselves using an existing session ID instead of generating a new one upon login. In this scenario, the attacker provides a legitimate session ID to the victim and persuades the victim’s browser to use it. Once the victim logs in using the attacker-supplied session ID, the attacker, who already knows the session ID, can hijack the authenticated session.
+		- Unlike other types of session hijacking, which involve stealing or predicting a session ID after the user has logged in, a session fixation attack involves fixing the session ID on the user’s browser before the user logs in.
+		- Session Fixation Attack Techniques:
+			- Attackers employ various methods to perform session fixation attacks, including:
+			- Session Token in the URL Argument: The attacker embeds the session ID in a URL and tricks the victim into clicking the link.
+			- Session Token in Hidden Form Field: The session ID is included in a hidden form field on a web page that the victim is lured into submitting.
+			- Session ID in Cookie: The attacker manipulates cookies in the victim’s browser to insert the chosen session ID.
+		- Session Fixation Attack Phases:
+			- The attacker selects a technique based on how the target web application manages session tokens. The vulnerability exploited in a session fixation attack occurs when a server allows a user to authenticate using a fixed session ID. The attacker provides a valid session ID to the victim and persuades them to authenticate using that session ID.
+			- A session fixation attack typically unfolds in the following three phases:
+				- Session Set-Up Phase: In this phase, the attacker establishes a legitimate session with the target web server to obtain a valid session ID. If the target web server supports an idle session timeout feature, the attacker must ensure the session ID remains active by periodically sending requests to the server.
+				- Fixation Phase: The attacker introduces the pre-established session ID to the victim’s browser, thereby "fixing" the session ID on the victim’s end.
+				- Entrance Phase: The attacker waits for the victim to log in to the web server using the pre-determined session ID. Once the victim logs in, the attacker can access the victim's session using the same session ID.
+		- Session Fixation Attack Steps:
+			- Establishing the Session: The attacker first establishes a legitimate connection with the target web server. For example, the target server (e.g., http://citibank.com/) issues the attacker a session ID, such as 0D6441FEA4496C2.
+			- Sharing the Fixed Session ID: The attacker embeds the established session ID in a URL, such as http://citibank.com/?SID=0D6441FEA4496C2, and sends it to the victim, often through email, messaging apps, or phishing websites.
+			- Victim Interaction: The victim clicks the link, believing it to be legitimate (e.g., sent by the bank). This opens the login page of the server in the victim’s browser, with the session ID 0D6441FEA4496C2 already in use.
+			- Login Process: The victim enters their credentials on the login page. The server recognizes that session ID 0D6441FEA4496C2 is active and associates it with the victim’s account, granting the victim access to their account without generating a new session.
+			- Session Hijacking: Since the attacker already knows the session ID (0D6441FEA4496C2), they can access the victim's account by using the same session ID in a URL, such as http://citibank.com/?SID=0D6441FEA4496C2.
+		- Key Insight: In a session fixation attack, the user unknowingly logs into a session that was pre-established by the attacker. This allows the attacker to share the same session as the victim and gain unauthorized access to sensitive resources or accounts.
+	- Session Hijacking Using Proxy Servers:
+		- In this attack, the attacker lures the victim into clicking on a bogus malicious link that appears legitimate but secretly redirects the victim’s request to the attacker’s server. The attacker’s server then forwards the request to the legitimate server on behalf of the victim and serves as a proxy for the entire transaction.
+		- Acting as a proxy, the attacker intercepts and captures session information during the interaction between the legitimate server and the victim. This allows the attacker to gain unauthorized access to the victim’s session and potentially steal sensitive information or perform malicious actions on the victim’s behalf.
+	- Session Hijacking Using CRIME Attack:
+		- Compression Ratio Info-Leak Made Easy (CRIME) is a client-side attack that exploits vulnerabilities in the data compression features of protocols such as SSL/TLS (Transport Layer Security), SPDY, and HTTPS (HTTP Secure). The low potential for mitigating HTTPS compression vulnerabilities makes this attack particularly dangerous compared to other compression-related vulnerabilities.
+		- When two hosts establish a connection using HTTPS, a TLS session is created, and data is transmitted in encrypted form. This encryption makes it difficult for attackers to read or modify the messages exchanged between the hosts. When a user logs into a web application, authentication data is typically stored in a cookie. This cookie is then used for authentication whenever the browser sends an HTTPS request to the web application.
+		- In a CRIME attack, the attacker attempts to access the authentication cookie to hijack the victim’s session. By decrypting the session cookies, the attacker gains authentication information that can be used to establish a new session with the web application, effectively impersonating the victim.
+		- CRIME Attacks Working:
+			- In HTTPS, cookies are compressed using a lossless data compression algorithm (like DEFLATE) before encryption. As a result, the cookie value cannot be easily obtained through simple packet sniffing. However, a CRIME attack bypasses this protection by exploiting the way compression impacts the size of encrypted data.
+			- Steps to Execute CRIME Attack:
+				- Social Engineering: The attacker tricks the victim into clicking on a malicious link. This may inject malicious code into the victim's system or redirect them to a malicious website.
+				- Sniffing HTTPS Traffic: If the victim has already established an HTTPS connection with a secured web application, the attacker intercepts the victim’s HTTPS traffic using techniques such as ARP spoofing.
+				- Capturing Cookies: The attacker captures the authentication cookie from the victim’s HTTPS traffic. Since cookies are compressed and encrypted, the attacker cannot directly read the cookie value.
+				- Sending Malicious HTTPS Requests: The attacker sends multiple HTTPS requests to the web application, each with the captured cookie value prepended by random characters.
+				- Analyzing Compression Length: By observing the size of the encrypted and compressed HTTPS responses, the attacker identifies patterns in the compression ratio. These patterns allow the attacker to infer the actual value of the authentication cookie by analyzing the length of the data sent.
+				- Hijacking the Session: Once the attacker predicts the authentication cookie, they use it to impersonate the victim and hijack their session with the web application. This allows the attacker to access confidential information such as passwords, social security numbers, and credit card details.
+		- Detection and Tools: Attackers commonly use tools like CrimeCheck to detect whether a web server has TLS or HTTP compression enabled. If compression is enabled, the server is vulnerable to CRIME attacks.
+	- Session Hijacking Using Forbidden Attack:
+		- A forbidden attack is a type of man-in-the-middle (MITM) attack that occurs when a cryptographic nonce is reused during the establishment of an HTTPS session with a server. According to TLS specifications, nonces (arbitrary, one-time-use pieces of data) must never be reused. This attack exploits vulnerabilities in TLS implementations where the same nonce is mistakenly reused during data encryption with the Advanced Encryption Standard–Galois/Counter Mode (AES-GCM) in the TLS handshake.
+		- Reusing a nonce during the TLS handshake allows attackers to perform a MITM attack by generating cryptographic keys used for authentication. This enables them to monitor, hijack, and manipulate the connection. After bypassing HTTPS protections, the attacker can inject malicious code or forged content, such as JavaScript or fake web forms, prompting the victim into disclosing confidential information like bank account details, passwords, or social security numbers.
+		- Steps in Forbidden Attack:
+			- The attacker monitors the connection between the victim and the web server and sniffs the nonce from the TLS handshake messages.
+			- The attacker generates authentication keys using the nonce and hijacks the connection.
+			- All the traffic between the victim and the web server flows through the attacker’s machine.
+			- The attacker injects JavaScript code or fake web fields into the transmission towards the victim.
+			- The victim reveals sensitive information such as bank account numbers, passwords, and social security numbers to the attacker.
+	- Session Hijacking Using Session Donation Attack:
+		- In a session donation attack, the attacker donates their own session ID to the target user. To carry out this attack, the attacker first obtains a valid session ID by logging into a service and then provides the same session ID to the target user. This session ID links the target user to the attacker’s account page without revealing any information to the victim. When the target user clicks the link and enters their details (such as username, password, or payment information) in a form, the entered details are linked to the attacker’s account.
+		- To initiate this attack, the attacker can use techniques such as cross-site scripting (XSS), man-in-the-middle (MITM) attacks, or session fixation to send their session ID to the target.
+		- Steps in Session Donation Attack:
+			- First, the attacker logs into a service, establishes a legitimate connection with the target web server, and deletes any stored information.
+			- The target web server (e.g., http://citibank.com/) issues a session ID, such as 0D6441FEA4496C2, to the attacker.
+			- The attacker then donates their session ID (e.g., http://citibank.com/?SID=0D6441FEA4496C2) to the victim and lures the victim into clicking it to access the website.
+			- The victim clicks the link, believing it to be legitimate, and it opens the server’s page in the victim’s browser with the session ID (SID=0D6441FEA4496C2). The victim then enters their information on the page and submits it.
+			- The attacker can now log in as themselves and acquire the victim’s information.
