@@ -3547,3 +3547,60 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Implement continuous authentication using behavioral biometrics like typing patterns.
 		- Use a challenge-response mechanism (e.g., CAPTCHA) when suspicious activity is detected.
 		- Enforce an absolute session timeout, regardless of user activity.
+	- Web Development Guidelines to Prevent Session Hijacking:
+		- Attackers typically hijack sessions by exploiting vulnerabilities in session establishment mechanisms. Web developers often overlook security, but following these guidelines during development can help minimize or eliminate the risk of session hijacking:
+			- Create session keys using long, random strings or numbers to make them difficult to guess.
+			- Regenerate the session ID after a successful login to prevent session fixation attacks.
+			- Encrypt both session data and the session key during transmission between users and web servers.
+			- Implement SSL/TLS to encrypt all network communication.
+			- Expire sessions immediately when the user logs out.
+			- Prevent eavesdropping within the network.
+			- Reduce the lifespan of sessions and cookies.
+			- Use restrictive cache directives for HTTP and HTTPS traffic, such as:
+				- "Cache-Control: no-cache, no-store"
+				- "Pragma: no-cache"
+				- Equivalent META tags on all, or at least sensitive, web pages.
+			- Avoid creating sessions for unauthenticated users unless necessary.
+			- Use the HTTPOnly attribute for cookies storing session IDs.
+			- Set the Secure flag on cookies to ensure they are only sent over HTTPS and encrypt them before transmission.
+			- Verify that all session requests originate from the same IP address and user agent.
+			- Implement continuous device verification to ensure the session remains controlled by the legitimate user.
+			- Use risk-based authentication at different levels before granting access to sensitive information.
+			- Perform authentication and integrity verification between VPN endpoints.
+			- Destroy server-side sessions upon user deauthentication instead of relying solely on session expiration.
+			- Ensure that the web application redirects HTTP requests to HTTPS using server settings or redirection techniques.
+			- Require user re-authentication and generate a new session before granting access to sensitive functions.
+			- Use secure session management provided by trusted web frameworks instead of implementing custom session handling.
+			- Enforce HTTPS on all pages of the web application, not just the login pages.
+	- Web User Guidelines to Prevent Session Hijacking:
+		- Avoid clicking on links received through emails or instant messages (IMs).
+		- Use firewalls to block malicious content and restrict cookie access.
+		- Ensure that websites are certified by trusted certifying authorities.
+		- Clear history, offline content, and cookies after confidential transactions.
+		- Prefer HTTPS over HTTP when transmitting sensitive data.
+		- Always log out by clicking the logout button instead of just closing the browser.
+		- Disable or remove untrusted add-ons, enabling them only when necessary.
+		- Use one-time passwords (OTP) for critical transactions (e.g., credit card payments).
+		- Regularly update antivirus software to prevent malware from stealing cookies.
+		- Avoid accessing sensitive accounts or making financial transactions over public Wi-Fi.
+		- Disable auto-connect to open Wi-Fi networks.
+		- Keep your operating system, browsers, and plugins up to date.
+		- Use encrypted messaging and email services for sensitive communication.
+		- Avoid saving passwords in browsers.
+		- Use incognito mode on shared computers.
+		- Be cautious when granting apps access to sensitive information.
+		- Use secure session handlers for storing and managing session tokens.
+	- Session Hijacking Detection Tools:
+		- USM Anywhere (cybersecurity.att.com): USM Anywhere (AT&T Cybersecurity) is a comprehensive security tool that provides threat detection, incident response, and compliance management across cloud, on-premises, and hybrid environments. Security professionals use it to detect session hijacking attempts and perform asset discovery, intrusion detection, security automation, SIEM and log management, endpoint detection and response (EDR), threat detection and intelligence, and vulnerability assessment.
+		- Wireshark (Wireshark.org) : Wireshark is a network protocol analyzer that captures and analyzes live network traffic. It supports various network types, including Ethernet, IEEE 802.11 (Wi-Fi), PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, and FDDI. Wireshark relies on WinPcap to capture packets, allowing security professionals to monitor and detect session hijacking attempts in real time by analyzing network activity and identifying suspicious behavior.
+		- Quantum Intrusion Prevention System (IPS) (www.checkpoint.com)
+		- SolarWinds Security Event Manager (www.solarwinds.com)
+		- IBM Security Network Intrusion Prevention System (www.ibm.com)
+		- LogRhythm (logrhythm.com)
+	- Approaches to Prevent Session Hijacking:
+		- HTTP Strict Transport Security (HSTS):
+			- HTTP Strict Transport Security (HSTS) is a web security policy designed to protect HTTPS websites from man-in-the-middle (MITM) attacks. It enforces secure communication by requiring web browsers to interact with the server exclusively over HTTPS, automatically converting all insecure HTTP connections to HTTPS.
+			- This ensures that all communication between the web server and browser remains encrypted and that responses originate from an authenticated server, preventing session hijacking attempts.
+		- Token Binding:
+			- Token Binding enhances security by protecting client-server communication against session hijacking. When a user logs into a web application, a session ID (token) is generated and used to authenticate requests. Attackers can hijack a session by capturing and reusing this token. With token binding, the client generates a unique public-private key pair for each connection.
+			- Upon connecting to the server, the client signs a message using its private key and sends it along with its public key. The server then verifies the signature using the public key, ensuring that only the legitimate client—who holds the private key—can initiate the session. Since each connection uses a new key pair, an attacker cannot reuse a captured signature, making session hijacking significantly more difficult.

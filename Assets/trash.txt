@@ -1,0 +1,31 @@
+
+Approaches to Prevent MITM Attacks
+
+Man-in-the-middle (MITM) attacks are the most common type of attack, wherein the attackers intercept the traffic between two endpoints. The victim may not realize the effect of this attack, because it is mostly passive in nature. Because the detection of MITM attacks is difficult, they can only be prevented using various measures.
+
+The following are some approaches to prevent MITM attacks:
+
+▪ DNS over HTTPS:
+DNS over HTTPS (DoH) is an enhanced version of the DNS protocol that is used to prevent the peeking or snooping of user’s web activities or DNS queries during the DNS lookup process. The protocol is different than the conventional DNS protocol since the web queries and the traffic is sent through a secured or encrypted HTTPS tunnel via port 443. Implementing DNS over HTTPS makes the traffic undetectable by the attackers or ISPs since it gets hidden within the normal traffic passing through the HTTPS port.
+Unlike the traditional DNS lookup process, the DoH sends a segment of a necessary domain name to fetch the results instead of sending the complete domain name entered by a user. This protocol helps in ensuring user’s privacy and security as the web traffic is directed only between DoH supported clients and a resolver avoiding MITM and session hijacking attacks. Web browsers such as Chrome, Mozilla, and Microsoft Edge have been implementing this protocol for the past few years and Mozilla had already adopted this protocol as default from 2020 for its US clients.
+
+▪ WPA3 Encryption
+Wireless Protected Access 3 (WPA3) is a wireless protocol intended to protect the traffic sent and received by users over a wireless network. The implementation of this protocol can prevent attempts by unwanted users to connect to a network. A weak encryption mechanism enables attackers to brute-force credentials and enter a target network to perform MITM attacks.
+
+▪ VPN
+A VPN creates a safe and encrypted tunnel over a public network to securely send and receive sensitive information. It creates a subnet by using key-based encryption for secure communication between endpoints. The implementation of a VPN in the network prevents attackers from decrypting the data flowing between the endpoints.
+
+▪ Two-Factor Authentication
+Two-factor authentication provides an extra layer of protection because it serves as a vector of authentication in addition to a user’s password. Therefore, the implementation of two-factor authentication can prevent attackers from performing session hijacking and brute forcing to compromise a user’s account.
+
+▪ Password Manager
+Password Manager is an application or tool used to protect and manage individual credentials. The tool can also help in producing unique and complex passwords for web applications. Using the password manager, passwords can be stored in a secure location under the database and encapsulated using a master key to prevent MITM attacks.
+
+▪ Zero-trust Principles
+Zero-trust principles constitute a set of standardized user pre-verification procedures that requires all users (inside or outside) to be authenticated before providing access to any resource. These principles are based on the famous phrase, “Trust but verify.” Even though the request is made from the internal network, the authentication process is similar to that for an outsider.
+
+▪ Public Key Infrastructure (PKI)
+Public key infrastructure (PKI) is a framework that manages, distributes, and validates digital certificates for secure communication. This ensures that the entities involved in the communication are those they claim to be involved in. Certificates are issued by trusted certificate authorities (CAs), and any attempt to present a false certificate can be detected.
+
+▪ Network Segmentation
+Network segmentation is the practice of dividing a computer network into smaller sub-networks or segments to enhance security. It can help prevent man-in-the-middle (MITM) attacks by restricting an attacker’s ability to intercept and manipulate communication between devices, move laterally within the network, and gain access to sensitive information.
