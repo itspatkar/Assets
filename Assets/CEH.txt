@@ -3508,3 +3508,42 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 	- WebSploit Framework (sourceforge.net)
 	- sslstrip (pypi.org)
 	- JHijack (sourceforge.net)
+- Session Hijacking Countermeasures:
+	- All networks using TCP/IP are vulnerable to various types of session hijacking attacks. These attacks are particularly difficult to detect, and users often fail to notice them unless the attacker causes significant damage.
+	- Signs of Session Hijacking Attack:
+		- A sudden surge in network activity, leading to decreased system performance.
+		- Overloaded servers due to simultaneous requests from both the legitimate client and the hijacker.
+	- Session Hijacking Detection Methods:
+		- Manual Method (Using Packet Sniffing Software)
+			- The manual method involves using packet-sniffing software such as Wireshark and SteelCentral Packet Analyzer to monitor session hijacking attacks. The packet sniffer captures packets in transit across the network, which are then analyzed using various filtering tools.
+			- Forced ARP Entry:
+				- A forced ARP entry involves replacing the MAC address of a compromised machine in the server's ARP cache with a different one to restrict network traffic to the compromised machine.
+				- A forced ARP entry should be performed in the following cases:
+					- Repeated ARP updates
+					- Frames exchanged between the client and server with different MAC addresses
+					- ACK storms
+		- Automatic Method (IDS and IPS):
+			- The automatic method involves using intrusion detection systems (IDS) and intrusion prevention systems (IPS) to monitor incoming network traffic. If a packet matches any attack signature in the internal database, the IDS generates an alert, while the IPS blocks the traffic from entering the network.
+	- Protecting Against Session Hijacking:
+		- Use Secure Shell (SSH) to establish a secure communication channel.
+		- Transmit authentication cookies over HTTPS connections.
+		- Generate a new session ID upon login and accept only server-generated IDs.
+		- Enforce session timeouts and automatically destroy expired sessions.
+		- Avoid including session IDs in URLs or query strings.
+		- Encrypt data in transit and implement a defense-in-depth strategy.
+		- Use long random session keys for security.
+		- Require multifactor authentication (MFA) or strong authentication like Kerberos.
+		- Switch from a hub network to a switch network to reduce ARP spoofing risks.
+		- Configure anti-spoofing rules on gateways.
+		- Use IDS/IPS or ARPwatch to monitor ARP cache poisoning.
+		- Implement IPsec to encrypt session data.
+		- Use VPNs like PPTP or L2TP for secure remote connections.
+		- Restrict cookies using firewalls and browser settings.
+		- Enable HTTPOnly and SameSite cookie attributes.
+		- Disable HTTP compression to prevent compression-based attacks.
+		- Regularly update platform patches, browsers, and security configurations.
+		- Monitor session activity for unusual behavior, such as multiple logins from different locations.
+		- Educate users on logging out properly and using strong, unique passwords.
+		- Implement continuous authentication using behavioral biometrics like typing patterns.
+		- Use a challenge-response mechanism (e.g., CAPTCHA) when suspicious activity is detected.
+		- Enforce an absolute session timeout, regardless of user activity.
