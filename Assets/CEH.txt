@@ -3672,3 +3672,8 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Nessus (www.tenable.com)
 		- Invicti (www.invicti.com)
 		- Wapiti (wapiti-scanner.github.io)
+
+
+--------------------------------------------------
+
+# Evading IDS, Firewalls, and Honeypots
