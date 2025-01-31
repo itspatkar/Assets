@@ -1,0 +1,17 @@
+
+Session Hijacking Prevention Tools 
+
+▪ Checkmarx One SAST
+Source: https://checkmarx.com
+Checkmarx One SAST is a unique source-code analysis solution that provides tools for identifying, tracking, and repairing technical and logical flaws in source code, such as security vulnerabilities, compliance issues, and business logic problems. CxSAST supports open-source analysis (CxOSA), enabling licensing and compliance management, vulnerability alerts, policy enforcement, and reporting. This tool supports a wide range of OS platforms, programming languages, and frameworks.
+Security professionals can use this tool to prevent various session hijacking attacks such as MITM attacks, session fixation attacks, and XSS attacks.
+
+
+▪ Fiddler Source: https://www.telerik.com
+Fiddler is used for performing web-application security tests such as the decryption of HTTPS traffic and manipulation of requests using an MITM decryption technique. Fiddler is a web debugging proxy that logs all HTTP(S) traffic between a computer and the Internet.
+Security professionals can use Fiddler to test web applications by debugging the traffic from systems as well as manipulating and editing web sessions.
+
+additional session hijacking prevention tools: 
+▪ Nessus (https://www.tenable.com) 
+▪ Invicti (https://www.invicti.com) 
+▪ Wapiti (https://wapiti-scanner.github.io)
