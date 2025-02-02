@@ -3677,3 +3677,37 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 --------------------------------------------------
 
 # Evading IDS, Firewalls, and Honeypots
+
+- An Intrusion Detection System (IDS) is a software-based or hardware-based security solution that monitors inbound and outbound network traffic for suspicious patterns that may indicate a security breach. It analyzes traffic for signatures matching known intrusion patterns and triggers an alert when a match is found. Depending on the type of traffic being monitored, an IDS can be placed either outside or inside the firewall to detect suspicious activity originating from external or internal sources.
+- An Intrusion Prevention System (IPS) is an advanced form of IDS, often referred to as an "active IDS," as it not only detects intrusions but also takes action to prevent them.
+- IPS is classified into two types: host-based IPS (HIPS) and network-based IPS (NIPS).
+- How IDS Detect Intrusions:
+	- An Intrusion Detection System (IDS) detects intrusions using three primary methods:
+	- Signature Recognition:
+		- Signature recognition, also known as misuse detection, identifies events that indicate potential abuse of a system or network resource. This technique involves creating models of known intrusions and comparing incoming events against these models to detect threats. IDS signatures are designed to recognize attacks without disrupting normal system traffic. Only actual attacks should match the model to minimize false alarms.
+		- This method identifies attacks by comparing network traffic against known intrusion patterns. While effective for detecting known threats, it can trigger false positives and requires frequent updates to recognize evolving threats.
+	- Anomaly Detection:
+		- Anomaly detection, also known as "not-use detection," differs from signature recognition by identifying deviations from normal traffic patterns. It relies on a database of anomalies and flags events that fall outside the established tolerance threshold as potential attacks. This method detects intrusions based on the fixed behavioral characteristics of users and system components. The most challenging aspect of anomaly detection is accurately modeling normal usage to minimize false positives.
+		- This method identifies deviations from normal network behavior, flagging unusual activity as potential threats. While useful for detecting unknown attacks, it can generate false alarms due to network unpredictability and requires precise modeling of normal behavior.
+	- Protocol Anomaly Detection:
+		- Protocol anomaly detection analyzes network traffic to identify deviations from established protocol standards or expected behavior patterns. It operates on the assumption that most network protocols follow defined rules and structures. Any deviation from these norms may indicate malicious activity or a misconfiguration.
+		- It detects unusual packet structures, sequence orders, and response times, helping identify misconfigurations and malicious activity.
+		- The functioning of a protocol anomaly detector:
+			- Baseline behavior: Establish a baseline of normal protocol behavior, including structure, sequence, timing, and content of traffic.
+			- Anomaly identification: Monitor traffic for deviations, such as unusual packet structures, sequence issues, or protocol violations.
+			- Detection rules: Define rules based on protocol specifications to guide the IDS in identifying anomalies.
+- Types of Intrusion Detection Systems:
+	- Network-Based Intrusion Detection Systems (NIDS):
+		- Network-based intrusion detection systems (NIDS) monitor all incoming network traffic to detect anomalies and malicious data. Unlike firewalls that primarily block large amounts of traffic, NIDS thoroughly inspects every packet. It captures and analyzes all network traffic, generating alerts at the IP or application level based on detected threats.
+		- NIDS are more distributed than host-based intrusion detection systems (HIDS), identifying anomalies at both the router and host levels. They audit packet contents, log information about malicious activity, and assign threat levels to detected risks. This threat level helps security teams stay vigilant.
+		- Typically, NIDS operate using a black-box device placed in a promiscuous mode within the network, passively listening for intrusion patterns. These systems detect malicious activities such as denial-of-service (DoS) attacks, port scans, and unauthorized attempts to access systems by monitoring network traffic.
+	- Host-Based Intrusion Detection Systems (HIDS):
+		- A host-based intrusion detection system (HIDS) monitors and analyzes individual system behavior. Unlike NIDS, which focus on network traffic, HIDS is installed directly on a device, ranging from desktop computers to servers. It is particularly effective at detecting unauthorized insider activity and unauthorized file modifications.
+		- HIDS primarily tracks changes within local systems and is often more platform-specific, with a greater focus on Windows OS. However, versions are also available for UNIX-based systems. These mechanisms typically audit events occurring on a specific host.
+		- Despite their effectiveness, HIDS are less commonly used due to the processing overhead required to monitor each system event in real time.
+- Types of IDS Alerts
+	- An Intrusion Detection System (IDS) generates four types of alerts: True Positive, False Positive, False Negative, and True Negative.
+	- True Positive (Attack - Alert): A true positive occurs when an IDS correctly detects an actual attack and triggers an alarm. This means the system successfully identifies a real threat, whether it is an actual attack by a malicious actor or a security drill where penetration testing tools are used to test network defenses.
+	- False Positive (No Attack - Alert): A false positive occurs when an IDS mistakenly identifies normal system activity as an attack and triggers an alarm. This can lead to unnecessary alerts, causing security personnel to become desensitized to warnings and potentially overlook real threats. During IDS configuration, administrators often analyze false positives to fine-tune detection settings and improve accuracy.
+	- False Negative (Attack - No Alert): A false negative is the most critical failure of an IDS, occurring when the system fails to detect and respond to an actual attack. In this case, a threat bypasses detection, leaving the system vulnerable. Reducing false negatives is crucial for maintaining effective security.
+	- True Negative (No Attack - No Alert): A true negative occurs when the IDS correctly identifies normal activity and does not generate an alert. This indicates that the system is functioning properly by distinguishing between legitimate behavior and potential threats. True negatives do not pose a risk and confirm that the IDS is operating as expected.
