@@ -3854,3 +3854,29 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- SonicWall NSa 6700 (www.sonicwall.com)
 			- ZYXEL VPN Firewall (www.zyxel.com)
 			- DrayTek Vigor2765 (www.draytek.com)
+- Evading IDS/Firewalls:
+	- IDS/Firewall Evasion Techniques (Identification):
+		- Port Scanning:
+			- Ports are points through which computers send or receive information from network resources. Port scanning is used to identify open ports and the services running on them. Finding open ports is often an attacker’s first step toward gaining access to a target system. Open ports can then be further probed to identify the version of services, which can help in finding vulnerabilities in these services. Attackers sometimes use automated port-scanning utilities, many of which are easily available.
+			- IDSs (Intrusion Detection Systems) can also be identified using port-scanning techniques, which help detect the presence and configuration of security solutions on a network. Attackers frequently employ port scanning to gather information about the services running on a network, including those protected by an IDS.
+			- For example, ManageEngine Firewall Analyzer listens on UDP ports 514 and 1514, Snort IDS listens on TCP port 80 and UDP port 53, and Forcepoint NGFW listens on TCP port 443 and UDP port 546.
+		- Firewalking:
+			- Firewalking is a method used to collect information about remote networks behind firewalls. It is a technique that utilizes TTL (Time to Live) values to determine gateway ACL (Access Control List) filters and map networks by analyzing the response of IP packets. It probes ACLs on packet-filtering routers and firewalls using a method similar to tracerouting. Firewalking involves sending TCP or UDP packets into the firewall where the TTL value is one hop greater than the targeted firewall. If the packet passes through the gateway, the system forwards it to the next hop, where the TTL equals one, and prompts an ICMP error message at the point of rejection, with a "TTL exceeded in transit" message. This method helps locate a firewall, and additional probing can facilitate fingerprinting and identification of vulnerabilities.
+			- The detailed information obtained from firewalking can also assist attackers in crafting more precise and stealthy attack strategies, potentially aiding in IDS evasion. Understanding firewall rules can help attackers avoid detection by exploiting allowed ports and protocols, thereby reducing the likelihood of triggering IDS alerts.
+			- Firewalk is a well-known tool used for firewalking. It has two phases: a network discovery phase and a scanning phase. It is available in various open-source Linux distributions. Nmap also includes a firewalk script that can be used to perform firewalking. Both Firewalk and the Nmap firewalk scripts provide critical insights into network configurations and firewall rules that can be leveraged to bypass security measures, including IDS, when combined with other evasion techniques.
+		- Banner Grabbing
+		- IP Address Spoofing
+		- Source Routing
+		- Tiny Fragments
+		- Using an IP Address in Place of a URL
+		- Using Anonymous Website Surfing Sites
+		- Using a Proxy Server
+		- ICMP Tunneling
+		- ACK Tunneling
+		- HTTP Tunneling
+		- SSH Tunneling
+		- DNS Tunneling
+		- Through External Systems
+		- Through MITM Attack
+		- Through Content
+		- Through XSS Attack
