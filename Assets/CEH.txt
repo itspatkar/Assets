@@ -3909,8 +3909,17 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- (Optional) Check "Bypass proxy server for local addresses" if you do not want the proxy server to be used for local network connections.
 			- Click OK to close the LAN Settings dialog box.
 			- Click OK again to close the Internet Options dialog box.
-		- ICMP Tunneling
-		- ACK Tunneling
+		- Bypassing IDS/Firewall Using ICMP Tunneling Method:
+			- The ICMP protocol is primarily used to send error messages and operational information between network devices. Since it is essential for network communication, many users keep it enabled on their networks. Additionally, ICMP is generally not perceived as a significant security risk. However, attackers can exploit this enabled ICMP protocol to perform ICMP tunneling, allowing them to transmit malicious data into the target network. Through ICMP tunneling, attackers can gain full access to a compromised network.
+			- ICMP tunneling works by embedding a backdoor shell within the data portion of ICMP Echo packets. According to RFC 792, which defines ICMP operation, the data portion of ICMP packets is unspecified. As a result, most firewalls and IDS solutions do not inspect this portion, allowing arbitrary data—including a backdoor application—to be transmitted undetected. Some administrators leave ICMP open on their firewalls/IDS because it is necessary for tools like ping and traceroute.
+			- If ICMP is allowed through the firewall, an attacker can use a tool like ICMPTX (codeberg.org) to tunnel commands inside the payload of ICMP Echo packets, effectively bypassing security controls.
+		- Bypassing IDS/Firewall Using ACK Tunneling Method:
+			- ACK tunneling is a technique attackers use to bypass firewalls and IDS by exploiting the generally trusted nature of ACK (Acknowledgment) packets. Traditional packet-filtering firewalls define their rule sets primarily based on SYN (Synchronization) packets, which initiate TCP connections. These firewalls often assume that malicious payloads are most likely to be present in SYN packets because they start a session. Once a session is established, ACK packets are used to acknowledge the receipt of data packets. Since these packets follow an ongoing session, firewalls and IDS typically treat them as legitimate traffic.
+			- To optimize performance, many firewalls do not inspect ACK packets as rigorously as SYN packets, as a single SYN packet can generate multiple ACK packets in response. Attackers exploit this by injecting malicious payloads into ACK packets, taking advantage of the reduced scrutiny. By tunneling a backdoor application inside TCP packets with the ACK flag set, attackers can bypass firewalls and potentially evade IDS detection.
+			- Steps Involved in ACK Tunneling:
+				- The attacker establishes a legitimate TCP connection with the target server.
+				- Using tools such as Hping or Nping, the attacker crafts ACK packets embedded with malicious payloads. These packets are sent through an existing session to avoid detection.
+				- Since firewalls generally assume ACK packets are part of legitimate traffic, they allow them through without thorough inspection. Similarly, IDS solutions may overlook these packets if their focus is primarily on SYN packets or other types of traffic.
 		- HTTP Tunneling
 		- SSH Tunneling
 		- DNS Tunneling
