@@ -3798,3 +3798,59 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Firewalls focus security at a single point, which leaves other systems vulnerable, and can create a bottleneck if all traffic passes through them.
 		- They also cannot defend against zero-day viruses or issues caused by faulty network design.
 		- Firewalls are not a replacement for antivirus or antimalware tools, cannot block attacks at higher protocol layers, and cannot handle tunneled traffic or threats from infected external devices.
+- IDS, IPS, and Firewall Solutions:
+	- Intrusion Detection Using YARA Rules (yara.readthedocs.io):
+		- YARA is a malware research tool that enables security analysts to detect and classify malware or other malicious code using a rule-based approach. It is a multi-platform tool that runs on Windows, macOS, and Linux. YARA allows analysts to create “rules” or descriptions of malware families using text or binary patterns. These rules analyze specific patterns in files and alert analysts if a file is harmful.
+		- A YARA rule consists of a Boolean expression and strings that define its logic. Analysts can use YARA rules to examine private databases or scan malicious binaries across an organization to detect intrusions. Additionally, YARA supports various pattern formats, such as hexadecimal or plain text, along with special operators and strings, allowing analysts to effectively detect a wide range of malware signatures.
+		- YARA Tools:
+			- yarGen (github.com): yarGen is a tool used to generate YARA rules. Its primary function is to create YARA rules based on strings identified in malware files while filtering out strings that also appear in legitimate (goodware) files. The tool includes a large goodware strings database and an opcode database, both provided as ZIP archives that must be extracted before use.
+			- Vovk (github.com)
+			- Halogen (github.com)
+			- YARA Silly Silly (github.com)
+			- yara-forge (github.com)
+			- YaraRET (github.com)
+	- Intrusion Detection Tools:
+		- Intrusion detection tools are designed to detect anomalies within a network. When deployed on a dedicated workstation, these tools read all network packets, reconstruct user sessions, and scan for potential intrusions by identifying attack signatures and statistical anomalies in network traffic. Additionally, they provide real-time, zero-day protection against network attacks and malicious traffic, preventing malware, spyware, port scans, viruses, and both DoS and DDoS attacks from compromising hosts.
+		- Snort (www.snort.org):
+			- Snort is an open-source network intrusion detection system (NIDS) that performs real-time traffic analysis and packet logging on IP networks. It supports protocol analysis, content searching/matching, and detects various attacks and probes, including buffer overflows, stealth port scans, CGI attacks, SMB probes, and OS fingerprinting attempts. Snort uses a flexible rule-based language to specify traffic to monitor and a modular plug-in architecture for detection. Snort functions as a packet sniffer, a packet logger for network debugging, and a network intrusion prevention system that detects and prevents threats.
+			- Snort Rules: Snort’s rule engine enables users to create custom rules tailored to network security needs, distinguishing between normal and malicious activities. It utilizes the libpcap library (for UNIX/Linux) or WinPcap (for Windows), the same library used by tcpdump, for packet sniffing. When Snort operates in promiscuous mode, it captures and analyzes all packets passing through the network, generating alerts based on packet content and predefined rules in the configuration file. Users can also write their own Snort rules for enhanced customization.
+		- Suricata (suricata.io):
+			- Suricata is a powerful network threat detection engine that supports real-time intrusion detection (IDS), inline intrusion prevention (IPS), network security monitoring (NSM), and offline pcap processing.
+			- It analyzes network traffic using an extensive rule and signature language and offers Lua scripting support for detecting complex threats. With standard input and output formats like YAML and JSON, Suricata seamlessly integrates with existing tools such as SIEMs, Splunk, Logstash/Elasticsearch, Kibana, and other databases.
+		- Juniper Network’s IDP system (www.solarwinds.com)
+		- Samhain HIDS (www.la-samhna.de)
+		- OSSEC (www.ossec.net)
+		- Zeek (zeek.org)
+		- Cisco Secure IPS (www.cisco.com)
+	- Intrusion Prevention Tools:
+		- Trellix Intrusion Prevention System (www.trellix.com): The Trellix Intrusion Prevention System enables security professionals to detect stealthy botnets, worms, and reconnaissance attacks in advance. It aggregates flow data from switches and routers and analyzes network-level threat behavior to identify and correlate unusual patterns. The system detects and blocks advanced threats across on-premises environments, virtual infrastructures, software-defined data centers, and private or public clouds.
+		- Check Point Quantum IPS (www.checkpoint.com)
+		- Atomic OSSEC (atomicorp.com)
+		- McAfee Host Intrusion Prevention for Desktops (www.mcafee.com)
+		- Secure IPS (NGIPS) (www.cisco.com)
+		- Palo Alto Advanced Threat Prevention (www.paloaltonetworks.com)
+	- Firewalls:
+		- Firewalls Based on Configuration:
+			- Network-based Firewalls:
+				- Cisco Secure Firewall ASA (www.cisco.com)
+				- PA-7500 (www.paloaltonetworks.com)
+				- FortiGate 7121F (www.fortinet.com)
+				- Check Point 28000 Quantum Security Gateway (www.checkpoint.com)
+				- Juniper SRX (www.juniper.net)
+			- Host-based Firewalls:
+				- Microsoft Defender Firewall (www.microsoft.com)
+				- ZoneAlarm Pro Firewall (www.zonealarm.com)
+				- Comodo Firewall (personalfirewall.comodo.com)
+				- Norton Smart Firewall (us.norton.com)
+				- McAfee Firewall (www.mcafee.com)
+		- Firewalls Based on Working Mechanism:
+			- IPFire (www.ipfire.org)
+			- pfSense (www.pfsense.org)
+			- SonicWall TZ Series (www.sonicwall.com)
+			- BIG-IP Advanced Firewall Manager (www.f5.com)
+			- Sophos Firewall (www.sophos.com)
+			- WatchGuard Firebox (www.watchguard.com)
+			- FortiProxy (www.fortinet.com)
+			- SonicWall NSa 6700 (www.sonicwall.com)
+			- ZYXEL VPN Firewall (www.zyxel.com)
+			- DrayTek Vigor2765 (www.draytek.com)
