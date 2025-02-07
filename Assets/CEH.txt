@@ -3920,10 +3920,86 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- The attacker establishes a legitimate TCP connection with the target server.
 				- Using tools such as Hping or Nping, the attacker crafts ACK packets embedded with malicious payloads. These packets are sent through an existing session to avoid detection.
 				- Since firewalls generally assume ACK packets are part of legitimate traffic, they allow them through without thorough inspection. Similarly, IDS solutions may overlook these packets if their focus is primarily on SYN packets or other types of traffic.
-		- HTTP Tunneling
-		- SSH Tunneling
-		- DNS Tunneling
-		- Through External Systems
-		- Through MITM Attack
-		- Through Content
-		- Through XSS Attack
+		- Bypassing IDS/Firewall Using HTTP Tunneling Method:
+			- HTTP tunneling allows attackers to bypass IDS/firewall restrictions and perform various internet tasks. This method can be used if the target company has a public web server where port 80 is open for HTTP traffic and is not filtered by its IDS/firewall. The attacker encapsulates data inside HTTP traffic (via port 80). Many firewalls, including IDS solutions, do not inspect the payload of HTTP packets to verify their legitimacy. As a result, attackers can tunnel traffic through TCP port 80.
+			- Tools such as Chisel (github.com) use this technique to tunnel traffic across TCP port 80. Additionally, attackers can leverage tools like HTTPort, HTTHost, and Tunna to perform HTTP tunneling and bypass IDS/firewall protections.
+			- Why Do I Need HTTP Tunneling:
+				- HTTP tunneling is used in scenarios where network users have restricted connectivity due to a firewall or proxy. In such cases, certain applications may also lack native communication support.
+				- Restrictions may include:
+					- Blocking of TCP/IP ports, externally initiated traffic, and all network protocols except for a few commonly used ones.
+					- Accessing blocked websites.
+					- Posting in forums anonymously by hiding the IP address.
+					- Using applications such as chat services (ICQ, IRC), instant messengers, games, and web browsers.
+					- Securely sharing confidential resources over HTTP.
+					- Downloading files with filtered extensions or potentially malicious code.
+			- For example, if an organization’s firewall restricts access to all ports except 80 and 443, a user who needs FTP access would be blocked. HTTP tunneling allows FTP usage via the HTTP protocol by creating a bidirectional virtual data connection encapsulated in HTTP traffic.
+			- This process works as follows: FTP client software encapsulates FTP data packets (or other protocols like SOAP or JRMP) within HTTP packets, typically using local port 80. These packets are then sent through the firewall or proxy server as standard internet traffic. The HTTP tunneling server, located outside the network, receives these packets, unwraps the FTP data, and forwards them to the remote FTP server, enabling seamless communication.
+			- HTTP Tunneling Tools - HTTPort and HTTHost (www.targeted.org):
+				- HTTPort allows users to bypass HTTP proxies that block Internet access to services such as email, instant messaging, P2P file sharing, ICQ, newsgroups, FTP, and IRC. The Internet software is configured to connect to a local PC as if it were the required remote server. HTTPort then intercepts that connection and tunnels it through the proxy. It can function on devices such as proxies, IDSs, or firewalls that permit HTTP traffic, thereby enabling access to websites and Internet applications.
+				- HTTPort supports tunneling in two modes: SSL/CONNECT mode and remote host mode:
+					- In SSL/CONNECT mode, HTTPort creates a tunnel through a proxy independently. This requires the proxy to support a specific HTTP feature called CONNECT HTTP, which is typically disabled by default. This mode is significantly faster but does not support encryption, allowing the proxy to monitor all activities.
+					- The remote host mode enables tunneling through any proxy. HTTPort utilizes a specialized server software called HTTHost, which is installed outside the proxy-blocked network. Since HTTHost functions as a web server, HTTPort transmits a series of HTTP requests to it. The proxy interprets this as regular web browsing, thereby permitting the connection. HTTHost then completes its part of the tunneling process, communicating with the target servers. While this mode is slower, it is highly effective in most cases and offers strong data encryption, rendering proxy logging ineffective.
+		- Bypassing IDS/Firewalls Using SSH Tunneling Method:
+			- SSH protocol tunneling allows unencrypted network traffic to be securely transmitted through an SSH tunnel. For example, when transferring files using the unencrypted FTP protocol, but the target IDS/firewall blocks FTP traffic, data can be sent through an encrypted SSH tunnel instead. Attackers exploit this technique to bypass IDS/firewall restrictions by connecting to external SSH servers and creating SSH tunnels, often routing traffic through port 80 on the remote server to evade detection.
+			- OpenSSH: Attackers use OpenSSH (OpenBSD Secure Shell) to encrypt and tunnel all traffic between a local machine and a remote machine, effectively bypassing perimeter security controls. OpenSSH is a suite of programs that enables encrypted communication sessions over a network using the SSH protocol.
+			- Performing SSH Tunneling to Bypass Firewalls Using Bitvise (www.bitvise.com):
+				- The Bitvise SSH Server provides secure remote login capabilities for Windows workstations and servers by encrypting data during transmission. It is commonly used for remote administration of Windows servers, allowing advanced users to access their home machine from work, their work machine from home, or perform complex tasks such as setting up a VPN using SSH TCP/IP tunneling or providing a secure file repository via SFTP.
+				- Attackers can leverage the Bitvise SSH Server/Client tool to establish an SSH tunnel, bypassing IDS/firewalls and accessing restricted services in a target network through various port-forwarding methods.
+				- Port-Forwarding Methods for SSH Tunneling Using Bitvise:
+					- Local Port Forwarding: Local port forwarding redirects a local port to a remote port through an SSH tunnel, enabling access to remote services as if they were running locally. This technique allows attackers to reach internal resources that are otherwise inaccessible from outside the network.
+					- Remote Port Forwarding: Remote port forwarding exposes a local service to a remote network by forwarding it to a local port on the remote machine. This technique enables attackers to access target-side applications or development environments within a remote network.
+					- Dynamic Port Forwarding: Dynamic port forwarding creates a SOCKS proxy through an SSH tunnel, allowing the routing of various types of network traffic. This highly flexible method is often used to bypass firewalls, IDS, and other network restrictions, enabling access to unauthorized services without detection.
+		- Bypassing IDS/Firewalls Using DNS Tunneling Method:
+			- DNS tunneling is an effective technique for bypassing firewalls and intrusion detection systems (IDS) by exploiting the typically trusted nature of DNS traffic. Since DNS operates over UDP with a 255-byte limit on outbound queries and supports only alphanumeric characters and hyphens, it is well-suited for covert communication.
+			- Attackers embed malicious data within DNS protocol packets, splitting the data into smaller chunks that are encoded within DNS queries and responses. This enables data exfiltration while evading detection. DNSSEC, the security extension of DNS, cannot identify abnormalities in DNS tunneling because the data is covertly embedded within legitimate DNS traffic.
+			- Tools such as iodine and dnscat2 are commonly used to create DNS tunnels, allowing attackers to encode and decode data within DNS traffic effectively.
+			- DNS Tunneling Using Iodine (code.kryo.se):
+				- Attackers often use tools like iodine and dnscat2 to tunnel traffic through DNS port 53, bypassing network restrictions.
+				- Iodine is a software program that enables IPv4 tunneling through a DNS server, allowing data transmission even when Internet access is restricted but DNS queries are allowed.
+				- The tool consists of two components:
+					- iodined (server): Runs on a server with a public IP address. It responds to DNS queries, decodes data from the client, accesses the Internet on behalf of the client, and then encodes responses into DNS replies.
+					- iodine (client): Runs on the attacker's device, intercepting outgoing Internet traffic and encoding it into DNS queries sent to an iodined server.
+				- This technique effectively allows data transmission through a DNS tunnel, bypassing firewalls and IDS.
+		- Bypassing IDS/Firewall Using External Systems:
+			- Attackers can evade firewall and IDS solutions by leveraging an external system that has access to the target network. This external system may include: An employee's home machine that connects to the corporate network, A remote administration machine used to manage the target network, A company-owned device located at a different physical location.
+			- Steps to Bypass a Firewall/IDS Using External Systems:
+				- A legitimate user accesses the corporate network through an external system.
+				- The attacker intercepts the user’s traffic and steals session IDs and cookies.
+				- The attacker gains access to the corporate network by bypassing the firewall/IDS and retrieves the Windows ID of the running Mozilla process on the user’s system.
+				- The attacker issues an OpenURL() command to the identified window.
+				- The user’s web browser is redirected to the attacker’s web server.
+				- A malicious payload embedded in the attacker's web page is downloaded and executed on the user's machine.
+		- Bypassing IDS/Firewall Using MITM Attacks:
+			- Many security administrators focus on preventing external or internal threats from bypassing their firewall/IDS, often overlooking the fact that these security measures can be evaded through Man-in-the-Middle (MITM) attacks targeting DNS servers.
+			- In MITM attacks, attackers manipulate DNS servers and routing techniques to circumvent firewall/IDS restrictions. This can be achieved by: Compromising the corporate DNS server to control domain name resolution and Spoofing DNS responses to redirect users to malicious sites.
+			- Steps to Bypass a Firewall/IDS Using a MITM Attack:
+				- The attacker performs DNS server poisoning, injecting false records into the DNS cache.
+				- User A requests access to www.certifiedhacker.com from the corporate DNS server.
+				- The compromised DNS server responds with the attacker’s IP address (127.22.16.64).
+				- User A unknowingly connects to the attacker's malicious server instead of the legitimate one.
+				- The attacker forwards the connection to the real host, tunneling the user's HTTP traffic, making it appear legitimate to the firewall/IDS.
+				- Malicious code embedded in the attacker's webpage is downloaded and executed on the user’s machine, bypassing firewall/IDS detection.
+		- Bypassing IDS/Firewall Using Malicious Content:
+			- In this method, an attacker delivers malicious content to a user and tricks them into opening it, allowing the embedded code to execute. Attackers often use steganography or obfuscation techniques to hide malicious code within legitimate files, making it difficult for IDS to detect and firewall rules to block. A wide range of file formats for text, multimedia, and graphics can be used to deliver malicious content.
+			- For example, an attacker might send an email containing a malicious executable file or a Microsoft Office document that exploits macro vulnerabilities. Attackers can also target WWW/FTP servers, embedding Trojan horse files within software installation packages, mobile applications, and other seemingly harmless downloads to lure users into opening them.
+			- Common File Formats Used for Malicious Content:
+				- Executable & Scripting Files: EXE, COM, BAT, PS
+				- Documents & Spreadsheets:
+					- Microsoft Word: DOC, DOT, CNV, ASD
+					- Microsoft Excel: XLS, XLB, XLT
+					- Microsoft PowerPoint: PPT, PPS, POT
+					- Microsoft Outlook: MSG, OTM
+					- Microsoft Access: ADP, MDA, MDB, MDE, MDN, MDZ
+				- Design & CAD Files: CDR (CorelDraw), DWG (AutoCAD), DVB
+				- Other Application Files:
+					- Visio: VSD
+					- MS Project: MPP, MPT
+					- SMM (AMI Pro)
+					- PDF (Portable Document Format)
+		- Bypassing IDS/WAF Using XSS Attack:
+			- Cross-Site Scripting (XSS) attacks exploit vulnerabilities in web applications that fail to properly handle user input and server responses. Attackers take advantage of these weaknesses to inject malicious HTML or JavaScript code into a website, bypassing Intrusion Detection Systems (IDS) and Web Application Firewalls (WAF). Many WAFs have built-in filters to block standard XSS payloads, attackers use different encoding and obfuscation techniques to bypass them.
+			- Techniques to Bypass IDS/WAF Using XSS:
+				- Using ASCII Values: In this method, attackers encode the XSS payload using ASCII character codes to evade WAF filtering. The encoded payload bypasses WAF filters by avoiding direct keyword detection.
+				- Using Hex Encoding: In this technique, the entire XSS payload is converted into hexadecimal values, making it difficult for IDS/WAF to detect malicious intent. These payload is often generated using online converters (e.g., ConvertString.com) and successfully evades firewall filters.
+				- Using Obfuscation: Obfuscation involves modifying the case of characters or adding unnecessary elements to bypass pattern-based security filters. By mixing uppercase and lowercase characters, this variation successfully bypasses IDS/WAF filters that rely on case-sensitive keyword detection.
+			- Attackers use a combination of encoding, obfuscation, and evasion techniques to bypass WAF and IDS protections. Security administrators should implement advanced input validation, content security policies (CSP), and behavior-based detection methods to mitigate XSS threats effectively.
