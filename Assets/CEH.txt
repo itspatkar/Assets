@@ -4021,3 +4021,44 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- In some cases, a target web server may accept connections using various SSL/TLS ciphers, but the filtering WAF might not support all of them. Attackers exploit this discrepancy to bypass the WAF.
 				- First, attackers analyze the target WAF to identify its supported ciphers, often by reviewing vendor documentation. They then use tools such as sslscan2 to detect the ciphers supported by the web server. If they find a cipher that the web server supports but the WAF does not, they use that cipher to bypass the WAF and establish a direct connection with the target server.
 				- Attackers commonly use tools like abuse-ssl-bypass-waf.py (github.com) and cURL (curl.se) to carry out this attack.
+		- Bypassing IDS/Firewall Through HTML Smuggling:
+			- HTML smuggling is a web-based attack where an attacker injects malicious code into an HTML script to compromise a web page. This technique allows attackers to manipulate scripting features (e.g., HTML5, JavaScript) and evade detection by SIEM solutions, firewalls, web proxies, and email gateways. The primary goal of HTML smuggling is to successfully install a malware payload on a target system when a victim accesses a malicious link sent via phishing emails.
+			- To achieve this, attackers create a malicious link by embedding a JavaScript-based blob with a compatible MIME type, ensuring the malware is automatically downloaded upon execution. Tools like HTML Smuggler can be used to craft JavaScript payloads designed to bypass firewalls and IDS, delivering them through HTML attachments. Once executed, the malware grants remote access to the attacker, enabling persistent attacks.
+			- Intrusion Detection Systems (IDS) and firewalls typically expect JavaScript and HTML traffic from clients. The smuggling technique exploits this trust by using JavaScript to conceal the blob content, allowing the malware to bypass detection and establish a connection with a malicious server.
+			- How HTML Smuggling Works:
+				- Embedding Malware in an HTML5 Attachment or Web Page: Attackers initiate the attack by embedding malware within an HTML5 attachment or web page. When a victim clicks the malicious link, the specially crafted malware is executed on their system. (<a href="malicious.doc" download="Myfile.doc">Click</a>)
+				- Creating a Malicious File Using JavaScript Blob: Instead of directly linking to a malicious file URL, attackers use JavaScript's Blob API to generate and disguise the malware payload. (var fakeBlob = new Blob([myfakeFile], {type: 'application/octet-stream'}); var myAnchorElement = document.createElement('a'); myAnchorElement.download = 'Myfile.doc';)
+				- Generating a URL and Triggering the Download: Attackers create a URL for the malicious file and trick the victim into downloading it. (var myfileUrl = window.URL.createObjectURL(fakeBlob); myAnchorElement.href = myfileUrl; myAnchorElement.click();)
+			- Signs of HTML Smuggling:
+				- A ZIP file containing JavaScript.
+				- An encrypted attachment.
+				- Suspicious script code embedded within an HTML-based file.
+				- Decoding of an HTML-based file using Base64.
+			- Countermeasures:
+				- Block the auto-execution of .js and .jse files.
+				- Ensure that Office 365 email security filtering actively prevents the auto-download of malware-laden emails.
+				- Verify that security devices such as firewalls and proxies restrict arbitrary server connections to the Internet.
+				- Recommend users access the web using a browser with Microsoft Defender SmartScreen and network protection enabled to prevent malicious access.
+				- Enable cloud-based security solutions with AI and ML-driven threat detection for proactive identification and mitigation of threats.
+				- Implement Content Security Policy (CSP) headers on web servers.
+				- Define a whitelist of allowed HTML tags, attributes, and protocols.
+				- Encode all dynamic content before rendering it in the browser to prevent code injection.
+		- Evading IDS/Firewall Through Windows BITS:
+			- In a Windows environment, the Background Intelligent Transfer Service (BITS) is a standard service used to distribute automatic Windows updates globally. While BITS offers significant advantages, it can also be exploited by attackers to bypass firewalls and IDS, as organizations often overlook BITS traffic due to its continuous flow of legitimate software updates.
+			- Beyond Microsoft products, BITS also allows browsers like Firefox and Chrome to download and update their latest versions even when the browser is closed. While this service is legitimate, attackers can abuse it to execute malicious applications or establish backdoors, bypassing security solutions and gaining control over a system.
+			- In the context of the service host process, malware can create BITS tasks to download or upload files discreetly. This technique enables attackers to evade IDS/firewall detection while concealing payload transfers.
+			- BITS transfers are asynchronous, meaning the program that initiated the job does not need to be active when the transfer is completed. Attackers can exploit this functionality by specifying any executable or command within notification commands linked to BITS jobs, allowing them to keep malicious programs running. BITS jobs can be created using the Bitsadmin command-line tool or via API function calls.
+			- Once the malicious payload is executed, it can create scheduled tasks or other jobs that run in the background. Since these jobs operate at a system level, they are often considered trusted and can bypass security solutions such as firewalls and IDS/IPS.
+			- How Do Attackers Exploit BITS?
+				- Downloading a Malicious Binary - Attackers run the Bitsadmin command to create a job, transfer a malicious file to a remote system, and store it in a specified location.
+				- Establishing Persistence - Attackers can establish persistence on a target machine by specifying a NotifyCmdLine that executes when the BITS job completes.
+			- Countermeasures:
+				- Use the BitsParser tool to analyze all traffic passing through BITS.
+				- Avoid downloading suspicious programs or files from the internet or email.
+				- Keep the operating system and BITS service updated with the latest security patches.
+				- Regularly monitor the Microsoft-Windows-BITS-Client/Operational event log for unusual activities.
+				- Integrate with a reputable SIEM solution to automate the monitoring and alerting of suspicious BITS activity.
+				- Use Group Policy Objects (GPO) to manage and restrict BITS settings.
+				- Configure BITS to limit the maximum job age and prevent jobs from running immediately.
+				- Conduct regular audits of BITS jobs to detect unauthorized activity.
+				- Restrict user accounts from creating BITS jobs unless necessary.
