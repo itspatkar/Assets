@@ -4003,24 +4003,6 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Using Hex Encoding: In this technique, the entire XSS payload is converted into hexadecimal values, making it difficult for IDS/WAF to detect malicious intent. These payload is often generated using online converters (e.g., ConvertString.com) and successfully evades firewall filters.
 				- Using Obfuscation: Obfuscation involves modifying the case of characters or adding unnecessary elements to bypass pattern-based security filters. By mixing uppercase and lowercase characters, this variation successfully bypasses IDS/WAF filters that rely on case-sensitive keyword detection.
 			- Attackers use a combination of encoding, obfuscation, and evasion techniques to bypass WAF and IDS protections. Security administrators should implement advanced input validation, content security policies (CSP), and behavior-based detection methods to mitigate XSS threats effectively.
-		- Techniques for Bypassing WAF:
-			- Using HTTP Header Spoofing:
-				- Web application firewalls allow specific queries and syntaxes that originate from internal addresses. They also enable rapid debugging of applications in test environments. Attackers exploit this functionality by sending requests with spoofed headers, tricking the target WAF and server into believing that the request originated from the internal network. Tools like Burp Suite are commonly used to manipulate HTTP headers and bypass the WAF.
-			- Using Blacklist Detection:
-				- Attackers can exploit the WAF's blacklist detection mechanism to bypass its security controls. To do this, they fingerprint the target WAF to identify blacklisted keywords. Once identified, they craft new regex patterns and payloads using keywords that are not included in the blacklist.
-				- Example of filtered keywords: AND, OR, UNION
-				- SQL query that evades detection: 1 || (SELECT username, pwd FROM employees WHERE userID = 1001) = 'admin'
-			- Using Fuzzing/Brute-Forcing:
-				- In this technique, attackers test the target WAF with multiple known payloads to find ways to bypass its security controls. While WAFs can typically detect fuzzing and brute-force attempts, attackers evade detection by first testing payloads on a locally connected WAF to identify those that can slip through. They then use the successful payloads against the target WAF.
-				- To perform fuzzing, attackers use wordlists such as Assetnote Wordlists (wordlists.assetnote.io) and SecLists (github.com).
-				- Process:
-					- Load the wordlist into a fuzzer to initiate brute-force attempts.
-					- Record the responses received for each fuzzed payload.
-					- Use random user agents and proxy chains to further evade WAF detection.
-			- Abusing SSL/TLS Ciphers;
-				- In some cases, a target web server may accept connections using various SSL/TLS ciphers, but the filtering WAF might not support all of them. Attackers exploit this discrepancy to bypass the WAF.
-				- First, attackers analyze the target WAF to identify its supported ciphers, often by reviewing vendor documentation. They then use tools such as sslscan2 to detect the ciphers supported by the web server. If they find a cipher that the web server supports but the WAF does not, they use that cipher to bypass the WAF and establish a direct connection with the target server.
-				- Attackers commonly use tools like abuse-ssl-bypass-waf.py (github.com) and cURL (curl.se) to carry out this attack.
 		- Bypassing IDS/Firewall Through HTML Smuggling:
 			- HTML smuggling is a web-based attack where an attacker injects malicious code into an HTML script to compromise a web page. This technique allows attackers to manipulate scripting features (e.g., HTML5, JavaScript) and evade detection by SIEM solutions, firewalls, web proxies, and email gateways. The primary goal of HTML smuggling is to successfully install a malware payload on a target system when a victim accesses a malicious link sent via phishing emails.
 			- To achieve this, attackers create a malicious link by embedding a JavaScript-based blob with a compatible MIME type, ensuring the malware is automatically downloaded upon execution. Tools like HTML Smuggler can be used to craft JavaScript payloads designed to bypass firewalls and IDS, delivering them through HTML attachments. Once executed, the malware grants remote access to the attacker, enabling persistent attacks.
@@ -4062,3 +4044,21 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Configure BITS to limit the maximum job age and prevent jobs from running immediately.
 				- Conduct regular audits of BITS jobs to detect unauthorized activity.
 				- Restrict user accounts from creating BITS jobs unless necessary.
+		- Techniques for Bypassing WAF:
+			- Using HTTP Header Spoofing:
+				- Web application firewalls allow specific queries and syntaxes that originate from internal addresses. They also enable rapid debugging of applications in test environments. Attackers exploit this functionality by sending requests with spoofed headers, tricking the target WAF and server into believing that the request originated from the internal network. Tools like Burp Suite are commonly used to manipulate HTTP headers and bypass the WAF.
+			- Using Blacklist Detection:
+				- Attackers can exploit the WAF's blacklist detection mechanism to bypass its security controls. To do this, they fingerprint the target WAF to identify blacklisted keywords. Once identified, they craft new regex patterns and payloads using keywords that are not included in the blacklist.
+				- Example of filtered keywords: AND, OR, UNION
+				- SQL query that evades detection: 1 || (SELECT username, pwd FROM employees WHERE userID = 1001) = 'admin'
+			- Using Fuzzing/Brute-Forcing:
+				- In this technique, attackers test the target WAF with multiple known payloads to find ways to bypass its security controls. While WAFs can typically detect fuzzing and brute-force attempts, attackers evade detection by first testing payloads on a locally connected WAF to identify those that can slip through. They then use the successful payloads against the target WAF.
+				- To perform fuzzing, attackers use wordlists such as Assetnote Wordlists (wordlists.assetnote.io) and SecLists (github.com).
+				- Process:
+					- Load the wordlist into a fuzzer to initiate brute-force attempts.
+					- Record the responses received for each fuzzed payload.
+					- Use random user agents and proxy chains to further evade WAF detection.
+			- Abusing SSL/TLS Ciphers;
+				- In some cases, a target web server may accept connections using various SSL/TLS ciphers, but the filtering WAF might not support all of them. Attackers exploit this discrepancy to bypass the WAF.
+				- First, attackers analyze the target WAF to identify its supported ciphers, often by reviewing vendor documentation. They then use tools such as sslscan2 to detect the ciphers supported by the web server. If they find a cipher that the web server supports but the WAF does not, they use that cipher to bypass the WAF and establish a direct connection with the target server.
+				- Attackers commonly use tools like abuse-ssl-bypass-waf.py (github.com) and cURL (curl.se) to carry out this attack.
