@@ -1,10 +1,4 @@
 
-Techniques for IDS Evasion 
-
-Other Techniques for IDS
-
-Evasion IDS that provide an extra layer of security to the organization’s infrastructure are interesting targets for attackers. Attackers implement various IDS evasion techniques to bypass such security mechanisms and compromise the infrastructure. IDS evasion is the process of modifying attacks to fool the IDS/IPS into interpreting that the traffic is legitimate and thus prevent the IDS from triggering an alert. Many IDS evasion techniques can perform IDS evasion in different and effective ways.
-
 Some IDS evasion techniques are as follows: 
 ▪ Insertion Attack 
 ▪ Evasion 
@@ -24,3 +18,11 @@ Some IDS evasion techniques are as follows:
 ▪ Domain Generation Algorithms (DGA)
 ▪ Encryption 
 ▪ Flooding
+
+------
+
+
+
+
+
+

@@ -35,12 +35,11 @@
 	- traceroute : route packets trace to network host
 	- ip : show / manipulate routing, network devices, interfaces and tunnels (replaces deprecated: ifconfig, route, arp)
 	- arp : show / manipulate Address Resolution Protocol (ARP) cache
-	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
 	- ifconfig : Interface Configuration (ifconfig) configures network interfaces (deprecated)
 	- nslookup : Name Server Lookup (nsookup) queries DNS Servers interactively (deprecated)
 	- netstat : print network connections, routing tables, interface statistics, masquerade connections, multicast memberships, etc. (deprecated)
 	- route : show / manipulate the IP routing table (deprecated)
-	- nslookup : query internet domain name servers (set type=a/cname)
+	- tcpdump : TCP dump is packet analyser tool used to capture and analyse packets and network traffic in real-time over network
 	- photon : retrieve archived URLs of the target website from archive.org
 	- theharvester : OSINT gathering tool (gathers names, emails, IPs, subdomains, and URLs by using multiple public resources)
 	- sherlock - Search on social media accounts - personal info
@@ -4044,21 +4043,124 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Configure BITS to limit the maximum job age and prevent jobs from running immediately.
 				- Conduct regular audits of BITS jobs to detect unauthorized activity.
 				- Restrict user accounts from creating BITS jobs unless necessary.
-		- Techniques for Bypassing WAF:
-			- Using HTTP Header Spoofing:
-				- Web application firewalls allow specific queries and syntaxes that originate from internal addresses. They also enable rapid debugging of applications in test environments. Attackers exploit this functionality by sending requests with spoofed headers, tricking the target WAF and server into believing that the request originated from the internal network. Tools like Burp Suite are commonly used to manipulate HTTP headers and bypass the WAF.
-			- Using Blacklist Detection:
-				- Attackers can exploit the WAF's blacklist detection mechanism to bypass its security controls. To do this, they fingerprint the target WAF to identify blacklisted keywords. Once identified, they craft new regex patterns and payloads using keywords that are not included in the blacklist.
-				- Example of filtered keywords: AND, OR, UNION
-				- SQL query that evades detection: 1 || (SELECT username, pwd FROM employees WHERE userID = 1001) = 'admin'
-			- Using Fuzzing/Brute-Forcing:
-				- In this technique, attackers test the target WAF with multiple known payloads to find ways to bypass its security controls. While WAFs can typically detect fuzzing and brute-force attempts, attackers evade detection by first testing payloads on a locally connected WAF to identify those that can slip through. They then use the successful payloads against the target WAF.
-				- To perform fuzzing, attackers use wordlists such as Assetnote Wordlists (wordlists.assetnote.io) and SecLists (github.com).
-				- Process:
-					- Load the wordlist into a fuzzer to initiate brute-force attempts.
-					- Record the responses received for each fuzzed payload.
-					- Use random user agents and proxy chains to further evade WAF detection.
-			- Abusing SSL/TLS Ciphers;
-				- In some cases, a target web server may accept connections using various SSL/TLS ciphers, but the filtering WAF might not support all of them. Attackers exploit this discrepancy to bypass the WAF.
-				- First, attackers analyze the target WAF to identify its supported ciphers, often by reviewing vendor documentation. They then use tools such as sslscan2 to detect the ciphers supported by the web server. If they find a cipher that the web server supports but the WAF does not, they use that cipher to bypass the WAF and establish a direct connection with the target server.
-				- Attackers commonly use tools like abuse-ssl-bypass-waf.py (github.com) and cURL (curl.se) to carry out this attack.
+	- Techniques for Bypassing WAF:
+		- Using HTTP Header Spoofing:
+			- Web application firewalls allow specific queries and syntaxes that originate from internal addresses. They also enable rapid debugging of applications in test environments. Attackers exploit this functionality by sending requests with spoofed headers, tricking the target WAF and server into believing that the request originated from the internal network. Tools like Burp Suite are commonly used to manipulate HTTP headers and bypass the WAF.
+		- Using Blacklist Detection:
+			- Attackers can exploit the WAF's blacklist detection mechanism to bypass its security controls. To do this, they fingerprint the target WAF to identify blacklisted keywords. Once identified, they craft new regex patterns and payloads using keywords that are not included in the blacklist.
+			- Example of filtered keywords: AND, OR, UNION
+			- SQL query that evades detection: 1 || (SELECT username, pwd FROM employees WHERE userID = 1001) = 'admin'
+		- Using Fuzzing/Brute-Forcing:
+			- In this technique, attackers test the target WAF with multiple known payloads to find ways to bypass its security controls. While WAFs can typically detect fuzzing and brute-force attempts, attackers evade detection by first testing payloads on a locally connected WAF to identify those that can slip through. They then use the successful payloads against the target WAF.
+			- To perform fuzzing, attackers use wordlists such as Assetnote Wordlists (wordlists.assetnote.io) and SecLists (github.com).
+			- Process:
+				- Load the wordlist into a fuzzer to initiate brute-force attempts.
+				- Record the responses received for each fuzzed payload.
+				- Use random user agents and proxy chains to further evade WAF detection.
+		- Abusing SSL/TLS Ciphers;
+			- In some cases, a target web server may accept connections using various SSL/TLS ciphers, but the filtering WAF might not support all of them. Attackers exploit this discrepancy to bypass the WAF.
+			- First, attackers analyze the target WAF to identify its supported ciphers, often by reviewing vendor documentation. They then use tools such as sslscan2 to detect the ciphers supported by the web server. If they find a cipher that the web server supports but the WAF does not, they use that cipher to bypass the WAF and establish a direct connection with the target server.
+			- Attackers commonly use tools like abuse-ssl-bypass-waf.py (github.com) and cURL (curl.se) to carry out this attack.
+	- Techniques for IDS Evasion:
+		- Insertion Attack:
+			- Insertion attacks exploit discrepancies between an IDS and the target system’s packet processing. Attackers send malformed or manipulated packets that the IDS accepts but the target system discards, causing the IDS to misinterpret traffic as harmless. IDSs rely on pattern matching to detect threats, but attackers can insert extra data to disrupt this process. For example, modifying "phf" to "phoneyf" can prevent IDS detection of a PHF CGI attack.
+			- Common insertion techniques include corrupting IP checksums—causing the IDS to process invalid packets—and manipulating Time-to-Live (TTL) fields so packets reach the IDS but expire before reaching the target. These tactics create mismatched data streams, leading the IDS to draw incorrect conclusions.
+		- Evasion Attack:
+			- An evasion attack occurs when an IDS discards packets that the target host accepts, allowing an attacker to exploit the system unnoticed. This attack reduces IDS accuracy and enables arbitrary attacks at the IP layer without detection.
+			- Attackers achieve this by sending request fragments in packets that the IDS mistakenly rejects, effectively removing parts of the data stream from its view. For example, if an attacker sends a malicious sequence byte by byte and the IDS drops just one byte, it may fail to detect the attack. In this case, the IDS processes fewer packets than the destination system.
+			- One example is an attacker opening a TCP connection with a data packet. Normally, a TCP connection begins with a handshake between two endpoints. However, since TCP handshake packets can carry data, an IDS that ignores this data is vulnerable to evasion attacks.
+		- Denial-of-Service (DoS) Attack on IDS:
+			- Multiple types of Denial-of-Service (DoS) attacks can disrupt an Intrusion Detection System (IDS) by exhausting its resources. Attackers target critical network processing points, forcing the IDS to allocate excessive CPU cycles, memory, disk space, and bandwidth, ultimately degrading its performance or rendering it ineffective. By exploiting these vulnerabilities, attackers can neutralize IDS defenses and evade detection.
+			- Targeting IDS Resources:
+				- CPU Overload: The IDS requires CPU cycles to analyze packets and compare them against stored network states. Attackers exploit computationally expensive operations, forcing the IDS into performing useless work and consuming all processing power.
+				- Memory Exhaustion: IDSs need memory for pattern matching, tracking TCP connections, reassembling packets, and buffering data. Attackers identify and exploit memory-intensive operations, causing the system to allocate all memory to meaningless information.
+				- Disk Space Consumption: IDS logs network activity, often storing events on disk. Attackers can flood the system with excessive events, consuming disk space and preventing legitimate alerts from being recorded.
+				- Network Overload: Unlike end systems, an IDS must analyze all network traffic. Attackers can flood the network with meaningless data, overwhelming the IDS and preventing it from keeping up with legitimate activity.
+			- Attacking Centralized Logging Systems: Many IDSs use central logging servers to consolidate alerts. If attackers discover the log server’s IP address, they can launch a DoS attack to slow it down or crash it. Once disabled, the IDS fails to record alerts, allowing further attacks to go unnoticed.
+			- Effects of DoS Attack on IDS:
+				- Device lock-up, making it unresponsive
+				- Overwhelming alarms, preventing proper investigation
+				- Exceeding management system capacity (e.g., databases)
+				- Filling disk space, stopping attack logs from being stored
+				- Consuming processing power, allowing real attacks to bypass detection
+		- Obfuscation:
+			- Obfuscation involves making code or data difficult to understand, often for privacy or security purposes. Attackers use this technique to evade Intrusion Detection Systems (IDS) by encoding attack payloads in a way that the target system can decode, but the IDS cannot. By leveraging obfuscation, attackers effectively evade IDS detection while successfully compromising their targets.
+			- Obfuscation Techniques:
+				- Path Manipulation: Attackers alter file paths in ways that confuse Host-based IDS (HIDS) while remaining valid for the target system.
+				- Unicode Encoding: By encoding attack packets with Unicode characters, an attacker can bypass detection by the IDS while still being understood by a web server, such as Microsoft IIS.
+				- Polymorphic Code: Attackers generate variable attack patterns to evade signature-based IDS, ensuring there is no single detectable signature.
+				- Encrypted Protocols: Obfuscated attacks on HTTPS make it difficult for IDS to inspect traffic.
+				- Digital Steganography: Attackers hide malicious payloads within digital files, allowing them to bypass IDS and deploy malware on target systems.
+		- False Positive Generation:
+			- This technique does not directly attack the target but instead triggers unnecessary IDS alerts, causing false positives—alarms generated without an actual threat. A method similar to Denial-of-Service (DoS) attacks, false positive generation overwhelms the IDS with excessive alert data. Attackers send malicious packets designed to trigger IDS alerts, flooding logs with noise. This makes it harder to distinguish real threats from false alarms.
+			- By understanding the IDS's detection mechanisms, attackers can craft alerts specific to that system, further masking real attack traffic. As a result, legitimate threats blend into the noise, allowing attackers to evade detection.
+		- Session Splicing:
+			- Session splicing is an IDS evasion technique that exploits weaknesses in how some Intrusion Detection Systems (IDS) reconstruct sessions before performing pattern matching. Attackers split malicious traffic into numerous small packets, ensuring that no single packet contains a recognizable attack signature, making detection difficult.
+			- How Session Splicing Works:
+				- Fragmenting Attack Traffic: The attacker sends data in tiny portions (a few bytes per packet), avoiding IDS string matching.
+				- Overloading IDS Processing: Some IDS struggle to handle an excessive number of small packets, failing to detect attack patterns.
+				- Delaying Packet Transmission: If attackers know the IDS type, they can introduce delays between packets to evade reassembly-based detection. Many IDS time out reassembly after a set period, while some applications keep sessions active longer. Attackers exploit this mismatch to inject malicious payloads after the IDS stops monitoring.
+				- Bypassing IDS Logging: Once session splicing succeeds, subsequent attack data bypasses IDS detection and is not logged.
+			- Attackers often use tools like Nessus to perform session-splicing attacks, making detection and prevention challenging for IDS that do not properly reassemble fragmented traffic.
+		- Unicode Evasion Technique:
+			- Unicode is a character encoding system that ensures consistent text representation across different languages and platforms. Many standards, including Java, LDAP, and XML, require Unicode, and most operating systems and applications support it.
+			- How Attackers Use Unicode for IDS Evasion: Attackers exploit Unicode character encodings (known as code points) to manipulate text in a way that bypasses pattern-matching IDS detection. The most common encoding formats used are UTF-8 and UTF-16.
+			- Challenges with Unicode in IDS
+				- Unicode allows multiple representations of the same character, making pattern-matching difficult.
+				- Certain code points can modify previous code points, adding further complexity.
+				- Different OS and applications may assign the same representation to different code points, leading to inconsistencies.
+			- For example, the character \ (backslash) can be represented as 5C, C19C, or E0819C, making it difficult for IDS to detect malicious strings. Attackers leverage this by converting attack payloads into Unicode characters, effectively evading signature-based detection. Additionally, attackers encode URLs in HTTP requests using Unicode, allowing them to bypass HTTP-based attack detection in IDS.
+		- Fragmentation Attack:
+			- IP packets must adhere to the Maximum Transmission Unit (MTU) size when traveling across a network. If a packet exceeds this size, it is fragmented into smaller parts for transmission. Each fragment contains information such as fragment ID, offset, length, and flags, which help in reassembling the original packet at the destination.
+			- Fragmentation can be exploited as an IDS evasion technique when reassembly timeouts differ between the IDS and the target system. Attackers manipulate fragmentation to send malicious payloads while bypassing IDS detection. By carefully manipulating fragmentation timeouts and packet sequences, attackers can execute stealthy attacks that bypass IDS detection.
+			- Attack Scenario 1: IDS Timeout Expires Before the Target's Timeout
+				- If the IDS reassembly timeout is shorter than that of the target system, attackers can delay fragment transmissions to evade detection. This allows the attack to succeed without triggering IDS alerts, as the IDS never sees the complete packet.
+				- Example:
+					- IDS reassembly timeout: 10 seconds
+					- Target system timeout: 20 seconds
+					- Attack strategy: The attacker sends the second fragment 15 seconds after the first.
+					- Outcome: The IDS drops the fragment as its timeout has expired, but the target system still accepts and reassembles the full payload.
+			- Attack Scenario 2: IDS Timeout Exceeds the Target's Timeout
+				- If the IDS reassembly timeout is longer than that of the target system, an attacker can send misleading fragments to deceive the IDS. This technique allows attackers to fool the IDS into dropping attack data while successfully delivering the malicious payload to the target system.
+				- Example:
+					- IDS reassembly timeout: 60 seconds
+					- Target system timeout: 30 seconds
+					- Attack strategy: The attacker first sends frag-2' and frag-4' with false payloads, received by both the IDS and the target. After the target's timeout expires (30s), it discards the incomplete fragments. The attacker then sends frag-1 and frag-3 with the actual payload, causing the IDS to detect a checksum mismatch and drop the packet. Finally, the attacker resends frag-2 and frag-4 with the correct payload, allowing the target to reassemble the full attack, while the IDS remains unaware.
+		- Time-To-Live (TTL) Attacks:
+			- Each IP packet has a Time-To-Live (TTL) field that determines how many hops the packet can take before being discarded. Each router along the path decrements the TTL value by 1. When TTL reaches 0, the packet is dropped, and an ICMP alert is sent to the sender. Different OS use different default TTL values, allowing attackers to infer a host’s OS and network topology using tools like traceroute.
+			- Attack Scenario:
+				- An attacker exploits a router between the IDS and the victim by fragmenting a malicious packet:
+				- Frag-1 is sent with a high TTL, reaching both the IDS and the victim.
+				- Frag-2' (false payload) is sent with TTL = 1, reaching only the IDS, but not the victim (discarded by the router).
+				- Frag-3 (correct payload) is sent with a high TTL, reaching both IDS and victim.
+				- The IDS reassembles Frag-1, Frag-2' (false), and Frag-3, forming an invalid packet.
+				- The attacker resends Frag-2 with the correct payload. The victim reassembles Frag-1, Frag-2, and Frag-3, successfully reconstructing the attack payload.
+				- Since the IDS already processed the earlier (false) fragments, it does not detect the attack.
+			- This technique allows attackers to bypass IDS detection by manipulating TTL values to control which fragments reach the victim versus the IDS.
+		- Urgency Flag (URG) Attack:
+			- The URG (Urgent) flag in TCP marks data as urgent, allowing it to be processed immediately. TCP uses an Urgent Pointer to indicate where the urgent data begins, ignoring all preceding data. If the URG flag is set, the Urgent Pointer (a 16-bit offset) points to the last byte of urgent data in the segment.
+			- Exploitation Technique:
+				- Some IDS do not properly handle the TCP urgency feature and process all packet data, whereas the target system processes only the urgent data. Attackers exploit this by:
+				- Injecting garbage data before the urgent data.
+				- The IDS reads all packet data, including garbage, whereas the target system processes only urgent data.
+				- This mismatch results in the IDS and target system seeing different data, allowing attackers to bypass detection and deliver malicious payloads unnoticed.
+			- According to RFC 1122, when an Urgent Pointer is used, one byte of data after the urgent data may be lost, further complicating IDS detection.
+		- Invalid RST Packets Attack:
+			- TCP uses 16-bit checksums for error detection and ensures reliable communication. Each transmitted segment includes a checksum, which the receiver verifies. If the checksum is incorrect, the receiver drops the packet. TCP also uses RST (Reset) packets to terminate connections. Attackers exploit this by sending RST packets with invalid checksums, leading to:
+				- The IDS misinterpreting the invalid RST packet as a legitimate session termination and stopping traffic analysis.
+				- The end host verifying the checksum, detecting it as invalid, and ignoring the RST packet.
+				- Attackers continuing communication with the end host, while the IDS remains unaware, allowing evasion of detection.
+			- Some IDS may incorrectly assume that the connection has ended after receiving the invalid RST packet, failing to monitor subsequent malicious traffic.
+		- Polymorphic Shellcode:
+			- A signature-based Network Intrusion Detection System (NIDS) detects attacks by matching packet data against known attack signatures. Many IDS identify common shellcode patterns embedded in exploits.
+			- Polymorphic shellcode evades detection by constantly modifying its structure. Attackers achieve this by:
+				- Encoding the payload and inserting a decoder before it.
+				- Encrypting the shellcode using an unknown encryption algorithm, with the decryption code embedded in the attack packet.
+				- Using a buffer overflow exploit to overwrite the return address, directing execution to the decryption code instead of a known shellcode signature.
+			- Since the shellcode is rewritten with every transmission, traditional signature-based IDS fail to detect it, as predefined shellcode signatures become ineffective.
+		- ASCII Shellcode:
+			- ASCII shellcode consists solely of characters from the ASCII standard, allowing attackers to bypass character restrictions in string inputs and evade IDS pattern-matching. Like polymorphic shellcode, ASCII shellcode obscures attack strings, making IDS detection less effective.
+			- However, using only ASCII characters restricts the shellcode’s functionality, as not all assembly instructions directly translate into ASCII values. To overcome this limitation, attackers use alternative instructions or a combination of ASCII-compatible operations to achieve the same execution flow while maintaining ASCII compliance.
+		- Application-Layer Attacks:
+			- Media files such as images, audio, and video are often compressed to enable faster data transfer. Attackers exploit flaws in compressed data to embed malicious code, making it difficult for IDS signatures to detect the attack. Many applications that process media files use compression, but if vulnerabilities exist in these applications, attacks can occur within the compressed data, bypassing IDS detection.
+			- Most IDS solutions rely on pattern matching to identify attack conditions. However, attack variations, such as integer overflow exploits using different integer values, further complicate detection. When combined with compression, these techniques make signature-based IDS ineffective against such attacks.
