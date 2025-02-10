@@ -4283,18 +4283,91 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Step 5: Compile the Malicious CPL File
 					- Compile the resources in x86 format and copy CPLResourceRunner.dll into a new file named maliciousnew.cpl.
 			- By leveraging CPL sideloading, attackers can effectively bypass security measures, execute malicious payloads through trusted system components, and evade traditional detection mechanisms.
-    	- Abusing AI Tools (e.g., ChatGPT)
-    	- Using Metasploit Templates
-    	- Bypassing Windows Antimalware Scan Interface (AMSI)
-    	- Hosting Phishing Sites
-    	- Passing Encoded Commands
-    	- Fast Flux DNS Method
-    	- Timing-Based Evasion
-    	- Signed Binary Proxy Execution
-    	- Shellcode Encryption
-    	- Reducing Entropy
-    	- Escaping Local Antivirus (AV) Sandboxes
+    	- Abusing AI Tools - Bypassing Endpoint Security Using ChatGPT:
+			- Attackers can leverage ChatGPT to mutate malicious code and generate multiple variations, making detection more difficult for security systems.
+			- Steps Involved in the Attack
+				- Obtaining the Code: In this phase, attackers use ChatGPT to generate code snippets for locating specific files that ransomware may target for encryption. They can also request ChatGPT to generate a file-encryption utility, enabling them to encrypt files once they have been identified.
+				- Validation: Attackers review and refine the generated code to ensure it functions as intended while maintaining stealth.
+				- Execution: Once the malicious code is ready, attackers execute it using built-in Python functions such as: compile(source, mode, exec), exec(), eval(). These functions allow the malware to run dynamically on different platforms. Additionally, malware with a built-in Python interpreter can execute the code directly, then erase it afterward to evade detection by security systems.
+    	- Bypassing Antivirus Using Metasploit Templates:
+			- Attackers aim to ensure that their malicious payloads bypass antivirus detection on victim machines. One common technique involves using Metasploit Templates to evade security measures.
+			- Attackers generate a malicious payload using msfvenom and analyze the file using VirusTotal to determine its detection rate. Based on the results, they continuously modify the Metasploit Templates to reduce detection and successfully evade antivirus software.
+    	- Bypassing Windows Antimalware Scan Interface (AMSI):
+			- The Antimalware Scan Interface (AMSI) is a Windows API designed to enhance malware protection by integrating with compatible antimalware software. It provides signature-based and reputation-based detection to identify malicious activity. However, attackers can bypass AMSI by manipulating functions, URLs, or internal system files to evade detection.
+			- Techniques for Bypassing AMSI:
+				- PowerShell Downgrade: Attackers can downgrade PowerShell to version 2.0, which lacks AMSI integration, allowing them to execute blocked commands like amsiutils.
+				- Obfuscation: Obfuscation involves modifying and obscuring malicious code to evade AMSI detection. Attackers achieve this by breaking strings and concatenating them using the + operator. Tools like AmsiTrigger help attackers identify specific lines that trigger AMSI scans for targeted obfuscation.
+				- Forcing an Error: This technique exploits AMSI’s initialization process by modifying the amsiInitFailed() function. Normally, this function returns 0 (indicating a successful scan), but attackers can modify it to Boolean True, forcing an error during AMSI initialization. This allows them to bypass AMSI by altering memory allocations within the AmsiUtils class.
+				- Memory Hijacking: Attackers manipulate AMSI’s internal functions using memory hijacking. By hooking the AmsiScanBuffer() function, they force it to always return AMSI_RESULT_CLEAN, effectively allowing any malware to execute undetected.
+		- Hosting Phishing Sites on Popular Infrastructure:
+			- Organizations use Endpoint Detection and Response (EDR) to block malicious IP addresses associated with phishing campaigns and other cyber threats. These blacklists are continuously updated from various sources. However, attackers exploit this by hosting phishing sites on trusted cloud infrastructure such as Google Cloud and AWS, which are rarely blacklisted.
+			- Since most popular cloud hosting services are not included in EDR blacklists, attackers use them as Command and Control (C&C) servers to carry out malicious activities. Additionally, attackers can distribute malware via social media platforms by embedding malicious code in images or multimedia files using steganography. Pre-infected malware on the victim's machine extracts hidden instructions from these files to bypass endpoint security mechanisms.
+		- Passing Encoded Commands:
+			- Attackers encode their malicious commands to bypass detection mechanisms. A common technique is Base64 encoding, which helps conceal malicious arguments and scripts. Additionally, hex-format encoding can be used to obfuscate ping requests to evade security tools.
+		- Fast Flux DNS Method:
+			- Attackers employ fast flux DNS to rapidly change both IP addresses and domain names, making detection more difficult. This technique is frequently used by large botnets to evade blacklists and security filters. By using compromised systems as reverse proxies, attackers can conceal the actual C&C server, ensuring that victims only interact with fast flux agents instead of the real malicious server.
+		- Timing-Based Evasion:
+			- Timing-based evasion is a sandbox detection bypass technique where malware delays execution until certain conditions are met.
+			- These conditions can include:
+				- Waiting for specific user actions, such as opening a window or clicking a button.
+				- Delaying execution until system reboot to blend with legitimate processes.
+				- Using sleep patching, delay APIs, or time bombs to avoid early detection by security software.
+    	- Signed Binary Proxy Execution:
+			- This technique leverages trusted system utilities to execute malicious code while avoiding EDR detection. Since these utilities are digitally signed by legitimate vendors, they are considered safe by security solutions. Attackers often use rundll32.exe to execute malicious payloads by proxying them through trusted Windows processes.
+    	- Shellcode Encryption:
+			- Attackers encrypt malicious shellcode to evade EDR detection.
+			- Common encryption methods include:
+				- XOR and RC4 encryption, where decryption keys are embedded in the malware or generated dynamically.
+				- AES encryption, which hides static signatures of shellcode, making it harder for security tools to detect.
+				- Once executed, the malware decrypts the shellcode in memory and runs it without writing anything suspicious to disk, making it difficult for security solutions to detect.
+		- Reducing Entropy:
+			- Attackers manipulate a binary’s characteristics to make it appear less suspicious to security solutions. One method is reducing entropy, which involves embedding low-entropy resources (e.g., low-entropy images) into the binary. Attackers can also add legitimate system strings, such as chrome.dll, to lower the binary’s entropy and avoid detection.
+    	- Escaping Local Antivirus (AV) Sandboxes:
+			- EDR solutions often analyze binaries within a local sandbox for a short period (typically a few seconds) to assess their behavior while minimizing impact on user experience. Attackers exploit this limitation by delaying shellcode execution to outlast the sandbox analysis window. One technique involves performing CPU-intensive tasks, such as calculating large prime numbers, to prolong the decryption process of shellcode, thereby bypassing sandbox-based behavioral detection.
     	- Disabling Event Tracing for Windows (ETW)
-    	- Evading "Mark of the Syscall" Detection
-    	- Spoofing the Thread Call Stack
-    	- In-Memory Encryption of Beacons
+		- Disabling Event Tracing for Windows (ETW):
+			- Many EDR solutions, especially Microsoft Defender for Endpoint, rely on Event Tracing for Windows (ETW) to monitor system activity.
+			- ETW includes:
+				- Kernel-level components, which register callbacks for system and kernel operations.
+				- Userland components within ntdll.dll, allowing detailed tracking of Windows API calls.
+			- Attackers can bypass ETW by patching the EtwEventWrite function, a key function in ntdll.dll. By modifying its instructions to return zero (SUCCESS), attackers effectively disable ETW logging and evade detection.
+		- Direct System Calls and Evading “Mark of the Syscall”:
+			- Security solutions often hook API functions in ntdll.dll to monitor malicious activity. Attackers bypass these hooks by using direct system calls instead of standard API calls.
+			- For example:
+				- Instead of calling VirtualAlloc, attackers call its kernel-equivalent function NtAllocateVirtualMemory directly from ntdll.dll.
+				- Attackers can retrieve syscall IDs from ntdll.dll, push the required arguments onto the stack, and invoke system calls using syscall <id> instructions, bypassing security hooks.
+    	- Spoofing the Thread Call Stack:
+			- Malware implants often exhibit beaconing behavior, where they remain dormant until receiving commands from a Command and Control (C2) server. During this idle state, EDR solutions use memory scanning techniques to detect anomalies.
+			- A common detection method is analyzing thread return addresses—if a return address points to shellcode in memory, it is flagged as suspicious. Attackers evade this by spoofing the call stack:
+				- Intercepting Sleep(): When malware calls Sleep(), attackers overwrite the return address with 0×0, breaking the link between the shellcode and the return address.
+				- After Sleep() returns, they restore the original return address, ensuring normal execution resumes without detection.
+		- In-memory Encryption of Beacons:
+			- To evade memory-based detection, attackers encrypt the executable memory regions of malware when it is dormant.
+			- This is done through:
+				- Identifying a beacon sleep hook (e.g., Sleep()).
+				- Locating the memory segment containing shellcode.
+				- If the memory segment is MEM_PRIVATE and EXECUTABLE, encrypting it using XOR or another lightweight encryption algorithm.
+				- Calling Sleep(), pausing execution while the shellcode remains encrypted.
+				- Upon Sleep() return, decrypting and restoring the shellcode for execution.
+			- By encrypting malicious code while dormant and decrypting it only when needed, attackers significantly reduce the risk of detection by security solutions.
+- IDS/Firewall Evading Tools:
+	- Traffic IQ Professional (www.idappcom.com):
+		- Traffic IQ Professional is a security auditing and validation tool designed to assess the behavior of security devices by generating standard application traffic or attack traffic between two virtual machines. It is commonly used by security professionals to evaluate and test non-proxy packet-filtering devices, such as: Application firewalls, IDS, IPS, Routers and switches.
+		- However, due to its ability to generate custom attack traffic, attackers can misuse this tool to bypass perimeter security devices within a target network, evading detection and exploiting vulnerabilities.
+	- Nmap (nmap.org)
+	- Metasploit (www.metasploit.com)
+	- PingRAT (github.com)
+	- KoviD (github.com)
+	- Green Tunnel (github.com)
+	- Hyperion (nullsecurity.net)
+- Packet Fragment Generator Tools:
+	- Attackers use various packet fragment generators to conduct fragmentation attacks on firewalls, allowing them to bypass security measures.
+	- Colasoft Packet Builder (www.colasoft.com):
+		- Colasoft Packet Builder is a tool designed to create and manipulate custom network packets, including fragmented packets. Attackers exploit this tool to craft malicious packets and fragment them in a way that firewalls fail to detect.
+		- The tool allows the creation of various types of network packets, including: Ethernet Packets, ARP Packets, IP Packets, TCP Packets, UDP Packets
+		- While security professionals use Colasoft Packet Builder to test network defenses against attacks and intrusions, attackers misuse it to evade firewall detection and execute fragmentation-based exploits.
+	- NetScanTools Pro (www.netscantools.com)
+	- CommView (www.tamos.com)
+	- Ostinato (ostinato.org)
+	- WAN Killer (www.solarwinds.com)
+	- WireEdit (omnipacket.com)
