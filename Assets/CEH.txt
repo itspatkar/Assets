@@ -4519,3 +4519,57 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Send-Safe Honeypot Hunter (www.send-safe.com):
 			- Send-Safe Honeypot Hunter is a tool designed to scan and identify honeypots within lists of HTTPS and SOCKS proxies. It can check multiple proxy lists simultaneously and automate validation processes.
 			- Features: It supports checking HTTPS, SOCKS4, and SOCKS5 proxies with any port, processes multiple remote or local proxy lists at once, automatically validates proxy lists at specified intervals, and can upload filtered lists ("Valid proxies" and "All except honeypots") to an FTP server. Additionally, it can be used for standard proxy validation.
+- IDS/Firewall Evasion Countermeasures:
+	- Defend Against IDS Evasion:
+		- Shut down switch ports linked to known attack hosts and drop packets with invalid or spoofed source IPs.
+		- Analyze ambiguous network traffic and packets arriving from non-IDS paths for potential threats.
+		- Use TCP FIN or Reset (RST) packets to terminate malicious TCP sessions.
+		- Detect non-standard NOP opcodes to counter polymorphic shellcode.
+		- Train users to recognize attack patterns and keep systems, network devices, and antivirus signatures updated.
+		- Deploy IDS after assessing network topology, traffic nature, and host count.
+		- Use a traffic normalizer to eliminate ambiguity and ensure proper reassembly of fragmented packets.
+		- Define DNS servers in network devices and harden communication equipment like modems and routers.
+		- Block ICMP TTL expired packets at the external interface and adjust TTL for proper packet delivery.
+		- Store attack data (attacker IP, victim IP, timestamp, etc.) for future analysis.
+		- Configure Snort rules properly to prevent false positives, DoS attacks, and detect malicious scripts.
+		- Use hybrid exploit protection combining statistical and behavioral analysis to counter zero-day IDS evasion.
+		- Detect tunneling, obfuscation techniques, and polymorphic behavior through heuristic analysis.
+		- Deploy high-interaction honeypots with realistic services.
+		- Ensure IDS can handle overlapping fragments and reassemble fragmented sessions effectively.
+	- Defend Against Firewall Evasion:
+		- Configure the firewall to filter out intruder IPs and deny all traffic by default, enabling only required services.
+		- Run firewall services under a unique user ID instead of administrator or root.
+		- Set up a remote syslog server with strict access controls to prevent tampering.
+		- Regularly monitor and analyze firewall logs for suspicious activity.
+		- Disable all FTP connections by default and review all inbound and outbound traffic.
+		- Conduct regular risk assessments to identify vulnerable firewall rules.
+		- Control and monitor user access, ensuring only authorized personnel can modify firewall configurations.
+		- Define firewall rules specifying source/destination IPs and ports.
+		- Document all firewall changes and notify security administrators.
+		- Restrict physical access to the firewall and take regular backups of rulesets and configurations.
+		- Perform scheduled firewall security audits.
+		- Implement HTTPS/TLS inspection to prevent evasions.
+		- Use HTTP Evader for automated firewall evasion testing.
+		- Deploy deep packet inspection at the application layer.
+		- Set connection limits per IP and restrict traffic based on geographical regions.
+		- Create firewall rules based on user behavior, not just IP addresses.
+		- Adopt a zero-trust security model, treating both internal and external traffic as untrusted.
+	- Defend Against Endpoint Security Evasion:
+		- Use advanced antivirus detection methods, including behavioral analysis, machine learning, and cloud-based threat intelligence.
+		- Keep operating systems and applications updated.
+		- Implement network segmentation and the principle of least privilege to prevent malware spread.
+		- Define role-based access control, ensuring only authorized users have administrative privileges.
+		- Enable multifactor authentication (MFA) for accessing critical systems and sensitive data.
+		- Secure remote access with VPNs and other encrypted methods.
+		- Deploy honeypots or decoys to deceive attackers.
+		- Maintain detailed network activity logs and use SIEM solutions for analysis.
+		- Enforce application whitelisting to allow only approved software on network devices.
+		- Use code signing certificates to verify executable files and scripts.
+		- Conduct regular security audits and penetration testing on endpoints.
+		- Implement MAC address filtering to restrict network access to authorized devices.
+		- Perform real-time network monitoring to detect unusual behavior.
+		- Utilize memory protection techniques such as ASLR, DEP, and CFI.
+		- Implement file integrity monitoring (FIM) to track changes in critical system files.
+		- Enforce USB security measures to block malware from external devices.
+		- Deploy data loss prevention (DLP) tools to control sensitive data movement.
+		- Restrict the transfer of sensitive information via removable media and email.
