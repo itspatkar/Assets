@@ -4573,3 +4573,33 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Enforce USB security measures to block malware from external devices.
 		- Deploy data loss prevention (DLP) tools to control sensitive data movement.
 		- Restrict the transfer of sensitive information via removable media and email.
+	- Defend Against NAC Evasion:
+		- Develop clear policies defining access controls, authentication requirements, and remediation steps for noncompliant devices.
+		- Implement device profiling to identify and classify all network-connected devices, detecting unauthorized or suspicious behavior.
+		- Enforce NAC policies dynamically, allowing real-time adjustments based on security threats.
+		- Require multifactor authentication (MFA) and advanced methods like certificate-based or biometric authentication for secure access.
+		- Use role-based access control (RBAC) to enforce least privilege principles and limit lateral movement by attackers.
+		- Segment sensitive network resources using VLANs to contain potential breaches.
+		- Conduct regular security audits and vulnerability assessments to identify weaknesses.
+		- Use MAC address filtering to restrict access to authorized devices.
+		- Adopt a zero-trust model, requiring continuous verification of all devices and users.
+		- Deploy endpoint security solutions with antimalware, antiphishing, and firewall protection.
+		- Share threat intelligence to enhance collective defense against NAC evasion.
+		- Integrate NAC solutions with SIEM platforms for comprehensive security monitoring and event correlation.
+		- Conduct proactive threat hunting to detect and mitigate NAC evasion attempts.
+	- Defend Against Antivirus Evasion:
+		- Use antivirus software with behavior-based detection, machine learning, and heuristic analysis to identify unknown threats.
+		- Regularly update antivirus software, operating systems, applications, and firmware to patch vulnerabilities and incorporate the latest threat intelligence.
+		- Ensure antivirus solutions provide real-time protection against malware.
+		- Implement endpoint protection (EPP) with EDR capabilities for enhanced security beyond traditional antivirus.
+		- Segment networks to restrict access to sensitive systems and prevent malware spread.
+		- Educate users on the risks of downloading files, clicking suspicious links, and opening unknown attachments.
+		- Use application whitelisting to allow only authorized programs, reducing the attack surface.
+		- Monitor suspicious activities such as file modifications, process injections, and network anomalies.
+		- Utilize sandbox environments to safely analyze potentially malicious files.
+		- Implement SIEM solutions for centralized log collection and threat detection.
+		- Deploy real-time script analysis tools to prevent malicious documents and attachments.
+		- Combine multiple security layers, including firewalls, IDS, and IPS, for comprehensive defense.
+		- Use signature-less detection methods like anomaly detection and AI to identify evasive malware.
+		- Limit user privileges to the minimum necessary to prevent malware from gaining administrative access.
+		- Secure remote access using VPNs and encrypted connections to reduce external attack risks.
