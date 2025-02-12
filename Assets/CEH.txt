@@ -250,10 +250,6 @@ Enumeration is the process of extracting usernames, machine names, network resou
 - nc : Netcat is a versatile networking tool for establishing arbitrary TCP and UDP connections, allowing reading from and writing to network connections
 - gobuster : Gobuster is a Go-based tool for brute-forcing URIs, DNS subdomains, virtual hosts, and discovering open Amazon S3 buckets, Google Cloud buckets, and TFTP servers
 - sqlmap : sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers
-- dnsspoof : dnsspoof is a DNS spoofer that intercepts DNS responses from the router and replaces them with spoofed DNS responses
-
-# Assist Tools:
-- Burp Suite : Burp Suite is a Java-based framework for web application penetration testing, allowing interception and manipulation of HTTP/HTTPS traffic between a browser and server. It includes tools for scanning, fuzzing, and analyzing web traffic, making it essential for manual web testing.
 
 # Digital Forensics & Data Recovery:
 - teskdsk : TestDisk is used to recover lost or damaged partitions and boot sectors
@@ -4603,3 +4599,8 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Use signature-less detection methods like anomaly detection and AI to identify evasive malware.
 		- Limit user privileges to the minimum necessary to prevent malware from gaining administrative access.
 		- Secure remote access using VPNs and encrypted connections to reduce external attack risks.
+
+
+--------------------------------------------------
+
+# Hacking Web Servers

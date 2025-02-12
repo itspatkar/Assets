@@ -1,0 +1,4 @@
+
+Web Server Operation
+
+A web server is a computer system that stores, processes, and delivers web pages to global clients via the Hypertext Transfer Protocol (HTTP). In general, a client initiates a communication process through HTTP requests. When a client desires to access any resource such as web pages, photos, and videos, the client’s browser generates an HTTP request that is sent to the web server. Depending on the request, the web server collects the requested information/content from the data storage or application servers and responds to the client’s request with an appropriate HTTP response. If a web server cannot find the requested information, then it generates an error message.
