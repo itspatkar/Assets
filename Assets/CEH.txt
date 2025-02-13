@@ -4791,3 +4791,68 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Default File Permissions Vulnerability:
 				- This vulnerability exists because the Nginx Management Suite assigns default file permissions that allow authenticated users to modify sensitive files.
 				- Attackers can leverage this flaw to alter critical files in the Nginx Instance Manager and Nginx API Connectivity Manager.
+- Web Server Attacks
+	- DNS Server Hijacking:
+		- The Domain Name System (DNS) resolves domain names to their corresponding IP addresses. When a user queries a DNS server with a domain name, the server responds with the appropriate IP address.
+		- In DNS server hijacking, an attacker compromises a DNS server and alters its mapping settings to redirect queries to a rogue DNS server. This rogue server then directs users to malicious websites controlled by the attacker. As a result, when a user enters a legitimate URL in a browser, they are unknowingly redirected to a fraudulent site.
+	- DNS Amplification:
+		- A recursive DNS query is a method of requesting DNS resolution, where the query passes through multiple DNS servers until the correct domain name-to-IP address mapping is found or the request fails.
+		- Attackers exploit recursive DNS queries to conduct a DNS amplification attack, which generates a large volume of traffic to overwhelm a target's DNS server, leading to a Distributed Denial-of-Service (DDoS) attack.
+	- Directory Traversal Attacks:
+		- A directory traversal attack occurs when an attacker exploits a vulnerability in a web application's code or a misconfigured or poorly patched web server. These weaknesses can allow unauthorized access to restricted directories and sensitive files.
+		- Web servers are designed to limit public access to certain directories. However, directory traversal attacks exploit HTTP vulnerabilities, enabling attackers to bypass these restrictions and execute commands outside the web server’s root directory by manipulating Uniform Resource Locators (URLs). Attackers commonly use the dot-dot-slash (../) sequence to navigate beyond the root directory and access sensitive system files. They may employ a trial-and-error approach to locate and retrieve confidential information.
+		- This attack is typically carried out using a web browser or automated tools. A web server is vulnerable if it accepts user input without proper validation, allowing attackers to manipulate directory paths and gain unauthorized access.
+	- Website Defacement:
+		- Website defacement refers to unauthorized modifications to the content of a single web page or an entire website, altering its visual appearance. Hackers gain access to web servers and modify the hosted website by injecting code to add images, pop-ups, or text, thereby changing the site's appearance. In some cases, attackers may replace the entire website rather than just modifying a single page.
+		- Defaced pages often expose visitors to propaganda, misleading information, or offensive content until the unauthorized changes are detected and fixed. Attackers use various techniques, such as SQL injection, to gain access and deface websites. Beyond altering the site's appearance, attackers may also inject malicious code to compromise visitors' devices, making them vulnerable to malware or virus infections.
+		- Thus, website defacement not only damages the target organization's reputation but can also pose security risks to its visitors.
+	- Web Server Misconfiguration:
+		- Web server misconfiguration refers to weaknesses in web infrastructure settings that can be exploited to launch various attacks, such as directory traversal, server intrusion, and data theft.
+		- Common Web Server Misconfigurations:
+			- Verbose debug/error messages
+			- Default or anonymous user accounts with weak credentials
+			- Sample configuration and script files left accessible
+			- Unrestricted remote administration functions
+			- Unnecessary services enabled
+			- Misconfigured or default SSL certificates
+		- Examples of Web Server Misconfigurations:
+			- Exposed Server Status Page: A misconfiguration may allow unrestricted access to the server status page, revealing detailed information about server usage, active hosts, and ongoing requests.
+			- Verbose Error Messages: The server may display detailed error messages that reveal sensitive information, such as file paths, database queries, or system configurations, which attackers can exploit.
+			- Directory Browsing Enabled (IIS Web Server): A misconfigured web.config file may enable directory browsing, allowing users to see the contents of directories, potentially exposing sensitive files.
+			- Unrestricted File Uploads (IIS Web Server): The server may allow users to upload files without proper validation or security checks, enabling attackers to upload and execute malicious files (e.g., web shells), leading to remote code execution.
+			- Misconfigured Root Location (Nginx Web Server): If the root location (location / {}) is missing in the Nginx configuration, it can cause undefined behaviors, potentially exposing directory listings or default server configurations.
+			- Lack of Input Sanitization: Directly using user input in variables without sanitization can lead to injection attacks. All user inputs should be validated and sanitized to prevent malicious payloads from executing.
+		- Properly configuring a web server is crucial to minimizing security risks and preventing unauthorized access, data breaches, and service disruptions.
+	- HTTP Response-Splitting Attack:
+		- An HTTP response-splitting attack is a web-based attack in which an attacker manipulates server responses by injecting new line characters into response headers along with arbitrary code. This attack exploits input validation vulnerabilities, allowing the attacker to split a server’s response into two separate responses. Common attacks facilitated by HTTP response splitting include Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), and SQL Injection.
+		- An attacker can exploit a vulnerable Apache HTTP server by leveraging improper input validation. By crafting a specially constructed request header, the attacker tricks the server into generating two separate HTTP responses. This manipulation enables the attacker to inject malicious content into an HTTP response header, causing the first response to redirect the user to a malicious website while the browser discards any subsequent responses.
+		- Example of HTTP Response-Splitting Attack: An attacker injects a response-splitting payload into a request, causing the server to generate two responses—one for the attacker and another for an unsuspecting victim. As the victim submits credentials, the attacker requests the index page. The server then mistakenly sends the victim’s response to the attacker, granting unauthorized access to sensitive data while the victim remains unaware.
+		- Proper input validation and sanitization of user-supplied data are critical in preventing HTTP response-splitting attacks.
+	- Web Cache Poisoning Attack:
+		- Web cache poisoning compromises the reliability of an intermediate web cache. In this attack, an attacker replaces cached content for a specific URL with malicious content. As a result, users unknowingly receive the poisoned content instead of the legitimate, secure content when accessing the cached resource.
+		- The attacker manipulates the web cache by forcing the server to flush its legitimate cache and accept a specially crafted malicious request. Once stored, all users relying on that cache will receive the harmful content until the cache is cleared. Web cache poisoning attacks are possible when the web server or application has vulnerabilities such as HTTP response splitting.
+	- SSH Brute Force Attack:
+		- Attackers exploit the SSH protocol to establish an encrypted SSH tunnel between two hosts, allowing them to transfer unencrypted data over an insecure network. By default, SSH operates on TCP port 22. To launch an attack, an attacker scans SSH servers using automated bots, performing a port scan on TCP port 22 to identify potential vulnerabilities.
+		- Using a brute-force attack, the attacker attempts to guess login credentials to gain unauthorized access to the SSH server. Once access is obtained, the attacker can leverage the SSH tunnel to transmit malware and carry out further exploitation without detection. Common tools used for SSH brute-force attacks on Linux platforms include Nmap and Ncrack.
+	- FTP Brute Force with AI:
+		- Attackers can leverage AI-powered technologies to enhance and automate brute-force attempts, making them more efficient and difficult to detect. AI can optimize attack strategies by predicting password patterns and adjusting attempts based on previous failures.
+		- For example, an attacker use AI-driven tools to generate targeted password lists or automate attack sequences.
+	- HTTP/2 Continuation Flood Attack:
+		- The HTTP/2 Continuation Flood Attack exploits the way HTTP/2 handles CONTINUATION frames, leading to resource exhaustion on the target Apache server. In HTTP/2, headers that are too large to fit in a single HEADERS frame can be split into multiple frames. The initial portion of the headers is sent in a HEADERS frame, while the remaining parts follow in CONTINUATION frames.
+		- Attackers exploit this mechanism by continuously sending CONTINUATION frames within a single TCP connection without completing the header sequence. This forces the Apache server to allocate excessive resources, eventually leading to a denial-of-service (DoS) condition.
+		- How the HTTP/2 Continuation Flood Attack Works:
+			- Establishing a Connection: The attacker initiates a TCP connection with the target Apache server.
+			- Sending an Incomplete Header Sequence: The attacker sends a legitimate HEADERS frame containing initial headers for a request. More headers are expected in subsequent CONTINUATION frames.
+			- Resource Allocation on the Server: Upon receiving the HEADERS frame, the Apache server allocates memory and processing resources to handle the incoming request.
+			- Exploiting CONTINUATION Frames: Instead of completing the header sequence by setting the END_HEADERS flag, the attacker sends numerous CONTINUATION frames, each indicating that additional header data is forthcoming.
+			- Server Resource Drain: For each CONTINUATION frame received, the server continues allocating memory and CPU resources, remaining in a state of anticipation for the completion of the header sequence.
+			- Server Overload and DoS Condition: As the number of CONTINUATION frames increases, the server's resources become exhausted. This leads to performance degradation, system crashes, or complete unresponsiveness.
+	- Frontjacking Attack:
+		- Frontjacking is a web server attack in which an attacker injects or manipulates front-end components of a web application—such as scripts or HTML elements—to hijack the user interface or user interactions. This attack often targets poorly configured Nginx reverse proxy servers in shared hosting environments by exploiting vulnerabilities such as CRLF injection, HTTP request header injection, and XSS (Cross-Site Scripting).
+		- Attackers take advantage of misconfigurations in the reverse proxy, such as improper sanitization of $uri and $document_uri variables, to inject a malicious Host header. This manipulation alters the execution flow of the front-end reverse proxy, replacing the intended backend server with an attacker-controlled server.
+		- As a result, attackers can: Display malicious content, Redirect users to phishing websites, Execute reflected XSS and other injection payloads, Inject harmful scripts to compromise users.
+		- How Frontjacking Attack Works:
+			- Injection of a Malicious Host Header: The attacker crafts an HTTP request containing CRLF characters in the URI to inject a malicious Host header and sends it to the vulnerable reverse proxy server.
+			- Processing by the Vulnerable Reverse Proxy: The reverse proxy fails to properly sanitize the injected Host header and processes the malicious request.
+			- Redirection to an Attacker-Controlled Server: Instead of routing the request to the legitimate backend server, the proxy redirects traffic to the attacker's server.
+			- Delivery of Malicious Content: The attacker-controlled server responds with phishing pages, malware, or injected scripts, compromising users who access the affected web application.
