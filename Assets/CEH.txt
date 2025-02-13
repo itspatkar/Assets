@@ -4604,3 +4604,190 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 --------------------------------------------------
 
 # Hacking Web Servers
+
+
+- Web Server
+	- A web server is a computer system that stores, processes, and delivers web pages to global clients via the Hypertext Transfer Protocol (HTTP). In general, a client initiates communication through an HTTP request. When a client requests a resource such as a web page, photo, or video, the browser generates an HTTP request and sends it to the web server. The web server then retrieves the requested content from data storage or application servers and responds to the client with an appropriate HTTP response. If the requested information cannot be found, the web server generates an error message.
+	- Components of a Web Server:
+		- Document Root:
+			- The document root is the primary directory of the web server that stores essential HTML files related to a domain’s web pages. These files are sent in response to client requests.
+			- For example, if the requested URL is www.certifiedhacker.com, and the document root is named "certroot" (stored in the directory /admin/web), then the document directory address is: /admin/web/certroot
+			- If the complete request is www.certifiedhacker.com/P-folio/index.html, the server will search for the file at: /admin/web/certroot/P-folio/index.html
+		- Server Root:
+			- The server root is the top-level directory in the web server’s directory structure. It contains server configuration files, log files, and executable files necessary for server operation. Typically, it includes the following subdirectories:
+				- conf: Stores the server's configuration files.
+				- logs: Contains server log files, including access and error logs.
+				- cgi-bin: Holds Common Gateway Interface (CGI) scripts or other server-side executables.
+			- The server root may also include additional directories or files depending on the specific server software and its configuration.
+		- Virtual Document Tree:
+			- A virtual document tree allows storage on a different machine or disk when the original disk reaches capacity. It is case-sensitive and can also provide object-level security.
+			- For example, in the case of www.certifiedhacker.com/P-folio/index.html, if the directory /admin/web/certroot is stored on a different disk, the server can still locate the requested file.
+		- Virtual Hosting:
+			- Virtual hosting is a technique that enables multiple domains or websites to be hosted on the same server. This allows efficient resource sharing and is commonly used by large-scale organizations that require global access and management.
+			- The types of virtual hosting include: Name-based hosting, Internet Protocol (IP)-based hosting, Port-based hosting
+		- Web Proxy:
+			- A web proxy is a server positioned between a web client and a web server. Since all client requests are routed through the proxy before reaching the web server, proxies help prevent IP blocking and maintain user anonymity.
+	- Vulnerabilities of Web Server Security:
+		- A web server configured by an inexperienced or negligent system administrator may have critical security vulnerabilities. Lack of knowledge, negligence, and inattentiveness to security pose significant threats to web server security.
+		- Failing to update the web server with the latest security patches.
+		- Reusing administrator credentials across multiple systems.
+		- Allowing unrestricted internal and outbound traffic.
+		- Running unhardened applications and servers.
+		- Providing detailed error messages that expose server version information.
+		- Using outdated SSL/TLS encryption algorithms.
+		- Installing unverified third-party plugins in web applications.
+	- Impact of Web Server Attacks:
+		- User Account Compromise: Attackers gain access to user accounts, extracting sensitive data and launching further attacks.
+		- Website Defacement: Websites are altered with malicious messages, damaging credibility.
+		- Secondary Attacks: Compromised servers are used to attack other systems or websites.
+		- Root Access Exploitation: Attackers gain full control, allowing unrestricted modifications.
+		- Data Tampering: Website data is altered, deleted, or replaced with malware.
+		- Data Theft: Confidential information, including financial records and customer data, is stolen.
+		- Reputation Damage: Breaches erode customer trust and tarnish the company’s image.
+	- Compromise Web Server Security:
+		- Improper file, directory, and authentication permissions, allowing unauthorized access.
+		- Installing the server with default settings, including default accounts and weak or no passwords.
+		- Enabling unnecessary services like content management, remote administration, or debugging functions.
+		- Prioritizing ease of use over security best practices.
+		- Lack of security policies, procedures, regular maintenance, and proper configurations.
+		- Keeping unnecessary default, backup, or sample files that could be exploited.
+		- Bugs and misconfigurations in the web server, OS, network, or web applications.
+		- Weak encryption settings, misconfigured or self-signed SSL certificates.
+		- Hosting web services on shared or multi-use servers instead of dedicated ones.
+		- Granting excessive privileges to users or processes instead of enforcing least privilege.
+	- Apache Web Server Architecture (httpd.apache.org):
+		- The Apache web server is an open-source HTTP server used to deliver web content over the Internet. Apache can host websites, handle HTTP requests, and serve both static and dynamic content.
+		- Components Of Apache Web Server Architecture:
+			- HTTP Client: A browser or software that initiates requests to the Apache server, requesting web pages, files, or other resources.
+			- HTTP Server (Core): The core module handles HTTP(S) requests and responses, interfacing with various modules to provide additional functionalities, including:
+				- mod_auth: Manages user authentication, ensuring that only authorized users can access specific web resources based on configured credentials.
+				- mod_ssl: Provides SSL/TLS encryption to secure communication between the server and clients.
+				- mod_rewrite: Enables URL rewriting, customized URLs, and redirection based on specified rules.
+				- mod_proxy: Functions as a proxy and gateway, enabling request forwarding to other servers and load balancing.
+			- BMMTM Extensible Agent: Intercepts HTTP(S) requests and responses to gather detailed transaction data. It enhances monitoring and performance analysis by providing insights into interactions between clients and servers.
+			- Application Server: Executes backend applications, processes data, and generates dynamic content. It functions separately from the web server that handles HTTP requests. The application server runs applications written in various programming languages (e.g., PHP, Java, Python), generating dynamic content that is subsequently served by the Apache web server.
+		- Apache Vulnerabilities:
+			- HTTP Response Splitting:
+				- This vulnerability occurs when improperly validated input allows attackers to inject malicious headers into HTTP responses.
+				- Attackers can exploit this to manipulate web traffic, potentially leading to cross-site scripting (XSS), cache poisoning, or sensitive information disclosure.
+			- HTTP/2 DoS via Memory Exhaustion on Endless Continuation Frames:
+				- This vulnerability occurs when attackers send continuous HTTP/2 headers, leading to excessive memory consumption and a potential denial of service (DoS).
+				- Attackers exploit this by exhausting the server’s memory, causing it to become unresponsive or crash.
+			- mod_macro Buffer Over-Read:
+				- This vulnerability occurs when the mod_macro module improperly handles macro expansion, causing it to read beyond the buffer’s end.
+				- Attackers exploit this by sending specially crafted requests that trigger the over-read, potentially exposing sensitive data stored in adjacent memory locations.
+			- DoS in HTTP/2 with Initial Window Size 0:
+				- This vulnerability arises when an attacker sets the HTTP/2 initial window size to 0, preventing the server from sending data.
+				- Attackers exploit this by sending requests that set the window size to 0, causing the server to wait indefinitely for updates, leading to a denial of service (DoS).
+			- HTTP/2 Stream Memory Not Reclaimed Immediately on RST:
+				- This vulnerability occurs when memory allocated for an HTTP/2 stream is not immediately freed upon receiving a stream reset (RST) frame.
+				- Attackers exploit this by repeatedly creating and resetting streams, consuming memory without releasing it, which eventually leads to memory exhaustion and a denial of service (DoS).
+			- Insecure Default Configuration:
+				- This vulnerability arises from insecure default administrative credentials, which can lead to remote code execution (RCE).
+				- Attackers exploit this by using default credentials to gain administrative access and execute arbitrary code.
+			- Improper Authorization:
+				- This vulnerability arises from flaws in the server’s authorization mechanisms.
+				- Attackers can exploit these flaws to bypass authorization checks, gaining unauthorized access or escalating privileges to perform restricted actions.
+			- DNS Rebinding in Import Functionality:
+				- This vulnerability occurs due to inadequate input validation in the import functionality of Apache Allura.
+				- Attackers can manipulate DNS responses to access internal services, potentially exposing sensitive information.
+			- Environment Variable Injection:
+				- This vulnerability arises from improper handling of environment variables, allowing attackers to override configurations such as ZEPPELIN_INTP_CLASSPATH_OVERRIDES in Apache Zeppelin.
+				- Attackers exploit this by injecting malicious code or commands into these variables, leading to arbitrary code execution on the server.
+			- Code Injection:
+				- This vulnerability occurs when connecting to a MySQL database via the JDBC driver in Apache Zeppelin.
+				- Attackers can inject sensitive configurations or malicious code during the database connection setup, leading to remote code execution.
+			- Improper Certificate Validation:
+				- This vulnerability arises from improper certificate validation in FTP_TLS connections of Apache Airflow.
+				- Attackers can exploit this by intercepting or manipulating FTP traffic, potentially leading to man-in-the-middle (MITM) attacks.
+			- Cross-Site Scripting (XSS):
+				- This vulnerability arises due to improper input handling, allowing attackers to perform XSS attacks by injecting malicious scripts into log entries.
+				- In Apache Airflow, this enables attackers to insert harmful data into task instance logs.
+			- Path Traversal Vulnerability:
+				- This vulnerability occurs due to improper restriction of file paths, allowing attackers to access files and directories outside the intended scope in Apache OFBiz.
+				- Attackers can exploit this to execute arbitrary code or access sensitive information by navigating to unintended directories.
+			- SQL Injection:
+				- This vulnerability is caused by improper neutralization of special elements in SQL commands in the Apache Submarine Server Core.
+				- Attackers can exploit this to execute arbitrary SQL queries, leading to unauthorized access, data retrieval, or database modifications.
+	- IIS Web Server Architecture:
+		- Internet Information Services (IIS) is a web server application developed by Microsoft that runs on a server and responds to browser requests. It supports multiple protocols, including HTTP, HTTPS (HTTP Secure), FTP (File Transfer Protocol), FTPS (FTP Secure), SMTP (Simple Mail Transfer Protocol), and NNTP (Network News Transfer Protocol).
+		- IIS applications use HTML to present the user interface and compiled Visual Basic code to process requests and respond to browser events. IIS for Windows is a flexible and easy-to-manage web server designed for web hosting.
+		- IIS Components (core):
+			- Protocol Listeners (HTTP.sys) – Handles incoming HTTP requests.
+			- World Wide Web Publishing Service (WWW Service) – Manages websites and applications.
+			- Windows Process Activation Service (WAS) – Controls application pools and worker processes.
+		- IIS and DLL Dependencies:
+			- IIS relies on a set of dynamic link libraries (DLLs) that work in conjunction with the main server process (inetinfo.exe). These DLLs provide various functionalities, such as content indexing, server-side scripting, and web-based printing.
+		- Functioning of IIS Server Components:
+			- When a client browser sends an HTTP request, HTTP.sys intercepts it and retrieves configuration data from ApplicationHost.config via WAS. WAS forwards site and application pool settings to the WWW Service, which configures HTTP.sys. WAS then starts a worker process for the target application pool, which processes the request and returns the response to HTTP.sys, which delivers it to the client browser.
+		- IIS Vulnerabilities:
+			- Trust Boundary Violation Vulnerability:
+				- This vulnerability arises from inadequate separation of privilege boundaries, allowing an unauthenticated entity to access restricted functionality in the Telerik Report Server.
+				- Exploiting this flaw may enable unauthorized manipulation of server operations.
+			- Authentication Bypass Vulnerability:
+				- This occurs due to flaws in the authentication process, where an insecure endpoint permits unauthenticated access to restricted server functionality.
+				- Attackers can exploit this vulnerability to bypass authentication and execute arbitrary code on the server.
+			- CRLF Cross-Site Scripting (XSS) Vulnerability:
+				- This vulnerability results from misconfigurations in the SiteMinder Web Agent for IIS Web Server.
+				- Attackers can execute arbitrary JavaScript code in a client’s browser by exploiting this flaw.
+			- C•CURE Passwords Exposed to Administrators:
+				- This vulnerability arises due to improper handling and logging of sensitive information within Microsoft IIS when hosting the C•CURE 9000 Web Server.
+				- Attackers can exploit this flaw to retrieve sensitive Windows credentials from logs.
+			- Arbitrary File Path Access Vulnerability:
+				- This vulnerability is caused by the default configuration of the Aquaforest TIFF Server, which fails to properly restrict access to file paths.
+				- Attackers can exploit this flaw to enumerate, traverse, or access restricted files and directories, potentially bypassing authentication.
+			- Windows IIS Server Elevation of Privilege Vulnerability:
+				- This vulnerability occurs due to improper handling of specific user requests in Windows IIS Server.
+				- Attackers can exploit this flaw to gain unauthorized access and potentially take control of the system.
+			- File and Directory Permissions Vulnerability:
+				- This vulnerability results from incorrect default permissions in the Hitachi JP1/Performance Management software on Windows.
+				- Attackers can manipulate files and directories without authorization by exploiting this flaw.
+			- TYPO3 Cross-Site Scripting (XSS) Vulnerability:
+				- This vulnerability is caused by unfiltered use of the server environment variable `PATH_INFO` in the `GeneralUtility::getIndpEnv()` component of the TYPO3 Content Management Framework.
+				- Attackers can exploit this flaw by injecting malicious HTML code into uncached pages, potentially impacting other visitors.
+			- MailEnable Vulnerability:
+				- This vulnerability arises from improper handling of file paths under certain conditions.
+				- It allows authenticated mail users to add files with unsanitized content to public folders where the IIS user has access, potentially leading to arbitrary code execution.
+			- XSS in Password Manager:
+				- This vulnerability is due to improper neutralization of user-controllable input within the `/isapi/PasswordManager.dll` `ResultURL` parameter.
+				- Attackers can exploit this flaw to inject malicious scripts and steal sensitive information.
+	- Nginx Web Server Architecture:
+		- Nginx is a high-performance, scalable web server, reverse proxy, and load balancer that operates on a master-worker architecture. It employs a single-threaded, event-driven, asynchronous, and non-blocking model to efficiently manage multiple connections.
+		- At its core, Nginx consists of a master process that oversees multiple worker processes, each responsible for handling client requests. This modular architecture allows extensive customization through various HTTP, stream, mail, and third-party modules. Nginx supports advanced load balancing, robust caching, SSL/TLS termination, and detailed logging. Its security features—including access control, authentication, and rate limiting—make it suitable for high-traffic and mission-critical applications.
+		- Key Components of Nginx Architecture:
+			- Master Process: The master process is responsible for reading and validating configuration files, creating, binding, and closing sockets, and managing worker processes. It performs administrative tasks and ensures that worker processes are properly configured and running efficiently.
+			- Worker Processes: Worker processes handle client requests by accepting connections, reading and writing data, and communicating with upstream servers. Each single-threaded worker uses non-blocking I/O to handle thousands of simultaneous connections. Once a request is processed, the worker sends the response back to the client. Shared memory zones enable communication and data sharing between worker processes.
+			- Proxy Cache: The proxy cache stores copies of requested content to reduce backend server load and speed up response times by serving frequently accessed content directly from memory. This enhances performance and reduces latency.
+				- Cache Loader: Loads cache metadata into memory at startup, ensuring that cached content is immediately available for requests. It scans cache directories and initializes in-memory cache structures.
+				- Cache Manager: Periodically checks for expired content, removes outdated or unused cache entries, and ensures the cache does not exceed its configured limits.
+			- Web Server: The web server component of Nginx handles HTTP requests from clients, serves static content, and forwards dynamic content requests to application servers.
+			- Application Server: The application server processes client requests by executing server-side scripts or applications and delivering dynamic content.
+			- Memcached: Memcached acts as a caching layer that stores frequently accessed data in memory, reducing database query loads and enhancing response times.
+		- Nginx Vulnerabilities:
+			- NULL Pointer Dereference in HTTP/3:
+				- This vulnerability arises due to a NULL pointer dereference in Nginx's QUIC module when handling HTTP/3 requests, causing worker processes to terminate.
+				- Attackers can exploit this flaw by sending specially crafted requests to a vulnerable Nginx server, leading to a denial of service (DoS) or potential remote code execution (RCE).
+			- Server-Side Request Forgery (SSRF) Vulnerability:
+				- This vulnerability occurs due to SSRF in the upload link feature of mintplex-labs/anything-llm.
+				- Attackers can exploit it by hosting a malicious website, enabling them to perform internal port scanning, access non-public web applications, delete arbitrary files, and carry out local file inclusion (LFI).
+			- Remote Code Execution (RCE) Vulnerability:
+				- This vulnerability results from exposed configuration settings in Nginx-UI.
+				- Attackers can leverage it to execute remote code, escalate privileges, or disclose sensitive information.
+			- Improper Certificate Validation:
+				- This issue arises due to improper validation of user input in the Import Certificate feature of Nginx-UI.
+				- Attackers can exploit this vulnerability to write arbitrary files, potentially compromising the system.
+			- SQL Injection Vulnerability:
+				- This vulnerability stems from improper neutralization of special SQL characters, allowing unsanitized user input to be appended to queries.
+				- Attackers can exploit it to execute arbitrary SQL queries, leading to unauthorized access or data breaches.
+			- Unauthenticated Private Key Access:
+				- This vulnerability occurs due to reliance on .htaccess for security, which is ineffective on Nginx servers that do not support .htaccess files.
+				- Attackers can exploit this flaw to read private keys on affected servers.
+			- Excessive Memory Usage and CPU Exhaustion in HTTP/2:
+				- This vulnerability results from improper memory handling and excessive CPU consumption when processing HTTP/2 requests.
+				- Attackers can flood the server with HTTP/2 requests, depleting system resources and disrupting normal operations.
+			- OS Command Injection in nginxWebUI:
+				- This vulnerability arises due to improper handling of file arguments in the upload feature.
+				- Attackers can manipulate file arguments to inject and execute OS commands remotely on the server.
+			- Default File Permissions Vulnerability:
+				- This vulnerability exists because the Nginx Management Suite assigns default file permissions that allow authenticated users to modify sensitive files.
+				- Attackers can leverage this flaw to alter critical files in the Nginx Instance Manager and Nginx API Connectivity Manager.
