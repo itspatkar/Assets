@@ -5309,3 +5309,29 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- OWASP Zed Attack Proxy (ZAP) (www.zaproxy.org)
 		- SonarQube (www.sonarqube.org)
 		- Arachni (ecsypno.com)
+	- Web Server Security Scanners:
+		- Qualys Community Edition (www.qualys.com): Qualys Community Edition helps discover IT assets, manage vulnerabilities, scan web applications, and maintain a cloud asset inventory. It provides vulnerability management to identify and remediate critical security flaws immediately. Additionally, Qualys can assess vulnerabilities across both internal IT infrastructure and external-facing assets to ensure a secure environment.
+		- Observatory (observatory.mozilla.org)
+		- WordPress Security Scan (hackertarget.com)
+		- Web Vulnerability Scanner (pentest-tools.com)
+		- Nikto (cirt.net)
+		- ImmuniWeb (www.immuniweb.com)
+	- Web Server Malware Infection Monitoring Tools:
+		- QualysGuard Malware Detection (www.qualys.com): QualysGuard Malware Detection enables organizations to proactively scan their websites for malware, providing automated alerts and detailed reports for swift identification and resolution. It helps protect customers from malware infections and safeguards the organization's brand reputation.
+		- Sucuri Site Check (sitecheck.sucuri.net)
+		- SiteLock Malware Removal (www.sitelock.com)
+		- Quttera (quttera.com)
+		- Web Inspector (www.webinspector.com)
+		- SiteGuarding (www.siteguarding.com)
+	- Web Server Security Tools:
+		- OpenText Fortify WebInspect (www.opentext.com): OpenText Fortify WebInspect is an automated dynamic application security testing (DAST) solution that detects configuration issues, identifies security vulnerabilities, and prioritizes risks in running applications. It simulates real-world hacking techniques and delivers a comprehensive dynamic analysis of complex web applications and services. WebInspect’s dashboards and reports provide organizations with enhanced visibility and an accurate assessment of their applications' security posture.
+		- Acunetix Web Vulnerability Scanner (www.acunetix.com)
+		- NetIQ Secure Configuration Manager (www.netiq.com)
+		- SAINT Security Suite (www.carson-saint.com)
+		- Sophos Intercept X for Server (www.sophos.com)
+		- UpGuard (www.upguard.com)
+	- Web Server Penetration Testing Tools:
+		- CORE Impact (www.coresecurity.com): CORE Impact helps organizations identify vulnerabilities in their web servers by simulating real-world attack techniques used by cybercriminals. It scans for potential security flaws, imports scan results, and executes exploits to test identified vulnerabilities. Additionally, CORE Impact can assess network servers, workstations, firewalls, routers, and various applications for security gaps. It helps organizations determine which vulnerabilities pose real threats, evaluate the potential impact of exploits, and prioritize remediation efforts effectively.
+		- Cobalt Strike (www.cobaltstrike.com)
+		- Fuxploider (github.com)
+		- Mitmprox (mitmproxy.org)
