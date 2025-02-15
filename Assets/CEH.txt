@@ -5335,3 +5335,70 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Cobalt Strike (www.cobaltstrike.com)
 		- Fuxploider (github.com)
 		- Mitmprox (mitmproxy.org)
+- Patch Management:
+	- Developers constantly strive to identify and fix bugs in web servers. These fixes are distributed as patches, which help protect against known vulnerabilities. However, unpatched systems or improperly applied patches can create security loopholes.
+	- Patch:
+		- A patch is a small piece of software designed to fix problems, address security vulnerabilities, and improve the usability or performance of a computer program or its supporting data. It acts as a repair for programming issues. A software vulnerability is a weakness in a program that makes it susceptible to malware attacks. To mitigate these risks, software vendors release patches that help prevent exploits and reduce the likelihood of threats taking advantage of specific vulnerabilities.
+		- Patches typically include fixes and updates for multiple known bugs or issues. They are publicly released updates available to all customers. A system without regular patch updates is far more vulnerable to attacks. If an attacker discovers a vulnerability before it is patched, the system may be at risk of malware attacks.
+	- Hotfix:
+		- A hotfix is a package designed to address a critical defect in a live environment. Unlike patches, a hotfix targets a single issue and is applied to a specific product version. Hotfixes provide quick solutions to urgent problems and ensure that critical issues are resolved promptly.
+		- Hotfixes should be applied to software patches on production systems. Vendors notify users about the latest hotfixes through email or by making them available on their official website. Unlike patches, hotfixes often address specific customer-reported issues and are not always distributed publicly. Occasionally, vendors release a collection of hotfixes as a combined hotfix or service pack to provide a broader set of fixes.
+	- Patch Management:
+		- Patch management is a critical aspect of systems management that involves acquiring, testing, and installing multiple patches (code changes) on an administered computer system. It serves as a defense mechanism against vulnerabilities that can cause security weaknesses or data corruption. The process includes scanning for network vulnerabilities, detecting missing security patches and hotfixes, and deploying the necessary patches as soon as they become available to secure the network.
+		- Key tasks involved in patch management include:
+			- Selecting, verifying, testing, and applying patches
+			- Updating previously applied patches with current versions
+			- Maintaining a record of patches applied to software
+			- Storing repositories or depots of patches for easy access
+			- Assigning and deploying patches to relevant systems
+		- Automated Patch Management Process:
+			- An automated patch management system follows these steps:
+				- Detect: Use tools to identify missing security patches.
+				- Assess: Evaluate the issue and its severity, considering mitigating factors that may influence the decision.
+				- Acquire: Download the patch for testing.
+				- Test: Install the patch on a test machine to verify its effects before deployment.
+				- Deploy: Apply the patch to computers while ensuring it does not disrupt applications.
+				- Maintain: Subscribe to notifications about newly reported vulnerabilities to stay updated.
+			- This structured approach ensures that systems remain secure and up to date while minimizing risks associated with patch deployment.
+	- Installation of Patch:
+		- Identifying Appropriate Sources for Updates and Patches:
+			- It is crucial to obtain updates and patches from trusted sources. Installing patches from unverified sources can make the target server more vulnerable to attacks instead of strengthening its security. Therefore, selecting reliable sources plays a vital role in securing web servers.
+			- To identify appropriate sources for updates and patches:
+				- Develop a patch management plan that aligns with the operational environment and business objectives.
+				- Obtain updates and patches directly from the official websites of application or operating system vendors.
+				- Register on vendor websites to receive alerts and notifications about relevant updates for proactive patch management.
+		- Installation Methods for Patch:
+			- Security patches can be accessed and installed via the internet using two methods:
+			- Manual Installation – The user downloads the patch from the vendor’s website and installs it manually.
+			- Automatic Installation – Applications use an auto-update feature to install patches automatically.
+		- Implementation and Verification of Security Patch or Upgrade:
+			- Before and after installing a patch, proper validation and monitoring are necessary to ensure security and functionality:
+			- Verify the source of the patch before installation.
+			- Use a patch management program to validate file versions and checksums before deployment.
+			- Ensure that the patch management tool can monitor patched systems effectively.
+			- The patch management team should regularly check for updates and patches to keep systems secure.
+	- Patch Management Best Practices:
+		- Define roles, responsibilities, and procedures for patch management, including timelines and emergency handling.
+		- Develop a comprehensive policy for evaluating, testing, approving, and deploying patches.
+		- Maintain an updated inventory of all hardware and software to ensure complete coverage.
+		- Assess and prioritize patches based on vulnerability severity and asset criticality.
+		- Use automation tools to discover, track, and apply patches efficiently.
+		- Implement a testing process in a controlled environment to verify patch compatibility and prevent system issues.
+		- Establish a regular patching schedule while allowing fast-tracked deployment for critical vulnerabilities.
+		- Stay informed on new vulnerabilities and patches through security advisories and feeds.
+		- Limit access to patch management tools to authorized personnel.
+		- Ensure systems are backed up before patching to facilitate recovery if needed.
+		- Verify that patches are successfully applied and functioning as intended.
+		- Conduct regular vulnerability scans to identify and address unpatched systems.
+		- Protect patch management systems from attacks to prevent compromise.
+		- Regularly review and refine patch management processes for continuous improvement.
+		- Include third-party applications in the patching strategy.
+		- Have a rollback plan in case patches cause unforeseen issues.
+		- Align scheduled patching with maintenance windows to minimize disruptions.
+	- Patch Management Tools:
+		- GFI LanGuard (www.gfi.com): GFI LanGuard is a patch management software that automatically scans the user’s network, installs, and manages both security and non-security patches. It supports devices running Microsoft Windows®, macOS®, and Linux®, along with numerous third-party applications. The software enables automatic downloads of missing patches and offers a rollback feature, ensuring a consistently configured and secure environment protected against threats and vulnerabilities.
+		- Symantec Client Management Suite (www.broadcom.com)
+		- Solarwinds Patch Manager (www.solarwinds.com)
+		- Kaseya Patch Management (www.kaseya.com)
+		- Software Vulnerability Manager (www.flexera.com)
+		- Ivanti Patch for Endpoint Manager (www.ivanti.com)
