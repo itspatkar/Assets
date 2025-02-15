@@ -5122,3 +5122,190 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- THC Hydra (github.com)
 		- HULK DoS (github.com)
 		- MPack (sourceforge.net)
+- Web Server Attack Countermeasures:
+	- Patches and Updates:
+		- Regularly scan for vulnerabilities and apply necessary patches and updates.
+		- Review all relevant documentation before implementing any hotfix or security patch.
+		- Test service packs and hotfixes in a non-production environment before deployment.
+		- Maintain consistent security patch levels across all domain controllers (DCs).
+		- Schedule server outages and ensure backup tapes and emergency repair disks are available.
+		- Keep a rollback plan to restore systems to their original state in case of failure.
+		- Disable unused script extension mappings and avoid default web server configurations.
+		- Utilize virtual patches for enhanced identification and logging.
+		- Establish a disaster recovery plan for patch management failures.
+		- Conduct risk assessments to prioritize high-risk areas for patching.
+		- Maintain an inventory of all endpoints, services, and dependencies.
+		- Always test patches in a controlled environment before full deployment.
+		- Implement an alerting system for patches.
+		- Use automated patch management tools like SolarWinds Patch Manager.
+		- Regularly monitor and report patch management effectiveness.
+		- Limit the number of software versions to reduce third-party risks.
+		- Validate and document all patch and update operations for analysis and compliance.
+		- Integrate standardized patch management and security updates into the SDLC.
+	- Protocols:
+		- Block all unnecessary ports, ICMP traffic, and insecure protocols.
+		- Harden the TCP/IP stack and apply the latest software patches.
+		- Use secure communication protocols such as TLS/SSL and enforce HTTPS redirection.
+		- Secure remote access with tunneling and encryption protocols.
+		- If using insecure protocols (e.g., Telnet, SMTP, FTP), implement secure authentication and encryption (e.g., IPsec policies).
+		- Require FTPS for all file transfers to ensure data encryption.
+		- Ensure unidentified FTP servers operate in a separate directory from the web server.
+		- Configure the HTTP service banner to hide sensitive host details (e.g., OS version, type).
+		- Isolate supporting servers (e.g., LDAP) on a separate subnet and filter traffic through a firewall.
+		- Use HTTP Strict Transport Security (HSTS) headers to enforce secure connections and prevent downgrade attacks.
+		- Automate SSL/TLS certificate renewal to prevent expiration-related vulnerabilities.
+		- Implement rate-limiting to mitigate DDoS attacks targeting the SSL/TLS handshake process.
+	- Accounts:
+		- Remove unused modules, application extensions, and default user accounts created during OS installation.
+		- Grant the least possible NTFS permissions to anonymous IIS users when creating a new web root directory.
+		- Follow the principle of least privilege for database applications, eliminating unnecessary database users and stored procedures.
+		- Use secure permissions, including NTFS permissions, .NET Framework access control, and URL authorization.
+		- Slow down brute-force and dictionary attacks with strong password policies, audits, and login failure alerts.
+		- Run processes and services using least privileged accounts.
+		- Limit administrator or root-level access to essential users only and maintain access records.
+		- Maintain encrypted logs of all user activity on the web server or a separate intranet machine.
+		- Disable noninteractive accounts that do not require interactive logins.
+		- Use secure VPNs (e.g., OpenVPN) for multi-server access to minimize credential exposure.
+		- Enforce password management best practices, including password expiration policies and the use of password managers (e.g., KeePass).
+		- Enable Separation of Duties (SoD) in server configurations.
+		- Implement account security features, including account lockout after failed login attempts and CAPTCHA challenges on login/registration pages.
+		- Require two-factor or multi-factor authentication (2FA/MFA) for additional security.
+		- Store passwords securely using strong, one-way hashing algorithms like bcrypt, scrypt, or Argon2.
+		- Ensure secure account recovery processes that verify user identity without increasing takeover risks.
+	- Files and Directories:
+		- Remove unnecessary files, including non-web files (e.g., archives, backups, text files, header/include files) and unused .jar contents.
+		- Avoid storing sensitive configuration information within byte code.
+		- Disable directory listing and restrict access to configuration files (e.g., .htaccess, web.config).
+		- Prevent unauthorized file access by disabling certain file types via resource mapping.
+		- Store web applications, scripts, and website files separately from the OS, logs, and system files.
+		- Run the web server within a sandbox directory to prevent access to system files.
+		- Restrict non-web file types from being referenced in URLs.
+		- Run web server processes with the least required privileges and grant access only to necessary directories.
+		- Monitor and analyze logs from network services, website access, databases (e.g., SQL Server, MySQL, Oracle), and the OS.
+		- Exclude meta characters while processing user inputs to ensure proper filtering.
+		- Use file integrity checkers for intrusion detection and web content verification.
+		- If allowing file uploads, scan uploaded files for malware and store them outside the web root.
+		- Use a Web Application Firewall (WAF) to prevent unauthorized file access through web-based attacks (e.g., SQL injection).
+		- Encrypt file transfers using SFTP instead of FTP.
+		- Implement version control for web application files to track changes and enable rollbacks.
+	- Detecting Web Server Hacking Attempts:
+		- An attacker exploiting web server vulnerabilities may plant backdoors to maintain access, launch phishing attacks, or send spam. Victims often remain unaware until the server is blacklisted or visitors are redirected to malicious sites. Detecting such attacks is difficult until significant damage occurs, making early detection crucial for protection.
+		- Website Change Detection System (WDS):
+			- When an attacker installs a backdoor on a web server, the size of infected files increases.
+			- A Website Change Detection System (WDS) is a script that runs on the server to monitor modifications to executable files or the addition of new files, including HTML, JavaScript (JS), PHP, Active Server Pages (ASP), Perl, and Python files.
+			- WDS operates by periodically comparing the hash values of server files with their corresponding master hash values to detect unauthorized changes to the codebase. If any modifications are detected, the system alerts the user to take necessary action. Thus, WDS plays a critical role in identifying web server hacking attempts at an early stage.
+			- For example, DirectoryMonitor is an automated tool that scans web directories, detects changes in the codebase, and notifies the user via email.
+	- Defend Against Web Server Attacks:
+		- Ports:
+			- Regularly monitor all ports on the web server to prevent unnecessary traffic. Unmonitored traffic can leave the server vulnerable to malware attacks.
+			- Public access to port 80 (HTTP) and port 443 (HTTPS) should be restricted. Traffic to these ports should be carefully controlled.
+			- If port 80 remains open, the server is at risk of Denial-of-Service (DoS) attacks, which can overload and consume server resources.
+			- Intranet traffic should be either encrypted or restricted to enhance security.
+			- Attackers often attempt to spoof IP addresses to conceal their identity. To counter this:
+				- Security logs should be analyzed to detect suspicious activity.
+				- Firewall rules can be configured with a "deny this IP address" rule to block malicious sources.
+				- A routed blackhole command can be used to drop malicious traffic and prevent it from reaching the target system.
+		- Server Certificates:
+			- Server certificates enhance security and are issued by a trusted authority. However, attackers may compromise certified servers by using forged certificates to intercept secure communications through Man-in-the-Middle (MITM) attacks. To mitigate such risks, the following techniques can be used:
+			- Direct certificate validation to verify authenticity.
+			- Alternative protocols that do not rely on third-party certificate validation.
+			- Domain-based certificate verification, allowing domains to securely inspect their own certificates using pre-established user authentication credentials.
+			- Strong cryptographic techniques that improve server identity validation and address the limitations of third-party solutions.
+			- Ensuring certificate validity, including checking expiration dates and confirming that certificates are used for their intended purpose.
+			- Verifying certificate revocation status, ensuring the certificate’s public key remains valid and is traceable to a trusted root authority.
+		- Machine.config:
+			- The machine.config file provides a mechanism for securing information by modifying machine-level settings. These settings impact all applications running on the system. The machine.config file includes configuration settings for the .NET Framework, which influence security.
+			- The following security measures should be implemented using the machine.config file:
+				- Map protected resources to HttpForbiddenHandler and remove any unused HttpModules.
+				- Disable tracing (<trace enabled="false"/>) and ensure that debug compilation is turned off.
+				- Prevent ASP.NET errors from being exposed to clients.
+				- Verify session state settings to ensure proper security configurations.
+		- Code Access Security:
+			- Adopt secure coding practices to prevent source code disclosure and input validation attacks.
+			- Restrict code access security policies to ensure that no permissions are granted for executing code downloaded from the Internet or intranet.
+			- Configure IIS to:
+				- Reject URLs containing "../" to prevent path traversal attacks.
+				- Lock down system commands and utilities using restrictive access control lists (ACLs).
+				- Regularly install security patches and updates.
+			- Enforce code access security on web servers to prevent the execution of malicious code.
+			- Failure to implement these measures can leave web servers vulnerable to attacks that exploit insecure code execution.
+		- Restrict Access and Permissions:
+			- Apply restricted ACLs and block remote registry administration.
+			- Secure the SAM (for stand-alone servers).
+			- Harden NTFS permissions for the metabase file, shared folders, and website directories.
+			- Remove unnecessary file shares, including default admin shares, if not required.
+			- Restrict directory listings and enforce proper file permissions.
+			- Limit server functionality to only required web technologies.
+		- Harden Web Server Configuration:
+			- Remove unnecessary IIS script mappings and ISAPI filters.
+			- Relocate websites and virtual directories to non-system partitions.
+			- Do not install IIS on a domain controller.
+			- Use a dedicated machine for the web server.
+			- Turn off unused features, such as server-side scripting and directory browsing.
+			- Configure separate anonymous user accounts for different applications.
+		- Enhance Network Security:
+			- Implement firewalls to control incoming and outgoing traffic.
+			- Use network segmentation, VPNs, and secure protocols (e.g., HTTPS) to limit unauthorized access.
+			- Screen and filter incoming traffic requests.
+			- Deploy IDPS to monitor and detect malicious activity.
+		- Secure Authentication and Sessions:
+			- Use server-side session ID tracking and match connections with timestamps, IP addresses, etc.
+			- Implement role-based access control (RBAC) and least privilege principles.
+		- Protect Data and Logs:
+			- Store website files and scripts on a separate partition or drive.
+			- Enable minimum-level auditing and use NTFS permissions to protect log files.
+			- Implement centralized log monitoring to track activities and analyze logs for suspicious behavior.
+			- Set up alerts for security events and establish an incident response plan.
+		- Physical and Environmental Security:
+			- Physically secure the web server in a restricted machine room.
+			- Prevent local logins except for administrators.
+		- Security Tools and Automation:
+			- Use security tools provided with web server software.
+			- Deploy scanners that automate web server security checks.
+			- Implement an anti-bot mitigation service (e.g., DataDome) to detect botnets in real time.
+	- Defend Against HTTP Response Splitting and Web Cache Poisoning:
+		- When setting cookies, remove carriage returns (CRs) and line feeds (LFs) before inserting data into an HTTP response header. The best practice is to use third-party security tools to test for vulnerabilities and defend against CRLF injection. Ensure that application engines are up to date.
+		- The User Datagram Protocol (UDP) source port randomization technique helps protect servers from blind response forgery. Limit the number of simultaneous recursive queries and increase the time-to-live (TTL) values of legitimate records.
+		- Methods to Defend Against HTTP Response Splitting and Web Cache Poisoning:
+			- Server Administration:
+				- Use the latest web server software.
+				- Regularly update and patch the operating system (OS) and web server.
+				- Run a web vulnerability scanner.
+			- Application Development:
+				- Restrict the web application’s access to unique IP addresses.
+				- Disallow carriage return (%0D or \r) and line feed (%0A or \n) characters.
+				- Comply with RFC 2616 specifications for HTTP/1.1.
+				- Parse all user inputs and other forms of encoding before using them in HTTP headers.
+			- Proxy Servers:
+				- Avoid sharing incoming TCP connections among different clients.
+				- Use separate TCP connections with the proxy for different virtual hosts.
+				- Implement the "maintain request host header" feature correctly.
+	- Defend Against DNS Hijacking:
+		- Secure Domain Registration: Choose an ICANN-accredited registrar and enable REGISTRAR-LOCK on your domain.
+		- Account & Access Protection: Safeguard registrant credentials, enforce strong password policies, and use multifactor authentication (MFA) and role-based access control (RBAC) for DNS management.
+		- DNSSEC Implementation: Deploy Domain Name System Security Extensions (DNSSEC) to prevent unauthorized DNS modifications.
+		- Network & Router Security: Change the default router username and password, keep firmware updated, and restrict access to DNS servers based on trusted IP addresses.
+		- Monitoring & Alerts: Use DNS monitoring tools to detect unauthorized changes and configure geolocation-based alerts for unusual access.
+		- Restrict DNS Access: Use Access Control Lists (ACLs) to limit who can query your DNS servers and restrict zone transfers to trusted sources.
+		- Encrypted DNS Queries: Enable DNS over HTTPS (DoH) or DNS over TLS (DoT) to encrypt DNS traffic and prevent interception.
+		- DNS Service Provider Security: Choose reliable DNS providers (e.g., Cloudflare, Google Public DNS) with strong service-level agreements (SLAs) and security features.
+		- Firewalls & Filtering: Implement firewall protection to filter rogue DNS traffic and use DNS filtering services to block malicious domains.
+		- VPN Security: Use reputable VPN services instead of free ones, which may log activities, and establish encrypted VPN tunnels for secure communication.
+		- Software & Browser Protection: Install and update antivirus software, use script blockers, and avoid downloading untrusted software.
+		- Redundant & Isolated DNS Infrastructure: Set up a master-slave DNS architecture, keeping the master offline and allowing only verified updates.
+		- Incident Response Planning: Include DNS hijacking mitigation in business continuity and security response plans.
+	- Web Application Security Scanners:
+		- Syhunt Hybrid (www.syhunt.com): Syhunt Hybrid automates web application security testing, protecting an organization’s web infrastructure from security threats. Syhunt Dynamic crawls websites and detects vulnerabilities such as XSS, directory traversal issues, fault injection, SQL injection, command execution attempts, and other attacks. Syhunt Hybrid generates signatures to identify application vulnerabilities and prevents session logout. It also analyzes JavaScript (JS), logs suspicious responses, and tests for errors to facilitate review.
+		- N-Stalker X (www.nstalker.com): N-Stalker is a web application security scanner that detects vulnerabilities such as clickjacking, SQL injection, and XSS. It supports spider crawling across applications and enables the creation of web macros for form authentication. Additionally, it provides proxy capabilities for "drive-thru" attacks and identifies components through reverse proxies, allowing the distribution of different platforms within the same application URL.
+		- Invicti (www.invicti.com)
+		- Burp Suite (www.portswigger.net)
+		- Wapiti (wapiti-scanner.github.io)
+		- WebScarab (owasp.org)
+		- WPSec (wpsec.com)
+		- Tinfoil Web Scanner (www.tinfoilsecurity.com)
+		- Skipfish (code.google.com)
+		- Detectify (detectify.com)
+		- OpenTextTM FortifyTM On Demand (www.opentext.com)
+		- OWASP Zed Attack Proxy (ZAP) (www.zaproxy.org)
+		- SonarQube (www.sonarqube.org)
+		- Arachni (ecsypno.com)
