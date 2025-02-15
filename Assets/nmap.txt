@@ -176,3 +176,21 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 - Vulnerability Scan: nmap -sV –script vuln <domain> -oN output.txt
 - Detect NIC in Promiscuous Mode: nmap --script sniffer-detect <ip/range>
 - Retrieve Monlist from NTP Server: nmap -sU -pU:123 -Pn -n --script ntp-monlist <ip>
+- Enumerating User Accounts from an Apache Server (with mod_userdir enabled):
+    - Perform an Initial Scan to Enumerate Valid Users: nmap -p80 --script http-userdir-enum <target>
+    - Perform a Customized Scan with custom list of potential usernames: nmap -p80 --script http-userdir-enum --script-args userdir.users=<Wordlist>.txt <target>
+    - Bypass Detection with a Custom User-Agent (Some security systems detect and block Nmap requests due to its default user-agent string): nmap -p80 --script http-brute --script-args http.useragent="<User_Agent>" <target>
+- Enumerating Web Server Information:
+    - Discover virtual domains with hostmap: nmap --script hostmap-bfk <host>
+    - Detect vulnerable server using TRACE method: nmap --script http-trace -p80 localhost
+    - Harvest email accounts using http-google-email: nmap --script http-google-email <host>
+    - Enumerate users using http-userdir-enum: nmap -p80 --script http-userdir-enum localhost
+    - Detect HTTP TRACE: nmap -p80 --script http-trace <host>
+    - Check if web server is protected by WAF/IPS: nmap -p80 --script http-waf-detect --script-args="http-waf-detect.uri=/testphp.vulnweb.com/artists.php,http-waf-detect.detectBodyChanges" www.modsecurity.org
+    - Fingerprint Web Application Firewall (WAF): nmap --script=http-waf-fingerprint -p80,443 <host>
+    - Enumerate common web applications: nmap --script http-enum -p80 <host>
+    - Obtain robots.txt file: nmap -p80 --script http-robots.txt <host>
+    - Service and OS detection: nmap -sV -O -p <target IP address>
+    - Enumerate web applications: nmap -sV --script http-enum <target IP address>
+    - Check for FrontPage login: nmap <target IP address> -p 80 --script=http-frontpage-login
+    - Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>

@@ -4606,7 +4606,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 # Hacking Web Servers
 
 
-- Web Server
+- Web Server:
 	- A web server is a computer system that stores, processes, and delivers web pages to global clients via the Hypertext Transfer Protocol (HTTP). In general, a client initiates communication through an HTTP request. When a client requests a resource such as a web page, photo, or video, the browser generates an HTTP request and sends it to the web server. The web server then retrieves the requested content from data storage or application servers and responds to the client with an appropriate HTTP response. If the requested information cannot be found, the web server generates an error message.
 	- Components of a Web Server:
 		- Document Root:
@@ -4791,7 +4791,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Default File Permissions Vulnerability:
 				- This vulnerability exists because the Nginx Management Suite assigns default file permissions that allow authenticated users to modify sensitive files.
 				- Attackers can leverage this flaw to alter critical files in the Nginx Instance Manager and Nginx API Connectivity Manager.
-- Web Server Attacks
+- Web Server Attacks:
 	- DNS Server Hijacking:
 		- The Domain Name System (DNS) resolves domain names to their corresponding IP addresses. When a user queries a DNS server with a domain name, the server responds with the appropriate IP address.
 		- In DNS server hijacking, an attacker compromises a DNS server and alters its mapping settings to redirect queries to a rogue DNS server. This rogue server then directs users to malicious websites controlled by the attacker. As a result, when a user enters a legitimate URL in a browser, they are unknowingly redirected to a fraudulent site.
@@ -4903,3 +4903,222 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Cross-Site Request Forgery (CSRF) Attack: Attackers exploit the trust of authenticated users by tricking them into executing unauthorized commands on a web server, often without their knowledge.
 				- Command Injection Attacks: By injecting malicious commands into form fields or insecure inputs, attackers can alter web content or execute unauthorized system commands.
 				- Source Code Disclosure: Due to script misconfigurations or typographical errors, attackers may gain access to source code containing database credentials, secret keys, or other sensitive information, compromising the web server.
+- Web Server Attack Methodology:
+	- Information Gathering:
+		- Information gathering is the first and one of the most crucial steps in hacking a target web server. During this phase, an attacker collects as much information as possible about the target server using various tools and techniques. The information gathered during this step helps the attacker assess the security posture of the web server.
+		- Attackers may search the internet, newsgroups, bulletin boards, and other sources to gather information about the target organization. Tools such as Whois and Whois Lookup can be used to extract details such as the target's domain name, IP address, and autonomous system number.
+		- Information Gathering Tools:
+			- who.is (who.is): who.is is a platform designed to perform a variety of Whois lookup functions. It allows users to perform domain Whois searches, Whois IP lookups, and Whois database searches to obtain relevant information about domain registration and availability.
+			- Whois Lookup (whois.domaintools.com)
+			- Whois (www.whois.com)
+			- Domain Dossier (centralops.net)
+			- Subdomain Finder (pentest-tools.com)
+		- Information Gathering from the Robots.txt File:
+			- The robots.txt file contains a list of web server directories and files that the website owner wants to hide from web crawlers. It is primarily used to guide search engine bots on which pages should or should not be indexed. However, a poorly configured robots.txt file can unintentionally expose sensitive directories and files to attackers.
+			- If confidential files and directories are indexed, an attacker may easily obtain sensitive information such as passwords, email addresses, hidden links, and membership areas. Even if a website owner attempts to restrict certain pages from being indexed, an attacker can still access the robots.txt file and identify restricted files or directories. This can provide valuable insights into the website’s structure and security vulnerabilities.
+			- An attacker can simply request the robots.txt file by entering URL/robots.txt in a browser’s address bar to view its contents. Additionally, they can use tools such as Wget to download the robots.txt file and analyze it for sensitive information, including the root directory structure and content management system (CMS) details of the target website.
+	- Web Server Footprinting/Banner Grabbing:
+		- Web server footprinting allows an attacker to gather valuable system-level data such as account details, operating systems (OSs), software versions, server names, and database schema details. By analyzing the collected data, attackers can assess the security posture of a web server and identify potential entry points for further exploitation.
+		- The Telnet utility can be used to footprint a web server and obtain information such as the server name, server type, OS, and running applications. Additionally, footprinting tools such as httprecon, Uniscan, and Netcraft can be used to extract information from a target server.
+		- These tools help attackers determine critical details, including remote access capabilities, open ports, available services, and potential security vulnerabilities.
+		- Web Server Footprinting Tools:
+			- Netcat (netcat.sourceforge.net):
+				- Netcat is a networking utility that reads and writes data across network connections using the TCP/IP protocol. It is a reliable back-end tool that can be used directly or integrated into scripts and other programs. Additionally, Netcat serves as a network debugging and exploration tool.
+			- Telnet (learn.microsoft.com):
+				- Telnet is a client-server network protocol commonly used on the Internet and local area networks (LANs) to establish remote login sessions. It allows a terminal on one computer to connect to another system, emulating a direct session.
+				- However, Telnet has significant security vulnerabilities: It does not encrypt data sent through the connection and It lacks a robust authentication mechanism.
+				- Due to these weaknesses, attackers can exploit Telnet to perform banner-grabbing attacks, probing HTTP servers to retrieve server details from HTTP response headers.
+			- httprecon (www.computec.ch):
+				- httprecon is an advanced web server fingerprinting tool. It performs banner grabbing, status code enumeration, and header ordering analysis on the target web server, providing accurate fingerprinting information.
+				- httprecon executes various header analysis test cases on the target web server, including:
+					- A legitimate GET request for an existing resource
+					- An excessively long GET request (a Uniform Resource Identifier (URI) >1024 bytes)
+					- A standard GET request for a non-existing resource
+					- A standard HEAD request for an existing resource
+					- Enumeration with OPTIONS, if allowed
+					- The DELETE HTTP method, which is usually not permitted
+					- The TEST HTTP method, which is undefined
+					- The protocol version HTTP/9.8, which does not exist
+					- A GET request containing attack patterns (e.g., ../ and %%)
+			- Uniscan (sourceforge.net):
+				- Uniscan is a versatile web server fingerprinting tool that goes beyond basic commands such as ping, traceroute, and nslookup. It conducts static, dynamic, and stress tests on web servers.
+				- In addition to scanning websites, Uniscan performs automated Bing and Google searches for specific IP addresses and compiles all the collected data into a comprehensive report file for further analysis.
+			- Netcraft (www.netcraft.com)
+			- ID Serve (www.grc.com)
+			- Nmap (nmap.org)
+			- Ghost Eye (github.com)
+			- Skipfish (code.google.com)
+		- IIS Information Gathering Using Shodan:
+			- Gathering information on IIS (Internet Information Services) servers can provide attackers with crucial details that aid in planning and executing further attacks. By identifying the IIS version in use, attackers can match known vulnerabilities to specific versions, making exploitation easier. Additionally, information such as open ports, running services, and server configurations can expose security weaknesses.
+			- A detailed understanding of the IIS server environment allows attackers to craft targeted attacks. For example, if the gathered data indicates that a particular server runs an outdated IIS version, attackers may deploy exploits targeting known vulnerabilities associated with that version.
+			- To gather such information, attackers use tools like Shodan, a powerful search engine designed to scan and index internet-connected devices, including IIS servers. Shodan enables attackers to efficiently collect data that enhances their ability to perform targeted attacks.
+			- Shodan Search Filters for Information Gathering:
+				- Identify IIS servers with SSL certificates issued to "Company Inc.": ssl:"Company Inc." http.title:"IIS"
+				- Locate IIS servers with SSL certificates where the common name (CN) is "company.in": ssl.cert.subject.CN:"company.in" http.title:"IIS"
+				- Find IIS servers located in the United States: http.title:"IIS Windows Server" country:"US"
+				- Locate IIS7 servers running on port 80: http.title:"IIS7" port:80
+			- Attackers can analyze Shodan search results to extract information such as IP addresses, open ports, running services, and IIS version details. By clicking on individual results, they can obtain more in-depth data, including HTTP headers, SSL certificate details, and additional metadata. Furthermore, Shodan's export feature allows attackers to save collected data in formats like CSV or JSON for further analysis.
+		- Abusing Apache mod_userdir to Enumerate User Accounts:
+			- Attackers can exploit Apache’s mod_userdir module to enumerate user accounts on a web server. This module allows access to user directories using URIs formatted as /~username/. Using the Nmap tool, attackers can identify valid usernames and obtain valuable information, which can then be leveraged for further attacks, such as brute-forcing or targeted phishing.
+			- Enumerating User Accounts from an Apache Server:
+				- Perform an Initial Scan to Enumerate Valid Users:
+					- Run the following command to enumerate valid users from a target web server with mod_userdir enabled: nmap -p80 --script http-userdir-enum <target>
+					- This command scans the target on port 80 using the http-userdir-enum script. If mod_userdir is enabled, the script uses the default word list usernames.lst located at /nselib/data/ and displays any discovered usernames.
+				- Perform a Customized Scan:
+					- A custom list of potential usernames can improve accuracy and effectiveness. Use the following command with a custom word list <Wordlist>.txt: nmap -p80 --script http-userdir-enum --script-args userdir.users=<Wordlist>.txt <target>
+					- This command utilizes the specified .txt file as a source of usernames and tests them against the target server.
+				- Bypass Detection with a Custom User-Agent:
+					- Some security systems detect and block Nmap requests due to its default user-agent string. To bypass such detection, specify a custom user-agent: nmap -p80 --script http-brute --script-args http.useragent="<User_Agent>" <target>
+					- This command modifies the HTTP user-agent string used by Nmap, making the traffic appear to originate from a standard web browser rather than a scanning tool.
+		- Enumerating Web Server Information Using Nmap:
+			- Nmap, along with the Nmap Scripting Engine (NSE), can extract valuable information from a target web server. NSE provides scripts that help attackers gather various types of useful data about the target system. The Nmap commands and NSE scripts can be used for reconnaissance.
+			- Nmap Commands for Extracting Web Server Information:
+				- Discover virtual domains with hostmap: nmap --script hostmap-bfk <host>
+				- Detect a vulnerable server using the TRACE method: nmap --script http-trace -p80 localhost
+				- Harvest email accounts using http-google-email: nmap --script http-google-email <host>
+				- Enumerate users using http-userdir-enum: nmap -p80 --script http-userdir-enum localhost
+				- Detect HTTP TRACE: nmap -p80 --script http-trace <host>
+				- Check if the web server is protected by a WAF or IPS: nmap -p80 --script http-waf-detect --script-args="http-waf-detect.uri=/testphp.vulnweb.com/artists.php,http-waf-detect.detectBodyChanges" www.modsecurity.org
+				- Fingerprint a Web Application Firewall (WAF): nmap --script=http-waf-fingerprint -p80,443 <host>
+				- Enumerate common web applications: nmap --script http-enum -p80 <host>
+				- Obtain robots.txt file: nmap -p80 --script http-robots.txt <host>
+				- Service and OS detection on a target: nmap -sV -O -p <target IP address>
+				- Enumerate web applications: nmap -sV --script http-enum <target IP address>
+				- Check for FrontPage login: nmap <target IP address> -p 80 --script=http-frontpage-login
+				- Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>
+		- Finding Default Credentials of Web Server:
+			- Administrators and security personnel use administrative interfaces to securely configure, manage, and monitor web application servers. Many web server administrative interfaces are publicly accessible and located in the root directory. However, these credentials are often not properly configured and remain set to default.
+			- Attackers attempt to identify the running administrative interface of a target web server by performing port scanning. If an attacker successfully exploits default credentials, they can gain access to the administrative interface, compromise the web server, and exploit the main web application.
+			- Once they identify the interface, they use the following techniques to find default login credentials:
+				- Consult administrative interface documentation to identify default passwords.
+				- Use Metasploit’s built-in database to scan the server for known credentials.
+				- Attempt password-guessing and brute-force attacks to gain unauthorized access.
+				- Leverage online resources such as:
+					- CIRT.net: A database of default passwords, credentials, and ports
+					- FortyPoundHead.com: A resource for identifying default passwords
+					- www.fortypoundhead.com
+					- www.defaultpassword.com
+					- default-password.info
+					- www.routerpasswords.com
+		- Finding Default Content on Web Server:
+			- Many web application servers contain default content and functionalities that attackers can exploit.
+			- Common default elements that attackers seek to identify in web servers:
+				- Administrative Debugging and Testing Functionalities: Web servers often include debugging, diagnostic, and testing features for administrators. These features provide valuable configuration details and runtime state information about the server and its applications, making them prime targets for attackers.
+				- Sample Scripts and Demonstration Functionalities: Many web servers contain sample scripts and pages designed to demonstrate application server features and APIs. Often, these scripts are not properly secured and may contain vulnerabilities that attackers can exploit. Additionally, some demonstration functionalities may include exploitable features that attackers can leverage.
+				- Publicly Accessible Powerful Functions: Some web servers include powerful administrative functionalities that should be restricted from public access. However, attackers often attempt to exploit these functions to compromise the server. For example, certain application servers allow web archives to be deployed over the same HTTP port used by the application. Attackers may use tools like Metasploit to scan for default passwords, upload backdoors, and gain command-shell access to the target server.
+				- Server Installation Manuals: Attackers seek out publicly accessible server installation manuals, as they may contain crucial details about server configurations and setup processes. Access to this information helps attackers prepare targeted exploitation strategies against the installed web server.
+			- Tools for Identifying Default Content - Nikto2 (cirt.net): Nikto is a widely used vulnerability scanner that helps identify security weaknesses in web applications and web servers, including default content that could be exploited by attackers.
+		- Directory Brute Forcing:
+			- When a web server receives a request for a directory rather than a specific file, it may respond in one of the following ways:
+				- Return a Default Resource: The server may return a default resource within the directory, such as index.html.
+				- Return an Error: The server may return an error, such as an HTTP status code 403, indicating that access is not permitted.
+				- Return a Directory Listing: The server may return a directory listing showing the contents of the requested directory. A sample directory listing is shown in the screenshot.
+			- Security Risks of Directory Listings:
+				- While directory listings are not inherently a major security risk, they can sometimes expose vulnerabilities that attackers can exploit, including:
+				- Improper Access Controls – Misconfigured permissions may allow unauthorized access to sensitive files.
+				- Unintentional Access to the Web Root – Attackers may gain access to critical files and directories that should remain hidden.
+			- Attack Techniques:
+				- After discovering a directory on a web server, an attacker will attempt to access its listing by sending a request to that directory. Attackers also target vulnerable web server software that improperly grants access to directory listings. To automate these attacks, they use tools like Dirhunt and Sitechecker Website Directory Scanner to scan for exposed directories on a target web server.
+			- Tools for Directory Brute Forcing - Dirhunt (github.com):
+				- Dirhunt is a web crawler optimized for searching and analyzing directories. It is particularly useful when a server has the "index of" mode enabled. Additionally, Dirhunt can detect directories even when directory listing is disabled, by identifying:
+					- False 404 errors
+					- Directories with empty index files used to hide content
+					- Other misconfigurations that reveal hidden resources
+	- Website Mirroring:
+		- Website mirroring is a technique used to copy an entire website and its content onto another server for offline browsing. By creating a mirrored version of a website, an attacker can analyze its structure in detail, potentially identifying vulnerabilities and sensitive information.
+	- Vulnerability Scanning:
+		- Vulnerability scanning is the process of identifying security weaknesses and misconfigurations in a target web server or network. It helps uncover potential vulnerabilities that attackers can exploit in a web server attack.
+		- During the vulnerability scanning phase, attackers use sniffing techniques to monitor network traffic, allowing them to identify active systems, network services, and running applications. Automated tools, such as Acunetix Web Vulnerability Scanner, are commonly used to scan target servers for vulnerabilities, detect active hosts and services, and identify security flaws.
+		- Vulnerability Scanning Tools:
+			- Acunetix Web Vulnerability Scanner:
+				- Acunetix Web Vulnerability Scanner (WVS) is a powerful tool for detecting vulnerabilities in web applications. It checks for security issues such as SQL injection, Cross-Site Scripting (XSS), and other web-based attacks.
+				- Acunetix Web Vulnerability Scanner includes advanced penetration testing tools to assist in manual security audits and generates detailed security reports using AcuSensor Technology. It supports testing of web forms, password-protected areas, CAPTCHA-protected pages, single sign-on (SSO), and two-factor authentication (2FA) mechanisms. Additionally, it identifies programming languages, web server types, and mobile-optimized sites. The scanner can analyze websites built with HTML5, SOAP, and AJAX while also performing network service and port scanning on the target web server.
+			- OpenText Fortify WebInspect (www.opentext.com)
+			- Tenable.io (www.tenable.com)
+			- ImmuniWeb (www.immuniweb.com)
+			- Invicti (www.invicti.com)
+		- Nginx Vulnerability Scanning Using NginxPwner:
+			- NginxPwner is a Python-based tool designed to identify common misconfigurations and vulnerabilities in Nginx web servers. It automates the process of detecting security issues, such as misconfigured HTTP methods, improper file permissions, outdated software versions, and insecure default settings. By using this tool, security professionals can quickly gather detailed information on potential entry points and weaknesses in an Nginx setup, helping to improve security defenses.
+			- Steps to Scan an Nginx Web Server for Vulnerabilities:
+				- Create a temporary file to store a list of potential URL paths acquired via crawling or other methods: nano /tmp/pathlist
+				- Insert the paths into this file, then save and exit using CTRL+X.
+				- Execute the NginxPwner script, specifying the target URL and the path file: python3 nginxpwner.py <target_URL> /tmp/pathlist
+				- Replace <target_URL> with the actual target URL and /tmp/pathlist with the path to your list file.
+				- Analyze the output provided by NginxPwner to identify potential vulnerabilities and misconfigurations in the target Nginx server.
+		- Finding Exploitable Vulnerabilities:
+			- Flaws and programming errors in software design lead to security vulnerabilities. Many public vulnerability repositories available online provide access to information about various software vulnerabilities. Attackers often search exploit sites such as Packet Storm (packetstormsecurity.com) and the Exploit Database (www.exploit-db.com) for vulnerabilities affecting a web server based on its OS and software applications.
+			- Using the information gathered in previous stages, attackers identify relevant vulnerabilities through the Exploit Database. Exploiting these vulnerabilities allows them to execute commands or binaries on a target machine, escalate privileges, or bypass security mechanisms. In some cases, attackers can even gain access to privileged user accounts and credentials.
+			- Finding Exploitable Web Server Vulnerabilities Using Exploit Database (www.exploit-db.com):
+				- Visit the Exploit Database Website and Navigate to the Exploit Database website.
+				- Use the Search Functionality - Enter keywords related to the target web server in the search bar (e.g., "Apache," "IIS," "nginx").
+				- Filter Search Results - Apply filters to refine search results:
+					- Type: Select "Webapps" for web server-related exploits.
+					- Platform: Choose the appropriate OS (e.g., Windows, Linux).
+					- Date: Specify a date range to find recent vulnerabilities.
+					- Analyze the Results
+				- Review the search results to identify relevant vulnerabilities. Each entry includes details such as the vulnerability description, affected software version, and exploit type.
+				- Review Exploit Details - Click on an exploit to access detailed information, including:
+					- Exploit Code: The actual script or code used to exploit the vulnerability.
+					- Description: A detailed explanation of the vulnerability and how it can be exploited.
+					- References: Links to additional resources or advisories.
+				- Verify the Vulnerability - Cross-check the identified vulnerabilities with the versions and configurations of the target web server to ensure applicability.
+				- Download and Test Exploits - If relevant, download the exploit code and test it in a controlled environment to verify its effectiveness.
+	- Session Hijacking:
+		- Attackers can perform session hijacking by identifying an active client session and taking complete control of it. Through session hijacking, an attacker can gain unauthorized access to a web server and intercept sensitive data by exploiting valid session IDs.
+		- Various techniques can be used to hijack or steal session data, including:
+			- Session Token Prediction – Guessing or predicting session tokens based on weak randomness.
+			- Session Replay – Reusing captured session tokens to gain access.
+			- Session Fixation – Forcing a user to authenticate with a known session ID.
+			- Sidejacking – Intercepting session cookies over insecure networks.
+			- Cross-Site Scripting (XSS) – Injecting malicious scripts to steal session tokens.
+		- Attackers use tools such as Burp Suite, JHijack, and Ettercap to automate session hijacking.
+		- Session Hijacking Tools:
+			- Burp Suite (portswigger.net): Burp Suite is a web security testing tool that can analyze and hijack session IDs in active sessions. The Sequencer tool in Burp Suite evaluates the randomness of session tokens. Attackers can use this tool to predict session tokens and take over valid sessions.
+			- JHijack (sourceforge.net)
+			- Ettercap (www.ettercap-project.org)
+	- Web Server Password Hacking:
+		- In this phase of web server hacking, an attacker attempts to crack web server passwords using various password-cracking techniques. These may include password guessing, dictionary attacks, brute-force attacks, hybrid attacks, precomputed hashes, rule-based attacks, distributed network attacks, and rainbow table attacks.
+		- Since some of these methods are tedious and time-consuming, attackers often require patience. To expedite the process, attackers can use automated tools such as Hashcat, THC Hydra, and Ncrack to crack web passwords and hashes.
+		- Hashcat (hashcat.net):
+			- Hashcat is a password-cracking tool compatible with multiple operating systems and platforms. It supports multi-hash cracking (MD4, MD5, SHA-224, SHA-256, SHA-384, SHA-512, RIPEMD-160, etc.) and multi-device processing.
+			- The tool offers several attack modes, including: Straight attack, Combination attack, Brute-force attack, Hybrid dictionary + mask attack, Hybrid mask + dictionary attack
+		- THC Hydra (github.com):
+			- THC Hydra is a parallelized login cracker capable of attacking numerous protocols. It is primarily used by security researchers and penetration testers to demonstrate how easily unauthorized access can be gained.
+			- THC Hydra supports the following protocols:
+				- Authentication & Access Control: Cisco AAA, Cisco auth, Cisco enable, LDAP, RDP, Rlogin, Rsh, SSH (v1 & v2), SSH key, Telnet, VMware-Auth
+				- Web & Network Services: FTP, HTTP (GET, POST, HEAD, Proxy, Form-based), HTTPS (GET, POST, HEAD, Proxy, Form-based), SOCKS5, VNC
+				- Databases: Firebird, Microsoft SQL Server, MongoDB, MySQL, Oracle (Listener, SID), Postgres
+				- Email & Messaging: IMAP, ICQ, NNTP, POP3, SMTP, SMTP Enum, SNMP (v1, v2, v3), XMPP
+				- Other Services: Asterisk, Apple Filing Protocol (AFP), Concurrent Versions System (CVS), Memcached, Network Control Protocol (NCP), PC-Anywhere, PC-NFS, Radmin, Real-Time Streaming Protocol (RTSP), SAP R/3, Session Initiation Protocol (SIP), Simple Network Management Protocol (SNMP), Subversion, TeamSpeak (TS2)
+			- Ncrack (nmap.org)
+			- Rainbow Crack (project-rainbowcrack.com)
+			- Wfuzz (www.edge-security.com)
+			- Wireshark (www.wireshark.org)
+	- Using an Application Server as Proxy:
+		- Web servers are sometimes configured to function as forwarding or reverse HTTP proxies. When these functionalities are enabled, attackers can exploit them to:
+			- Attack third-party systems on the internet
+			- Connect to arbitrary hosts within an organization’s internal network
+			- Establish connections to other services running on the proxy host itself
+		- To leverage vulnerable web servers as proxies, attackers commonly use GET and CONNECT requests to connect to target systems and extract information through the compromised web servers.
+	- Path Traversal via Misconfigured NGINX Alias:
+		- An attacker can exploit a misconfiguration in the nginx.conf file of a targeted Nginx web server, particularly due to the improper usage of the alias directive. This vulnerability arises when the alias directive is used without a trailing slash, as shown in the following misconfigured example:
+			- Webroot Misconfiguration in nginx.conf:
+				location /i {  
+					alias /data/w3/images/;  
+				}
+			- In this scenario, the absence of a trailing slash (/) allows attackers to manipulate the URL to access directories and files outside the designated web root. By appending traversal sequences such as ../, attackers can navigate the file system to restricted locations, potentially exposing sensitive data or system files.
+		- Exploiting This Vulnerability Using Kyubi (github.com):
+			- Kyubi is a Python-based security tool designed to detect and exploit path traversal vulnerabilities in Nginx web servers caused by misconfigured alias directives. It automates the process of testing URL paths for potential traversal weaknesses.
+			- Kyubi recursively brute-forces the URL path to identify and list files or directories that may be exposed due to misconfigurations.
+		- Potential Impact of Exploiting This Misconfiguration:
+			- If successfully exploited, this vulnerability can allow attackers to access sensitive files outside the web root, including configuration files and credentials. This can lead to severe consequences such as:
+				- Data theft – Exposure of sensitive business or user information.
+				- Website defacement – Unauthorized modification of website content.
+				- Complete server compromise – Gaining access to critical system files and escalating privileges.
+			- Proper configuration of the alias directive with a trailing slash (/) is essential to prevent path traversal attacks and secure Nginx web servers.
+	- Web Server Attack Tools:
+		- Immunity’s CANVAS (www.immunityinc.com): Immunity’s CANVAS provides penetration testers and security professionals with hundreds of exploits, an automated exploitation system, and a comprehensive, reliable exploit development framework. It provides features such as client-side exploitation, privilege escalation, HTTP tunneled privilege escalation, remote kernel exploitation, advanced backdoor technology, and advanced web attack technology.
+		- OpenVAS (www.openvas.org)
+		- THC Hydra (github.com)
+		- HULK DoS (github.com)
+		- MPack (sourceforge.net)
