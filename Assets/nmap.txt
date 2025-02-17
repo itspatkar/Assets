@@ -194,3 +194,12 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
     - Enumerate web applications: nmap -sV --script http-enum <target IP address>
     - Check for FrontPage login: nmap <target IP address> -p 80 --script=http-frontpage-login
     - Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>
+
+
+----
+
+nmap -sV --script=http-enum [website]
+nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com.
+nmap --script http-trace -d www.goodshopping.com
+nmap -sV -sC 10.10.1.9
+nmap -p80 --script http-waf-detect www.goodshopping.com

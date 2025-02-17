@@ -5402,3 +5402,36 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Kaseya Patch Management (www.kaseya.com)
 		- Software Vulnerability Manager (www.flexera.com)
 		- Ivanti Patch for Endpoint Manager (www.ivanti.com)
+
+
+--------------------------------------------------
+
+# Hacking Web Applications
+
+- Web Applications:
+	- Web applications are software programs that run on web browsers, acting as interfaces between users and web servers. They generate dynamic web pages or execute scripts within the client’s browser, enabling users to interact with databases via a graphical user interface (GUI).
+	- Despite security measures, web applications remain vulnerable to threats like SQL injection, cross-site scripting, and session hijacking. Users interact with them using a keyboard, mouse, or touch interface. Built on languages like JavaScript, HTML, and CSS, web applications work with server-side languages like SQL to manage data. They facilitate tasks such as searching, emailing, social networking, online shopping, and order tracking. Some desktop applications also integrate web-based functionalities for enhanced flexibility.
+	- Web Application Architecture:
+		- Web applications run on web browsers and utilize a combination of server-side scripts (e.g., Java, C#, Ruby, PHP) and client-side scripts (e.g., HTML, JavaScript) to function. The performance of a web application depends on its architecture, which consists of hardware and software that handle tasks such as processing requests, retrieving data, and displaying the required information.
+		- Web application architecture involves various devices, web browsers, and external web services that interact with different scripting languages to execute the application. It is typically structured into three layers:
+		- Client or Presentation Layer:
+			- The client or presentation layer includes all physical devices on the user side, such as laptops, smartphones, and desktop computers. These devices run operating systems and compatible web browsers that allow users to send requests for web applications. When a user enters a URL in the browser, the request is sent to the web server, which processes it, retrieves the required data, and returns a response. This response is then displayed in the browser as a web page.
+		- Business Logic Layer:
+			- The business logic layer is divided into two sublayers:
+			- Web Server Logic Layer:
+				- This layer consists of components such as:
+				- A firewall that provides security for web content.
+				- An HTTP request parser that processes incoming client requests and forwards responses.
+				- A proxy caching server that optimizes performance by storing frequently accessed data.
+				- An authentication and login handler that manages user authentication.
+				- A resource handler that efficiently processes multiple requests.
+				- A hardware component (e.g., a physical or cloud-based server).
+			- The web server logic layer includes code responsible for handling client requests and returning appropriate responses (e.g., IIS Web Server, Apache Web Server).
+			- Business Logic Layer:
+				- This layer contains the core functional logic of the web application, implemented using technologies such as .NET, Java, and middleware solutions. It governs data flow and defines the application's behavior. Developers build applications based on this logic using various programming languages. Additionally, this layer manages data storage and facilitates integration with legacy systems while incorporating modern functionalities. The server must use a specific protocol to retrieve user-requested data from the database.
+		- Database Layer:
+			- The database layer includes:
+				- Cloud services for scalable data storage.
+				- A B2B layer that manages commercial transactions.
+				- A database server that stores and organizes an organization's data in a structured manner (e.g., MS SQL Server, MySQL Server).
+			- This layer ensures efficient data management, retrieval, and security for web applications.

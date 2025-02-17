@@ -1,0 +1,2 @@
+
+nc -vv <domain> port
