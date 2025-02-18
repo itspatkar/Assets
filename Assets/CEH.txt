@@ -5483,3 +5483,327 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Layer 3 - Operating System: Attackers scan the operating system for open ports and vulnerabilities. They develop malware or backdoors to exploit these weaknesses, often delivering malicious payloads through open ports. If successfully executed, they can compromise the system and escalate their attack to access the website’s database.
 			- Layer 2 - Network Infrastructure: Network devices such as routers and switches direct traffic efficiently. Attackers can overload switches with excessive traffic, causing them to behave like hubs. This enables packet sniffing, allowing attackers to capture sensitive data such as user credentials and personal information.
 			- Layer 1 - Security Mechanisms (IDS/IPS): Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS) monitor network traffic for malicious activity. However, attackers use evasion techniques to bypass these security measures, ensuring their attacks remain undetected while exploiting vulnerabilities in the target system.
+- Web Application Threats:
+	- OWASP Top 10 Application Security Risks – 2021 (owasp.org):
+		- The Open Web Application Security Project (OWASP) is an international organization that maintains a list of the top 10 vulnerabilities and security risks in web applications. The latest OWASP Top 10 application security risks are as follows:
+		- A01 – Broken Access Control:
+			- This vulnerability occurs when access restrictions for authenticated users are not properly enforced. Attackers can exploit these flaws to gain unauthorized access to functionality and data, such as accessing other user accounts, viewing sensitive files, modifying other users' data, and altering access rights.
+			- Access control defines how a web application grants permissions to users for creating, updating, and deleting records, content, or functions while restricting unauthorized access. Broken access control arises when an attacker identifies and exploits weaknesses in these restrictions, bypasses authentication, and compromises the system. These vulnerabilities are widespread due to insufficient automated detection and inadequate functional testing by developers. Attackers can abuse these flaws to impersonate users or administrators, gaining the ability to create, access, modify, or delete records.
+			- Common attacks in this category include:
+				- Directory Traversal
+				- Hidden Field Manipulation
+			- Common Access Control Vulnerabilities (OWASP 2021 R3 Revision):
+				- Abuse of least privilege or improper default access – Granting excessive permissions to roles, users, or abilities instead of enforcing specific access restrictions.
+				- Bypassing access controls – Manipulating URLs, API requests, HTML pages, or application states through parameter tampering, forced browsing, or attack tools.
+				- Account takeover via unique identifiers – Gaining unauthorized access to another user’s account by exploiting identifiers.
+				- Unauthorized API access – Accessing APIs without proper access controls for PUT, POST, and DELETE requests.
+				- Privilege escalation – Allowing a regular user to gain administrative privileges after logging in.
+				- Metadata manipulation – Altering hidden fields, JSON Web Tokens (JWTs), cookies, or other access control tokens to bypass authentication or elevate privileges.
+				- Exploiting CORS misconfigurations – Accessing APIs from unauthorized sources due to improperly configured cross-origin resource sharing (CORS).
+				- Forced browsing – Gaining access to privileged or authenticated pages as an unauthorized or unauthorized user.
+		- A02 – Cryptographic Failures/Sensitive Data Exposure:
+			- Many web applications and APIs fail to properly protect sensitive data, such as financial information, healthcare records, and personally identifiable information (PII). Developers often make critical mistakes, such as using weak cryptographic keys, failing to update old keys, or not enforcing proper key management. In such cases, sensitive data may be transmitted in plaintext over HTTP, making it vulnerable to interception. Attackers can exploit these weaknesses to steal or modify sensitive data, leading to credit card fraud, identity theft, or other malicious activities. To prevent this, sensitive data must be encrypted both at rest and in transit, with additional security measures when exchanged with a browser.
+			- Web applications often store sensitive data, such as passwords, credit card numbers, account records, and authentication credentials, in databases or file systems. If these storage locations are not properly secured, attackers can gain unauthorized access and misuse the information.
+			- Cryptographic failures occur when web applications do not adequately protect sensitive data from unauthorized access. Applications rely on cryptographic algorithms to secure data transmission between the server and client, but vulnerabilities such as insecure cryptographic storage and information leakage can lead to exposure. Even when data is encrypted, weak or outdated encryption methods may allow attackers to exploit and steal the information. Poorly implemented encryption can leave sensitive data, such as credit card numbers and Social Security Numbers (SSNs), vulnerable to theft and modification, enabling further attacks like identity theft and fraud.
+			- Cryptographic failures can result in severe financial and reputational damage. Organizations must take proactive measures to secure their systems and prevent information leakage by implementing robust encryption practices.
+			- Common Attacks in This Category:
+				- Cookie Snooping
+				- RC4 NOMORE Attack
+				- Same-Site Attack
+				- Pass-the-Cookie Attack
+			- Preventive Measures for Developers:
+				- Use strong encryption algorithms – Avoid weak or outdated encryption methods.
+				- Secure cryptographic key storage – Ensure encryption keys, certificates, and passwords are stored securely. Insecure storage can allow attackers to retrieve keys and decrypt sensitive data.
+				- Ensure proper key management – Regularly rotate cryptographic keys and enforce strong key management policies.
+				- Check the randomness of initialization vectors (IVs) – IVs should be securely generated, never reused, and follow best practices in cipher modes of operation.
+				- Avoid deprecated hash functions – Do not use outdated hashing algorithms like MD5 and SHA-1 or deprecated padding methods such as PKCS 1/1.5.
+				- Prevent cryptographic error leaks – Ensure that error messages and side-channel information do not expose vulnerabilities that attackers can exploit.
+				- Implement content-filtering mechanisms – Protect systems and network resources from information leakage through proper filtering.
+		- A03 – Injection Flaws:
+			- Injection flaws, such as SQL injection and LDAP injection, occur when untrusted data is sent to an interpreter as part of a command or query. The attacker’s malicious input can trick the interpreter into executing unintended commands or accessing data without proper authorization.
+			- Injection flaws allow attackers to manipulate an application by injecting harmful code or queries, leading to data loss, corruption, unauthorized access, or denial of service. These vulnerabilities are especially common in legacy code and are frequently found in SQL, LDAP, and XPath queries. Fortunately, they can often be detected using application vulnerability scanners and fuzzing techniques.
+			- By exploiting injection flaws, attackers can insert malicious commands or scripts into a web application’s input fields, causing the system to execute unauthorized operations. This can result in the ability to read, modify, delete, or manipulate sensitive data.
+			- Injection flaws pose serious security risks, making it essential for developers to validate and sanitize all user input, use parameterized queries, and implement strong security practices to mitigate these attacks.
+			- Common Injection Attacks:
+				- SQL Injection
+				- Command Injection
+				- LDAP Injection
+				- Cross-Site Scripting (XSS)
+				- Buffer Overflow
+			- Types of Injection Flaws:
+				- SQL Injection: SQL injection is one of the most common vulnerabilities on the internet. It occurs when an application fails to validate user input and allows SQL commands to be executed by the backend database. Attackers inject malicious SQL queries into input fields to gain unauthorized access, retrieve sensitive data, or manipulate database contents.
+				- Command Injection: This type of attack occurs when an application improperly validates user input, allowing attackers to inject and execute arbitrary system commands. Because command injection enables attackers to execute system-level operations, it is particularly dangerous.
+				- LDAP Injection: LDAP injection occurs when an application constructs LDAP statements based on unsanitized user input. Attackers can exploit this flaw by modifying the LDAP query, granting unauthorized access, or altering directory contents. Using a local proxy, they can inject malicious queries and manipulate the LDAP tree.
+				- Cross-Site Scripting (XSS): XSS vulnerabilities occur when an application includes untrusted data in a web page without proper validation or escaping. Attackers inject and execute scripts in a victim’s browser, enabling them to hijack user sessions, deface websites, or redirect users to malicious sites. XSS attacks are possible when an application updates an existing web page with user-supplied data via browser APIs that allow JavaScript execution.
+		- A04 – Insecure Design:
+			- Insecure design occurs when security controls are not properly implemented during application development, failing to account for the latest business risks. These design flaws can compromise data integrity, confidentiality, and authenticity. Attackers can exploit such weaknesses to perform session hijacking, credential theft, spoofing, and various man-in-the-middle (MITM) attacks.
+			- Insecure design flaws arise due to inadequate security considerations during the development phase, leading to critical vulnerabilities such as SQL injection (SQLi) and improperly exposed S3 buckets. A major cause of these vulnerabilities is developers overlooking security threats or lacking sufficient knowledge about them. Additionally, the absence of proper business risk profiling contributes to design insecurities. Attackers often analyze an application’s workflow through threat modeling to identify and exploit security flaws before launching an attack.
+			- Common Attacks in This Category:
+				- Business Logic Bypass Attack
+				- Web-Based Timing Attacks
+				- CAPTCHA Attacks
+				- Platform Exploits
+			- Potential Consequences of Insecure Design:
+				- Request Forgery – Manipulating requests to perform unauthorized actions.
+				- Authentication Hijacking – Gaining unauthorized access to user sessions or credentials.
+				- Identity Theft – Stealing personal or sensitive user information.
+				- Data Loss – Corrupting, modifying, or deleting stored data.
+				- Denial-of-Service (DoS) Attacks – Disrupting system availability by overwhelming resources.
+			- Example:
+				- Attackers often exploit poorly implemented APIs that fail to filter and validate requests properly. They specifically target weak APIs that are not integrated with security gateways capable of detecting malicious inputs. By attaching malicious code to a vulnerable API, attackers ensure that when a user accesses the API via an application, the malicious payload is executed, loading along with database content in the user’s browser.
+				- To mitigate insecure design vulnerabilities, organizations should incorporate security into every phase of software development, conduct thorough threat modeling, and enforce strong security controls such as API security gateways, input validation, and secure authentication mechanisms.
+		- A05 – Security Misconfiguration:
+			- Security misconfiguration is one of the most common web security issues, often resulting from improper configuration, insecure default settings, unpatched vulnerabilities, and a lack of regular updates. It can occur due to misconfigured HTTP headers, open S3 buckets, error messages exposing sensitive information, and the failure to patch or upgrade systems, frameworks, dependencies, and components in a timely manner.
+			- Poorly configured XML processors, for example, may evaluate external entity references within XML documents, allowing attackers to exploit vulnerabilities through file URI handlers, internal SMB file shares, internal port scanning, remote code execution, or denial-of-service (DoS) attacks such as the billion laughs attack.
+			- To mitigate security misconfiguration risks, developers and network administrators must properly configure the entire application stack, including the platform, web server, application server, framework, and custom code. If a server is not configured securely, attackers can exploit vulnerabilities such as unvalidated inputs, parameter tampering, improper error handling, and insufficient transport layer protection.
+			- Common Attacks in This Category:
+				- XML External Entity (XXE) Attack
+				- Unvalidated Redirects and Forwards
+				- Directory Traversal
+				- Hidden Field Manipulation
+			- Key Security Misconfiguration Issues and Their Risks:
+				- Unvalidated Inputs:
+					- Unvalidated input vulnerabilities occur when a web application does not properly validate user input before processing it. If validation is only enforced on the client side, attackers can bypass it by modifying HTTP requests, URLs, headers, form fields, hidden fields, and query strings. This can lead to cross-site scripting (XSS), buffer overflows, and injection attacks, ultimately resulting in data theft and system compromise.
+				- Parameter/Form Tampering:
+					- Parameter tampering involves modifying parameters exchanged between the client and server to manipulate application data, such as user credentials, prices, or account balances. Attackers may exploit hidden form fields, cookies, or URL query strings to bypass security measures. Parameter tampering can result in identity theft, unauthorized transactions, and privilege escalation.
+				- Improper Error Handling:
+					- Improper error handling occurs when a system exposes detailed error messages containing sensitive information about system logic, database structure, or application flaws. Attackers can use these error messages to identify security weaknesses and launch further attacks, including SQL injection, authentication bypass, and DoS attacks.
+					- Common error messages revealing vulnerabilities:
+						- Null pointer exceptions
+						- System call failures
+						- Database connection errors
+						- Network timeouts
+				- Insufficient Transport Layer Protection:
+					- This vulnerability occurs when an application fails to encrypt sensitive traffic using strong SSL/TLS configurations. Weak encryption allows attackers to intercept, manipulate, or redirect network traffic, leading to phishing, session hijacking, and man-in-the-middle (MITM) attacks.
+					- Example: A user logs into an online banking application without SSL encryption, transmitting credentials in plaintext. Attackers can intercept the session and steal login details.
+				- Improper Restriction of XML External Entities (XXE):
+					- Older or misconfigured XML processors may allow attackers to exploit external entity references to access internal files, conduct port scans, or execute remote code.
+			- Common Server Configuration Issues That Lead to Misconfigurations:
+				- Missing security hardening
+				- Server software vulnerabilities
+				- Enabling unnecessary services
+				- Improper authentication mechanisms
+				- Unpatched security flaws
+				- Default accounts with weak credentials
+				- Use of outdated legacy software
+			- Mitigation Strategies:
+				- Disable default accounts, unused pages, and unprotected files.
+				- Regularly patch and update all software components.
+				- Implement secure input validation on both client and server sides.
+				- Configure proper error handling to prevent information leakage.
+				- Enforce strict SSL/TLS protocols for secure communication.
+				- Restrict external entity processing in XML configurations.
+				- Use automated security scanners to identify misconfigurations.
+			- By proactively addressing security misconfigurations, organizations can significantly reduce their attack surface and safeguard their applications from exploitation.
+		- A06 – Vulnerable and Outdated Components:
+			- Software components such as libraries, frameworks, and modules operate with the same privileges as the application. If these components are not updated or patched in a timely manner, they can introduce serious security vulnerabilities. Attackers can exploit outdated components to compromise sensitive data, take control of servers, or bypass application defenses.
+			- Web applications and APIs that rely on vulnerable third-party components expose themselves to significant risks. Since libraries and frameworks execute with full privileges, a flaw in any single component can have severe consequences. Attackers can identify weak components or dependencies by scanning applications, performing manual analysis, or searching exploit databases such as:
+				- Exploit Database (www.exploit-db.com)
+				- CXSecurity (cxsecurity.com)
+				- Zero Day Initiative (www.zerodayinitiative.com)
+			- Once a vulnerable component is identified, attackers customize exploits and execute attacks, potentially leading to data breaches, malware injection, or full system takeover. Attackers also use vulnerability scanning tools like Nessus and GFI LanGuard to detect outdated or unpatched software components.
+			- Common Conditions That Make Applications Vulnerable:
+				- Unknown component versions: When organizations are unaware of the versions of components used, including nested dependencies.
+				- Obsolete or unpatched software: When operating systems (OS), databases, web/application servers, and runtime environments remain outdated or unsupported.
+				- Lack of regular vulnerability scanning: When applications do not undergo routine security assessments or fail to subscribe to security updates.
+				- Delayed updates for core frameworks and dependencies: When organizations fail to apply timely updates or security patches.
+				- Compatibility issues with software updates: When updates are not properly tested before deployment, leading to security misconfigurations.
+				- Weak security configurations for component files: When configuration files are not properly secured, making them easy targets for attackers.
+			- Common Attacks in This Category:
+				- Platform Exploits – Attacks targeting vulnerabilities in operating systems, frameworks, and application platforms.
+				- Magecart Attack – A cyberattack in which malicious scripts are injected into payment processing pages to steal sensitive credit card data.
+				- Buffer Overflow – An attack where an application overwrites memory, potentially allowing execution of malicious code.
+			- Mitigation Strategies:
+				- Regularly update and patch all components (including dependencies).
+				- Monitor vulnerability databases and security advisories for known component flaws.
+				- Perform regular security scans to detect and eliminate outdated dependencies.
+				- Use software composition analysis (SCA) tools to track and manage third-party components.
+				- Test updates in a staging environment before deploying them to production.
+				- Ensure secure configurations for all components, including proper access controls.
+		- A07 – Identification and Authentication Failures (Broken Authentication):
+			- Web applications often misimplement identification, authentication, and session management, making them vulnerable to attacks such as brute-force attacks, password spraying, session hijacking, and account takeovers. These flaws allow attackers to compromise user credentials, session tokens, or authentication keys, leading to identity theft and unauthorized access.
+			- Secure identification, authentication, and session management are critical for protecting user accounts. However, many applications fail to implement strong credential functions for actions such as:
+				- Changing passwords
+				- Resetting forgotten passwords
+				- Remembering login credentials
+				- Updating account details
+			- To enhance security, developers must use robust authentication mechanisms, including cryptographic tokens, multi-factor authentication (MFA), and biometrics. Attackers commonly exploit weak authentication and session management functions, including session ID exposure, inadequate logout mechanisms, poor password management, weak timeout settings, and insecure account recovery processes.
+			- Common Authentication and Session Management Vulnerabilities:
+				- Session ID in URLs:
+					- If session IDs are exposed in URLs, an attacker can steal a session and impersonate the victim.
+					- Example:
+						- A user logs into http://certifiedhackershop.com, which generates a session ID. An attacker can:
+						- Use a network sniffer to intercept the session ID stored in a cookie.
+						- Trick the victim into revealing their session ID.
+						- Replay the session by entering a manipulated URL: http://certifiedhackershop.com/sale/saleitems=304;jsessionid=12OMTOIDPXM0OQSABGCKLHCJUN2JV?dest=NewMexico  
+						- This allows the attacker to access the victim’s account without needing login credentials.
+					- Mitigation:
+						- Never expose session IDs in URLs (use cookies or secure headers instead).
+						- Implement session fixation protections by regenerating session IDs after login.
+						- Use secure and HTTP-only cookies with appropriate expiration settings.
+				- Password Exploitation:
+					- Many web applications rely on user IDs and passwords for authentication. However, weak password storage and poor hashing mechanisms make password databases easy targets for attackers.
+					- Common Password Exploitation Risks:
+						- Weak or outdated hashing algorithms (e.g., MD5, SHA-1).
+						- Storing passwords in plaintext instead of securely hashing and salting them.
+						- Lack of multi-factor authentication (MFA), making brute-force attacks easier.
+					- Mitigation:
+						- Use strong hashing algorithms (e.g., bcrypt, Argon2, PBKDF2).
+						- Enforce password complexity policies to prevent weak passwords.
+						- Implement MFA to add an extra layer of security.
+				- Timeout Exploitation (Session Hijacking):
+					- If session timeouts are too long and session IDs remain unchanged after login, attackers can hijack an active session and gain the same privileges as the victim.
+					- Example:
+						- A user logs into www.certifiedhacker.com but forgets to log out.
+						- The web application keeps the session active for 2 hours.
+						- An attacker gains physical access to the user’s device, opens the browser, and clicks on the saved session in the history.
+						- Since the session is still valid, the attacker gains full access to the victim’s account without needing credentials.
+					- Mitigation:
+						- Set short session timeouts and invalidate idle sessions promptly.
+						- Regenerate session IDs after authentication.
+						- Implement automatic logout mechanisms when users close the browser.
+			- Common Attacks in This Category:
+				- Cross-Site Request Forgery (CSRF) – Attackers trick users into executing unauthorized actions on authenticated sessions.
+				- Cookie/Session Poisoning – Attackers manipulate cookies or session data to alter permissions or hijack accounts.
+				- Cookie Snooping – Attackers intercept session cookies through packet sniffing or unsecured connections.
+			- Best Practices for Secure Authentication & Session Management:
+				- Enforce strong password policies (minimum length, complexity, and expiration).
+				- Use MFA (multi-factor authentication) to add an extra layer of security.
+				- Never store session IDs in URLs—use secure cookies with HTTPOnly and Secure flags.
+				- Regenerate session IDs after login to prevent session fixation.
+				- Set short session timeouts and invalidate sessions on logout or inactivity.
+				- Use strong encryption to store authentication credentials.
+				- Monitor authentication logs to detect and respond to suspicious login attempts.
+			- By implementing robust authentication and session management mechanisms, organizations can prevent account takeovers, session hijacking, and credential theft, ensuring stronger protection for user accounts.
+		- A08 – Software and Data Integrity Failures:
+			- Many applications implement auto-update features to keep software up to date. However, if these updates are downloaded from unauthorized or previously trusted sources without proper integrity checks, attackers can exploit this flaw to distribute malware or malicious code. Additionally, if data serialization formats are easily readable or modifiable, attackers can manipulate the data, leading to insecure deserialization vulnerabilities.
+			- Software and data integrity failures occur when organizations:
+				- Fail to update software with the latest security patches.
+				- Use unverified third-party libraries, plugins, or dependencies from public repositories, content delivery networks (CDNs), or untrusted sources.
+				- Implement automatic software updates without proper verification.
+			- Common Risks:
+				- Insecure CI/CD pipelines: Attackers inject malicious code into continuous integration and deployment (CI/CD) workflows, leading to compromised software releases.
+				- Unverified third-party dependencies: Downloading untrusted components can introduce vulnerabilities.
+				- Insecure serialization: Weakly encoded data can be manipulated, leading to remote code execution or data tampering.
+			- To mitigate these risks, developers should:
+				- Audit source code and third-party dependencies.
+				- Secure CI/CD pipelines with code signing and integrity checks.
+				- Use trusted repositories for software libraries and plugins.
+				- Implement encryption or digital signatures for serialized data.
+			- Common Security Weaknesses in This Category:
+				- Inclusion of functionalities from untrusted sources – Using unverified external code increases the risk of malicious injections.
+				- Downloading code without integrity checks – Auto-updates from unauthorized sources can introduce backdoors.
+				- Deserialization of untrusted data – Attackers modify serialized objects to execute arbitrary commands or manipulate application logic.
+			- Common Attacks in This Category:
+				- Insecure Deserialization – Attackers modify serialized data to execute unauthorized actions.
+				- Unvalidated Redirects and Forwards – Users are redirected to malicious sites.
+				- Watering Hole Attack – Attackers compromise trusted websites to distribute malware.
+				- Denial-of-Service (DoS) Attacks – Attackers overload the system, making it unavailable.
+				- Buffer Overflow – Exploits memory corruption vulnerabilities.
+				- Web Service Attacks – Target APIs and web services.
+				- Platform Exploits – Attackers leverage vulnerabilities in application platforms.
+				- Magecart Attack – Malicious JavaScript injects code to steal payment data.
+			- Potential Exploits Due to Software and Data Integrity Failures:
+				- Cache Poisoning – Attackers manipulate cached data to deliver malicious content.
+				- Code Injection – Malicious scripts are inserted into applications.
+				- Command Execution – Attackers execute unauthorized commands.
+				- Denial of Service (DoS) – System resources are exhausted, causing downtime.
+				- Data Theft – Sensitive data is stolen due to weak integrity protections.
+			- Example Attack Scenario - Compromised CI/CD Pipeline:
+				- Attackers exploit an insecure CI/CD pipeline of an organization.
+				- They inject malicious code into the software build process.
+				- The organization unknowingly distributes compromised software to users.
+				- Clients download and install the malicious software without integrity verification.
+				- Attackers gain remote access to the client’s network, allowing data theft, espionage, or full system compromise.
+			- Mitigation Strategies:
+				- Enforce strict software supply chain security (use signed software packages).
+				- Use code integrity verification techniques (e.g., hashing, checksums, cryptographic signatures).
+				- Secure CI/CD pipelines (limit access, use secure repositories, scan for vulnerabilities).
+				- Regularly update and patch software (ensure dependencies are safe).
+				- Monitor for unauthorized modifications (log and analyze update processes).
+			- By following best security practices, organizations can protect against software and data integrity failures, preventing malware distribution, data breaches, and system takeovers.
+		- A09 – Security Logging and Monitoring Failures:
+			- Security logging and monitoring failures occur due to insufficient log monitoring, improper log storage, weak error messages, and inadequate alert mechanisms for failed login attempts. When applications fail to identify threats in advance, attackers can exploit these vulnerabilities to compromise systems, tamper with credentials, or destroy data.
+			- Understanding Security Logging and Monitoring
+				- Web applications maintain logs to track user activities, including login attempts, administrative actions, and security events. However, many applications suffer from weaknesses such as:
+					- Insufficient logging – Failing to record critical security events.
+					- Improper output neutralization for logs – Allowing attackers to inject malicious content.
+					- Exclusion of security-relevant information – Logs missing essential attack details.
+					- Logging of sensitive data – Exposing user credentials or personal information in logs.
+				- When logging and monitoring mechanisms are inadequate, attackers can:
+					- Tamper with or delete log records to erase traces of malicious activity.
+					- Modify logs to mislead forensic investigations.
+					- Perform brute-force attacks without triggering alerts.
+					- Exploit weak error messages that expose system details.
+			- Common Causes of Security Logging and Monitoring Failures:
+				- Lack of essential log data – Logs do not capture successful/failed login attempts, security events, or high-risk transactions.
+				- Vague or insufficient error messages – Generic errors fail to provide meaningful security insights.
+				- Inadequate monitoring of application and API logs – Delayed or missing alerts increase response time to threats.
+				- Local log storage – Logs stored locally can be tampered with or deleted by attackers.
+				- Lack of incident response escalation – Organizations fail to escalate or act upon detected threats.
+				- Failure of security tools – Dynamic Application Security Testing (DAST) tools like OWASP ZAP may fail to detect certain anomalies.
+				- Absence of real-time monitoring and alerting – Applications cannot detect and escalate suspicious activities in real-time.
+			- Common Attacks in This Category:
+				- Web Service Attacks – Exploiting insufficient logging in APIs to perform unauthorized access.
+				- Log Injection Attacks – Injecting fake logs to manipulate monitoring systems.
+				- Brute Force Attacks – Repeated login attempts without triggering alerts.
+				- Privilege Escalation – Exploiting missing audit logs to perform unauthorized actions undetected.
+			- Example Attack Scenario - Exploiting Weak Log Monitoring:
+				- A web application fails to log failed login attempts.
+				- An attacker brute-forces user credentials without triggering alerts.
+				- Due to insufficient monitoring, the attack remains undetected for an extended period.
+				- The attacker successfully gains unauthorized access to an account and performs malicious actions.
+			- Mitigation Strategies:
+				- Enable comprehensive logging – Capture successful/failed login attempts, security events, and transactions.
+				- Use centralized log storage – Prevent attackers from tampering with local logs.
+				- Implement real-time monitoring and alerts – Detect suspicious activities immediately.
+				- Secure logs – Encrypt logs and restrict access to authorized users only.
+				- Regularly review and analyze logs – Use SIEM (Security Information and Event Management) tools to detect anomalies.
+				- Establish an incident response plan – Ensure quick response to detected threats.
+			- By implementing robust logging and monitoring mechanisms, organizations can detect, investigate, and respond to security threats before they escalate.
+		- A10 – Server-Side Request Forgery (SSRF):
+			- Server-Side Request Forgery (SSRF) is a web security vulnerability that occurs when an application fetches remote resources without properly validating user-supplied URLs. Attackers exploit this flaw to manipulate server requests, gaining unauthorized access to internal resources or sending malicious requests to protected systems behind firewalls, VPNs, or access control lists (ACLs).
+			- Understanding SSRF Attacks:
+				- Attackers leverage SSRF vulnerabilities in public-facing web servers to send crafted requests to internal or backend systems. Since these backend servers trust requests from internal networks, they unknowingly expose sensitive data or services.
+				- A common SSRF scenario occurs when an application fetches external data via user-provided URLs. For example:
+					- A web application loads content from: https://xyz.com/feed.php?url=externalsite.com/feed/
+					- If the application fails to validate the URL, an attacker can manipulate it to: https://xyz.com/feed.php?url=http://localhost/admin or https://xyz.com/feed.php?url=file:///etc/passwd
+				- This allows attackers to:
+					- Access internal files (e.g., reading /etc/passwd)
+					- Scan internal network services
+					- Bypass authentication mechanisms
+					- Perform remote code execution
+			- Types of SSRF Attacks:
+				- Injecting an SSRF Payload: Attackers inject SSRF payloads into parameters that accept URLs or file paths. These payloads modify headers, allowing access to unauthorized internal resources.
+				- Accessing Internal Resources: Attackers exploit SSRF to bypass firewall restrictions and access admin panels or restricted server files.
+					- Example URLs for accessing internal pages:
+						- https://www.certifiedhacker.com/page?url=http://127.0.0.1/admin
+						- https://www.certifiedhacker.com/page?url=http://127.0.0.1/pgadmin
+						- https://www.certifiedhacker.com/page?url=http://127.0.0.1/phpmyadmin
+					- Example URLs for accessing internal files:
+						- https://www.certifiedhacker.com/page?url=file:///etc/passwd
+						- https://www.certifiedhacker.com/page?url=file://path/to/file
+				- Using a URL Scheme to Access Internal Services: Attackers can exploit protocol-specific URL schemes to target internal services such as FTP, LDAP, and DNS.
+					- Examples for FTP exploitation:
+						- https://www.certifiedhacker.com/page?url=ftp://attacker.net:11211/
+						- https://www.certifiedhacker.com/page?url=sftp://attacker.net:11111/
+					- Examples for LDAP exploitation:
+						- https://www.certifiedhacker.com/page?url=ldap://127.0.0.1/%0astats%0aquit
+						- https://www.certifiedhacker.com/page?url=ldap://localhost:11211/%0astats%0aquit
+				- Cross-Site Port Attack (XSPA): Attackers use SSRF to scan open ports on internal servers by abusing loopback interfaces (127.0.0.1, localhost).
+					- Example URLs for scanning open ports:
+						- https://www.certifiedhacker.com/page?url=http://localhost:22/ (SSH)
+						- https://www.certifiedhacker.com/page?url=http://127.0.0.1:25/ (SMTP)
+						- https://www.certifiedhacker.com/page?url=http://127.0.0.1:3389/ (RDP)
+			- Common Attacks Related to SSRF:
+				- Injecting an SSRF Payload – Modifying server requests to access internal resources.
+				- Cross-Site Port Attack (XSPA) – Scanning for open ports on internal servers.
+				- DNS Rebinding Attack – Bypassing same-origin policy to hijack internal services.
+				- H2C Smuggling Attack – Exploiting HTTP/2 to HTTP/1.1 conversion vulnerabilities.
+			- Mitigation Strategies:
+				- Whitelist trusted URLs – Allow only predefined, safe domains.
+				- Block direct access to internal IPs – Prevent requests to 127.0.0.1, 192.168.x.x, 10.x.x.x.
+				- Use URL validation – Restrict allowed protocols (e.g., block file://, ftp://).
+				- Enforce strong network segmentation – Separate public and internal resources.
+				- Log and monitor server requests – Detect anomalous request patterns.
+			- By implementing strict URL validation, access controls, and monitoring, organizations can effectively prevent SSRF attacks.
