@@ -5807,3 +5807,39 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Enforce strong network segmentation – Separate public and internal resources.
 				- Log and monitor server requests – Detect anomalous request patterns.
 			- By implementing strict URL validation, access controls, and monitoring, organizations can effectively prevent SSRF attacks.
+	- Web Application Attacks:
+		- Directory Traversal
+		- Hidden Field Manipulation
+		- Cookie Snooping
+		- RC4 NOMORE Attack
+		- Same-Site Attack
+		- Pass-the-Cookie Attack
+		- SQL Injection
+		- Command Injection
+		- LDAP Injection
+		- Cross-Site Scripting (XXS)
+		- Buffer Overflow
+		- Business Logic Bypass Attack
+		- Web-based Timing Attacks
+		- CAPTCHA Attacks
+		- Platform Exploits
+		- XML External Entity (XXE) Attack
+		- Unvalidated Redirects and Forwards
+		- Magecart Attack
+		- Cross-Site Request Forgery
+		- Cookie/Session Poisoning
+		- Insecure Deserialization
+		- Watering Hole Attack
+		- Denial-of-Service (DoS)
+		- Web Service Attacks
+		- Injecting an SSRF Payload
+		- Cross-Site Port Attack (XSPA)
+		- DNS Rebinding Attack
+		- H2C Smuggling Attack
+		- Clickjacking Attack
+		- JavaScript Hijacking
+		- Cross-Site WebSocket Hijacking
+		- Obfuscation Application
+		- Network Access Attacks
+		- DMZ Protocol Attacks
+		- MarioNet Attack
