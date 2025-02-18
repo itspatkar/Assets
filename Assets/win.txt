@@ -1,8 +1,0 @@
-
-# Unattended Installation Path
-XML file stores all the information related to the configuration settings set during the installation process and may also include sensitive information such as the configuration of local accounts, usernames, and even decoded passwords. If attackers can gain access to this file, then they can easily obtain credential information and configuration settings used during the installation of that service or application. Attackers use this information to escalate privileges.
-- Locations
-    => C:\Windows\Panther\
-    => C:\Windows\Panther\UnattendGC\
-    => C:\Windows\System32\
-    => C:\Windows\System32\sysprep\
