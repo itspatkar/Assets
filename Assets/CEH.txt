@@ -5966,10 +5966,80 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Disable Detailed Error Messages – Prevent attackers from learning LDAP query structures.
 				- Monitor and Log LDAP Queries – Detect suspicious activity early.
 			- By enforcing strict input validation and secure query handling, organizations can prevent LDAP injection attacks and secure their directory services.
-		- Cross-Site Scripting (XXS)
+		- Cross-Site Scripting (XXS):
+			- Cross-site scripting (XSS or CSS) attacks exploit vulnerabilities in dynamically generated web pages, allowing malicious attackers to inject client-side scripts into web pages viewed by other users. These attacks occur when unvalidated input data is included in dynamic content sent to a user's web browser for rendering.
+			- Attackers inject malicious JavaScript, VBScript, ActiveX, HTML, or Flash into legitimate requests to execute harmful actions on a victim's system. By bypassing client-side security mechanisms, attackers gain unauthorized privileges and inject malicious scripts into web pages. These scripts can even rewrite the HTML content of a website.
+			- Potential Exploits of XSS Attacks:
+				- XSS attacks can lead to:
+				- Malicious script execution
+				- Redirecting users to malicious servers
+				- Exploiting user privileges
+				- Hidden ads in iframes and pop-ups
+				- Data manipulation
+				- Session hijacking
+				- Brute-force password cracking
+				- Data theft
+				- Intranet probing
+				- Keylogging and remote monitoring
+			- How XSS Attacks Work:
+				- A web page consists of text and HTML markup created by the server and rendered by the client browser. While servers control how static pages are interpreted, they cannot fully control the client's interpretation of dynamically generated content.
+				- If an attacker inserts untrusted content into a dynamic page, neither the server nor the client recognizes it as malicious. Untrusted input can come from various sources, including URL parameters, form elements, cookies, and database queries.
+				- When the dynamic data inserted by the web server contains special characters, the user's web browser may mistakenly interpret them as HTML markup. Since browsers treat some characters as special (to distinguish between text and markup), an attacker can insert harmful scripts into the generated page, tricking the browser into executing them.
+				- Because these malicious scripts execute within the browser’s security context, they can communicate with the legitimate web server, granting the attacker complete access to the document and the ability to send stolen data back to their site.
+			- Cross-Site Scripting Attack Scenarios:
+				-  Attack via Email:
+					- In an email-based XSS attack, the attacker crafts an email containing a malicious link and sends it to the victim, tricking them into clicking it.
+					- For example, if the attacker finds an XSS vulnerability on bank.com, they can construct a link embedding a malicious script: <A HREF="http://bank.com/registration.cgi?clientprofile=<SCRIPT>maliciouscode</SCRIPT>">Click here</A>
+					- When the victim clicks the link, the request (containing malicious code) is sent to bank.com, which then unknowingly includes the injected script in the response page. The victim’s browser executes the script, prompting them to enter sensitive details. Once submitted, the attacker captures this information and can impersonate the victim to gain access to their online bank account and perform fraudulent activities.
+				- XSS Attack in Blog Posting:
+					- The attacker discovers an XSS vulnerability on techpost.org and injects the following malicious script into a blog comment: <script>onload=window.location='http://www.certifiedhacker.com'</script>
+					- Since the comment is stored on the web application’s database server, the script remains active. When users visit TechPost, the script executes and redirects them to the malicious website (certifiedhacker.com).
+				- XSS Attack in Comment Fields:
+					- Many web applications dynamically accept user-generated data. Attackers exploit this by injecting malicious scripts into comment sections.
+					- For example, an attacker injects the following script into the comment field of techpost.org: <script>alert("Hello World")</script>
+					- Since the comment is stored on the web application’s database, the script runs when any user visits the page, displaying a pop-up alert with the message "Hello World." If the user clicks OK, the attacker may gain access to their browser session and execute further malicious actions.
+			- Techniques to Evade XSS Filters:
+				- Web browsers implement XSS filters to protect users from these attacks. However, attackers can bypass these filters by injecting unusual characters into the HTML code.
+				- Modern browsers have strong security measures, making direct script injection harder. To counter this, attackers exploit application design flaws and bypass input validation processes conducted by servers and browsers. XSS filter bypassing methods typically leverage flaws in server-side or browser-side security implementations, targeting specific browser versions or web applications.
+				- Most browsers sanitize HTML, JavaScript, and CSS before rendering pages. However, XSS filter evasion leverages the complexity of browser behavior, allowing scripts to slip through without detection.
+				- Common XSS Filter Evasion Techniques:
+					- Using Event Handlers:
+						- Some HTML tags permit script injection even when <script> tags are blocked. Attackers exploit event handlers to run scripts when a user interacts with an element.
+						- Example of event handler injection: <img src="#" onerror="alert('XSS Attack!')">
+						- Commonly abused event handlers include: onfocus, onerror, onclick
+					- Encoding Characters:
+						- Attackers encode characters in different formats to evade filters that detect suspicious text.
+						- ASCII Encoding: <a href="&#106;javascript:alert('XSS Successful')">Click Here!</a>
+						- Hexadecimal Encoding: <a href="&#6A;javascript:alert(document.cookie)">Click Here!</a>
+						- Base64 Encoding: <body onload="eval(atob('U3VjY2Vzc2Z1bCBYU1M='))">
+						- Character Code Manipulation: <a href="&#x6A;javascript&#0000058&#0000097lert('Successful XSS')">Click Here!</a>
+					- Embedding Whitespace Characters:
+						- Browsers ignore whitespace characters in JavaScript or HTML, allowing attackers to break up keywords to avoid detection.
+						- Tab Space Encoding: <img src="java script:al ert ('Successful XSS')">
+						- Newline Character Encoding: <a href="jav&#x0A;a Script:&#x0A;ale&#x0Drt;('XSS Attack')">Visit xyz.com</a>
+					- Manipulating Tags and Attributes:
+						- Attackers obfuscate scripts by nesting <script> tags within other tags or breaking attribute values.
+						- Tag Manipulation: <scr<script>ipt>document.write("Successful XSS")</scr<script>ipt>
+						- Bypassing Whitespace Restrictions: <img/src="popup.jpg"onload=&#x6A;avascript:eval(alert('XSS Attack!'))>
+						- Skipping <href> Attributes: <a onmousedown="alert(document.cookie)">Visit xyz.com</a>
+			- Conclusion: XSS attacks exploit vulnerabilities in web applications to steal data, hijack sessions, and execute malicious actions on users' browsers. Attackers continuously develop evasion techniques to bypass security filters, making proper input validation, encoding, and browser security configurations essential for preventing XSS attacks.
 		- Buffer Overflow
 		- Business Logic Bypass Attack
-		- Web-based Timing Attacks
+		- Web-Based Timing Attacks:
+			- A web-based timing attack is a type of side-channel attack in which attackers retrieve sensitive information, such as passwords, from web applications by measuring the server's response time. These attacks exploit side-channel leakage and estimate the time taken for secret key operations. Different types of web-based timing attacks include direct timing attacks, cross-site timing attacks, and browser-based timing attacks.
+			- Direct Timing Attack:
+				- Direct timing attacks are carried out by measuring the approximate time taken by the server to process a POST request, which allows attackers to deduce the existence of a username. Similarly, attackers perform character-by-character password examination and exploit timing information to determine where the password comparison failed. Using this data, attackers can eventually reconstruct the target user’s password.
+			- Cross-Site Timing Attack:
+				- A cross-site timing attack is another type of timing attack in which attackers send crafted request packets to a website using JavaScript. Unlike a direct timing attack, where the attacker manually sends a request to a website, the attacker in a cross-site timing attack relies on the victim’s browser to send the request. The attacker then analyzes the time it takes for the victim’s browser to download a requested file.
+				- For instance, consider a website http://xyz.com that contains two separate groups: /the-prompt/ and /the-anonymous-place/, with access restricted to group members. If an unauthorized user attempts to access a group, an error message is generated. When a victim visits a malicious website containing attacker-injected JavaScript, the attacker can measure response times to determine which group the victim belongs to, violating their privacy.
+			- Browser-Based Timing Attacks:
+				- Browser-based timing attacks are more sophisticated side-channel attacks. Instead of relying on unstable download times, attackers exploit side-channel leaks within the browser to estimate the time taken to process requested resources. The timing estimation begins immediately after the resource download starts and stops once processing is complete. Attackers can abuse different browser functionalities to launch further attacks, such as video parsing attacks and cache storage timing attacks.
+				- Video Parsing Attack:
+					- In a video parsing attack, attackers trick the browser into treating a non-video resource as a video. The browser attempts to parse the resource, eventually triggering an error when it realizes the file format is invalid. By measuring the time taken for this process, attackers can infer details about the requested resource.
+					- Unlike cross-site timing attacks, this method begins measuring time when the suspend event is triggered—either because the resource is too small to be a valid video or because the download has completed. When the browser detects that the resource is not a valid video format (e.g., HTML or JSON files), it triggers an error event. By analyzing the time taken for this process, attackers can make inferences about the resource type and its size.
+				- Cache Storage Timing Attack:
+					- The Cache API allows developers to store, retrieve, and delete responses, providing access to cached resources. Since loading resources from disk takes time based on the file size, attackers can estimate this time to determine the response size.
+			- After measuring the time taken for processing using the techniques mentioned above, attackers can launch additional attacks, such as brute-force attacks, to extract more information.
 		- CAPTCHA Attacks
 		- Platform Exploits
 		- XML External Entity (XXE) Attack
