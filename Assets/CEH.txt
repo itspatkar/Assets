@@ -6378,17 +6378,96 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Sanitize User Input – Filter out unexpected XML elements and validate all input before processing.
 				- Limit XML Depth and Size – Restrict nested XML elements and set size limits to prevent DoS attacks.
 				- Use Strong Authentication – Ensure that web services require authentication tokens to verify requests.
-		- Injecting an SSRF Payload
-		- Cross-Site Port Attack (XSPA)
-		- DNS Rebinding Attack
+		- DNS Rebinding Attack:
+			- Attackers use DNS rebinding to bypass the Same-Origin Policy (SOP), a security mechanism that restricts web pages from making arbitrary requests to local or private network resources.
+			- For example, when an employee within an organization accesses the internal private network, external websites cannot directly communicate with it due to SOP restrictions. Attackers exploit DNS rebinding to circumvent these security measures, enabling them to interact with internal services as if they were legitimate local users.
+			- How DNS Rebinding Works:
+				- Attacker Registers a Malicious Domain:
+					- The attacker creates a malicious website (e.g., certifiedhacker.com) and registers it with a DNS server under their control.
+					- The DNS server is configured to return short Time-to-Live (TTL) values, preventing DNS responses from being cached.
+				- Victim Accesses the Malicious Website:
+					- The victim visits http://certifiedhacker.com, and the attacker’s DNS server resolves the domain to an IP address hosting the malicious website.
+					- The attacker’s web server responds with a web page containing JavaScript code that runs in the victim’s browser.
+				- DNS Rebinding to Bypass SOP:
+					- The JavaScript requests additional resources from http://certifiedhacker.com/secret.html.
+					- Due to the short TTL, the victim's browser makes a new DNS request for certifiedhacker.com.
+					- This time, the attacker’s DNS server responds with an internal/private IP address (e.g., xyz.com’s internal IP).
+					- The browser, assuming it is still communicating with certifiedhacker.com, loads http://xyz.com/secret.html without triggering SOP restrictions.
+			- By exploiting DNS rebinding, attackers can:
+				- Access internal web applications and steal sensitive data.
+				- Control IoT devices and internal APIs that rely on local networks.
+				- Execute malicious scripts on the victim’s private network.
+			- Mitigation Strategies:
+				- Implement Network Segmentation – Prevent internal systems from making unnecessary outbound connections.
+				- Enforce DNS Security Policies – Restrict domains with low TTL values to prevent DNS rebinding.
+				- Use Web Proxy Restrictions – Block client-side scripts from accessing local IP addresses (e.g., 192.168.x.x).
+				- Enable DNS Rebinding Protection – Configure firewalls, DNS servers, or routers to detect and block DNS rebinding attempts.
+				- Implement Same-Site Cookies and CSRF Protections – Prevent unauthorized requests from untrusted origins.
+		- Clickjacking Attack:
+			- Clickjacking is a user interface (UI) redress attack where attackers trick victims into clicking on malicious web page elements that are transparently placed over a trusted website. This technique exploits HTML iframes and misconfigured X-Frame-Options headers, allowing attackers to manipulate user interactions.
+			- How Clickjacking Works:
+				- Loading the Target Website in an iframe – The attacker embeds the target website inside a low-opacity iframe, making it appear as part of the attacker's web page.
+				- Creating a Deceptive UI – The attacker positions invisible or misleading elements (e.g., buttons, forms) over legitimate UI components.
+				- Tricking the Victim into Clicking – The victim unknowingly clicks on the invisible, malicious elements, triggering actions such as:
+					- Injecting malware
+					- Stealing login credentials
+					- Transferring funds
+					- Making unauthorized purchases
+			- Attackers distribute clickjacking attack links via email, social media, or malicious websites to lure victims into interacting with the compromised page.
+			- Clickjacking Techniques:
+				- Attackers use various techniques to manipulate user clicks and bypass security controls:
+				- Complete Transparent Overlay:
+					- The trusted page is fully overlaid on a malicious page within an invisible iframe.
+					- A higher z-index value positions the malicious UI elements above the real page.
+				- Cropping:
+					- Only specific controls from the legitimate page are overlaid.
+					- Attackers mask buttons with fake hyperlinks, alter button labels, or replace text with misleading information.
+				- Hidden Overlay:
+					- An invisible iframe (1×1 pixel size) is placed under the victim's mouse cursor.
+					- When the victim clicks, the event is registered on the attacker's page instead of the real page.
+				- Click Event Dropping:
+					- A malicious page is hidden behind a legitimate page, but clicks pass through due to CSS pointer-events: none.
+					- Victims interact only with the attacker's hidden content while believing they are interacting with a safe page.
+				- Rapid Content Replacement:
+					- Attackers cover targeted elements with opaque overlays.
+					- The overlay is removed just before the victim clicks, ensuring the malicious click is registered.
+			- Mitigation Strategies:
+				- Use X-Frame-Options Headers – Set DENY or SAMEORIGIN to prevent iframe embedding.
+				- Enable Content Security Policy (CSP) – Restrict iframe usage with the frame-ancestors directive.
+				- Implement Click Confirmation – Require user interaction (e.g., CAPTCHA, pop-ups) before performing sensitive actions.
+				- Use JavaScript Frame-Busting Techniques – Detect and prevent unauthorized iframe embedding.
+				- Regularly Audit Web Applications – Identify iframe vulnerabilities and improper configurations.
+		- MarioNet Attack:
+			- MarioNet is a browser-based attack that executes malicious code inside a victim's browser and persists even after the user closes the malicious webpage. Unlike traditional browser-based threats, MarioNet can continue running in the background, leveraging modern browser APIs.
+			- How the MarioNet Attack Works:
+				- Exploiting the Service Workers API:
+					- Most modern web browsers support the Service Workers API, which allows web applications to perform background tasks without affecting the UI.
+					- Attackers abuse this feature by registering and activating a malicious service worker through a compromised or attacker-controlled website.
+				- Persistent Execution Even After Tab Closure:
+					- Once activated, the service worker runs in the background, even after the user closes the browser tab.
+					- Attackers abuse the Service Workers SyncManager interface to ensure the malicious service remains active, even after tab crashes or power failures.
+				- Turning the Browser into a Botnet Node:
+					- MarioNet leverages JavaScript and existing HTML5 APIs to hijack browser resources for malicious activities, including:
+					- Cryptojacking – Mining cryptocurrency without the user’s knowledge.
+					- DDoS Attacks – Using infected browsers to launch large-scale denial-of-service attacks.
+					- Click Fraud – Generating fraudulent ad clicks for financial gain.
+					- Distributed Password Cracking – Utilizing browser resources for brute-force attacks.
+				- Injecting Malicious Code into High-Traffic Websites:
+					- Attackers can compromise legitimate, high-traffic websites and inject MarioNet malware for a short period, allowing them to:
+					- Steal user credentials and sensitive data.
+					- Gain control over compromised browsers via a central command-and-control (C2) server.
+			- Mitigation Strategies:
+				- Restrict Service Workers Permissions – Disable or restrict untrusted websites from registering service workers.
+				- Implement Content Security Policy (CSP) – Use strict CSP rules to prevent unauthorized script execution.
+				- Regularly Clear Browser Data – Deleting service workers in browser settings can remove persistent threats.
+				- Enable Browser Security Features – Use extensions or built-in browser settings to block unwanted background scripts.
+				- Educate Users on Malicious Websites – Warn users about clicking unknown links or visiting suspicious sites.
 		- H2C Smuggling Attack
-		- Clickjacking Attack
 		- JavaScript Hijacking
 		- Cross-Site WebSocket Hijacking
 		- Obfuscation Application
 		- Network Access Attacks
 		- DMZ Protocol Attacks
-		- MarioNet Attack
 		- Cookie Snooping
 		- RC4 NOMORE Attack
 		- Buffer Overflow
@@ -6396,3 +6475,5 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- CAPTCHA Attacks
 		- Platform Exploits
 		- Denial-of-Service (DoS)
+		- Injecting an SSRF Payload
+		- Cross-Site Port Attack (XSPA)
