@@ -6501,3 +6501,92 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Internal systems, including databases, backups, and source code
 		- Injecting an SSRF Payload
 		- Cross-Site Port Attack (XSPA)
+- Web Application Hacking Methodology:
+	- Attackers use the web application hacking methodology to gain knowledge of a specific web application and successfully compromise it. This methodology enables them to plan each step in detail, increasing their chances of a successful attack. If hackers bypass this structured process and attempt to exploit the web application directly, their chances of failure increase. As part of this approach, they take the following steps to gather detailed information about various resources needed to operate or access the web application:
+	- Footprint Web Infrastructure:
+		- Footprinting is the process of gathering comprehensive information about a system, its components, and how they function. The web infrastructure of a web application refers to how it connects to other systems, servers, and networks. Web infrastructure footprinting is the first step in web application hacking, helping attackers identify potential victims and vulnerable web applications. By analyzing the web infrastructure, attackers can determine how a web application interacts with its peers, the technologies it uses, and potential weaknesses within its architecture. Exploiting these vulnerabilities may allow attackers to gain unauthorized access to the web application.
+		- Server Discovery:
+			- The first step in web infrastructure footprinting is identifying active internet servers. Techniques such as Whois lookup, DNS interrogation, and port scanning help discover these servers and gather relevant information, including their locations and status. This process confirms whether a target server is live on the internet. Attackers use these methods to locate the physical servers hosting web applications, which can aid in identifying potential vulnerabilities.
+			- Whois Lookup:
+				- Whois lookup utilities provide information about a web server's IP address and DNS names. These tools allow you to gather details about a domain using DNS and Whois queries. The results are typically presented in an HTML report.
+				- Whois Lookup Tools:
+					- Netcraft (www.netcraft.com)
+					- Whois Lookup (whois.domaintools.com)
+					- Batch IP Converter (http://www.sabsoft.com)
+					- Whois Domain Lookup (www.whois.com)
+					- Whois (webwhois.verisign.com)
+					- Whois Lookup (mxtoolbox.com)
+			- DNS Interrogation:
+				- DNS interrogation provides information about the locations and types of servers. Organizations use this process, which relies on a distributed database, to map IP addresses to hostnames and vice versa. If the DNS is misconfigured, it becomes easier for attackers to exploit it and gather information needed to launch an attack on a target organization.
+				- DNS Interrogation Tools:
+					- DNSRecon (github.com)
+					- DNS Records (www.nslookup.io)
+					- Domain Dossier (centralops.net)
+					- DNSdumpster.com (dnsdumpster.com)
+			- Banner Grabbing:
+				- Banner grabbing is a footprinting technique used by hackers to obtain sensitive information about a target system. An attacker establishes a connection with the target and sends a pseudo-request. In response, the target returns a banner message containing details that can aid further penetration.
+				- Through banner grabbing, attackers can identify the name and version of a server, operating system, or application. By analyzing the server's response headers, they determine the make, model, and version of the web server software. This information allows them to select appropriate exploits from vulnerability databases to attack the web server and its applications.
+				- Using Telnet to Establish Connection and Retrieve Banner Information:
+					- The attacker enters the command telnet moviescope.com 80 in the command prompt to establish a Telnet connection with the target machine.
+					- Note: The attacker can specify either the target machine’s IP address or the website’s URL. If an IP address is used, the banner information of the target machine is retrieved. If a URL is entered, the banner information of the web server hosting the website is obtained.
+					- Syntax: telnet <domain/IP> 80
+					- After establishing the connection, the prompt does not display any immediate information.
+					- The attacker then presses the Esc key, triggering the banner message, which reveals information about the target server along with other miscellaneous details. This information helps attackers identify vulnerabilities and exploit the target web server and its applications.
+				- Grabbing Banners from SSL Services:
+					- Tools such as Telnet and Netcat can retrieve banners from web servers over an HTTP connection. However, they cannot be used to grab banners over an SSL connection using the same methods. Instead, attackers use tools like OpenSSL to extract banner information from web servers over an encrypted (HTTPS/SSL) connection.
+					- Steps to Grab Banners Over an SSL Connection:
+						- Install OpenSSL: OpenSSL is a cryptographic toolkit that implements Secure Sockets Layer (SSL) and Transport Layer Security (TLS) network protocols, along with related cryptographic standards. It can be downloaded from OpenSSL’s official website.
+						- Navigate to OpenSSL in the terminal and Run the following command: s_client –host <target website> -port 443
+					- This method allows attackers to retrieve banner information from web servers running SSL/TLS encryption, helping them identify potential vulnerabilities.
+				- Banner Grabbing Tools:
+					- Telnet (github.com)
+					- Netcat (netcat.sourceforge.net)
+					- ID Serve (www.grc.com)
+					- Netcraft (www.netcraft.com)
+		- Port and Service Discovery:
+			- Footprinting the web infrastructure provides valuable data about the services offered, including data exchange and encryption, transmission paths, and deployed protocols. Scanning the target web server helps identify commonly used ports and their associated services. Once these services are discovered, attackers may attempt to exploit them, compromising the web infrastructure that supports the application. The identified services serve as potential attack vectors for web application hacking.
+			- Port Scanning: Port scanning is the process of examining system ports to identify open ones. It involves attempting connections to specific TCP or UDP ports to determine which services are running on the server. If attackers find an open but unused port, they may exploit it to gain unauthorized access to the system.
+			- Service Discovery: Attackers can analyze the services running on web servers to determine whether they can be exploited as attack paths for hacking a web application. This process also reveals crucial web application details, such as: Storage locations, Information about machines running the services, Network usage and protocols involved.
+			- Port Scanning and Service Discovery Tools:
+				- Nmap (nmap.org):
+					- Nmap is a multi-platform, multi-purpose tool used for scanning ports, identifying services, and detecting operating systems. It is widely used for network discovery and security auditing.
+					- Uses: Network inventory management, Monitoring host or service uptime, Managing service upgrade schedules.
+				- NetScanTools Pro (www.netscantools.com)
+				- Advanced Port Scanner (www.advanced-port-scanner.com)
+				- Open Port Scanner (www.solarwinds.com)
+				- Port Scanner (www.whatismyip.com)
+		- Server Identification:
+			- Local Identity: Details such as the server's physical location and the Origin-Host.
+			- Local Addresses: The local IP addresses used by the server for sending Diameter Capability Exchange Messages (CER/CEA). These messages include the server identity, capabilities, protocol version number, and supported Diameter applications.
+			- Self-Names: This field lists all the realms that the server considers local. The server treats requests sent to these realms as no-realm requests.
+		- Web Application Firewalls and Proxies Detection:
+			- When footprinting a web infrastructure, attackers must identify the web application firewall (WAF) and proxy settings of the target site to understand the security measures in place.
+			- Detecting Proxies:
+				- Some organizations use proxy servers in front of their web servers to obscure their actual IP addresses, making them untraceable. When attackers attempt to determine the target’s IP address—hidden behind a proxy—footprinting techniques will typically reveal the proxy’s IP address instead of the legitimate server address.
+				- To determine whether a target site is routing requests through a proxy server, attackers look for specific headers in the response. Proxy servers generally add unique headers in the response field. One method attackers use to identify a proxy is by executing the TRACE command, which sends a request to the web server and asks it to return the request. Attackers insert the TRACE command into an HTTP/1.1 request.
+				- If the web server is behind a proxy, the proxy modifies the request (by adding headers) before forwarding it to the target web server. When the web server returns the request to the attacker’s machine, the attacker can compare the original request with the modified response to analyze any changes introduced by the proxy server.
+			- Detecting Web Application Firewalls:
+				- Web Application Firewalls (WAFs) are security devices deployed between the client and the web server. Similar to Intrusion Prevention Systems (IPS), WAFs protect web applications from a wide range of attacks by monitoring and filtering web traffic, blocking malicious requests, and safeguarding sensitive data.
+				- Attackers use various techniques to detect WAFs within a web infrastructure. One method is by analyzing cookies, as some WAFs inject their own cookies during client-server communication. Attackers inspect the HTTP request cookies to check for signs of a WAF.
+				- Another common technique involves examining HTTP headers. Since most WAFs modify HTTP headers, differences in server responses can indicate the presence of a firewall. By sending specific requests to the web server and analyzing the responses, attackers can determine whether a WAF is in place.
+				- WAF Detection Tools:
+					- WAFW00F: WAFW00F help identify and fingerprint WAFs protecting a website. WAFW00F detects a WAF on any domain by analyzing: Cookies, Server cloaking, HTTP response codes, Drop actions, Pre-configured rules.
+					- WhatWaf (github.com)
+					- Nmap (nmap.org)
+					- Web Application Firewall Detector (pentest-tools.com)
+					- SHIELDFY Web Application Firewall Detector (github.com)
+					- Advanced Web application firewall detection (www.nmmapper.com)
+				- WAF Detection with AI:
+					- With the aid of AI, they can efficiently detect web application firewalls (WAFs) and quickly determine if a target URL is protected, allowing them to tailor their attack strategies accordingly. Nmap and WAFW00F are two commonly used tools for identifying WAF protection on a target website. These tools analyze network responses and HTTP headers to detect the presence of a firewall, helping attackers gather intelligence on the security measures in place.
+	- Analyze Web Applications
+	- Bypass Client-Side Controls
+	- Attack authentication mechanisms
+	- Attack authorization schemes
+	- Attack access controls
+	- Attack session management mechanisms
+	- Perform injection attacks
+	- Exploit application logic flaws
+	- Attack shared environments
+	- Target database connectivity
+	- Attack web application clients
+	- Exploit vulnerabilities in web services
