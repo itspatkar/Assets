@@ -6462,18 +6462,42 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Regularly Clear Browser Data – Deleting service workers in browser settings can remove persistent threats.
 				- Enable Browser Security Features – Use extensions or built-in browser settings to block unwanted background scripts.
 				- Educate Users on Malicious Websites – Warn users about clicking unknown links or visiting suspicious sites.
-		- H2C Smuggling Attack
-		- JavaScript Hijacking
-		- Cross-Site WebSocket Hijacking
-		- Obfuscation Application
-		- Network Access Attacks
-		- DMZ Protocol Attacks
-		- Cookie Snooping
-		- RC4 NOMORE Attack
-		- Buffer Overflow
-		- Business Logic Bypass Attack
-		- CAPTCHA Attacks
-		- Platform Exploits
-		- Denial-of-Service (DoS)
+		- Cookie Snooping:
+			- Attackers use cookie snooping to analyze a victim’s browsing habits. The collected data may be sold to third parties or used to launch further attacks on the victim’s web applications.
+		- RC4 NOMORE Attack:
+			- The Rivest Cipher Numerous Occurrence Monitoring and Recovery Exploit (RC4 NOMORE) attack targets the RC4 stream cipher, which is used in some web servers for encryption. Attackers exploit vulnerabilities in RC4-based encryption to decrypt web cookies secured by HTTPS and inject arbitrary packets. By stealing a valid session cookie, the attacker can impersonate the victim, log into their accounts, and perform unauthorized transactions.
+		- Buffer Overflow:
+			- A buffer overflow vulnerability occurs when a web application fails to properly manage its memory buffer, allowing data to be written beyond its allocated space. This can result in application crashes, arbitrary code execution, or privilege escalation.
+		- Business Logic Bypass Attack:
+			- A business logic bypass attack targets the intended functionality of a web application rather than exploiting traditional software vulnerabilities. Attackers manipulate the application’s workflow or business rules to achieve unauthorized access, data leakage, or fraudulent activities.
+		- CAPTCHA Attacks:
+			- CAPTCHAs are challenge-response tests used by web applications to distinguish between human users and automated bots. However, attackers use various techniques, such as machine learning, OCR (Optical Character Recognition), or CAPTCHA farms, to bypass these protections.
+		- Platform Exploits:
+			- Web applications are built on platforms such as BEA WebLogic and ColdFusion, each of which has its own set of vulnerabilities. Attackers exploit these platform-specific weaknesses to compromise applications, steal data, or escalate privileges.
+		- Denial-of-Service (DoS) Attack:
+			- A DoS attack aims to disrupt the availability of a service, restricting access to system resources for legitimate users. For example, an attacker may overload a banking or email service, rendering it unusable for hours or even days, resulting in financial and operational losses.
+		- H2C Smuggling Attack:
+			- An H2C Smuggling Attack targets HTTP/2 over TCP (H2C) connections in web applications that support both HTTP/1.1 and HTTP/2 protocols. Attackers craft malicious HTTP requests to bypass security controls, leading to cache poisoning, security control evasion, and unauthorized access to sensitive data.
+		- JavaScript Hijacking:
+			- Also known as JSON hijacking, this attack exploits same-origin policy flaws in web browsers to steal sensitive data from applications using JavaScript Object Notation (JSON). Attackers can trick a victim’s browser into executing malicious JavaScript code to extract confidential information.
+		- Cross-Site WebSocket Hijacking (CSWH):
+			- Cross-Site WebSocket Hijacking occurs when an attacker establishes a WebSocket connection with a vulnerable web application using the victim’s identity. If the WebSocket handshake relies solely on HTTP cookies (without CSRF tokens or additional security measures), attackers can hijack sessions, send arbitrary requests, and extract sensitive data.
+		- Obfuscation Techniques:
+			- Attackers often use obfuscation techniques to evade detection by intrusion detection systems (IDS). Common obfuscation methods include:
+				- Unicode encoding
+				- UTF-8 encoding
+				- Base64 encoding
+				- URL encoding
+			- These techniques make malicious payloads harder to detect while ensuring they execute correctly on the target system.
+		- Network Access Attacks:
+			- Attackers use network access attacks to exploit weaknesses in a web application’s underlying network infrastructure. These attacks can lead to:
+				- Service disruptions
+				- Unauthorized access to internal systems
+				- Data interception or modification
+		- DMZ Protocol Attacks:
+			- The demilitarized zone (DMZ) is a buffer network between an organization’s internal network and the internet. If an attacker compromises a DMZ system, they can potentially gain access to:
+				- Web application data
+				- Website defacement
+				- Internal systems, including databases, backups, and source code
 		- Injecting an SSRF Payload
 		- Cross-Site Port Attack (XSPA)
