@@ -1,0 +1,185 @@
+
+Analyze Web Applicat ions 
+• Analyze the active application’s functionality and technologies to identify exposed attack surfaces
+
+Analyzing the target website may provide the following information: 
+• Software used and its version 
+• Operating system used and its scripting platform 
+• Sub-directories and parameters 
+• Filename, path, database field name, or query 
+• Technologies used 
+• Contact and CMS details
+
+Attackers use Burp Suite, Zaproxy, Wappalyzer, CentralOps, Website Informer, etc. to view headers that provide the following information: 
+• Connection status and content-type 
+• Accept-Ranges and Last-Modified 
+• X-Powered-By information 
+• Web server in use and its version
+
+
+Analyze Web Applicat ions: Website Mirroring HTTrack Web Site Copier
+
+• Mirroring an entire website onto a local system enables an attacker to browse website offline; it also assists in finding directory structure and other valuable information from the mirrored copy without sending multiple requests to web server
+• Web mirroring tools, such as HTTrack Web Site Copier, and Cyotek WebCopy, allow you to download a website to a local directory, recursively building all directories, HTML, images, flash, videos, and other files from the server to your computer
+
+
+Website Mirroring with AI
+• An attacker can also leverage AI-powered ChatGPT or other generative AI technology to perform this task by using appropriate prompts such as:
+    ▪ “Mirror the target website certifiedhacker.com”
+    ▪ “Mirror the target website https://certifiedhacker.com with httrack on desktop”
+
+
+Analyze Web Applications: Ident ify Ent ry Points for User Input
+- Examine URL, HTTP Header, query string parameters, POST data, and cookies to determine all user input fields
+- Identify HTTP header parameters that can be processed by the application as user inputs such as User-Agent, Referer, Accept, Accept-Language, and Host headers
+- Determine URL encoding techniques and other encryption measures implemented for secure web traffic such as SSL
+
+Tools used:
+• Burp Suite (https://portswigger.net)
+• OWASP Zed Attack Proxy (https://www.zaproxy.org)
+• WebScarab (https://owasp.org)
+• httprint (https://www.net-square.com)
+
+
+Analyze Web Applicat ions: Ident ify Server-Side Technologies
+• Perform a detailed server fingerprinting, analyze HTTP headers and HTML source code to identify server-side technologies
+• Examine URLs for file extensions, directories, and other identification information
+• Examine the error page messages
+• Examine session tokens: JSESSIONID – Java, ASPSESSIONID – IIS server, ASP.NET_SessionId - ASP.NET, PHPSESSID – PHP
+• Use tools such as httprint and WhatWeb to identify server-side technologies
+
+
+Ident ify Server-Side Technologies using AI
+• An attacker can also leverage AI-powered ChatGPT or other generative AI technology to perform this task by using an appropriate prompt such as:
+▪ “Launch whatweb on the target website www.moviescope.com to perform website footprinting. Run a verbose scan and print the output. Save the results in file whatweb_log.txt.”
+
+
+Analyze Web Applicat ions: Ident ify Files and Directories 
+• Attackers use tools such as Gobuster or Nmap NSE script http-enum to enumerate applications, as well as hidden directories and files of the web application hosted on the web server, that are exposed on the internet
+
+Identify Files and Directories with AI
+• Attackers use tools such as Gobuster or Nmap NSE script http-enum to enumerate applications, as well as hidden directories and files of the web application hosted on the web server, that are exposed on the Internet
+• ChatGPT prompts to perform this task using AI:
+    ▪ “Scan the web content of target url www.moviescope.com using Dirb”
+    ▪ “Scan the web content of target url www.moviescope.com using Gobuster”
+
+
+Analyze Web Applicat ions: Ident ify Web Applicat ion Vulnerabilit ies
+• Attackers use various techniques to detect vulnerabilities in target web applications hosted on web servers either to gain administrator level access to the server or to retrieve sensitive information stored on the server
+• Comprehensive vulnerability scanning can disclose security flaws associated with executables, binaries, and technologies used in a web application
+• Attackers can use tools such as Vega to the vulnerabilities of target web applications
+
+Web Application Scanning Tools
+• Vega: Vega helps you to find and validate SQL injection, Cross-Site Scripting (XSS), inadvertently disclosed sensitive information, and other vulnerabilities
+• WPScan Vulnerability Database (https://wpscan.com)
+• Codename SCNR (https://ecsypno.com)
+• AppSpider (https://www.rapid7.com)
+• Uniscan (https://github.com)
+
+
+Ident ify Web Applicat ion Vulnerabilit ies with AI
+• An attacker can also leverage AI-powered ChatGPT or other generative AI technology to perform this task by using appropriate prompts such as:
+    ▪ “Perform the Vulnerability scan on the target url www.moviescope.com ”
+    ▪ “Perform the Vulnerability scan on the target url www.moviescope.com using nmap”
+    ▪ “Install Sn1per tool and scan the target url www.moviescope.com for web vulnerabilities and save result in file scan3.txt”
+
+----
+
+Analyze Web Applications
+
+Once attackers have attempted various possible attacks on a vulnerable web server, they may turn their attention to the web application itself. To hack the web application, first, they may need to analyze it to determine its vulnerable areas. Even if it has only a single vulnerability, attackers try to compromise its security by launching an appropriate attack. This section describes how attackers find vulnerabilities in a web application and exploit them. Attackers need to analyze target web applications to determine their vulnerabilities. Doing so helps them reduce the “attack surface.” To analyze a web application, attackers acquire basic knowledge of the web application. Then, they can analyze the active application’s functionality and technologies to identify any exposed attack surfaces.
+
+Analyzing the target website will typically provide the following information:
+▪ Software used and its version: An attacker can easily find the software and version in use on an off-the-shelf software-based website.
+▪ Operating system used: Usually, the operating system in use can also be determined.
+▪ Sub-directories and parameters: Searches can reveal the sub-directories and parameters by making a note of the URLs while browsing the target website.
+▪ Filename, path, database field name, or query: The attacker will often carefully analyze anything after a query that looks like a filename, path, database field name, or query to check whether it offers opportunities for SQL injection.
+▪ Scripting platform: With the help of script filename extensions such as .php, .asp, or .jsp, one can easily determine the scripting platform that the target website is using.
+▪ Technologies Used: By inspecting the URLs of the target website, one can easily determine the technologies (.NET, J2EE, PHP, etc.) used to build that website.
+▪ Contact details and CMS details: The contact pages usually offer details such as names, phone numbers, email addresses, and locations of admin or support personnel. An attacker can use these details to perform a social engineering attack. CMS software allows URL rewriting to disguise the script filename extensions if the attacker is willing to devote additional effort toward determining the scripting platform.
+▪ SSL certificate details: The attacker can access information about the target website's security certificate, including the issuer, expiration date, and encryption strength.
+▪ Cookies: By analyzing the cookies set by the target website, the attacker can gain insights into the user sessions, preferences, and tracking mechanisms employed.
+▪ Error messages: Examining the error messages returned by the web server may disclose information about the underlying technologies, file paths, or server configurations.
+▪ Publicly accessible files: Attackers can access publicly accessible files in the target website which may contain sensitive information, such as configuration files, backup files, or log files.
+
+The following are various techniques for analyzing web applications:
+▪ Identify Entry Points for User Input: The first step in analyzing a web application is to check for the application entry point, which can later serve as a gateway for attacks. One of the entry points includes the front-end web application that intercepts HTTP requests. Other web application entry points are user interfaces provided by web pages, service interfaces provided by web services, serviced components, and .NET Remoting components. Attackers should review the generated HTTP request to identify the user input entry points.
+▪ Identify Server-Side Technologies: Server-side technologies or server-side scripting systems are used to generate dynamic web pages requested by clients, and they are stored internally on the server. The server allows the running of interactive web pages or websites on web browsers. Commonly used server-side technologies include Active Server Pages (ASP), ASP.NET, ColdFusion, JavaServer Pages (JSP), PHP, Python, and Ruby on Rails. Attackers can fingerprint the technologies active on the server using various fingerprint techniques such as HTTP fingerprinting.
+▪ Identify Server-Side Functionality: Server-side functionality refers to the ability of a server to execute programs on output web pages. User requests stimulate the scripts residing on the web server to display interactive web pages or websites. The server executes server-side scripts, which are invisible to the user. Attackers should evaluate the server-side structure and functionality by keenly observing the applications revealed to the client.
+▪ Identify Files and Directories: Web servers host web applications, and misconfigurations while hosting these web applications may lead to exposure of critical files and directories over the Internet. Attackers identify the target web application’s files and directories exposed on the Internet using various automated tools such as Gobuster. Such information further helps attackers gather sensitive information stored in the files and folders.
+▪ Identify Web Application Vulnerabilities: Web applications are developed using various technologies and platforms. Not following secure coding practices in the development of web applications may leave flaws that can be exploited to perform various types of attacks.
+▪ Map the Attack Surface: Attackers then map the attack surface of the web application to target specific vulnerable areas. They identify the various attack surfaces uncovered by the applications as well as the vulnerabilities associated with them.
+
+Techniques to Gather Information for Web Application Analysis:
+▪ Extracting Website Links Extracting website links is an important part of website footprinting, where an attacker analyzes a target website to determine its internal and external links. Using the gathered information, an attacker can find out the applications, web technologies, and other related websites that are linked to the target website. Further, dumping the obtained links can reveal important connections and extract URLs of other resources such as JavaScript and CSS files. This information helps attackers to identify vulnerabilities in the target website and find ways to exploit the web application. Attackers can use various online tools or services such as Octoparse, Netpeak Spider, and Link Extractor to extract linked images, scripts, iframes, URLs, etc., of the target website. Using these tools, an attacker can also extract backlinks to a target website, which can provide important and useful information about the target to perform further exploitation.
+   
+    o Octoparse Source: https://www.octoparse.com
+    Octoparse offers automatic data extraction, as it quickly scrapes web data without coding and turns web pages into structured data. As shown in the screenshot, attackers use Octoparse to capture information from webpages, such as text, links, image URLs, or html code.
+
+▪ Gathering the Wordlist from the Target Website
+The words available on the target website may reveal critical information that helps attackers to perform further exploitation. Attackers gather a list of email addresses related to the target organization using various search engines, social networking sites, web spidering tools, etc. After obtaining these email addresses, an attacker can gather a list of words available on the target website. This information helps the attacker to perform brute-force attacks on the target organization. An attacker uses the CeWL tool to gather a list of words from the target website and perform a brute-force attack on the email addresses gathered earlier.
+To run the CeWL tool, issue the following commands:
+o cewl --help
+This command displays various options that a user can use to obtain a list of words from the target website.
+o cewl https://www.certifiedhacker.com
+This command returns a list of unique words present in the target URL.
+
+▪ Extracting Metadata of Public Documents
+Useful information may reside on the target organization’s website in the form of pdf documents, Microsoft Word files, and other files in various formats. Attackers extract valuable data, including metadata and hidden information from such documents. The data mainly contains hidden information about the public documents that can be analyzed to extract information such as the title of the page, description, keywords, creation/modification date and time of the content, and usernames and e-mail addresses of employees of the target organization. An attacker can misuse this information to perform malicious activities against the target organization by brute-forcing authentication using the usernames and e-mail addresses of employees, or perform social engineering to send malware, which can infect the target system.
+
+Metadata Extraction Tools
+Metadata extraction tools such as ExifTool, Web Data Extractor Pro, and Metagoofil automatically extract critical information that includes the usernames of clients, OSes (exploits are OS-specific), email addresses (possibly for social engineering), list of software used (version and type), list of servers, document creation/modification date, and website authors.
+   
+    o ExifTool Source: https://exiftool.org ExifTool is a cross-platform Perl library and command-line application for reading, writing, and editing metadata in files. It supports a large number of metadata formats, including EXIF, HTML, GPS, IPTC, XMP, and JFIF, and allows copying metadata between files of different formats. The tool also helps in extracting thumbnail images, preview images, and large JPEG images from RAW files.
+
+▪ Monitoring Web Pages for Updates and Changes
+Attackers monitor the target website to detect web updates and changes. Monitoring the target website helps attackers to access and identify changes in the login pages, extract password-protected pages, track changes in the software version and driver updates, extract and store images on the modified web pages, and so on. Attackers analyze the gathered information to detect underlying vulnerabilities in the target website, and based on these vulnerabilities, they perform exploitation of the target web application.
+
+Web Updates Monitoring Tools
+Web updates monitoring tools such as WebSite-Watcher, Visualping, and Follow That Page are capable of detecting any changes or updates on a particular website, and they can send notifications or alerts to interested users through email or SMS.
+o WebSite-Watcher
+Source: https://www.aignes.com
+WebSite-Watcher helps to track websites for updates and automatic changes. When an update or change occurs, WebSite-Watcher automatically detects and saves the last two versions onto your disk.
+As shown in the screenshot, attackers use WebSite-Watcher to extract the older and newer versions of web pages related to the target website.
+
+▪ Searching for Contact Information, Email Addresses, and Telephone Numbers from Company Website
+Attackers can search the target company’s website to gather crucial information about the company. Generally, organizations use websites to inform the public about what they do, what type of services or products they provide, how to contact them, etc. Attackers can exploit this information to launch further attacks on the target company.
+For example, attackers can search for the following information on the company’s website:
+    o Company contact names, phone numbers, and email addresses
+    o Company locations and branches
+    o Partner Information
+    o News
+    o Links to other sites
+    o Product, project, or service data
+
+▪ Searching for Web Pages Posting Patterns and Revision Numbers
+Copyright is a protecting mechanism provided by the law of a country, which grants the creator of an original work exclusive rights for its use and distribution. To restrict third parties from accessing their data freely, most organizations ensure that there is a copyright notice on every single piece of their published work.
+A typical copyright notice contains the following information:
+    o The Copyright Symbol
+    o The Year of Creation
+    o The Name of the Author
+    o A Rights Statement
+An attacker can search for copyright notices on the web and use these details to perform a deep analysis of the target organization. Further, attackers can search and note down the revision number of a product. The revision number is a unique string that acts as an identifier for the revision of a given document, and it can be found within the documents of the company. Attackers can also search for the document numbers that are assigned to the documents after revision, which can be searched from the Internet and recorded to launch further attacks on the target.
+
+▪ Monitoring Website Traffic of the Target Company
+Attackers can monitor a target company’s website traffic using tools such as Web-Stat, Rank Tracker, and TeamViewer to collect valuable information. These tools help to collect information about the target’s customer base, which help attackers to disguise themselves as customers and launch social engineering attacks on the target.
+The information collected includes:
+o Total visitors: Tools such as Clicky (https://clicky.com) find the total number of visitors browsing the target website.
+o Page views: Tools such as Opentracker (https://www.opentracker.net) monitor the total number of pages viewed by the users along with the timestamps and the status of the user on a particular web page (whether the webpage is still active or closed).
+o Bounce rate: Tools such as Google Analytics (https://analytics.google.com) measure the bounce rate of the target company’s website.
+o Live visitors map: Tools such as Web-Stat (https://www.web-stat.com) track the geographical location of the users visiting the company’s website.
+o Site ranking: Tools such as Rank Tracker (https://www.ranktracker.com) track a company’s rank on the web.
+o Audience geography: Tools such as Rank Tracker track a company’s customer locations on the globe.
+o Track Visitors and conversation: Tools such as Dashly (https://www.dashly.io) track visitors and show conversation rates with the company’s website.
+
+Website Mirroring
+Website mirroring is the process of creating a replica or clone of the original website. Attackers can duplicate websites using mirroring tools such as HTTrack Web Site Copier and Cyotek WebCopy. These tools download a website to a local directory and recursively build all the directories including HTML, images, flash, videos, and other files from the webserver on another computer.
+Website mirroring has the following benefits:
+▪ It is helpful for offline site browsing
+▪ It enables an attacker to spend more time in viewing and analyzing the website for vulnerabilities and loopholes
+▪ It helps in finding the directory structure and other valuable information from the mirrored copy without multiple requests to the webserver
+
+Attackers can use this information to perform various web application attacks on the target organization’s website.
+▪ Website Mirroring Tool: HTTrack Web Site Copier
+Source: https://www.httrack.com
+HTTrack is an offline browser utility. It downloads a website from the Internet to a local directory and recursively builds all the directories including HTML, images, and other files from the web server on another computer. As shown in the screenshot, attackers use HTTrack to mirror the entire website of the target organization, store it in the local system drive, and browse the local website to identify possible exploits and vulnerabilities.
