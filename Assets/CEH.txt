@@ -6827,7 +6827,78 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Prompt: "Scan the target URL www.moviescope.com for web vulnerabilities, saving the results in scan.txt using the Sn1per tool."
 					- Command: sniper -t www.moviescope.com -w scan3.txt
 					- Runs Sn1per to scan www.moviescope.com for vulnerabilities and Saves the scan results in a file named scan.txt.
-	- Bypass Client-Side Controls
+	- Bypass Client-Side Controls:
+		- A web application often employs client-side controls to restrict user input when transmitting data via client components and to regulate the user’s interaction with their own client. Developers use techniques such as hidden HTML form fields and browser extensions to facilitate data transmission from the client to the server. However, web developers sometimes assume that data sent from the client is trustworthy, which can introduce vulnerabilities. Bypassing client-side controls typically involves attacks that exploit weaknesses in client-side validation mechanisms.
+		- Web Application Attacks Used to Bypass Client-Side Controls:
+			- Cross-Site Scripting (XSS)
+			- Cross-Site Request Forgery (CSRF)
+			- Parameter Tampering
+			- HTTP Parameter Pollution
+			- Input Field Manipulation
+			- Hidden Field Manipulation
+			- Client-Side Input Validation Bypass
+			- JavaScript Injection
+			- Cross-Origin Resource Sharing (CORS) Misconfiguration
+			- Session Fixation
+			- Browser Extension Attacks
+			- Local Storage/Session Storage Manipulation
+		- Attacking Hidden Form Fields:
+			- E-commerce and retail web applications often use hidden HTML form fields to prevent users from viewing or modifying certain data fields, such as product names and prices, while allowing them to enter values for fields like quantity. The assumption is that users will only modify permitted fields before submitting data to the server. Developers mark these fields as hidden to restrict user modifications. However, in many cases, hidden fields store crucial information, such as product prices and discount rates, making them a target for attackers.
+			- Steps to Attack Hidden Form Fields:
+				- Identify a vulnerable web application.
+				- Save the source code of the HTML page.
+				- Locate the hidden form fields.
+				- Modify the price values by editing the hidden field’s value.
+				- Save the file and reload it in a browser.
+				- Click the "Buy" button.
+			- The request will be transmitted to the server with the modified price. Additionally, attackers can use proxy tools such as Burp Suite to intercept the request when the form is submitted and alter the price field to any value. Some attackers may even attempt to enter negative price values to trick the retail application into issuing refunds via credit card transactions.
+		- Attacking Browser Extensions:
+			- Data from web applications that use browser extension components can be captured using two primary methods:
+			- Intercepting Traffic from Browser Extensions:
+				- This method involves capturing and modifying requests and responses exchanged between the browser extension and the server. Tools such as Burp Suite can be used to intercept this data. However, certain limitations exist, such as data obfuscation, encryption, and secure data serialization, which may hinder interception and modification.
+			- Decompiling Browser Extensions:
+				- By decompiling a browser extension’s bytecode, attackers can analyze its source code and functionality in detail. This technique provides a significant advantage: it allows attackers to modify data in requests sent to the server, bypassing obfuscation or encryption mechanisms used for transmitted data.
+				- Proxy tools like Burp Suite can also be used to intercept and manipulate web page component requests. When attempting to bypass client-side input validation implemented in a browser extension, if the extension submits validated data to the server transparently, an attacker can modify this data using an intercepting proxy—similar to how HTML form data can be manipulated.
+		- Attacking Google Chrome Browser Extensions:
+			- To compromise a web browser, attackers often trick victims into downloading a malicious file or visiting a malicious website, allowing them to infect the target browser. Once malware is installed, the browser may be manipulated to force users into enabling extensions and granting permissions, enabling attackers to exfiltrate sensitive data.
+			- Exploiting the Chrome Sync Feature:
+				- In the context of Google Chrome, attackers may target the Chrome Sync feature, which synchronizes browsing data across multiple devices. On a compromised browser, attackers can install fake or malicious extensions disguised as legitimate ones. These extensions can then be used to harvest stored browser information, including:
+					- Autofill data
+					- Bookmarks
+					- Search history
+					- Passwords
+					- Browser settings
+					- Other synchronized data
+			- Data Collected by Attackers After Compromising Google Chrome
+				- User Activity Data:
+					- Preferred language
+					- Recently visited websites
+					- Most frequently accessed media files
+					- Financial transactions on e-commerce sites
+					- Contact list and details saved in the browser
+					- Geo-location
+					- Gyroscope and proximity sensor data when using GPS
+				- User-Created Personal Information:
+					- Usernames, passwords, financial account details, and contact information stored in the browser
+					- Custom browser settings
+					- User reactions to social media posts and uploaded files
+					- Data from linked user accounts and devices
+					- Device information, installed applications, and services used
+				- Other Information:
+					- Files, news, and data related to the user
+					- Third-party websites and services, including e-commerce, social media, research, and business service providers
+					- Tracking data: cookies, pixel tags, application cache, browser web storage, and server log files
+		- Performing Source Code Review:
+			- The first step is to acquire the source code of the target web application. Once obtained, carefully analyze the code to understand its components, frameworks, and overall functionality. This review helps identify potential vulnerabilities within the codebase. By examining the source code, you can uncover various security weaknesses, such as:
+				- Bypassing client-side input validation
+				- Submitting nonstandard or malformed data to the server
+				- Manipulating client-side states or events
+				- Directly invoking hidden functionalities within a component
+			- Key Areas to Identify in a Source Code Review:
+				- Client-side input validation and other security-related logic or events
+				- Obfuscation or encryption techniques applied to client data before transmission to the server
+				- Modifiable components with hidden client-side functionalities
+				- References to server-side functionalities that may be exploited
 	- Attack Authentication Mechanisms
 	- Attack Authorization Schemes
 	- Attack Access Controls
