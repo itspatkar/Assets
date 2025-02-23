@@ -6713,6 +6713,120 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Site Ranking: Tools like Rank Tracker (www.ranktracker.com) track a company’s search engine ranking on the web.
 					- Audience Geography: Tools like Rank Tracker provide insights into a company’s customer distribution across different geographic regions.
 					- Visitor Tracking and Conversion Rates: Tools like Dashly (www.dashly.io) track website visitors and measure conversion rates.
+		- Website Mirroring:
+			- Website mirroring is the process of creating a replica or clone of an original website. Attackers can duplicate websites using mirroring tools such as HTTrack Web Site Copier and Cyotek WebCopy. These tools download a website to a local directory and recursively build all its directories, including HTML files, images, flash content, videos, and other files, from the web server onto another computer.
+			- Benefits of Website Mirroring:
+				- Useful for offline website browsing.
+				- Allows attackers to spend more time analyzing the website for vulnerabilities and loopholes.
+				- Helps in discovering the directory structure and extracting valuable information from the mirrored copy without making multiple requests to the web server.
+			- Attackers can leverage this information to execute various web application attacks against the target organization’s website.
+			- Website Mirroring Tool: HTTrack Web Site Copier (www.httrack.com):
+				- HTTrack is an offline browser utility that downloads a website from the Internet to a local directory, replicating all directories, including HTML files, images, and other resources, from the web server onto another computer.
+				- Attackers use HTTrack to mirror the entire website of a target organization, store it on their local system, and browse it offline to identify potential exploits and vulnerabilities.
+			- Website Mirroring with AI:
+				- With the aid of AI, attackers can easily perform website mirroring on a target website. For example, an attacker can use ChatGPT to generate the necessary command by providing an appropriate prompt, such as:
+				- Prompt: "Mirror the target website certifiedhacker.com"
+					- wget --mirror --convert-links --adjust-extension --page-requisites --no-parent http://certifiedhacker.com
+				- Prompt: "Mirror the target website https://certifiedhacker.com with HTTrack on desktop."
+					- httrack https://certifiedhacker.com mirror
+					- This command automates the process of mirroring the target website using HTTrack, allowing attackers to create convincing phishing websites or gather sensitive information for malicious purposes.
+		- Identifying Entry Points for User Input:
+			- Web application input fields serve as potential gateways for attackers to launch various types of injection attacks. If these input fields are vulnerable, gaining access to the application becomes significantly easier.
+			- During web application analysis, attackers attempt to identify entry points for user input to understand how the application accepts and processes data. They examine elements such as: URLs, HTTP headers, Query string parameters, POST data, Cookies.
+			- Additionally, attackers look for HTTP header parameters that can be processed as user inputs, including: User-Agent, Referer, Accept, Accept-Language, Host.
+			- They also analyze URL encoding techniques and encryption measures, such as SSL, implemented to secure web traffic. By identifying weaknesses in the input handling mechanisms, attackers can exploit vulnerabilities to gain unauthorized access to the web application.
+			- Tools for Web Application Analysis:
+				- Burp Suite (portswigger.net)
+				- WebScarab (owasp.org)
+				- OWASP Zed Attack Proxy (www.zaproxy.org)
+				- httprint (www.net-square.com)
+		- Identifying Server-Side Technologies:
+			- Perform detailed server fingerprinting and analyze HTTP headers and HTML source code to identify server-side technologies.
+			- Examine URLs for file extensions, directories, and other identifying information.
+			- Analyze error page messages for technology-specific clues.
+			- Inspect session tokens to determine the underlying server technology:
+				- JSESSIONID – Java
+				- ASPSESSIONID – IIS Server
+				- ASP.NET_SessionId – ASP.NET
+				- PHPSESSID – PHP
+			- Use tools such as httprint and WhatWeb to identify server-side technologies.
+				- httprint (net-square.com):
+					- httprint is a web server fingerprinting tool that identifies web servers based on their characteristics, even if server banner strings are obfuscated using tools like mod_security or server mask.
+					- Key Features:
+						- Accurately detects web servers despite modified banners.
+						- Identifies web-enabled devices without server banners, such as wireless access points, routers, switches, and cable modems.
+						- Uses text signature strings, allowing easy customization by adding new signatures to its database.
+				- WhatWeb (github.com):
+					- WhatWeb scans and identifies web technologies, including: Content management systems (CMS), Blogging platforms, Analytics packages, JavaScript libraries, Web servers, Embedded devices
+					- Key Features:
+						- Over 1,800 plugins for detecting different technologies.
+						- Identifies version numbers, email addresses, account IDs, SQL errors, and web framework modules.
+			- Identifying Server-Side Technologies Using AI:
+				- With the aid of AI, attackers can effortlessly automate website footprinting, enabling them to quickly gather valuable information about a target website. This information helps identify potential vulnerabilities and plan targeted attacks.
+				- Prompt: "Launch WhatWeb on the target website www.moviescope.com to perform website footprinting. Run a verbose scan and print the output. Save the results in the file whatweb_log.txt."
+				- Command: whatweb -v www.moviescope.com | tee whatweb_log.txt
+				- This command automates the process of website footprinting on the target website www.moviescope.com using the WhatWeb tool. It allows attackers to gather detailed insights into the target's web technologies, frameworks, and potentially vulnerable components.
+		- Identifying Server-Side Functionality:
+			- After determining the server-side technologies, attackers attempt to identify the server-side functionality to uncover potential vulnerabilities. They analyze the page source, URLs, and query parameters, making educated guesses about the internal structure and behavior of the web application.
+			- Tools for Identifying Server-Side Functionality:
+				- GNU Wget (www.gnu.org): GNU Wget is a command-line utility used for retrieving files via HTTP, HTTPS, and FTP, the most commonly used Internet protocols. As a non-interactive tool, it can be executed from scripts, cron jobs, and terminals without requiring a graphical interface.
+				- BlackWidow
+				- cURL
+			- Examining URLs for Clues:
+				- SSL Certification: A secure website URL starts with https instead of http.
+				- File Extensions: If a page contains a .aspx extension, the application is likely built using ASP.NET.
+				- Query String Parameters: A parameter like showBY in the query string suggests that the application interacts with a database and retrieves data based on that value.
+		- Identify Files and Directories:
+			- Attackers use various techniques and tools to enumerate applications, hidden directories, and files of web applications hosted on web servers exposed to the Internet. They utilize tools such as Gobuster, URL Fuzzer, and the Nmap NSE script http-enum to identify files and directories of the target web application.
+			- Gobuster:
+				- Gobuster is a Go-based directory scanner that allows attackers to perform fast enumeration of hidden files and directories within a target web application. It is a command-line tool used to brute-force URIs on websites, discover DNS subdomains, and identify virtual host names on the target server.
+				- Run the following command to retrieve file and directory names along with their status codes: gobuster dir -u <target URL> -w common.txt
+				- Use the -s flag to filter results by specific status codes: gobuster dir -u <target URL> -w common.txt -s 200
+			- Nmap:
+				- Attackers use the Nmap NSE script http-enum to enumerate applications, directories, and files on web servers exposed to the Internet. This helps them identify critical security vulnerabilities in the target web application.
+				- Run the following Nmap command to gather information about exposed files and directories on the target web server: nmap -sV --script=http-enum <target domain or IP address>
+			- Identify Files and Directories with AI:
+				- With the aid of AI, attackers can efficiently perform web content scanning, quickly enumerate directories and files on target URLs, and uncover hidden paths and potential vulnerabilities.
+				- Example 1:
+					- Scan the web content of www.moviescope.com using Dirb
+					- Command: dirb http://www.moviescope.com
+					- The Dirb tool is used to scan web content on the target URL www.moviescope.com.
+				- Example 2: Scan the web content of www.moviescope.com using Gobuster
+				- Command: gobuster dir -u http://www.moviescope.com -w /usr/share/wordlists/dirb/common.txt
+				- The Gobuster command scans the target URL www.moviescope.com, using the wordlist /usr/share/wordlists/dirb/common.txt for directory brute-forcing.
+		- Identify Web Application Vulnerabilities:
+			- Attackers use various techniques to detect vulnerabilities in target web applications hosted on web servers. Their goal is to gain administrator-level access or retrieve sensitive information stored on the server. By scanning applications for vulnerabilities, they can identify attack surfaces and potential security weaknesses.
+			- Comprehensive vulnerability scanning can expose security flaws in executables, binaries, and technologies used within a web application. Through this process, attackers can catalog vulnerabilities, prioritize them based on their threat levels, and exploit them when targeting an application.
+			- To identify vulnerabilities in target web applications, attackers use tools such as Vega, WPScan, Arachni, and Uniscan.
+			- Web Application Scanning Tools:
+				- Vega (www.subgraph.com):
+					- Vega is a free, open-source web security scanner and testing platform designed to assess the security of web applications. It helps identify and validate vulnerabilities such as:
+						- SQL Injection
+						- Cross-Site Scripting (XSS) (both reflected and stored)
+						- Inadvertent disclosure of sensitive information
+						- Blind SQL Injection
+						- Remote File Inclusion
+						- Shell Injection
+					- Vega is written in Java, features a graphical user interface (GUI), and runs on Linux, macOS, and Windows. Additionally, it probes TLS/SSL security settings and identifies potential improvements to enhance server security.
+				- WPScan Vulnerability Database (wpscan.com)
+				- Codename SCNR (ecsypno.com)
+				- AppSpider (www.rapid7.com)
+				- Uniscan (github.com)
+				- N-Stalker (www.nstalker.com)
+			- Identify Web Application Vulnerabilities with AI:
+				- With AI, they can efficiently perform website vulnerability scans, quickly identify security weaknesses, and plan targeted attacks.
+				- Example 1: Perform a Vulnerability Scan on www.moviescope.com
+					- Prompt: "Perform a vulnerability scan on the target URL www.moviescope.com."
+					- Command: nikto -h www.moviescope.com
+					- This command automates website vulnerability scanning using the Nikto tool to detect security flaws in www.moviescope.com.
+				- Example #2: Perform a Vulnerability Scan on www.moviescope.com Using Nmap
+					- Prompt: "Perform a vulnerability scan on the target URL www.moviescope.com using Nmap."
+					- Command: nmap --script vuln www.moviescope.com
+					- This command runs Nmap with the --script vuln option, which uses Nmap's built-in vulnerability scanning scripts to identify security weaknesses in www.moviescope.com.
+				- Example 3: Install Sn1per and Scan www.moviescope.com for Web Vulnerabilities
+					- Prompt: "Scan the target URL www.moviescope.com for web vulnerabilities, saving the results in scan.txt using the Sn1per tool."
+					- Command: sniper -t www.moviescope.com -w scan3.txt
+					- Runs Sn1per to scan www.moviescope.com for vulnerabilities and Saves the scan results in a file named scan.txt.
 	- Bypass Client-Side Controls
 	- Attack Authentication Mechanisms
 	- Attack Authorization Schemes
