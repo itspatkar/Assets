@@ -7528,3 +7528,9 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- WebCopier (www.maximumsoft.com)
 				- WPScan (wpscan.com)
 				- TIDoS-Framework (github.com)
+		- Create and Run Custom Scripts to Automate Web Application Hacking Tasks with AI:
+			- With AI assistance, they can easily create and execute custom scripts for web application footprinting and vulnerability scanning, gaining valuable insights into their targets. By developing such scripts, attackers can efficiently perform a series of footprinting and vulnerability scanning commands to gather critical information about a target domain.
+			- An attacker can also utilize AI-powered tools like ChatGPT or other generative AI technologies to create custom scripts for automation by using appropriate prompts such as:
+				- "Create and run a custom script for web application footprinting and vulnerability scanning. The target URL is www.certifiedhacker.com."
+				- "Create and run a custom Python script for web application footprinting and vulnerability scanning. The target URL is www.certifiedhacker.com."
+				- "Create and run a custom Python script that performs web application footprinting to gather information and then uses this data to conduct vulnerability scanning on the target URL www.certifiedhacker.com."
