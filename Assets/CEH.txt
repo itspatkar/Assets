@@ -7376,12 +7376,62 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- For example, improper settings might grant shell access instead of restricted file access, allowing attackers to view or modify sensitive files stored on the web server.
 			- Attacks Between Applications:
 				- In shared environments, a vulnerability in one application can allow attackers to compromise others.
-					- Remote Code Execution (RCE):
-						- Attackers may exploit vulnerabilities in a neighboring application to execute malicious scripts and gain control over other hosted applications.
-						- Example: A script that allows remote command execution could be used to run OS commands such as whoami.
-					- SQL Injection Attacks:
-						- A SQL injection vulnerability in one application could be used to execute arbitrary SQL queries, retrieve sensitive data, and manipulate records from other applications within the shared environment.
+				- Remote Code Execution (RCE):
+					- Attackers may exploit vulnerabilities in a neighboring application to execute malicious scripts and gain control over other hosted applications.
+					- Example: A script that allows remote command execution could be used to run OS commands such as whoami.
+				- SQL Injection Attacks:
+					- A SQL injection vulnerability in one application could be used to execute arbitrary SQL queries, retrieve sensitive data, and manipulate records from other applications within the shared environment.
 		- Conclusion: Poorly secured shared environments pose significant security risks. A single vulnerability in one client’s application can compromise the security of multiple organizations. Proper access control, privilege separation, and regular security assessments are essential to mitigating these risks.
-	- Target Database Connectivity
-	- Attack Web application Clients
+	- Attacking Database Connectivity:
+		- Database connection strings are used to link applications to database engines. In these attacks, attackers target the database connection, which serves as a bridge between a database server and its client software. A web application establishes a connection to the database by providing a driver with a connection string. This string contains the address of a specific database or server, along with instance details and user authentication credentials.
+		- For example: Server=sql_box; Database=Common; User ID=uid; Pwd=password;
+		- Attacking database connectivity can lead to unauthorized control over the database. Such attacks grant attackers access to sensitive database information by exploiting the way applications connect to databases, rather than manipulating database queries. Common attack methods include connection string injection, hash stealing, port scanning, and hijacking web credentials.
+		- The following is an example of a typical connection string used to connect to a Microsoft SQL Server database:
+			Data Source=Server,Port; Network Library=DBMSSOCN; Initial Catalog=DataBase; User ID=Username; Password=pwd;
+		- Types of Data Connectivity Attacks:
+			- Connection String Injection: In a delegated authentication environment, attackers manipulate connection strings by injecting parameters, often using a semicolon to append them. This typically occurs when dynamic string concatenation is used to construct connection strings based on user input.
+			- Connection String Parameter Pollution (CSPP) Attacks: Attackers modify or overwrite parameter values within the connection string, potentially altering database behavior.
+			- Connection Pool Denial of Service (DoS): Attackers analyze the connection pooling settings of the target application, craft a large malicious SQL query, and execute multiple queries simultaneously. This depletes the available connections in the pool, preventing legitimate users from accessing the database.
+		- Connection String Injection:
+			- A connection string injection attack occurs when a server dynamically concatenates user input to build connection strings without proper validation or escaping of malicious characters. If the server fails to sanitize the input, an attacker can manipulate the connection string to access sensitive data or alter system behavior.
+			- For example, an attacker could exploit this vulnerability by appending a semicolon (;) followed by an additional parameter. Using a "last one wins" parsing approach, the attacker can override legitimate values with malicious input.
+			- Mitigation with Connection String Builders:
+				- To prevent such attacks, connection string builder classes should be used. These classes:
+				- Eliminate syntax errors and security vulnerabilities by providing predefined methods and properties for constructing connection strings.
+				- Maintain a fixed collection of recognized key/value pairs, ensuring only valid parameters are allowed.
+				- Automatically handle maliciously injected values safely, preventing unauthorized modifications.
+			- In delegated authentication environments, attackers can easily inject parameters using semicolons (;). The following example demonstrates how an attacker disables encryption by injecting a malicious parameter into the connection string.
+			- Example of Connection String Injection:
+				- Before Injection: Data Source=Server,Port; Network Library=DBMSSOCN; Initial Catalog=DataBase; User ID=Username; Password=pwd;
+				- After Injection: Data Source=Server,Port; Network Library=DBMSSOCN; Initial Catalog=DataBase; User ID=Username; Password=pwd; Encryption=off
+				- Here, the attacker inputs the password as: pwd; Encryption=off
+				- As a result, the Encryption=off parameter is appended to the connection string, potentially disabling encryption and compromising security.
+			- Key Takeaway:
+				- Proper validation and sanitization of user input are essential to prevent connection string injection.
+				- Using connection string builder classes helps mitigate risks by enforcing strict parameter validation.
+		- Connection Pool Denial of Service (DoS):
+			- A Connection Pool DoS attack exploits an application's connection pooling settings by executing multiple long-running queries simultaneously, exhausting the available connections and preventing legitimate users from accessing the database.
+			- Attack Method: An attacker examines the connection pool settings and crafts a malicious SQL query designed to run for an extended period. By executing multiple such queries in parallel, they consume all available connections in the pool, leading to service disruption.
+			- Example:
+				- In ASP.NET, the default maximum number of connections in a pool is 100, with a timeout of 30 seconds. An attacker can:
+				- Execute 100 queries, each with an execution time of 30+ seconds.
+				- Ensure all queries run within 30 seconds to deplete the connection pool.
+				- As a result, legitimate users will be unable to perform database-related operations until the connections are released.
+			- Mitigation Strategies:
+				- Limit query execution time using timeouts and resource limits.
+				- Implement connection pooling limits with adaptive thresholds to prevent abuse.
+				- Monitor and log excessive database queries to detect abnormal behavior.
+				- Use rate limiting and CAPTCHA to prevent automated DoS attempts.
+	- Attack Web Application Clients:
+		- Server-side attacks can compromise client-side applications when the latter interact with malicious servers or process harmful data. Client-side attacks occur when a client establishes a connection with a compromised or malicious server. If there is no connection between the client and server, the risk is eliminated, as the server cannot pass malicious data to the client.
+		- A common example of a client-side attack involves an infected web page exploiting a specific browser vulnerability. If successful, this allows the malicious server to gain unauthorized control over the client system. Attackers often manipulate server-side applications in unexpected ways to execute malicious actions against users and access sensitive data.
+		- Common Methods For Compromising Web Application Clients (Client-Side Attack Techniques):
+			- Cross-Site Scripting (XSS): Attackers bypass security mechanisms to inject malicious scripts into web pages. These scripts can steal user credentials, modify page content, or execute harmful actions on behalf of the user.
+			- HTTP Header Injection: Attackers manipulate HTTP headers to split a response into multiple forged responses, which can lead to website defacement, cache poisoning, and cross-site scripting (XSS) attacks.
+			- Request Forgery Attacks (CSRF): Attackers exploit the trust relationship between a website and a user's browser. They craft malicious links or forms that, when clicked, trigger unauthorized actions on an authenticated website without the user’s consent.
+			- Privacy Attacks: Attackers track users by exploiting browser vulnerabilities or persistent states (e.g., cookies, local storage). This can lead to unauthorized user profiling and tracking.
+			- Redirection Attacks: Attackers create fake links that appear legitimate but redirect users to malicious websites. These fake sites can be used for credential theft (phishing) or malware distribution.
+			- Frame Injection Attacks: Attackers inject malicious code into frames of an HTML page when input validation is inadequate. Since modern browsers support frame editing, untrusted input can be exploited to manipulate website content and deceive users.
+			- Session Fixation: Attackers force a user to use a predefined session ID, then hijack the session once the user logs in. This allows the attacker to impersonate the victim and access their authenticated session.
+			- ActiveX Attacks: Attackers trick users into installing malicious ActiveX controls through email or deceptive links. Exploiting remote code execution vulnerabilities, attackers gain the same level of access privileges as the authenticated user.
 	- Exploit Vulnerabilities in Web Services
