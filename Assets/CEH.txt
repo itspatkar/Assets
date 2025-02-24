@@ -3896,7 +3896,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Bypassing IDS/Firewall Using Proxy Server:
 			- Find a suitable proxy server.
 			- Configure proxy settings on a Windows system:
-				- Open the Control Panel and navigate to Network and Internet → Internet Options.
+				- Open the Control Panel and navigate to Network and Internet -> Internet Options.
 				- In the Internet Options dialog box, go to the Connections tab and click "LAN settings."
 			- Under LAN Settings, check the "Use a proxy server for LAN" option.
 			- In the Address box, enter the IP address of the proxy server.
@@ -7185,10 +7185,172 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 							}
 					- If the application only checks for a 200 OK response without verifying the actual server-side logic, an attacker may gain unauthorized access.
 				- Conclusion: These attack techniques exploit weak server-side validation and improper handling of authentication responses. Organizations should implement server-side validation, encrypted communication, secure token verification, and additional security measures to prevent MFA bypass attempts.
-	- Attack Authorization Schemes
-	- Attack Access Controls
-	- Attack Session Management Mechanisms
-	- Perform Injection Attacks
+	- Attack Authorization Schemes:
+		- A web application contains an authorization mechanism that restricts access to specific resources or functionalities (e.g., an Admin page) for authenticated users. The web application always performs user authorization after authentication. An attacker exploits flaws in the authorization mechanism to escalate privileges and gain unauthorized access to restricted pages. The attacker attempts to retrieve information without proper credentials, using various techniques to bypass the web application's authorization schemes.
+		- Authorization Attacks:
+			- In an authorization attack, the attacker first identifies a legitimate account with limited privileges, logs in as that user, and then gradually escalates privileges to access protected resources. The attacker manipulates HTTP requests to bypass the application’s authorization mechanisms by modifying input fields related to the user ID, username, access group, cost, file names, file identifiers, etc.
+			- Attackers leverage various sources, including uniform resource identifiers (URIs), parameter tampering, POST data, HTTP headers, query strings, cookies, and hidden tags, to carry out authorization attacks.
+    		- Uniform Resource Identifier (URI): A URI is a global identifier for internet resources, whether accessed remotely or locally. An attacker may use URIs to access protected documents or directories, inject SQL queries or other unintended commands into an application, or redirect users to malicious sites linked to another server.
+    		- Parameter Tampering: This involves manipulating parameters exchanged between the client and server to alter application data, such as product prices, quantities, user permissions, or credentials. Such data is often stored in cookies, URL query strings, or hidden form fields, which attackers modify to gain unauthorized control over the application.
+    		- POST Data: POST requests typically contain authorization and session information, as the data provided by the client must be linked to a session. Attackers exploit vulnerabilities in POST data to manipulate session information and authorization controls.
+    		- HTTP Headers: Web browsers do not allow direct modification of HTTP headers. To bypass this restriction, attackers either create custom programs or use specialized tools to alter headers and manipulate requests. An authorization HTTP header typically contains a Base-64 encoded username and password. Attackers can compromise this header by submitting multiple HTTP requests within the same header. In such cases, a proxy system processes the first request while the target system executes the second, effectively bypassing the proxy’s access control.
+    		- Query Strings and Cookies: Browsers use cookies to maintain session states in the otherwise stateless HTTP protocol. Cookies store user preferences, session tokens, and other data. Attackers can modify cookies and send altered requests to the server, potentially tampering with session tokens or authorization data. The impact of cookie modification depends on how the application utilizes cookies, whether for authentication, session management, or authorization decisions.
+    		- Hidden Tags: In HTML forms, user selections and input values are often stored as hidden fields and sent to the application via HTTP requests (GET or POST). Since hidden fields are not displayed on the webpage, users typically do not interact with them directly. However, attackers can manipulate hidden field values to gain unauthorized access or alter application behavior. Because client-side code lacks inherent security, attackers can exploit these hidden fields to access restricted pages or execute unauthorized actions within the browser.
+		- Authorization Attack: HTTP Request Tampering: 
+			- HTTP headers control the information exchanged between web clients and web servers in HTTP requests and responses. Each header consists of a single text line containing a name and a value. There are two primary ways to send data via HTTP: through the URL or a form.
+			- Tampering with HTTP data involves modifying the content of an HTTP request (or response) before it is processed by the recipient. Attackers exploit this technique to bypass security mechanisms without requiring another user's credentials.
+			- Query String Tampering:
+				- If the query string is visible in the browser's address bar, an attacker may attempt to modify its parameters to bypass authorization controls. Web spidering tools, such as Burp Suite, can be used to scan the web application for POST parameters that might be vulnerable to manipulation.
+			- HTTP Header Tampering:
+				- If the application relies on the Referer header for access control, an attacker can modify it to gain unauthorized access to restricted functionalities.
+				- For example, consider the following scenario where access to an item (ItemID = 201) is restricted unless the Admin parameter is set to true:
+					GET /items?ItemID=201 HTTP/1.1
+					Host: example.com
+					Referer: http://example.com/dashboard?Admin=false
+				- By altering the Admin parameter in the request, the attacker may gain access to protected resources:
+					GET /items?ItemID=201 HTTP/1.1
+					Host: example.com
+					Referer: http://example.com/dashboard?Admin=true
+				- Such vulnerabilities arise when applications make security decisions based on easily manipulated client-side data.
+		- Authorization Attack: Cookie Parameter Tampering:
+			- Cookie parameter tampering is a technique used to modify cookies set by a web application to carry out malicious attacks. When a user logs into a website, the web application generates a session cookie and stores it in the browser. Attackers exploit insecure cookie handling to manipulate session data and gain unauthorized access.
+			- Steps for Cookie Parameter Tampering:
+				- Collect and Analyze Cookies:
+					- Gather session cookies set by the web application.
+					- Analyze them to understand the cookie generation mechanism and identify potential vulnerabilities.
+				- Tamper with Cookie Parameters:
+					- Intercept session cookies using tools such as Burp Suite.
+					- Modify cookie parameters and replay the altered cookie to the application to gain unauthorized access to other users’ profiles.
+				- Intercept and Replace Cookies:
+					- The tool intercepts each request sent from the browser and allows the attacker to edit cookies.
+					- If the cookie is not securely generated, the attacker may be able to guess or manipulate its parameters to escalate privileges.
+			- Burp Suite (portswigger.net): Burp Suite is an integrated platform for security testing of web applications. It provides various tools that work together to support the entire testing process, from initial mapping and analysis of an application's attack surface to identifying and exploiting security vulnerabilities.
+	- Attack Access Controls:
+		- Access controls are a critical part of an application's security mechanisms, relying on authentication and session management to regulate user access. Attackers analyze a website to identify vulnerabilities in access controls, focusing on the following aspects:
+			- Individual access to specific subsets of data
+			- Levels of access granted to different user roles (e.g., employees, managers, supervisors, CEOs)
+			- Administrator functionalities for configuration and monitoring
+			- Features that allow privilege escalation
+		- Exploiting Insecure Access Controls:
+			- Parameter-Based Access Control:
+				- Web applications use various request parameters, such as cookies and query strings, to determine access permissions. These parameters often differ between regular users and administrators. In some cases, certain parameters are hidden from normal users and visible only to administrators. If an attacker can identify administrator-specific parameters, they can manipulate their own requests to include these parameters and gain unauthorized administrative access
+			- Referer-Based Access Control:
+				- Some web applications rely on the HTTP Referer header to enforce access control. However, the Referer header is inherently insecure, as attackers can easily modify it to bypass restrictions and gain unauthorized access to protected resources.
+			- Location-Based Access Control:
+				- Applications may restrict access based on a user's geographic location, typically determined through the user's IP address.
+				- Attackers can bypass these controls by using techniques such as:
+					- Web proxies to route traffic through different locations
+					- VPNs to mask their real IP address
+					- Data roaming on mobile devices to switch between different network regions
+					- Direct manipulation of client-side mechanisms that control location-based access
+		- Access Control Attack Methods:
+			- Attacking with Different User Accounts:
+				- Attempt to access the application using multiple user accounts. If the web application has broken access controls, you may be able to access restricted resources and functionalities as a legitimate but unauthorized user. Tools like Burp Suite can help compare access levels between different user contexts to identify security gaps.
+			- Attacking Multistage Processes:
+				- The above technique may be ineffective if the web application employs a multistage process, where users must perform multiple steps at different levels to complete an action. Since multiple requests are sent to the server throughout this process, attackers need to capture and analyze each request to test for access control vulnerabilities.
+				- A manual approach to attacking a multistage process includes:
+					- Walking through the protected process multiple times in a browser.
+					- Using proxy tools to intercept session tokens and replace them with those of a lower-privileged user.
+			- Attacking Static Resources:
+				- Some web applications expose protected static resources via direct URLs. An attacker can attempt to request these URLs directly to check if unauthorized users can access them without proper authentication or authorization.
+			- Attacking Direct Access to Methods:
+				- Certain web applications accept direct requests to server-side APIs or methods. If these methods lack proper access control, attackers can exploit them to bypass security restrictions and gain unauthorized access to sensitive system functions.
+			- Attacking Restrictions on HTTP Methods:
+				- Testing various HTTP methods (e.g., GET, POST, PUT, DELETE, TRACE, and OPTIONS) is crucial in identifying security flaws. Attackers manipulate HTTP methods to see if the application improperly accepts or processes unauthorized requests. If access controls fail to restrict these methods appropriately, attackers can exploit them to bypass security measures and compromise the application.
+	- Attack Session Management Mechanisms:
+		- Web application session management involves exchanging sensitive information between the server and its clients when required. If session management is insecure, attackers can exploit vulnerabilities to compromise the web application. Since session management is a critical security component in most web applications, attackers frequently target it to launch malicious attacks.
+		- By exploiting weaknesses in session management, attackers can bypass even the most robust authentication controls, impersonate legitimate users without knowing their credentials (e.g., usernames and passwords), and, in severe cases, gain control over an entire application by compromising an administrator’s session.
+		- Session Token Vulnerabilities:
+			- Session Token Generation:
+				- Session Token Prediction
+				- Session Token Tampering
+			- Session Token Handling:
+				- Man-in-the-Middle Attack
+				- Session Replay
+				- Session hijacking
+		- Session Management Attacks:
+			- A session management attack is a technique used by attackers to compromise a web application by exploiting weaknesses in its session management mechanism. By bypassing authentication controls, attackers can impersonate privileged users and gain unauthorized access. This attack consists of two main stages: session token generation and exploitation of session token handling.
+			- Session Token Generation Attacks:
+				- To generate a valid session token, attackers use the following methods:
+				- Session Token Prediction: Attackers analyze the session ID pattern used by the server. If session tokens follow a deterministic or predictable pattern, an attacker can derive previous and future session IDs, allowing them to hijack active sessions and impersonate users.
+				- Session Token Tampering: Once attackers obtain valid session IDs, they can manipulate session data to escalate privileges, perform unauthorized transactions, or access restricted resources.
+			- Exploiting Session Token Handling:
+				- Once a valid session token is obtained, attackers exploit session handling mechanisms through:
+				- Man-in-the-Middle (MITM) Attack:
+					- Attackers intercept communication between the client and server, splitting the connection into two:
+						- One between the client and the attacker.
+						- Another between the attacker and the server.
+					- The attacker then acts as a proxy, monitoring and potentially altering the exchanged data.
+				- Session Hijacking:
+					- Attackers steal a valid session ID from a trusted website—often through methods like cross-site scripting (XSS) or network sniffing—and use it to impersonate the user.
+				- Session Replay:
+					- Attackers capture a legitimate session token and reuse it to gain unauthorized access. If the application does not implement token expiration or replay protection mechanisms, the attacker can repeatedly use the same session ID to access the victim’s account.
+		- Attacking the Session Token Generation Mechanism:
+			- In a session management attack, attackers attempt to determine the session token generation mechanism by stealing valid session tokens and predicting future tokens.
+			- Through session prediction, attackers analyze patterns in session tokens exchanged between the client and server. This vulnerability arises when a web application generates weak or predictable session identifiers. For example, if the application assigns session tokens sequentially, an attacker can deduce past and future session tokens simply by knowing a single valid session ID. Before attempting prediction, attackers must first obtain a sample of valid session tokens from legitimate system users.
+			- Vulnerabilities in Session Token Generation:
+				- Weak Encoding Example:
+					- If a session token is weakly encoded, an attacker may be able to manipulate it and predict valid tokens.
+					- For instance, consider a session token encoded using hex encoding for the following ASCII string: user=jason;app=admin;date=08/01/2020
+					- If the web application does not enforce strong encoding or token randomness, an attacker can predict and modify session tokens, such as by changing the date parameter to perform unauthorized transactions.
+					- Example request: https://www.certifiedhacker.com/checkout?SessionToken=%75%73%65%72%3D%6A%61%73%6F%6E%3B%61%70%70%3D%61%64%6D%69%6E%3B%64%61%74%65%3D%30%38%2F%30%31%2F%32%30%32%30
+					- By modifying the encoded date value, the attacker may generate a valid session token for another transaction.
+				- Session Token Prediction:
+					- Attackers follow these steps to predict session tokens:
+						- Obtain valid session tokens: Capture tokens by sniffing network traffic or logging into the application and analyzing session token encoding (e.g., hex encoding, Base64).
+						- Analyze session token patterns: If session tokens follow a predictable structure, attempt to reverse-engineer their logic.
+						- Make large numbers of requests: Use the predicted tokens to access a session-dependent page and determine which tokens are valid.
+			- Attacking the Session Token Handling Mechanism: Session Token Sniffing:
+				- Session token sniffing is a technique used by attackers to capture valid session tokens from network traffic and exploit them to gain unauthorized access to a web application. Once a valid session token is obtained, attackers can predict future session tokens or use the captured token to authenticate themselves as legitimate users.
+				- Steps for Session Token Sniffing:
+					- Capture network traffic using a sniffing tool like Wireshark or an intercepting proxy such as Burp Suite.
+					- Analyze session tokens in HTTP traffic. If session tokens are transmitted via unencrypted HTTP cookies and the secure flag is not set, attackers can replay the cookie to gain unauthorized access.
+					- Exploit the captured session token to perform various attacks, including:
+						- Session Hijacking: Taking over an active user session.
+						- Session Replay: Reusing a valid session token to authenticate as another user.
+						- Man-in-the-Middle (MITM) Attack: Intercepting and modifying session data in transit.
+				- Importance of Session Token Sniffing in Session Management Attacks: Sniffing valid session tokens is a crucial step in compromising web applications that lack secure session management practices.
+				- Wireshark: Wireshark is a powerful network protocol analyzer that captures and inspects live network traffic. It supports multiple network protocols, including Ethernet, IEEE 802.11 (Wi-Fi), PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, and FDDI. Attackers can use Wireshark to intercept and analyze session IDs transmitted between clients and a target web application.
+			- Manipulating WebSocket Traffic (PortSwigger):
+				- Attackers use Burp Suite to manipulate WebSocket traffic by intercepting, modifying, and replaying WebSocket messages using the Burp Repeater feature.
+				- Steps to Manipulate WebSocket Traffic Using Burp Suite:
+					- Open Burp Suite and enable interception.
+					- Browse an application that uses WebSockets for communication.
+					- Navigate to Proxy -> WebSockets history to view WebSocket messages.
+					- Right-click on a WebSocket message you want to manipulate and select “Send to Repeater.”
+					- Open the Repeater tab. The History panel will display all messages exchanged over the WebSocket connection.
+					- Click the pencil icon next to the WebSocket URL, select WebSocket from the Select WebSocket window, and click Clone to duplicate the connection.
+					- Modify the raw request as needed and click Connect. Burp Suite will attempt to establish the manipulated handshake.
+					- Check the new WebSocket connection by clicking the pencil icon again to confirm if it was successfully established and can send new messages.
+					- Once the connection is established, click Send in the main window to transmit the modified WebSocket message to the server.
+	- Perform Injection Attacks (Input Validation Attacks):
+		- Injection attacks are among the most common threats to web applications. They exploit weaknesses in input validation mechanisms implemented by the application. Various types of injection attacks exist, including web script injection, OS command injection, SMTP injection, LDAP injection, and XPath injection. One of the most frequently occurring injection attacks is SQL injection.
+		- Injection attacks typically occur when a browser sends user-supplied data to an interpreter as part of a command or query. To execute an injection attack, attackers craft malicious input that manipulates the interpreter into executing unintended commands or queries. Due to these vulnerabilities, attackers can read, create, modify, or delete arbitrary data within the application. In some cases, they may even bypass deeply nested firewalls and gain complete control over the application and its underlying system.
+		- To perform an injection attack, supply crafted malicious input that conforms to the syntax of the interpreted language used by the application. This input is designed to break the application's normal operation and execute unintended commands.
+		- Common Types of Injection Attacks:
+			- Web Script Injection: If user input is executed dynamically as code, supply crafted input that alters the intended data context and executes commands on the server.
+			- OS Command Injection: Exploit applications that incorporate user input into system-level commands by injecting malicious code into input fields.
+			- SMTP Injection: Inject arbitrary SMTP commands into an application or SMTP server conversation to send spam or manipulate email behavior.
+			- SQL Injection: Enter malicious SQL queries into input fields to directly manipulate a database.
+			- LDAP Injection: Exploit web application vulnerabilities that fail to validate input by injecting LDAP filters to gain unauthorized access to directories or databases.
+			- XPath Injection: Manipulate XPath queries by entering malicious input, interfering with the application's logic and data retrieval process.
+			- Buffer Overflow: Overload input fields by injecting excessive data, exceeding the allocated buffer size and potentially crashing the application.
+			- File Injection: Exploit dynamic file inclusion mechanisms in web applications to inject malicious files.
+			- Canonicalization Attack: Manipulate file path references using techniques like “dot-dot-slash (../)” to access restricted directories within the application.
+		- Performing Local File Inclusion (LFI):
+			- Local File Inclusion (LFI) is a web security vulnerability that allows attackers to read and upload files onto a server via a web browser. This vulnerability can be exploited to access or replace locally available files on the server, including configuration files, code files, logs, and other sensitive data.
+			- LFI occurs when an application includes files based on user input without proper validation or security checks. Attackers manipulate the input by injecting path traversal characters (../) to access restricted files. This vulnerability is commonly found in PHP-based websites.
+			- Example of LFI in PHP:
+				- Evading Added .php and Other Extensions:
+					- File extensions are often appended using PHP code:
+						$file = $_GET['page'];  
+						require($file . ".php");
+					- An attacker can evade the .php extension by appending a null byte (%00) at the end of the attack string: http://xyz.com/page=../../../../../../etc/passwd%00
+					- Another method to bypass the added .php extension is by appending a question mark (?) to the attack string: http://xyz.com/page=../../../../../../etc/passwd?
+				- Bypassing .php Execution:
+					- LFI vulnerabilities allow attackers to read .txt files but not .php files, as .php files are executed by the server instead of being displayed as raw text.
+					- This restriction can be bypassed using the PHP filter wrapper to encode the file in Base64: http://xyz.com/index.php?page=php://filter/convert.base64-encode/resource=index
+					- This method encodes the index.php file in Base64, allowing attackers to decode and analyze it offline.
 	- Exploit Application Logic Flaws
 	- Attack Shared Environments
 	- Target Database Connectivity
