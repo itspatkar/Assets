@@ -7434,4 +7434,97 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Frame Injection Attacks: Attackers inject malicious code into frames of an HTML page when input validation is inadequate. Since modern browsers support frame editing, untrusted input can be exploited to manipulate website content and deceive users.
 			- Session Fixation: Attackers force a user to use a predefined session ID, then hijack the session once the user logs in. This allows the attacker to impersonate the victim and access their authenticated session.
 			- ActiveX Attacks: Attackers trick users into installing malicious ActiveX controls through email or deceptive links. Exploiting remote code execution vulnerabilities, attackers gain the same level of access privileges as the authenticated user.
-	- Exploit Vulnerabilities in Web Services
+	- Attacking Web Services (Exploit Vulnerabilities in Web Services):
+		- Web applications often rely on web services to implement specific functionalities. If these integrated web services contain vulnerabilities, the entire application becomes susceptible to exploitation. Attackers can take advantage of such weaknesses, making web services a prime target for cyber threats. Compromised web services pose a significant security risk.
+		- Web services operate on top of legacy web applications, meaning any attack on a web service can immediately expose an underlying application's business logic and security flaws. Attackers use various techniques to target web services, as these services are made accessible through different mechanisms. This broad accessibility increases the likelihood of vulnerabilities, which attackers exploit to compromise web services.
+		- There are multiple reasons why attackers target web services. The choice of attack method depends on the attacker's objective. For example, if the goal is to disrupt a web service and prevent it from functioning, attackers may launch a Denial-of-Service (DoS) attack by overwhelming the service with numerous requests.
+		- Web Service Probing Attacks:
+			- Web Services Description Language (WSDL) files are automated documents that contain sensitive information about service ports, connections between electronic systems, and other critical details. Attackers use WSDL probing attacks to gather intelligence about vulnerabilities in public and private web services, which can then be leveraged to execute SQL injection and other attacks.
+			- Steps For Web Service Probing Attack:
+				- Extracting WSDL Data: The attacker captures the WSDL document from web service traffic and analyzes it to understand the application's purpose, functional breakdown, entry points, and message types.
+				- Creating Valid Requests: The attacker selects specific operations and formulates request messages according to the XML schema rules, allowing them to interact with the web service.
+				- Injecting Malicious Content: Malicious content is embedded into SOAP requests to exploit vulnerabilities. The attacker then analyzes error messages to gain deeper insights into potential security weaknesses.
+			- By leveraging these probing techniques, attackers can identify security flaws and craft targeted attacks against vulnerable web services.
+		- Web Service Attacks: SOAP Injection:
+			- Simple Object Access Protocol (SOAP) is a lightweight, XML-based protocol designed for exchanging structured and typed information over the web. In the XML schema, the envelope element is always the root element of a SOAP message.
+			- SOAP injection involves inserting special characters—such as single quotes, double quotes, semicolons, and other symbols—into SOAP messages. Attackers inject malicious query strings into user input fields to bypass web service authentication mechanisms and gain unauthorized access to backend databases. This attack functions similarly to SQL injection, exploiting weaknesses in input validation to manipulate web services.
+		- Web Service Attacks: SOAPAction Spoofing:
+			- Every SOAP request message contains an operation that the application executes, which is included as the first child element in the SOAP body. When SOAP messages are transmitted over HTTP, an additional HTTP header called SOAPAction is used. This header specifies the operation to be executed, allowing the receiving web service to identify the operation without performing XML parsing.
+			- Attackers can exploit this optimization by manipulating the operations included in the SOAPAction header, effectively deceiving the web service into executing unintended operations.
+			- Example of SOAPAction Spoofing Attack:
+				- Consider a web service with two operations:
+					- createUser – Allows the creation of new users
+					- deleteAllUsers – Deletes all users (restricted to authorized users)
+				- In this scenario, the web service is protected by a gateway that only permits authorized users to execute the deleteAllUsers operation. However, an attacker outside the gateway can perform a SOAPAction spoofing attack by modifying the SOAPAction header as follows:
+					- Legitimate HTTP Request for Creating a User:
+						POST /service HTTP/1.1
+						Host: certifiedHacker
+						SOAPAction: "createUser"
+
+						<Envelope>
+							<Header />
+							<Body>
+								<createUser>
+								<login>rinnimathews</login>
+								<pwd>password</pwd>
+								</createUser>
+							</Body>
+						</Envelope>
+				- Spoofed HTTP Request Exploiting SOAPAction:
+					- The attacker modifies the SOAPAction header to "deleteAllUsers" while keeping the SOAP body unchanged. Since the gateway relies on the header and does not validate the body, it processes the request incorrectly.
+						POST /service HTTP/1.1
+						Host: certifiedHacker
+						SOAPAction: "deleteAllUsers"
+
+						<Envelope>
+							<Header />
+							<Body>
+								<createUser>
+								<login>rinnimathews</login>
+								<pwd>password</pwd>
+								</createUser>
+							</Body>
+						</Envelope>
+					- As a result, the system executes the deleteAllUsers operation, despite the SOAP body containing a createUser request. This vulnerability can lead to severe security breaches if not properly mitigated.
+			- Tools for Performing SOAPAction Spoofing Attacks:
+				- Attackers use tools like WS-Attacker to conduct SOAPAction spoofing attacks.
+				- WS-Attacker: WS-Attacker is an open-source tool for automating penetration tests on web services. It supports multiple attack types through plugins and provides a security-checking interface. It can load WSDL files, send SOAP messages to web service endpoints, and test for vulnerabilities such as XML signature wrapping, SOAPAction spoofing, and DoS attacks.
+		- Web Service Attacks: WS-Address Spoofing:
+			- WS-Addressing provides additional routing information in the SOAP header to support asynchronous communication. This mechanism allows web service requests and responses to be transmitted using different TCP connections, making it essential for long-running service requests where server-side processing exceeds the lifetime of a single TCP connection.
+			- WS-Addressing includes an optional FaultTo element, which specifies an alternative endpoint to be used in case of communication failures. However, since the ReplyTo and FaultTo headers are selected by the requester, they are not properly secured against tampering by intermediaries. Although the specification recommends applying digital signatures to these header fields, security often relies on default settings, which lack proper safeguards.
+			- This vulnerability allows attackers to perform WS-Address spoofing attacks. In such an attack, the attacker sends a SOAP message containing fake WS-Address information to the server. The ReplyTo header contains the attacker’s chosen endpoint instead of the legitimate web service client. As a result, the attacker’s endpoint receives unnecessary SOAP message traffic.
+			- Additionally, the attacker can exploit this vulnerability to generate massive amounts of traffic, potentially leading to a Denial-of-Service (DoS) attack.
+			- Exploiting WS-Addressing Vulnerabilities: Attackers use tools like WS-Attacker to identify and exploit WS-Addressing spoofing vulnerabilities.
+		- Web Service Attacks: XML Injection:
+			- Web applications often use XML to store data, such as user credentials, in XML documents. Attackers can exploit this by using XPath, a query language that defines the structure of XML documents and is often used for verifying user credentials (e.g., usernames and passwords) to grant access to specific user accounts.
+			- In an XML injection attack, attackers manipulate XPath queries by injecting malicious XML data or schema into input fields. This allows them to bypass authentication mechanisms and gain unauthorized access to sensitive data stored in XML. By crafting specific queries, attackers can exploit vulnerabilities in how applications process XML data.
+			- Attackers can also inject malicious XML tags into user input fields to manipulate the XML schema, alter database entries, or populate XML databases with bogus data. XML injection can be used for various purposes, including:
+				- Bypassing authentication to gain unauthorized access
+				- Escalating privileges within a system
+				- Launching Denial-of-Service (DoS) attacks on web services
+			- Proper input validation and secure XPath query handling are essential to mitigating XML injection attacks.
+		- Web Service Attacks: Parsing Attacks:
+			- Parsing attacks exploit vulnerabilities in the XML parser by overloading its processing capabilities, leading to Denial-of-Service (DoS) attacks or logical errors in web service request processing. These attacks occur when an attacker modifies file requests or strings to manipulate how the parser processes data.
+			- Attackers can execute parsing attacks by injecting .bat (batch) or .cmd (command) files, superimposing malicious operating system commands via the request.
+			- Types of Parsing Attacks:
+				- Recursive Payloads: Attackers send grammatically correct SOAP requests containing infinite processing loops, which overload the XML parser and consume CPU resources, leading to system exhaustion.
+				- Oversized Payloads: Attackers send excessively large payloads designed to consume all available system resources, making web services inaccessible to legitimate users.
+			- Web Service Attack Tools:
+				- SoapUI (www.soapui.org): SoapUI is a web service testing tool that supports multiple protocols, including SOAP, REST, HTTP, JMS, AMF, and JDBC. Attackers can use it for web service probing, SOAP injection, XML injection, and parsing attacks.
+				- XMLSpy (www.altova.com): Altova XMLSpy is an XML editor and development environment used for modeling, editing, transforming, and debugging XML-related technologies.
+			- Web Application Hacking Tools:
+				- Metasploit (www.metasploit.com)
+				- w3af (github.com)
+				- Nikto (cirt.net)
+				- Sn1per (github.com)
+				- WSSiP (github.com)
+				- Web Brutator (github.com)
+				- timing_attack (github.com)
+				- HTTrack (www.httrack.com)
+				- SQL Injection Scanner (pentest-tools.com)
+				- XSS Scanner (pentest-tools.com)
+				- SQLi Exploiter (pentest-tools.com)
+				- HTTP Request Logger (pentest-tools.com)
+				- WebCopier (www.maximumsoft.com)
+				- WPScan (wpscan.com)
+				- TIDoS-Framework (github.com)
