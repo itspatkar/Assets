@@ -7351,8 +7351,37 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- LFI vulnerabilities allow attackers to read .txt files but not .php files, as .php files are executed by the server instead of being displayed as raw text.
 					- This restriction can be bypassed using the PHP filter wrapper to encode the file in Base64: http://xyz.com/index.php?page=php://filter/convert.base64-encode/resource=index
 					- This method encodes the index.php file in Base64, allowing attackers to decode and analyze it offline.
-	- Exploit Application Logic Flaws
-	- Attack Shared Environments
+	- Exploit Application Logic Flaws:
+		- Web applications rely on complex logic at multiple levels. Some implementations of this logic may contain vulnerabilities that are not easily noticeable. While most attackers focus on high-profile threats such as SQL Injection and Cross-Site Scripting (XSS)—which have identifiable signatures—application logic flaws are more difficult to detect because they do not follow common attack patterns.
+		- Traditional vulnerability scanners and automated testing tools often fail to identify logic flaws, making them particularly dangerous. Attackers can exploit these vulnerabilities to cause significant damage to web applications. Such flaws typically arise due to developer negligence and false assumptions about how users will interact with the application. Since application logic flaws vary across different types of web applications, they cannot be categorized under a single vulnerability type. Studying previously exploited applications with known logic flaws can provide valuable insights into how to identify and exploit these weaknesses.
+		- Scenario: Exploiting Logic Flaws in Retail Web Applications:
+			- Many retail web applications follow a standard process for placing an order:
+				- Selecting a product
+				- Finalizing the order
+				- Providing payment details
+				- Providing delivery details
+			- Developers assume that users will complete these steps in sequence. However, attackers can manipulate requests to bypass critical stages.
+			- By using proxy tools such as Burp Suite, an attacker can intercept and modify HTTP requests sent to the application. One effective technique is forced browsing, where an attacker skips the payment stage by jumping directly from the order confirmation step to the delivery confirmation step.
+			- Impact: This exploit allows attackers to obtain products without making a payment, leading to severe financial losses for the business—especially if the attack is automated on a large scale.
+	- Attacking Shared Environments:
+		- Many organizations rely on third-party service providers to host and maintain their web applications and related infrastructure. These providers host multiple clients' applications on the same infrastructure, creating potential security risks. For instance, a malicious client may attempt to compromise another organization’s web application, or a vulnerable application deployed by one client could expose other applications to security breaches.
+		- Potential Attacks on Shared Environments:
+			- Attacks on the Access Mechanism:
+				- Service providers often offer an administrative web interface that allows organizations to remotely configure and manage their web applications and databases. However, this remote access mechanism is prone to security vulnerabilities.
+				- Exploiting Unpatched Vulnerabilities:
+					- Check for unpatched security flaws or misconfigurations in the remote access system.
+					- Attackers can exploit these weaknesses to steal credentials and gain unauthorized access to applications and databases.
+				- Privilege Misconfiguration:
+					- Ensure that access privileges are correctly configured between different clients.
+					- For example, improper settings might grant shell access instead of restricted file access, allowing attackers to view or modify sensitive files stored on the web server.
+			- Attacks Between Applications:
+				- In shared environments, a vulnerability in one application can allow attackers to compromise others.
+					- Remote Code Execution (RCE):
+						- Attackers may exploit vulnerabilities in a neighboring application to execute malicious scripts and gain control over other hosted applications.
+						- Example: A script that allows remote command execution could be used to run OS commands such as whoami.
+					- SQL Injection Attacks:
+						- A SQL injection vulnerability in one application could be used to execute arbitrary SQL queries, retrieve sensitive data, and manipulate records from other applications within the shared environment.
+		- Conclusion: Poorly secured shared environments pose significant security risks. A single vulnerability in one client’s application can compromise the security of multiple organizations. Proper access control, privilege separation, and regular security assessments are essential to mitigating these risks.
 	- Target Database Connectivity
 	- Attack Web application Clients
 	- Exploit Vulnerabilities in Web Services
