@@ -7534,3 +7534,128 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- "Create and run a custom script for web application footprinting and vulnerability scanning. The target URL is www.certifiedhacker.com."
 				- "Create and run a custom Python script for web application footprinting and vulnerability scanning. The target URL is www.certifiedhacker.com."
 				- "Create and run a custom Python script that performs web application footprinting to gather information and then uses this data to conduct vulnerability scanning on the target URL www.certifiedhacker.com."
+- Web API and Webhooks:
+	- Web API:
+		- A Web API (Application Programming Interface) is an interface that enables client-side applications to retrieve and update data from multiple online sources. It facilitates interactions between applications over the Internet using web-based protocols. Web APIs make resources accessible online and are typically accessed via the HTTP protocol.
+		- Web APIs consist of various tools, functions, and protocols that simplify software or application development. For example, consider a traditional web application supported by multiple mobile platforms but lacking a centralized API. This setup requires updating business logic separately for each platform whenever client applications change, leading to complexity. By using a centralized Web API, developers can streamline updates, ensuring consistency and efficiency by managing data and business logic from a single location.
+		- Web Service APIs:
+			- The most commonly used web service APIs are listed below:
+    		- SOAP API: SOAP (Simple Object Access Protocol) is a web-based communication protocol that facilitates interactions between applications running on different platforms, such as Windows, macOS, and Linux, using XML and HTTP. SOAP-based APIs are designed to generate, retrieve, modify, and delete various data logs, including profiles, credentials, and business leads.
+    		- REST (Representational State Transfer) API: REST is not a specification, tool, or framework but an architectural style for web services that serves as a communication medium between systems on the web. APIs that follow REST principles are known as REST APIs. These API-based systems, including web services and databases, allow requesting machines to efficiently access and modify web resource representations through stateless protocols and standardized operations.
+    		- RESTful API: A RESTful API is a web service designed following REST principles and HTTP communication protocols. It consists of a collection of resources that use standard HTTP methods such as PUT, POST, GET, and DELETE. RESTful APIs enhance application performance, visibility, scalability, reliability, and portability by ensuring system independence.
+				- APIs with the following characteristics are considered RESTful:
+					- Stateless: The client stores the session state, while the server does not retain any data between requests.
+					- Cacheable: Clients can store responses (representations) in a cache to improve API performance.
+					- Client-Server Architecture: The client and server remain independent, with the server handling backend operations and the client serving as the request interface.
+					- Uniform Interface: Resources must be uniquely and consistently identified via a single URL, utilizing standard HTTP methods (PUT, POST, GET, DELETE), enabling easy modification of resources.
+					- Layered System: A multi-layered architecture allows intermediary servers to provide caching for improved scalability, as the client does not directly interact with the main server.
+					- Code on Demand (Optional): The server can send temporary executable code to the client, allowing dynamic customization of client functionality.
+    		- XML-RPC: Extensible Markup Language – Remote Procedure Call (XML-RPC) is a communication protocol that uses a specific XML format to transfer data. Unlike SOAP, which relies on proprietary XML, XML-RPC is simpler and requires less bandwidth.
+    		- JSON-RPC: JavaScript Object Notation – Remote Procedure Call (JSON-RPC) functions similarly to XML-RPC but uses the JSON format instead of XML for data transfer. This makes it lightweight and efficient for communication between systems.
+	- Webhooks:
+		- Webhooks are user-defined HTTP callbacks or push APIs that are triggered by specific events, such as receiving a comment on a post or pushing code to a repository. A webhook enables an application to update other applications with real-time information. Once invoked, it supplies data to the receiving applications, ensuring that users receive instant updates.
+		- Webhooks are sometimes referred to as "Reverse APIs" because they fulfill the requirements of an API specification, but instead of the application actively requesting data, the developer sets up an API to receive webhook notifications.
+		- Webhooks are commonly used to send text messages and notifications to mobile numbers or email addresses when a specific event occurs. For example, in an online store, if an item is out of stock, a customer may click on the "Notify Me" button. Once the item becomes available, the application sends an alert via a webhook, notifying the user.
+		- How Webhooks Work:
+			- Webhooks are registered along with a domain through a user interface or API to notify clients when a new event occurs. The generated webhook URL contains the necessary code that executes automatically when the event takes place. Unlike traditional APIs, where the system must continuously poll for new updates, webhooks simply track the event path and generate notifications when needed.
+			- Webhooks operate as isolated processes on the web. When System-2 receives a notification from the registered webhook URL, it not only becomes aware of the event but can also respond accordingly. The webhook URL can be accessed via an HTTP POST request and contains details such as the source of the event, date, time, and other relevant information.
+			- Webhooks can be private or public, depending on the intended level of access and security requirements.
+	- Webhooks vs. APIs:
+		- Webhooks are automated messages sent from a website to a server, while APIs facilitate communication between a server and a website.
+		- Webhooks send reports or notifications via HTTP POST only when an update occurs, whereas APIs make requests regardless of whether data has changed.
+		- Webhooks provide real-time updates to applications or services, whereas APIs require additional implementation to achieve real-time functionality.
+		- Webhooks offer limited control over data flow, while APIs allow greater control over data flow.
+	- OWASP Top 10 API Security Risks (owasp.org):
+		- API1: Broken Object-Level Authorization:
+			- APIs often expose endpoints that manage object identifiers, increasing the risk of object-level access control vulnerabilities. Implementing strict authorization checks for every function that retrieves data based on a user-provided ID is essential.
+			- Attackers can manipulate object IDs in API requests to exploit broken authorization mechanisms.
+			- Unauthorized access to other users’ objects can result in data disclosure, data loss, or manipulation.
+		- API2: Broken Authentication:
+			- Authentication mechanisms are often misconfigured, enabling attackers to compromise authentication tokens or exploit flaws to impersonate other users.
+			- Attackers can gain full control over user accounts, access personal data, and perform sensitive actions on behalf of the victim.
+		- API3: Broken Object Property-Level Authorization:
+			- Developers may unintentionally expose all object properties to clients without considering their sensitivity, relying on the client to filter data.
+			- Unauthorized access to private or sensitive object properties can lead to data disclosure, data loss, or corruption.
+			- In some cases, unauthorized access can escalate privileges or enable a full or partial account takeover.
+		- API4: Unrestricted Resource Consumption:
+			- Attackers can launch Denial-of-Service (DoS) attacks by sending multiple concurrent requests using automated tools, overwhelming API services.
+			- APIs that lack rate limits or resource consumption controls are vulnerable to abuse, allowing attackers to craft requests that deplete system resources.
+		- API5: Broken Function-Level Authorization:
+			- Complex access control policies across different user hierarchies, groups, and roles can lead to authorization misconfigurations.
+			- Attackers may exploit these misconfigurations to gain unauthorized access to administrative functions or restricted user resources.
+		- API6: Unrestricted Access to Sensitive Business Flows:
+			- APIs vulnerable to this risk expose critical business operations, such as purchasing tickets or posting comments, without safeguards against excessive or automated abuse.
+			- Attackers analyze API workflows, identify key resources, and automate interactions to exploit business logic.
+			- This can result in financial loss, fraudulent transactions, or service disruptions.
+		- API7: Server-Side Request Forgery (SSRF):
+			- A Server-Side Request Forgery (SSRF) vulnerability allows attackers to manipulate an API into sending crafted requests to unauthorized destinations, even bypassing firewalls and VPNs.
+			- Attackers exploit APIs that accept user-supplied URLs, leading to internal network scanning, information disclosure, and firewall bypassing.
+			- Exploitation can expose internal services, open ports, and sensitive system configurations.
+		- API8: Security Misconfiguration:
+			- Attackers look for unpatched vulnerabilities, insecure default configurations, exposed endpoints, or unprotected directories to gain unauthorized access.
+			- Automated tools are commonly used to detect and exploit misconfigurations, such as unnecessary services or outdated security settings.
+			- Security misconfigurations can expose sensitive user data and critical system details, potentially leading to a full server compromise.
+		- API9: Improper Inventory Management:
+			- Proper tracking of hosts, API versions, and deployed services is essential for mitigating security risks.
+			- Attackers often target outdated API versions or unpatched endpoints with weaker security controls.
+			- When multiple API versions connect to the same database with real data, attackers can gain unauthorized access, extract sensitive information, or take control of the server.
+		- API10: Unsafe Consumption of APIs:
+			- Developers often trust data from third-party APIs more than user input, leading to weaker security practices.
+			- Attackers may exploit vulnerabilities in third-party integrations instead of directly targeting the main API.
+			- Successful exploitation can result in sensitive data leaks, injection attacks, or denial-of-service incidents.
+	- Webhooks Security Risks:
+		- Webhooks, while efficient for real-time data transfer between applications, can introduce security vulnerabilities if not properly secured. Below are some common risks associated with webhooks and strategies to mitigate them:
+		- Data Exposure in Transit:
+			- Webhooks may transmit data in plain text over HTTP, making it vulnerable to interception and tampering.
+			- Mitigation: Always use HTTPS to encrypt data in transit and protect it from exposure or unauthorized access.
+		- Lack of Verification:
+			- Without proper verification, webhooks may accept and process unauthorized or manipulated data.
+			- Mitigation: Implement hash-based message authentication code (HMAC) to verify the authenticity and integrity of received data.
+		- Replay Attacks:
+			- Attackers can capture a legitimate webhook request and resend it, potentially causing duplicate or unauthorized actions.
+			- Mitigation: Include a timestamp in the webhook payload and validate it upon receipt to ensure the request is within an acceptable time window.
+		- Unrestricted Sources:
+			- By default, webhooks may accept data from any source, increasing the risk of processing malicious or unauthorized requests.
+			- Mitigation: Implement IP whitelisting and mutual TLS (mTLS) to restrict webhook sources to trusted systems only.
+		- Duplication and Forgery:
+			- Webhook messages can be duplicated or forged, leading to data integrity issues and unintended actions.
+			- Mitigation: Use mutual TLS and HMAC verification to ensure webhook messages are sent by authenticated sources and have not been tampered with.
+		- Endpoint Configuration Errors:
+			- Human errors in configuring webhook URLs may cause data to be sent to the wrong recipient, leading to data leaks.
+			- Mitigation: Implement strict validation of webhook URLs, enforce allowlists, and conduct periodic audits of webhook configurations.
+		- Forged Requests:
+			- Attackers may craft and send malicious webhook requests to manipulate an application.
+			- Mitigation: Use a shared secret token between the sender and receiver to authenticate webhook requests, accepting only requests that pass the verification process.
+		- Unvalidated Redirects and Forwards:
+			- Webhooks may be used to redirect users to malicious sites if URL redirection is not properly validated.
+			- Mitigation: Restrict URL redirections to a whitelist of trusted domains and validate any redirect URLs before processing them.
+	- API Vulnerabilities:
+		- Modern web applications and SaaS platforms rely heavily on APIs due to their extensive features, but API security is often focused solely on technical aspects. Poor management of API permissions, flaws in business logic, and exposure of application logic and sensitive data—such as personally identifiable information (PII)—significantly increase the attack surface. Attackers exploit these vulnerabilities to launch attacks such as Denial of Service (DoS) and code injection attacks.
+		- Common API Vulnerabilities:
+			- Enumerated Resources:
+				- Design flaws can lead to severe vulnerabilities, exposing sensitive information through unauthenticated public APIs.
+				- Attackers can easily guess user IDs, leading to unauthorized access to user data.
+			- Sharing Resources via Unsigned URLs:
+				- APIs often return URLs to hypermedia resources (e.g., images, audio, or video files), making them vulnerable to hotlinking (unauthorized use by other websites).
+				- This can cause issues such as resource strain and poor analytics tracking, and may also be exploited by attackers.
+				- Mitigation: Use signed URLs to enforce policies like rate limiting, auto-expiration, and scoped sharing.
+			- Vulnerabilities in Third-Party Libraries:
+				- Developers often use third-party libraries with open-source licenses.
+				- Failing to apply regular updates and security patches can leave APIs vulnerable to known exploits.
+			- Improper Use of CORS (Cross-Origin Resource Sharing):
+				- CORS enables web browsers to perform cross-domain requests, but misconfigured CORS settings can introduce security flaws.
+				- Allowing all origins (using Access-Control-Allow-Origin: *) on private APIs can lead to hotlinking and unauthorized access.
+			- Code Injections:
+				- Unsanitized input can allow attackers to inject malicious code through techniques such as:
+					- SQL Injection (SQLi) – Injecting SQL queries to manipulate databases.
+					- Cross-Site Scripting (XSS) – Injecting scripts to steal user session cookies or credentials.
+				- Mitigation: Proper input validation and sanitization help prevent these attacks.
+			- RBAC Privilege Escalation:
+				- Role-Based Access Control (RBAC) vulnerabilities occur when endpoint changes are made without proper validation.
+				- Attackers can escalate privileges and gain unauthorized access to sensitive user data.
+			- No ABAC Validation:
+				- Attribute-Based Access Control (ABAC) prevents unauthorized access by enforcing policies based on user attributes.
+				- Lack of ABAC validation allows attackers to access restricted API objects or perform unauthorized actions (view, update, or delete).
+			- Business Logic Flaws:
+				- Many APIs contain flaws in business logic, allowing attackers to manipulate workflows for malicious purposes.
+				- These vulnerabilities are difficult to detect because they exploit legitimate API functions in unintended ways.
