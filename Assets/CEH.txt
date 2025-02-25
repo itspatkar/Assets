@@ -7659,3 +7659,44 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Business Logic Flaws:
 				- Many APIs contain flaws in business logic, allowing attackers to manipulate workflows for malicious purposes.
 				- These vulnerabilities are difficult to detect because they exploit legitimate API functions in unintended ways.
+	- Web API Hacking Methodology:
+		- In recent years, the use of web-based APIs has grown significantly, supporting a wide range of devices, including mobile devices and IoT devices. These devices frequently communicate with backend web servers through APIs. However, in an effort to make APIs more user-friendly, developers often take security shortcuts, leaving online web services vulnerable to various attacks.
+		- Attackers exploit these security weaknesses by identifying vulnerabilities in APIs using various techniques. To hack an API, attackers must first determine its technologies, security standards, and attack surface before launching an attack.
+		- Phases of Web API Hacking:
+			- Identify the Target: Gather information about the API, including endpoints, documentation, and authentication mechanisms.
+			- Detect Security Standards: Identify the security measures in place, such as authentication methods (OAuth, JWT, API keys) and encryption protocols.
+			- Identify the Attack Surface: Analyze the API for potential vulnerabilities, including broken authentication, improper access controls, and data exposure.
+			- Launch Attacks: Exploit identified weaknesses using techniques such as SQL injection, API fuzzing, and privilege escalation.
+		- Identifying the Target:
+			- Before attempting to hack an API, an attacker must first identify the target and its perimeter by analyzing how the API communicates and processes data.
+			- HTTP Protocol Analysis:
+				- APIs, such as SOAP and REST, primarily use the HTTP protocol for communication. Since HTTP is a text-based protocol, header information is transmitted in a readable format, making it susceptible to manipulation.
+				- For example, HTTP request and response headers are often sent in plaintext, allowing attackers to intercept, analyze, and modify them to gain insights into the API’s structure and vulnerabilities.
+			- Message Format Examination:
+				- API messages transmitted over the web typically use structured formats, such as:
+					- JSON (JavaScript Object Notation) for REST APIs
+					- XML (Extensible Markup Language) for SOAP APIs
+				- If these formats are misconfigured or improperly validated, they can introduce vulnerabilities.
+				- Because these formats are human-readable, attackers can easily intercept, modify, and manipulate API messages to uncover security weaknesses and gain deeper access to the system.
+		- Detecting Security Standards:
+			- While APIs claim to be secure by incorporating security standards such as OAuth and SSL, they often contain vulnerabilities that attackers can exploit.
+			- Authentication and Authorization Standards:
+				- APIs, such as SOAP and REST, implement various authentication and authorization mechanisms, including:
+					- OpenID Connect
+					- SAML (Security Assertion Markup Language)
+					- OAuth 1.X and 2.X
+					- WS-Security
+				- If these authentication mechanisms are misconfigured or improperly implemented, attackers can exploit them to gain unauthorized access to sensitive data.
+			- SSL and Transport-Level Security:
+				- SSL (Secure Sockets Layer) is commonly used to provide encryption and integrity for API messages, ensuring confidentiality during transmission.
+				- However, in many API implementations, only sensitive user data (e.g., credit card details) is encrypted, while other information remains in plaintext, making it vulnerable to interception and tampering.
+			- Exploiting Weak Security Configurations:
+				- If security standards are not properly enforced, attackers can identify and exploit gaps in API security.
+				- For example, an attacker may capture and reuse a session token to access a legitimate user's account information if the API does not encrypt or properly validate tokens.
+		- API Enumeration:
+			- Kiterunner is an advanced API scanning and content discovery tool designed specifically for modern web applications that heavily depend on APIs. Unlike conventional tools that brute-force directories, Kiterunner goes further by understanding complex API endpoint structures through context-aware scanning.
+			- Attackers can leverage Kiterunner to scan API endpoints for vulnerabilities. It supports scanning single targets, multiple targets, or entire target lists in one go.
+			- Common API Scanning Methods using Kiterunner:
+				- Scanning a Single Target: kr scan https://target.com:8443/ -w routes.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34
+				- Scanning a Single Target with Both HTTP & HTTPS: kr scan target.com -w routes.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34
+				- Scanning a List of Targets: kr scan targets.txt -w routes.kite -A=apiroutes-210228:20000 -x 10 --ignore-length=34
