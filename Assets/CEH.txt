@@ -8286,3 +8286,613 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- FortiGuard URL Filtering Service (www.fortinet.com)
 			- Barracuda Web Security Gateway (www.barracuda.com)
 			- OpenDNS (www.opendns.com)
+	- Defend Against Injection Attacks:
+		- SQL Injection Attacks:
+			- Limit user input length and validate/sanitize all inputs.
+			- Avoid dynamic SQL; use prepared statements, parameterized queries, or stored procedures.
+			- Implement whitelisting instead of blacklisting for input validation.
+			- Perform proper escaping and character filtering to mitigate special characters (e.g., single quotes).
+			- Use type-safe variables/functions (e.g., isNumeric()) to enforce data integrity.
+			- Utilize Object-Relational Mapping (ORM) frameworks to automatically handle queries securely.
+			- Restrict database privileges—use low-privileged accounts and avoid admin-level access.
+			- Disable unnecessary database functionalities (e.g., xp_cmdshell, extended stored procedures).
+			- Isolate the database server from the web server.
+			- Monitor and audit database traffic, logs, and privileges regularly.
+			- Use firewalls (WAF), IDS, and vulnerability scanners to detect potential threats.
+			- Customize error messages to prevent information disclosure (e.g., use "RemoteOnly" for detailed errors locally).
+			- Regularly update and patch applications, database servers, and operating systems.
+			- Ensure secure development practices, educating developers on SQL injection risks.
+			- Avoid shared databases and using the same account for multiple databases.
+			- Use secure authentication methods and enforce minimum privilege principles for database access.
+		- Defending Against Command Injection Flaws:
+			- The best defense against command injection is avoiding direct execution of shell commands whenever possible. Many programming languages offer built-in libraries that perform the same functions without invoking the OS shell interpreter, reducing security risks. When executing system calls is unavoidable (e.g., database queries), all input must be strictly validated and sanitized to ensure it does not contain malicious content.
+			- Applications should be designed to treat all user-supplied parameters as data, not executable code. Using prepared statements, stored procedures, and safe APIs helps enforce this principle. Running web applications and database connections with least-privileged accounts prevents attackers from gaining administrative control. Additionally, error handling should be robust, checking return codes, timeouts, and failures to detect anomalies early.
+			- Countermeasures Against Command Injection:
+				- Perform strict input validation using whitelisting for allowed characters.
+				- Escape dangerous characters properly, but never rely on escaping as the sole defense.
+				- Use language-specific libraries that eliminate the need for OS shell commands.
+				- Encode both input and output to prevent unintended execution.
+				- Utilize safe APIs that avoid interacting with the system interpreter.
+				- Structure requests to ensure parameters are treated strictly as data.
+				- Use parameterized SQL queries instead of dynamically constructing commands.
+				- Avoid direct OS command execution (e.g., exec, system) without strict validation.
+				- Prefer built-in library functions over shell commands for common operations.
+				- Enforce least privilege—never run web servers as root or databases as DBADMIN.
+				- Implement security-focused frameworks (e.g., using Python over PHP).
+				- Scan applications with dynamic web vulnerability scanners.
+				- Utilize content security policy (CSP) headers for additional protection.
+				- Use security libraries and frameworks specifically designed for secure command execution.
+				- Where possible, avoid shell commands altogether in favor of safer language-specific alternatives.
+		- Defending Against LDAP Injection Attacks:
+			- LDAP injection attacks exploit user input to manipulate LDAP queries, potentially granting unauthorized access to sensitive data such as usernames and passwords. To mitigate these risks, follow these countermeasures:
+			- Validate all input data (type, pattern, and domain value) to prevent malicious entries.
+			- Sanitize and escape special characters (e.g., *, (, ), \, &, |) before incorporating input into queries.
+			- Avoid string concatenation when constructing LDAP search filters.
+			- Use specific LDAP filters and AND filters to enforce restrictions.
+			- Restrict and validate the amount of data returned to users.
+			- Implement tight access control on LDAP directory data.
+			- Enforce RBAC (Role-Based Access Control) to limit user access.
+			- Use LDAPS (LDAP over SSL) to encrypt and secure communication.
+			- Configure LDAP with bind authentication and use least-privileged service accounts for LDAP queries.
+			- Avoid using highly privileged accounts for LDAP interactions.
+			- Perform dynamic testing and source code analysis to detect vulnerabilities.
+			- Use security-focused libraries and frameworks that provide built-in protection.
+			- Monitor LDAP traffic and audit logs for suspicious activity.
+			- Leverage SaaS-based security testing services to identify LDAP injection threats.
+		- Defending Against File Injection Attacks:
+			- File injection attacks allow attackers to upload and execute malicious files on a server, leading to data theft, manipulation, or persistent control. To mitigate these risks, follow these countermeasures:
+			- Strictly validate user input and maintain a whitelist for allowed file types and size limits.
+			- Limit file uploads to necessary types only and validate file MIME types.
+			- Disable remote file inclusion if not required.
+			- Store uploaded files outside the web root to prevent direct access via URL.
+			- Rename uploaded files using secure random functions to avoid predictable names.
+			- Use secure methods for file path construction, avoiding direct concatenation of user input.
+			- Apply the principle of least privilege to restrict access to files and directories.
+			- Implement file size limits on both client and server sides to prevent DoS attacks.
+			- Scan uploaded files with antivirus or anti-malware solutions before processing.
+			- Employ a Web Application Firewall (WAF) to monitor and block file injection attempts.
+			- Use Content Security Policy (CSP) headers to mitigate XSS risks that could lead to file injection.
+			- Check for PHP wrappers (e.g., php://filter, zip://) to prevent access to sensitive files.
+			- For PHP applications:
+				- Disable allow_url_fopen and allow_url_include in php.ini.
+				- Disable register_globals and enable E_STRICT for error detection.
+				- Vet all file and stream functions (stream_*).
+			- Consider chroot jail implementation to isolate the file system.
+			- Use a separate database for storing file paths with unique identifiers to prevent MITM attacks.
+		- Defending Against Server-Side JavaScript (JS) Injection:
+			- Server-side JS injection allows attackers to execute arbitrary JavaScript code on the server, leading to security breaches. To mitigate these risks, follow these countermeasures:
+			- Strictly validate and sanitize user input to remove or escape dangerous characters (e.g., <, >, &, |, ;).
+			- Avoid using eval() and similar functions (setTimeout(), setInterval(), Function()). Use JSON.parse() instead of eval() for JSON parsing.
+			- Use strict mode ("use strict") to enforce safer JavaScript execution.
+			- Restrict user input to short, alphanumeric strings when applicable.
+			- Avoid code serialization to prevent execution of unintended JavaScript.
+			- Use context-sensitive escaping in template engines to prevent injection attacks.
+			- Execute user-supplied code in a sandboxed environment isolated from the server and sensitive data.
+			- Use parameterized queries or prepared statements to prevent JavaScript injection in SQL queries.
+			- Implement Content Security Policy (CSP) headers to restrict script execution sources.
+			- Escape and encode data properly before inserting it into JavaScript contexts.
+			- Use secure libraries and built-in functions to escape characters that might break out of intended contexts.
+			- Disable or limit dangerous features such as inline scripts or dynamic code evaluation in the server-side environment.
+		- Defending Against Server-Side Include (SSI) Injection:
+			- SSI injection allows attackers to execute unauthorized server-side commands by injecting malicious directives. To prevent these attacks, follow these countermeasures:
+			- Validate and sanitize user input, ensuring it does not contain SSI directive characters (e.g., <!--#).
+			- Apply HTML encoding to user input before rendering it on web pages.
+			- Restrict SSI directives to only necessary and trusted parts of the application.
+			- Avoid using pages with .stm, .shtm, and .shtml extensions to reduce exposure.
+			- Configure the server to disallow SSI in user-controlled content and inputs.
+			- Use SUExec to execute pages with the file owner's permissions.
+			- Modify the global access.conf file by setting OPTIONS IncludesNOEXEC to restrict SSI execution in directories.
+			- Properly escape or remove special characters that could trigger SSI directives.
+		- Defending Against Server-Side Template Injection (SSTI):
+			- SSTI attacks occur when user input is improperly handled within a template engine, allowing attackers to execute arbitrary code. To mitigate this risk, follow these countermeasures:
+			- Never create templates from user input or pass user input directly into templates.
+			- Use template engines that automatically escape user inputs and enforce security features (e.g., Jinja2 for Python, Handlebars for JavaScript, Thymeleaf for Java).
+			- Execute templates in a sandboxed environment with restricted execution capabilities (e.g., SandboxedEnvironment in Jinja2).
+			- Disable or restrict dynamic code execution in the template engine if not required.
+			- Ensure dynamic data is passed using built-in template engine functions rather than direct concatenation.
+			- Properly escape and contextually encode user inputs before including them in templates (e.g., HTML, JavaScript, URL encoding).
+			- Harden template engine configurations by disabling features that allow arbitrary code execution.
+			- Use predefined payloads and built-in expressions to periodically test for vulnerabilities.
+			- Prefer static template files whenever possible to reduce attack vectors.
+			- Review the template engine’s security documentation and apply best practices for hardening.
+		- Defending Against Log Injection:
+			- Log injection attacks manipulate log entries to mislead administrators or hide malicious activity. To mitigate these risks, follow these countermeasures:
+			- Use structured logging formats (e.g., JSON, XML) to reduce the risk of injection.
+			- Pass log codes instead of raw messages and avoid including sensitive or user-controlled input in logs.
+			- Validate and sanitize inputs on both the client and server sides to remove harmful characters.
+			- Use logging libraries with built-in mechanisms for escaping and sanitization (e.g., Log4j for Java, Winston for Node.js, Python's logging module).
+			- Restrict access to log files using file permissions, ACLs, and cryptographic protections.
+			- Implement log rotation to manage file sizes and securely archive old logs.
+			- Encrypt log files or sensitive log messages to prevent unauthorized access.
+			- Monitor logs continuously for anomalies, tampering, or suspicious entries.
+			- Separate legitimate and fake logs by prefixing entries with metadata.
+			- Use centralized logging solutions to aggregate logs and provide a unified security overview.
+			- Prevent API logging of sensitive actions to reduce visibility in browser network calls.
+			- Implement cryptographic checksums or hashes to verify log integrity.
+			- Avoid viewing logs with tools that interpret control characters, preventing unintended execution.
+			- Scan for log injection vulnerabilities using static analysis tools.
+			- Detect and block malicious patterns (e.g., script tags, SQL code) with regular expressions.
+		- Defending Against HTML Injection:
+			- HTML injection occurs when untrusted user input is improperly handled, allowing attackers to manipulate web content. To mitigate this risk, follow these countermeasures:
+			- Validate and sanitize user inputs to remove or escape potentially dangerous characters (e.g., <, >, &, ", ').
+			- Encode and validate user outputs alongside inputs to maintain a complete validation process.
+			- Use security libraries for input sanitization (e.g., OWASP Java HTML Sanitizer, DOMPurify for JavaScript).
+			- Enable the HttpOnly flag on cookies to prevent client-side access to sensitive session data.
+			- Use template engines that automatically escape user inputs (e.g., Handlebars for JavaScript, Thymeleaf for Java, Jinja2 for Python).
+			- Avoid direct HTML generation with user inputs; use safe DOM manipulation techniques (.text() instead of .html() in jQuery).
+			- Educate developers and security teams on HTML injection risks and preventive measures.
+			- Enforce strict MIME type checking on the web server to prevent unintended file interpretation.
+			- Employ security solutions to detect injections while minimizing false positives.
+		- CRLF Injection Prevention:
+			- Encode or sanitize CRLF special characters to prevent injection.
+			- Remove %0d, %0a, \r, and \n from user input before using it in HTTP headers.
+			- Update the programming language or framework to one that restricts CRLF injection.
+			- Avoid directly using user input in HTTP headers; validate and sanitize necessary data.
+			- Use secure APIs and libraries that handle HTTP responses properly.
+			- Configure security measures such as XSSUrlFilter to prevent CRLF injection.
+			- Disable unnecessary headers.
+			- Escape CRLF characters in logs, HTTP headers, or any context where they could be misused.
+			- Use web frameworks with built-in security features, such as Django (Python) and Spring (Java).
+			- Ensure user inputs conform to expected formats using whitelisting and validation.
+			- Utilize tools like HtmlCleaner to remove script tags and mitigate injection risks.
+		- XSS Attack Prevention:
+			- Cross-Site Scripting (XSS) exploits input validation flaws in web applications, allowing attackers to embed malicious scripts. To mitigate XSS risks:
+			- Input Validation & Encoding
+				- Validate all user inputs (headers, cookies, query strings, form fields) against strict specifications.
+				- Encode non-alphanumeric characters before displaying user input.
+				- Use context-appropriate encoding (e.g., HTML entity encoding, JavaScript escaping, URL encoding, CSS escaping).
+				- Escape untrusted data in HTML output to prevent Reflected and Stored XSS.
+			- Security Policies & Frameworks
+				- Implement Content Security Policy (CSP) to prevent malicious script execution.
+				- Use secure frameworks that handle escaping (e.g., Django, Ruby on Rails, React).
+				- Enforce a positive security policy defining allowed inputs instead of relying on attack signatures.
+				- Avoid inline JavaScript, inline event handlers, and eval().
+			- Testing & Code Review
+				- Conduct security code reviews to identify XSS vulnerabilities.
+				- Use automated Vulnerability Assessment and Penetration Testing (VAPT) tools during development.
+				- Utilize scanning tools like Nessus and Nikto to detect flaws.
+			- Additional Defenses
+				- Use Web Application Firewalls (WAFs) and anti-XSS filters to block malicious scripts.
+				- Limit input field sizes to prevent long script injections.
+				- Deploy Public Key Infrastructure (PKI) for authentication.
+				- Secure session management using session IDs and timestamps to prevent unauthorized access.
+				- Utilize safe DOM manipulation techniques instead of directly injecting user input.
+				- Prefer browsers with built-in XSS filtering.
+	- Web Application Attack Countermeasures:
+		- Broken Access Control:
+			- Perform access-control checks before redirecting users to requested resources.
+			- Use secure, unpredictable IDs to prevent guessing attacks.
+			- Implement session timeout mechanisms and invalidate session tokens on logout.
+			- Enforce role-based (RBAC) and attribute-based (ABAC) access controls.
+			- Grant users only the minimum privileges necessary.
+			- Apply the "deny by default" principle, except for public resources.
+			- Restrict file permissions and prevent metadata or backup files in web roots.
+			- Remove client-side caching of sensitive data.
+			- Ensure access control mechanisms are consistent and reused across the application.
+			- Log and monitor unauthorized access attempts.
+			- Conduct regular access control audits and security tests.
+			- Rely only on server-side authentication for consistency and security.
+			- Limit cross-origin resource sharing (CORS) and apply security headers like CSP and X-Frame-Options.
+			- Implement multi-factor authentication (MFA) for sensitive resources.
+		- Cryptographic Failures / Sensitive Data Exposure Countermeasures:
+			- Use strong encryption algorithms (AES-256 for symmetric, RSA-2048 for asymmetric) and authenticated encryption for data confidentiality and integrity.
+			- Encrypt sensitive data in transit using TLS with Perfect Forward Secrecy (PFS) and enforce HSTS (HTTP Strict Transport Security).
+			- Store cryptographic keys securely using Hardware Security Modules (HSMs) or Key Management Services (KMS), and rotate them regularly.
+			- Implement PCI DSS-compliant tokenization or truncation to limit data exposure.
+			- Use strong, one-way hashing algorithms (bcrypt, scrypt, Argon2) for password storage.
+			- Avoid weak or outdated cryptographic algorithms (e.g., MD5, SHA-1, PKCS v1, PKCS v1.5).
+			- Disable caching for requests containing sensitive information and prevent auto-filling for highly sensitive forms.
+			- Classify data and apply appropriate security controls based on sensitivity.
+			- Use encrypted databases and built-in database encryption features (e.g., MySQL, PostgreSQL, SQL Server).
+			- Avoid excessive data exposure through APIs by restricting unnecessary JSON payloads.
+			- Ensure cryptographic libraries and frameworks are up-to-date to mitigate known vulnerabilities.
+			- Employ a Web Application Firewall (WAF) with data masking and custom security rules.
+		- Insecure Design Countermeasures:
+			- Threat Modeling
+				- Implement threat modeling early in the design phase to identify potential threats and vulnerabilities.
+				- Conduct periodic assessments for new modules and features.
+				- Use tools like Microsoft Threat Modeling Tool or OWASP Threat Dragon.
+				- Design tests for flow validation and verification.
+			- Security Requirements & Secure Design
+				- Define clear security requirements based on industry standards and integrate them into design specifications.
+				- Follow secure design principles:
+					- Least privilege – Limit user and process permissions.
+					- Defense in depth – Implement multiple layers of security controls.
+					- Fail securely – Ensure systems remain secure even in failure scenarios.
+					- Secure by default – Use security-first default settings.
+					- Minimize attack surface – Reduce entry points and attack vectors.
+			- Secure Development Lifecycle (SDLC)
+				- Integrate security into every phase of development, from planning to maintenance.
+				- Maintain strong collaboration between development and security teams.
+				- Use established frameworks like Microsoft's SDL or OWASP SAMM.
+			- Architectural Risk Analysis
+				- Conduct architectural risk analysis, including attack surface evaluation and threat assessments.
+			- Additional Measures
+				- Regularly assess application reliability and security throughout development.
+				- Implement layered security controls from the network to the system level.
+				- Enforce role-based access controls (RBAC) and categorize users based on authorization levels.
+				- Identify attack vectors using security controls and business risk profiling.
+				- Follow well-established security patterns and best practices from sources like OWASP Security Knowledge Framework and SEI CERT Coding Standards.
+		- Security Misconfiguration:
+			- Security misconfiguration makes web applications vulnerable, potentially granting attackers access to files, sensitive data, and application controls. Insufficient transport layer protection can lead to unauthorized access, account theft, phishing, and admin compromise. Encrypt all communications between the website and clients to mitigate these risks.
+			- Countermeasures:
+				- Configure all security mechanisms properly and disable unused services.
+				- Set up roles, permissions, and accounts; disable or change default credentials.
+				- Regularly scan for vulnerabilities and apply security patches.
+				- Redirect non-SSL requests to SSL pages and enforce encryption on all connections, including backend systems.
+				- Use only strong SSL/TLS algorithms, ensure certificates are valid, and match all site domains.
+				- Set the ‘secure’ flag on sensitive cookies.
+				- Use unique credentials for development, testing, and production environments.
+				- Minimize unnecessary features, components, and frameworks.
+				- Segment application architecture for independent security of components and tenants.
+				- Automate configuration checks to ensure security settings remain effective.
+				- Apply the principle of least privilege (PoLP) for applications and systems.
+				- Isolate development, testing, and production environments.
+				- Implement network segmentation to separate sensitive systems from less secure areas.
+				- Restrict management interface access (e.g., admin panels) to trusted IPs and enforce multi-factor authentication (MFA) with strong passwords.
+				- Use configuration management tools (e.g., Ansible, Puppet, Chef) for secure, consistent configurations.
+				- Maintain version control for configuration files to track changes.
+				- Follow security hardening standards such as CIS Benchmarks and NIST guidelines.
+		- XML External Entity (XXE) Attacks:
+			- To prevent XXE attacks, securely configure XML parsers and restrict external entity processing.
+			- Countermeasures:
+				- Use a securely configured XML parser; disable external entity processing.
+				- Configure the XML processor to use local static DTD and disable declared DTDs in XML documents.
+				- Validate XML input using whitelisting, input validation, sanitization, and filtering techniques.
+				- Ensure XML/XLS file uploads are validated using XSD.
+				- Use secure libraries and parsers with XXE protection enabled by default.
+				- Regularly update XML processors, libraries, and application dependencies.
+				- Limit XML document size, entity depth, and complexity to prevent denial-of-service attacks.
+				- Deploy security tools such as API security gateways, IAST tools, and WAFs to detect and block XXE attacks.
+				- Implement logging and monitoring for XML parsing activities to detect anomalies.
+				- Use application server instrumentation (ASI) to monitor execution flow at runtime.
+				- Perform regular security audits and code reviews to identify and fix potential vulnerabilities.
+		- Vulnerable and Outdated Components"
+			- Using outdated or vulnerable components can expose applications to security risks. To mitigate this, implement strict dependency and patch management practices.
+			- Countermeasures:
+				- Regularly check and maintain an inventory of all client-side and server-side components, including dependencies.
+				- Continuously monitor sources like the National Vulnerability Database (NVD) for security issues.
+				- Use dependency management tools (e.g., npm, pip, Maven, Composer) to track and update dependencies automatically.
+				- Apply security patches promptly and implement a robust patch management process.
+				- Scan components frequently with security scanners and software composition analysis (SCA) tools (e.g., OWASP Dependency-Check, Snyk, Black Duck, WhiteSource).
+				- Remove unnecessary dependencies, components, and files.
+				- Obtain components only from official, trusted, and verified repositories, accepting only signed packages.
+				- Ensure subcomponents are also updated along with main components.
+				- Use security wrappers to safeguard vulnerable components.
+				- Follow semantic versioning to track updates and ensure compatibility.
+				- Manage code and dependencies using version control systems like Git.
+				- Isolate third-party components in containers or sandboxes (e.g., Docker) to minimize security risks.
+				- Configure components with the least privileges necessary to reduce attack impact.
+		- Identification and Authentication Failures:
+			- Flaws in authentication and session management can allow attackers to steal credentials, session tokens, or exploit vulnerabilities to impersonate users.
+			- Countermeasures:
+				- Use SSL/TLS for all authenticated parts of the application.
+				- Store user credentials securely using strong cryptographic hashing algorithms (e.g., bcrypt, scrypt, Argon2).
+				- Implement identity and access management (IAM) and enforce strong password policies.
+				- Require passphrases with at least five random words and check passwords against a list of common weak passwords.
+				- Implement multi-factor authentication (MFA) to prevent brute-force, credential stuffing, and guessing attacks.
+				- Limit login attempts and lock accounts temporarily after multiple failed attempts.
+				- Use rate limiting and CAPTCHA to prevent automated login attacks.
+				- Ensure secure session management, using long, random session identifiers and invalidating sessions after logout.
+				- Avoid storing or exposing session IDs in URLs to prevent session hijacking.
+				- Enhance security for API gateways, credential recovery, and registration to prevent enumeration attacks.
+				- Use standard authentication protocols such as OAuth 2.0 and OpenID Connect.
+				- Secure password reset mechanisms with unique, time-limited tokens sent to registered emails.
+				- Log and monitor authentication activities, including login attempts, account lockouts, and password changes.
+				- Set up alerts for suspicious activity and potential security incidents.
+		- Software and Data Integrity Failures:
+			- Ensuring software and data integrity is crucial to preventing unauthorized modifications and supply-chain attacks.
+			- Countermeasures:
+				- Enforce digital signatures and integrity checks (e.g., checksums like SHA-256) for software, data, and updates.
+				- Source libraries and dependencies (e.g., npm, Maven) only from trusted repositories.
+				- Use supply-chain security tools (e.g., OWASP Dependency-Check, CycloneDX) to detect vulnerabilities.
+				- Regularly audit code and configurations to prevent malicious code from entering the software pipeline.
+				- Secure the CI/CD pipeline with proper isolation, access controls, and configuration management.
+				- Implement automated verification of checksums before installation or execution.
+				- Distribute software updates securely (e.g., via HTTPS) and ensure they are signed and verified.
+				- Isolate the build environment from development and production for added security.
+				- Use automated testing to detect unauthorized changes or vulnerabilities during the build process.
+				- Enforce database integrity checks and constraints to maintain data consistency.
+				- Maintain regular backups in secure storage and ensure integrity during restoration.
+				- Implement zero-trust architecture to continuously verify software and data integrity.
+				- Use micro-segmentation to protect critical data and systems from unauthorized access.
+		- Insecure Deserialization:
+			- Insecure deserialization can allow attackers to manipulate serialized objects, leading to remote code execution, data tampering, or privilege escalation.
+			- Countermeasures:
+				- Validate untrusted input before serialization to ensure only trusted classes are included.
+				- Avoid serialization for security-sensitive classes and domain objects when possible.
+				- Use safer data formats like JSON or XML instead of serialization/deserialization.
+				- Filter and restrict deserialized data by implementing object whitelisting to allow only approved classes.
+				- Use secure libraries and APIs that provide safe deserialization mechanisms (e.g., Kryo for Java).
+				- Perform integrity checks or encrypt serialized objects to prevent tampering or hostile object creation.
+				- Isolate deserialization processes in low-privileged environments to limit the impact of potential exploits.
+				- Ensure deserialized classes do not contain dangerous methods (e.g., __wakeup, __destruct, __invoke in PHP).
+				- Avoid executing code during object construction and deserialization.
+				- Monitor and log deserialization activity, including unexpected failures and constant deserialization attempts.
+				- Limit network access for systems performing deserialization to reduce exposure.
+				- Use serialization frameworks with built-in security features.
+				- Enforce security permissions and conduct security checks before and after serialization/deserialization.
+		- Security Logging and Monitoring Failures:
+			- Insufficient logging and monitoring can delay the detection of security incidents, increasing the risk of data breaches and system compromise.
+			- Countermeasures:
+				- Define logging scope to cover business-critical assets and high-value transactions.
+				- Establish a logging baseline and enforce it across all assets.
+				- Log all key events, including logins, access control failures, and input validation errors, with user context for traceability.
+				- Sanitize log data to prevent log injection attacks.
+				- Ensure audit trails with integrity controls (e.g., append-only database tables) to prevent tampering.
+				- Use centralized logging systems (e.g., ELK Stack, Splunk, Graylog) to aggregate logs for better analysis.
+				- Implement secure storage for logs with access controls, encryption, and backup policies.
+				- Synchronize log timestamps across systems to maintain consistency in real-time analysis.
+				- Monitor and analyze suspicious activities, including failed login attempts, abnormal system behavior, and partial failures (e.g., HTTP 403 errors).
+				- Use AI-driven monitoring tools and IDS/IPS to detect anomalies and security threats.
+				- Secure log transmission with encryption to prevent tampering or MITM attacks.
+				- Implement log rotation and retention policies to manage log size and ensure availability for forensic analysis.
+				- Enable real-time log monitoring to detect and respond to incidents promptly.
+				- Correlate logs from multiple sources to identify patterns and potential security threats.
+				- Develop and enforce a logging policy defining what events to log, how logs are managed, and who reviews them.
+		- Server-Side Request Forgery (SSRF) Mitigation:
+			- Validate and Sanitize Inputs: Strictly validate and sanitize user-provided URLs and IP addresses. Allow only those that match a predefined whitelist or pattern.
+			- Restrict URL Schemes: Permit only required URL schemes (e.g., https://) and block unnecessary ones.
+			- Prevent Raw Responses: Ensure no raw responses are sent to the client.
+			- Disable Automatic Redirects: Configure HTTP clients to block automatic redirects for server-initiated requests.
+			- Set Response Limits: Use appropriate headers to restrict response types and sizes, minimizing data exfiltration risks.
+			- Ensure URL Stability: Mitigate DNS rebinding and time-of-check to time-of-use (TOCTOU) attacks.
+			- Enforce Network Segmentation: Separate access to remote resources into distinct networks.
+			- Restrict Intranet Access: Implement a "deny by default" policy or access-control rules to block all intranet traffic except essential traffic.
+			- Enhance Frontend Security: Use VPNs and encryption techniques to secure frontend systems.
+			- Whitelist Domains and IPs: Restrict outgoing requests to an approved list of trusted domains and IP ranges using strict patterns and regex.
+			- Restrict File Access: Allow only authorized file extensions by hard-coding the permitted ones (e.g., <?php include($_GET['file'] . '.html'); ?>).
+			- Monitor and Log Changes: Track server modifications and file changes.
+			- Enforce Web Application Firewalls (WAFs): Deploy next-generation WAFs to detect and block SSRF attempts.
+			- Block Suspicious Requests: Reject requests containing internal IP addresses (e.g., 127.0.0.1, 169.254.0.0/16, 192.168.0.0/16).
+			- Use API Gateways: Manage and secure outgoing requests to ensure compliance with security policies.
+			- Proxy External Requests: Route all external requests through a proxy server to inspect and enforce security rules.
+			- Leverage Service Mesh: Implement a service mesh to secure server-to-server communication with controlled request handling.
+		- Directory Traversal Mitigation:
+			- Directory traversal attacks exploit vulnerabilities in web applications to access restricted directories and execute commands outside the web server’s root directory. To prevent such attacks, developers must enforce strict file and directory access controls.
+			- Countermeasures:
+				- Enforce Access Controls: Define and restrict access rights to protected areas of the website.
+				- Validate and Sanitize Input:
+					- Only allow alphanumeric characters in user input.
+					- Remove or encode traversal characters (.., /, \) to prevent unauthorized directory access.
+					- Whitelist allowable file paths and directories, permitting access only to explicitly approved locations.
+					- Ensure that resolved file paths remain within allowed directories before accessing them.
+				- Normalize File Paths: Convert file paths to a canonical form, removing traversal sequences before processing.
+				- Use Secure APIs:
+					- Append application input to the base directory and use platform filesystem APIs for path resolution.
+					- Avoid functions that allow arbitrary file access based on user input (e.g., eval, exec, open).
+					- Use functions and libraries with built-in security features for handling file paths.
+				- Secure File Management:
+					- Host public and sensitive documents separately (e.g., on a separate file server or cloud storage).
+					- Restrict file names to a safe character set and ensure file references adhere to these constraints.
+					- Do not rely on user input for file-system API calls.
+				- Apply Principle of Least Privilege:
+					- Grant the application only the minimum necessary file and directory permissions.
+					- Avoid running the application with elevated privileges.
+				- Server and Configuration Security:
+					- Keep web servers updated with security patches.
+					- Disable directory listings to prevent attackers from viewing directory contents.
+					- Use a chroot jail for Unix-based systems to restrict file system access.
+					- Use a virtual file system to enforce access controls at a higher level.
+		- Unvalidated Redirects and Forwards Mitigation:
+			- Web applications often redirect or forward users to other pages, but if these actions are not properly validated, attackers can exploit them to redirect users to malicious sites or access unauthorized pages. To prevent such attacks, avoid allowing users to directly supply parameters for redirects and forwards in application logic.
+			- Countermeasures:
+				- Minimize Redirects and Forwards: Avoid using them whenever possible.
+				- Use Static URLs: Prefer static URLs for redirects. If dynamic URLs are required, validate them against a whitelist of allowed destinations.
+				- Validate Destination Parameters:
+					- Ensure user-supplied values are authorized and valid.
+					- Map input to predefined destinations using an enumeration or lookup table.
+					- Do not accept full URLs as user input; instead, validate against a trusted list of hosts or regex patterns.
+				- Secure Redirection Mechanisms:
+					- Use absolute and relative URLs carefully to prevent open redirects.
+					- Implement token-based verification for redirects.
+					- Encode URL parameters to prevent injection of malicious code.
+				- Restrict Search Engine Exploits: Remove redirect scripts from search engine indexing to prevent misuse.
+				- Enhance User Awareness & UI Protections:
+					- Implement pop-up notifications when redirecting users to external pages.
+					- Educate users about phishing techniques and common URL spoofing methods.
+				- Apply Internal Redirects with Filtering: Limit redirects to local subdomains to minimize risks.
+				- Secure Links Opening in New Tabs: Use rel="noopener noreferrer" for external links to prevent access to window.opener.
+		- Watering Hole Attack Mitigation:
+			- A watering hole attack targets users by compromising frequently visited websites. To prevent such attacks, organizations should secure their infrastructure and educate users on safe browsing practices.
+			- Countermeasures:
+				- Keep Software Updated: Regularly apply patches to remove vulnerabilities.
+				- Monitor and Analyze Traffic:
+					- Continuously monitor network traffic for anomalies.
+					- Analyze user behavior for suspicious activities.
+					- Inspect popular websites for potential compromises.
+				- Secure DNS and Web Access:
+					- Harden the DNS server to prevent redirection to malicious sites.
+					- Implement DNS Security Extensions (DNSSEC) to protect DNS integrity.
+					- Use browser plugins to block HTTP redirects and prevent tracking.
+					- Disable third-party content, such as advertising services, to reduce exposure to malicious scripts.
+				- Enhance Browser and System Security:
+					- Use a VPN and enable private browsing to hide online activities.
+					- Run the browser in a virtual environment to limit local system access.
+					- Utilize micro-virtualization to isolate web activity from critical system resources.
+				- Restrict Web Permissions: Prevent users from granting unnecessary permissions to websites.
+				- Deploy Web Filtering & Email Security:
+					- Use web filters to detect and block access to compromised websites.
+					- Employ an email security solution that applies dynamic malware analysis to detect targeted phishing attempts.
+		- Cross-Site Request Forgery (CSRF) Mitigation:
+			- A CSRF attack tricks a user’s browser into sending unauthorized requests to a legitimate web application using the user's authentication credentials. To prevent CSRF attacks, implement strong security measures at both the server and client levels.
+			- Countermeasures:
+				- Use CSRF Tokens:
+					- Generate unique CSRF tokens for each user session and include them in forms and state-changing requests.
+					- Validate the token on the server-side before processing requests.
+					- Maintain a per-request token strategy instead of assigning tokens per session.
+					- Send the CSRF token both as a cookie and a request parameter, ensuring they match on the server.
+				- Secure Cookies and Headers:
+					- Set cookies with the SameSite attribute to prevent cross-site requests.
+					- Validate the Referer and Origin headers to ensure requests come from the intended source.
+					- Use a custom header (e.g., X-Requested-With) for state-changing requests, as browsers prevent cross-origin sites from setting custom headers.
+				- Restrict Request Methods:
+					- Use GET, HEAD, and OPTIONS methods for safe operations that do not modify application state.
+					- Restrict POST, PUT, DELETE, and PATCH methods for state-changing operations and protect them with CSRF tokens.
+				- Enhance User Security Practices:
+					- Enforce re-authentication or password confirmation for critical actions.
+					- Do not allow browsers or websites to save login details.
+					- Log out immediately after using a web application and clear browsing history.
+				- Leverage Security Frameworks: Utilize frameworks such as Joomla, Spring, Struts, Ruby on Rails, and .NET, which have built-in CSRF protection.
+		- Cookie/Session Poisoning Mitigation:
+			- Cookie/session poisoning occurs when attackers modify cookie data to escalate privileges or manipulate user sessions. To prevent such attacks, developers should follow secure coding practices and implement robust session management techniques.
+			- Countermeasures:
+				- Secure Cookie Storage & Transmission:
+					- Never store plaintext or weakly encrypted passwords in cookies.
+					- Ensure cookies are transmitted only over HTTPS by setting the Secure attribute.
+					- Prevent JavaScript access to cookie data by using the HttpOnly attribute.
+					- Use the SameSite attribute to restrict cross-site cookie transmission.
+					- Sign cookies with a server-side secret and verify their integrity before processing.
+				- Enhance Session Security:
+					- Use long, random session IDs to prevent guessing and prediction.
+					- Regenerate session IDs upon login and periodically during the session to prevent session fixation.
+					- Store session data on the server, referencing it with a session identifier rather than storing sensitive information in client-side cookies.
+					- Enable synchronous session management for added security.
+				- Restrict Cookie Behavior:
+					- Set cookie timeouts to automatically expire sessions after inactivity.
+					- Associate authentication credentials with an IP address to prevent session hijacking.
+					- Restrict multipurpose cookies, ensuring each cookie serves only a single function.
+				- User & Browser Protection:
+					- Provide logout functions to allow users to terminate sessions securely.
+					- Regularly clear stored cookies to prevent session persistence.
+					- Use VPNs with high-grade encryption to prevent session sniffing.
+					- Deploy virus and malware scanning software to protect against malicious scripts targeting cookies.
+		- Web Service Attack Mitigation:
+			- Web services are often targeted due to their exposure in business-to-business (B2B) applications. To defend against attacks, multiple layers of protection, strict authentication, and access controls should be implemented.
+			- Countermeasures:
+				- Input Validation & Schema Enforcement:
+					- Validate all inputs against expected formats and types for XML and JSON.
+					- Use strict XML and JSON schemas to prevent injection attacks.
+					- Maintain and update a secure repository of XML schemas.
+				- Authentication & Access Control:
+					- Implement strong authentication using OAuth, JWT, API keys, or SAML.
+					- Use Role-Based Access Control (RBAC) to restrict access to specific operations.
+					- Use X.509 certificates, Kerberos tickets, or password digests in SOAP headers.
+					- Enforce URL authorization to limit access to web service files (.asmx).
+				- Firewall & Intrusion Detection:
+					- Deploy web-service-capable firewalls to filter SOAP and ISAPI requests.
+					- Configure firewalls and IDS/IPS systems to detect anomalies and filter improper SOAP and XML syntax.
+				- SOAP & WSDL Security:
+					- Restrict WSDL access permissions to prevent unauthorized discovery.
+					- Disable dynamic WSDL generation to prevent exposure of service details.
+					- Block external references in XML and use pre-fetched content instead.
+					- Disable WS-Addressing unless strictly necessary, and create a whitelist of allowed addresses.
+					- Use an XML proxy to hide internal configuration details from exposure.
+				- SOAP Action & Message Security:
+					- Disable the SOAPAction attribute when not required.
+					- Avoid guessable SOAP Action terminologies (e.g., createUser, deleteUser).
+					- Compare SOAPAction and SOAP body to detect inconsistencies.
+					- Digitally sign SOAP messages to ensure integrity and authenticity.
+				- Encryption & Secure Communication:
+					- Use TLS to secure SOAP communication.
+					- Ensure consistent encoding between client and server.
+				- Additional Best Practices:
+					- Implement XSLT for XML address translation in outgoing messages.
+					- Verify caller’s endpoint in SOAP messages before processing them.
+					- Ensure compliance with Web Services Interoperability (WS-I) standards.
+		- Clickjacking Attack Prevention:
+			- Use server-side methods like the X-Frame-Options header (DENY, SAMEORIGIN, ALLOW-FROM URI) and Content-Security-Policy (CSP) to prevent unauthorized framing.
+			- Avoid client-side methods like Framebusting, as they are easily bypassed.
+			- Mask the HTML document and reveal it only after confirming it is not framed.
+			- Set the SameSite cookie attribute to prevent session cookies from being sent in embedded frames.
+			- Regularly scan for vulnerabilities using a web security scanner.
+			- Employ Auth0, which protects login pages with X-Frame-Options and CSP headers.
+			- Implement UI defensive measures to ensure the page is the top-level window and detect UI manipulation attempts.
+			- Use window.confirm() or other confirmation dialogs for critical user actions.
+			- Recommend browser extensions like NoScript or uBlock Origin for additional protection.
+		- JavaScript Hijacking Prevention:
+			- Use .innerText instead of .innerHTML to prevent script injection.
+			- Avoid eval() and similar functions that introduce vulnerabilities.
+			- Do not manually write serialization code; use an encoding library to protect attributes and data elements.
+			- Use SSL/TLS for secure communication and encrypt data on the server-side rather than in client-side code.
+			- Build XML using frameworks instead of constructing it manually.
+			- Return JSON objects in a structured format (e.g., { "result": [{ "object": "inside array" }] }) and avoid exposing sensitive data.
+			- Maintain unique session-based URLs for JSON object retrieval.
+			- Monitor JavaScript activity with AI-based tools to detect malicious behavior.
+			- Conduct tree-based lifecycle analysis of JavaScript libraries to detect unauthorized modifications.
+			- Enable Subresource Integrity (SRI) to prevent unauthorized JavaScript modifications.
+			- Use JavaScript analyzers to identify client-side vulnerabilities.
+			- Implement CSRF tokens to verify the legitimacy of JSON requests.
+			- Ensure the server processes only requests with the correct Content-Type header.
+			- Avoid JSONP for cross-domain requests; use CORS instead.
+			- Prefix JSON responses with a non-executable string (e.g., )]}',\n) to prevent hijacking.
+			- Use CORS headers to control domain access to JSON endpoints.
+			- Parse JSON data safely, avoiding the use of eval().
+			- Require API keys or tokens to authenticate API requests and restrict access to authorized clients.
+		- Username Enumeration Prevention:
+			- Display only generic error messages for invalid user identifiers (e.g., “Invalid username or password”).
+			- Use non-sequential, complex usernames (e.g., randomly generated usernames) to prevent enumeration.
+			- Implement CAPTCHA on input fields to prevent automated data collection.
+			- Apply rate limiting to block repeated failed login attempts from the same IP address.
+			- Use a Web Application Firewall (WAF) to detect and block suspicious activity, including multiple enumeration attempts.
+			- Prevent SQL injection and XSS attacks to stop user enumeration through dumped data.
+			- Mask usernames on the "Forgot Password" page and during registration to avoid revealing existing accounts.
+			- Avoid disclosing whether a username is already registered when users attempt to sign up.
+			- Maintain uniform response times for both valid and invalid login attempts to prevent timing attacks.
+			- Add slight delays to authentication responses to further mitigate brute-force attempts.
+			- Use email addresses as login identifiers instead of usernames, as they are harder to enumerate.
+			- Implement geo-restrictions to verify login attempts based on the user's location.
+			- Harden services to prevent null binds and unauthorized root access.
+			- Implement honeypots with dummy accounts or fields to detect malicious activity.
+			- Apply two-factor authentication (2FA) or response padding techniques to further secure login attempts.
+		- Securing the Password Reset Mechanism:
+			- Validate the random token and email link before processing the request.
+			- Ensure password reset URLs are single-use and have a short expiration time.
+			- Use HTTPS for all password reset URLs.
+			- Implement CAPTCHA to prevent automated reset attempts.
+			- Restrict request frequency per IP or device to mitigate abuse.
+			- Use MFA techniques to secure password reset processes.
+			- Generate cryptographically secure tokens for each reset request.
+			- Send temporary passwords via registered email instead of directly resetting passwords.
+			- Require user confirmation via a code sent to their email or phone before completing the reset.
+		- Preventing Same-Site Attacks:
+			- Use unique CSRF tokens for each session and validate them on the server before processing requests.
+			- Set the SameSite attribute for cookies to prevent cross-site request forgery (CSRF).
+			- Validate the Referer and Origin headers to ensure requests originate from the same site.
+			- Regularly update and verify DNS records to prevent misconfigurations and security risks.
+			- Implement DNS misconfiguration checks and educate users on the risks of improper CNAME DNS entries.
+			- Use user interaction methods like re-authentication and CAPTCHA to prevent automated attacks.
+	- Defend Against Web Application Attacks:
+		- Protect the web server by using a Web Application Firewall (WAF) or an Intrusion Detection System (IDS) and filtering packets. Regularly update the server’s software with patches to prevent vulnerabilities.
+		- Secure user input by sanitizing and filtering it to prevent malicious data injection. Analyze the source code for SQL injection risks and minimize the use of third-party applications.
+		- Enhance database security by using stored procedures and parameterized queries to retrieve data. Disable verbose error messages that could provide attackers with useful information and replace them with custom error pages.
+		- Restrict database access by connecting with a non-privileged account and granting the least privileges necessary to databases, tables, and columns. Disable commands like xp_cmdshell, which could allow attackers to execute system-level commands.
+	- Securing WebSocket Connections:
+		- Securing WebSocket connections is essential to protect data transmitted between clients and servers from unauthorized access and attacks. Follow these best practices to enhance WebSocket security:
+		- Use Secure WebSocket Protocol: Always use wss:// instead of ws:// to encrypt WebSocket data in transit with TLS/SSL.
+		- Validate the Origin Header: Ensure the server accepts WebSocket connections only from trusted domains by validating the Origin header.
+		- Implement Authentication: Use token-based authentication (e.g., JWT) to verify users before establishing a WebSocket connection.
+		- Enforce Role-Based Access Control (RBAC): Restrict actions over WebSocket connections based on user roles to prevent unauthorized operations.
+		- Limit Message Size: Set a maximum message size to prevent denial-of-service (DoS) attacks.
+		- Apply Rate Limiting: Control the number of messages a client can send within a timeframe to prevent abuse and mitigate spam.
+		- Enforce Session Timeouts: Automatically close inactive WebSocket connections to reduce security risks.
+		- Log and Monitor Activity: Record all WebSocket connections and activities for auditing. Implement real-time monitoring to detect and respond to suspicious behavior.
+		- Use WebSocket Subprotocols: Define and enforce specific communication protocols between the client and server for structured interactions.
+		- Ensure Valid Server Certificates: Use certificates issued by a trusted Certificate Authority (CA) to prevent man-in-the-middle attacks.
+		- Use Secure WebSocket Libraries: Choose well-maintained WebSocket libraries and frameworks with active security updates.
+		- Set Security Headers: Implement security headers such as Content Security Policy (CSP) and X-Frame-Options to protect WebSocket connections from cross-site attacks.
+	- RASP for Protecting Web Servers:
+		- Runtime Application Self-Protection (RASP) is a security technology designed to protect applications running on a server. It detects runtime attacks in real-time at the software application layer, providing enhanced visibility into hidden vulnerabilities. RASP can identify malicious activity in incoming traffic and validate data requests. It safeguards both web and non-web applications and prevents unauthorized programs from executing within an application.
+		- RASP continuously monitors and mitigates attacks, including unknown zero-day threats, at an early stage without requiring human intervention. The RASP layer is integrated into the application code, where it inspects incoming server traffic and applies protective measures when threat vectors are detected. All requests pass through the RASP layer, positioned between the server and the application, without compromising performance. Additionally, RASP minimizes false positives while enhancing security.
+		- Benefits of Using RASP:
+			- Visibility: RASP offers greater visibility, allowing users to monitor applications and detect attacks in detail.
+			- Collaboration and DevOps: It improves collaboration and DevOps by providing transparent, detailed security insights for both developers and security professionals.
+			- Penetration Testing: RASP's enhanced visibility reduces redundant testing and provides insights into successful attacks and previously tested applications.
+			- Incident Response: RASP supports incident response by enabling security logging and compliance reporting, allowing users to log customized events without modifying the application.
+	- Web Application Security Testing Tools:
+		- Various web application security assessment tools are available for scanning, detecting, and evaluating vulnerabilities in web applications. These tools help assess security posture, identify weaknesses, and strengthen application security. By automating the security assessment process, they ensure more accurate and efficient vulnerability detection. This section highlights some key web application security testing tools.
+		- N-Stalker Web App Security Scanner (www.nstalker.com): N-Stalker Web App Security Scanner detects vulnerabilities such as SQL injection, cross-site scripting (XSS), and other known attacks. It is a valuable security tool for developers, system administrators, security professionals, and IT auditors. The scanner integrates the well-known “N-Stealth HTTP Security Scanner” and its database of 39,000 web attack signatures with component-oriented web application security assessment technology.
+		- Veracode (www.veracode.com): Veracode enables testing teams to scan code at each development stage using IDE, pipeline, and policy scans. It helps mitigate security risks and enhances the productivity of both security and development teams. Veracode Web Application Scanning offers dynamic analysis security testing (DAST) to identify vulnerabilities in applications running in production.
+		- Invicti (www.invicti.com): Invicti is an application security testing tool that significantly reduces the risk of web attacks by performing accurate, automated security assessments. It automates various security tasks and employs a dynamic and interactive scanning approach (DAST + IAST) to detect vulnerabilities in web applications.
+		- Contrast Security (www.contrastsecurity.com)
+		- Snyk (snyk.io)
+		- CodeSonar (codesecure.com)
+		- HCL AppScan (www.hcl-software.com)
+	- Web Application Firewalls:
+		- Web Application Firewalls (WAFs) protect websites, web applications, and web services from known and unknown cyber threats. They help prevent data breaches and unauthorized manipulation of sensitive corporate and customer information. Some of the most widely used WAFs include:
+		- Cloudflare Web Application Firewall (WAF) (www.cloudflare.com): Cloudflare Web Application Firewall enables security professionals to create custom rules to safeguard websites and APIs from malicious traffic. It incorporates advanced features such as WAF attack scoring and content scanning for uploaded files. Additionally, it allows users to define rate limits for incoming requests based on specific expressions and determine actions to be taken when those limits are exceeded.
+		- Imperva's Web Application Firewall (www.imperva.com)
+		- AppWall (www.radware.com)
+		- Qualys WAF (www.qualys.com)
+		- Barracuda Web Application Firewall (www.barracuda.com)
+		- NetScaler WAF (www.netscaler.com)
