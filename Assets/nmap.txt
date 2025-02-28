@@ -133,6 +133,8 @@ SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 - Default Nmap scan (nmap <ip>) is TCP Connect Scan/Full Open Scan (nmap -sT -p 1-1024 <ip>)
 
 > Enables service/version detection and Runs default scripts: nmap -sV -sC <host>
+> Perform aggressive scan with fast timing and verbose output. It detects OS, services, open ports (easily detected by security systems): nmap -T4 -A -v <host>
+
 
 # HOST DISCOVERY:
 For Security & Stealthiness: ARP (nmap -sn -PR) is the most secure and reliable for local networks.
