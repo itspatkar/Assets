@@ -9078,3 +9078,151 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Microsoft SQL Server: Attackers exploit the xp_dirtree command to send DNS requests to a server they control.
 				- Oracle Database: Attackers use the UTL_HTTP package to send HTTP requests from SQL or PL/SQL to a remote server under their control.
 			- By using these methods, attackers can exfiltrate data without directly displaying results within the vulnerable web application.
+	- SQL Injection Methodology:
+		- The SQL injection methodology consists of the following steps:
+			- Information gathering and vulnerability detection: Identifying SQL injection vulnerabilities in the target system.
+			- Launching SQL injection attacks: Exploiting the identified vulnerabilities to gain unauthorized access.
+			- Compromising the target network (Advanced SQL Injection): Escalating privileges and taking control of the entire system.
+		- Information Gathering and SQL Injection Vulnerability Detection:
+			- Information Gathering:
+				- During the information-gathering stage, attackers attempt to collect details about the target database, including its name, version, users, output mechanism, database type, user privilege levels, and OS interaction capabilities.
+				- Understanding the underlying SQL queries helps attackers craft accurate SQL injection statements. Error messages play a crucial role in extracting information from the database. Depending on the type of errors encountered, attackers may employ different SQL injection techniques. This reconnaissance process, also known as the survey and assess method, allows attackers to gather comprehensive details about a potential target, including the database type, version, and user privilege levels.
+				- Attackers typically gather information at multiple levels, beginning with the identification of the database type and search engine. Since different databases require different SQL syntax, determining the database engine used by the server is essential. Identifying privilege levels is another key step, as attackers seek to escalate their access and gain administrative privileges. Once they obtain sufficient access, they attempt to retrieve passwords and compromise the system. By interacting with the OS through command shell execution, an attacker can potentially take control of the entire network.
+				- Steps for Information Gathering:
+					- Verify whether the web application connects to a database server to retrieve data.
+					- Identify all input fields, hidden fields, and POST request parameters that could be used to construct SQL queries.
+					- Attempt to inject code into input fields to trigger database errors.
+					- Enter a string value where a numerical input is expected to test for vulnerabilities.
+					- Use the UNION operator to merge result sets from multiple SELECT statements.
+					- Analyze detailed error messages to gather insights for executing SQL injection attacks.
+				- This process helps attackers understand the database structure, identify vulnerabilities, and develop an effective SQL injection strategy.
+			- Identifying Data Entry Paths:
+				- An attacker seeks to identify all possible input points within an application that can be exploited using SQL injection techniques. To accomplish this, automated tools such as Tamper Dev and Burp Suite may be used.
+				- Potential entry points include:
+					- Input fields on web forms
+					- Hidden fields
+					- Cookies used for session management
+				- By analyzing GET and POST requests sent to the target application, attackers can pinpoint vulnerabilities. The following tools help in identifying data entry paths for SQL injection:
+					- Tamper Dev (chromewebstore.google.com): Tamper Dev enables the interception and modification of HTTP/HTTPS requests and responses. Users can alter outgoing requests, modify responses upon interception, and trigger new requests, making it a valuable tool for security testing.
+					- Burp Suite (www.portswigger.net): Burp Suite is a powerful web application security testing tool that allows attackers to inspect and manipulate traffic between a browser and a target application. It helps identify vulnerabilities such as SQL injection, cross-site scripting (XSS), and other security flaws.
+			- Extracting Information Through Error Messages:
+				- Error messages play a crucial role in extracting information from a database. In certain SQL injection techniques, attackers intentionally trigger errors to reveal details about the database. If developers use generic or verbose error messages, these can inadvertently provide valuable insights to attackers.
+				- When an attacker inputs malicious data into an application, the database may generate an error message related to syntax, permissions, or other issues. These messages can disclose critical details such as: Operating System (OS) details, Database type and version, User privilege levels, OS interaction capabilities
+				- By analyzing the error messages, attackers can determine which SQL injection technique to use to exploit the application's vulnerabilities.
+				- Methods of Extracting Information from Error Messages:
+					- Parameter Tampering:
+						- Attackers manipulate HTTP GET and POST requests to induce errors and extract database information. Tools like Burp Suite and Tamper Dev can intercept and modify these requests. Error messages obtained through this technique may reveal:
+							- The name of the database server
+							- Directory structure
+							- Functions used in SQL queries
+						- Attackers can tamper with parameters directly in the browser’s address bar or use proxy tools.
+						- Example:
+							- http://certifiedhacker.com/download.php?id=car
+							- http://certifiedhacker.com/download.php?id=horse
+							- http://certifiedhacker.com/download.php?id=book
+						- If improper input validation exists, changing parameter values may produce different errors, helping attackers gain insights into the database structure.
+					- Determining the Database Engine Type:
+						- Identifying the database engine is crucial for executing a successful SQL injection attack. One of the simplest ways to determine the database type is by triggering ODBC errors (Open Database Connectivity errors), which often display database driver information.
+						- ODBC error messages may reveal:
+							- The specific database engine used (e.g., MySQL, PostgreSQL, SQL Server)
+							- Configuration details that aid in further exploitation
+						- If ODBC errors are not available, attackers can make an educated guess based on the operating system and web server used.
+					- Determining a SELECT Query Structure:
+						- Using the error messages obtained, an attacker can extract the original structure of the query used in the application. This allows them to construct a malicious query to manipulate the original query. To achieve this, the attacker forces the application to generate errors that reveal information such as table names, column names, and data types.
+						- Attackers inject valid SQL segments while avoiding syntax errors to navigate the database without triggering errors. They attempt to achieve this by injecting simple inputs such as ' and '1' = '1 or ' and '1' = '2. Additionally, they use SQL clauses like GROUP BY column_names HAVING 1=1 -- to determine table and column names.
+					- Injections:
+						- Most injections occur in the middle of a SELECT statement, typically within the WHERE clause.
+						- For example: SELECT * FROM table WHERE x = 'normalinput' GROUP BY x HAVING 1=1 -- GROUP BY x HAVING x = y ORDER BY x
+					- Grouping Error:
+						- The HAVING clause allows further refinement of a query based on grouped fields. If a column is not properly grouped, the resulting error message can reveal which columns have not been included in the GROUP BY clause.
+						- For example: ' GROUP BY column_names HAVING 1=1 --
+					- Type Mismatch:
+						- Attempting to insert strings into numeric fields can trigger errors that reveal data type constraints. The resulting error messages indicate which values could not be converted.
+						- For example:
+							- ' UNION SELECT 1,1,'text',1,1,1 --
+							- ' UNION SELECT 1,1, BIGINT,1,1,1 --
+					- Blind Injection:
+						- Blind SQL injection relies on time delays or error signatures to determine or extract information from the database.
+						- For example:
+							'; IF condition
+							WAITFOR DELAY '0:0:5' --
+							'; UNION SELECT IF(condition, BENCHMARK(100000, SHA1('test')), 'false'), 1,1,1,1;
+						- Attackers exploit database-level error messages generated by an application. These messages are valuable for crafting vulnerability exploit requests. In some cases, they can even facilitate the automation of exploits based on the database server’s responses.
+						- Note: If an application does not provide detailed error messages and instead returns a generic 500 Server Error or a custom error page, blind injection techniques should be used to infer database behavior.
+		- SQL Injection Vulnerability Detection:
+			- After gathering information, the attacker searches for SQL injection vulnerabilities in the target web application. To do this, they identify all input fields, hidden fields, and POST requests on the website. The attacker then attempts to inject malicious code into these fields to generate an error and analyze the application's response.
+			- Testing for SQL Injection:
+				- Standard SQL injection inputs, known as testing strings, are commonly used by attackers to exploit vulnerabilities. Penetration testers (pen testers) also use these testing strings to assess an application's security against SQL injection attacks.
+				- The table below summarizes various possibilities for each testing string. These strings are widely known as an SQL injection cheat sheet, which pen testers use to identify potential vulnerabilities in web applications.
+		- Additional Methods to Detect SQL Injection:
+			- Function Testing:
+				- Function testing is a software testing technique in which a system or application is tested against a set of inputs based on end-user requirements. The output obtained is then evaluated and compared with expected results to determine whether it meets the functionality and base requirements of the product.
+				- This type of testing falls within the scope of black-box testing, meaning it does not require knowledge of the internal design, code, or logic of the application. It assesses security, user interface, database interactions, client/server applications, navigation functions, and overall system usability.
+				- Example SQL Injection Test Cases:
+					- http://certifiedhacker.com/?parameter=123
+					- http://certifiedhacker.com/?parameter=1'
+					- http://certifiedhacker.com/?parameter=1'#
+					- http://certifiedhacker.com/?parameter=1"
+					- http://certifiedhacker.com/?parameter=1 AND 1=1--
+					- http://certifiedhacker.com/?parameter=1'-
+					- http://certifiedhacker.com/?parameter=1 AND 1=2--
+					- http://certifiedhacker.com/?parameter=1'/*
+					- http://certifiedhacker.com/?parameter=1' AND '1'='1
+					- http://certifiedhacker.com/?parameter=1 ORDER BY 1000
+				- This approach helps identify vulnerabilities in applications that could be exploited using SQL injection techniques.
+			- Fuzz Testing:
+				- Fuzz testing (fuzzing) is an adaptive SQL injection testing technique used to detect coding errors by inputting a large volume of random data and observing changes in the output.
+				- Fuzz testing is a black-box testing method used for quality assurance and security assessment. It helps identify coding errors and security vulnerabilities in web applications. Specialized tools, known as fuzzers, generate massive amounts of random data (referred to as "fuzz") and inject it into the target application to uncover weaknesses that could be exploited by various attacks.
+				- Fuzz Testing Tools:
+					- BeSTORM (www.beyondsecurity.com)
+					- Burp Suite (portswigger.net)
+					- AppScan Standard (www.hcl-software.com)
+					- Defensics (www.synopsys.com)
+					- SnapFuzz (portswigger.net)
+			- Static Testing:
+				- Static testing involves analyzing the source code of a web application to detect vulnerabilities before execution. It helps identify security flaws, logic errors, and weak coding practices without running the application.
+			- Dynamic Testing:
+				- Dynamic testing focuses on analyzing the runtime behavior of a web application. It involves executing the application and monitoring its response to various inputs to identify security vulnerabilities, performance issues, and unexpected behaviors.
+		- SQL Injection Black Box Pen Testing:
+			- In black box testing, the penetration tester does not need prior knowledge of the network or system being tested. The first task is to determine the system's location and infrastructure. The tester then attempts to identify vulnerabilities in web applications from an attacker’s perspective. Various techniques, such as using special characters, white spaces, SQL keywords, and oversized requests, help assess different conditions of the web application.
+			- The following steps are involved in SQL injection black box penetration testing:
+				- Detecting SQL Injection Issues:
+					- Send a single quote (') as input data to detect instances where user input is not sanitized.
+					- Send a double quote (") as input data to detect instances where user input is not sanitized.
+				- Detecting Input Sanitization:
+					- Use a right square bracket (]) as input data to check if user input is used as part of an SQL identifier without proper sanitization.
+				- Detecting Truncation Issues:
+					- Send long strings of junk data, similar to buffer overrun tests. This may trigger SQL errors on the page.
+				- Detecting SQL Modification:
+					- Send long strings of single quotes ('), right square brackets (]), or double quotes (").
+					- These inputs may exceed the return values from the REPLACE and QUOTENAME functions, potentially truncating the command variable used to store the SQL statement.
+		- Source Code Review to Detect SQL Injection Vulnerabilities:
+			- Source code review is a security testing method that involves systematically examining source code to identify various vulnerabilities. It aims to detect and remediate security flaws introduced by developers during the development phase. This process falls under white-box testing and is typically conducted during the implementation phase of the Security Development Lifecycle (SDL).
+			- Source code review helps uncover and eliminate security vulnerabilities such as SQL injection, format string exploits, race conditions, memory leaks, and buffer overflows. Both automated tools and manual inspection can be used for this purpose. Automated tools, including Veracode, SonarQube, PVS-Studio, Coverity Scan, Parasoft Jtest, CAST Application Intelligence Platform (AIP), and Klocwork, assist penetration testers in identifying security flaws within the application’s source code.
+			- There are two main types of source code reviews:
+				- Static Code Analysis:
+					- This method analyzes source code for potential vulnerabilities while the code is not executing (i.e., in a static state).
+					- Techniques such as taint analysis, lexical analysis, and data flow analysis are commonly used. Many automated tools are available to facilitate static code analysis.
+				- Dynamic Code Analysis:
+					- Unlike static analysis, dynamic code analysis examines the application’s source code during execution. The process involves preparing input data, executing a test program, collecting relevant parameters, and analyzing output data.
+					- Dynamic code analysis effectively detects SQL injection vulnerabilities and other security flaws that arise from interactions with SQL databases, web services, and other external components.
+			- Source Code Analysis Tools: 
+				- Veracode (www.veracode.com)
+				- SonarQube (sonarsource.com)
+				- PVS-Studio (pvs-studio.com)
+				- Coverity Scan (scan.coverity.com)
+				- Parasoft Jtest (www.parasoft.com)
+				- CAST Application Intelligence Platform (AIP) (www.castsoftware.com)
+				- Klocwork (www.perforce.com)
+		- Testing for Blind SQL Injection Vulnerability in MySQL and MSSQL:
+			- Attackers can identify blind SQL injection vulnerabilities by testing the URLs of a target website.
+			- For example:
+				- Consider the following URL: shop.com/items.php?id=101
+				- The corresponding SQL query executed on the database might be: SELECT * FROM ITEMS WHERE ID = 101;
+				- To test for blind SQL injection, an attacker can manipulate the input by injecting a condition that always evaluates to FALSE, such as 1=0: shop.com/items.php?id=101 AND 1=0
+				- The resulting SQL query would be: SELECT * FROM ITEMS WHERE ID = 101 AND 1 = 0;
+				- Since 1=0 is always FALSE, the query returns no results, and the page may display an empty response or an error message.
+				- Next, the attacker injects a condition that always evaluates to TRUE, such as 1=1: shop.com/items.php?id=101 AND 1=1
+				- The resulting SQL query becomes: SELECT * FROM ITEMS WHERE ID = 101 AND 1 = 1;
+				- Since 1=1 is always TRUE, the query executes successfully, and the application returns the original items page.
+				- By observing these responses, an attacker can determine that the website is vulnerable to a blind SQL injection attack, even though no error messages or direct database output are shown.
