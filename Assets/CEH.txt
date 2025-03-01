@@ -9025,3 +9025,56 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						UNION ALL
 						SELECT creditCardNumber, 1, 1 FROM CreditCardTable;
 					- This combines the results of the original query with credit card numbers from the CreditCardTable, allowing the attacker to retrieve sensitive user data.
+		- Blind/Inferential SQL Injection:
+			- Blind SQL Injection occurs when a web application is vulnerable to SQL injection, but the results of the injection are not directly visible to the attacker. It is similar to a standard SQL Injection, except that when an attacker attempts to exploit the vulnerability, they receive a generic or custom error page instead of a detailed error message.
+			- In blind SQL injection, an attacker poses a series of true-or-false questions to the database to determine whether the application is susceptible to SQL injection. Typically, standard SQL injection attacks are possible when developers use detailed error messages that inadvertently reveal sensitive information, providing a pathway for exploitation. However, when developers suppress error messages, it becomes more challenging—but not impossible—for attackers to conduct an SQL injection attack.
+			- Blind SQL injection differs from standard SQL injection in how data is retrieved from the database. Attackers use this method to either access sensitive information or manipulate data. By sending carefully crafted SQL queries, they can extract data bit by bit through a sequence of true-or-false questions. Since the results are not directly displayed, this attack can be time-consuming, as the database must generate a new statement for each recovered piece of information.
+			- No Error Message Returned:
+				- When an attacker attempts an SQL injection using the query "certifiedhacker'; DROP TABLE Orders --", two types of error messages may be returned. A generic error message can provide valuable information that helps the attacker refine their SQL injection attempts. However, if the developer disables generic error messages and instead implements a custom error message, the attacker will not receive useful feedback. In this case, they may resort to a blind SQL injection attack.
+				- If generic error messaging is enabled, the server returns a detailed error message, including database driver information and ODBC SQL server details. This data can further aid the attacker in executing an SQL injection attack. Conversely, when custom error messaging is used, the browser only displays a vague error message indicating that the request was unsuccessful, without revealing specific details. As a result, the attacker has no choice but to attempt a blind SQL injection attack.
+			- Time-Based SQL Injection:
+				- Time-based SQL injection (also known as time delay SQL injection) exploits the time delay that occurs in response to true or false queries sent to the database. A WAITFOR DELAY statement pauses the SQL server for a specified duration. By analyzing the response time, an attacker can extract information, such as whether they are connected to the database as a system administrator or another user, and then launch further attacks.
+				- Example of a Time-Based SQL Injection Attack:
+					- Query: IF EXISTS(SELECT * FROM creditcard) WAITFOR DELAY '0:0:10'--
+					- Step 1: Check if the database “creditcard” exists.
+					- Step 2: If the database does not exist, the system returns the message: "We are unable to process your request. Please try again later."
+					- Step 3: If the database exists, the system pauses for 10 seconds before displaying the same message: "We are unable to process your request. Please try again later."
+				- Since no error message is returned, attackers use the WAITFOR DELAY command to determine whether the SQL query is being executed successfully.
+				- Common SQL Commands for Time-Based Injection:
+					- SQL Server (WAITFOR DELAY)
+						WAITFOR DELAY 'time' (in seconds)
+						- This functions like a sleep command, making the database wait for the specified duration.
+						- Example: WAITFOR DELAY '0:0:10'-- (Pauses execution for 10 seconds)
+					- MySQL (BENCHMARK())
+						BENCHMARK(iterations, operation)
+						- This command runs on MySQL servers and executes an operation a specified number of times to create a delay.
+						- Example: BENCHMARK(1000000, MD5('test')) (Runs the MD5 hash function a million times to slow down execution)
+			- Boolean Exploitation:
+				- Boolean-based blind SQL injection (also known as inferential SQL injection) is performed by sending specific queries to the application's database and analyzing the responses. Attackers inject multiple valid SQL statements that evaluate as true or false in an affected parameter within an HTTP request. By comparing the application's response in both cases, the attacker can determine whether the injection was successful.
+				- If the attacker crafts and executes the correct request, they can extract critical information from the database, which can then be used to launch further attacks. This technique is commonly used when an application appears to be vulnerable to blind SQL injection but does not return standard error messages. In such cases, attackers rely on Boolean logic to infer database details.
+				- Example of Boolean-Based SQL Injection:
+					- Consider the following URL, which retrieves details of an item with id = 67: http://www.myshop.com/item.aspx?id=67
+					- The corresponding SQL query executed on the database is: SELECT Name, Price, Description FROM ITEM_DATA WHERE ITEM_ID = 67
+					- An attacker may modify this request to: http://www.myshop.com/item.aspx?id=67 AND 1=2
+					- This alters the SQL query as follows: SELECT Name, Price, Description FROM ITEM_DATA WHERE ITEM_ID = 67 AND 1=2
+					- Since 1=2 is always false, no results will be returned, and no item details will be displayed on the webpage.
+					- Next, the attacker modifies the request to: http://www.myshop.com/item.aspx?id=67 AND 1=1
+					- The corresponding SQL query becomes: SELECT Name, Price, Description FROM ITEM_DATA WHERE ITEM_ID = 67 AND 1=1
+					- Since 1=1 is always true, the item details are displayed.
+					- From these responses, the attacker can confirm that the page is vulnerable to SQL injection and may proceed to extract further database information using Boolean-based techniques.
+			- Heavy Query:
+				- In some cases, time delay functions in SQL queries may be disabled by the database administrator, making it impossible to use traditional time-based SQL injection techniques. However, an attacker can still achieve a time delay effect by using heavy queries—queries that retrieve a massive amount of data and take a long time to execute on the database engine.
+				- Attackers generate heavy queries by performing multiple joins on system tables, as queries on these tables typically require significant processing time. This allows them to execute a time-based SQL injection attack without relying on built-in time delay functions.
+				- Example of a Heavy Query in Oracle:
+					- The following is an example of a heavy query in Oracle that takes a long time to execute: SELECT count(*) FROM all_users A, all_users B, all_users C;
+					- If an attacker injects a malicious parameter into the query to perform time-based SQL injection without using functions, it may take the following form: 1 AND 1 < (SELECT count(*) FROM all_users A, all_users B, all_users C);
+					- The final SQL query executed by the application may look like this: SELECT * FROM products WHERE id = 1 AND 1 < (SELECT count(*) FROM all_users A, all_users B, all_users C);
+					- Since this query involves multiple joins on system tables, it significantly slows down database execution, allowing the attacker to infer information based on response time.
+				- Impact of Heavy Query Attacks: Heavy query attacks are a newer form of SQL injection that can severely impact server performance. By overloading the database with complex queries, attackers can cause significant delays, degrade application responsiveness, and potentially create denial-of-service (DoS) conditions.
+		- Out-of-Band SQL Injection:
+			- Out-of-band SQL injection attacks are more difficult to execute because they require the attacker to communicate with the server and determine the specific features of the database server used by the web application. In this type of attack, the attacker leverages alternative communication channels—such as database email functionality or file writing and loading functions—to perform the attack and retrieve results.
+			- This technique is typically used when in-band (error-based) or blind SQL injection is not feasible, meaning the attacker cannot use the same channel through which requests are being made to extract data. Instead, attackers rely on DNS and HTTP requests to retrieve information from the database server.
+			- Examples of Out-of-Band SQL Injection:
+				- Microsoft SQL Server: Attackers exploit the xp_dirtree command to send DNS requests to a server they control.
+				- Oracle Database: Attackers use the UTL_HTTP package to send HTTP requests from SQL or PL/SQL to a remote server under their control.
+			- By using these methods, attackers can exfiltrate data without directly displaying results within the vulnerable web application.
