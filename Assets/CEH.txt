@@ -8896,3 +8896,96 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Qualys WAF (www.qualys.com)
 		- Barracuda Web Application Firewall (www.barracuda.com)
 		- NetScaler WAF (www.netscaler.com)
+
+
+--------------------------------------------------
+
+# SQL Injection
+
+- SQL Injection:
+	- Structured Query Language (SQL) is a textual language used by a database server to manage and manipulate data. SQL commands, such as INSERT, SELECT, UPDATE, and DELETE, perform operations on the database. Programmers often use sequential SQL commands with client-supplied parameters, which can make applications vulnerable to SQL injection attacks.
+	- SQL injection is a technique that exploits unsanitized input vulnerabilities, allowing attackers to pass malicious SQL commands through a web application for execution by a backend database. In this attack, the attacker injects harmful SQL queries into user input forms to gain unauthorized access to a database or retrieve sensitive information.
+	- These attacks occur due to flaws in web applications rather than issues with the database or web server itself. SQL injection attacks manipulate the database by injecting a series of malicious SQL queries or statements. Since applications often use SQL statements for authentication, role validation, data retrieval, and integration with other data sources, attackers can exploit improper input validation to compromise security.
+	- SQL injection is possible when an application fails to properly validate user input before passing it to an SQL statement. Proper input sanitization and the use of prepared statements or parameterized queries can help prevent such attacks.
+	- Why Care About SQL Injection:
+		- SQL injection is a serious threat to all database-driven websites. Any website or software application that processes user-supplied data can be vulnerable to this type of attack, depending on how it handles input and executes SQL queries.
+		- SQL injection can be exploited to carry out the following types of attacks:
+			- Authentication Bypass: An attacker logs into an application without providing a valid username and password, potentially gaining administrative privileges.
+			- Authorization Bypass: An attacker modifies authorization information stored in the database by exploiting an SQL injection vulnerability.
+			- Information Disclosure: An attacker gains unauthorized access to sensitive information stored in the database.
+			- Compromised Data Integrity: An attacker defaces a website, inserts malicious content, or alters database records.
+			- Compromised Data Availability: An attacker deletes critical database information, logs, or audit records, disrupting normal operations.
+			- Remote Code Execution: An attacker exploits an SQL injection vulnerability to execute arbitrary code on the host operating system, potentially gaining full control over the server.
+		- Proper input validation, the use of parameterized queries, and other security measures can help mitigate the risk of SQL injection attacks.
+	- SQL Injection and Server-Side Technologies:
+		- Server-side technologies like ASP.NET, PHP, Python, and Ruby on Rails enable dynamic, data-driven web applications. These technologies interact with databases such as Microsoft SQL Server, Oracle, IBM DB2, and MySQL. However, insecure coding practices can expose applications to SQL injection attacks, which exploit vulnerabilities in web applications rather than database or server flaws.
+	- Understanding HTTP POST Requests:
+		- An HTTP POST request sends data in the message body, making it more secure than GET. It supports large data transmission, commonly used for form submissions and web services. When a user submits credentials, the browser sends a request like: SELECT * FROM Users WHERE (username = 'smith' AND password = 'simpson');
+		- Without proper input validation, attackers can manipulate such queries, highlighting the need for secure coding practices.
+	- Types of SQL Injection:
+		- In an SQL injection attack, the attacker injects malicious code into an SQL query, allowing them to read sensitive data and even modify it (insert/update/delete).
+		- There are three main types of SQL injection attacks:
+			- In-band SQL Injection: The attacker uses the same communication channel to execute the attack and retrieve results. In-band attacks are the most common and easiest to exploit. The two most frequently used in-band SQL injection techniques are error-based SQL injection and UNION SQL injection.
+			- Blind/Inferential SQL Injection: In this type of attack, the attacker does not receive direct error messages from the system. Instead, they send malicious SQL queries and analyze the responses, which are usually in Boolean form (true/false). Since no actual data is returned through the web application, attackers infer database structure and content based on the responses. This method takes longer to execute, hence the term blind SQL injection.
+			- Out-of-Band SQL Injection: This attack relies on alternative communication channels (such as database email functionality or file-writing/loading features) to extract data. It is more challenging to execute because the attacker must establish communication with the server and determine the specific features of the database system used by the web application.
+		- In-Band SQL Injection:
+			- In an in-band SQL injection attack, attackers use the same communication channel to execute the attack and retrieve results. Depending on the technique used, there are different types of in-band SQL injection attacks. The two most common methods are error-based SQL injection and UNION SQL injection.
+			- Types of In-Band SQL Injection:
+				- Error-Based SQL Injection:
+					- In this method, an attacker deliberately inputs malformed data into an application, causing it to generate database errors. These error messages can reveal valuable information about the database structure and vulnerabilities. The attacker then uses this information to inject malicious SQL queries specifically designed to compromise the application's data security. This technique is particularly useful for identifying and exploiting vulnerabilities.
+				- System Stored Procedure:
+					- The risk of executing a malicious SQL query in a stored procedure increases if the web application does not properly sanitize user inputs used to dynamically construct SQL statements. An attacker may exploit this vulnerability by injecting malicious inputs into a stored procedure to execute unauthorized SQL commands.
+					- For example:
+						CREATE PROCEDURE Logi
+							@user_name VARCHAR(20)
+							@password VARCHAR(20)
+						AS
+						DECLARE @query VARCHAR(250)
+						SET @query = 'SELECT 1 FROM usertable WHERE username = ''' + @user_name + ''' AND password = ''' + @password + ''''
+						EXEC(@query)
+						GO
+					- If an attacker inputs the following values in the application's login fields:
+						Username: anyusername' OR 1=1 --
+						Password: anypassword
+					- The resulting SQL query bypasses authentication, allowing the attacker to log in with any password.
+				- Illegal/Logically Incorrect Query:
+					- Attackers can gain insights into the database structure by injecting illegal or logically incorrect queries. These queries can reveal information such as injectable parameters, data types, and table names. In this type of SQL injection attack, an attacker deliberately sends an invalid query to generate an error message that exposes details about the database schema, which can be used for further exploitation.
+					- For example, to determine column names, an attacker may input: Username: 'Bob"
+					- The resulting SQL query: SELECT * FROM Users WHERE UserName = 'Bob"' AND password = 'xxx'
+					- This causes the database to return an error message, such as: "Incorrect syntax near 'Bob'. Unclosed quotation mark after the character string '' AND Password='xxx''."
+					- Such error messages help attackers extract information about the database structure.
+				- UNION SQL Injection:
+					- The UNION SELECT statement allows an attacker to merge malicious results with the original query’s dataset. In a UNION SQL injection, an attacker appends a UNION clause to the original query to retrieve unauthorized data from another table.
+					- For example:
+						SELECT Name, Phone, Address FROM Users WHERE Id = 1
+						UNION ALL
+						SELECT creditCardNumber, 1, 1 FROM CreditCardTable
+					- To test for a UNION SQL injection vulnerability, an attacker may append a single quote (') to the end of a .php?id= parameter. If an error message appears, it indicates that the database may be vulnerable to UNION-based SQL injection.
+				- Tautology:
+					- In a tautology-based SQL injection attack, an attacker manipulates the WHERE clause using a conditional OR statement so that the condition always evaluates to TRUE. This technique is commonly used to bypass authentication mechanisms.
+					- For example: SELECT * FROM users WHERE name = '' OR '1' = '1';
+					- Since '1' = '1' always evaluates to TRUE, this query returns all records in the table, allowing an attacker to bypass authentication.
+				- End-of-Line Comment:
+					- In this type of SQL injection, an attacker exploits SQL comment syntax to manipulate queries. Comments in SQL, typically denoted by (--), cause the database to ignore the rest of the line. An attacker can use this technique to bypass authentication checks by truncating a query at a crucial point.
+					- For example: SELECT * FROM members WHERE username = 'admin'--' AND password = 'password';
+					- Here, everything after -- is ignored, effectively reducing the query to: SELECT * FROM members WHERE username = 'admin';
+					- As a result, the attacker can log in as an administrator without needing a password.
+				- In-Line Comments:
+					- Attackers can use in-line comments (/* ... */) to obfuscate SQL injection payloads, bypass input validation, or manipulate queries. This technique helps attackers evade security mechanisms such as blacklists or input sanitization.
+					- For example, consider the following dynamic SQL query:
+						INSERT INTO Users (UserName, isAdmin, Password)
+						VALUES ('".$username."', 0, '".$password."')
+					- An attacker might inject the following input:
+						UserName: Attacker', 1, /*
+						Password: mypwd */
+					- The resulting SQL query:
+						INSERT INTO Users (UserName, isAdmin, Password)
+						VALUES ('Attacker', 1, /*', 0, '*/'mypwd');
+					- This injection tricks the database into assigning administrative privileges to the attacker.
+				- Piggybacked Query:
+					- In a piggybacked SQL injection attack, an attacker appends an additional malicious SQL query to the original query using a query delimiter (;). The original query executes normally, but the injected query executes immediately afterward. This technique, also called stacked queries, allows attackers to extract, modify, or delete data, execute remote commands, or launch a Denial of Service (DoS) attack.
+					- For example, consider the original query: SELECT * FROM EMP WHERE EMP.EID = 1001 AND EMP.ENAME = 'Bob';
+					- An attacker modifies the input to include a malicious query:
+						SELECT * FROM EMP WHERE EMP.EID = 1001 AND EMP.ENAME = 'Bob';
+						DROP TABLE DEPT;
+					- After executing the first query, the database recognizes the semicolon (;) as a query delimiter and executes the second query, which deletes the DEPT table from the database.
