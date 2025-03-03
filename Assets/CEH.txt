@@ -10329,3 +10329,203 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					=> ' OR 5 BETWEEN 1 AND 7
 				- These variations produce the same logical outcome as "OR 1=1" but are harder for signature-based security mechanisms to detect.
 				- By leveraging these techniques, attackers can effectively evade detection and exploit vulnerabilities in authentication systems.
+			- Evasion Technique: URL Encoding:
+				- URL encoding is a technique used to bypass input filters and obfuscate SQL queries to launch injection attacks. This is achieved by replacing characters with their ASCII codes in hexadecimal form, preceded by a percent sign (%).
+				- For example, the ASCII code for a single quotation mark (') is 0x27; therefore, its URL-encoded representation is %27. Attackers exploit this technique to bypass security filters.
+				- Example:
+					- A normal SQL query: ' UNION SELECT Password FROM Users_Data WHERE name='Admin'--
+					- After URL encoding, this query becomes: %27%20UNION%20SELECT%20Password%20FROM%20Users_Data%20WHERE%20name%3D%27Admin%27%E2%80%94
+				- Double URL Encoding:
+					- In some cases, basic URL encoding is insufficient to bypass filters. To counter this, attackers use double URL encoding, which involves encoding the already URL-encoded characters again.
+					- For instance, the URL-encoded form of a single quotation mark (') is %27. After double URL encoding, it becomes %2527 (% itself is encoded as %25).
+					- Example:
+						- After double URL encoding, the previously encoded query transforms into: %2527%2520UNION%2520SELECT%2520Password%2520FROM%2520Users_Data%2520WHERE%2520name%253D%2527Admin%2527%25E2%2580%2594
+					- This technique allows attackers to evade security mechanisms that only filter standard URL-encoded payloads, making it a significant concern in web security.
+			- Evasion Technique: Null Byte:
+				- A null byte (%00) injection attack involves inserting a null byte character before a string to bypass detection mechanisms. Web applications typically use high-level languages such as PHP and ASP alongside lower-level languages like C/C++. However, in C and C++, the null byte (\0) is used to terminate strings. This difference in string-handling approaches can be exploited to execute a null byte injection attack.
+				- Example:
+					- An attacker may attempt to extract a password from a database using the following SQL query: ' UNION SELECT Password FROM Users WHERE UserName='admin'--
+					- If the server is protected by a Web Application Firewall (WAF) or an Intrusion Detection System (IDS), the attacker can prepend a null byte (%00) to the query to evade detection: %00' UNION SELECT Password FROM Users WHERE UserName='admin'--
+					- By injecting a null byte, the attacker can potentially bypass security filters and retrieve the admin password.
+				- This technique is particularly effective against applications that mishandle null bytes, making it a serious security concern in web development.
+			- Evasion Technique: Case Variation:
+				- By default, most database servers treat SQL queries as case-insensitive. Because regular expression filters in security mechanisms may also be case-insensitive, attackers can bypass detection by mixing uppercase and lowercase letters within an SQL injection payload.
+				- Example:
+					- Suppose a security filter is designed to detect the following SQL queries:
+						union select user_id, password from admin where user_name='admin'--
+						UNION SELECT USER_ID, PASSWORD FROM ADMIN WHERE USER_NAME='ADMIN'--
+					- An attacker can easily evade the filter by altering the case of individual characters:
+						UnIoN sEleCt UsEr_iD, PaSSwOrd fROm aDmiN wHeRe UseR_NamE='AdMIn'--
+				- Since SQL is case-insensitive, the database will still process the query correctly, while the inconsistent casing may help the attacker bypass detection mechanisms.
+				- This technique highlights the importance of using robust input validation and query parameterization to prevent SQL injection attacks.
+			- Evasion Technique: Declare Variables:
+				- During a web session, an attacker carefully observes SQL queries to identify opportunities for extracting sensitive data from the database. By analyzing these queries, the attacker can identify variables that allow them to pass a series of specially crafted SQL statements. This technique enables them to construct an SQL injection attack that bypasses signature-based detection mechanisms.
+				- Example:
+					- An attacker may initially attempt a simple SQL injection query: UNION SELECT Password
+					- To evade detection, the attacker can redefine the SQL statement using a variable, such as @sqlvar:
+						; DECLARE @sqlvar NVARCHAR(70);
+						SET @sqlvar = (N'UNI' + N'ON' + N' SELECT' + N' Password');
+						EXEC(@sqlvar);
+					- By dynamically constructing the SQL query using string concatenation, the attacker can evade Intrusion Detection Systems (IDS) and successfully retrieve all stored passwords from the database.
+				- This technique demonstrates the importance of parameterized queries and strict input validation to prevent SQL injection attacks.
+			- Evasion Technique: IP Fragmentation:
+				- IP fragmentation is a technique attackers use to evade Intrusion Detection Systems (IDS) and Web Application Firewalls (WAF) by intentionally splitting an IP packet into multiple small fragments. Since an IDS or WAF must first reassemble fragmented packets to analyze their content, attackers exploit this limitation to bypass detection.
+				- Because each fragment is inspected individually, the attack string may not match any known signatures, making detection difficult. Additionally, attackers can modify these fragments further to complicate reassembly and conceal the attack payload.
+				- Common Techniques for Evasion Using IP Fragmentation:
+					- Pausing transmission: Attackers delay sending attack fragments, hoping the IDS times out before the target system reassembles the packets.
+					- Sending packets in reverse order.
+					- Reordering fragments: Sending packets in the correct order except for:
+						- The first fragment, which is sent last.
+						- The last fragment, which is sent first.
+					- Sending packets out of order or in random sequences to disrupt reassembly.
+				- By leveraging these techniques, attackers can bypass network security mechanisms, emphasizing the need for deep packet inspection (DPI) and stateful traffic analysis to detect such evasive tactics.
+			- Evasion Technique: Variation:
+				- Variation is an evasion technique that allows an attacker to bypass comparison-based security filters. This is achieved by injecting carefully crafted statements into an SQL query, often using logical conditions or string manipulations that always evaluate to true.
+				- For example, an attacker may insert expressions such as: ' OR '1'='1'
+				- This causes the SQL engine to interpret the condition as a string comparison rather than a numerical comparison. Since evaluating two identical strings always returns true, just as evaluating equivalent numeric values does, the query remains logically unaffected but bypasses security controls.
+				- Example:
+					- An attacker may attempt to exploit an authentication query like this:
+						SELECT * FROM accounts WHERE userName = 'Bob' OR 1=1 --
+						SELECT * FROM accounts WHERE userName = 'Bob' OR 2=2 --
+						SELECT * FROM accounts WHERE userName = 'Bob' OR 1+1=2 --
+						SELECT * FROM accounts WHERE userName = 'Bob' OR "evade" = "ev" + "ade" --
+					- Each of these variations ensures that the WHERE clause always evaluates to true, allowing the attacker to gain unauthorized access or manipulate database results.
+				- Since there are infinite possible variations, signature-based detection mechanisms struggle to block every possible form of this attack. To prevent such attacks, it is crucial to use parameterized queries, strict input validation, and allowlist-based filtering instead of relying solely on blacklist signatures.
+	- SQL Injection Countermeasures:
+		- Why Are Web Applications Vulnerable to SQL Injection Attacks?
+			- The database server runs OS commands:
+				- Some database servers execute OS commands to perform specific tasks. An attacker who exploits SQL injection can use these commands to carry out unauthorized operations.
+			- Using a privileged account to connect to the database:
+				- Developers sometimes assign high-privilege accounts to database users. If an attacker compromises such an account, they can access the database and execute malicious operations at the OS level.
+			- Error messages revealing sensitive information:
+				- If a user inputs incorrect data or if a query is structured improperly, the database server may return an error message. These messages can expose critical details about the database, which an attacker can use to gain unauthorized access.
+			- Lack of server-side data validation:
+				- This is one of the most common vulnerabilities leading to SQL injection attacks. Many applications either do not validate user input properly or fail to do so altogether, allowing attackers to inject malicious SQL code into queries.
+			- Complex software stacks:
+				- Modern web applications often rely on multi-layered architectures with various technologies. This complexity makes it challenging to consistently enforce security measures across the entire stack. Discrepancies in how different layers handle data can introduce vulnerabilities.
+			- Legacy code and backward compatibility:
+				- Many web applications still use outdated codebases that were not designed with modern security practices in mind. Attackers can exploit vulnerabilities in older code by injecting malicious SQL queries to gain unauthorized access, modify data, or even take full control of the database.
+			- Reliance on concatenated queries:
+				- Using string concatenation to construct SQL queries is highly risky because it makes it easy for attackers to manipulate query structures. Even seemingly harmless inputs can be altered to introduce malicious SQL code, leading to data breaches and system compromises.
+		- Defending Against SQL Injection Attacks:
+			- Implementing consistent coding standards, minimizing privileges, and firewalling the server can all help protect against SQL injection attacks.
+			- Minimizing Privileges:
+				- Developers often overlook security during application development, leaving it for the final stages of the project. However, security should be a top priority from the beginning. Developers should create low-privilege accounts first and only grant additional permissions as needed. Addressing security early allows for seamless integration of security measures alongside feature development, making it easier to identify and fix vulnerabilities. Additionally, working within a security framework from the start ensures developers become familiar with best practices, resulting in a more secure product. This proactive approach prevents last-minute security scrambles when customers discover that the application violates their security policies by requiring excessive privileges.
+			- Implementing Consistent Coding Standards:
+				- Database developers should consider security at every stage of application development and integrate it into their solutions. Adhering to well-documented coding standards and security policies ensures consistency and reduces vulnerabilities.
+				- For instance, developers often use different data access methods, each with its own security implications. Standardizing data access practices ensures consistency and strengthens security across the application.
+				- Another critical security practice is input validation at both the client and server levels. While client-side validation helps reduce server load and improve performance, it should never be the only validation method. A malicious user can bypass client-side checks and submit dangerous input. Server-side validation ensures that all user input is properly sanitized before being processed.
+				- Additionally, applications should avoid displaying default error messages that may reveal system details. Instead, they should use custom error messages that provide minimal or no information about the system to prevent attackers from gaining insights into the database structure.
+			- Firewalling the SQL Server:
+				- Firewalling the SQL server ensures that only trusted clients can access it. In most web environments, only the administrative network (if available) and web servers interacting with the database should have access. Typically, the SQL server only needs to communicate with a backup server.
+				- By default, SQL Server listens on named pipes (via Microsoft networking on TCP ports 139 and 445), as well as TCP port 1433 and UDP port 1434. Properly securing and restricting access to these ports can help mitigate risks such as:
+					- Developers uploading unauthorized or insecure scripts and components to the web server
+					- Misapplied patches that introduce vulnerabilities
+					- Administrative errors that compromise security
+		- Countermeasures Against SQL Injection:
+			- To defend against SQL injection, developers must follow best practices and implement security measures throughout the development process. Below are key countermeasures to mitigate SQL injection risks:
+			- Input Validation & Sanitization:
+				- Do not assume the size, type, or content of incoming data; validate and sanitize all user input.
+				- Enforce strict data type checks and size limits to prevent buffer overruns.
+				- Accept only expected values for string variables, rejecting entries with binary data, escape sequences, or comment characters.
+				- Perform input validation on both the client and server side using whitelists rather than blacklists.
+			- Secure Query Execution:
+				- Use prepared statements and parameterized queries to prevent SQL injection.
+				- Never construct SQL queries directly from user input; use stored procedures where applicable.
+				- Keep untrusted data separate from commands and queries.
+				- Avoid constructing dynamic SQL with concatenated input values.
+			- Access Control & Authentication:
+				- Apply the principle of least privilege when assigning database access permissions.
+				- Use the most restrictive SQL account types for applications and never share database accounts across multiple applications.
+				- Disable unnecessary database functionalities, including shell access (xp_cmdshell).
+				- Remove default database accounts to minimize attack surfaces.
+				- Outsource authentication workflows using OAUTH APIs to securely manage user credentials.
+			- Application & Server Security:
+				- Ensure web configuration files do not contain sensitive information.
+				- Regularly update and patch all software components.
+				- Implement a web application firewall (WAF) to filter malicious inputs.
+				- Avoid extended or overly long URLs that could trigger stack-based buffer overflows.
+				- Ensure that code tracing and debug messages are removed before deployment.
+				- Handle exceptions securely without disclosing database error information to end users.
+			- Monitoring & Intrusion Detection:
+				- Deploy network, host, and application intrusion detection systems to monitor for SQL injection attacks.
+				- Regularly review and monitor SQL statements from database-connected applications to detect suspicious activity.
+				- Conduct automated black-box injection testing, static code analysis, and manual penetration testing.
+			- Secure Development Practices:
+				- Use a secure API that offers a parameterized interface or eliminates the need for direct SQL execution.
+				- Employ object-relational mapping (ORM) frameworks like Hibernate or Spring Data JPA to abstract SQL queries and provide built-in SQL injection protection.
+				- Convert user input (such as usernames and passwords) into strings before validation.
+				- Use secure hashing algorithms (e.g., SHA-256) instead of storing plaintext passwords.
+				- Design applications to trap and handle exceptions properly.
+			- Database & Data Protection:
+				- Utilize views to restrict access to base tables and enforce data transformations.
+				- Regularly monitor and analyze database logs for unusual query patterns.
+				- Ensure database isolation by locking web servers into separate domains.
+				- Use data access abstraction layers to enforce consistent and secure data handling across applications.
+		- Use Type-Safe SQL Parameters:
+			- Enforce type and length checks using the parameter collection so that the input is treated as a literal value instead of executable code.
+				SqlDataAdapter myCommand = new SqlDataAdapter("AuthLogin", conn);
+				myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+				SqlParameter parm = myCommand.SelectCommand.Parameters.Add("@aut_id", SqlDbType.VarChar, 11);
+				parm.Value = Login.Text;
+			- In this example, the @aut_id parameter is treated as a literal value instead of executable code. This value is checked for type and length.
+			- The following is an example of vulnerable code:
+				SqlDataAdapter myCommand = new SqlDataAdapter("LoginStoredProcedure '" + Login.Text + "'", conn);
+			- The following is an example of secure code:
+				SqlDataAdapter myCommand = new SqlDataAdapter(
+					"SELECT aut_lname, aut_fname FROM Authors WHERE aut_id = @aut_id", conn);
+				SqlParameter parm = myCommand.SelectCommand.Parameters.Add("@aut_id", SqlDbType.VarChar, 11);  
+				parm.Value = Login.Text;
+			- Preventing SQL Injection Attacks:
+				- Use type-safe SQL parameters as demonstrated above.
+				- Protect the web server with Web Application Firewalls (WAF) and Intrusion Detection Systems (IDS) to filter malicious packets.
+				- Regularly update software with security patches to mitigate vulnerabilities.
+				- Sanitize and filter user input to prevent injection attacks.
+				- Analyze source code for SQL injection vulnerabilities.
+				- Minimize third-party applications that may introduce security risks.
+				- Use stored procedures and parameterized queries for secure database access.
+				- Disable verbose error messages to prevent attackers from gathering useful information.
+				- Implement custom error pages to hide system details.
+				- Use non-privileged database accounts and grant the least possible privileges to users.
+				- Disable high-risk commands such as xp_cmdshell, which can execute OS-level commands.
+		- Defenses in the Application:
+			- Input Validation:
+				- Input validation ensures that the data provided to the application is sanitized before being processed by the database. The primary approach involves validating user-supplied input using techniques such as whitelisting and blacklisting. Proper input validation helps developers prevent malicious data from influencing the logic of the code.
+				- Whitelist Validation:
+					- Whitelist validation is a best practice in which only explicitly approved data types, ranges, sizes, and values are accepted. It is also referred to as positive validation or inclusion.
+					- This validation method is commonly implemented using regular expressions. For example, characters allowed in whitelist validation may include ^\ {} () @ | ? $. However, implementing whitelist validation can be complex in cases where the expected input is difficult to define or includes large character sets.
+				- Blacklist Validation:
+					- Blacklist validation prevents the application from accepting malicious input by rejecting disallowed characters, strings, or patterns. This technique is also known as negative validation or exclusion.
+					- Blacklist validation is typically implemented using regular expressions to prohibit certain characters or strings. Examples of blacklisted characters include: '|%|--|;|/\*|\\\*|_|\[|@|xp_
+					- However, blacklist validation alone is not sufficient, as attackers can use unexpected inputs to bypass restrictions. Therefore, it is recommended to use blacklisting in combination with whitelisting. A more secure approach to preventing SQL injection is to use both blacklist validation and output encoding to ensure that input is properly sanitized before reaching the database.
+			- Output Encoding:
+				- Output encoding is an additional validation technique that ensures input data is properly sanitized before being passed to the database. This is particularly important when dynamic SQL queries are used.
+				- For instance, consider the following example where a dynamically generated SQL query fails due to a special character:
+					String myQuery = “INSERT INTO UserDetails VALUES (‘” + first_name + ”‘,’” + last_name + ”’);”
+				- An attacker could inject malicious input into the first_name field, as shown below:
+					'','',''); DROP TABLE UserDetails--
+				- This would result in a dangerous SQL query execution:
+					INSERT INTO UserDetails VALUES ('','',''); DROP TABLE UserDetails--', '');
+				- Since MySQL uses a single quote (') to terminate strings, encoding the single quote is essential in dynamic SQL statements. The single quote can be encoded in two ways:
+					- Replacing a single quote with two single quotes ('').
+					- Escaping the single quote with a backslash (\').
+				- Example of output encoding in Java: myQuery = myQuery.replace("’", "\’");
+				- A major drawback of output encoding is that it must be applied consistently before every database query. Failure to do so could leave the application vulnerable to SQL injection attacks.
+			- Enforcing Least Privileges:
+				- The principle of least privilege (PoLP) is a security best practice that restricts access rights to the minimum necessary for each user or application. It is recommended to avoid granting database administrator (DBA) or administrative-level access to applications.
+				- In critical cases where elevated access rights are required, security professionals should carefully assess the exact needs of the application. For instance, if an application only needs to read data, it should be assigned read-only privileges. Similarly, the operating system running the database should enforce minimal privileges and should never execute the database management system (DBMS) as the root user.
+				- By limiting access rights, the risk of unauthorized access and SQL injection attacks can be significantly reduced.
+			- LIKE Clauses:
+				- When using the LIKE clause, special wildcard characters such as _, %, and [ should be properly escaped to prevent SQL injection attacks. This can be achieved using the Replace() method by enclosing these wildcards within square brackets.
+				- Example:
+					s = s.Replace("[", "[[]");
+					s = s.Replace("%", "[%]");
+					s = s.Replace("_", "[_]");
+				- This ensures that wildcard characters are treated as literals rather than pattern-matching symbols.
+			- Wrapping Parameters with QUOTENAME() and REPLACE():
+				- To ensure that variables used in dynamic Transact-SQL statements are properly sanitized, they should be wrapped using QUOTENAME() and REPLACE().
+				- If the string has ≤ 128 characters, use: QUOTENAME(@variable, '''')
+				- If the string has > 128 characters, use: REPLACE(@variable, '''', '''''')
+			- Example before and after applying the method:
+				- Before: SET @temp = N'SELECT * FROM employees WHERE emp_lname =''' + @emp_lname + N'''';
+				- After: SET @temp = N'SELECT * FROM employees WHERE emp_lname = ''' + REPLACE(@emp_lname,'''','''''') + N'''';
