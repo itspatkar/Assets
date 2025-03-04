@@ -10529,3 +10529,76 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Example before and after applying the method:
 				- Before: SET @temp = N'SELECT * FROM employees WHERE emp_lname =''' + @emp_lname + N'''';
 				- After: SET @temp = N'SELECT * FROM employees WHERE emp_lname = ''' + REPLACE(@emp_lname,'''','''''') + N'''';
+		- Detecting SQL Injection Attacks:
+			- Security professionals must develop and deploy rules in an Intrusion Detection System (IDS) to detect SQL injection attacks on a web server. For this purpose, they should use regular expressions to identify SQL injection meta-characters such as the single quote (') and double dash (--). The following sections outline the regular expressions used to detect SQL injection-specific characters, along with their meanings.
+			- Security professionals can use regex searches to detect SQL meta-characters.
+			- Regular Expression for Detecting SQL Meta-Characters:
+				- /(\')|(\%27)|(\-\-)|(#)|(\%23)/ix
+				- Security professionals must check for regular expressions that identify SQL meta-characters in web requests, such as the single quote (') or its equivalent hex value (%27). Additionally, they should look for the double dash (--), as it is not an HTML character and is not encoded in web requests. Some SQL servers also require detection of the hash (#) character and its equivalent hex representation (%23).
+				- These regular expressions should be used to analyze logs from security control devices such as Web Application Firewalls (WAF) and IDS solutions. Below is an example of an IDS log derived using Snort: alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg: "SQL Injection – Paranoid"; flow:to_server, established; uricontent:".pl"; pcre:"/(\')|(\%27)|(\-\-)|(#)|(\%23)/ix"; classtype:Web-application-attack; sid:9099; rev:5;)
+				- Analysis of the Detected Log:
+					- "alert": Indicates that an alert is generated when the IDS detects an attack signature in an HTTP request.
+					- "tcp": Specifies the use of the TCP protocol.
+					- "$EXTERNAL_NET": Represents the external network's IP address.
+					- "any": Refers to any source port.
+					- "->": Segregates the source from the destination.
+					- "$HTTP_SERVERS": Denotes the number of web servers within an organization.
+					- "$HTTP_PORTS": Represents common HTTP ports, such as 80 and 8080.
+					- "msg:": Provides the message associated with the alert.
+					- "flow:to_server": Indicates the traffic direction.
+					- "established": Specifies that the alert is triggered only for established TCP connections.
+					- "uricontent:'.pl'": Indicates that the alert applies to Perl script-based URI content.
+			- Modified Regular Expression for Detecting SQL Meta-Characters:
+				- /((\%3D)|(=))[^\n]*((\%27)|(\')|(\-\-)|(\%3B)|(;))/ix
+				- Security professionals should use this regular expression to detect the equals sign (=) in user requests or its hex equivalent (%3D). The expression [^\n]* allows for any number of non-newline characters between the equals sign and the next SQL meta-character. The regex also checks for single quotes ('), double dashes (--), and semicolons (;).
+			- Regular Expression for a Typical SQL Injection Attack:
+				- /\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))/ix
+				- This expression detects zero or more alphanumeric characters or underscores followed by a single quote (') or its equivalent hex value (%27). The subsequent part of the expression identifies variations of the word "or" ("or", "Or", "oR", or "OR") in different cases, as well as their respective hex values.
+			- Regular Expression for Detecting SQL Injection Using the UNION Keyword:
+				- Some attackers use the UNION keyword in SQL injection queries to extend their attacks and gain further access. Security professionals should use the following regular expression to detect SQL queries containing the UNION keyword: /((\%27)|(\'))union/ix
+				- This regex searches for a single quote (') or its hex equivalent (%27), followed by the UNION keyword in an HTTP request. Similar expressions should be created for detecting SQL keywords such as INSERT, UPDATE, SELECT, DELETE, and DROP.
+			- Regular Expression for Detecting SQL Injection Attacks on Microsoft SQL Server:
+				- If an attacker discovers that a web application is vulnerable to SQL injection and that the connected database is Microsoft SQL Server, they may attempt to execute advanced queries using stored procedures (sp) and extended procedures (xp).
+				- Common extended procedures include:
+					- xp_cmdshell (used to execute shell commands from SQL Server)
+					- xp_regread (used to read Windows registry keys)
+					- xp_regwrite (used to modify Windows registry keys)
+				- To detect such malicious queries, security professionals should use the following regular expression: /exec(\s|\+)+(s|x)p\w+/ix
+				- This regex checks for the exec keyword, followed by white spaces (or their hex equivalents), the letters sp or xp (representing stored or extended procedures), and finally, an alphanumeric or underscore character.
+		- SQL Injection Detection Tools:
+			- SQL injection detection tools help identify SQL injection attacks by monitoring HTTP traffic and SQL injection attack vectors. These tools determine whether a web application or database code is vulnerable to SQL injection.
+			- OWASP ZAP (www.zaproxy.org):
+				- OWASP Zed Attack Proxy (ZAP) is an integrated penetration testing tool designed to detect vulnerabilities in web applications. It offers both automated scanners and a suite of tools that allow users to manually identify security flaws. Although it is ideal for developers and functional testers new to penetration testing, it is also useful for security professionals with extensive experience. ZAP helps identify and fix vulnerabilities, maximize remediation efforts, and reduce the risk of attacks.
+			- Damn Small SQLi Scanner (DSSS) (github.com):
+				- Damn Small SQLi Scanner (DSSS) is a fully functional SQL injection vulnerability scanner that supports both GET and POST parameters. It scans web applications for various SQL injection vulnerabilities. Security professionals can use DSSS to detect and analyze SQL injection risks in web applications.
+			- Snort (www.snort.org):
+				- Many common cyberattacks utilize specific code sequences or commands that allow attackers to gain unauthorized access to systems and data. Snort, an open-source intrusion detection and prevention system (IDS/IPS), enables users to write rules to detect and mitigate SQL injection attacks.
+				- Some of the regular expressions that can be blocked using Snort include:
+					- /User-Agent\x3A\x20[^\r\n]*sleep\x28/i
+					- /[?&]selInfoKey1=[^&]*?([\x27\x22\x3b\x23]|\x2f\x2a|\x2d\x2d)/i
+					- /(^|&)selInfoKey1=[^&]*?([\x27\x22\x3b\x23]|\x2f\x2a|\x2d\x2d|%27|%22|%3b|%23|%2f%2a|%2d%2d)/im
+					- /^\s*?MAIL\s+?FROM\x3a[^\r\n]*?\x28\x29\s\x7b/i
+				- Example Snort rule for detecting SQL injection attempts using the sleep function in HTTP headers:
+					- alert tcp any any -> any $HTTP_PORTS (msg:"SQL use of sleep function in HTTP header - likely SQL injection attempt";
+					- flow:to_server, established; http_header; content:"User-Agent|3A| "; content:"sleep(", fast_pattern, nocase; 
+					- pcre:"/User-Agent\x3A\x20[^\r\n]*sleep\x28/i"; 
+					- metadata:policy balanced-ips drop, policy max-detect-ips drop, policy security-ips drop, ruleset community; 
+					- service:http; reference:url,blog.cloudflare.com/the-sleepy-user-agent/; 
+					- classtype:web-application-attack; sid:38993; rev:9;)
+				- This Snort rule detects SQL injection attempts by monitoring HTTP headers for the presence of the sleep function, which is often used in time-based blind SQL injection attacks.
+			- Ghauri (github.com)
+			- Burp Suite (www.portswigger.net)
+			- HCL AppScan (www. hcl-software.com)
+			- Invicti (www.invicti.com)
+			- SQL Invader (www.rapid7.com)
+			- Arachni (ecsypno.com)
+			- Qualys WAS (www.qualys.com)
+			- Fortify WebInspect (www.microfocus.com)
+			- BeSECURE (beyondsecurity.com)
+			- SolarWinds® Security Event Manager (www.solarwinds.com)
+			- sqlifinder (github.com)
+			- dotDefender (http://www.applicure.com)
+			- Wapiti (wapiti-scanner.github.io)
+			- InsightAppSec (www.rapid7.com)
+			- Acunetix Web Vulnerability Scanner (www.acunetix.com)
+			- Detectify (detectify.com)
