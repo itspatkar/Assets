@@ -11057,3 +11057,37 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Many older routers, network adapters, and IoT devices do not support WPA3 and cannot be upgraded via software updates.
 			- Replacing hardware to support WPA3 can be expensive for both individual users and organizations.
 		- Conclusion: While WPA3 provides stronger encryption, better authentication, and improved security, it still faces implementation, compatibility, and adoption challenges. Transition mode weaknesses, hardware limitations, and side-channel vulnerabilities highlight the importance of proper deployment and configuration. For optimal security, networks should disable WPA2 transition mode, use strong passwords, and ensure proper implementation of WPA3 features.
+- Wireless Threats:
+	- Wireless networks are vulnerable to various types of attacks, including access-control attacks, integrity attacks, confidentiality attacks, availability attacks, and authentication attacks. This section explores different security risks, threats, and attacks associated with wireless networks.
+	- Access-Control Attacks:
+		- Wireless access-control attacks aim to penetrate a network by bypassing WLAN access-control measures, such as AP MAC filters and Wi-Fi port access controls.
+		- Several types of access-control attacks include:
+			- MAC Spoofing: Using MAC spoofing, an attacker can modify a MAC address to appear as an authorized AP to a host on a trusted network. Tools such as SMAC can be used to facilitate this attack.
+			- AP Misconfiguration: If critical security settings on an AP are improperly configured, the entire network can become vulnerable. Intrusion detection systems may fail to trigger alerts for misconfigured APs because they recognize them as legitimate devices.
+		- Many organizations spend significant time defining and implementing Wi-Fi security policies. However, a client may unintentionally modify the security settings of an AP, leading to misconfigurations. A misconfigured AP can expose an otherwise secure network to attacks.
+		- Since misconfigured APs are legitimate devices within the network, they can be difficult to detect. Attackers can connect through these APs, compromising security without triggering alerts. Many organizations fail to maintain Wi-Fi security policies and neglect proper measures to eliminate these vulnerabilities.
+		- As organizations expand their Wi-Fi networks, misconfigured APs become an increasing threat. Key elements that contribute to this type of attack include:
+		- SSID Broadcast:
+			- Attackers configure APs to broadcast SSIDs to authorized users. Default SSIDs on APs are susceptible to brute-force dictionary attacks. Even with WEP enabled, an unencrypted SSID transmits the password in plaintext.
+		- Weak Passwords:
+			- Some administrators mistakenly use SSIDs as basic passwords for user verification. SSIDs function as rudimentary passwords, helping administrators identify authorized wireless devices.
+		- Configuration Errors:
+			- These include mistakes made during installation, misapplied policies, human errors while troubleshooting, and inconsistent security changes. Broadcasting an SSID is a common configuration error that allows attackers to steal SSIDs, making APs mistakenly recognize attackers as legitimate users.
+		- Ad Hoc Associations:
+			- Wi-Fi clients can communicate directly using ad-hoc mode, which does not require an AP to relay packets. While convenient for file sharing, this mode lacks strong authentication and encryption. Attackers can exploit ad-hoc mode to infiltrate networks, accessing wired LAN resources through compromised clients.
+		- Promiscuous Clients:
+			- Attackers exploit the behavior of 802.11 wireless cards, which automatically seek the strongest available signal. By placing an AP near the target Wi-Fi network with a common SSID and a stronger signal, attackers lure clients into connecting to their rogue AP, enabling them to intercept network traffic. This technique is similar to an "evil twin" attack, where an attacker mimics a legitimate AP.
+		- Client Misassociation:
+			- A client may intentionally or accidentally connect to an AP outside the legitimate network due to WLAN signals traveling through air, walls, and obstructions. This misassociation can lead to access-control attacks.
+			- Client misassociation can occur due to:
+				- Misconfigured clients
+				- Inadequate corporate Wi-Fi coverage
+				- Lack of Wi-Fi policies
+				- Office internet restrictions
+				- Ad-hoc connections not regularly managed
+				- Attractive SSIDs
+			- To execute a client misassociation attack, an attacker sets up a rogue AP outside the corporation’s perimeter. After learning the target SSID, the attacker spoofs it and broadcasts beacons to lure clients into connecting. Once connected, the attacker can bypass enterprise security policies and extract sensitive data, such as usernames and passwords, using MITM, EAP dictionary, or Metasploit attacks.
+		- Unauthorized Association:
+			- Unauthorized associations pose a significant threat to wireless networks and occur in two forms: accidental and malicious.
+			- Malicious Association: An attacker uses a "soft AP" to impersonate a corporate AP. By running a tool that makes a laptop’s NIC appear as an AP, the attacker gains unauthorized access. Some WLAN radios embedded in PDAs and laptops allow attackers to launch soft APs directly or through malware. Once inside the network, the attacker can steal credentials, attack wired networks, or install malware.
+			- Accidental Association: This happens when a device unintentionally connects to an overlapping AP from a neighboring organization without the user's knowledge.
