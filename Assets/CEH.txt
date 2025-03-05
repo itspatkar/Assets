@@ -10741,3 +10741,205 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Used in satellite communications, radar systems, and deep-space communication.
 				- A larger reflector (in terms of wavelength multiples) results in higher gain.
 				- Costlier to manufacture due to its precision design requirements.
+- Wireless Encryption:
+	- Wireless encryption is a method of securing wireless networks against attackers who attempt to intercept and exploit RF traffic to access sensitive information. Encryption ensures that data transmitted over a wireless network remains confidential and protected.
+	- With the growing use of wireless networks, the risk of attacks has also increased. The most effective way to secure wireless communication is by encrypting data before transmission. Several wireless encryption algorithms have been developed, each with its own strengths and weaknesses.
+	- Common Wireless Encryption Standards:
+		- 802.11i:
+			- An IEEE amendment that enhances security in 802.11 wireless networks.
+			- Introduced stronger encryption and authentication mechanisms, leading to WPA2 adoption.
+		- Wired Equivalent Privacy (WEP):
+			- One of the earliest encryption algorithms for IEEE 802.11 networks.
+			- Uses RC4 encryption with a 40-bit or 104-bit key.
+			- Weakness: Easily cracked due to short initialization vectors (IVs) and weak key management.
+		- Extensible Authentication Protocol (EAP):
+			- Supports multiple authentication methods, such as token cards, Kerberos, and digital certificates.
+			- Used in enterprise-grade Wi-Fi security solutions.
+		- Lightweight EAP (LEAP):
+			- A proprietary version of EAP developed by Cisco.
+			- Initially used for enterprise Wi-Fi authentication, but now considered insecure due to vulnerabilities.
+		- Wi-Fi Protected Access (WPA):
+			- Improvement over WEP, introduced TKIP and Message Integrity Check (MIC).
+			- Uses a 48-bit initialization vector (IV) and a 32-bit cyclic redundancy check (CRC).
+		- Temporal Key Integrity Protocol (TKIP):
+			- A security protocol used in WPA to replace WEP.
+			- Offers better encryption and key management, but still less secure than AES.
+		- Wi-Fi Protected Access 2 (WPA2):
+			- Successor to WPA, using AES encryption with Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP).
+			- Provides stronger security and is widely used in modern networks.
+		- Advanced Encryption Standard (AES):
+			- A symmetric-key encryption algorithm used in WPA2.
+			- Considered highly secure and used by government and enterprise networks.
+		- Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP):
+			- An encryption protocol used in WPA2 for strong authentication and encryption.
+			- Replaces TKIP for better security.
+		- WPA2-Enterprise:
+			- Combines EAP-based authentication with WPA2 encryption.
+			- Uses RADIUS servers for centralized user authentication.
+			- Ideal for corporate, educational, and government networks.
+		- RADIUS (Remote Authentication Dial-In User Service):
+			- A centralized authentication and authorization management system.
+			- Often used in WPA2-Enterprise and WPA3-Enterprise networks.
+		- Protected Extensible Authentication Protocol (PEAP):
+			- Encapsulates EAP inside a TLS-encrypted tunnel.
+			- Enhances security by preventing direct exposure of authentication credentials.
+		- Wi-Fi Protected Access 3 (WPA3):
+			- Latest Wi-Fi security standard with stronger encryption and improved authentication.
+			- Uses Galois/Counter Mode-256 (GCMP-256) for encryption.
+			- Implements 384-bit hash message authentication (HMAC-SHA-384) for better security.
+			- Provides individualized encryption for open networks to prevent eavesdropping.
+	- Wireless Encryption: Wired Equivalent Privacy (WEP):
+		- Wired Equivalent Privacy (WEP) was an early encryption standard designed to protect wireless networks from unauthorized access and eavesdropping. However, as technology evolved, it became evident that WEP encryption is highly vulnerable to attacks.
+		- What is WEP Encryption:
+			- WEP is a security protocol defined by the IEEE 802.11 WLAN standard. Its primary goal was to provide data confidentiality in wireless networks, similar to the security measures available in wired LANs, which rely on physical security to prevent unauthorized access.
+			- Unlike wired networks, where an attacker needs physical access to intercept data, wireless networks can be accessed remotely. To counter this, WEP encrypts data at the data link layer using the Rivest Cipher 4 (RC4), a symmetric encryption algorithm designed to protect against unauthorized access.
+		- Role of WEP in Wireless Communication:
+			- Prevents eavesdropping by encrypting wireless transmissions.
+			- Attempts to restrict unauthorized access to the wireless network.
+			- Uses a shared secret key between the mobile station and the access point (AP).
+			- Encrypts packets before transmission and performs an integrity check to detect tampering.
+			- Only encrypts data between network clients, leaving other traffic unprotected.
+		- Advantages of WEP:
+			- Confidentiality – Protects against link-layer eavesdropping.
+			- Access Control – Regulates who can access the network.
+			- Data Integrity – Prevents unauthorized modification of data.
+			- Efficiency – Provides basic security without requiring additional hardware.
+		- Key Points About WEP:
+			- WEP was developed without peer review by cryptographers, leading to design flaws and security vulnerabilities.
+			- WEP is a stream cipher that uses RC4 to generate a keystream, which is XORed with plaintext to encrypt data.
+			- WEP key lengths:
+				- 64-bit WEP => Uses a 40-bit key + 24-bit IV
+				- 128-bit WEP => Uses a 104-bit key + 24-bit IV
+				- 256-bit WEP => Uses a 232-bit key + 24-bit IV
+		- How WEP Works:
+			- CRC-32 checksum is used to compute a 32-bit Integrity Check Value (ICV), which is added to the data frame.
+			- A 24-bit Initialization Vector (IV) is appended to the WEP key to form the WEP seed.
+			- The WEP seed is used as input to the RC4 algorithm, generating a keystream.
+			- The keystream is XORed with the data and ICV to create encrypted data.
+			- The IV field (IV + PAD + KID) is added to the ciphertext to form a MAC frame.
+		- Flaws of WEP:
+			- Weak Encryption Key Distribution:
+				- No key management system – Pre-shared keys (PSKs) are set once and rarely changed.
+				- If an attacker intercepts multiple plaintext messages, they can recover the encryption key.
+			- RC4 Vulnerabilities:
+				- RC4 was not designed for WEP’s static key environment.
+				- Since the same key is reused, attackers can analyze network traffic and extract the plaintext.
+				- If both ciphertext and plaintext are known, an attacker can compute the encryption key.
+			- Susceptibility to Passive Attacks:
+				- Attackers can monitor traffic, capture data, and decrypt WEP keys using tools such as Fern Wi-Fi Cracker and WEP-key-break.
+			- Key Scheduling Algorithm Weaknesses:
+				- WEP's key scheduling is predictable, making it vulnerable to brute-force and cryptographic attacks.
+		- Conclusion: WEP was a significant early attempt at wireless encryption but suffers from critical security flaws. Due to its weaknesses, WEP is no longer considered secure and has been replaced by WPA, WPA2, and WPA3, which offer stronger encryption and better authentication mechanisms.
+	- Wireless Encryption: Wi-Fi Protected Access (WPA):
+		- Wi-Fi Protected Access (WPA) is a security protocol defined by the IEEE 802.11i standard. Before WPA, the primary security mechanism for wireless networks was Wired Equivalent Privacy (WEP), which had a major vulnerability—it used a static encryption key that attackers could easily exploit using freely available tools.
+		- To address this issue, IEEE defines WPA as “an expansion to the 802.11 protocols that allows for increased security.” Today, nearly every Wi-Fi manufacturer supports WPA.
+		- WPA enhances data encryption security by implementing a Message Integrity Check (MIC) and using the Temporal Key Integrity Protocol (TKIP). TKIP employs the RC4 stream cipher with 128-bit encryption keys and a 64-bit MIC, providing stronger encryption and authentication than WEP.
+		- WPA is an example of how 802.11i improves encryption while enabling both pre-shared key (PSK) and Extensible Authentication Protocol (EAP) authentication. WPA’s TKIP-based encryption eliminates WEP’s weaknesses by incorporating:
+			- Per-packet key mixing functions
+			- Message Integrity Checks (MICs)
+			- Extended initialization vectors (IVs)
+			- Key rekeying mechanisms
+		- Unlike WEP, which uses 40-bit or 104-bit encryption keys, WPA’s TKIP generates a new 128-bit key for each packet, making it significantly more secure. The MIC in WPA prevents attackers from altering or replaying data packets.
+		- Key Components of WPA:
+			- Temporal Key Integrity Protocol (TKIP):
+				- TKIP enhances security by:
+				- Changing the encryption key for each packet, ensuring automatic synchronization between the wireless client and access point (AP).
+				- Using the Michael Integrity Check (MIC) algorithm to generate a MIC value for verifying message integrity.
+				- Employing RC4 stream cipher encryption with 128-bit keys and a 64-bit MIC.
+				- Increasing the size of the IV and implementing mixing functions to prevent attacks.
+				- Utilizing a 128-bit temporal key (TK), which is combined with the client’s MAC address and an IV to generate a keystream for RC4 encryption.
+				- Implementing a sequence counter to protect against replay attacks.
+				- Adding a rekeying mechanism, where TKs are refreshed every 10,000 packets, making TKIP-resistant to key reuse attacks.
+			- Temporal Keys (TKs):
+				- All modern Wi-Fi devices support either TKIP (WPA) or AES (WPA2) for wireless encryption.
+				- In WEP, encryption keys (TKs) are derived from the Pairwise Master Key (PMK) during EAP authentication.
+				- In WPA and WPA2, encryption keys are established through a four-way handshake:
+				- WPA Four-Way Handshake Process:
+					- The AP sends an ANonce (Authenticator Nonce) to the client, which is used to generate a Pairwise Transient Key (PTK).
+					- The client responds with an SNonce (Supplicant Nonce), along with a MIC for message integrity.
+					- The AP sends the Group Temporal Key (GTK) and a sequence number, along with another MIC, for use in the next broadcast frames.
+					- The client confirms the installation of the temporal keys, completing the handshake.
+		- How WPA Works:
+			- A TK (Temporal Key), transmit address, and TKIP Sequence Counter (TSC) are used as inputs to the RC4 encryption algorithm to generate a keystream.
+				- The IV (Initialization Vector), TK sequence, MAC destination address, and TK are combined with a hash/mixing function to create a 128-bit or 104-bit key.
+				- This key is combined with RC4 to produce a keystream matching the original message length.
+			- The MAC Service Data Unit (MSDU) and Message Integrity Check (MIC) are combined using the Michael algorithm.
+			- The MSDU + MIC combination is fragmented to generate the MAC Protocol Data Unit (MPDU).
+			- A 32-bit Integrity Check Value (ICV) is computed for the MPDU.
+			- The MPDU + ICV is bitwise XORed with the keystream, producing encrypted data.
+			- The IV is added to the encrypted data to form the final MAC frame for transmission.
+		- Conclusion: WPA was a significant security improvement over WEP, providing better encryption and authentication mechanisms. However, WPA still relies on RC4, which has vulnerabilities. This led to the development of WPA2, which replaced TKIP with AES-based encryption for even stronger security.
+	- Wireless Encryption: WPA2:
+		- Wi-Fi Protected Access 2 (WPA2) is a security protocol designed to safeguard wireless networks. It was introduced in 2004 and officially replaced WPA in 2006. WPA2 is fully compliant with the IEEE 802.11i standard and offers stronger security features than its predecessor.
+		- One of WPA2’s most significant improvements is the adoption of the Advanced Encryption Standard (AES), which is FIPS 140-2 compliant and approved by the National Institute of Standards and Technology (NIST). WPA2 also implements the Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP), which enhances data protection and network access control. These security measures ensure that only authorized users can access the network while preventing unauthorized data interception.
+		- Modes of Operation:
+			- WPA2 offers two modes of operation:
+			- WPA2-Personal (PSK Mode):
+				- Uses a pre-shared key (PSK)—a password set in advance—to prevent unauthorized network access.
+				- Each wireless device authenticates with the access point (AP) using the same 256-bit key, generated from the password.
+				- In PSK mode, each wireless device encrypts network traffic using a 128-bit key, derived from an 8–63 character passphrase.
+				- The router combines the passphrase, network SSID, and TKIP/AES to generate a unique encryption key for each wireless client.
+				- Encryption keys are dynamically changed, providing enhanced security against brute-force attacks.
+			- WPA2-Enterprise (802.1X / EAP Mode):
+				- Uses Extensible Authentication Protocol (EAP) or a RADIUS server for centralized client authentication.
+				- Supports multiple authentication methods, including:
+					- Token cards
+					- Kerberos
+					- Digital certificates
+						- Each system receives a unique encryption key, which is hidden from the user. This prevents key sharing and improves security.
+						- Users must enter their login credentials, which are verified by a centralized authentication server before gaining network access.
+		- How WPA2 Works:
+			- WPA2 enhances security through AES-CCMP encryption, which ensures data integrity and protection against replay attacks. The process follows these steps:
+			- Additional Authentication Data (AAD) is generated using the MAC header and is included in the encryption process.
+				- This ensures that the unencrypted portion of the frame is protected from alteration or distortion.
+			- A sequenced packet number (PN) and part of the MAC header are used to generate a Nonce, which is critical for encryption.
+				- The protocol encrypts plaintext data using:
+					- A temporal key
+					- AAD (Additional Authentication Data)
+					- Nonce
+					- AES-CCMP encryption algorithm
+				- A Packet Number (PN) is included in the CCMP header to protect against replay attacks.
+			- The AES-CCMP encryption process produces:
+				- Encrypted text
+				- An encrypted Message Integrity Code (MIC)
+			- Finally, the MAC header, CCMP header, encrypted data, and encrypted MIC are assembled into the WPA2 MAC frame, ready for secure transmission.
+		- Conclusion:
+			- WPA2 greatly enhances Wi-Fi security by using AES encryption and CCMP to replace the vulnerable WEP and WPA protocols. While WPA2-Personal is suitable for home users, WPA2-Enterprise provides higher security for corporate and enterprise networks by authenticating users through a centralized server.
+			- However, despite its strong encryption, WPA2 is still vulnerable to brute-force attacks and KRACK (Key Reinstallation Attacks). This led to the development of WPA3, which further strengthens Wi-Fi security.
+	- Wireless Encryption: WPA3:
+		- Wi-Fi Protected Access 3 (WPA3) was introduced by the Wi-Fi Alliance in January 2018 as an advanced security protocol designed to improve upon WPA2. Like its predecessor, WPA3 offers two primary modes: WPA3-Personal and WPA3-Enterprise.
+		- WPA3 introduces cutting-edge security features to simplify Wi-Fi protection, making networks more resilient to attacks while ensuring strong cryptographic standards. It leverages Advanced Encryption Standard (AES) and Protected Management Frames (PMF) to defend against eavesdropping, man-in-the-middle (MITM) attacks, and unauthorized data access. Additionally, WPA3 eliminates outdated legacy protocols, further strengthening network security.
+		- Modes of Operation:
+			- WPA3-Personal:
+				- Designed for home and small office networks, providing password-based authentication.
+				- Uses Simultaneous Authentication of Equals (SAE), also known as Dragonfly Key Exchange, replacing the PSK (Pre-Shared Key) model used in WPA2.
+				- Enhances protection against offline attacks, brute-force attacks, and key recovery exploits.
+				- Key Features of WPA3-Personal:
+					- Resistance to offline dictionary attacks: Prevents attackers from capturing and decrypting Wi-Fi traffic using brute-force techniques.
+					- Forward secrecy: Even if a password is compromised, previously transmitted data remains secure.
+					- User-friendly security: Allows users to select easier-to-remember passwords without significantly compromising security.
+					- Seamless transition from WPA2: Users can upgrade to WPA3 without changing their Wi-Fi connection methods.
+			- WPA3-Enterprise:
+				- Designed for corporate, government, and enterprise networks, offering stronger security measures than WPA2.
+				- Utilizes advanced cryptographic standards to protect highly sensitive data.
+				- Key Features of WPA3-Enterprise:
+					- Authenticated encryption: Uses 256-bit Galois/Counter Mode Protocol (GCMP-256) to maintain data authenticity and confidentiality.
+					- Key derivation and validation: Employs HMAC-SHA-384 (384-bit Hashed Message Authentication Code) for stronger key generation and integrity verification.
+					- Key exchange and verification: Uses Elliptic Curve Diffie–Hellman (ECDH) and Elliptic Curve Digital Signature Algorithm (ECDSA) for secure key distribution.
+					- Robust frame protection: Implements 256-bit Broadcast/Multicast Integrity Protocol Galois Message Authentication Code (BIP-GMAC-256) for enhanced data integrity.
+		- Enhancements in WPA3 Compared to WPA2:
+			- WPA3 introduces multiple security enhancements that provide stronger encryption, improved authentication, and better protection for public networks.
+			- Stronger Handshake Mechanism:
+				- Simultaneous Authentication of Equals (SAE), also called the Dragonfly handshake, replaces the WPA2 four-way handshake.
+				- Prevents dictionary attacks and offline brute-force attacks by making password recovery significantly more difficult.
+			- Wi-Fi Easy Connect:
+				- Uses the Wi-Fi Device Provisioning Protocol (DPP) to simplify security configurations.
+				- Allows IoT devices, smart home gadgets, and other wireless devices to connect securely using a QR code or password.
+			- Opportunistic Wireless Encryption (OWE):
+				- Replaces unencrypted public Wi-Fi authentication (802.11 open networks) with automatic encryption.
+				- Protects users on public hotspots and open networks from passive eavesdropping and MITM attacks.
+			- Increased Encryption Key Lengths:
+				- WPA3-Enterprise supports 192-bit or higher encryption keys, making it more resistant to cryptographic attacks than WPA2.
+		- Conclusion:
+			- WPA3 provides a significant security upgrade over WPA2, making Wi-Fi networks more resilient against modern threats. With its stronger encryption algorithms, secure authentication methods, and improved public Wi-Fi protection, WPA3 is a critical step forward in wireless security.
+			- However, not all devices support WPA3 yet. To take full advantage of WPA3’s security features, both the router and client devices must be WPA3-compatible. Many modern routers support WPA3/WPA2 mixed mode, allowing older devices to connect while offering WPA3-level security for supported devices.
