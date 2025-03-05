@@ -10602,3 +10602,142 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- InsightAppSec (www.rapid7.com)
 			- Acunetix Web Vulnerability Scanner (www.acunetix.com)
 			- Detectify (detectify.com)
+
+
+--------------------------------------------------
+
+# Hacking Wireless Networks
+
+- Wireless Concepts:
+	- A wireless network is an unbounded data communication system that uses radio-frequency technology to communicate with devices and transmit data. This network eliminates the need for complex and multiple wired connections by using electromagnetic (EM) waves to interconnect two points without establishing a physical connection.
+	- Wireless Terminology:
+		- In a wireless network, data is transmitted through EM waves that carry signals over the communication path. Key terms associated with wireless networks include:
+		- Global System for Mobile Communications (GSM): A universal system used for mobile data transmission in wireless networks worldwide.
+		- Bandwidth: The amount of data that can be transmitted over a connection. Typically, bandwidth refers to the data transfer rate, measured in bits per second (bps).
+		- Access Point (AP): A device that connects wireless devices to a wireless or wired network. It enables wireless communication devices to connect to a network through standards such as Bluetooth and Wi-Fi, functioning as a switch or hub between a wired LAN and a wireless network.
+		- Basic Service Set Identifier (BSSID): The media access control (MAC) address of an access point (AP) or base station that has established a basic service set (BSS). Users are generally unaware of the BSS they are connected to. When a device moves, the BSS it uses may change due to variations in the AP’s coverage range, though this typically does not affect connectivity.
+		- Industrial, Scientific, and Medical (ISM) Band: A set of radio frequencies designated for use by the international industrial, scientific, and medical communities.
+		- Hotspot: A location where a wireless network is available for public use. Hotspots provide Wi-Fi access, allowing users to connect their devices to the Internet.
+		- Association: The process of connecting a wireless device to an access point (AP).
+		- Service Set Identifier (SSID): A unique 32-character alphanumeric identifier assigned to a wireless local area network (WLAN). The SSID distinguishes the network, allowing devices to connect to the desired WLAN. Devices must use the same SSID to establish a connection.
+		- Orthogonal Frequency-Division Multiplexing (OFDM): A digital modulation method in which a signal at a chosen frequency is divided into multiple orthogonal carrier frequencies. OFDM maps information onto changes in carrier phase, frequency, and amplitude, or a combination of these. It enables high bit rates and allows bandwidth to be shared across independent channels.
+		- Multiple Input, Multiple Output-Orthogonal Frequency-Division Multiplexing (MIMO-OFDM): A technique that enhances the spectral efficiency of 4G and 5G wireless communication services. MIMO-OFDM reduces interference and improves channel robustness.
+		- Direct-Sequence Spread Spectrum (DSSS): A spread spectrum technique in which the original data signal is multiplied by a pseudo-random noise-spreading code. This modulation scheme protects signals from interference and jamming.
+		- Frequency-Hopping Spread Spectrum (FHSS): Also known as frequency-hopping code-division multiple access (FH-CDMA), FHSS rapidly switches a carrier signal among multiple frequency channels. This method reduces the risk of unauthorized interception or jamming. A transmitter hops between available frequencies using a predefined algorithm in a pseudorandom sequence known to both the sender and receiver.
+	- Wireless Networks;
+		- Wireless networks use radio-wave transmission, typically operating at the physical layer of the network structure. With the global wireless communication revolution, data networking and telecommunications are undergoing fundamental changes.
+		- Wi-Fi refers to a wireless local area network (WLAN) based on the IEEE 802.11 standard, allowing devices to access a network within the range of an access point (AP). Wi-Fi is a widely used technology in wireless communication, operating over radio channels. It employs various techniques such as direct-sequence spread spectrum (DSSS), frequency-hopping spread spectrum (FHSS), infrared (IR), and orthogonal frequency-division multiplexing (OFDM) to establish connections between transmitters and receivers. Devices such as personal computers, video game consoles, and smartphones use Wi-Fi to connect to network resources, including the Internet, via a wireless access point.
+		- Advantages of Wireless Networks:
+			- Fast and easy installation without the need for wiring through walls and ceilings
+			- Provides connectivity in areas where laying cables is difficult
+			- Allows network access from anywhere within the range of an access point
+			- Public spaces such as airports, libraries, schools, and coffee shops offer constant Internet access through WLANs
+		- Disadvantages of Wireless Networks:
+			- Security may not always meet expectations
+			- Bandwidth decreases as the number of connected devices increases
+			- Wi-Fi upgrades may require new wireless cards and/or access points
+			- Some electronic equipment can interfere with Wi-Fi networks
+		- Types of Wireless Networks:
+			- Extension to a Wired Network:
+				- A wired network can be extended by placing access points (APs) between the wired infrastructure and wireless devices. An AP can also be used to create a wireless network.
+				- There are two main types of APs:
+					- Software APs (SAPs): These APs run on a computer equipped with a wireless network interface card (NIC) and can connect to a wired network.
+					- Hardware APs (HAPs): These are dedicated devices that support most wireless networking features.
+				- In this type of network, the AP functions as a switch, providing connectivity for computers with a wireless NIC. The AP enables wireless clients to connect to a wired local area network (LAN), granting access to LAN resources such as file servers and Internet connections.
+			- Multiple Access Points:
+				- This type of network connects computers wirelessly using multiple APs. If a single AP cannot cover an entire area, multiple APs or extension points can be deployed.
+				- The wireless coverage of each AP must overlap with its neighboring AP to ensure seamless connectivity, a feature known as roaming. Some manufacturers offer extension points that act as wireless relays, extending the range of a single AP. Multiple extension points can be linked together to provide wireless access to locations far from the central AP.
+			- LAN-to-LAN Wireless Network:
+				- APs provide wireless connectivity to local computers, and multiple APs can interconnect different networks. While all hardware APs can communicate with other hardware APs, establishing LAN-to-LAN connections over wireless networks is a complex task.
+			- 3G/4G/5G Hotspot:
+				- A 3G/4G/5G hotspot is a type of wireless network that provides Wi-Fi access to Wi-Fi-enabled devices such as MP3 players, laptops, tablets, cameras, personal digital assistants (PDAs), netbooks, and more.
+	- Wireless Standards:
+		- The IEEE 802.11 standard has evolved from a basic wireless extension to wired local area networks (LANs) into a mature protocol supporting enterprise authentication, strong encryption, and quality of service (QoS). When first introduced in 1997, the standard specified operation at 1 and 2 Mbps in the infrared range and the license-exempt 2.4 GHz industrial, scientific, and medical (ISM) frequency band. Initially, an 802.11 network consisted of a few PCs with wireless capability connected to an Ethernet (IEEE 802.3) LAN through a single access point (AP). Today, 802.11 networks operate at much higher speeds across additional frequency bands. However, new challenges have emerged, such as security, roaming across multiple APs, and QoS management.
+		- Amendments to the standard are designated by letters, derived from the 802.11 task groups that developed them, as outlined below.
+		- 802.11 Wireless Standards:
+			- 802.11 : The original 802.11 (Wi-Fi) standard applies to WLANs and uses frequency-hopping spread spectrum (FHSS) or direct-sequence spread spectrum (DSSS) for wireless communication. It enables electronic devices to establish a wireless connection.
+			- 802.11a : The first amendment to the 802.11 standard, it operates in the 5 GHz frequency band and supports bandwidths up to 54 Mbps using orthogonal frequency-division multiplexing (OFDM). It offers high speeds but is more susceptible to signal degradation due to walls and obstacles.
+			- 802.11b : Introduced in 1999, this standard operates in the 2.4 GHz ISM band and supports speeds up to 11 Mbps using DSSS modulation.
+			- 802.11g : An extension of 802.11b, it supports a maximum bandwidth of 54 Mbps using OFDM technology while remaining backward-compatible with 802.11b devices.
+			- 802.11n : Enhances 802.11g by incorporating multiple-input multiple-output (MIMO) antennas, operating in both the 2.4 GHz and 5 GHz bands, and supporting higher data rates.
+			- 802.11ac : Operates in the 5 GHz band, offering Gigabit networking and increased speed and reliability compared to 802.11n.
+			- 802.11ax (Wi-Fi 6) : The latest generation of Wi-Fi, building on 802.11ac (Wi-Fi 5). It supports speeds up to 9.6 Gbps, uses orthogonal frequency-division multiple access (OFDMA) for efficient multi-device communication, and improves performance in dense environments through features like BSS Coloring and Target Wake Time (TWT).
+			- 802.11be (Wi-Fi 7) : An emerging standard designed to enhance Wi-Fi 6/6E, supporting speeds up to 30 Gbps with multilink operation (MLO) and reduced latency for real-time applications such as virtual reality (VR), augmented reality (AR), and IoT.
+			- 802.11d : An enhanced version of 802.11a/b, it supports different regulatory domains and operates at the media access control (MAC) layer.
+			- 802.11e : Defines QoS mechanisms for real-time applications such as voice over IP (VoIP) and video streaming by prioritizing network resources at Layer 2 (MAC layer).
+			- 802.11i : Enhances WLAN security by implementing encryption protocols such as Temporal Key Integrity Protocol (TKIP) and Advanced Encryption Standard (AES).
+			- 802.11ah (Wi-Fi HaLow) : Uses the 900 MHz band for extended-range Wi-Fi networks and is optimized for Internet of Things (IoT) applications, offering improved range and energy efficiency.
+			- 802.11ad : Operates in the 60 GHz spectrum, providing ultra-fast data transmission rates but with limited range.
+		- Other IEEE Wireless Standards:
+			- 802.12 : Uses the demand priority protocol to optimize media utilization and supports 100 Mbps Ethernet speeds, offering compatibility with 802.3 and 802.5 networks.
+			- 802.15 : Defines the standards for wireless personal area networks (WPANs) and connectivity for portable devices.
+				- 802.15.1 (Bluetooth) : A short-range wireless communication standard operating in the 2.4 GHz band, commonly used for data exchange between fixed and mobile devices.
+				- 802.15.4 (ZigBee) : A low-power, low-data-rate standard designed for mesh networking in IoT applications, transmitting data at 250 Kbps while optimizing battery life.
+				- 802.15.5 : Supports both full-mesh and half-mesh topologies, handling network initialization, addressing, and unicasting.
+			- 802.16 (WiMax) : A broadband wireless standard designed for metropolitan area networks (MANs) using a point-to-multipoint architecture. It supports multiple physical and MAC layer configurations for high-speed wireless communication.
+	- Service Set Identifier (SSID):
+		- A Service Set Identifier (SSID) is a case-sensitive, human-readable unique identifier for a wireless local area network (WLAN), consisting of up to 32 alphanumeric characters. The SSID serves as a token that helps identify and locate 802.11 (Wi-Fi) networks. By default, it is included in the frame header of packets transmitted over a WLAN, acting as a shared identifier between access points (APs) and clients. This allows users to discover an AP and attempt authentication (AUTH) and association (ASSOC).
+		- Security Considerations:
+			- Security concerns arise when users do not change default SSIDs, as attackers can easily exploit them. SSID broadcasting allows APs to respond to probe requests with probe responses containing the SSID unless it is hidden. Since all devices and APs within a WLAN must use the same SSID, any device attempting to join the network must provide the correct SSID.
+			- If the network SSID is changed, the network administrator must update the SSID configuration on all client devices. Some non-secure access modes allow clients to connect using the configured SSID, a blank SSID, or an SSID set to "any", which can pose security risks. Because SSIDs are transmitted in plaintext within packets, they do not provide any inherent security for a WLAN.
+			- For many commercial products, the default SSID is often the vendor’s name, making it easier for attackers to identify and exploit devices. The only way to keep an SSID truly confidential is to operate in a closed network with no activity, which is impractical for legitimate users.
+	- Wi-Fi Authentication Process:
+		- Wi-Fi authentication ensures secure access to a wireless network by verifying devices before granting them connectivity. Two primary authentication modes are commonly used:
+		- Pre-Shared Key (PSK) Mode:
+			- The Pre-Shared Key (PSK) mode, also known as WPA-PSK or WPA2-PSK, secures wireless networks using a single shared password for authentication. This method is widely used in homes and small offices due to its simplicity and ease of setup.
+			- How It Works:
+				- A shared password (pre-shared key) is manually entered into both the wireless router and the device attempting to connect.
+				- Devices that provide the correct pre-shared key are authenticated and granted network access.
+			- Advantages:
+				- Easy to set up without requiring a dedicated authentication server.
+				- Ideal for small networks where user management is simple.
+			- Security Considerations:
+				- The security of WPA/WPA2-Personal relies on the strength and secrecy of the pre-shared key.
+				- Weak or commonly used passwords make networks vulnerable to attacks such as brute force or dictionary attacks.
+		- Centralized Authentication Mode:
+			- A more secure authentication method, WPA/WPA2-Enterprise mode (also called 802.1X mode), is used in large-scale networks where individual user credentials must be managed.
+			- How It Works:
+				- A centralized authentication server, typically a Remote Authentication Dial-In User Service (RADIUS) server, verifies user credentials.
+				- The AP (Access Point) communicates with the RADIUS server to authenticate each user individually.
+				- Instead of a shared password, users provide unique credentials, such as a username and password or a digital certificate.
+			- Advantages:
+				- Reduces the risk of unauthorized access, as compromised passwords do not grant access to the entire network.
+				- Enhanced security—each user has unique login credentials.
+				- Ideal for enterprises, educational institutions, and government agencies with many users and high security requirements.
+			- Security Benefits:
+				- Ensures each user is authenticated separately, preventing unauthorized access.
+				- Supports advanced encryption and certificate-based authentication for additional security.
+	- Types of Wireless Antennas:
+		- Antennas are an integral part of Wi-Fi networks, responsible for transmitting and receiving radio signals by converting electrical impulses into radio waves and vice versa. Different types of wireless antennas serve specific purposes based on their coverage, range, and directionality.
+		- Directional Antenna:
+			- A directional antenna transmits and receives radio waves in a specific direction. Its design enhances signal strength in targeted directions while reducing interference from unwanted sources. These antennas are commonly used in point-to-point communication and long-range Wi-Fi links.
+		- Omnidirectional Antenna:
+			- An omnidirectional antenna radiates electromagnetic (EM) energy in all directions, providing a 360° horizontal radiation pattern. However, the signal is typically weaker in the vertical dimension.
+			- Use Cases:
+				- Ideal for networks where multiple wireless devices communicate over a broad area.
+				- Commonly used in Wi-Fi routers, radio stations, and cellular networks, where receivers move frequently and need continuous connectivity.
+		- Parabolic Grid Antenna:
+			- A parabolic grid antenna functions like a satellite dish, but instead of a solid dish, it features a grid-like structure made of aluminum wires. It is designed for long-distance Wi-Fi transmissions using highly focused radio beams.
+			- Key Features:
+				- Capable of transmitting Wi-Fi signals over 10 miles with high accuracy.
+				- Used for remote networking, rural internet access, and long-range point-to-point communication.
+				- Can receive both horizontally and vertically polarized Wi-Fi signals.
+			- Security Considerations: Due to its long-range capability, parabolic antennas can be exploited by attackers to intercept signals, conduct man-in-the-middle (MITM) attacks, or perform Layer-1 denial-of-service (DoS) attacks.
+		- Yagi Antenna:
+			- A Yagi antenna, also known as a Yagi–Uda antenna, is a unidirectional antenna commonly used in VHF and UHF frequency bands (ranging from 10 MHz to several GHz).
+			- Key Features:
+				- High gain and low signal-to-noise ratio (SNR).
+				- Consists of a reflector, dipole, and multiple directors to focus radiation in a specific direction.
+				- Generates an end-fire radiation pattern, making it ideal for TV reception, ham radio, and wireless communications.
+		- Dipole Antenna:
+			- A dipole antenna is a simple straight electrical conductor with a length of half a wavelength. It is bilaterally symmetrical, making it a balanced antenna.
+			- Key Features:
+				- Often used in radio broadcasting, Wi-Fi routers, and RF communication.
+				- Works with a balanced parallel-wire RF transmission line.
+				- Commonly referred to as a doublet antenna.
+		- Reflector Antennas:
+			- A reflector antenna is designed to concentrate electromagnetic (EM) energy at a focal point, improving signal strength and reducing interference. These antennas typically use parabolic reflectors.
+			- Key Features:
+				- Used in satellite communications, radar systems, and deep-space communication.
+				- A larger reflector (in terms of wavelength multiples) results in higher gain.
+				- Costlier to manufacture due to its precision design requirements.
