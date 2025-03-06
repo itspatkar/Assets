@@ -10306,17 +10306,17 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- This small change helps evade detection in advanced security systems that rely on strict signature matching.
 				- Common SQL Injection Characters and Operators:
 					- Attackers also use special SQL characters and operators to manipulate queries and evade detection:
-					=> ' or " → String delimiters
-					=> -- or # → Single-line comment indicators
-					=> /*...*/ → Multi-line comment indicators
-					=> + → Addition or string concatenation (or space in URLs)
-					=> || → String concatenation (double pipe)
-					=> % → Wildcard character in LIKE queries
-					=> ?Param1=foo&Param2=bar → URL parameter manipulation
-					=> PRINT → Executes non-transactional commands
-					=> @variable → Local variable
-					=> @@variable → Global variable
-					=> WAITFOR DELAY '0:0:10' → Introduces a time delay
+					=> ' or " -> String delimiters
+					=> -- or # -> Single-line comment indicators
+					=> /*...*/ -> Multi-line comment indicators
+					=> + -> Addition or string concatenation (or space in URLs)
+					=> || -> String concatenation (double pipe)
+					=> % -> Wildcard character in LIKE queries
+					=> ?Param1=foo&Param2=bar -> URL parameter manipulation
+					=> PRINT -> Executes non-transactional commands
+					=> @variable -> Local variable
+					=> @@variable -> Global variable
+					=> WAITFOR DELAY '0:0:10' -> Introduces a time delay
 				- Examples of Sophisticated Matches for Evading Signature Detection:
 					- Instead of using ' OR 1=1', attackers can modify the query as follows:
 					=> OR 'john' = 'john'
@@ -11434,3 +11434,205 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- The attacker sets up a forged AP on a new channel, using the original MAC address (BSSID) and ESSID of the victim’s AP, tricking the victim into connecting to the rogue AP.
 					- Once the victim successfully connects to the forged AP, the attacker spoofs the victim’s connection to the original AP.
 					- The attacker is now positioned between the AP and the victim, intercepting and monitoring all network traffic.
+		- MITM Attack Using Aircrack-ng:
+			- An attacker can perform a Man-in-the-Middle (MITM) attack using Aircrack-ng by following these steps:
+				- Enable monitor mode using airmon-ng.
+				- Use airodump-ng to discover SSIDs on the interface.
+				- Deauthenticate (deauth) the client using aireplay-ng.
+				- Associate the wireless card (fake association) with the target access point (AP) using aireplay-ng.
+		- MAC Spoofing Attack:
+			- AP MAC Spoofing:
+				- In wireless networks, access points (APs) use beacon frames to advertise their presence and availability. These beacons contain information such as the AP's MAC address and the network SSID. Clients in the vicinity use this information to connect to the network.
+				- Many software tools and APs allow users to configure custom MAC addresses and SSIDs. Attackers exploit this capability through AP MAC spoofing, a technique where they impersonate a legitimate AP by changing their MAC address to match that of a trusted AP.
+				- Steps in AP MAC Spoofing Attack:
+					- The attacker identifies the MAC address of a legitimate AP by monitoring network traffic or scanning available wireless networks.
+					- The attacker configures a rogue AP with the same MAC address and SSID as the legitimate AP.
+					- The attacker may send deauthentication packets to disconnect users from the real AP, forcing their devices to reconnect to the closest AP with the same MAC address and SSID—often the rogue AP.
+					- Once users connect to the rogue AP, the attacker can intercept, manipulate, or redirect their network traffic to capture sensitive information or launch further attacks.
+			- MAC Spoofing Attack:
+				- A MAC address is a unique identifier assigned to a network interface card (NIC) by the manufacturer. Some networks use MAC address filtering as a security measure to allow only specific devices to connect.
+				- In MAC spoofing, attackers change their MAC address to impersonate an authenticated user and bypass MAC filtering.
+				- Steps in MAC Spoofing:
+					- The attacker changes their MAC address to another valid one, using a hexadecimal format (e.g., AA:BB:CC:DD:EE:FF).
+					- This change is made using commands such as ifconfig or ip link set, often requiring root privileges (sudo).
+					- Attackers use specialized tools to automate and simplify the MAC spoofing process.
+			- MAC Spoofing Tools:
+				- Technitium MAC Address Changer (technitium.com): This tool allows users to instantly change (spoof) the MAC address of their NIC. It features a user-friendly interface and provides details about each NIC in the system. The MAC address is used by Windows drivers for Ethernet LAN communication.
+				- LizardSystems Change MAC Address: A tool that enables users to change their MAC address easily. It provides an intuitive interface and supports quick modifications for network anonymity and security testing.
+		- Wireless ARP Poisoning Attack:
+			- Address Resolution Protocol (ARP) is responsible for determining the MAC address of an access point (AP) if its IP address is already known. However, ARP lacks a mechanism to verify whether the responses come from legitimate hosts. ARP poisoning is an attack technique that exploits this vulnerability by corrupting the ARP cache maintained by the operating system with incorrect MAC address mappings.
+			- How ARP Poisoning Works:
+				- An attacker sends a forged ARP reply packet containing an incorrect MAC address.
+				- This causes devices on the network to update their ARP cache with the false MAC address.
+				- As a result, all traffic intended for a legitimate device is redirected to the attacker's system.
+			- Impact of ARP Poisoning:
+				- The attack affects all hosts within the same subnet since most APs function as transparent MAC-layer bridges.
+				- If an AP is directly connected to a switch or hub without a router or firewall in between, all devices on that switch or hub are vulnerable to ARP poisoning attacks.
+			- Wireless ARP Spoofing Attack Example:
+				- In a wireless ARP spoofing attack, the attacker first spoofs the MAC address of the victim's device and attempts to authenticate to Access Point 1 (AP1) using an ARP poisoning tool such as arpspoof.
+					- AP1 then propagates the attacker's spoofed MAC address to network routers and switches.
+					- These devices update their routing and switching tables with the incorrect information.
+					- As a result, traffic from the network backbone, which was originally intended for the victim's system, is redirected to AP1 instead of Access Point 2 (AP2).
+			- ARP Poisoning Attack Using Ettercap (www.ettercap-project.org):
+				- Attackers use Ettercap to identify the MAC addresses of clients and routers, enabling various attacks such as ARP poisoning, packet sniffing, and Man-in-the-Middle (MITM) attacks. With this tool, an attacker can intercept and analyze a victim’s network traffic.
+				- Steps to Perform an ARP Poisoning Attack Using Ettercap:
+					- Launch Ettercap and enable unified sniffing:
+						- Open the Ettercap graphical interface.
+						- Select Sniff -> Unified Sniffing from the menu bar.
+						- This bridges the connection and allows traffic sniffing across interfaces.
+					- Set the primary sniffing interface:
+						- In the Ettercap Setup pop-up window, choose the primary interface for sniffing.
+						- Click OK to enable advanced menu options such as Targets, Hosts, MITM, and Plugins.
+					- Scan the network for live hosts:
+						- Select Hosts -> Scan for Hosts to identify all active devices on the network.
+						- To view the discovered hosts, select Hosts -> Hosts List.
+					- Monitor network connections:
+						- Select View -> Connections to start snooping on identified network traffic.
+						- The Connections view allows filtering based on IP address, connection type, and state (open/closed/active/killed).
+					- Select target hosts for ARP spoofing:
+						- In the Hosts window, choose the target IP address.
+						- Select Targets -> Current Targets to add the identified hosts for ARP spoofing.
+					- Launch the ARP poisoning attack:
+						- Select MITM -> ARP Poisoning.
+						- In the pop-up window, check Sniff remote connections and click OK to begin the attack.
+				- Post-Attack Consequences:
+					- Once the attack is launched, the attacker can intercept the target’s network traffic. If the victim accesses a website without Hypertext Transfer Protocol Secure (HTTPS) encryption, their login credentials and sensitive data can be easily sniffed.
+		- Rogue APs:
+			- Rogue AP Attack:
+				- Access Points (APs) connect to client Network Interface Cards (NICs) by authenticating with the help of Service Set Identifiers (SSIDs). Unauthorized (or rogue) APs can allow anyone with an 802.11-enabled device to connect to a corporate network. This unauthorized access can give an attacker entry into the network.
+				- Using wireless sniffing tools, attackers can gather critical information from APs, such as authorized MAC addresses, vendor details, and security configurations. With this information, an attacker can compile a list of authorized AP MAC addresses on the target LAN and compare it with the MAC addresses detected through sniffing. After cross-checking, the attacker can create a rogue AP and position it near the target corporate network.
+				- Attackers use rogue APs within an 802.11 network to hijack connections from legitimate network users. When a user powers on their device, the rogue AP broadcasts an SSID to lure the user into connecting. If the user mistakenly connects to the rogue AP, all their traffic is routed through it, enabling the attacker to perform wireless packet sniffing. These intercepted packets may contain sensitive information such as usernames and passwords.
+				- Rogue APs are unauthorized wireless APs installed by attackers without the knowledge or approval of network administrators. Unlike authorized APs, rogue APs are often unconfigured for security, potentially providing a backdoor into the target wireless network.
+				- Common Rogue AP Installation Scenarios:
+					- Compact, pocket-sized rogue AP plugged into an Ethernet port of the target network:
+						- Small, easily concealed rogue APs can be discreetly brought onsite and plugged into an available Ethernet port. They require minimal power and are difficult to detect.
+					- Rogue AP connected to corporate networks over a Wi-Fi link:
+						- The attacker connects a rogue AP wirelessly to an existing authorized network. This method avoids the need for a physical connection but requires valid credentials for network access.
+					- USB-based rogue AP plugged into a network machine:
+						- A rogue AP can be deployed via a USB device plugged into any Windows machine connected to the corporate network. The rogue AP's software shares the machine’s network access, bypassing the need for an open Ethernet port or valid Wi-Fi credentials.
+					- Software-based rogue AP running on a networked Windows machine:
+						- Instead of using separate hardware, an attacker can create a software-based rogue AP on a compromised Windows machine with an embedded or plugged-in Wi-Fi adapter.
+				- Steps to Deploy a Rogue AP:
+					- Select an optimal location to plug in the rogue AP for maximum coverage.
+					- Disable SSID broadcasting (silent mode) and management features to reduce detection.
+					- Position the rogue AP behind a firewall if possible, to avoid detection by network scanners.
+					- Limit deployment duration to minimize the risk of discovery.
+			- Creating a Rogue AP Using the MANA Toolkit:
+				- The MANA Toolkit is a set of tools used by attackers to create rogue Access Points (APs), perform sniffing attacks, and execute Man-in-the-Middle (MITM) attacks. It is also capable of bypassing HTTPS and HTTP Strict Transport Security (HSTS) protections.
+				- Attackers can use the MANA Toolkit to create a rogue AP by following these steps:
+					- Modify MANA’s configuration file (hostapd-mana.conf):
+						- Use any text editor to configure a fake access point.
+						- Set the wireless interface (e.g., wlan0) and define the MAC address (BSSID) or SSID (e.g., "Free Internet").
+					- Modify the script file (start-nat-simple.sh):
+						- This script is used to launch the rogue AP.
+						- Set the wireless card parameter (phy), such as wlan0.
+						- Define the upstream parameter (e.g., eth0), specifying the interface that provides an internet connection.
+					- Execute the script to start the rogue AP:
+						- Run the following command in the terminal: bash <Path to MANA>/mana-toolkit/run-mana/start-nat-simple.sh
+						- This command initializes the rogue AP.
+					- Connect a client device to the rogue AP:
+						- Use a Windows machine, mobile device, or any other Wi-Fi-enabled device to connect.
+						- Search for the rogue AP (e.g., "Free Internet") in the list of available networks.
+						- Since the rogue AP is open (no password required), users may unknowingly connect.
+					- Intercept and analyze network traffic:
+						- Once a device connects to the rogue AP, all its data packets flow through the attacker's system.
+						- Use packet sniffing tools such as tcpdump or Wireshark to capture and analyze network traffic.
+		- Evil Twin:
+			- An evil twin is a rogue wireless access point (AP) that masquerades as a legitimate AP by imitating its SSID. It poses a significant threat to wireless users on both private and public WLANs. Attackers set up these rogue APs outside network perimeters to lure users into connecting. Tools like KARMA enable attackers to create evil twins by monitoring station probes. The KARMA tool passively listens to wireless probe request frames and can mimic commonly used SSIDs to deceive users.
+			- An attacker can configure an evil twin with a commonly used residential SSID, a public hotspot SSID, or an organization’s WLAN SSID. If attackers can monitor legitimate users, they can target APs that do not broadcast SSIDs in probe requests. WLAN stations typically connect to APs based on SSID and signal strength, and they automatically reconnect to previously used SSIDs. This behavior allows attackers to trick users by positioning an evil twin near the target network. Once a user connects, the attacker can bypass enterprise security policies and intercept network data.
+			- Employees who take their corporate laptops to public Wi-Fi networks face an increased risk of such attacks, making it challenging to secure company data.
+			- Setting Up Fake Hotspot (Evil Twin):
+				- Not all hotspots in an area are legitimate—an attacker may set up an evil twin that pretends to be a real hotspot. Differentiating between a legitimate hotspot and an evil twin can be difficult. For instance, if a user sees two APs with the same SSID, one may be genuine while the other is malicious. If the user connects to the fake AP, the attacker can capture login credentials and gain access to the victim’s device. Since login attempts on the fake network may fail, the user may assume the failure was random and retry, unknowingly exposing their credentials.
+				- An attacker can create a fake hotspot using a laptop with an internet connection (via 3G, 4G, or a wired connection) and a small access point.
+				- The process involves:
+					- Enabling Internet Connection Sharing in Windows or Internet Sharing in macOS.
+					- Broadcasting a Wi-Fi signal and running a packet-sniffing program to capture passwords.
+		- Key Reinstallation Attack (KRACK):
+			- A Key Reinstallation Attack (KRACK) exploits vulnerabilities in the implementation of the four-way handshake process of the WPA2 authentication protocol, which is used to establish a secure connection between a device and an access point (AP). All secure Wi-Fi networks rely on this handshake to generate a fresh encryption key for encrypting network traffic.
+			- KRACK works by forcing the reuse of a cryptographic Nonce, a number used only once in encryption. In this attack, the attacker captures the victim’s ANonce key (Authenticator Nonce) and manipulates or replays cryptographic handshake messages. This allows the attacker to compromise the encryption process and gain unauthorized access to network traffic.
+			- This attack affects all modern protected Wi-Fi networks, including both WPA and WPA2, across personal and enterprise networks. It impacts encryption ciphers such as WPA-TKIP, AES-CCMP, and GCMP. By exploiting this flaw, attackers can steal sensitive information such as credit card numbers, passwords, chat messages, emails, and photos.
+			- Devices running Android, Linux, Windows, Apple, OpenBSD, and MediaTek are vulnerable to various forms of the KRACK attack.
+		- Jamming Signal Attack:
+			- Jamming is an attack on a wireless network designed to disrupt its functionality. In this type of exploitation, overwhelming volumes of malicious traffic result in a denial of service (DoS) for authorized users, obstructing legitimate communication. All wireless networks are vulnerable to jamming, and spectrum jamming attacks can completely block all communications.
+			- Attackers use specialized hardware to carry out this kind of attack. The signals generated by jamming devices appear as noise to the devices on the wireless network, causing them to halt their transmissions until the interference subsides—ultimately leading to a DoS. Additionally, jamming signal attacks are difficult to detect.
+			- The process of a jamming signal attack is summarized as follows:
+				- The attacker positions themselves near the target area and uses a high-gain amplifier to overpower a legitimate access point (AP).
+				- Users are unable to log in or are disconnected due to the overpowering nearby signal.
+				- The jamming signal causes a DoS because 802.11 uses the Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA) protocol, which requires a period of silence before a device can transmit. The jamming signal prevents this silence, effectively blocking communication.
+			- Wi-Fi Jamming Devices:
+				- An attacker can jam a wireless network using a Wi-Fi jammer. These devices operate on the same frequency bands as the targeted network, causing interference with legitimate signals and temporarily disrupting network services.
+				- Examples of Wi-Fi jamming devices:
+					- PCB-4510 Jammer
+						- Range: 50–150 m
+						- Antennas: 10
+						- Frequency Bands Jammed: GSM, 3G, UMTS, 4G LTE, Wi-Fi 11.b & g, GPS, 5G, Wi-Fi 11.a
+						- Working Time: 1–2 hours
+					- CPB-2920 Jammer
+						- Range: 10–40 m
+						- Antennas: 20
+						- Frequency Bands Jammed: CDMA, DCS, PCS, 3G, UMTS, 4G, Wi-Fi 11.b & g, 4G WiMAX Sprint, 5G, GPS, Lojack, VHF, Car Remote, UHF
+						- Working Time: No time limit
+					- CPB-2612H-5G Jammer
+						- Range: 20–60 m
+						- Antennas: 12
+						- Frequency Bands Jammed: 5G, 4G, GSM, DCS, 3G, UMTS, Wi-Fi 11.b & g, Lojack Car Tracking, UHF, VHF
+						- Working Time: No time limit
+					- CPB-2080-5G Jammer
+						- Range: 10–40 m
+						- Antennas: 8
+						- Frequency Bands Jammed: 5G, 4G, GSM900, DCS, 3G, UMTS, Wi-Fi 11.b & g
+						- Working Time: No time limit
+					- PCB-2112 Jammer
+						- Range: 20–50 m
+						- Antennas: 12
+						- Frequency Bands Jammed: CDMA, DCS, 3G, Wi-Fi 11.a, 4G, 5G, GPS, VHF, UHF
+						- Working Time: 60–80 minutes
+					- PCB-1016 Jammer
+						- Range: 10–30 m
+						- Antennas: 16
+						- Frequency Bands Jammed: CDMA, DCS, PCS, 3G, UMTS, 4G, 5G, Wi-Fi 11.b & g, 4G WiMAX Sprint, GPS, UHF Remote Control, 5G LTE
+						- Working Time: 3 hours
+		- aLTEr Attack:
+			- Long-Term Evolution (LTE), or 4G, is a wireless broadband communication standard developed as a successor to 3G to improve the speed and security of mobile networks. It features bandwidth scalability and supports previous technologies such as the Global System for Mobile Communications (GSM; 2G) and the Universal Mobile Telecommunications System (UMTS; 3G). Although LTE is designed to address the shortcomings of wireless networks, it remains vulnerable to data hijacking attacks.
+			- The aLTEr attack is typically performed on LTE devices that encrypt user data using the AES counter (AES-CTR) mode, which lacks integrity protection. To execute this attack, an attacker sets up a rogue communication tower between two legitimate endpoints to mislead the victim. This fake tower intercepts data transmission between the user and the real tower, allowing the attacker to hijack an active session. Upon receiving the user’s request, the attacker manipulates the traffic and redirects the victim to malicious websites.
+			- This attack occurs on Layer 2, also known as the data link layer, which is responsible for transmitting information through wireless networks using standard encryption technologies. This layer enables multiple users to access network resources and defines how data is transferred between two nodes. By exploiting vulnerabilities or design flaws in this layer, the attacker can take control of browsing data and modify user inputs using a spoofed DNS server, ultimately redirecting the user to unintended or harmful websites.
+			- Steps in an aLTEr Attack:
+				- The attacker installs a rogue tower that masquerades as a legitimate one.
+				- The attacker determines the user’s position and sends a spoofed packet that appears as a valid request to the real tower.
+				- The real tower responds with the requested web link.
+				- The attacker manipulates the response and connects the user to an unwanted or harmful website.
+			- Phases of an aLTEr Attack:
+				- Information Gathering Phase:
+					- Attackers passively gather the information required to execute an aLTEr attack using techniques such as identity mapping and website fingerprinting. They eavesdrop on the websites users attempt to access and track their browsing habits. However, at this stage, attackers do not modify any credentials or transmitted data.
+					- Techniques used in this phase:
+						- Identity mapping: The attacker maps the identity of the target device. Once the target is identified, the attacker prepares for the next phase.
+						- Website fingerprinting: The attacker monitors the volume of traffic the user generates, tracks online activities, and collects metadata.
+				- Attack Phase:
+					- Once sufficient information is gathered, the attacker initiates a man-in-the-middle (MITM) attack by deploying a fake tower to intercept and manipulate user data intended for the real tower. Using DNS spoofing, the attacker redirects the victim to a malicious website or a controlled site where sensitive user information, such as usernames and passwords, can be stolen.
+		- Wi-Jacking Attack:
+			- Attackers use a Wi-Jacking attack to gain access to a large number of wireless networks. In this attack, the Wi-Fi credentials of nearby victims can be retrieved without the need for traditional cracking methods. This attack is effective when credentials are saved in the victim’s browser, when the victim frequently accesses the same website, and when the router’s configuration interface is accessed via an unencrypted HTTP connection. Attackers can exploit these vulnerabilities to crack WPA/WPA2 networks without performing a handshake process.
+			- Prerequisites for a Wi-Jacking Attack:
+				- To successfully execute a Wi-Jacking attack, the following conditions must be met:
+				- At least one active client device must be connected to the target network.
+				- The client device must have previously connected to an open network and allow automatic reconnection.
+				- The client device must use a Chromium-based web browser.
+				- The client device’s browser must store the router’s admin interface credentials.
+				- The target network’s router must use an unencrypted HTTP connection for its configuration interface.
+			- Steps to Execute a Wi-Jacking Attack:
+				- De-authentication: Send de-authentication requests to the victim’s device using aireplay-ng to disconnect it from the legitimate Wi-Fi network.
+				- KARMA Attack: Use hostapd-wpe to perform a KARMA attack, tricking the victim into connecting to a malicious Wi-Fi network.
+				- Injecting a Malicious URL: After successful de-authentication, use tools such as dnsmasq and Python scripts to inject a malicious URL, forcing the victim’s browser to load it. The URL/page pair is determined based on the BSSID and ESSID.
+				- Waiting for HTTP Access: Once the victim accesses an HTTP page, the router is updated and automatically restarted.
+				- Credential Harvesting: When the victim opens the malicious page, the browser checks the following conditions before auto-filling stored credentials:
+					- Does the malicious URL match the origin of the router’s admin interface?
+					- Do the input fields on the malicious page match those on the router’s admin interface?
+				- Maintaining Access: After retrieving the credentials, the victim is kept on the malicious page briefly. The KARMA attack is then stopped, allowing the victim to reconnect to the legitimate network. However, the malicious page remains in the router’s admin interface, with stored admin credentials accessible via JavaScript.
+				- Exploiting Credentials: Attackers use XMLHttpRequest to log into the router, extract the WPA2 PSK, and make other unauthorized modifications. With this PSK and other credentials, the victim’s private network can be compromised, allowing attackers to access and tamper with critical data using the Wi-Jacking technique.
+		- RFID Cloning Attack:
+			- RFID cloning involves capturing data from a legitimate RFID tag and then creating its clone using a new chip. In other words, data from one RFID tag is copied onto another by modifying the tag ID (TID), while the form factor and other data may remain the same. However, the cloned tag differs from the original and can often be detected. Attackers use devices such as iCopy-X, RFIDler, and Flipper Zero to clone RFID tags.
+			- RFID Cloning Tools:
+				- iCopyCX (icopyx.com): iCopy-X is a portable RFID cloning device that attackers can use to duplicate RFID tags. It is a fully stand-alone device with an integrated screen and buttons, offering the functionality of a Proxmark without requiring an external computer.
+				- RFIDler (github.com)
+				- RFID Mifare Cloner (github.com)
+				- Flipper Zero (flipperzero.one)
+				- Boscloner Pro (www.boscloner.com)
