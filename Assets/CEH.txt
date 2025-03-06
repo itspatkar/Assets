@@ -11091,3 +11091,141 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Unauthorized associations pose a significant threat to wireless networks and occur in two forms: accidental and malicious.
 			- Malicious Association: An attacker uses a "soft AP" to impersonate a corporate AP. By running a tool that makes a laptop’s NIC appear as an AP, the attacker gains unauthorized access. Some WLAN radios embedded in PDAs and laptops allow attackers to launch soft APs directly or through malware. Once inside the network, the attacker can steal credentials, attack wired networks, or install malware.
 			- Accidental Association: This happens when a device unintentionally connects to an overlapping AP from a neighboring organization without the user's knowledge.
+	- Integrity Attacks:
+		- An integrity attack involves altering or modifying data during transmission. In wireless integrity attacks, attackers send forged control, management, or data frames over a wireless network to mislead wireless devices and execute further attacks, such as a Denial-of-Service (DoS) attack.
+		- Different types of integrity attacks:
+			- Data-Frame Injection:
+				- This attack involves constructing and sending forged 802.11 frames to manipulate network communication.
+				- Common tools used for this attack include Airpwn-ng and Wperf.
+			- WEP Injection:
+				- Attackers create and transmit forged WEP encryption keys to compromise wireless security.
+				- WEP cracking and injection tools are commonly used for this type of attack.
+			- Bit-Flipping Attacks:
+				- In this attack, the attacker captures a frame, flips random bits in the data payload, modifies the Integrity Check Value (ICV), and sends the altered frame back to the user.
+			- Extensible AP Replay:
+				- This involves capturing 802.1X Extensible Authentication Protocol (EAP) messages, such as Identity, Success, and Failure messages, for later replay.
+				- Wireless capture and injection tools are typically used between the client and the access point (AP) to execute this attack.
+			- Data Replay:
+				- Attackers capture 802.11 data frames and replay them later, sometimes after modifying them.
+				- Capture and injection tools facilitate this type of attack.
+			- Initialization Vector (IV) Replay Attacks:
+				- This method derives the keystream by repeatedly sending a plaintext message, allowing the attacker to compromise encryption.
+			- RADIUS Replay:
+				- In this attack, the attacker captures RADIUS Access-Accept or Reject messages for later replay.
+				- Ethernet capture and injection tools are commonly used between the AP and the authentication server to carry out this attack.
+			- Wireless Network Viruses
+				- Wireless network viruses pose a significant threat by providing attackers with an easy way to compromise access points (APs). These viruses can spread quickly, affecting multiple devices on the network.
+	- Confidentiality Attacks:
+		- Confidentiality attacks aim to intercept sensitive information transmitted over a wireless network, regardless of whether the data is sent in cleartext or an encrypted format. If the system transmits data using encryption (such as WEP or WPA), an attacker may attempt to break the encryption to gain unauthorized access.
+		- Different types of confidentiality attacks on wireless networks:
+			- Eavesdropping:
+				- Attackers capture and decode unprotected application traffic to extract potentially sensitive information.
+				- Common tools for this attack include Wireshark, Ettercap, Kismet, and commercial network analyzers.
+			- Traffic Analysis:
+				- This attack involves observing external traffic characteristics to infer information about the communication.
+				- Tools like Wireshark, Ettercap, and Snort are commonly used for traffic analysis.
+			- Cracking WEP Key:
+				- Attackers capture data packets to recover a WEP encryption key using brute force or Fluhrer-Mantin-Shamir (FMS) cryptanalysis.
+				- Tools such as Aircrack-ng and WEPCrack facilitate this attack.
+			- Evil Twin AP:
+				- In this attack, an attacker sets up a rogue access point (AP) that mimics a legitimate WLAN SSID to lure users into connecting to it.
+				- Tools like Hostapd, EvilTwinFramework, and Wifiphisher are commonly used for this purpose.
+			- Honeypot AP:
+				- Similar to an Evil Twin AP, a honeypot AP uses the same SSID as a legitimate AP to trick users into connecting.
+				- Attackers achieve this by manipulating SSID settings.
+			- Session Hijacking:
+				- Attackers manipulate the network so that their device appears to be the intended destination, allowing them to take over an active session.
+				- This attack often involves packet manipulation techniques.
+			- Masquerading:
+				- In this attack, an attacker pretends to be an authorized user to gain access to the system.
+				- This is typically done by stealing login credentials or bypassing authentication mechanisms.
+			- Man-in-the-Middle (MITM) Attack:
+				- Attackers deploy MITM techniques using a rogue AP to intercept TCP sessions or hijack Secure Sockets Layer (SSL)/Secure Shell (SSH) tunnels.
+				- Tools such as dsniff, Ettercap, and aLTEr attack are used to execute this attack.
+	- Availability Attacks:
+		- Availability attacks aim to disrupt wireless services for legitimate users by either crippling WLAN resources or denying access to these resources. These attacks make wireless network services unavailable to authorized users. Attackers can execute availability attacks in various ways, obstructing the functionality of wireless networks.
+		- Different types of availability attacks:
+			- Access Point Theft:
+				- This attack involves physically removing an AP from its installed location, effectively disrupting the wireless network.
+				- Attackers rely on stealth and speed to execute this attack.
+			- Disassociation Attacks:
+				- Attackers destroy the connectivity between an AP and a client, making the target unavailable to other wireless devices.
+				- This is done through intentional disruption of connectivity.
+			- EAP-Failure Attack:
+				- Attackers observe a valid 802.1X EAP exchange and then send a forged EAP-Failure message to the client, terminating authentication.
+				- Airtool Pi is commonly used for this attack.
+			- Beacon Flood:
+				- In this attack, thousands of counterfeit 802.11 beacons are generated, making it difficult for clients to locate a legitimate AP.
+			- Denial-of-Service (DoS) Attack:
+				- Attackers exploit the carrier-sense multiple access with collision avoidance (CSMA/CA) clear channel assessment (CCA) mechanism to make a channel appear busy, preventing legitimate devices from transmitting.
+				- This requires an adapter that supports CW Tx mode along with a low-level utility to enable continuous transmissions.
+			- De-authentication Flood:
+				- Attackers flood client devices with forged de-authentication or disassociation frames, forcing them to disconnect from an AP.
+				- AirJack is a common tool used for this attack.
+			- Routing Attacks:
+				- Attackers manipulate routing information within the network to mislead devices.
+				- They exploit protocols such as RIP, Ad-Hoc On-Demand Distance Vector (AODV), and Dynamic Source Routing (DSR) using techniques like wormhole and sinkhole attacks.
+			- Authentication Flood:
+				- Attackers send forged authentication or association requests from random MAC addresses, filling the target AP’s association table and preventing new clients from connecting.
+				- AirJack is a tool commonly used for this attack.
+			- Address Resolution Protocol (ARP) Cache Poisoning:
+				- Attackers manipulate the ARP cache by creating multiple attack vectors, redirecting network traffic, and potentially causing denial of service.
+			- Power Saving Attacks:
+				- In this attack, attackers send spoofed Traffic Indication Map (TIM) or Delivery TIM (DTIM) frames to a client in power-saving mode, making it vulnerable to a DoS attack.
+			- TKIP MIC Exploit:
+				- Attackers generate invalid Temporal Key Integrity Protocol (TKIP) data to exceed an AP’s Message Integrity Check (MIC) error threshold, forcing the AP to suspend WLAN service.
+	- Authentication Attacks:
+		- Authentication attacks aim to steal the identity of Wi-Fi clients, including their personal information, login credentials, and other sensitive data, to gain unauthorized access to network resources.
+		- Different types of authentication attacks on wireless networks:
+			- PSK Cracking:
+				- Attackers recover a WPA Pre-Shared Key (PSK) by capturing key handshake frames and using a dictionary attack.
+				- Common tools for this attack include Cowpatty and Fern Wifi Cracker.
+			- LEAP Cracking:
+				- This attack involves recovering user credentials from captured 802.1X Lightweight EAP (LEAP) packets using a dictionary attack to crack the NT password hash.
+				- Tools like Asleap and THC-LEAPcracker are commonly used.
+			- VPN Login Cracking:
+				- Attackers use brute-force techniques to obtain user credentials for Virtual Private Network (VPN) authentication, such as Point-to-Point Tunneling Protocol (PPTP) passwords or IPsec pre-shared secret keys.
+				- Tools for this attack include ike_scan and IKECrack (for IPsec) and Anger and THC-pptp-bruter (for PPTP).
+			- Domain Login Cracking:
+				- This attack targets Windows domain logins by cracking NetBIOS password hashes using brute-force or dictionary-based attacks.
+				- Tools such as John the Ripper, L0phtCrack, and THC-Hydra are commonly used.
+			- Key Reinstallation Attack (KRACK):
+				- Attackers exploit vulnerabilities in the WPA2 four-way handshake process using a nonce reuse technique, allowing them to decrypt and manipulate wireless traffic.
+				- This uses nonce reuse technique.
+			- Identity Theft:
+				- Attackers capture user identities from cleartext 802.1X Identity Response packets using packet capturing tools.
+			- Shared Key Guessing:
+				- This attack attempts 802.11 shared key authentication using vendor-default WEP keys or previously cracked WEP keys.
+				- Tools such as WEP cracking tools and Wifite are commonly used.
+			- Password Speculation:
+				- Attackers repeatedly attempt 802.1X authentication using a captured identity to guess the user’s password through dictionary attacks.
+				- A password dictionary is typically used for this attack.
+			- Application Login Theft:
+				- Attackers capture user credentials, such as email addresses and passwords, from cleartext application protocols.
+				- Common tools for this attack include Ace Password Sniffer, dsniff, and Wi-Jacking Attack.
+	- Honeypot AP Attack:
+		- In areas where multiple WLANs coexist, users can connect to any available network, making them vulnerable to attacks. When a wireless client is switched on, it probes nearby wireless networks for a specific SSID. Attackers exploit this behavior by setting up an unauthorized wireless network using a rogue access point (AP).
+		- This rogue AP, known as a honeypot AP, is equipped with high-power (high-gain) antennas and configured with the same SSID as the target network. Users who frequently connect to multiple WLANs may unknowingly connect to the honeypot AP. These rogue APs transmit a stronger beacon signal than legitimate APs, tricking network interface cards (NICs) into connecting to them based on signal strength.
+		- If an authorized user connects to a honeypot AP, a security vulnerability is created. The attacker can intercept sensitive user information, such as identity details, usernames, and passwords, potentially compromising network security.
+	- Wormhole Attack:
+		- A wormhole attack exploits dynamic routing protocols such as Dynamic Source Routing (DSR) and Ad-Hoc On-Demand Distance Vector (AODV). In this attack, an attacker strategically positions themselves within the target network to sniff and record ongoing wireless transmissions. The attacker then advertises that their malicious node has the shortest route for transmitting data to other nodes in the network. To achieve this, the attacker creates a tunnel that forwards data between the source and destination nodes.
+		- In wireless sensor networks, protocols like AODV and DSR use route request (RREQ) and route reply (RREP) messages to dynamically establish a route between source and destination nodes. For example:
+			- A source node (S) broadcasts an RREQ packet to find a route to the destination node (D).
+			- The destination node (D) responds with an RREP packet, a unicast message containing the route information to reach D.
+			- When S receives the RREP message, it stores the route in its cache and begins forwarding application data to D via the established path.
+		- In a wormhole attack, the attacker introduces a malicious node (M) within the transmission range of both S and D to build a tunnel between them. The attacker:
+			- Listens for network traffic, waiting for RREQ messages.
+			- Sniffs the RREQ message from S and forwards it directly to D, bypassing the usual route discovery process.
+			- Similarly, intercepts the RREP message from D and forwards it to S before the original RREP message arrives.
+			- This creates a fake direct link between S and D via M, misleading both nodes into using the malicious route.
+			- Once the tunnel is successfully established, the attacker controls the data flow between S and D and may launch additional attacks, such as packet modification, eavesdropping, or denial-of-service (DoS) attacks.
+		- Wormhole attacks pose a serious threat to wireless sensor networks, as they allow attackers to manipulate routing and application data in real time. This can severely impact the confidentiality, integrity, and availability of network communications.
+	- Sinkhole Attack:
+		- A sinkhole attack is a type of selective forwarding attack in which an attacker advertises a compromised or malicious node as the shortest possible route to the base station. By placing the malicious node near the base station, the attacker attracts neighboring nodes with fake routing information and then performs a data forging attack. This allows the attacker to sniff, intercept, and manipulate ongoing network transmissions.
+		- A sinkhole attack can also be executed alongside a wormhole attack, where the malicious node captures all network traffic and uses a tunneling technique to reach the base station faster than legitimate nodes. Because of its deceptive nature, a sinkhole attack is difficult to detect and can significantly impact higher-layer applications within the Open Systems Interconnection (OSI) model.
+	- Inter-Chip Privilege Escalation / Wireless Co-Existence Attack:
+		- An inter-chip privilege escalation attack exploits vulnerabilities in wireless chips that manage Bluetooth and Wi-Fi communications. Manufacturers typically design these as separate chips or as a combo chip that integrates both functionalities.
+		- Attackers exploit combo chips by compromising one chip to steal data from another or to escalate privileges within the system. For example, a Bluetooth chip sharing resources with a Wi-Fi chip may:
+			- Intercept credentials or sensitive data from the Wi-Fi chip.
+			- Manipulate network traffic passing through the Wi-Fi chip.
+		- This form of attack is known as a wireless co-existence attack, as it exploits the shared resources and communication channels between wireless chips. It can lead to privilege escalation across chip boundaries, compromising system security.
