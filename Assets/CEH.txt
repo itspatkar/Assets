@@ -11067,29 +11067,29 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Many organizations spend significant time defining and implementing Wi-Fi security policies. However, a client may unintentionally modify the security settings of an AP, leading to misconfigurations. A misconfigured AP can expose an otherwise secure network to attacks.
 		- Since misconfigured APs are legitimate devices within the network, they can be difficult to detect. Attackers can connect through these APs, compromising security without triggering alerts. Many organizations fail to maintain Wi-Fi security policies and neglect proper measures to eliminate these vulnerabilities.
 		- As organizations expand their Wi-Fi networks, misconfigured APs become an increasing threat. Key elements that contribute to this type of attack include:
-		- SSID Broadcast:
-			- Attackers configure APs to broadcast SSIDs to authorized users. Default SSIDs on APs are susceptible to brute-force dictionary attacks. Even with WEP enabled, an unencrypted SSID transmits the password in plaintext.
-		- Weak Passwords:
-			- Some administrators mistakenly use SSIDs as basic passwords for user verification. SSIDs function as rudimentary passwords, helping administrators identify authorized wireless devices.
-		- Configuration Errors:
-			- These include mistakes made during installation, misapplied policies, human errors while troubleshooting, and inconsistent security changes. Broadcasting an SSID is a common configuration error that allows attackers to steal SSIDs, making APs mistakenly recognize attackers as legitimate users.
-		- Ad Hoc Associations:
-			- Wi-Fi clients can communicate directly using ad-hoc mode, which does not require an AP to relay packets. While convenient for file sharing, this mode lacks strong authentication and encryption. Attackers can exploit ad-hoc mode to infiltrate networks, accessing wired LAN resources through compromised clients.
-		- Promiscuous Clients:
-			- Attackers exploit the behavior of 802.11 wireless cards, which automatically seek the strongest available signal. By placing an AP near the target Wi-Fi network with a common SSID and a stronger signal, attackers lure clients into connecting to their rogue AP, enabling them to intercept network traffic. This technique is similar to an "evil twin" attack, where an attacker mimics a legitimate AP.
-		- Client Misassociation:
-			- A client may intentionally or accidentally connect to an AP outside the legitimate network due to WLAN signals traveling through air, walls, and obstructions. This misassociation can lead to access-control attacks.
-			- Client misassociation can occur due to:
-				- Misconfigured clients
-				- Inadequate corporate Wi-Fi coverage
-				- Lack of Wi-Fi policies
-				- Office internet restrictions
-				- Ad-hoc connections not regularly managed
-				- Attractive SSIDs
-			- To execute a client misassociation attack, an attacker sets up a rogue AP outside the corporation’s perimeter. After learning the target SSID, the attacker spoofs it and broadcasts beacons to lure clients into connecting. Once connected, the attacker can bypass enterprise security policies and extract sensitive data, such as usernames and passwords, using MITM, EAP dictionary, or Metasploit attacks.
-		- Unauthorized Association:
-			- Unauthorized associations pose a significant threat to wireless networks and occur in two forms: accidental and malicious.
-			- Malicious Association: An attacker uses a "soft AP" to impersonate a corporate AP. By running a tool that makes a laptop’s NIC appear as an AP, the attacker gains unauthorized access. Some WLAN radios embedded in PDAs and laptops allow attackers to launch soft APs directly or through malware. Once inside the network, the attacker can steal credentials, attack wired networks, or install malware.
+			- SSID Broadcast:
+				- Attackers configure APs to broadcast SSIDs to authorized users. Default SSIDs on APs are susceptible to brute-force dictionary attacks. Even with WEP enabled, an unencrypted SSID transmits the password in plaintext.
+			- Weak Passwords:
+				- Some administrators mistakenly use SSIDs as basic passwords for user verification. SSIDs function as rudimentary passwords, helping administrators identify authorized wireless devices.
+			- Configuration Errors:
+				- These include mistakes made during installation, misapplied policies, human errors while troubleshooting, and inconsistent security changes. Broadcasting an SSID is a common configuration error that allows attackers to steal SSIDs, making APs mistakenly recognize attackers as legitimate users.
+			- Ad Hoc Associations:
+				- Wi-Fi clients can communicate directly using ad-hoc mode, which does not require an AP to relay packets. While convenient for file sharing, this mode lacks strong authentication and encryption. Attackers can exploit ad-hoc mode to infiltrate networks, accessing wired LAN resources through compromised clients.
+			- Promiscuous Clients:
+				- Attackers exploit the behavior of 802.11 wireless cards, which automatically seek the strongest available signal. By placing an AP near the target Wi-Fi network with a common SSID and a stronger signal, attackers lure clients into connecting to their rogue AP, enabling them to intercept network traffic. This technique is similar to an "evil twin" attack, where an attacker mimics a legitimate AP.
+			- Client Misassociation:
+				- A client may intentionally or accidentally connect to an AP outside the legitimate network due to WLAN signals traveling through air, walls, and obstructions. This misassociation can lead to access-control attacks.
+				- Client misassociation can occur due to:
+					- Misconfigured clients
+					- Inadequate corporate Wi-Fi coverage
+					- Lack of Wi-Fi policies
+					- Office internet restrictions
+					- Ad-hoc connections not regularly managed
+					- Attractive SSIDs
+				- To execute a client misassociation attack, an attacker sets up a rogue AP outside the corporation’s perimeter. After learning the target SSID, the attacker spoofs it and broadcasts beacons to lure clients into connecting. Once connected, the attacker can bypass enterprise security policies and extract sensitive data, such as usernames and passwords, using MITM, EAP dictionary, or Metasploit attacks.
+			- Unauthorized Association:
+				- Unauthorized associations pose a significant threat to wireless networks and occur in two forms: accidental and malicious.
+				- Malicious Association: An attacker uses a "soft AP" to impersonate a corporate AP. By running a tool that makes a laptop’s NIC appear as an AP, the attacker gains unauthorized access. Some WLAN radios embedded in PDAs and laptops allow attackers to launch soft APs directly or through malware. Once inside the network, the attacker can steal credentials, attack wired networks, or install malware.
 			- Accidental Association: This happens when a device unintentionally connects to an overlapping AP from a neighboring organization without the user's knowledge.
 	- Integrity Attacks:
 		- An integrity attack involves altering or modifying data during transmission. In wireless integrity attacks, attackers send forged control, management, or data frames over a wireless network to mislead wireless devices and execute further attacks, such as a Denial-of-Service (DoS) attack.
@@ -11229,3 +11229,208 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Intercept credentials or sensitive data from the Wi-Fi chip.
 			- Manipulate network traffic passing through the Wi-Fi chip.
 		- This form of attack is known as a wireless co-existence attack, as it exploits the shared resources and communication channels between wireless chips. It can lead to privilege escalation across chip boundaries, compromising system security.
+- Wireless Hacking Methodology:
+	- The wireless hacking methodology enables attackers to identify vulnerabilities and entry points within a target network. By following these steps, attackers aim to gain unauthorized access and exploit network resources. The primary objective of wireless hacking is to compromise a Wi-Fi network and obtain unauthorized access to sensitive data or services.
+	- Attackers typically follow these steps to carry out a wireless attack:
+		- Wi-Fi Discovery – Identifying available wireless networks and their security configurations.
+		- Wireless Traffic Analysis – Capturing and analyzing network traffic to detect vulnerabilities.
+		- Launching Wireless Attacks – Exploiting security flaws to gain access to the network.
+		- Wi-Fi Encryption Cracking – Breaking encryption mechanisms to retrieve network credentials.
+		- Compromising the Wi-Fi Network – Gaining unauthorized access and leveraging control over network resources.
+	- Wi-Fi Discovery:
+		- The first step in attacking a Wi-Fi network is discovering available networks or devices. An attacker performs Wi-Fi discovery to locate a target wireless network using tools such as inSSIDer and NetSurveyor. Wi-Fi discovery involves footprinting the wireless networks and identifying a target network within range to launch an attack.
+		- Wireless Network Footprinting:
+			- An attack on a wireless network begins with discovery and footprinting. Footprinting involves identifying and analyzing a network's structure. To footprint a wireless network, an attacker must identify the Basic Service Set (BSS) provided by the Access Point (AP). This can be done by determining the Service Set Identifier (SSID) of the network, which allows the attacker to establish an association with an AP and potentially compromise its security.
+			- Attackers use two main footprinting methods to detect a wireless network's SSID:
+				- Passive Footprinting Method: In passive footprinting, an attacker sniffs packets from the airwaves to detect the presence of APs, wireless devices, and their SSIDs. The attacker does not actively connect to any APs or inject data packets into the network traffic, making this method stealthier.
+				- Active Footprinting Method: In active footprinting, the attacker’s device sends a probe request with an SSID to an AP and waits for a response. If the SSID is unknown, the device can send a probe request with an empty SSID. Many APs respond with their SSID in a probe response packet, allowing the attacker to learn the SSID. Once the correct BSS is identified, the attacker can configure their device to interact with the AP while ignoring probe requests with empty SSIDs.
+			- Attackers use wireless network scanning tools like NetSurveyor and Wi-Fi Scanner to scan for Wi-Fi networks. The SSID is present in beacon frames, probe requests and responses, and association/re-association requests. If an attacker cannot obtain the SSID through passive scanning, they may resort to active scanning. Once the SSID is identified, the attacker can connect to the wireless network and execute further attacks.
+			- Wireless network scanning also enables sniffing, where an attacker tunes into various radio channels to capture network traffic.
+		- Finding Wi-Fi Networks in Range to Attack:
+			- The first step for an attacker targeting Wi-Fi networks is identifying potential networks within range to determine the best one to attack. Attackers use various Wi-Fi chalking techniques, such as WarWalking, WarChalking, WarFlying, and WarDriving, to locate vulnerable Wi-Fi networks.
+			- Wi-Fi Chalking Techniques:
+				- WarWalking: Attackers walk around with Wi-Fi-enabled laptops equipped with wireless discovery tools to map out open wireless networks.
+				- WarChalking: Symbols are drawn in public places to indicate the presence of open Wi-Fi networks.
+				- WarFlying: Attackers use drones to detect and map out open wireless networks.
+				- WarDriving: Attackers drive around with Wi-Fi-enabled laptops running wireless discovery tools to identify open networks.
+			- Tools Used for Wi-Fi Discovery:
+				- Attackers utilize various tools to discover Wi-Fi networks for potential attacks, including:
+				- A laptop with a Wi-Fi card
+				- An external Wi-Fi antenna for extended range
+				- Network discovery software
+			- Some commonly used Wi-Fi network discovery tools include:
+				- inSSIDer
+				- NetSurveyor
+				- Wi-Fi Scanner
+				- Acrylic WiFi Heatmaps
+		- Wi-Fi Discovery Tools:
+			- inSSIDer (www.metageek.com):
+				- inSSIDer is a Wi-Fi optimization and troubleshooting tool that scans for wireless networks using the user’s Wi-Fi adapter. It helps visualize signal strengths and network channels while providing useful details about each network. Attackers use inSSIDer to discover nearby Wi-Fi access points and devices.
+				- Features:
+					- Analyzes WLAN and surrounding networks to troubleshoot interference from competing APs.
+					- Tracks received signal strength (measured in dBm) over time and filters APs.
+					- Highlights APs in areas with high Wi-Fi congestion.
+					- Exports Wi-Fi and GPS data to a KML file for viewing in Google Earth.
+					- Identifies overlapping Wi-Fi network channels.
+			- Sparrow-WiFi (github.com):
+				- Sparrow-WiFi is a GUI-based tool for 2.4 GHz and 5 GHz Wi-Fi spectrum analysis. It enables attackers to integrate software-defined radio (HackRF), advanced Bluetooth tools (Ubertooth), and GPS tracking (via gpsd and mavlink) to discover Wi-Fi access points, identify SSIDs, perform source hunting, and conduct spectrum analysis.
+				- Features:
+					- Supports import/export in CSV and JSON formats.
+					- Generates Google Maps visualizations for discovered devices.
+					- Offers advanced Wi-Fi spectrum analysis and signal source tracking.
+			- Wi-Fi Scanner (lizardsystems.com)
+			- Acrylic WiFi Heatmaps (www.acrylicwifi.com)
+			- WirelessMon (www.passmark.com)
+			- Ekahau Wi-Fi Heatmaps (www.ekahau.com)
+			- NetSpot (www.netspotapp.com)
+			- AirMagnet® Survey PRO (www.netally.com)
+		- Mobile-Based Wi-Fi Discovery Tools:
+			- WiFi Analyzer (play.google.com): WiFi Analyzer is a Wi-Fi network optimization tool that helps users examine surrounding Wi-Fi networks, measure signal strengths, and identify congested channels. Attackers use WiFi Analyzer to detect nearby access points (APs), visualize channel signal strengths, and estimate distances to APs.
+			- Opensignal (opensignal.com)
+			- Network Signal Info Pro (www.kaibits-software.com)
+			- Net Signal Pro:WiFi & 5G Meter (play.google.com)
+			- NetSpot WiFi Analyzer (apps.apple.com)
+			- WiFiman (play.google.com)
+		- Finding WPS-Enabled APs:
+			- Attackers use the Wash command-line utility to identify Wi-Fi Protected Setup (WPS)-enabled access points (APs) in a target wireless network. This utility also helps determine whether an AP is in a locked state.
+			- Most WPS-enabled routers automatically lock after multiple failed authentication attempts (typically after five incorrect credential entries). Once locked, they can only be unlocked manually through the router’s administrator interface.
+			- The Wash command supports 5 GHz channels and is available as part of the Reaver package.
+	- Wireless Traffic Analysis:
+		- The next step in the wireless hacking methodology is analyzing the traffic of a discovered wireless network. An attacker performs wireless traffic analysis before launching actual attacks. This analysis helps identify vulnerabilities, potential victims, and the best strategy for a successful attack. Various tools and techniques are used to analyze the target network’s traffic.
+		- Wi-Fi protocols are unique to Layer 2, and traffic over the air is not serialized, making it easier to sniff and analyze wireless packets. Attackers analyze a wireless network to determine the broadcasted SSID, the presence of multiple access points (APs), the possibility of recovering SSIDs, the authentication method used, WLAN encryption algorithms, and more. To capture and analyze traffic, attackers use Wi-Fi packet sniffing tools such as AirMagnet™ G3 Pro, Wireshark, Riverbed Packet Analyzer, OmniPeek, and CommView for Wi-Fi.
+		- Sniffing is a type of eavesdropping where attackers intercept ongoing wireless communication. They achieve this by tuning a receiver to the target transmission frequency and identifying the communication protocol in use. Captured traffic is then analyzed to launch further attacks on the network. To sniff wireless traffic, an attacker must enable monitor mode on their Wi-Fi card.
+		- Not all Wi-Fi cards support monitor mode in Windows. You can check if your Wi-Fi card supports monitor mode at the following link: https://secwiki.org/w/Npcap/WiFi_adapters
+		- Attackers use tools such as Wireshark, Riverbed Packet Analyzer, OmniPeek Network Protocol Analyzer, CommView for Wi-Fi, and Kismet to sniff wireless networks.
+		- Wi-Fi Packet Sniffers:
+			- Wireshark (www.wireshark.org):
+				- Wireshark is a powerful network protocol sniffer and analyzer. It allows users to capture and interactively browse traffic in a target network. Wireshark can read live data from various network types, including:
+					- Ethernet, Token Ring, and FDDI networks
+					- Point-to-Point Protocol (PPP) and Serial Line Internet Protocol (SLIP) networks
+					- 802.11 wireless LANs
+					- Automated Teller Machine (ATM) connections (if the ATM’s OS permits Wireshark access)
+					- Any device supported on Linux by recent versions of libpcap
+				- Npcap is integrated with Wireshark for comprehensive WLAN traffic analysis, visualization, drill-down, and reporting. Attackers capture wireless traffic by enabling monitor mode in Wireshark, allowing them to collect management frames, control frames, data frames, and more. Wireshark also helps analyze Radiotap header fields, which reveal critical details such as protocols used, encryption techniques, frame lengths, and MAC addresses.
+			- CommView for Wi-Fi (www.tamos.com):
+				- CommView for Wi-Fi is a wireless network monitor and analyzer for 802.11 a/b/g/n networks. It captures packets and displays key information such as:
+					- List of APs and stations
+					- Per-node and per-channel statistics
+					- Signal strength
+					- List of packets and network connections
+					- Protocol distribution charts
+				- Users can decrypt packets using user-defined WPA-PSK keys and analyze them down to the lowest layer. The analyzer provides a tree-like structure to display protocol layers and packet headers, offering a detailed breakdown of captured packets.
+			- Omnipeek® Network Protocol Analyzer (www.liveaction.com)
+			- Kismet (www.kismetwireless.net)
+			- SolarWinds Network Performance Monitor (www.solarwinds.com)
+			- Acrylic Wi-Fi Analyzer (www.acrylicwifi.com)
+			- airgeddon (github.com)
+		- Choosing the Optimal Wi-Fi Card:
+			- Selecting the right Wi-Fi card for hacking requires hardware that supports essential features for wireless network analysis. Choosing an optimal Wi-Fi card is crucial because tools such as Aircrack-ng and NetSpot work only with specific wireless chipsets. Attackers consider the following factors when selecting a Wi-Fi card:
+			- Determine Wi-Fi Requirements:
+				- An attacker may need to either listen to wireless network traffic or both listen to and inject packets.
+					- Windows can listen to network traffic but cannot inject data packets.
+					- Linux supports both listening and packet injection.
+				- Based on these capabilities, the attacker selects the operating system (OS), hardware format (PCMCIA, USB), and required features (listening, injection, or both).
+			- Learn the Capabilities of a Wireless Card:
+				- Wi-Fi cards have two manufacturers:
+					- The brand of the card (e.g., TP-Link, Alfa, Netgear)
+					- The chipset manufacturer (e.g., Atheros, Broadcom, Realtek)
+				- Knowing only the brand and model of the card is not enough. The chipset determines:
+					- Supported operating systems
+					- Required drivers
+					- Capabilities and limitations
+				- Most card manufacturers do not disclose chipset details, but this information is critical for selecting the right Wi-Fi card.
+			- Determine the Chipset of the Wi-Fi Card:
+				- Attackers can identify a Wi-Fi card’s chipset using the following methods:
+					- Search online for model specifications.
+					- Check Windows driver filenames, which often include the chipset name.
+					- Visit the manufacturer’s website for detailed specifications.
+					- Physically inspect the wireless chip, as some cards display the chipset number.
+					- Use the Federal Communications Commission (FCC) ID Search to look up chipset details if the device has an FCC identification number.
+				- Manufacturers sometimes change the chipset while keeping the same model number, labeling it as a "card revision" or "card version." Therefore, attackers must check the revision/version to ensure compatibility. The following site may provide compatibility information: https://wireless.wiki.kernel.org/en/users/Drivers
+			- Verify the Chipset Capabilities:
+				- Before selecting a Wi-Fi card, attackers must ensure the chipset:
+					- Is compatible with the target OS
+					- Supports the necessary features (monitor mode, packet injection, etc.)
+				- Determine Required Drivers and Patches:
+					- Attackers must identify:
+						- The drivers needed for the chipset
+						- Any OS patches required for proper functionality
+					- After evaluating all these factors, the attacker selects a Wi-Fi card that uses the chosen chipset, referencing a compatible card list for guidance.
+		- Performing Spectrum Analysis:
+			- Attackers use spectrum analyzers to detect the presence of wireless networks. Spectrum analysis allows attackers to actively monitor spectrum usage in a specific area and identify signals from the target network. It also helps measure the signal strength of both known and unknown transmissions.
+			- Spectrum analyzers use statistical analysis to:
+				- Visualize spectrum usage
+				- Assess "air quality"
+				- Identify transmission sources
+			- While RF technicians use spectrum analyzers to install and maintain wireless networks and diagnose interference, attackers leverage Wi-Fi spectrum analysis to detect wireless attacks, including:
+				- Denial-of-Service (DoS) attacks
+				- Authentication/encryption attacks
+				- Network penetration attempts
+			- The following are some automated tools used by attackers for spectrum analysis of target wireless networks.
+			- RF Monitoring and Spectrum Analyzing Tools:
+				- RF Explorer (rfexplorer.com):
+					- RF Explorer is an RF spectrum analysis tool that can function as a standalone handheld device or connect to a PC for advanced data analysis.
+					- It is widely used for:
+						- Detecting and identifying RF interference sources
+						- Monitoring wireless system health
+						- Observing transmitted RF signals
+					- RF Explorer provides a real-time view of the local RF environment, helping users identify RF transmissions that could be sources of interference.
+				- Chanalyzer (www.metageek.com)
+				- AirCheck G3 Pro (www.netally.com)
+				- Spectraware S1000 (thinkrf.com)
+				- RSA306B USB Spectrum Analyzer (www.tek.com)
+				- RF Explorer 6G (j3.rf-explorer.com)
+				- RFXpert (www.dektec.com)
+				- Monics® 200 (www.kratosdefense.com)
+				- Monics® satID® (www.kratosdefense.com)
+				- Signal Hound (signalhound.com)
+				- FieldSENSE (www.fieldsense.com)
+	- Launch of Wireless Attacks:
+		- After completing the discovery, mapping, and analysis of a target wireless network, an attacker is in a position to launch various types of attacks. These may include fragmentation attacks, MAC spoofing, Denial-of-Service (DoS) attacks, and Address Resolution Protocol (ARP) poisoning attacks. This section provides an overview of wireless attacks and how they are carried out.
+		- Aircrack-ng Suite (www.aircrack-ng.org):
+			- Aircrack-ng is a comprehensive software suite for wireless network security assessment. It includes tools for detecting networks, capturing packets, cracking WEP and WPA/WPA2-PSK encryption, and analyzing 802.11 wireless traffic. The suite is compatible with both Linux and Windows.
+			- Key Components of Aircrack-ng Suite:
+				- Airbase-ng : Captures WPA/WPA2 handshakes and can function as an ad-hoc access point (AP).
+				- Aircrack-ng : The primary tool for cracking WEP and WPA/WPA2-PSK encryption.
+				- Airdecap-ng : Decrypts WEP/WPA/WPA2-encrypted packets and removes wireless headers from Wi-Fi traffic.
+				- Airdrop-ng : Performs targeted, rule-based deauthentication of users.
+				- Aireplay-ng : Helps in gathering initialization vectors (IVs) for WEP cracking and capturing WPA handshakes for further security analysis.
+				- Airgraph-ng : Generates client-to-AP relationship graphs and probe request maps using data from Airodump-ng.
+				- Airmon-ng : Switches wireless network interfaces between managed and monitor modes.
+				- Airodump-ng : Captures raw 802.11 frames and collects WEP IVs for analysis.
+				- Airolib-ng : Manages and stores ESSID and password lists for WPA/WPA2 cracking.
+				- Airtun-ng : Creates a virtual tunnel interface to monitor encrypted traffic and inject packets into a network.
+		- Detection of Hidden SSIDs:
+			- Many organizations attempt to enhance security by hiding the SSID of their wireless networks, relying on the principle of security through obscurity. This approach is often part of an organization's security policy, as attackers could potentially exploit SSIDs to breach wireless networks. However, hiding an SSID does not provide real security—an attacker can still uncover a hidden SSID using tools like Aircrack-ng and MDK3 by following these steps:
+			- Steps to Reveal a Hidden SSID:
+				- Enable monitor mode using Airmon-ng: airmon-ng start <Wireless Interface>
+				- If any processes interfere, run the following command to kill them: airmon-ng check kill
+				- Start Airodump-ng to monitor the wireless interface and discover SSIDs: airodump-ng <Wireless Interface>
+				- The SSID of the target access point will appear as hidden in the scan results.
+				- Use MDK3 to brute-force and retrieve the actual hidden SSID:
+					- Open another terminal as root and execute: mdk3 <Wireless Interface> p -b 1 -c <Channel> -t <Target BSSID>
+			- By executing these steps, an attacker can successfully reveal a hidden SSID, demonstrating why SSID hiding alone is not a reliable security measure. Instead, organizations should implement stronger security protocols such as WPA2/WPA3 encryption and MAC filtering to better protect their networks.
+		- Denial-of-Service (DoS) Attacks on Wireless Networks:
+			- Wireless networks are particularly vulnerable to Denial-of-Service (DoS) attacks due to the interactions among the physical, data-link, and network layers. These networks operate in unlicensed frequency bands, transmitting data via radio signals. While the MAC protocol was designed for simplicity, it is inherently susceptible to DoS attacks.
+			- Many WLANs support mission-critical applications such as VoIP, database access, project data files, and Internet services. A DoS attack can easily disrupt these applications, leading to network downtime and loss of productivity.
+			- How Wireless DoS Attacks Work: Wireless DoS attacks disrupt network connectivity by broadcasting de-authentication or disassociation commands. These forged transmissions force clients to disconnect from the access point (AP), effectively denying them access to the network.
+			- Types of Wireless DoS Attacks:
+				- Disassociation Attack: In a disassociation attack, the attacker severs the connection between the AP and client, rendering the victim's device unable to communicate with other wireless devices.
+				- De-authentication Attack: In a de-authentication attack, the attacker floods the network with forged de-authentication or disassociation frames, forcing clients to disconnect from the AP repeatedly.
+			- These attacks exploit weaknesses in the 802.11 protocol, which does not authenticate management frames, making them an easy target for attackers. Effective countermeasures include management frame protection (MFP), WPA3, intrusion detection systems (IDS), and network segmentation.
+		- Man-in-the-Middle (MITM) Attack:
+			- A man-in-the-middle (MITM) attack is an active internet attack in which an attacker intercepts, reads, or alters information transmitted between two computers. MITM attacks can occur in both 802.11 WLANs and wired communication systems.
+			- Eavesdropping:
+				- Eavesdropping is particularly easy in wireless networks because they lack a physical communication medium. An attacker within range of a wireless network can capture radio waves with minimal effort and equipment. Additionally, the attacker can inspect entire data frames transmitted across the network or store them for later analysis.
+				- To prevent attackers from accessing sensitive information, multiple layers of encryption should be implemented. WEP or data-link encryption can be applied at lower levels, while security mechanisms like IPsec, SSH, or SSL should be used for additional protection. Without these measures, transmitted data may be exposed to attackers. However, as previously demonstrated, WEP encryption can be cracked using freely available tools on the internet.
+				- Accessing email via Post Office Protocol (POP) or Internet Message Access Protocol (IMAP) is particularly risky, as these protocols transmit emails over wireless networks without additional encryption. A skilled hacker can log gigabytes of WEP-protected traffic, analyze the data, and ultimately break the encryption.
+			- Manipulation:
+				- Manipulation goes beyond eavesdropping. In this attack, an attacker captures the victim’s encrypted data, modifies it, and retransmits the altered data to the intended recipient. Additionally, an attacker can intercept packets, change their destination address, and forward them across the internet.
+				- MITM Attack Execution Steps:
+					- An attacker carries out an MITM attack through the following steps:
+					- The attacker sniffs the victim’s wireless parameters (MAC address, ESSID/BSSID, and channel number).
+					- The attacker sends a DEAUTH request to the victim, spoofing the source address of the victim’s Access Point (AP).
+					- Upon receiving the request, the victim’s device is deauthenticated and begins scanning all channels for a new valid AP.
+					- The attacker sets up a forged AP on a new channel, using the original MAC address (BSSID) and ESSID of the victim’s AP, tricking the victim into connecting to the rogue AP.
+					- Once the victim successfully connects to the forged AP, the attacker spoofs the victim’s connection to the original AP.
+					- The attacker is now positioned between the AP and the victim, intercepting and monitoring all network traffic.
