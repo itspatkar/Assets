@@ -11741,3 +11741,188 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Example: reaver -i wlan0mon -b B4:75:0E:89:00:60 -vv
 					- The command iterates through WPS PINs until a valid one is found.
 					- Once the WPS PIN is cracked, Reaver extracts the WPA/WPA2 passphrase.
+- Wireless Attack Countermeasures:
+	- Wireless Security Layers:
+		- A wireless security mechanism consists of six layers. This layered approach improves the ability to prevent an attacker from compromising the network and increases the likelihood of detecting malicious activities.
+		- The Structure of Wireless Security Layers:
+			- Wireless Signal Security:
+				- In wireless networks, the network and RF spectrum within the environment should be continuously monitored and managed to identify threats and enhance situational awareness. A Wireless Intrusion Detection System (WIDS) analyzes and monitors the RF spectrum. It generates alerts to detect unauthorized wireless devices that violate network security policies. Activities such as increased bandwidth usage, RF interference, and unidentified rogue wireless access points (APs) may indicate the presence of a malicious intruder. Continuous network monitoring is the most effective measure to prevent such attacks and secure the network.
+			- Connection Security:
+				- Per-frame/packet authentication provides protection against Man-in-the-Middle (MITM) attacks. It prevents attackers from intercepting data when two legitimate users communicate, ensuring a secure connection.
+			- Device Security:
+				- Both vulnerability management and patch management are critical components of a secure infrastructure. Regular updates and security patches help protect devices from potential exploits.
+			- Data Protection:
+				- Encryption algorithms such as WPA3, WPA2, and AES safeguard data from unauthorized access and interception.
+			- Network Protection:
+				- Strong authentication mechanisms ensure that only authorized users can access the network, reducing the risk of unauthorized intrusions.
+			- End-User Protection:
+				- Even if an attacker connects to an AP, personal firewalls installed on end-user systems within the WLAN can prevent unauthorized access to files and other sensitive information.
+	- Defense Against WPA/WPA2/WPA3 Cracking:
+		- Use Strong Passwords:
+			- Ensure that the Wi-Fi password (pre-shared key) is strong, complex, and difficult to guess.
+			- Use a password that is at least 12–16 characters long, including uppercase and lowercase letters, numbers, and special characters.
+		- Client Settings:
+			- Use WPA2 with AES/CCMP encryption only.
+			- Set proper client settings (e.g., validate the server, specify the server address, and do not prompt for new servers).
+			- Regenerate keys for every new connection.
+		- Additional Controls:
+			- Use virtual private network (VPN) technologies such as remote access VPN, extranet VPN, and intranet VPN.
+			- Implement secure communication protocols such as IPsec and SSL/TLS.
+			- Deploy Network Access Control (NAC) or Network Access Protection (NAP) solutions for additional control over end-user connectivity.
+		- Disable TKIP:
+			- Disable TKIP in the router settings and ensure that only AES encryption is used.
+		- MAC Address Filtering:
+			- Allow only devices with specific MAC addresses to connect to the network.
+		- Upgrade to WPA3:
+			- WPA3 offers better protection against brute-force attacks and prevents the exploitation of connected devices.
+		- Disable Remote Management:
+			- Turn off remote management features on routers to prevent external attacks.
+		- Disable WPS:
+			- WPS (Wi-Fi Protected Setup) has known vulnerabilities that attackers can exploit. Disable WPS in the router settings to prevent brute-force attacks on the WPS PIN.
+		- Regularly Update Router Firmware:
+			- Keep the router's firmware up to date to patch known vulnerabilities.
+			- Check the manufacturer's website regularly for firmware updates and apply them promptly.
+		- Reduce Signal Range:
+			- Limit the Wi-Fi signal range to reduce the chances of unauthorized access from outside the premises.
+			- Adjust the router's transmission power and place it centrally within the desired location.
+		- Monitor Network Activity:
+			- Regularly monitor the network for unusual activity or unauthorized devices.
+			- Use network monitoring tools to detect and respond to suspicious activities.
+		- Enable WPA3-SAE:
+			- WPA3-SAE (Simultaneous Authentication of Equals) provides stronger security by protecting against offline dictionary attacks and offering forward secrecy.
+			- Use WPA3-SAE whenever possible for all compatible devices.
+		- Disable Transition Mode:
+			- WPA3 allows for a WPA2/WPA3 mixed mode, which can introduce security risks.
+			- If all devices support WPA3, disable transition mode to ensure the highest level of security.
+	- Defense Against KRACK Attacks:
+		- The following countermeasures help prevent KRACK (Key Reinstallation Attack) attacks:
+		- Update all routers and Wi-Fi devices with the latest security patches.
+		- Enable automatic updates for all wireless devices and patch firmware regularly.
+		- Avoid using public Wi-Fi networks whenever possible.
+		- Browse only secure websites and avoid accessing sensitive resources when connected to an unprotected network.
+		- Audit IoT devices and ensure they do not connect to insecure Wi-Fi routers.
+		- Enable the HTTPS Everywhere extension for secure browsing.
+		- Use two-factor authentication (2FA) for enhanced security.
+		- Use a VPN to encrypt data in transit and protect against eavesdropping.
+		- Always use WPA3 for wireless networks to enhance security.
+		- Disable fast roaming and repeater mode on wireless devices to mitigate KRACK attack risks.
+		- Employ the EAPOL-key replay counter to ensure that the access point (AP) recognizes only the latest counter value.
+		- Use a backup wired connection (Ethernet) or mobile data if a vulnerability to KRACK attacks is detected.
+		- Consider using third-party routers instead of ISP-provided routers if they lack sufficient security patches.
+		- Implement network segmentation to separate critical parts of the network from general user access, reducing the potential impact of a KRACK attack.
+		- Temporarily disable the 802.11r protocol, which is vulnerable to KRACK attacks. Turn off 802.11r in wireless settings if seamless roaming is not required.
+		- Use 802.1X authentication for an added layer of security. Implement 802.1X with RADIUS server authentication for enterprise networks.
+	- Defense Against aLTEr Attacks:
+		- The most effective method to defend a network against aLTEr attacks is to encrypt DNS queries using proper security standards. To implement this, Cisco, in collaboration with Apple, developed an app called "Cisco Security Connector." This app prevents clients from accessing unintended websites by encrypting DNS queries and loading them into Cisco Umbrella (Intelligence Block) for further validation. It protects the network from IP-level and DNS-level hijacking.
+		- The following countermeasures can help defend against aLTEr attacks:
+			- Encrypt DNS queries and use only trusted DNS resolvers.
+			- Resolve DNS queries using HTTPS (DoH) to enhance security.
+			- Access only websites with HTTPS connections to prevent traffic interception.
+			- Use DNS over TLS (DoT) or DNS over Datagram TLS (DTLS) to encrypt DNS traffic and ensure integrity protection.
+			- Implement RFC 7858/RFC 8310 to prevent DNS spoofing attacks and enhance encryption for name resolution.
+			- Add a Message Authentication Code (MAC) to user plane packets for integrity verification.
+			- Use the DNSCrypt protocol to authenticate communication between DNS clients and resolvers.
+			- Deploy mobile security tools, such as Zimperium, to detect phishing and malicious site attacks.
+			- Enforce proper HTTPS parameters, such as HTTP Strict Transport Security (HSTS), to prevent redirection to malicious websites.
+			- Utilize virtual network tunnels with integrity protection and endpoint authentication.
+			- Upgrade to a 5G network connection to take advantage of improved security protocols.
+			- Implement eSIM technology for enhanced authentication and encryption.
+			- Deploy DNSSEC (Domain Name System Security Extensions) to secure DNS lookups and ensure the authenticity of response data.
+			- Keep LTE network infrastructure updated, ensuring that base stations and core network components run the latest firmware and software.
+			- Apply security patches regularly from network equipment vendors to fix known vulnerabilities.
+			- Use robust encryption methods such as AES-256 for secure LTE data transmission and ensure end-to-end encryption.
+			- Enable mutual authentication between User Equipment (UE) and the network to prevent unauthorized access.
+			- Deploy secure SIM cards with advanced security features, including over-the-air (OTA) updates and secure storage, to prevent cloning and unauthorized access.
+			- Enforce location-based access controls to restrict network services based on user equipment's geographical location, limiting access from unauthorized regions.
+			- Secure physical network infrastructure using surveillance, access controls, and tamper-evident seals to prevent unauthorized tampering with network equipment.
+	- Detection and Blocking of Rogue APs:
+		- Detection of Rogue APs:
+			- RF Scanning: Deploy RF sensors (repurposed APs that perform packet capturing and analysis) throughout the wired network to detect and alert the WLAN administrator about unauthorized wireless devices.
+			- AP Scanning: Utilize APs with built-in capabilities to detect neighboring APs and expose this data through their MIBs and web interfaces.
+			- Wired-Side Inputs: Use network management software to identify rogue APs by detecting devices connected to the LAN through protocols such as Telnet, SNMP, and Cisco Discovery Protocol (CDP).
+			- Comparison with Authorized AP List: Maintain a list of authorized APs and compare detected APs against this list to identify unauthorized devices. Tools like AirMagnet WiFi Analyzer can facilitate this comparison.
+			- Signal Strength Analysis: Analyze the signal strength of detected APs to identify unauthorized devices that may be physically close. Tools such as Ekahau Survey for Wi-Fi Planning and Analysis can help detect unexpected APs based on their signal strength.
+			- MAC Address Filtering: Monitor network traffic for MAC addresses of authorized APs and flag any unknown MAC addresses. Cisco Wireless LAN Controllers provide built-in rogue AP detection and MAC address filtering features.
+		- Blocking of Rogue APs:
+			- Deny Wireless Service: Launch a denial-of-service (DoS) attack on the rogue AP to prevent it from serving new clients.
+			- Block the Switch Port: Disable the switch port to which the rogue AP is connected, or manually locate and physically remove the AP from the LAN.
+			- Wireless Intrusion Prevention Systems (WIPS): Implement WIPS to continuously monitor the wireless spectrum and automatically block unauthorized devices.
+			- Access Control Lists (ACLs): Restrict network access to known, authorized MAC addresses.
+			- Implement 802.1X Authentication: Enforce network authentication to ensure only authorized users and devices can connect.
+			- Network Segmentation: Isolate critical resources from general wireless access to limit exposure to rogue APs.
+			- Disable Open SSID Broadcasting: Prevent unauthorized connections by turning off SSID broadcasting for open networks.
+			- MAC Address Whitelisting: Maintain a whitelist of authorized MAC addresses and configure the wireless controller to block all others.
+	- Defense Against Wireless Attacks:
+		- Best Practices for Secure Configuration:
+			- Change the default SSID after configuring the WLAN.
+			- Set a strong router access password and enable firewall protection.
+			- Disable SSID broadcasts.
+			- Disable remote router login and wireless administration.
+			- Enable MAC address filtering on access points (APs) or routers.
+			- Enable encryption on APs and update passphrases regularly.
+			- Close all unused ports to prevent attacks on APs.
+			- Segregate the network to ensure guests cannot access the private network.
+			- Use closed networks and manually provide the SSID to employees instead of allowing selection from a broadcast list.
+			- Disable the Dynamic Host Configuration Protocol (DHCP) and use static IP addresses.
+			- Disable the Simple Network Management Protocol (SNMP). If required, configure it with the least privileges.
+			- Change the default IP address of the router console.
+			- Always use WPA3 encryption if supported; if unavailable, use WPA2 with AES encryption.
+			- Disable Wi-Fi Protected Setup (WPS) on the router.
+			- Use VLANs or separate SSIDs to segment different types of traffic.
+			- Adjust the router's transmission power to limit Wi-Fi signal range to necessary areas.
+			- Disable unnecessary services and close unused ports.
+			- Use the router’s built-in firewall to filter incoming and outgoing traffic.
+			- Set up a separate guest network with restricted access to main network resources.
+		- Best Practices for SSID Settings:
+			- Use SSID cloaking to prevent default wireless messages from broadcasting the SSID.
+			- Avoid using the SSID, company name, network name, or any easily guessable string in passphrases.
+			- Place a firewall or packet filter between access points (APs) and the corporate intranet.
+			- Limit the wireless network's signal strength to prevent detection outside the organization's premises.
+			- Regularly check wireless devices for configuration or security issues.
+			- Implement additional encryption techniques, such as IPsec over wireless, for enhanced security.
+			- Modify the SSID with unique characters and strings instead of using the manufacturer's default.
+			- Use a separate SSID for guest users to isolate them from the organizational network.
+			- Segment the organizational network into multiple zones with distinct SSIDs to reduce attack impact.
+			- Keep SSID broadcasting disabled for organizational wireless networks.
+			- Ensure each SSID is secured with WPA3 encryption if supported or WPA2 with AES encryption as a minimum.
+			- Periodically change SSIDs and associated passwords for enhanced security.
+		- Best Practices for Authentication:
+			- Enable WPA3 for the highest level of security, as it provides enhanced encryption and protection against attacks.
+			- If WPA3 is not supported, use WPA2 with AES encryption (avoid WPA or TKIP).
+			- Use 802.1X authentication with a RADIUS server for enterprise networks to provide individual credentials for each user.
+			- Implement multifactor authentication (MFA) where possible for an added layer of security.
+			- Ensure proper management of digital certificates in 802.1X deployments, including strong encryption and regular updates.
+			- Disable the network when not in use to minimize attack exposure.
+			- Place wireless access points (APs) in secure locations to prevent unauthorized physical access.
+			- Keep drivers and firmware on all wireless equipment up to date.
+			- Use a centralized authentication server to manage network access efficiently.
+			- Enable server verification on client devices using 802.1X authentication to prevent man-in-the-middle (MITM) attacks.
+			- Deploy rogue AP detection or wireless intrusion prevention/detection systems (WIPS/WIDS) to identify and block unauthorized devices.
+	- Wireless Intrusion Prevention Systems (WIPS):
+		- A wireless intrusion prevention system (WIPS) is a network device that monitors the radio spectrum to detect unauthorized access points (APs) in nearby locations without the host’s permission. It can also implement countermeasures automatically. WIPS protects networks against wireless threats and enables administrators to detect and prevent various network attacks.
+		- WIPS Deployment:
+			- A WIPS consists of several components that work together to provide a unified security monitoring solution.
+			- Cisco’s WIPS deployment includes the following components and functions:
+				- APs in monitor mode: These APs continuously scan channels, detect attacks, and capture packets.
+				- Mobility Services Engine (MSE) running a wireless IPS service: The central aggregation point for alarms from all controllers and their respective wireless IPS monitor-mode APs. It also stores alarm information and forensic files for archival.
+				- Local mode APs: These APs provide wireless service to clients while performing time-sliced rogue detection and location scanning.
+				- Wireless LAN controllers (WLCs): These controllers forward attack information from wireless IPS monitor-mode APs to the MSE and distribute configuration parameters to APs.
+				- Wireless Control System (WCS): This system allows administrators to configure the wireless IPS service on the MSE, push wireless IPS configurations to controllers, and set APs to wireless IPS monitor mode. It is also used for viewing wireless IPS alarms, forensics, reporting, and accessing the threat encyclopedia.
+	- Wi-Fi Security Auditing Tools:
+		- Cisco Adaptive Wireless IPS (www.cisco.com):
+			- The Cisco Adaptive Wireless Intrusion Prevention System (IPS) provides advanced network security through dedicated monitoring and detection of wireless network anomalies, unauthorized access, and RF attacks. Fully integrated with the Cisco Unified Wireless Network, this solution offers comprehensive visibility and control without requiring an overlay system.
+			- Adaptive WIPS enhances wireless network security by detecting and mitigating malicious attacks and vulnerabilities. It also empowers security professionals to identify, analyze, and respond to wireless threats effectively.
+		- RFProtect (www.arubanetworks.com)
+		- Fern Wifi Cracker (github.com)
+		- OSWA-Assistant (securitystartshere.org)
+		- BoopSuite (github.com)
+		- Wifite (github.com)
+	- Wi-Fi Intrusion Prevention Systems (IPSs):
+		- Wi-Fi IPSs protect wireless networks by automatically scanning, detecting, and classifying unauthorized access points and rogue traffic. This prevents neighboring users or skilled hackers from gaining unauthorized access to Wi-Fi network resources.
+		- WatchGuard Wi-Fi Cloud WIPS (www.watchguard.com):
+			- WatchGuard Wi-Fi Cloud WIPS defends against unauthorized devices and rogue access points, prevents evil twin attacks, and mitigates malicious threats such as denial-of-service (DoS) attacks with near-zero false positives. It ensures high-performance wireless connectivity while maintaining robust security.
+		- Extreme AirDefense (www.extremenetworks.com)
+		- Arista WIPS (www.arista.com)
+		- SonicWall Wireless Network Manager (www.sonicwall.com)
+		- Cisco Meraki (www.cisco.com)
+		- FortiGate Next-Generation Firewall (NGFW) (www.fortinet.com)
