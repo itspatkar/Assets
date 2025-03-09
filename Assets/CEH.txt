@@ -12166,7 +12166,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- AdvPhishing: AdvPhishing is a social media phishing tool that helps attackers bypass two-factor authentication (2FA) or OTP verification. It can access the target's IP address and is compatible with Linux and Termux OS. Attackers deploy AdvPhishing on public networks using NGrok tunneling and localhost tunneling. The screenshot below demonstrates how attackers can bypass the two-factor authentication of a victim’s social media account (e.g., Instagram) using AdvPhishing.
 			- mrphish: mrphish is a bash-based script designed for phishing social media accounts, featuring port forwarding and OTP bypass capabilities. This tool works on both rooted and non-rooted Android devices.
 	- Camera/Microphone Capture Attacks:
-		With the increasing use of personal devices connected to the Internet, significant security concerns have emerged alongside their benefits. Attackers are launching sophisticated attacks on digital users to gain unauthorized access to their devices, steal sensitive data, or compromise device functionality. The following are two common methods attackers use to exploit cameras and microphones on personal devices.
+		- With the increasing use of personal devices connected to the Internet, significant security concerns have emerged alongside their benefits. Attackers are launching sophisticated attacks on digital users to gain unauthorized access to their devices, steal sensitive data, or compromise device functionality. The following are two common methods attackers use to exploit cameras and microphones on personal devices.
 		- Camfecting Attack:
 			- A camfecting attack is a form of webcam hijacking in which an attacker gains unauthorized access to a target’s camera. This is typically achieved by infecting the victim’s device with a Remote Access Trojan (RAT). Once compromised, the attacker can access the victim’s camera and microphone, potentially disabling the camera indicator light to avoid detection. Using this method, the attacker can steal sensitive data such as personal photos, recorded videos, and even the victim’s location. Additionally, the attacker can remotely control the camera from anywhere.
 			- Steps Involved in Camfecting Attack:
@@ -12196,3 +12196,159 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- E-TOOL (github.com)
 				- CamOver (www.github.com)
 				- CAM-DUMPER (github.com)
+- Hacking Android OS:
+	- Android is the most popular mobile OS due to its open platform, which allows for extensive application development and customization. However, like other operating systems, Android has certain vulnerabilities, and not all users install security patches to update and protect their OS and apps. This lax approach enables attackers to exploit these vulnerabilities and launch various attacks to steal valuable data from victims' devices.
+	- This section explores the Android OS, its architecture, and its associated vulnerabilities. It also covers the process of rooting Android phones, rooting tools, Android Trojans, and hacking techniques used against Android devices. Finally, it provides guidelines for securing Android devices, implementing security controls, and using device-tracking tools.
+	- Android OS (developer.android.com):
+		- Android is a software environment developed by Google for mobile devices. It includes an operating system (OS), middleware, and key applications. The Android OS is built on the Linux kernel and is an open-source platform.
+		- Features:
+			- Prebuilt UI Components:
+				- Includes structured layout objects and UI controls for building app interfaces.
+			- Persistent Data Storage Options:
+				- Shared Preferences: Stores private primitive data in key-value pairs.
+				- Internal Storage: Saves private data on the device's memory.
+				- External Storage: Stores public data on shared external storage.
+				- SQLite Databases: Manages structured data in a private database.
+				- Network Connection: Allows data storage on a web server via a network.
+			- RenderScript:
+				- A platform-independent computation engine that runs at the native level, useful for accelerating apps requiring intensive processing power.
+			- Connectivity APIs:
+				- Provides APIs for interacting with other devices via Bluetooth, Near-Field Communication (NFC), Wi-Fi P2P, USB, and Session Initiation Protocol (SIP), in addition to standard network connections.
+			- Application Framework:
+				- Enables the reuse and replacement of components.
+			- Android Runtime (ART):
+				- Optimized for mobile devices, improving performance and efficiency.
+			- Integrated Browser:
+				- Based on the open-source Blink and WebKit engines.
+			- SQLite:
+				- Provides structured data storage.
+			- Media Support:
+				- Compatible with common audio, video, and image formats, including MPEG-4, H.264, MP3, AAC, AMR, JPG, PNG, and GIF.
+			- Rich Development Environment:
+				- Includes a device emulator, debugging tools, memory and performance profilers, and support for development in the Eclipse IDE.
+		- Android OS Architecture:
+			- Android is a Linux-based operating system designed for portable devices such as smartphones and tablets. It consists of a stack of software components categorized into six sections: System Apps, Java API Framework, Native C/C++ Libraries, Android Runtime, Hardware Abstraction Layer (HAL), and Linux Kernel, structured across five layers.
+			- System Apps:
+				- Android system applications reside at the top layer. Any app developed must integrate within this layer. Common pre-installed applications include the dialer, email, calendar, camera, SMS messaging, web browsers, and contact managers. Most Android apps are developed using Java.
+			- Java API Framework:
+				- The Android platform provides developers with Java-based APIs. The Application Framework offers high-level services that developers incorporate into their apps.
+				- Key components of the Application Framework include:
+					- Content Providers: Manages data sharing between applications.
+					- View System: Supports the development of lists, grids, text boxes, buttons, and other UI elements.
+					- Activity Manager: Controls the activity lifecycle of applications.
+					- Location Manager: Uses GPS or cell towers to manage location data.
+					- Package Manager: Tracks installed applications on the device.
+					- Notification Manager: Enables applications to display custom messages in the status bar.
+					- Resource Manager: Manages various app resources such as images and layouts.
+					- Telephony Manager: Handles voice call functionalities.
+					- Window Manager: Manages application windows.
+			- Native C/C++ Libraries:
+				- This layer contains native libraries written in C or C++, optimized for specific hardware. These libraries allow the device to process various types of data efficiently.
+				- Key Native Libraries include:
+					- WebKit & Blink: Web browser engines for rendering HTML content.
+					- OpenMAX AL: Handles multimedia (audio and video) processing.
+					- Libc: Standard C library for system functions.
+					- Media Framework: Provides media codecs for recording and playback.
+					- OpenGL ES: 2D and 3D graphics rendering library.
+					- Surface Manager: Manages display output.
+					- SQLite: Lightweight database engine for local data storage.
+					- FreeType: Renders fonts.
+					- SSL: Ensures internet security.
+			- Android Runtime:
+				- This layer includes core libraries and the ART (Android Runtime) virtual machine.
+				- Android Runtime (ART): From Android 5.0 onwards, each app runs in its own runtime process and instance. ART features:
+					- Ahead-of-Time (AOT) compilation
+					- Just-in-Time (JIT) compilation
+					- Optimized garbage collection (GC)
+					- Dalvik Executable (DEX) format for efficient machine code compression.
+				- Core Libraries: Provide essential Java libraries required for Android app development.
+			- Hardware Abstraction Layer (HAL):
+				- HAL serves as a bridge between hardware components and the Java API framework. It abstracts the underlying hardware and provides interfaces for accessing various hardware functionalities, including audio, camera, Bluetooth, sensors, and more.
+			- Linux Kernel:
+				- At the foundation of Android, the Linux Kernel manages low-level system operations and hardware interactions. This layer includes essential device drivers such as: Audio driver, Binder (IPC) driver, Display driver, Keypad driver, Bluetooth driver, Camera driver, Shared memory driver, USB driver, Wi-Fi driver, Flash memory driver, Power management driver.
+				- Key functions of the Linux Kernel include memory management, power management, security enforcement, and networking.
+		- Android Device Administration API:
+			- The Device Administration API provides system-level device management features. These APIs allow developers to create security-focused applications, particularly useful in enterprise environments where IT professionals need extensive control over employee devices. Developers can use the Device Administration API to create device administration ("admin") applications that users install on their devices. These applications enforce security policies as required.
+			- Examples of Applications Using the Device Administration API:
+				- Email clients
+				- Security applications that perform remote wipe actions
+				- Device management services and applications
+			- Supported Policies in the Android Device Administration API:
+				- Password enabled: Requires devices to prompt users for a PIN or password.
+				- Minimum password length: Defines the required number of characters for a password. For example, a minimum of six characters may be mandated.
+				- Alphanumeric password required: Enforces passwords to contain a combination of letters and numbers, with optional symbolic characters.
+				- Complex password required: Mandates that passwords include at least one letter, one numerical digit, and one special character. (Introduced in Android 3.0)
+				- Minimum letters required in password: Specifies the minimum number of letters required in a password. (Introduced in Android 3.0)
+				- Minimum lowercase letters required in password: Sets the minimum number of lowercase letters required. (Introduced in Android 3.0)
+				- Minimum non-letter characters required in password: Determines the required number of non-letter characters. (Introduced in Android 3.0)
+				- Minimum numerical digits required in password: Specifies the minimum number of numerical digits required. (Introduced in Android 3.0)
+				- Minimum symbols required in password: Defines the minimum number of special symbols required. (Introduced in Android 3.0)
+				- Minimum uppercase letters required in password: Sets the minimum number of uppercase letters required. (Introduced in Android 3.0)
+				- Password expiration timeout: Specifies when a password expires, measured in milliseconds from the time an admin sets the expiration. (Introduced in Android 3.0)
+				- Password history restriction: Prevents users from reusing the last n unique passwords. Typically used with setPasswordExpirationTimeout(), which forces users to update passwords periodically. (Introduced in Android 3.0)
+				- Maximum failed password attempts: Limits the number of incorrect password attempts before the device automatically wipes its data. The API also allows administrators to remotely reset the device to factory defaults, ensuring data security in case of theft or loss.
+				- Maximum inactivity time lock: Defines the duration of user inactivity before the screen locks, requiring re-entry of the PIN or password. The timeout range is between 1 and 60 minutes.
+				- Require storage encryption: Enforces device storage encryption if supported. (Introduced in Android 3.0)
+				- Disable camera: Allows administrators to disable the device camera. This restriction is not necessarily permanent—administrators can dynamically enable or disable the camera based on context, time, or other conditions. (Introduced in Android 4.0)
+			- Additional Features of the Device Administration API:
+				- In addition to the policies listed above, the API allows administrators to:
+					- Prompt users to set a new password
+					- Lock the device immediately
+					- Wipe all data from the device (restore it to factory defaults)
+	- Android Rooting:
+		- Rooting an Android device allows users to bypass restrictions imposed by hardware manufacturers and carriers, enabling them to modify or replace system applications and settings, run apps that require administrative privileges, remove pre-installed applications, and even replace the device’s operating system. Rooting grants users privileged control (known as “root access”) within Android’s subsystem. The process typically involves exploiting security vulnerabilities in the device’s firmware, copying the su binary to a location within the system’s PATH (e.g., /system/xbin/su), and granting it executable permissions using the chmod command.
+		- Rooting enables users to perform advanced operations, such as:
+			- Modifying or deleting system files, modules, ROMs (stock firmware), and kernels
+			- Removing carrier- or manufacturer-installed applications (bloatware)
+			- Gaining low-level access to hardware that is typically restricted in default configurations
+			- Enhancing device performance
+			- Enabling Wi-Fi and Bluetooth tethering
+			- Installing applications on an SD card
+			- Customizing the user interface and keyboard
+		- However, rooting also comes with significant risks, including:
+			- Voiding the phone’s warranty
+			- Reduced device performance
+			- Increased vulnerability to malware
+			- Risk of "bricking" the device (rendering it unusable)
+		- Popular tools for rooting Android devices include One Click Root, KingoRoot, and others.
+		- Android Rooting Tools:
+			- Rooting Android Using KingoRoot (www.kingoapp.com):
+				- KingoRoot is a tool used to root Android devices, and it can be used with or without a PC. Rooting with KingoRoot allows users to:
+					- Extend battery life
+					- Access root-only apps
+					- Remove carrier-installed “bloatware”
+					- Customize the device’s appearance
+					- Gain administrative (root) permissions
+				- Rooting an Android Device Using KingoRoot with a PC:
+					- Download and install KingoRoot Android (PC Version) on your computer.
+					- Launch the tool and connect your Android device to the computer using a USB cable.
+					- Enable USB debugging mode on your Android device.
+					- The tool will automatically install the necessary drivers on your PC.
+					- Once the device is detected, a new screen will display your device name along with a “ROOT” button.
+					- Click “ROOT” to begin the rooting process.
+				- Rooting an Android Device Using KingoRoot without a PC:
+					- Enable installation from unknown sources in your Android device settings.
+					- Download KingoRoot.apk from the official website.
+					- Install and open the KingoRoot app.
+					- Tap “One Click Root” on the main interface.
+					- Wait a few seconds for the rooting process to complete.
+					- If rooting fails, try multiple attempts or use the PC version instead.
+			- One Click Root (oneclickroot.com):
+				- One Click Root is an Android rooting software that supports a wide range of devices. It includes additional fail-safes, such as instant unrooting, and offers full technical support. With One Click Root, users can root their Android smartphones or tablets to unlock various features, including:
+					- Access to more apps
+					- Installing apps on an SD card
+					- Extending battery life
+					- Enabling Wi-Fi and Bluetooth tethering
+					- Installing custom ROMs
+					- Unlocking blocked features
+				- Steps to Root an Android Device Using One Click Root:
+					- Download and install One Click Root (PC Version) on your computer.
+					- Connect your Android device to the computer using a USB cable.
+					- Enable USB debugging mode on your Android device.
+					- Launch the One Click Root tool on your PC.
+					- Click “ROOT” to begin the rooting process.
+			- TunesGo (tunesgo.wondershare.com)
+			- RootMaster (root-master.com)
+			- Magisk Manager (magiskmanager.com)
+			- KingRoot (kingrootapp.net)
+			- iRoot (iroot-download.com)
