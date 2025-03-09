@@ -12025,3 +12025,174 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- Privilege Escalation: Attackers exploit security flaws to gain elevated access rights within a database, allowing them to access or manipulate sensitive data.
 						- Data Dumping: Attackers extract large amounts of data from a compromised database, exposing confidential records.
 						- OS Command Execution: Some database management systems allow the execution of operating system commands. Attackers exploit this feature by injecting OS-level commands into database queries, potentially gaining full control over the server.
+	- How Hackers Can Profit from Successfully Compromised Mobile Devices (www.sophos.com, securelist.com):
+		- Today, smartphones store vast amounts of sensitive information, including images, contact lists, banking apps, social media accounts, emails, financial data, and business-related information. This makes them highly valuable targets for cybercriminals. Android devices, in particular, are more susceptible to hacking due to their large market share. Once a smartphone is compromised, attackers can spy on user activities, misuse stolen data, impersonate the user on social media, or even add the device to a botnet (a network of infected smartphones).
+		- Ways Hackers Exploit Compromised Mobile Devices:
+			- Surveillance: Accessing audio recordings, camera feeds, call logs, location data, SMS messages, IoT/AI devices, and smart appliances.
+			- Financial Exploitation: Sending premium-rate SMS messages, stealing Transaction Authentication Numbers (TANs), deploying ransomware for extortion, distributing fake antivirus software, making expensive calls, and mining cryptocurrency.
+			- Data Theft: Extracting account details, contacts, call logs, and phone numbers; exploiting app vulnerabilities to steal data; obtaining the International Mobile Equipment Identity (IMEI) number; and accessing personal health information.
+			- Botnet Activity: Using infected devices for Distributed Denial-of-Service (DDoS) attacks, click fraud, and sending premium-rate SMS messages.
+			- Impersonation: Redirecting SMS messages, sending fraudulent emails, posting on social media, and stealing passwords.
+	- Mobile Attack Vectors and Mobile Platform Vulnerabilities:
+		- Mobile Attack Vectors:
+			- Mobile devices have become prime targets for attackers due to their widespread use. These devices access many of the same resources as traditional computers but also possess unique features that have introduced new attack vectors and security risks. These attack vectors make mobile platforms vulnerable to malicious attacks, both through network-based threats and physical compromise.
+			- Below are some key attack vectors that adversaries exploit to target vulnerabilities in mobile operating systems, device firmware, or mobile applications.
+				- Malware: Viruses, rootkits, application modifications, OS modifications
+				- Data Exfiltration: Extraction from data streams and emails, screenshot capture and screen scraping, copying to USB devices, loss of backup data
+				- Data Tampering: Modification by unauthorized applications, undetected tampering attempts, vulnerabilities in jailbroken devices
+				- Data Loss: Application security flaws, unauthorized physical access, device loss
+		- Mobile Platform Vulnerabilities and Risks:
+			- The increasing adoption of smartphones with rapidly evolving technological features has made mobile device security a critical concern for the IT sector. Cybercriminals are increasingly targeting mobile devices due to significant advancements in both mobile operating systems and hardware. Additionally, enhancements in smartphone capabilities introduce new security challenges.
+			- As smartphones surpass PCs as the preferred devices for accessing the internet, managing communications, and handling sensitive data, attackers are investing more effort into researching and implementing new attack strategies. Their goal is to compromise users’ security and privacy—or even gain complete control over victims’ devices.
+			- Below are some key vulnerabilities and risks affecting mobile platforms:
+				- Malicious apps in app stores
+				- Mobile malware
+				- App sandboxing vulnerabilities
+				- Weak device and app encryption
+				- OS and app update issues
+				- Jailbreaking and rooting risks
+				- Mobile application vulnerabilities
+				- Privacy concerns (e.g., geolocation tracking)
+				- Weak data security measures
+				- Excessive app permissions
+				- Weak communication security
+				- Physical attacks on devices
+				- Insufficient code obfuscation
+				- Inadequate transport layer security (TLS)
+				- Improper session expiration policies
+	- Security Issues Arising from App Stores:
+		- Mobile applications are software programs designed to run on smartphones, tablets, and other mobile devices. These applications serve various functions, including messaging, email, media playback, voice recording, gaming, banking, and shopping. Typically, apps are distributed through official app stores operated by mobile OS providers, such as Apple’s App Store, Google Play Store, and Microsoft Store, as well as third-party platforms like the Amazon Appstore, Samsung Galaxy Store, GetJar, and APKMirror.
+		- App stores are prime targets for attackers seeking to distribute malware and malicious applications. One common tactic involves downloading a legitimate app, injecting it with malware, and then re-uploading it to a third-party app store, where unsuspecting users download it, believing it to be genuine. Once installed, these malicious apps can compromise user data by accessing and transmitting sensitive information—such as call logs, photos, videos, and documents—to the attacker without the user's knowledge. The stolen data may then be used for further exploitation or cyberattacks.
+		- Additionally, attackers may employ social engineering tactics to trick users into downloading and installing apps from sources outside official app stores. The lack of proper app vetting in certain marketplaces increases the risk of malicious and fraudulent apps being distributed. These apps can not only compromise personal data but also damage other applications and system files, leading to security breaches and potential device control by attackers.
+	- App Sandboxing Issues:
+		- Smartphones are increasingly becoming prime targets for cybercriminals. Mobile app developers must understand the security and privacy risks associated with running non-sandboxed apps and should design applications with proper sandboxing mechanisms in place.
+		- App sandboxing is a security mechanism that restricts an application’s access to system resources, limiting it to only the functionality necessary for its intended purpose. This mechanism is particularly useful for executing untested or untrusted code from third-party sources, including suppliers, users, and websites. By isolating applications, sandboxing enhances security by preventing unauthorized interactions between apps, system resources, and malware such as Trojans and viruses.
+		- While sandboxing is designed to protect applications from interfering with one another, malicious apps may exploit vulnerabilities to bypass these protections. A secure sandbox environment ensures that an application operates with only the minimum privileges required, preventing it from accessing other users' data or system resources. Conversely, a vulnerable sandbox environment may allow a malicious app to exploit weaknesses, breach the sandbox's perimeter, and compromise sensitive data and system resources.
+	- Mobile Spam:
+		- Mobile phones are now widely used for both personal and business purposes. Spam refers to unsolicited messages sent via electronic communication technologies such as SMS, MMS, instant messaging (IM), and email. Mobile phone spam—also known as SMS spam, text spam, or m-spam—consists of bulk, unsolicited messages sent to known or unknown phone numbers and email addresses to target mobile users.
+		- Common types of spam messages received on mobile devices include:
+			- Advertisements or malicious links designed to trick users into revealing confidential information.
+			- Commercial messages promoting products or services in an unsolicited manner.
+			- Fraudulent prize notifications claiming the recipient has won a prize and instructing them to call a premium-rate phone number for more details.
+			- Malicious links intended to lure users into divulging sensitive personal or corporate data.
+			- Phishing messages that attempt to deceive recipients into sharing personal or financial information—such as names, addresses, birthdates, bank account details, and credit card numbers—which attackers can use for identity theft or financial fraud.
+		- Mobile spam consumes significant network bandwidth and can lead to serious consequences, including financial loss, malware infections, and corporate data breaches.
+	- SMS Phishing Attack (SMiShing) – Targeted Attack Analysis:
+		- Text messaging is the most prevalent non-voice communication method on mobile phones. Users worldwide send and receive billions of text messages daily. This massive volume of data increases the risk of spam and phishing attacks.
+		- SMS phishing, also known as SMiShing, is a type of phishing fraud where attackers use SMS messages to send fraudulent texts. The goal is to trick recipients into revealing personal or financial information by including deceptive links or phone numbers in the message. These messages often contain fake website URLs or telephone numbers designed to lure victims into providing sensitive details such as Social Security numbers (SSNs), credit card numbers, and online banking credentials.
+		- In addition to stealing information, attackers may use SMiShing to install malware on victims’ mobile devices or infiltrate associated networks. To execute an attack, criminals often purchase prepaid SMS cards using fake identities. They then send SMS bait messages designed to appear attractive or urgent—such as lottery winnings, gift vouchers, online purchases, or account suspension notices. These messages typically contain a malicious link or phone number.
+		- If the recipient clicks the link, believing it to be legitimate, they are redirected to a phishing website that requests personal or financial details (e.g., name, phone number, date of birth, credit card number, PIN, CVV code, SSN, or email address). The attacker can then exploit this stolen information for malicious activities such as identity theft, unauthorized online purchases, and financial fraud.
+		- Why Is SMS Phishing Effective?
+			- SMS phishing is a highly effective attack method due to several factors:
+			- High Open Rates: SMS messages have significantly higher open rates than emails. Most people open and read text messages almost immediately, increasing the attack’s success rate.
+			- Trust in SMS: Many users trust SMS more than email, viewing it as a more personal and direct communication channel. This trust reduces skepticism toward fraudulent messages.
+			- Limited Space for Links and Content: The character limit in SMS messages forces attackers to craft concise, compelling messages. This makes it harder for recipients to identify phishing attempts, which are often more obvious in longer emails.
+			- Lack of Security Awareness: Users are generally less aware of SMS phishing risks than email phishing. While many people recognize email phishing tactics, they are less familiar with SMiShing techniques.
+			- Mobile Device Vulnerabilities: Mobile devices typically have fewer security protections than desktop computers. Many users do not install robust security software on their smartphones, making them more vulnerable to attacks.
+			- Ease of Impersonation: Attackers can easily spoof phone numbers, making fraudulent messages appear to come from legitimate sources such as banks, government agencies, or well-known companies.
+			- Sense of Urgency: Phishing messages often create a false sense of urgency, pressuring recipients to act quickly. For example, messages may warn about a security breach, account suspension, or overdue payment, prompting users to take immediate action without verifying authenticity.
+			- Direct Links and Malware Downloads: SMS messages often contain direct links to malicious websites or prompt users to download malware. Because SMS is a fast and convenient communication channel, users are more likely to click on links without hesitation.
+			- Prevalence of Shortened URLs: Attackers frequently use URL-shortening services to disguise malicious links. Since shortened URLs are common in SMS communication, they appear legitimate and make it harder for users to detect fraudulent links.
+			- Lack of Anti-Phishing Protections: Unlike email services that offer built-in anti-phishing filters and spam protection, SMS lacks robust security mechanisms. As a result, phishing messages can easily reach a victim’s inbox without detection.
+		- By understanding these factors, users can take precautions to protect themselves from SMiShing attacks. It is essential to verify the authenticity of SMS messages, avoid clicking on unknown links, and report suspicious messages to prevent falling victim to these scams.
+	- Pairing Mobile Devices on Open Bluetooth and Wi-Fi Connections:
+		- Setting a mobile device’s Bluetooth connection to "open" or "discovery" mode, along with enabling automatic Wi-Fi connections—especially in public places—poses significant security risks. Attackers exploit these settings to infect mobile devices with malware, such as viruses and Trojans, or compromise unencrypted data transmitted over untrusted networks.
+		- Cybercriminals may trick victims into accepting Bluetooth connection requests from malicious devices or conduct Man-in-the-Middle (MITM) attacks, intercepting and compromising data exchanged between connected devices. Using the stolen information, attackers can commit identity fraud and other malicious activities, putting users at significant risk. Techniques such as bluesnarfing and bluebugging allow attackers to eavesdrop on or intercept data transmitted between devices connected over open networks, such as public Wi-Fi or unencrypted routers.
+		- Bluesnarfing (Stealing Information via Bluetooth):
+			- Bluesnarfing is the unauthorized access and theft of information from a wireless device via a Bluetooth connection. This technique enables an attacker to retrieve sensitive data, including contacts, emails, text messages, photos, videos, and business documents, from vulnerable devices such as smartphones, laptops, tablets, and PDAs.
+			- Devices with Bluetooth enabled and set to "discoverable" mode (making them visible to nearby Bluetooth devices) are particularly susceptible to bluesnarfing—especially if they have software vulnerabilities. Attackers can exploit these weaknesses to gain unauthorized access without the victim’s knowledge.
+		- Bluebugging (Taking Over a Device via Bluetooth):
+			- Bluebugging is a more advanced Bluetooth attack where an attacker gains remote access to a target device and exploits its features without the owner's consent. Before returning control, attackers establish a backdoor, allowing them to:
+				- Monitor and intercept phone calls and messages
+				- Forward calls and messages to other numbers
+				- Read sensitive corporate or personal data
+				- Access contacts, photos, and videos
+				- Connect to the internet using the victim’s device
+				- Perform other unauthorized actions
+			- Bluebugging enables attackers to compromise device security, eavesdrop on confidential communications, and conduct various forms of cyber espionage.
+		- How to Protect Against These Attacks:
+			- To minimize the risk of Bluetooth and Wi-Fi attacks:
+			- Keep Bluetooth turned off when not in use
+			- Set Bluetooth to "non-discoverable" mode
+			- Avoid pairing with unknown or untrusted devices
+			- Disable automatic Wi-Fi connections in public places
+			- Use encrypted Wi-Fi networks and VPNs for secure browsing
+			- Regularly update device software to patch security vulnerabilities
+	- Agent Smith Attack:
+		Agent Smith attacks are carried out by luring victims into downloading and installing malicious apps disguised as games, photo editors, or other attractive tools from third-party app stores such as 9Apps. Once the user installs the app, the core malicious code infects or replaces legitimate apps on the victim’s mobile device based on commands from a command-and-control (C&C) server.
+		- The deceptive application replaces legitimate apps such as WhatsApp, SHAREit, and MX Player with similarly infected versions. It may also masquerade as an authentic Google product, such as Google Updater or Themes. The attacker then generates a massive volume of irrelevant and fraudulent advertisements on the victim’s device through the infected app for financial gain.
+		- Additionally, attackers exploit these apps to steal sensitive information, including personal details, login credentials, and banking data, from the victim’s mobile device through C&C commands.
+	- Exploiting SS7 Vulnerabilities:
+		- Signaling System 7 (SS7) is a communication protocol that enables mobile users to exchange communications through different cellular networks, especially while roaming. Mobile devices are designed to move across locations while maintaining connectivity. The SS7 protocol facilitates this by allowing users to switch telecom operators or connect to different cell towers. However, SS7 operates on a foundation of mutual trust between operators, lacking robust authentication mechanisms.
+		- Due to the absence of authentication verification, attackers can exploit SS7 vulnerabilities to conduct Man-in-the-Middle (MITM) attacks, intercepting text messages and calls between communicating devices. This allows them to eavesdrop on bank credentials, one-time passwords (OTPs), and other sensitive information transmitted over the network. Additionally, attackers can bypass two-factor authentication (2FA) and end-to-end encryption via SMS, posing a significant security threat.
+		- Threats Associated with SS7 Vulnerabilities:
+			- When an attacker gains access to the SS7 protocol, the victim’s device is exposed to several risks, including:
+			- Identity Exposure – Revealing the subscriber’s identity
+			- Network Intrusion – Disclosing network-related information
+			- Data Interception – Spying on and stealing personal data
+			- Call and Message Hijacking – Enabling phone tapping
+			- Denial-of-Service (DoS) Attacks – Disrupting services and damaging the telecom operator’s reputation
+			- Geolocation Tracking – Monitoring the victim’s physical location
+	- Simjacker: SIM Card Attack:
+		- Simjacker is a vulnerability associated with a SIM card’s S@T browser (SIMalliance Toolbox Browser), a pre-installed software used to execute a set of instructions. Attackers exploit this vulnerability to carry out various malicious activities, such as capturing device location, monitoring calls, collecting information like IMEI, making fraudulent or expensive calls, sending premium-rate messages, forcing the device browser to connect to malicious websites, and launching Denial-of-Service (DoS) attacks to disable SIM cards.
+		- The severity of a Simjacker attack depends on the victim’s device. The attack begins when an attacker sends spyware-like code disguised as system or SIM card settings via SMS. Once received, the malicious code allows the attacker to take control of the SIM card and mobile device, executing commands without user interaction.
+		- Steps Involved in Simjacker Attack:
+			- The attacker sends a fraudulent SMS containing hidden code or instructions from a SIM Application Toolkit (STK).
+			- The victim’s device receives the malicious SMS, and the S@T browser on the SIM card automatically recognizes and processes the hidden instructions.
+			- The injected code executes various activities on the device without the user’s consent.
+			- The attacker’s accomplice device receives user information via SMS, which can be used to track the victim’s live location, exfiltrate device data, and conduct further malicious activities.
+	- Call Spoofing:
+		- Call spoofing is a technique used by attackers to manipulate the caller ID information displayed on a recipient's phone. This allows them to disguise their phone number as a trusted source, such as a bank or government agency, to trick individuals into sharing sensitive information or paying for unnecessary services. Attackers also use this method to make threatening or harassing phone calls while concealing their identities.
+		- Below are some tools that attackers can use to perform call spoofing against a targeted phone number:
+		- Call Spoofing Tools:
+			- SpoofCard (www.spoofcard.com):
+				- SpoofCard allows attackers to use a virtual number to make calls and send texts while concealing their personal information, regardless of location.
+				- This tool enables attackers to:
+					- Change their voices during calls to sound like a different gender.
+					- Add background noise to alter the call environment.
+					- Send calls directly to voicemail.
+					- Record conversations for later review or upload to cloud services such as Google Drive and Dropbox.
+			- Fake Call (play.google.com)
+			- SpoofTel (www.spooftel.com)
+			- Fake Call and SMS (play.google.com)
+			- Fake Caller ID (fakecallerid.io)
+			- Phone Id - Fake Caller Buster (play.google.com)
+	- OTP Hijacking / Two-Factor Authentication Hijacking:
+		- One-time passwords (OTPs) are sent by a server via SMS, an authenticator app, or email to securely authenticate users. Although this feature appears secure, attackers can hijack OTPs and redirect them to their personal devices using various techniques, such as social engineering and SMS jacking. This type of attack is difficult to detect because users may assume a network issue when they fail to receive an OTP—when, in reality, it has been redirected to an attacker-controlled device. Using the stolen OTP, attackers can log into the victim’s online accounts, reset passwords, and steal sensitive information.
+		- Attackers typically succeed in OTP hijacking by first obtaining the victim’s personally identifiable information (PII). They may bribe or trick mobile store employees or exploit the reuse of phone numbers assigned to different customers. Additionally, attackers use social engineering techniques to manipulate telecom providers into transferring ownership of the victim’s SIM card. They may falsely claim that their device was lost and request the provider to issue a new SIM, effectively taking control of the victim’s number. Another method involves SIM jacking, where attackers use malware to infect the target device’s SIM card, allowing them to intercept and read OTPs.
+		- OTP Hijacking via Lock Screen Notifications:
+			- Attackers can also physically steal SMS-based OTPs by monitoring a victim's actions closely. When a user requests an OTP, attackers may view lock screen notifications to obtain the code. This can be achieved through various methods, such as eavesdropping or tricking the user into lending their phone under the pretext of making an emergency call.
+		- OTP Hijacking Tools:
+			- AdvPhishing: AdvPhishing is a social media phishing tool that helps attackers bypass two-factor authentication (2FA) or OTP verification. It can access the target's IP address and is compatible with Linux and Termux OS. Attackers deploy AdvPhishing on public networks using NGrok tunneling and localhost tunneling. The screenshot below demonstrates how attackers can bypass the two-factor authentication of a victim’s social media account (e.g., Instagram) using AdvPhishing.
+			- mrphish: mrphish is a bash-based script designed for phishing social media accounts, featuring port forwarding and OTP bypass capabilities. This tool works on both rooted and non-rooted Android devices.
+	- Camera/Microphone Capture Attacks:
+		With the increasing use of personal devices connected to the Internet, significant security concerns have emerged alongside their benefits. Attackers are launching sophisticated attacks on digital users to gain unauthorized access to their devices, steal sensitive data, or compromise device functionality. The following are two common methods attackers use to exploit cameras and microphones on personal devices.
+		- Camfecting Attack:
+			- A camfecting attack is a form of webcam hijacking in which an attacker gains unauthorized access to a target’s camera. This is typically achieved by infecting the victim’s device with a Remote Access Trojan (RAT). Once compromised, the attacker can access the victim’s camera and microphone, potentially disabling the camera indicator light to avoid detection. Using this method, the attacker can steal sensitive data such as personal photos, recorded videos, and even the victim’s location. Additionally, the attacker can remotely control the camera from anywhere.
+			- Steps Involved in Camfecting Attack:
+				- The attacker sends a phishing email containing a malicious link or tricks the victim into visiting a compromised website.
+				- When the victim clicks the link or visits the malicious website, malware is downloaded and installed on their device, granting remote access to the attacker.
+				- The attacker can now capture personal data, including photos and videos, without the victim's knowledge.
+		- Android Camera Hijack Attack:
+			- Attackers exploit vulnerabilities in Google’s default camera application, which is widely used on Android devices. By leveraging multiple security bypass vulnerabilities, attackers can circumvent permission requirements and gain unauthorized access to the victim’s camera and microphone. Alarmingly, this exploitation can occur even when the mobile device is locked.
+			- Android camera applications typically require storage permissions to save photos and videos. These applications request permissions such as:
+				- android.permission.CAMERA
+				- android.permission.RECORD_AUDIO
+				- android.permission.ACCESS_COARSE_LOCATION
+				- android.permission.ACCESS_FINE_LOCATION
+			- Granting these permissions can provide unrestricted access to the device's internal storage, allowing attackers to:
+				- Capture photos and record videos
+				- Record voice calls
+				- Access stored photos, videos, GPS locations, and other sensitive data
+			- Steps Involved in an Android Camera Hijack Attack:
+				- Attackers exploit security bypass vulnerabilities by tricking the victim into downloading a malicious app.
+				- The malicious app installs a Trojan on the victim’s device without their knowledge.
+				- Once the victim starts using the infected application, a persistent connection is established between the attacker and the device.
+				- Even if the victim closes the application, the connection remains active, allowing the attacker to stealthily capture photos and record videos.
+			- Camera/Microphone Hijacking Tools:
+				- StormBreaker (www.github.com): Attackers use the StormBreaker tool for social engineering attacks that hijack camera and microphone access. This tool can retrieve the device’s location, access the webcam, and control the microphone without explicitly requesting permissions from the user.
+				- CamPhish (www.github.com)
+				- HACK-CAMERA (www.github.com)
+				- E-TOOL (github.com)
+				- CamOver (www.github.com)
+				- CAM-DUMPER (github.com)
