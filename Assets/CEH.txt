@@ -11926,3 +11926,102 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- SonicWall Wireless Network Manager (www.sonicwall.com)
 		- Cisco Meraki (www.cisco.com)
 		- FortiGate Next-Generation Firewall (NGFW) (www.fortinet.com)
+
+
+--------------------------------------------------
+
+# Hacking Mobile Platforms
+
+- Mobile Platform Attack Vectors:
+	- Mobile security is becoming increasingly challenging due to the emergence of complex attacks that use multiple attack vectors to compromise mobile devices. These security threats exploit critical data, financial information, and other sensitive details of mobile users. They can also damage the reputation of mobile networks and organizations.
+	- This section explores vulnerabilities in the mobile business environment, the OWASP Top 10 mobile risks, the anatomy of mobile attacks, mobile attack vectors, associated vulnerabilities and risks, security issues related to app stores, app sandboxing challenges, mobile spam, and the risks of pairing mobile devices over open Bluetooth and Wi-Fi connections, among other mobile threats.
+	- Vulnerable Areas in the Mobile Business Environment (www.ibm.com):
+		- Smartphones are widely used for both business and personal purposes, making them valuable targets for attackers seeking to steal corporate or personal data. Security threats to mobile devices have increased due to greater Internet connectivity, the widespread use of commercial and third-party applications, and various communication methods.
+		- In addition to mobile-specific threats, mobile devices are also vulnerable to many risks that affect desktop and laptop computers, web applications, and networks. Modern smartphones offer Internet and network connectivity through multiple channels, including 3G/4G/5G, Bluetooth, Wi-Fi, and wired computer connections. Security threats can emerge at different points along these communication paths during data transmission.
+	- OWASP Top 10 Mobile Risks - 2024 (owasp.org):
+		- M1 - Improper Credential Usage:
+			- This category covers risks associated with insecure credential handling, such as storing hardcoded credentials, saving them in unprotected locations, or transmitting them over insecure channels. Weak authentication methods also fall under this category. Attackers exploit these vulnerabilities to gain unauthorized access to user accounts, sensitive data, or backend systems, leading to potential data breaches and financial loss.
+		- M2 - Inadequate Supply Chain Security:
+			- This risk stems from using outdated or vulnerable third-party components in mobile applications. Supply chain weaknesses often result from insecure coding practices, insufficient testing, or inadequate security controls in app signing and distribution. Attackers exploit these vulnerabilities to insert malicious code, introduce backdoors, or compromise app signing keys, potentially leading to data theft, espionage, or denial-of-service (DoS) attacks.
+		- M3 - Insecure Authentication/Authorization:
+			- This category involves weaknesses in authentication and authorization mechanisms, such as weak password policies, insecure token handling, or improper authorization checks. Attackers exploit these flaws to impersonate users, hijack sessions, or bypass authentication mechanisms using malware or botnets to gain unauthorized access to sensitive data.
+		- M4 - Insufficient Input/Output Validation:
+			- Failing to properly validate or sanitize user input can lead to security issues such as SQL injection, command injection, and cross-site scripting (XSS). These vulnerabilities may arise from flawed application logic, lack of security awareness, or inadequate testing. Exploiting them can allow attackers to manipulate data, execute malicious code, or crash the application.
+		- M5 - Insecure Communication:
+			- Mobile applications that use outdated or improperly configured encryption protocols, insecure SSL/TLS certificates, or unprotected data transmission channels are vulnerable to interception and tampering. Attackers can exploit these weaknesses to steal sensitive information, impersonate users, or carry out identity theft, espionage, and fraudulent activities.
+		- M6 - Inadequate Privacy Controls:
+			- This risk arises from the improper handling of personally identifiable information (PII), such as names, addresses, and financial data. Weak access controls and noncompliance with privacy regulations can lead to identity theft, fraud, and regulatory fines. Attackers exploit these vulnerabilities to misuse personal data, eroding user trust and exposing organizations to legal consequences.
+		- M7 - Insufficient Binary Protections:
+			- This category includes threats like code tampering and reverse engineering, where attackers analyze or modify application code to bypass security measures. Weak binary protections allow attackers to insert malicious code, create counterfeit apps, or access paid features for free. These vulnerabilities also facilitate malware distribution via third-party app stores.
+		- M8 - Security Misconfiguration:
+			- Incorrect or incomplete security settings—such as weak encryption, unprotected storage, misconfigured access controls, or enabled debugging features—can expose mobile apps to attacks. Threat actors exploit these flaws to hijack accounts, access sensitive data, or compromise backend systems. Security misconfigurations often result from overlooked security best practices during development.
+		- M9 - Insecure Data Storage:
+			- Storing sensitive data in plaintext, using weak encryption, or failing to implement proper access controls exposes mobile apps to data breaches. Attackers may exploit these weaknesses through physical device access, malware, social engineering, or intercepting data transmissions. Consequences include identity theft, financial loss, and regulatory noncompliance.
+		- M10 - Insufficient Cryptography:
+			- Using weak encryption algorithms, poor key management, or flawed cryptographic implementations can allow attackers to decrypt sensitive data, bypass security mechanisms, or tamper with encrypted information. Weak cryptography undermines application security, enabling data breaches, unauthorized access, and user impersonation.
+	- Anatomy of Mobile Attack (www.nowsecure.com):
+		- The widespread adoption of bring your own device (BYOD) policies in organizations has made mobile devices a prime target for attacks. Attackers scan these devices for vulnerabilities, exploiting weaknesses at the device and network layers, the data center, or a combination of these.
+		- Attack Vectors:
+			- Attackers exploit vulnerabilities in the following areas to launch malicious attacks:
+			- The Device:
+				- Mobile device vulnerabilities pose significant risks to both personal and corporate data. Attackers targeting the device itself can exploit various entry points.
+				- Browser-Based Attacks:
+					- These attacks involve exploiting web browsers on mobile devices:
+						- Phishing: Attackers send emails or pop-ups that redirect users to fake websites mimicking legitimate ones, tricking them into submitting personal information such as usernames, passwords, credit card details, addresses, and mobile numbers. Mobile users are particularly vulnerable because of small screen sizes, shortened URLs, limited warning messages, and scaled-down security indicators.
+						- Framing: Attackers embed a malicious web page within a legitimate one using HTML <iFrame> elements. By exploiting this functionality, they use clickjacking techniques to steal sensitive user information.
+						- Clickjacking: Also known as a user interface (UI) redress attack, this technique tricks users into clicking something different from what they perceive, leading to unauthorized actions such as information theft or device compromise.
+						- Man-in-the-Mobile (MitMo): Attackers implant malicious code into a victim’s mobile device to bypass password verification systems that send one-time passwords (OTPs) via SMS or voice calls. The malware intercepts and relays these OTPs to the attacker.
+						- Buffer Overflow: A vulnerability where a program writes more data to a buffer than it can hold, causing it to overwrite adjacent memory. This can result in erratic program behavior, crashes, or unauthorized memory access.
+						- Data Caching Exploitation: Mobile devices store cached data to improve performance and conserve resources. Attackers attempt to access these caches to retrieve sensitive stored information.
+				- Phone/SMS-Based Attacks:
+					- Attackers leverage mobile communication channels to exploit vulnerabilities:
+						- Baseband Attacks: Exploiting vulnerabilities in a phone’s GSM/3GPP baseband processor, which is responsible for handling radio signals, to gain unauthorized access or disrupt communication.
+						- SMiShing (SMS Phishing): Attackers send deceptive text messages containing malicious links or fraudulent phone numbers. Victims are tricked into clicking the links or calling the numbers, leading to exposure of sensitive information such as Social Security numbers (SSN), credit card details, and online banking credentials.
+				- Application-Based Attacks:
+					- Mobile applications introduce several security risks:
+						- Sensitive Data Storage: Some apps store sensitive user data without adequate security, making them targets for attackers.
+						- No Encryption/Weak Encryption: Applications that transmit unencrypted or poorly encrypted data are susceptible to interception and session hijacking.
+						- Improper SSL Validation: Flaws in an app’s SSL validation process allow attackers to bypass security measures and intercept data.
+						- Configuration Manipulation: Attackers exploit external configuration files and libraries to gain unauthorized access, retrieve plaintext configuration data, or manipulate app settings.
+						- Dynamic Runtime Injection: Attackers modify the runtime behavior of an application to bypass security checks, access privileged app components, and steal stored data.
+						- Unintended Permissions: Misconfigured apps may inadvertently grant excessive permissions, creating security vulnerabilities.
+						- Escalated Privileges: Attackers exploit programming flaws or configuration oversights to gain unauthorized access to restricted resources.
+					- Other application-based attacks include UI overlay/pin stealing, third-party code exploitation, intent hijacking, ZIP directory traversal, clipboard data theft, URL scheme manipulation, GPS spoofing, weak/no local authentication, app integrity tampering, side-channel attacks, unprotected app signing keys, app transport security flaws, and XML specialization vulnerabilities.
+				- The System (OS-Level Attacks):
+					- Operating system vulnerabilities can compromise mobile security:
+						- No Passcode/Weak Passcode: Many users fail to set a passcode or use weak passwords, making it easy for attackers to access sensitive data.
+						- iOS Jailbreaking: Jailbreaking removes Apple’s security restrictions, exposing the device to malware, performance issues, and security threats.
+						- Android Rooting: Rooting grants privileged access to Android’s system files, increasing the risk of data exposure and security breaches.
+						- OS Data Caching Exploitation: Attackers can extract sensitive data by rebooting a compromised device with a malicious OS to dump cached memory.
+						- Passwords and Data Exposure: Attackers exploit weaknesses in cryptographic algorithms to decrypt iOS Keychains, exposing passwords, encryption keys, and private data.
+						- Carrier-Loaded Software Exploitation: Pre-installed apps or software may contain vulnerabilities that attackers use to delete, modify, or steal data and eavesdrop on calls.
+						- User-Initiated Code Execution: Attackers trick users into installing malicious applications or clicking links that allow remote code execution, leading to browser, cookie, and security permission exploitation.
+					- Other OS-based attack methods include weak encryption, confused deputy attacks, trusted execution environment (TEE) exploitation, side-channel leakage, multimedia/file format parsing vulnerabilities, kernel driver flaws, denial-of-service (DoS) attacks, GPS spoofing, and device lockout bypasses.
+			- The Network:
+				- Network-based attacks exploit vulnerabilities in wireless and wired communications to intercept, manipulate, or steal sensitive data. Common methods include:
+					- Wi-Fi Vulnerabilities (Weak/No Encryption): Some applications fail to encrypt transmitted data or use weak encryption algorithms, making them susceptible to interception. Attackers can eavesdrop on wireless connections to capture sensitive information. While many applications use SSL/TLS for secure transmission, weaknesses in these protocols can still be exploited.
+					- Rogue Access Points: Attackers set up unauthorized wireless access points to hijack legitimate network connections. Once users connect, attackers can intercept and manipulate their network traffic.
+					- Packet Sniffing: Attackers use tools such as Wireshark and Capsa Free Network Analyzer to capture and inspect network traffic, extracting sensitive information like login credentials sent in plaintext.
+					- Man-in-the-Middle (MITM) Attacks: Attackers secretly intercept communications between two parties, allowing them to eavesdrop, modify, or inject malicious data into the conversation without the users' knowledge.
+					- Session Hijacking: Attackers steal valid session tokens to impersonate users and gain unauthorized access to their accounts and network resources.
+					- DNS Poisoning: Attackers manipulate DNS servers to redirect users to malicious websites by substituting false IP addresses. This technique is commonly used for phishing and malware distribution.
+					- SSL Stripping (SSLStrip): A type of MITM attack that downgrades encrypted HTTPS connections to unencrypted HTTP without user awareness. Attackers exploit weaknesses in SSL/TLS implementation, allowing them to intercept sensitive data.
+					- Fake SSL Certificates: Attackers generate fraudulent SSL certificates to impersonate legitimate websites, tricking users into believing they are on a secure HTTPS connection while intercepting their communications.
+				- Other network-based attacks include BGP hijacking, HTTP proxy interception, and other advanced traffic manipulation techniques.
+			- The Data Center/Cloud:
+				- Data centers have two primary points of entry: web servers and databases. Attackers exploit vulnerabilities in these components to compromise sensitive data and system integrity.
+				- Web Server-Based Attacks:
+					- Web server vulnerabilities expose data centers to various security threats, including:
+						- Platform Vulnerabilities: Attackers exploit weaknesses in the operating system, web server software (such as IIS or Apache), or application modules running on the server. Additionally, attackers may monitor the communication between a mobile device and a web server to identify protocol or access control weaknesses.
+						- Server Misconfiguration: Improperly configured web servers can expose sensitive resources, allowing unauthorized access.
+						- Cross-Site Scripting (XSS): XSS attacks occur when attackers inject malicious scripts into dynamically generated web pages, which then execute on users' browsers. Attackers use JavaScript, VBScript, ActiveX, HTML, or Flash to steal sensitive information or manipulate user interactions.
+						- Cross-Site Request Forgery (CSRF): Attackers trick authenticated users into performing unintended actions on trusted websites by embedding malicious HTTP requests into web pages they visit. If the user is logged into a legitimate session, the attack executes with their permissions.
+						- Weak Input Validation: Many web applications rely on mobile apps to validate user input instead of performing server-side validation. Attackers can bypass these client-side checks and send maliciously crafted requests directly to the web server, leading to cross-site scripting, buffer overflow, and injection attacks.
+						- Brute-Force Attacks: Attackers systematically attempt various username-password combinations or other input fields until they find valid credentials. Applications that lack mechanisms to limit repeated login attempts are particularly vulnerable.
+					- Other web server-based attacks include cross-origin resource sharing (CORS) misconfigurations, side-channel attacks, hypervisor exploits, VPN vulnerabilities, and more.
+				- Database Attacks:
+					- Databases store sensitive information, making them a prime target for cyberattacks. Common attack methods include:
+						- SQL Injection: Attackers exploit input validation flaws to inject malicious SQL queries through web applications. This allows unauthorized access to databases, enabling data theft, modification, or even deletion.
+						- Privilege Escalation: Attackers exploit security flaws to gain elevated access rights within a database, allowing them to access or manipulate sensitive data.
+						- Data Dumping: Attackers extract large amounts of data from a compromised database, exposing confidential records.
+						- OS Command Execution: Some database management systems allow the execution of operating system commands. Attackers exploit this feature by injecting OS-level commands into database queries, potentially gaining full control over the server.
