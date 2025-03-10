@@ -12352,3 +12352,52 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Magisk Manager (magiskmanager.com)
 			- KingRoot (kingrootapp.net)
 			- iRoot (iroot-download.com)
+	- Hacking Android Devices:
+		- Due to the rapidly growing number of Android users, these devices have become primary targets for hackers. Attackers utilize various tools, such as Drozer, zANTI, Network Spoofer, Low Orbit Ion Cannon (LOIC), DroidSheep, and Orbot Proxy, to launch attacks on Android devices.
+		- Identifying Attack Surfaces Using drozer:
+			- Attackers use the drozer tool to discover various vulnerabilities and attack surfaces on Android devices and applications. It also includes features that allow control over remote Android devices. Attackers do not require USB debugging techniques; they can assess the device using drozer even in a production environment. This tool provides a drozer agent (an emulator used for testing) and a drozer console (a command-line interface) that attackers can leverage to perform various assessment operations on target devices.
+			- After installing the drozer agent, follow the steps below to identify attack surfaces on a target Android device:
+			- Fetching Package Information:
+				- Use the following commands to retrieve package information from a connected device:
+					- Displays all installed packages on the device: dz> run app.package.list
+					- Retrieves package names that match the given string: dz> run app.package.list -f <string_name>
+					- Retrieves basic details about a specific package: dz> run app.package.info -a <package_name>
+				- Running these commands provides the attacker with all necessary information about the targeted package.
+			- Identifying Attack Surfaces:
+				- Once the attacker has obtained package details, they can use utilities from drozer to identify attack surfaces on the device. The following commands list information about exported activities, services, broadcast receivers, and content providers:
+					- Lists various exported activities: dz> run app.package.attacksurface <package_name>
+					- Displays details of the exported activities: dz> run app.activity.info -a <package_name>
+			- Launching Activities:
+				- Use the following command to launch a required activity: dz> run app.activity.start --component <package_name> <activity_name>
+				- The launched activity may expose critical information, which can be exploited to bypass authentication mechanisms.
+				- After bypassing authentication, the attacker can discover additional attack surfaces and further exploit them to carry out attacks on target Android devices.
+		- Bypassing FRP on Android Phones Using 4uKey (www.tenorshare.net):
+			- Factory Reset Protection (FRP) is a security feature on Android devices designed to prevent unauthorized access to lost or stolen phones. However, some users attempt to bypass FRP using software tools like 4uKey or Octoplus FRP. Successfully bypassing FRP allows access to personal data stored on the device, including contacts, messages, and photos. Additionally, compromised devices could be used to install malware or access sensitive accounts.
+			- Below are the steps to bypass FRP on Android phones using 4uKey:
+				- Launch 4uKey and connect the locked Android device to a computer. Click on "Remove Google Lock (FRP)".
+				- Select the correct Android OS version for the device.
+				- Click "Start" to begin the FRP removal process.
+				- Follow the on-screen instructions to complete the bypass.
+					- If a pop-up appears on your device, enable "Always Allow from This Computer" and select "OK" or "Allow" before proceeding.
+				- Once the process is complete, a confirmation message will appear: "Bypassed Google FRP Lock Successfully."
+		- Hacking with zANTI and Kali NetHunter:
+			- Hacking Networks Using zANTI (www.zimperium.com):
+				- zANTI is an Android application that allows you to perform various network attacks, including:
+					- Spoofing MAC addresses
+					- Creating a malicious Wi-Fi hotspot to capture victims' traffic, allowing control and hijacking
+					- Scanning for open ports
+					- Exploiting router vulnerabilities
+					- Conducting password complexity audits
+					- Performing MITM (Man-in-the-Middle) and DoS (Denial-of-Service) attacks
+					- Viewing, modifying, and redirecting HTTP requests and responses
+					- Redirecting HTTPS to HTTP or rerouting HTTP requests to a specific IP or web page
+					- Injecting HTML code into web pages
+					- Hijacking sessions
+					- Viewing and replacing all images transmitted over the network
+					- Capturing and intercepting downloads
+			- Hacking Networks Using Kali NetHunter (www.kali.org):
+				- Kali NetHunter offers a comprehensive suite of tools that enable attackers to conduct various cyber attacks, including:
+					- Human Interface Device (HID) keyboard attacks
+					- BadUSB attacks
+					- Evil AP MANA attacks on Android devices
+				- Additionally, Kali NetHunter allows attackers to generate custom payloads using Metasploit to compromise target networks. Users can simply select a payload, configure the necessary options, and generate a suitable exploit.
