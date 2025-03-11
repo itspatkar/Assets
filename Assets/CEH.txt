@@ -12666,3 +12666,255 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Android Apk decompiler (www.javadecompilers.com)
 					- Hybrid Analysis (www.hybrid-analysis.com)
 					- DeGuard (apk-deguard.com)
+- Hacking iOS:
+	- iOS is a mobile operating system developed by Apple. The company does not license iOS for installation on non-Apple hardware. Over time, Apple has expanded its product lineup to include mobile phones, tablets, and other mobile devices. The growing popularity of Apple devices has attracted the attention of attackers. Design flaws in iOS make it vulnerable to malicious apps, hidden network profiles, man-in-the-middle (MITM) attacks, and more. Attackers may exploit these vulnerabilities to gain root-level access to Apple devices.
+	- This section covers the following topics: an introduction to Apple iOS, jailbreaking iOS, types of jailbreaking, jailbreaking tools and techniques, guidelines for securing iOS devices, and iOS device tracking tools.
+	- Apple iOS:
+		- iOS is Apple’s mobile operating system, supporting devices such as the iPhone, iPod touch, iPad, and Apple TV. It manages device hardware and provides various technologies required to develop native apps. At the highest level, iOS acts as an intermediary between applications and the underlying hardware. Apps interact with the hardware through a set of well-defined system interfaces.
+		- The user interface (UI) is based on direct manipulation, utilizing multi-touch gestures. The iOS architecture consists of five layers: Cocoa Application, Media, Core Services, Core OS, and Kernel & Device Drivers. The lower layers provide fundamental services and technologies, while the higher layers build upon them to offer more advanced features.
+		- iOS Architecture Layers:
+			- Cocoa Application: This layer includes essential frameworks for building iOS apps. These frameworks define the app's appearance, provide basic infrastructure, and support key technologies such as multitasking, touch-based input, push notifications, and high-level system services. Cocoa apps primarily use the UIKit framework (not AppKit, which is for macOS).
+			- Media: This layer provides graphics, audio, and video technologies that enable rich multimedia experiences in applications.
+			- Core Services: This layer includes fundamental system services essential for app functionality. Key services include the Core Foundation and Foundation frameworks, which define basic data types used by all apps. Technologies supporting features such as social media integration, iCloud, location services, and networking also reside in this layer.
+			- Core OS: This layer provides low-level functionalities on which most other technologies rely. Frameworks in this layer handle security, external hardware communication, and network connectivity. The services in this layer depend on the Kernel & Device Drivers layer.
+			- Kernel & Device Drivers: The lowest layer of the iOS architecture includes the kernel, device drivers, BSD (Berkeley Software Distribution), file systems, and core infrastructure technologies such as networking.
+	- Jailbreaking iOS:
+		- Jailbreaking is the process of installing modified kernel patches that allow users to run third-party applications not signed by the OS vendor. It bypasses Apple's built-in restrictions, enabling modifications to the operating system, administrative privileges, and the installation of unofficial apps via “sideloading.” Jailbreaking is achieved by modifying the iOS system kernels.
+		- One of the main reasons for jailbreaking iOS devices such as the iPhone, iPad, and iPod Touch is to unlock features restricted by Apple and its App Store. Jailbreaking provides root access to the operating system, allowing users to download third-party applications, themes, and extensions that are unavailable through the official Apple App Store. However, jailbreaking also removes sandbox restrictions, which can expose devices to security risks, including malicious apps gaining access to restricted system resources and sensitive information.
+		- Various tools can be used to jailbreak iOS devices, including Hexxa Plus, Sileem, checkra1n, palera1n, and Redensa.
+		- Risks of Jailbreaking:
+			- Like rooting an Android device, jailbreaking carries several security and performance risks, such as:
+				- Voiding the device’s warranty: Apple does not support jailbroken devices, which may lead to denied repairs or service.
+				- Poor performance: Jailbroken devices may experience system instability, crashes, or decreased battery life.
+				- Malware infection: Bypassing security measures increases the risk of downloading malicious software.
+				- “Bricking” the device: A failed jailbreak attempt can render the device unusable.
+		- Types of Jailbreaking:
+			- There are three main types of jailbreaking, as discussed below:
+			- Userland Exploit:
+				- A Userland Exploit takes advantage of vulnerabilities in system applications, granting user-level access but not iBoot-level access. Since this exploit operates within user-mode, it does not cause a recovery mode loop, making it impossible to secure iOS devices against it. The only way to patch this vulnerability is through firmware updates.
+			- iBoot Exploit:
+				- An iBoot Exploit can be semi-tethered if the device has a newer bootrom. This type of jailbreak provides both user-level and iBoot-level access by exploiting a vulnerability in iBoot (the device’s third-stage bootloader). It bypasses the code-signing mechanism, allowing unauthorized modifications. However, firmware updates can patch these exploits.
+			- Bootrom Exploit:
+				- A Bootrom Exploit targets SecureROM (the device’s first-stage bootloader), exploiting a vulnerability that disables signature checks. This allows the loading of patched NOR firmware. Unlike other exploits, firmware updates cannot patch a Bootrom Exploit—only a hardware update by Apple can fix it. A bootrom jailbreak provides both user-level and iBoot-level access, making it one of the most persistent jailbreak methods.
+		- Jailbreaking Techniques:
+			- Untethered Jailbreaking:
+				- An untethered jailbreak allows the device to restart normally while remaining jailbroken. When the device is turned off and back on, the kernel is automatically patched without requiring a computer, ensuring the jailbreak persists after every reboot.
+			- Semi-Tethered Jailbreaking:
+				- In a semi-tethered jailbreak, if the device is turned off and restarted, it will boot up normally but without a patched kernel. The device remains usable for regular functions, but jailbroken features and tweaks will not work until the user reactivates the jailbreak using a jailbreaking tool on a computer.
+			- Tethered Jailbreaking:
+				- A tethered jailbreak requires a computer every time the device is restarted. If the device is turned off and then back on without using a jailbreaking tool, it may get stuck in a partially booted state. To fully restart the device with a patched kernel, the user must reconnect it to a computer and use the "boot tethered" feature of a jailbreaking tool.
+			- Semi-Untethered Jailbreaking:
+				- A semi-untethered jailbreak is similar to a semi-tethered jailbreak. When the device reboots, the kernel is not patched, and the jailbreak is temporarily disabled. However, instead of requiring a computer to reactivate the jailbreak, the user can restore it using an app installed on the device.
+		- Jailbreaking Tools:
+			- Jailbreaking iOS Using Hexxa Plus (hexxaplus.com):
+				- Hexxa Plus is a jailbreak repo extractor designed for the latest iOS versions, allowing users to install themes, tweaks, and apps without requiring an untethered or semi-untethered jailbreak. This method is one of the most popular ways to install jailbreak apps safely.
+				- By extracting repositories, users can access a wide range of jailbreak tweaks, themes, and games. Hexxa Plus enables the installation of popular jailbreak apps on the latest iOS versions through a developer code extraction method. To install Hexxa Plus for free, users must first install a third-party app manager, such as zJailbreak Pro.
+				- Steps to Install Hexxa Plus:
+					- Open the Xookz App Store and select Hexxa (Full).
+					- In the upper-right corner, tap the Install button to download the configuration profile onto your iPhone.
+						- Note: If a pop-up appears during installation, tap Allow.
+					- Go to Settings -> tap Profile Downloaded -> tap Install.
+					- Enter your screen passcode and tap Install again.
+					- The Hexxa Plus Repo Extractor icon will appear on your home screen.
+					- Open the Hexxa Plus Repo Extractor and tap Get Repos.
+					- Select a preferred jailbreak repository and copy its URL from the available categories.
+					- Tap Extract Repo, then paste the copied URL.
+					- Click OK to extract the jailbreak repository.
+			- Redensa (pangu8.com):
+				- Redensa is a jailbreak solution that includes iTerminal, making it easier to install jailbreak apps and tweaks—especially on iOS 17 and later versions, where traditional jailbreaking methods can be challenging. This tool also simplifies IPA installations on the latest iOS versions using the "Install" command.
+			- checkra1n (checkra.in)
+			- palera1n (palera.in)
+			- Zeon (zeon-app.com)
+			- Sileo (en.sileem.com)
+			- Cydia (www.cydiafree.com)
+	- Hacking iOS Devices:
+		- Attackers use various methods to exploit iOS vulnerabilities. They employ exploit chain tools that target multiple security weaknesses to bypass different layers of iOS protection. Additionally, they install malicious software such as spyware and Trojans to compromise iOS devices.
+		- Hacking Using Spyzie (spyzie.io):
+			- Attackers utilize online tools like Spyzie to hack target iOS mobile devices. Spyzie enables them to access SMS, call logs, app chats, GPS data, and more. This tool is compatible with various iOS devices, including iPhones, iPads, and iPods. Attackers can hack the target device remotely in stealth mode without requiring jailbreaking.
+		- iOS Trustjacking (www.broadcom.com):
+			- iOS Trustjacking is a vulnerability that attackers can exploit to remotely access an iOS device, allowing them to read messages and emails, capture sensitive information such as passwords and banking credentials, and monitor the device’s activity—all without the victim’s knowledge.
+			- This vulnerability leverages the “iTunes Wi-Fi Sync” feature. When a victim connects their iPhone to a trusted computer—such as a friend's device or any seemingly safe system—that has already been compromised by an attacker, the risk begins.
+			- When an iOS device attempts to connect to a computer, it prompts the user with a “Trust” or “Don’t Trust” dialog box. If the victim selects “Trust,” a persistent connection is established, allowing data sharing between the devices.
+			- Once this connection is established and iTunes Wi-Fi Sync is enabled, the iOS device can continue communicating with the trusted computer even after being physically disconnected. This means that if the computer is infected, the attacker can gain continuous remote access to the victim’s device.
+			- Unless the victim manually resets their device’s connection settings, the attacker can:
+				- Monitor the victim’s screen activity from the compromised computer.
+				- Track the device’s data and operations remotely, even when the phone is outside the network’s range.
+				- Back up or restore device data to access SMS history, deleted photos, and apps.
+				- Replace legitimate apps on the device with malicious versions from the compromised computer.
+			- This persistent access makes Trustjacking a serious security threat, potentially exposing users to data theft and unauthorized device control.
+		- Post-Exploitation on iOS Devices Using the SeaShell Framework (github.com):
+			- SeaShell is an iOS post-exploitation framework that enables attackers to remotely access, control, and extract sensitive information from compromised devices. This framework exploits the CoreTrust vulnerability, which allows bypassing security checks for unauthorized software execution.
+			- Using the SeaShell Framework, attackers can install malicious software on target devices by generating IPA files, initiating a TCP listener, and exploiting CoreTrust bugs via TrollStore. This grants them an interactive session with the compromised device, utilizing a Pwny payload with dynamic extension and TLS encryption.
+			- Steps to Perform Post-Exploitation on iOS Devices Using the SeaShell Framework:
+				- Step 1: Launch the SeaShell Framework:
+					- Run the following command: seashell
+				- Step 2: Patch an IPA File and Configure Connection Details:
+					- Patch an IPA file and provide the IP address and port number to establish a connection: ipa patch Instagram.ipa
+				- Step 3: Start a Listener on the Host Machine:
+					- Start a listener on the specified IP address and port: listener on <IP address> <Port number>
+					- Once the compromised application is opened, you will receive a connection.
+				- Step 4: Interact with the Compromised Device:
+					- To interact with the compromised device using an interactive shell with Pwny, run: devices -i <device_id>
+					- For a list of available commands, run: help
+				- Step 5: Retrieve Web Browsing History:
+					- Once the remote session is established, execute the following command to extract the Safari browsing history: safari_history
+					- Note: This command retrieves and parses the browsing history database located at: /var/mobile/Library/Safari/
+		- Analyzing and Manipulating iOS Applications:
+			- Attackers perform static analysis on a target iOS application to detect vulnerabilities such as hard-coded sensitive data, application bugs, and backdoors within the code. They conduct dynamic analysis to identify runtime errors, application behavior, memory states, registers, and variables during execution. By analyzing the application, attackers can determine the attack surface, which they can exploit to launch attacks on target iOS devices.
+			- Manipulating an iOS Application Using Cycript (www.cycript.org):
+				- Cycript is a runtime manipulation tool that attackers use to exploit vulnerabilities in source code and modify functionality during application execution. It is a JavaScript (JS) interpreter capable of understanding Objective-C, Objective-C++, and JS commands. Cycript features an interactive console with syntax highlighting and grammar-assisted tab completion.
+				- After decompiling an iOS application and analyzing its source code, attackers can use Cycript to manipulate the application’s functionality. This includes performing activities such as method swizzling, authentication bypass, and jailbreak detection bypass.
+			- OS Method Swizzling:
+				- Method swizzling, also known as monkey patching, is a technique that modifies existing methods or adds new functionality at runtime. The Objective-C runtime allows developers to switch method functionality from its original implementation to a customized one. Attackers exploit this technique for purposes such as logging, injecting JavaScript (JS) into WebViews, bypassing detections, and circumventing authentication mechanisms.
+				- Attackers leverage method swizzling to assess the security posture of an application and identify its vulnerabilities. The basic steps to successfully swap method functionality are as follows:
+					- Identify the existing method selector reference to be swapped.
+					- Create a new method with customized functionality.
+					- Run the application on the device.
+					- Swap the method’s functionality by providing the new method reference to the Objective-C runtime.
+			- Extracting Secrets Using Keychain Dumper (github.com):
+				- iOS devices use an encrypted storage system called the keychain to store sensitive information such as passwords, certificates, and encryption keys. Attackers leverage tools like Keychain Dumper to extract keychain data from a target iOS device.
+				- To dump secret keychain data from an iOS app, attackers use the Keychain Dumper binary, which includes a self-signed certificate with a wildcard entitlement. However, since recent iOS versions no longer allow wildcard entitlements, attackers must instead add an explicit entitlement that exists on the device to gain access to all keychain items.
+			- Analyzing an iOS Application Using Objection (github.com):
+				- Attackers use the Objection tool to perform method hooking on an iOS application at runtime. It also includes features such as iOS application patching, SSL pinning bypass, keychain dumping, and pasteboard monitoring. To use Objection, attackers connect an iOS device to their workstation and install the tool, which is built on Frida.
+				- Method Hooking:
+					- After installing Objection, follow these steps to perform method hooking:
+						- Execute the following command to run Objection and attach it to the target application: objection --gadget <AppName> explore
+						- Monitor method calls of a specific class: ios hooking watch class <Class_Name>
+						- Hook a specific method in a class: ios hooking watch method "-[Class_Name Method_Name]"
+						- Modify the return value of a function that returns Boolean values: ios hooking set return_value "-[Class_Name iFunction_Name:]" true/false
+				- Bypassing SSL Pinning:
+					- Disable SSL pinning in the hooked application: ios sslpinning disable
+				- Bypassing Jailbreak Detection:
+					- Disable jailbreak detection in the hooked application: ios jailbreak disable
+		- Analyzing iOS Devices (mas.owasp.org):
+			- Analyzing iOS devices enables attackers to understand system architecture, uncover vulnerabilities, and identify exploitable weaknesses. This process may reveal potential entry points, such as outdated software versions, insecure configurations, or applications with known security flaws. Attackers can also examine device behaviors, system processes, and app interactions to identify opportunities for compromise. Additionally, understanding common user practices and social engineering tactics can help attackers design effective phishing campaigns or malware distribution strategies. Ultimately, analyzing iOS devices aids attackers in preparing targeted attacks that bypass security controls and gain unauthorized access to sensitive data or system functionality.
+			- Techniques for Analyzing an iOS Device:
+				- Accessing the Device Shell:
+					- This technique involves remotely accessing an iOS device’s shell, either over Wi-Fi or a USB connection. Doing so allows an attacker to execute arbitrary commands, manipulate system settings, and gain deeper control over the device. Attackers commonly access remote shells on iOS devices via SSH; however, the device must be jailbroken. Additionally, tools such as Cydia or Sileo must be installed for further exploitation.
+					- Steps to Access the Device Shell Over Wi-Fi:
+						- Install the OpenSSH package on the iOS device and ensure both the device and the host computer are connected to the same Wi-Fi network.
+						- Run the following command in a terminal to access the device shell: ssh root@<device_ip_address>
+						- To exit the shell, type exit or press Control + D.
+						- Note: The default users are "root" and "mobile", and the default password for both is "alpine".
+					- Steps to Access the Device Shell Over USB (If Wi-Fi Is Unavailable):
+						- If a Wi-Fi connection is unavailable, attackers can connect to the device shell via USB using a socket daemon such as usbmuxd, which allows an SSH connection over USB.
+						- Connect the iOS device to a macOS machine using tools such as iproxy.
+						- Run the following command in a new terminal window to establish a connection: ssh -p 2222 root@localhost
+						- When prompted, enter the root password:
+							root@localhost's password:
+							iPhone:~ root#
+						- Note: Due to USB Restricted Mode, a data connection cannot be maintained for more than one hour if the device is in a locked state.
+				- Listing Installed Apps:
+					- Before analyzing an application, attackers must first identify its correct bundle identifier. They can use tools such as Frida to list all apps currently installed on the device by running the following command: frida-ps -Uai
+					- Once the list is generated, attackers should note the bundle identifier and process ID (PID) for further use.
+				- Network Sniffing:
+					- Attackers can remotely sniff network traffic in real time by creating a virtual interface and following these steps:
+						- Connect the target iOS device to a macOS system via USB.
+						- Start a remote virtual interface by running the following command in the Terminal: rvictl -s <UDID_of_the_iOS_device>
+						- Open Wireshark and select “rvi0” as the capture interface.
+						- Apply capture filters to monitor specific network traffic. For example, to capture all HTTP traffic sent or received through a specific IP address, use the following filter: ip.addr == 192.168.2.4 && http
+				- Obtaining Open Connections:
+					- By analyzing open connections on an iOS device, an attacker can identify active network sessions, monitor data exchanges, and potentially intercept sensitive information. This information can provide insights into targeted attacks or unauthorized data access.
+					- To retrieve details about open connections, the following commands can be executed:
+						- List all open network ports for active processes on the device: lsof -i
+						- List open network ports for a specific process (replace <pid> with the actual process ID): lsof -i -a -p <pid>
+				- Process Exploration:
+					- Exploring active processes allows attackers to gather detailed information about an app's memory usage. This may include searching for specific data, obtaining memory maps along with loaded libraries, and reverse engineering binary data. For this purpose, attackers can use tools such as r2frida in combination with a target app like iGoat-Swift.
+					- Some useful commands for process exploration include:
+						- Start an r2frida session: r2 frida://usb//iGoat-Swift
+						- Note: Ensure that the iGoat-Swift app is running on the iOS device and that the device is connected via USB.
+						- Retrieve the app's memory maps: :dm
+						- List the binaries and libraries loaded by the app: :il
+						- Perform an in-memory search, displaying only the results while hiding search progress: \e~search
+		- iOS Malware:
+			- GoldPickaxe (www.malwarebytes.com, www.group-ib.com):
+				- The GoldPickaxe Trojan enables attackers to deceive victims by scanning their faces and extracting information from identification documents. Attackers typically approach victims through smishing or phishing messages that appear to come from legitimate government sources, convincing them to install a fake service application.
+				- On iOS devices, attackers instruct victims to install a disguised version of a Mobile Device Management (MDM) profile. This grants attackers remote control over the targeted iOS device, allowing them to send profiles and execute commands.
+				- Since MDM includes features such as remote wiping, device tracking, and app management, attackers exploit these capabilities to install malicious apps and extract sensitive information. Additionally, victims are instructed to take a photo of their official ID and scan their face using an app. Attackers also request victims' phone numbers to obtain further personal details, including banking information.
+			- SpectralBlur
+			- Mercenary Spyware
+			- LightSpy
+			- KingsPawn
+			- Pegasus
+		- iOS Hacking Tools:
+			- Elcomsoft Phone Breaker (www.elcomsoft.com): Elcomsoft Phone Breaker enables attackers to perform logical and over-the-air acquisition of iOS devices, bypass encrypted backups, and extract and analyze backups, synchronized data, and passwords from Apple iCloud. It allows password cracking and iOS backup decryption with GPU acceleration. Using this tool, attackers can decrypt the iCloud Keychain, as well as retrieve messages, media files, and documents from iCloud.
+			- Enzyme (github.com)
+			- Network Analyzer: net tools (apps.apple.com)
+			- iOS Binary Security Analyzer (github.com)
+			- iWepPRO (apps.apple.com)
+			- Frida (frida.re)
+	- Securing iOS Devices:
+		- Follow these best practices to protect your iOS device and data from attackers:
+			- Access & Authentication:
+				- Enable a strong passcode: Go to Settings -> Face ID & Passcode -> Turn Passcode On. Use six-digit codes, Touch ID, or Face ID.
+				- Use separate passcodes for sensitive apps when possible.
+				- Enable two-factor authentication: Settings -> [Your Name] -> Sign-In & Security -> Turn On Two-Factor Authentication.
+				- Enable Erase Data on failed attempts: Settings -> Face ID & Passcode -> Erase Data (erases data after 10 failed attempts).
+			- Network & Connectivity:
+				- Use secure Wi-Fi networks and avoid accessing web services on compromised networks.
+				- Enable “Ask to Join Networks”: Settings -> Wi-Fi -> Ask to Join Networks to avoid random Wi-Fi connections.
+				- Disable Bluetooth and Wi-Fi when not in use: Settings -> Bluetooth/Wi-Fi -> Toggle OFF.
+				- Install VPN software to encrypt internet traffic.
+			- App & Browser Security:
+				- Download apps only from the Apple App Store and use only trusted third-party apps.
+				- Enable Safari’s privacy settings: Settings -> Safari, then:
+					- Block pop-ups
+					- Disable passwords and AutoFill
+					- Enable Fraudulent Website Warning
+					- Block cookies
+					- Clear browsing data
+				- Disable JavaScript and add-ons in the browser for better security.
+				- Enable "Do Not Track": Settings -> Safari -> Do Not Track.
+				- Disable AutoFill in Safari: Settings -> Safari -> AutoFill -> OFF.
+			- Data Protection & Encryption:
+				- Avoid storing sensitive data on the device or in a client-side database.
+				- Disable iCloud backup for enterprise data: Settings -> Apple ID -> iCloud.
+				- Leverage iOS full-disk encryption for stored data protection.
+				- Install vault apps to securely store critical data.
+				- Prevent sensitive data from appearing on the lock screen: Settings -> Notifications -> Show Previews -> Never.
+			- Device & System Security:
+				- Do not jailbreak your device, especially in enterprise environments.
+				- Enable Jailbreak detection and protect Apple ID/Google accounts.
+				- Change the default iPhone root password ("alpine") if applicable.
+				- Disable Siri: Settings -> Siri & Search -> Listen for -> OFF.
+				- Disable voice dialing: Settings -> Face ID & Passcode -> Voice Dial -> OFF.
+				- Disable geotagging for photos: Settings -> Privacy & Security -> Location Services -> Camera -> Never.
+				- Reset keyboard dictionary periodically: Settings -> General -> Transfer or Reset iPhone -> Reset Keyboard Dictionary.
+				- Reset network settings if suspicious activity occurs: Settings -> General -> Transfer or Reset iPhone -> Reset Network Settings.
+				- Control data shared with Apple: Settings -> Privacy & Security -> Analytics & Improvements.
+			- Software Updates & Management:
+				- Keep iOS updated: Settings -> General -> Software Updates.
+				- Enable automatic app updates: Settings -> App Store -> Automatic Downloads -> App Updates.
+				- Use Mobile Device Management (MDM) for remote tracking, lockout, and data wipe in case of loss or theft.
+			- Additional Security Measures:
+				- Prevent “juice jacking”: Use a personal charger or a USB data blocker when charging in public.
+				- Limit ad tracking: Settings -> Privacy -> Advertising -> Limit Ad Tracking.
+			- Note: Feature paths may vary based on iOS version and device model.
+		- iOS Device Security Tools:
+			- Malwarebytes Mobile Security (www.malwarebytes.com): Malwarebytes Mobile Security blocks intrusive ads in Safari, preventing ad trackers from monitoring your online activity. It filters text messages, directing suspicious or junk messages to separate folders. Additionally, it blocks fraudulent calls, phishing sites, and malicious content to protect against scams. The built-in VPN enhances online privacy by encrypting your connections, ensuring safe browsing and streaming from anywhere.
+			- Norton Mobile Security for iOS (us.norton.com)
+			- McAfee Mobile Security (www.mcafee.com)
+			- Trend MicroTM Mobile Security for iOS (www.trendmicro.com)
+			- AVG Mobile Security (www.avg.com)
+			- Kaspersky Standard (www.kaspersky.com)
+		- iOS Device Tracking Tools:
+			- Find My (support.apple.com):
+				- Find My is an iOS device tracking tool that allows users to locate a lost or misplaced iPhone, iPad, iPod Touch, or Mac using another iOS device. It also helps protect data on the missing device.
+				- To use Find My, the user must install the app on another iOS device, open it, and sign in with their Apple ID. The tool enables users to:
+					- Locate their missing device on a map.
+					- Remotely lock the device.
+					- Play a sound to help find it.
+					- Display a message.
+					- Erase all data on the device.
+				- Find My also includes Lost Mode, which works on devices running iOS 6 or later. Lost Mode locks the missing device with a passcode and displays a custom message, such as a contact phone number, on the lock screen. While in Lost Mode, the device continues tracking its location so the user can view its recent location history in the Find My app.
+				- How to Set Up Find My for iPhone, iPad, or iPod Touch:
+					- Open the Settings app.
+					- Tap [Your Name] → Find My.
+					- Tap Find My [Device], then turn it on.
+					- To locate the device even when offline, enable Find My network.
+					- To have the device send its location to Apple when the battery is low, enable Send Last Location.
+			- Glympse En Route (corp.glympse.com)
+			- Prey Find My Phone & Security (apps.apple.com)
+			- Mobile Phone Tracker Pro - SIM (apps.apple.com)
+			- FollowMee GPS Location Tracker (apps.apple.com)
+			- Phone Tracker: GPS Location (apps.apple.com)
