@@ -13362,3 +13362,61 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Ensuring Compliance and Auditing:
 					- Verifying Security Measures: Organizations can inspect an app's actual code to ensure compliance with security standards and regulations.
 					- Analyzing Third-Party Components: Reverse engineering helps identify vulnerable or non-compliant third-party libraries and components that may pose security risks.
+	- Mobile Security Tools:
+		- Unlike older mobile devices, today’s smartphones come with advanced computing capabilities and connectivity. They can be used to store data, browse the internet, record videos, send SMS, play games, capture photos, and perform many other tasks. As a result, mobile devices have become a major target for intruders seeking to steal data. Various mobile security tools are discussed below.
+		- Source Code Analysis Tools:
+			- Syhunt Mobile ( www.syhunt.com): Syhunt Mobile analyzes the source code of mobile applications and performs over 350 vulnerability checks in Java and Kotlin, the primary languages used for Android app development. The tool also supports other key programming languages, such as Swift, Objective-C, and C, which are used for iOS app development. The set of checks tailored for iOS spans 19 vulnerability categories and includes over 240 vulnerability checks. Syhunt Mobile also enables publishers, developers, and QA testers to automatically scan Android and iOS apps for vulnerabilities outlined in the OWASP Mobile Top 10.
+			- Android lint (www.android.com)
+			- Zimperium’s z3A (www.zimperium.com)
+			- Appium (appium.io)
+			- Selendroid (selendroid.io)
+			- Infer (fbinfer.com)
+		- Reverse Engineering Tools:
+			- Apktool (apktool.org):
+				- Apktool is a powerful tool for reverse engineering third-party, closed-source, binary Android apps. It can decode resources to a form close to their original state and rebuild them after modifications. The tool simplifies app manipulation by providing a structured, project-like file system and automating repetitive tasks such as building APKs.
+				- Features:
+					- Disassembles resources while preserving their original structure as much as possible
+					- Rebuilds decoded resources back into a binary APK/JAR
+					- Manages and organizes APKs that rely on framework resources
+					- Supports Smali debugging
+			- Androguard (github.com)
+			- Frida (www.frida.re)
+			- JEB (www.pnfsoftware.com)
+			- APK Editor Studio (github.com)
+			- Bytecode Viewer (github.com)
+		- App Repackaging Detectors:
+			- Repackaging is the process of extracting an app’s details from legitimate app stores such as the Google Play Store and Apple App Store, modifying it by injecting malicious code, and then redistributing it as an authentic application. Repackaging can also occur during the reverse engineering of an application.
+			- App Repackaging Detectors Tools:
+				- Appdome (www.appdome.com):
+					- Appdome offers a comprehensive mobile runtime application self-protection (RASP) solution designed to secure Android and iOS apps. It provides defense against app tampering, reverse engineering, method hooking, and unauthorized repackaging.
+					- Appdome automates mobile app security by integrating a wide range of anti-fraud, anti-malware, and anti-bot features without requiring changes to the source code. Its mobile app integrity and checksum validation feature verifies app integrity by generating checksums for its binary data and structure, preventing unauthorized modifications and fake apps.
+				- freeRASP for Android/iOS (github.com)
+				- wultra (www.wultra.com)
+				- iXGuard (www.guardsquare.com)
+				- AndroCompare (github.com)
+				- FSquaDRA 2 (github.com)
+		- Mobile Protection Tools:
+			- Avast Antivirus & Security (play.google.com): Avast Antivirus & Security helps users scan and secure their devices against viruses and other malware while enhancing privacy and optimizing performance. It performs automated scans to detect threats and vulnerabilities, blocking malicious apps before installation. Additionally, it verifies the security of connected Wi-Fi networks.
+			- Comodo Mobile Security (www.comodo.com): Comodo Mobile Security provides comprehensive protection for iOS and Android devices. It features a high-performance malware engine, a VPN, ID protection, safe browsing, and an App Lock to secure apps and data. Additional features include SD card protection, cloud scanning, and real-time malware detection to keep devices secure and running smoothly.
+			- AVG Mobile Security (www.avg.com): AVG Mobile Security safeguards iOS and Android devices from malware, spyware, and other common threats. It enhances user privacy by securing connections on public Wi-Fi networks (e.g., cafés and airports) with advanced threat detection. The tool also monitors online databases and alerts users if their credentials have been compromised.
+			- Norton Mobile Security for iOS (us.norton.com)
+			- Mobile Security & Antivirus (play.google.com)
+			- Bitdefender Mobile Security (play.google.com)
+			- ESET Mobile Security Antivirus (play.google.com)
+			- WISeID Personal Vault (play.google.com)
+		- Mobile Anti-Spyware:
+			- TotalAV (www.totalav.com): TotalAV is a comprehensive security tool designed to detect and block various forms of spyware that attempt to snoop on and exploit user data for financial gain. In addition to combating spyware, TotalAV effectively identifies and prevents all types of malware from infecting user devices. Furthermore, it excels at locating and removing adware, a particularly aggressive and hard-to-remove form of advertising software.
+			- Certo: Anti Spyware & Security (play.google.com)
+			- Anti Spy Detector – Spyware (play.google.com)
+			- iAmNotified - Anti Spy System (iamnotified.com)
+			- Anti Spy (www.protectstar.com)
+			- Secury - Anti Spy Security (apps.apple.com)
+		- Mobile Penetration Testing Toolkits:
+			- ImmuniWeb® MobileSuite (www.immuniweb.com):
+				- ImmuniWeb® MobileSuite leverages machine learning to enhance and accelerate manual mobile penetration testing for iOS and Android applications. It provides scalable, rapid, and DevSecOps-enabled testing for both mobile apps and their backends, along with tailored remediation guidelines and a zero false-positive SLA. Additionally, it supports SDLC and CI/CD tool integration and offers a Web Application Firewall (WAF) for mitigating mobile backend vulnerabilities.
+				- With this toolkit, security professionals can conduct static, dynamic, and interactive security testing using Software Composition Analysis (SCA). It also generates various reports, including Threat-Aware Risk Scoring, Tailored Remediation Guidelines, and CVE, CWE, and CVSSv3 scores.
+			- Codified Security (codifiedsecurity.com)
+			- Astra Security (www.getastra.com)
+			- Appknox (www.appknox.com)
+			- Data Theorem’s Mobile Secure (www.datatheorem.com)
+			- MobSF (mobsf.live)
