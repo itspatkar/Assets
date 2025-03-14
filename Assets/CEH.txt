@@ -13420,3 +13420,37 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Appknox (www.appknox.com)
 			- Data Theorem’s Mobile Secure (www.datatheorem.com)
 			- MobSF (mobsf.live)
+
+
+--------------------------------------------------
+
+# IoT and OT Hacking
+
+- The Internet of Things (IoT) integrates wireless technology, micro-electromechanical systems, microservices, and the Internet, transforming industries like healthcare, agriculture, energy, and transportation. IoT devices—wearables, industrial appliances, smart grids, and vehicles—generate vast data that must be secured.
+- However, many IoT devices lack advanced security, making them vulnerable to cyber threats. As industries digitize, protecting both devices and data is crucial, especially with the convergence of operational (OT) and information technology (IT). Organizations must assess risks and implement security measures accordingly. This module outlines IoT and OT threats and provides strategies to safeguard these systems.
+- IoT Hacking:
+	- IoT Concepts and Attacks:
+		- The Internet of Things (IoT) is a crucial and rapidly evolving topic in technology, economics, and society. It refers to a network of interconnected devices, enabled by the convergence of machine-to-machine communication and big data analytics. IoT represents a forward-looking advancement of the Internet, enhancing the capabilities of physical devices and gradually bridging the gap between the virtual and physical worlds.
+		- This section covers key IoT concepts essential for understanding the advanced topics discussed later in this module. Attackers employ various techniques to target IoT devices and networks. This section also explores major IoT threats, including common attack vectors and techniques such as distributed denial-of-service (DDoS) attacks, attacks on HVAC systems, rolling code attacks, BlueBorne attacks, and jamming attacks.
+		- What is the IoT:
+			- The Internet of Things (IoT), also known as the Internet of Everything (IoE), refers to web-enabled computing devices that have the capability to sense, collect, and transmit data using embedded sensors, communication hardware, and processors. In the IoT, a “thing” is any device embedded in a natural, human-made, or machine-made object that can communicate over a network.
+			- The IoT leverages existing and emerging technologies for sensing, networking, and robotics, enabling deeper analysis, automation, and system integration. With the increasing networking capabilities of machines and everyday appliances used in various sectors—such as offices, homes, industries, transportation, buildings, and wearable devices—the IoT opens up vast opportunities for enhancing business operations and customer satisfaction.
+			- Some of the key features of the IoT include connectivity, sensors, artificial intelligence (AI), compact devices, and active engagement.
+		- How the IoT Works:
+			- IoT technology consists of four primary components:
+				- IoT devices
+				- Gateway systems
+				- Cloud-based data storage
+				- Remote control via mobile apps
+			- These components work together to enable seamless communication between connected devices.
+			- Key Components of IoT Technology:
+				- Sensing Technology: Sensors embedded in IoT devices collect a wide range of data from their surroundings, such as temperature, gas levels, location, industrial machinery performance, or a patient’s health metrics.
+				- IoT Gateways: Gateways act as intermediaries between IoT devices (internal network) and end-users (external network), allowing devices to connect and communicate. The data collected by IoT sensors is transmitted to users or cloud storage through these gateways.
+				- Cloud Server/Data Storage: Once data passes through the gateway, it is stored in the cloud, where it undergoes processing and analysis. The analyzed data is then sent to the user, enabling informed decision-making and action.
+				- Remote Control via Mobile App: End-users can monitor, control, and retrieve data from IoT devices remotely using smartphones, tablets, laptops, or other connected devices via dedicated mobile applications.
+		- Example: Smart Security System:
+			- A smart security system installed in a home is connected to an IoT gateway, which enables communication with the internet and cloud infrastructure.
+			- The cloud stores data related to all connected devices, including device IDs, current status, access history, and usage patterns.
+			- A connection with the cloud server is established via web services.
+			- A user with the required mobile app can remotely access the security system from a smartphone. Before gaining access, the user must authenticate themselves. If the credentials match those stored in the cloud, access is granted; otherwise, it is denied to ensure security.
+			- If the security system detects unusual activity, it sends an alert to the cloud through the gateway. The cloud verifies the device ID and associated user before delivering the alert notification to the end-user.
