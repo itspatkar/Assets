@@ -13838,3 +13838,74 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Hacking Smart Grid/Industrial Devices: Remote Access Using a Backdoor:
 			- Attackers gather basic information about the target organization using various social engineering techniques. After obtaining details such as employee email addresses, they send phishing emails containing malicious attachments (e.g., a Word document). When an employee opens the email and clicks on the attachment, a backdoor is automatically installed on the target system.
 			- Using this backdoor, the attacker gains access to the organization's private network. For example, in an attack on a power grid, once inside the private network, the attacker can infiltrate the Supervisory Control and Data Acquisition (SCADA) system that manages the grid. After compromising the SCADA network, the attacker replaces legitimate firmware with malicious firmware designed to execute their commands. Finally, the attacker can disrupt the power supply to specific locations by sending unauthorized commands to substation control systems via the SCADA network.
+		- SDR-Based Attacks on IoT:
+			- Software-defined radio (SDR) is a method of generating radio communications and implementing signal processing using software (or firmware) instead of traditional hardware components. By leveraging self-created SDR systems, attackers can analyze communication signals in IoT networks and inject spam content or malicious messages into interconnected devices. Additionally, SDR systems can modify the transmission and reception of signals between devices, depending on their software implementations. These attacks can target both full-duplex (two-way communication) and half-duplex (one-way communication) transmission modes.
+			- Types of SDR-Based Attacks on IoT Environments:
+				- Replay Attack:
+					- A replay attack is one of the most common threats to IoT networks. In this attack, an attacker captures a command sequence from connected devices and retransmits it later to manipulate the system.
+					- Steps involved in launching a replay attack:
+						- The attacker identifies the specific frequency used for communication between IoT devices.
+						- Once the frequency is obtained, the attacker captures the original data when commands are transmitted.
+						- The captured data is then processed using free tools such as Universal Radio Hacker (URH) to extract and segregate the command sequence.
+						- Finally, the attacker injects the extracted command sequence back into the IoT network on the same frequency, replaying the captured signals to manipulate device behavior.
+				- Cryptanalysis Attack:
+					- A cryptanalysis attack is a more advanced type of SDR-based attack. It follows the same procedure as a replay attack but includes an additional step—reverse-engineering the communication protocol to extract the original signal.
+					- To execute this attack, an attacker must have expertise in cryptography, communication theory, and modulation schemes to filter out noise from the signal. Although more complex than a replay attack, a skilled attacker can still attempt to break IoT security using specialized tools and techniques.
+				- Reconnaissance Attack:
+					- A reconnaissance attack is an extension of a cryptanalysis attack, focusing on gathering information from the device’s specifications.
+					- All IoT devices that operate using RF signals must be certified by regulatory authorities in their respective countries, and official reports often disclose device analysis details. To counteract this, manufacturers sometimes obscure identification markings on the chipset. However, attackers can use multimeters to analyze the chipset and identify key components, such as ground pins, to determine the product ID. They can then compare this ID with published reports to gather intelligence about the device’s vulnerabilities.
+		- Identifying and Accessing Local IoT Devices:
+			- An attacker can gain control over local IoT devices when a user on the network visits a malicious webpage—crafted and distributed by the attacker through advertisements or other enticing means. Once the victim accesses the malicious website, embedded JavaScript code is executed to initiate the attack.
+			- Attackers typically use two methods to compromise local IoT devices, as discussed below:
+			- Discovering or Identifying Local IoT Devices:
+				- The attacker’s first step is to identify target devices and gather information about all connected devices within the network.
+				- To achieve this, the attacker follows these steps:
+					- Obtain the local IP address using the malicious JavaScript code.
+					- Request a list of available devices within the network.
+					- Analyze responses:
+						- Active devices respond with a reset packet.
+						- Inactive devices result in a timeout.
+					- Identify all available devices based on their responses.
+			- Accessing Local IoT Devices Using DNS Rebinding:
+				- DNS rebinding is an attack technique that allows an attacker to gain control over the victim’s router and other local devices through a malicious JavaScript code injected into a webpage. Once executed, the attacker can exploit devices using default credentials.
+				- After identifying connected devices and their details, the attacker proceeds as follows:
+					- Check for DNS rebinding vulnerabilities in discovered devices using tools like Singularity of Origin.
+					- Execute DNS rebinding, enabling the attacker to establish command and control over local IoT devices.
+					- Extract sensitive information, such as UIDs and BSSIDs of local access points, which can help determine the geographical location of the target devices.
+				- Once the attack is successfully executed, the attacker can bypass security measures and access applications running on local IoT devices. Additionally, they may manipulate devices by playing random audio or video files through web browsers.
+		- Fault Injection Attacks:
+			- Fault injection attacks, also known as perturbation attacks, occur when an attacker deliberately introduces faults into a system to compromise its security. These faults can be induced using various techniques and can be classified as either invasive or non-invasive.
+				- Non-invasive attacks require the attacker to be in close physical proximity to the chip to manipulate its program or data and extract sensitive information.
+				- Invasive attacks involve direct physical access to the chip’s surface, allowing the attacker to manipulate it at a hardware level.
+			- Below are different types of fault injection attacks:
+				- Optical, Electromagnetic Fault Injection (EMFI), and Body Bias Injection (BBI): These attacks introduce faults by projecting lasers or electromagnetic pulses onto critical analog components, such as random number generators (RNGs), or by applying high-voltage pulses. Attackers exploit these faults to undermine system security.
+				- Power, Clock, and Reset Glitching: In these attacks, faults or glitches are injected into the power supply to cause unintended behavior, such as remote execution or skipping key instructions. Attackers can also manipulate the clock network responsible for synchronizing signals across the chip.
+				- Frequency and Voltage Tampering: Here, attackers alter the chip's operating conditions by modifying the power supply levels or clock frequency. The goal is to induce faults that weaken device security.
+				- Temperature Attacks: By changing the chip's operating temperature, attackers disrupt its normal functionality, forcing it to operate outside nominal conditions, potentially leading to security vulnerabilities.
+			- Once faults are successfully injected, attackers can exploit the resulting behavior to steal sensitive data or disrupt the device’s normal operations.
+		- Sybil Attack:
+			- Vehicular communications play a crucial role in safe transportation by exchanging important safety messages and traffic updates. However, even vehicular ad-hoc networks (VANETs) are vulnerable to attackers. In a Sybil attack, an attacker uses multiple forged identities to create the illusion of traffic congestion, disrupting communication between neighboring nodes and networks.
+			- This type of attack significantly impacts network performance and is considered one of the most serious threats to VANETs. To execute the attack, an attacker falsely claims that a single vehicle is present in multiple locations simultaneously. For example, suppose a malicious node, referred to as "X", spoofs multiple identities to deceive other nodes, "A" and "B". Normally, A and B should only communicate with each other, but X intervenes as a known internal node, manipulating network communication and causing security risks.
+		- Exploit Kits:
+			- An exploit kit is a malicious script used by attackers to exploit unpatched vulnerabilities in IoT devices. These kits are designed to update automatically whenever new vulnerabilities are discovered, allowing attackers to continually refine their methods.
+			- Once vulnerabilities are detected, the exploit kit sends a targeted attack to install malware, which can execute harmful commands, corrupt the device, or even render it inoperable. Exploit kits pose a significant threat because they often go undetected, making them highly effective in compromising IoT devices and infrastructure.
+		- Man-in-the-Middle (MitM) Attack:
+			- In a man-in-the-middle attack, an attacker intercepts communication between a sender and a receiver, posing as a legitimate participant to hijack the conversation. Since IoT devices are usually connected to networks and store sensitive information, they become prime targets for such attacks.
+			- Attackers can exploit IoT vulnerabilities to send malicious requests and gain unauthorized access to devices. IoT devices such as IP-enabled cameras, routers, modems, and internet gateways often lack strong cryptographic protection, making them susceptible to MitM attacks.
+		- Replay Attack:
+			- A replay attack occurs when an attacker intercepts and records a legitimate communication, then repeatedly sends the same message to the target device. This can be used to execute a denial-of-service (DoS) attack, manipulate messages, or crash the target device.
+			- For example, consider a replay attack on an IoT-powered smart lock. If an attacker records the infrared signal used to unlock a front door, they can later retransmit the same signal to gain unauthorized entry.
+		- Forged Malicious Device:
+			- In this attack, attackers physically replace authentic IoT devices with malicious counterparts. Since the forged device closely resembles the original, detecting such an attack is extremely difficult. These malicious devices often contain hidden backdoors, allowing attackers to infiltrate and manipulate the network for various malicious purposes.
+		- Side-Channel Attack:
+			- A side-channel attack exploits information leaked from an IoT device’s power consumption, electromagnetic emissions, or other physical characteristics to extract encryption keys. Every computing device emits small amounts of data that can be observed and analyzed by attackers.
+			- By carefully studying these emissions, attackers can deduce sensitive information, such as encryption keys, without directly tampering with the device. This attack method is particularly dangerous because it requires minimal effort and time. Additionally, attackers can use this information to execute more advanced power-analysis and timing-based attacks.
+		- Ransomware Attack:
+			- Ransomware is a type of malware that encrypts a user’s files or locks their device, preventing access until a ransom is paid. Users often encounter ransomware through malicious software downloads, phishing emails, or malvertisements (malicious advertisements).
+			- Phases of a Ransomware Attack:
+				- Infection: The victim receives an email that appears to be from a legitimate sender. The email contains an attachment with a malicious file.
+				- Execution:
+					- The victim opens the email and clicks on the malicious attachment, unknowingly downloading the ransomware.
+					- The malware executes and launches processes like PowerShell, Vssadmin, or cmd.exe, connecting the device to the attacker's Command & Control (C&C) server.
+					- The victim’s personal files are encrypted.
+				- Extortion: A ransom notification appears on the victim's device, demanding payment (often in cryptocurrency like Bitcoin) to restore access to the encrypted files.
