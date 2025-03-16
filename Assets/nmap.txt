@@ -200,3 +200,10 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
     - Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>
 - WAF Detection: nmap -p 80,443 --script http-waf-detect --script-args http-waf-detect.aggro, http-waf-detect.detectBodyChanges <domain>
 - Runs all http-vuln scripts to check for web application vulnerabilities: nmap -sV --script http-vuln* <host>
+
+
+---
+
+- To scan a specific IP address: nmap -n -Pn -sS -pT:0-65535 -v -A -oX <Name><IP>
+- To perform a complete scan that checks for both TCP and UDP services and ports: nmap -n -Pn -sSU -pT:0-65535,U:0-65535 -v -A -oX <Name><IP>
+- To identify the IPv6 capabilities of a device: nmap -6 -n -Pn -sSU -pT:0-65535,U:0-65535 -v -A -oX <Name><IP>
