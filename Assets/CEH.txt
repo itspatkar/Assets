@@ -12909,7 +12909,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Find My also includes Lost Mode, which works on devices running iOS 6 or later. Lost Mode locks the missing device with a passcode and displays a custom message, such as a contact phone number, on the lock screen. While in Lost Mode, the device continues tracking its location so the user can view its recent location history in the Find My app.
 				- How to Set Up Find My for iPhone, iPad, or iPod Touch:
 					- Open the Settings app.
-					- Tap [Your Name] → Find My.
+					- Tap [Your Name] -> Find My.
 					- Tap Find My [Device], then turn it on.
 					- To locate the device even when offline, enable Find My network.
 					- To have the device send its location to Apple when the battery is low, enable Send Last Location.
@@ -13199,7 +13199,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Disable location tracking for apps that do not need access.
 				- Configure notification settings to prevent sensitive data from being displayed on the lock screen.
 				- Adjust AutoFill settings to reduce password exposure while balancing convenience and security.
-				- Disable diagnostics and usage data collection under Settings → General → About.
+				- Disable diagnostics and usage data collection under Settings -> General -> About.
 			- Web & Connectivity Security:
 				- Enforce strict browser permission rules according to company policies.
 				- Use secure network protocols (e.g., TLS) for communication.
@@ -13937,3 +13937,59 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Camera hijacking – Gain unauthorized access to security cameras for spying.
 					- Credential stuffing – Use leaked passwords to take control of surveillance systems.
 					- Brute-force attacks – Guess weak passwords to gain access to security devices.
+		- IoT Malware:
+			- KmsdBot (www.akamai.com):
+				- KmsdBot is a malware that targets IoT devices and has undergone significant updates since its discovery. The latest version, Kmsdx, introduces new functionalities, including Telnet scanning and authentication of legitimate Telnet services. This updated malware scans random IP addresses for open SSH ports and attempts to log in using a password list downloaded from the command-and-control (C2) server. Additionally, the Telnet scanner checks for valid services on port 23, expanding the botnet’s reach to a broader range of IoT devices.
+				- With these updates, the malware now supports a wider range of CPU architectures commonly found in IoT devices. The incorporation of Telnet scanning alongside SSH scanning in the newer variant reduces the time and effort required by malware operators to exploit vulnerabilities. Furthermore, the enhanced legitimacy checks—such as verifying the receiving buffer for data—demonstrate the increasing sophistication of the malware’s targeting methods.
+				- The KmsdBot scanning feature can easily detect IoT devices with default credentials, which are often left unchanged by users. By exploiting weak passwords stored in files like telnet.txt—which contain numerous commonly used password combinations—the malware increases the risk of IoT devices being compromised and integrated into bot networks.
+			- WailingCrab
+			- P2PInfect
+			- NKAbuse
+			- IoTroop
+			- XorDdos
+		- Case Study: IZ1H9 (unit42.paloaltonetworks.com):
+			- IZ1H9 is a Mirai-based botnet malware discovered in early 2021 that continued to spread until 2023. Botnet malware has proliferated due to the exploitation of various vulnerabilities in IoT networks. Once a vulnerable device is identified and infected, IZ1H9 adds the compromised device to its botnet fleet. The malware hijacks the computational resources of these devices, using them for distributed denial-of-service (DDoS) attacks. IZ1H9 employs a sophisticated shell script downloader to evade security solutions, conceal its presence, and establish a persistent connection with a command-and-control (C2) server.
+			- IZ1H9 Attack Scenario:
+				- Step 1: Pre-Exploitation:
+					- Attackers identify and target devices running Linux operating systems. They search for poorly configured devices and exploit vulnerabilities in exposed servers and networking devices within the IoT environment. Attackers scan for and exploit devices with the following vulnerabilities:
+						- Tenda G103: Command injection vulnerability
+						- LB-Link: Command injection vulnerability
+						- DCN DCBI-Netlog-LAB: Remote code execution vulnerability
+						- Zyxel: Remote code execution vulnerability
+				- Step 2: Exploitation:
+					- Attackers attempt to download and execute a shell script downloader (lb.sh) from IP 163.123.143[.]126 on vulnerable devices. The shell script downloader removes logs to hide its tracks and downloads bot clients for different Linux architectures, including:
+						- hxxp://163.123.143[.]126/bins/dark.mips
+						- hxxp://163.123.143[.]126/bins/dark.x86
+						- hxxp://163.123.143[.]126/bins/dark.mpsl
+						- hxxp://163.123.143[.]126/bins/dark.arm4
+						- hxxp://163.123.143[.]126/bins/dark.arm5
+						- hxxp://163.123.143[.]126/bins/dark.arm6
+						- hxxp://163.123.143[.]126/bins/dark.arm7
+						- hxxp://163.123.143[.]126/bins/dark.ppc
+						- hxxp://163.123.143[.]126/bins/dark.m68k
+						- hxxp://163.123.143[.]126/bins/dark.sh4
+						- hxxp://163.123.143[.]126/bins/dark.86_64
+					- Additional bot clients are downloaded from URLs such as hxxp://2.56.59[.]215/i.sh and hxxp://212.192.241[.]72/lolol.sh to communicate with the C2 domain dotheneedfull[.]club, which resolves to 212.192.241.72.
+					- The botnet client ensures that only one execution instance exists at a time. If a botnet process is already running, the client overwrites the current process and starts a new one. Subsequently, bot clients initialize an encrypted string table and retrieve encrypted strings using an index for decryption.
+					- The IZ1H9 variant decrypts its configuration strings using XOR decryption with the key 0xBAADF00D.
+					- The malware then spreads through HTTP, SSH, and Telnet channels:
+						- SSH and Telnet: Brute-force attacks using a list of nearly 100 weak username-password combinations.
+						- HTTP: Remote code execution vulnerabilities to execute shellcode scripts for further compromise.
+					- During Tenda vulnerability exploitation, the payload downloads tenda.sh but executes netlog.sh.
+				- Step 3: Persistence:
+					- Botnet clients establish persistent connections with hardcoded C2 networks. The attacker later defines a set of attack methods for specific targets using command codes, as shown below:
+					- Command and Attack Methods (Command Code => Attack Method	: Description)
+						- 0 => attack_method_tcpsyn: TCP SYN flooding attack
+						- 1 => attack_method_tcpack: TCP ACK flooding attack
+						- 2 => attack_method_tcpusyn: TCP URG-SYN flooding attack
+						- 3 => attack_method_tcpall: TCP DDoS with all options set
+						- 4 => attack_method_tcpfrag: TCP fragmentation attack
+						- 5 => attack_method_asyn: TCP SYN-ACK flooding attack
+						- 6 => attack_method_udpgame: UDP attack targeting online gaming servers
+						- 7 => attack_method_udpplain: UDP flooding with minimal options
+						- 8 => attack_method_greip: GRE IP flooding attack
+						- 9 => attack_method_std: Standard flooding attack
+						- 10 => attack_method_udpdns: DNS flooding attack
+						- 11 => attack_app_http: HTTP flooding attack
+						- 12 => attack_method_udpgeneric: Generic UDP flooding attack
+						- 13 => attack_method_dnsamp: DNS amplification attack
