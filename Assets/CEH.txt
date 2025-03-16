@@ -14286,3 +14286,78 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Run the camover command in the terminal to initialize the tool.
 					- Exploit a single camera using a specific IP address with the following command: camover -a <Camera IP Address>
 					- Exploit cameras connected to the Internet using the Shodan search engine: camover -t --shodan <Shodan API Key>
+		- Gain Remote Access:
+			- Vulnerabilities identified during the vulnerability-scanning phase can allow an attacker to remotely gain access, establish command and control, and evade detection by various security products. Depending on the vulnerabilities in an IoT device, an attacker may use the device as a backdoor to access an organization’s network without infecting any endpoint protected by IDS/IPS, firewalls, antivirus software, etc. After gaining remote access, attackers can use these compromised devices as platforms to launch further attacks on other devices within the network.
+			- Gaining Remote Access Using Telnet:
+				- Attackers perform port scanning to identify open ports and services on the target IoT device. If the Telnet port is open, an attacker can exploit this vulnerability to gain remote access to the device. Many embedded system applications in IoT devices, such as industrial control systems, routers, VoIP phones, and televisions, implement remote access capabilities using Telnet. These applications typically include a Telnet server for remote access.
+				- Once an attacker identifies an open Telnet port, they can analyze the information exchanged between connected devices, including details about their software and hardware models. The attacker then exploits specific vulnerabilities based on this information.
+				- First, the attacker determines whether authentication is required. If not, they can immediately gain unauthorized access to explore the data stored on the device. If authentication is required, the attacker attempts to bypass it by using default credentials such as root/root or system/system or by performing a brute-force attack to obtain administrator or user account passwords.
+				- For example, attackers can use tools such as Shodan and Censys to scan for vulnerable devices and gain remote access.
+		- Maintaining Access:
+			- Once an attacker gains access to a device, they use various techniques to maintain persistence and further exploit the system. To remain undetected, attackers may clear logs, update firmware, and deploy malicious programs such as backdoors and trojans. Additionally, they use specialized tools like Firmware Mod Kit, IoTVAS, Firmware Analysis Toolkit, and Firmwalker to exploit firmware vulnerabilities.
+			- Maintaining Access by Exploiting Firmware (code.google.com):
+				- The Firmware Mod Kit is a toolset designed for deconstructing and reconstructing firmware images of embedded devices. While primarily targeting Linux-based routers, it is compatible with most firmware using common formats and file systems such as TRX/uImage and SquashFS/CramFS. This kit includes a collection of tools, utilities, and shell scripts that can be used individually or combined for automated firmware operations, such as extraction and rebuilding.
+				- How Attackers Use Firmware Mod Kit:
+					- Extract firmware images into their component parts.
+					- Modify the firmware’s file system or web UI (Webif).
+					- Rebuild the firmware with the desired changes.
+					- Flash the modified firmware onto the device, potentially causing it to malfunction (brick).
+				- Core Scripts for Firmware Operations:
+					- Primary Scripts:
+						- extract-firmware.sh → Extracts firmware components.
+						- build-firmware.sh → Rebuilds firmware images.
+					- Secondary Scripts:
+						- ddwrt-gui-extract.sh → Extracts Web GUI files from DD-WRT firmware.
+						- ddwrt-gui-rebuild.sh → Restores modified Web GUI files in DD-WRT firmware.
+			- Firmware Analysis and Reverse Engineering:
+				- Firmware serves as the central component in controlling various IoT devices. Attackers analyze the firmware of target IoT devices to uncover underlying vulnerabilities and security loopholes. Through firmware analysis, they can identify passwords, API tokens, endpoints, vulnerable services, backdoor accounts, configuration files, private keys, stored data, and more.
+				- Steps Used by Attackers for Firmware Analysis and Reverse Engineering (owasp.org):
+					- Obtain Firmware:
+						- After gaining access to the target IoT device, extract the firmware from the device.
+					- Analyze Firmware:
+						- Run the following commands to analyze the extracted firmware:
+							- Identify the file type: file xyz.bin
+							- Verify the MD5 signature:
+								cat xyz.md5
+								md5sum xyz.bin
+							- Extract readable text from the binary file:
+								strings -n 10 xyz.bin > strings.out
+								less strings.out
+							- Perform a hexadecimal dump to identify the firmware build type:
+								hexdump -C -n 512 xyz.bin > hexdump.out
+								cat hexdump.out
+					- Extract the Filesystem:
+						- Use binwalk to analyze and extract the firmware image: binwalk xyz.bin
+						- This helps identify the type of filesystem in use.
+						- Extract the filesystem using dd: dd if=xyz.bin bs=1 skip=922460 count=2522318 of=xyz.squashfs
+					- Mount the Filesystem:
+						- Create a mount directory: mkdir rootfs
+						- Mount the extracted filesystem: sudo mount -t ext2 {filename} rootfs
+					- Analyze Filesystem Content:
+						- Once the filesystem is mounted, examine key files and directories:
+						- Check for sensitive files: ls etc/passwd etc/shadow etc/ssl
+						- Search for credentials, configuration files, and other sensitive information:
+							grep -rnw '/path/to/somewhere/' -e "password|admin|root"
+							find . -name '*.conf' -o -name '*.pem' -o -name '*.crt' -o -name '*.cfg' -o -name '*.sh' -o -name '*.bin'
+						- Use Firmwalker to automate the search for sensitive information in the extracted filesystem
+					- Emulate Firmware for Dynamic Testing:
+						- To perform dynamic testing of the device’s web interface, use emulation tools such as QEMU or the Firmware Analysis Toolkit.
+						- Identify the CPU architecture
+							file xyz.bin
+							readelf -h xyz.bin
+						- User-mode emulation with QEMU:
+							qemu-mipsel -L <prefix> <binary>
+							qemu-arm -L <prefix> <binary>
+							qemu-<arch> -L <prefix> <binary>
+						- Cross-architecture chroot emulation:
+							- Transfer the qemu-<arch>-static binary to the firmware root filesystem (/usr/bin/), then execute: chroot ~/<filename> /bin/
+		- IoT Hacking Tools:
+			- Attackers use IoT hacking tools to gather information about devices connected to a network, including their open ports, services, attack surface, and vulnerabilities. These tools enable further exploitation of the devices and the organization's network. This section covers various IoT hacking tools.
+			- IoT Hacking Tools:
+				- Below are some of the IoT hacking tools used by attackers to exploit target IoT devices and networks. These tools facilitate attacks such as DDoS, jamming, and BlueBorne.
+				- CatSniffer (github.com): CatSniffer is used by attackers to passively monitor IoT traffic, gathering information on connected devices, communication protocols, and data exchanges. This helps identify potential targets and vulnerabilities within an IoT network. Security professionals and network administrators can also use CatSniffer to monitor and secure IoT environments by analyzing transmitted data.
+				- KillerBee (github.com)
+				- JTAGULATOR (www.grandideastudio.com)
+				- wiz_exploit (github.com)
+				- PENIOT (github.com)
+				- RouterSploit (github.com)
