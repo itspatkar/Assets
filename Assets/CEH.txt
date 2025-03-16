@@ -13993,3 +13993,95 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- 11 => attack_app_http: HTTP flooding attack
 						- 12 => attack_method_udpgeneric: Generic UDP flooding attack
 						- 13 => attack_method_dnsamp: DNS amplification attack
+	- IoT Hacking Methodology:
+		- Using the IoT hacking methodology, an attacker gathers information through techniques such as reconnaissance, identifying the attack surface, and vulnerability scanning. This information is then used to hack the target device and network. This section focuses on the tools and techniques attackers use to compromise IoT devices.
+		- What is IoT Device Hacking?
+			- With the rapid growth of IoT technology, an increasing number of devices are becoming a part of our daily lives. From home automation to healthcare applications, IoT is everywhere. However, despite their convenience, IoT devices often lack fundamental security measures, making them highly vulnerable to cyberattacks.
+			- Hackers exploit these vulnerabilities to gain unauthorized access to users' devices and data. Once compromised, IoT devices can be used to create botnets, which can then be leveraged to launch large-scale Distributed Denial-of-Service (DDoS) attacks.
+		- How Hackers Profit from Compromised IoT Devices:
+			- Today, smart devices store vast amounts of sensitive data, including location information, email accounts, financial details, and personal photos—making them a goldmine for cybercriminals. As the number of IoT devices continues to grow, projected to reach 75 billion by 2025, security risks escalate.
+			- Due to weak security policies, smart devices become easy targets for hackers, who can exploit them for various malicious purposes, including:
+				- Spying on users' activities
+				- Misusing sensitive data (e.g., patient health records)
+				- Deploying ransomware to block access to devices
+				- Monitoring victims through compromised CCTV cameras
+				- Carrying out credit card fraud
+				- Gaining unauthorized access to homes
+				- Adding compromised devices to botnets to execute DDoS attacks
+		- IoT Hacking Methodology:
+			- Hacking an IoT device typically involves the following phases:
+				- Information Gathering
+				- Vulnerability Scanning
+				- Launching Attacks
+				- Gaining Remote Access
+				- Maintaining Access
+		- Information Gathering:
+			- The first and most crucial step in IoT device hacking is extracting information such as the IP address, protocols used (Zigbee, BLE, 5G, IPv6LoWPAN, etc.), open ports, device type, geo-location, manufacturing number, and manufacturing company of a device. During this phase, an attacker also identifies the hardware design, infrastructure, and main components embedded in a target device available online.
+			- Attackers use tools such as Shodan, Censys, and FOFA to gather information or conduct reconnaissance on a target device. Additionally, devices that are not directly available on the network but are within the communication range can be detected using sniffers such as Suphacap, CloudShark, and Wireshark.
+			- Information Gathering Using Shodan (www.shodan.io):
+				- Shodan is a search engine that provides information about all Internet-connected devices, including routers, traffic lights, CCTV cameras, servers, smart home devices, and industrial systems. Attackers can leverage this tool to collect details such as the IP address, hostname, ISP, device location, and banner of a target IoT device.
+				- Shodan Search Filters for IoT Devices:
+					- Attackers can use the following filters to gather information on a target device:
+					- Search for webcams using geolocation: webcamxp country:US
+						- Finds all webcamxp webcams located in the US.
+					- Search using city: webcamxp city:paris
+						- Finds all existing webcamxp webcams in Paris.
+					- Find webcams using longitude and latitude: webcamxp geo:-50.81,201.80
+						- Finds a specific webcam at the geolocation (-50.81, 201.80) in Boston, US.
+					- Additional Filters for Target Information:
+						- net: Search based on the IP address or CIDR
+						- os: Search based on the operating system used by the devices
+						- port: Find all open ports
+						- before/after: Filter results within a specific timeframe
+			- Information Gathering Using MultiPing (www.multiping.com):
+				- An attacker can use the MultiPing tool to discover the IP addresses of IoT devices within a target network. Once an IoT device’s IP address is obtained, the attacker can conduct further scanning to identify potential vulnerabilities in the device.
+				- Steps to Identify the IP Address of an IoT Device Using MultiPing:
+					- Open the MultiPing application and navigate to File -> Add Address Range.
+					- In the Add Range of Addresses pop-up window:
+						- Select the router’s gateway IP address from the Initial Address to Add drop-down menu.
+						- Set the Number of Addresses to 255.
+						- Click OK.
+					- MultiPing will scan every possible IP address within the specified range and test each responding address.
+					- Each row in the MultiPing window represents a device on the network. From this list, an attacker can identify the IP address of the target IoT device.
+					- To speed up the scanning process, set the ping interval to 1 second.
+			- Information Gathering Using FCC ID Search (www.fcc.gov):
+				- FCC ID Search helps locate details about electronic devices and their certifications. The search page provides multiple fields to access device information. Each device is labeled with a unique FCC ID, which consists of two parts:
+					- Grantee ID – The first three to five characters
+					- Product ID – The remaining characters
+				- To gather details about a target device using its FCC ID, follow these steps:
+					- Locate the device and examine the attached label.
+					- Identify the FCC ID printed on the label.
+					- Visit the official FCC ID search page: https://www.fcc.gov/oet/ea/fccid
+					- Enter the Grantee Code and Product ID in the respective fields.
+					- Click “Search” to retrieve the device details, including frequency information.
+					- For further insights:
+						- Click “Summary” to view basic device details.
+						- Click “Detail” to access additional documents such as the cover letter, external and internal photos, test reports, and user manuals.
+				- Once the necessary information is gathered, an attacker can analyze potential vulnerabilities in the target device and exploit them for further attacks.
+			- Information-Gathering Tools:
+				- Attackers use information-gathering tools such as Shodan and Censys to collect basic details about target devices and networks. These tools provide attackers with information such as live devices connected to a network, their manufacturers, open ports and services, physical locations, and more.
+				- Censys (censys.io):
+					- Censys is a public search engine and data-processing platform that collects data from continuous Internet-wide scans. It supports full-text searches on protocol banners and queries across a wide range of derived fields. Censys helps identify vulnerable devices and networks while generating statistical reports on usage patterns and trends. By continuously monitoring every reachable server and device on the Internet, Censys enables real-time searches and analysis. It allows penetration testers to understand network attack surfaces, discover new threats, and assess their global impact. Censys gathers data on hosts and websites through daily ZMap and ZGrab scans of the IPv4 address space, maintaining a database of host and website configurations.
+				- FOFA (en.fofa.info):
+					- FOFA is a cyberspace mapping platform that allows attackers to collect IoT data from locations worldwide. Attackers use the FOFA search engine to analyze external attack surfaces, uncover Internet resources, assess risks associated with open Internet assets, and conduct intelligence-gathering activities.
+			- Information Gathering through Sniffing:
+				- Many IoT devices, such as security cameras, host a website for remote configuration and control. These websites often use the insecure HTTP protocol instead of HTTPS, making them vulnerable to various attacks. If the cameras are using default factory credentials, an attacker can easily intercept the traffic between the camera and the web application, potentially gaining access to the camera itself. Attackers can use tools such as Wireshark to capture this traffic and even decrypt the Wi-Fi key of the target network.
+				- Steps Attackers Use to Sniff Wireless Traffic from a Web Camera:
+					- Run Nmap to identify IoT devices using insecure HTTP ports for data transmission: nmap -p 80,81,8080,8081 <Target IP address range>
+					- Set up your wireless card in monitor mode and identify the channel used by the target router for broadcasting:
+						- Run ifconfig to identify your wireless card (e.g., wlan0).
+						- Enable monitor mode with: airmon-ng start wlan0
+					- Scan nearby wireless networks using Airodump-ng: airodump-ng wlan0mon
+					- Identify the target wireless network and note the corresponding channel for sniffing traffic in Wireshark.
+					- Configure your wireless card to listen to the target channel. If the target network’s channel is 11, run: airmon-ng start wlan0mon 11
+					- Launch Wireshark and start capturing traffic:
+						- Open Wireshark and double-click the interface set in monitor mode (wlan0mon).
+						- Begin capturing packets.
+				- Once the traffic is sniffed, attackers can decrypt WEP and WPA keys using Wireshark, potentially hacking the target IoT device and stealing sensitive information.
+			- Sniffing Using Cascoda Packet Sniffer (www.cascoda.com):
+				- Attackers use the Cascoda Packet Sniffer tool to capture IEEE 802.15.4 traffic from various IoT protocols, such as Thread, KNX-IoT, and Zigbee. This tool utilizes the Chili2D packet sniffing firmware to passively capture network traffic. It then decrypts and analyzes the sniffed packet headers using Wireshark, allowing for real-time packet capture monitoring or the option to save the data directly to a PCAP file. Additionally, it provides visibility into the received signal strength and link quality indicator (LQI) metrics of the sniffed IoT traffic.
+				- Steps to Capture and Analyze IoT Traffic Using Cascoda Packet Sniffer:
+					- The attacker downloads and installs Cascoda’s Windows tools and configures Wireshark to capture traffic.
+					- The attacker connects the Cascoda Packet Sniffer dongle to their machine.
+					- The attacker runs the command sniffer -w <channel_number> in the command prompt to start live packet capturing on a specified channel.
+					- Wireshark begins capturing IoT traffic, which the attacker can filter using display filters, as shown in the screenshot below.
