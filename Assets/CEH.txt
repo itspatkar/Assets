@@ -13909,3 +13909,31 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- The malware executes and launches processes like PowerShell, Vssadmin, or cmd.exe, connecting the device to the attacker's Command & Control (C&C) server.
 					- The victim’s personal files are encrypted.
 				- Extortion: A ransom notification appears on the victim's device, demanding payment (often in cryptocurrency like Bitcoin) to restore access to the encrypted files.
+		- IoT Attacks in Different Sectors:
+			- IoT technology is advancing across various sectors, including industry, healthcare, agriculture, smart cities, security, and transportation. However, due to the decentralized nature of IoT systems, organizations often place less emphasis on securing these devices. Instead of segmenting IoT technology into different parts for better security, suppliers tend to focus more on identifying vulnerabilities, which can then be exploited by attackers.
+			- These vulnerabilities in IoT devices can be leveraged by attackers to launch various types of attacks, such as Denial-of-Service (DoS) attacks, jamming attacks, Man-in-the-Middle (MITM) attacks, and Sybil attacks. Such attacks can lead to data breaches, compromising privacy and confidentiality.
+			- Below is a list of different IoT sectors and the associated attacks they commonly face:
+				- Healthcare:
+					- Ransomware attacks – Encrypt patient data and demand payment for decryption.
+					- Man-in-the-Middle (MITM) attacks – Intercept communication between medical devices and servers.
+					- DDoS attacks – Disrupt hospital networks, making critical medical systems unavailable.
+				- Industrial IoT (IIoT):
+					- SCADA attacks – Target industrial control systems, causing operational disruptions.
+					- Sensor spoofing – Manipulate sensor data to disrupt production.
+					- Botnet attacks – Infect IoT devices to launch large-scale cyberattacks.
+				- Smart Cities:
+					- Jamming attacks – Disrupt communication between IoT devices in smart infrastructure.
+					- Traffic signal manipulation – Hack traffic control systems to create congestion or accidents.
+					- Data breaches – Compromise citizen data collected by smart city applications.
+				- Transportation:
+					- GPS spoofing – Manipulate GPS data to mislead autonomous vehicles.
+					- Vehicle hacking – Exploit vulnerabilities in connected cars to gain unauthorized control.
+					- CAN bus attacks – Target internal vehicle networks to disable critical functions.
+				- Agriculture:
+					- Firmware attacks – Inject malicious code into IoT-enabled farming equipment.
+					- Sensor data manipulation – Alter environmental data to disrupt crop monitoring.
+					- DDoS attacks – Overload smart irrigation systems to cause failures.
+				- Security & Surveillance:
+					- Camera hijacking – Gain unauthorized access to security cameras for spying.
+					- Credential stuffing – Use leaked passwords to take control of surveillance systems.
+					- Brute-force attacks – Guess weak passwords to gain access to security devices.
