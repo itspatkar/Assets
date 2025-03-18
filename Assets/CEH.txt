@@ -15219,3 +15219,47 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Criminal IP (www.criminalip.io)
 				- ZoomEye (www.zoomeye.hk)
 				- ONYPHE (www.onyphe.io)
+			- Scanning ICS/SCADA Systems Using Nmap:
+				- Attackers use scanning tools such as Nmap to identify open ports and running services on systems connected to OT networks.
+				- Below are various Nmap commands used by attackers to enumerate open ports and services on ICS/SCADA systems:
+					- Identifying Open Ports and Services:
+						- nmap -Pn -sT --scan-delay 1s --max-parallelism 1 -p 80,102,443,502,530,593,789,1089-1091,1911,1962,2222,2404,4000,4840,4843,4911,9600,19999,20000,20547,34962-34964,34980,44818,46823,46824,55000-55003 <Target IP>
+						- Attackers use this Nmap command for initial reconnaissance to identify active ICS/SCADA protocols. The listed ports are well-known for ICS/SCADA communication.
+					- Identifying HMI Systems:
+						- nmap -Pn -sT -p 46824 <Target IP>
+						- Some vendors provide HMI interfaces that operate on non-standard ICS/SCADA ports. For example, Sielco Sistemi Winlog HMI software uses TCP port 46824.
+					- Scanning Siemens SIMATIC S7 PLCs:
+						- nmap -Pn -sT -p 102 --script=s7-info <Target IP>
+						- This command helps attackers detect PLC devices with open port 102, which Siemens SIMATIC S7 PLCs use for S7 Communication—facilitating data exchange between PLCs and SCADA systems.
+					- Scanning Modbus Devices:
+						- nmap -Pn -sT -p 502 --script modbus-discover <Target IP>
+						- nmap -Pn -sT -p 502 --script modbus-discover --script-args='modbus-discover.aggressive=true' <Target IP>
+						- These commands identify Modbus-enabled devices and retrieve their Slave IDs.
+					- Scanning BACnet Devices:
+						- nmap -Pn -sU -p 47808 --script bacnet-info <Target IP>
+						- Attackers use this command to enumerate BACnet devices used in building automation, HVAC, and industrial control systems. It reveals information such as vendor name, device name, serial number, firmware version, and BACnet Broadcast Management Devices (BBMDs).
+					- Scanning Ethernet/IP Devices:
+						- nmap -Pn -sU -p 44818 --script enip-info <Target IP>
+						- Ethernet/IP is widely used in industrial networks. It operates on UDP port 44818, using the CIP protocol for industrial communication. This command gathers details such as vendor name, product code, device name, and IP address.
+					- Scanning Niagara Fox Devices:
+						- nmap -Pn -sT -p 1911,4911 --script fox-info <Target IP>
+						- Niagara Fox is a protocol for device-to-device communication in building management systems (BMSs). It operates on TCP ports 1911 and 4911. Attackers use this command to collect details like application name, Java version, host OS, time zone, local IP, and software versions.
+					- Scanning ProConOS Devices:
+						- nmap -Pn -sT -p 20547 --script proconos-info <Target IP>
+						- ProConOS is a runtime engine for PLC devices. This command reveals information such as PLC type, project name, source code name, and ladder logic runtime details.
+					- Scanning Omron PLC Devices:
+						- nmap -Pn -sT -p 9600 --script omron-info <Target IP>
+						- nmap -Pn -sU -p 9600 --script omron-info <Target IP>
+						- Omron's Factory Interface Network Service (FINS) protocol allows PLCs to exchange program data. It operates on TCP/UDP port 9600.
+					- Scanning PCWorx Devices:
+						- nmap -Pn -sT -p 1962 --script pcworx-info <Target IP>
+						- PCWorx systems process unauthenticated messages from remote systems. Attackers use this command to extract PLC type, model number, and firmware version.
+			- Sniffing Using NetworkMiner (www.netresec.com):
+				- NetworkMiner is a passive network sniffing and packet capture tool used to detect open ports, hostnames, operating systems, sessions, and other network information without generating traffic. It is also commonly used for parsing and analyzing PCAP files, as well as reassembling or extracting transmitted files and certificates. With NetworkMiner, users can analyze previously captured network traffic from an ICS network by examining PCAP files.
+			- Analyzing Modbus/TCP Traffic Using Wireshark (www.wireshark.org):
+				- Wireshark is an open-source network protocol analyzer used for capturing and analyzing network traffic. It can be employed to monitor Modbus/TCP traffic on industrial networks. Since Modbus/TCP lacks built-in encryption or security features, attackers can intercept and analyze data packets transmitted between a network and a Modbus device. By manipulating captured packets, they may inject malicious payloads to compromise the system.
+			- Discovering ICS/SCADA Network Protocols Using Malcolm (cisagov.github.io):
+				- Malcolm is a powerful network traffic analysis tool designed to provide visibility into the protocols used in industrial control system (ICS) environments. It offers detailed insights into network communications through two intuitive interfaces:
+					- OpenSearch Dashboard – A flexible data visualization plugin with multiple prebuilt dashboards that provide an easy overview of network protocols.
+					- Arkime – A robust tool for analyzing and identifying network sessions, helping detect potential security incidents.
+				- Additionally, Malcolm supports secure communication, enabling encrypted interactions between the user interface and remote log forwarders using standard encryption protocols.
