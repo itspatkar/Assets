@@ -15166,3 +15166,56 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Stage 4: Lateral Movement & Covering Tracks:
 					- COSMICENERGY does not have built-in lateral movement capabilities. However, attackers conduct internal reconnaissance, suggesting they may move laterally within the network to gather necessary information before executing the attack.
 			- After achieving their objectives, attackers attempt to erase traces of their activity by deleting PIEHOP, LIGHTWORK, and other malicious files from compromised systems.
+	- OT Hacking Methodology:
+		- Operational Technology (OT) systems, such as Industrial Control Systems (ICS), Supervisory Control and Data Acquisition (SCADA), and Distributed Control Systems (DCS), are commonly used to monitor and control physical industrial processes. These systems collect data from various sources, including temperature sensors, pressure monitors, and valve positions, and they control actuators such as electrical, hydraulic, mechanical, and pneumatic devices.
+		- In the past, OT systems were completely isolated from the internet. However, due to increasing interoperability requirements and business demands, OT and IT networks have become interconnected. This convergence has introduced significant security vulnerabilities, allowing cybercriminals to exploit IT network weaknesses to launch disruptive attacks on OT systems. This section discusses OT hacking methodologies and how cyberattacks can be conducted using various automated tools.
+		- What is OT Hacking:
+			- Today, industrial systems are more connected to the internet than ever before, making them increasingly vulnerable to cyber threats. Attackers are executing sophisticated and targeted cyberattacks that can cause physical damage to industrial systems. Many organizations still use legacy software to maintain compatibility and often share sensitive information with third parties for remote equipment maintenance. These factors create severe security risks.
+			- The primary objective of OT hacking is to damage or disrupt business processes by compromising industrial control systems across manufacturing sites. Due to the integration of IT and OT, OT systems face numerous threats, including attacks through remote sensors, Wi-Fi-enabled controllers, USB devices used for software and firmware upgrades, and cloud services (e.g., SCADA-as-a-Service). This increased exposure makes OT systems an attractive target for hackers.
+		- How Can a Hacker Profit from a Compromised OT System:
+			- A hacker who successfully infiltrates an OT system can:
+			- Take full control of the system, damage equipment, or steal critical business and operational data.
+			- Shut down an entire plant or disrupt production by launching Distributed Denial-of-Service (DDoS) attacks, causing financial and reputational damage.
+			- Reprogram assembly processes to bypass critical production steps, leading to defective products.
+			- Manipulate industrial machinery to create hazardous conditions, potentially injuring employees through overheating or emergency shutdowns.
+			- Deploy malware to disrupt critical infrastructure operations.
+			- Install ransomware to block access to OT systems and demand a ransom for restoration.
+		- OT Hacking Methodology:
+			- Hacking an OT network typically involves the following phases:
+				- Information Gathering – Collecting intelligence on the target OT system, including network architecture, communication protocols, and device configurations.
+				- Vulnerability Scanning – Identifying security weaknesses in OT components, including outdated software, misconfigurations, and unsecured access points.
+				- Launching Attacks – Exploiting vulnerabilities to gain unauthorized access or disrupt OT operations.
+				- Gaining Remote Access – Establishing persistent access to compromised OT systems to maintain control over industrial processes.
+				- Maintaining Access – Using techniques such as backdoors and privilege escalation to ensure continued access while evading detection.
+		- Information Gathering:
+			- The first step in hacking an OT network is gathering information about the target OT network and its systems using various footprinting and reconnaissance techniques. These techniques allow attackers to enumerate the network, identify connected devices, determine their geolocation, obtain default passwords, detect open ports, and analyze running services. Tools such as Shodan and Nmap are commonly used to collect this information.
+			- Identifying ICS/SCADA Systems Using Shodan (www.shodan.io):
+				- Shodan is a search engine that helps attackers gather information about OT devices connected to the Internet. This tool can be used to obtain details about SCADA systems deployed in water treatment plants, nuclear power plants, HVAC systems, electrical transmission grids, home heating systems, and more.
+				- Identifying SCADA Systems Using Port Numbers:
+					- ICS/SCADA systems use various protocols unique to PLC manufacturers. Some key SCADA protocols include:
+						- Modbus (port 502)
+						- Fieldbus (ports 1089-1091)
+						- DNP (port 19999)
+						- Ethernet/IP (port 2222)
+						- DNP3 (port 20000)
+						- PROFINET (ports 34962-34964)
+						- EtherCAT (port 34980)
+					- By identifying these ports, attackers can locate vulnerable SCADA systems connected to the Internet.
+					- Example search query to find Modbus-enabled ICS/SCADA systems: port:502 (Retrieves all ICS/SCADA systems with Modbus port 502 enabled)
+				- Discovering SCADA Systems Using PLC Names:
+					- Attackers can also identify SCADA systems by searching for version numbers, PLC names, or manufacturer names. Shodan allows attackers to search system banners displaying details such as PLC name, manufacturer, and software versions.
+					- For instance, Schneider Electric is a company that deploys various Modbus-based ICS systems. An attacker can use Shodan to find all systems referencing Schneider Electric in their banners.
+					- Example search query: "Schneider Electric" (Displays all systems using Schneider Electric products)
+				- Searching for SCADA Systems Based on Geolocation:
+					- Attackers can filter SCADA system searches by country to target specific regions.
+					- Example search query: SCADA Country:"US" (Displays all SCADA systems located in the United States)
+			- Gathering Default Passwords Using CIRT.net (www.cirt.net):
+				- CIRT.net’s default password database is an online repository that stores default passwords for various devices, including those used in critical infrastructure. Attackers can exploit this database to obtain default credentials for a wide range of devices, such as routers, switches, and industrial control systems (ICS).
+			- Information-Gathering Tools:
+				- Below are various OT information-gathering tools:
+				- Kamerka-GUI (github.com): Kamerka-GUI is an OT reconnaissance tool designed to locate and map Internet-facing industrial control systems (ICS). It leverages Shodan’s advanced search filters to identify specific ICS devices, such as SCADA systems, PLCs, HMIs, and RTUs. Attackers can use Kamerka-GUI to pinpoint country-specific vulnerable ICS devices. Additionally, the tool provides an interactive map displaying the locations of identified ICS devices, offering a clear visual representation of their distribution. It can also generate heat maps to highlight regions with high concentrations of vulnerable devices.
+				- SearchDiggity (bishopfox.com)
+				- Zeek (zeek.org)
+				- Criminal IP (www.criminalip.io)
+				- ZoomEye (www.zoomeye.hk)
+				- ONYPHE (www.onyphe.io)
