@@ -1,0 +1,14 @@
+
+Fuzzowski (github.com)
+
+Hack a PLC Using modbus-cli (github.com)
+
+Gaining Remote Access Using DNP3
+
+- OT Hacking Tools:
+    - mbtget (github.com)
+    - CSET (github.com)
+    - Attkfinder (gitlab.com)
+    - ICSREF (github.com)
+    - ICSFuzz (github.com)
+    - ISF (github.com)

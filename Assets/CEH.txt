@@ -15263,3 +15263,114 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- OpenSearch Dashboard – A flexible data visualization plugin with multiple prebuilt dashboards that provide an easy overview of network protocols.
 					- Arkime – A robust tool for analyzing and identifying network sessions, helping detect potential security incidents.
 				- Additionally, Malcolm supports secure communication, enabling encrypted interactions between the user interface and remote log forwarders using standard encryption protocols.
+		- Vulnerability Scanning:
+			- Once attackers gather information about a target OT (Operational Technology) network and its systems, they conduct vulnerability scanning to identify exploitable weaknesses in critical infrastructure. They use tools such as SCADA plugins for Nessus and Skybox Vulnerability Control to detect vulnerabilities in OT and IT devices, protocols, and applications, including ICS/SCADA systems, PLCs, RTUs, HMIs, gateways, desktop computers, and other networked systems. Additionally, attackers leverage tools like Wireshark to monitor and analyze industrial network traffic, identifying potential vulnerabilities.
+			- Vulnerability Scanning Using Nessus (www.tenable.com):
+				- Nessus is a vulnerability assessment tool used to detect security flaws in ICS and SCADA systems. It provides attackers with an overview of vulnerabilities based on default policies and templates, while also allowing them to create custom scanning policies. Attackers use Nessus to identify, categorize, and exploit vulnerabilities within target OT networks. Nessus includes a collection of SCADA plugins that enable vulnerability scanning on ICS/SCADA devices. These vulnerabilities are detected based on plugin signatures.
+				- Steps to Perform Vulnerability Scanning on ICS/SCADA Systems Using Nessus:
+					- Log in to the Nessus web client using the credentials provided during installation.
+					- Click on the Policies tab and select Create New Policy. Then, choose the Basic Network Scan template.
+					- In the DISCOVERY section, modify the settings for port scanning and specify a port range of 0–1000.
+					- Under the Plugins tab, verify whether SCADA plugins are available. If they are missing, the scan will only return results for non-SCADA ports.
+					- Save the policy, then navigate to My Scans and select New Scan.
+					- Under User Defined Policy, choose the policy created in Step 2.
+					- Enter the required information, including the target IP address, and click Launch.
+				- Once the scan is complete, Nessus displays the discovered vulnerabilities. In the example screenshot below, two SCADA-related vulnerabilities are marked in yellow.
+				- After identifying system vulnerabilities, attackers employ various techniques to exploit them and launch further attacks on the target OT systems.
+			- Vulnerability Scanning Using Skybox Vulnerability Control (www.skyboxsecurity.com):
+				- Skybox conducts detailed path analysis across combined OT and IT networks, providing insights into associated vulnerabilities and related attack vectors. It integrates SCADA and ICS data with information gathered from attack vector analysis, Skybox intelligence feeds, SIEMs, threat intelligence feeds, and more. This tool can prioritize millions of vulnerabilities in OT/IT networks based on their risk levels. However, attackers could potentially analyze and group vulnerabilities across networks using Skybox to launch various attacks on IT/OT environments.
+			- Sniffing and Vulnerability Scanning Tools:
+				- Sniffing Tool: SmartRF Packet Sniffer (www.ti.com):
+					- SmartRF Packet Sniffer includes software and firmware designed to capture and display over-the-air packets. The capture device connects to a PC via USB and supports the CC13xx and CC26xx family of devices. Additionally, it integrates with Wireshark for packet display and filtering. Supported protocols include ZigBee, EasyLink, and BLE.
+				- Vulnerability Scanning Tool: Microsoft Defender for IoT (www.microsoft.com):
+					- Microsoft Defender for IoT performs vulnerability assessments on IoT and ICS environments, providing an objective risk score. It identifies all IoT and ICS assets connected to a target network and detects device-level vulnerabilities such as missing patches, weak passwords, unused open ports, and remote access ports. Additionally, it reports network-level vulnerabilities, including unauthorized internet connections, weak firewall rules, rogue subnet connections between IT, IoT, and ICS, unauthorized Wireless Access Points (WAPs), and rogue devices.
+			- Fuzzing ICS Protocols:
+				- Fuzzing ICS (Industrial Control System) protocols such as Modbus, BACnet, and the Internet Printing Protocol (IPP) is essential for identifying vulnerabilities and analyzing critical network activities. Security researchers and attackers use tools like Fuzzowski to test industrial networks for potential errors and exploitable weaknesses.
+				- Fuzzowski (github.com):
+					- Fuzzowski is a network protocol fuzzer designed to perform fuzz testing on ICS protocols. It assists users in configuring communications and executing fuzz tests. Before fuzzing a protocol, it is crucial to have a thorough understanding of its structure and behavior.
+					- Below are examples of fuzzing ICS protocols such as BACnet, Modbus, and IPP using Fuzzowski:
+						- Fuzzing the BACnet Protocol: python -m fuzzowski 127.0.0.1 47808 -p udp -f bacnet -rt 0.5 -m BACnetMon
+						- Fuzzing Modbus: python -m fuzzowski 127.0.0.1 502 -p tcp -f modbus -rt 1 -m modbusMon
+						- Fuzzing IPP: python -m fuzzowski printer1 631 -f ipp -r get_printer_attribs --restart smartplug
+		- Launch Attacks:
+			- During the vulnerability scanning phase, attackers identify security weaknesses in the target industrial network and systems. Once discovered, these vulnerabilities are exploited to launch various attacks, including HMI-based attacks, side-channel attacks, PLC exploitation, replay attacks, and command injection attacks. Attackers often use tools such as Metasploit and modbus-cli to hack PLC devices via the Modbus protocol.
+			- Hacking ICS Hardware:
+				Attackers leverage publicly available online sources to gather details about the hardware chips used in specific ICS devices. These details include pin configurations, input/output (I/O) types, and connection interfaces. They can also analyze the integrated software within a chip to extract critical information such as certificates, key generation algorithms, and encryption functions.
+				- Using this knowledge, attackers can manipulate analog and digital I/Os, modify device operations, and reset or reboot processes. By performing static and dynamic analysis of chip functions, they can identify vulnerabilities, such as buffer overflows and weak I/O validation, which manufacturers often overlook. Exploiting these vulnerabilities with specialized software and hardware tools allows attackers to compromise ICS hardware.
+				- Common Tools Used to Attack ICS Hardware:
+					- Hardware Tools:
+						- Signal Analyzer: Used to test and analyze the binary operation of specific chip pins.
+						- Multimeter: Functions similarly to a signal analyzer for measuring voltage and performing basic tests.
+						- Microcontrollers & Memory Programmers: Help in understanding and programming various chip types, including flash memory and EPROMs.
+						- Oscilloscope: Interprets and visualizes analog or digital signals with high accuracy.
+						- Soldering Equipment: Used for attaching and detaching hardware components like chips and memory modules for isolated examination.
+						- Digital Microscope or Magnifying Glass: Enhances precision in soldering and helps read small text or visualize tiny components.
+						- Communication Interface (e.g., JTAG): Enables direct communication with ICS devices.
+						- Screwdrivers & Precision Screwdrivers: Used to disassemble devices for internal analysis.
+						- Precision Tweezers & Converters: Assist in connecting and capturing data from communication buses, such as UART converters or serial-to-USB adapters.
+					- Software Tools:
+						- GDB (www.sourceware.org): A debugging tool for Linux that helps attackers understand on-chip execution processes.
+						- OpenOCD (openocd.org): Connects a system to the chip under examination via GDB (port 3333) or a Telnet interface (port 4444/TCP).
+						- Binwalk (github.com): Scans and analyzes firmware binaries, revealing encryption types, partitions, and filesystems.
+						- Fritzing (fritzing.org): Assists in designing electronic circuits and diagrams.
+						- Radare2 (github.com): A portable framework for reverse engineering and binary analysis.
+						- Ghidra (github.com): A software reverse engineering (SRE) framework that supports disassembly, decompilation, graphing, and scripting across multiple platforms.
+						- IDA Pro (hex-rays.com): A disassembler that converts machine-executable code into human-readable assembly language.
+			- Hacking Modbus Slaves Using Metasploit:
+				- Modbus Masters and Slaves communicate in plaintext without authentication. Attackers can exploit this vulnerability by generating and sending forged query packets to Modbus Slaves, allowing them to access and manipulate registers and coils. This attack is possible only if the attacker's machine can send packets to the Modbus Slave using the Modbus protocol format. Hackers often use tools like Metasploit to perform various attacks on Modbus Slaves.
+				- Scanning Modbus Slaves:
+					- Attackers use the auxiliary/scanner/scada/modbus_findunitid Metasploit module to scan and detect Modbus Slaves connected to the target network LAN or within a Modbus gateway.
+				- Manipulating Modbus Slave Data:
+					- Attackers use the auxiliary/scanner/scada/modbusclient Metasploit module to read or write registers and coils on the target Modbus Slave.
+			- Hacking PLCs Using modbus-cli:
+				- Programmable Logic Controllers (PLCs) are used to control industrial infrastructure such as manufacturing facilities, wastewater treatment plants, electrical grids, and petroleum refineries. Attackers often target PLC devices, such as the Schneider Electric TM221, which automate processes in various industries. These devices communicate using the Modbus/TCP protocol, making them vulnerable to exploitation through tools like modbus-cli.
+				- Steps to Hack a PLC Using modbus-cli (github.com):
+					- Step 1: Identify Internet-Connected PLCs:
+						- Tools like Shodan and Nmap can be used to find exposed industrial systems on the Internet. To detect Schneider Electric TM221 PLCs online, enter TM221ME16R in the Shodan search bar. Shodan will retrieve all Schneider Electric TM221 PLCs connected to the Internet, many of which may have security vulnerabilities.
+					- Step 2: Install modbus-cli:
+						- After identifying vulnerable PLCs using Shodan, install modbus-cli with the following command: gem install modbus-cli
+					- Step 3: Understand Data Types:
+						- Before exploiting PLCs with modbus-cli, you must understand the data types used for reading values. These data types have two types of addresses: Schneider and Modicon. A Schneider address starts with %M before the address.
+					- Step 4: Read Register Values:
+						- To read register values from the identified devices, use the following commands:
+						- Using Schneider address: modbus read <Target IP> %MW100 10
+						- Using Modicon address: modbus read <Target IP> 400101 10
+						- These commands retrieve ten words from the registers.
+					- Step 5: Manipulate Register Values:
+						- You can modify register values using the following commands:
+							- modbus write <Target IP> %MW100 2 2 2 2 2 2 2 2
+							- modbus write <Target IP> 400101 2 2 2 2 2 2 2 2
+						- After executing these commands, the first eight register values will be replaced with 2.
+					- Step 6: Read Coil Values:
+						- Retrieve coil values (which store ON/OFF states as Boolean values) using the following commands:
+							- modbus read <Target IP> 101 10
+							- modbus read <Target IP> %M100 10
+					- Step 7: Manipulate Coil Values:
+						- To turn on all coils using modbus-cli, execute the following commands:
+							modbus write <Target IP> 101 1 1 1 1 1 1 1 1 1 1
+							modbus write <Target IP> %M100 1 1 1 1 1 1 1 1 1 1
+						- After running these commands, checking the coil values will show all coils set to 1.
+					- Step 8: Capture Data into an Output File:
+						- You can save SCADA data for analysis and testing using the following commands:
+						- Capture register values into a file:
+							- modbus read --output SCADAregisters.txt <Target IP> 400101 200
+							- modbus read --output SCADAregisters.txt <Target IP> %MW100 200
+						- Capture coil values into a file:
+							- modbus read --output SCADAcoils.txt <Target IP> 101 100
+							- modbus read --output SCADAcoils.txt <Target IP> %M100 100
+			- Gaining and Maintaining Remote Access:
+				- The information-gathering and vulnerability-scanning phases allow attackers to survey the OT environment and identify vulnerabilities that help them gain remote access to industrial control systems. For example, attackers can exploit weaknesses in industrial protocols or inject malware to launch targeted attacks and access these systems. Once inside, they can manipulate and alter industrial control operations, causing both physical and financial damage to the organization. Additionally, attackers use compromised devices as platforms to launch further attacks on other connected systems.
+				- After gaining remote access, attackers employ various techniques to maintain their foothold and carry out further exploitation. They remain undetected by clearing logs, updating firmware, and injecting rootkits to ensure persistent access. Moreover, they can modify firmware on devices such as PLCs, enabling them to monitor and control critical operations within the target system.
+			- Gaining Remote Access Using DNP3:
+				- Internet-based control systems are widely used in industries such as power plants, manufacturing, and construction. These systems are designed for remote monitoring and control but are often configured with direct Internet access, lack proper firewall protections, or use default credentials. Attackers can exploit poorly secured networks and weak/default passwords to gain unauthorized access to industrial systems. Many default credentials are publicly available online, and weak passwords can be easily brute-forced.
+				- Attackers often use online tools like Shodan to scan open ports and services on target ICS devices. Once an open port is identified, they exploit vulnerabilities to obtain remote access. For example, when targeting ICS protocols such as DNP3 (port 20000), attackers can perform a port scan using Shodan, revealing open ports and associated vulnerabilities. By selecting an open port, they are directed to the system’s login page, where they can gain access using default credentials or brute-force techniques.
+			- OT Hacking Tools:
+				- Attackers use OT hacking tools to identify industrial control systems connected to a target network, detect legacy software installed on those devices, find vulnerable ports and services, and exploit unsecured or unencrypted communication protocols. These tools enable various types of attacks on industrial systems and networks. This section explores several OT hacking tools.
+				- OT Hacking Tools:
+					- Below are some commonly used tools that attackers leverage to compromise OT systems and networks:
+					- mbtget (github.com): mbtget is a command-line tool written in Perl for executing Modbus transactions. It enables attackers to interact with both the TCP and RTU versions of the Modbus protocol via the MBclient object, allowing them to target industrial control systems (ICS) and networks.
+					- CSET (github.com)
+					- Attkfinder (gitlab.com)
+					- ICSREF (github.com)
+					- ICSFuzz (github.com)
+					- ISF (github.com)
