@@ -15105,3 +15105,64 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Step 1: The attacker identifies a vulnerable PLC using tools like Shodan or Censys.
 				- Step 2: The attacker exploits the PLC’s firmware and weaponizes it by modifying its programming logic through download procedures.
 				- Step 3: Using the compromised PLC, the attacker initiates upload procedures on connected workstations to execute arbitrary code.
+		- Hacking Industrial Systems Through RF Remote Controllers:
+			- Many industrial machines are operated via remote controllers, which are widely used in industries such as manufacturing, logistics, mining, and construction for automation and machine control. These devices communicate within a network using a transmitter (TX) and a receiver (RX). The transmitter (TX) sends radio commands (via buttons), while the receiver (RX) responds accordingly. However, inadequate security measures in devices operated via remote controllers can pose serious threats to industrial systems.
+			- Attackers within the system’s operational range can exploit vulnerabilities using specially designed radio transceiver devices. These devices allow attackers to craft and transmit their own packets within the network, enabling unauthorized access to the industrial system and facilitating malicious activities.
+			- Below are some common threats industrial systems face through RF remote controllers:
+				- Replay Attack: Attackers capture and replay recorded RF packets transmitted by an operator to gain unauthorized control over the system.
+				- Command Injection: By analyzing RF protocols, attackers can modify existing RF packets or inject their own using reverse engineering techniques. They can record commands, decipher additional control functions, and send manipulated commands to disrupt or take full control of the target machine.
+				- Abusing E-stop: Using the gathered RF command data, attackers can repeatedly send emergency stop (E-stop) signals to the target device, causing a denial-of-service (DoS) attack that disrupts operations.
+				- Re-pairing with a Malicious RF Controller: An attacker can hijack the original remote controller and re-pair the machine with a malicious RF controller disguised as a legitimate one. By capturing the pairing sequence, they can take control of the target device and execute various attacks.
+				- Malicious Reprogramming Attack: Attackers can inject malware into the firmware of remote controllers, maintaining persistent and unauthorized access to the target industrial system.
+		- OT Supply Chain Attacks:
+			- Operational Technology (OT) supply chain attacks involve compromising the hardware, software, or services of an organization's suppliers to infiltrate its OT environment. These attacks can be particularly devastating as they often exploit trusted relationships and may go undetected for extended periods.
+			- Below are key techniques attackers use to conduct supply chain attacks in OT environments:
+				- Third-Party Software Compromise: Attackers inject malicious code into trusted software updates, creating backdoors or embedding malicious functionalities upon installation.
+				- Hardware Manipulation: Attackers modify hardware components during manufacturing or distribution, embedding malicious firmware or chips that activate once deployed in the target environment.
+				- Service Provider Breach: Attackers compromise service providers—such as maintenance or support contractors—to infiltrate the target organization's OT network using stolen credentials, remote access tools, or insider access.
+				- Injection of Malicious Components: Attackers introduce malicious components or firmware into the supply chain by tampering during shipping or replacing legitimate parts with compromised ones.
+				- Exploitation of Trusted Relationships: Attackers leverage the trust and access granted to suppliers, subcontractors, or partners to move laterally within the target organization’s network.
+		- OT Malware:
+			- Attackers are developing sophisticated malware to target industrial systems. Recently, OT malware such as Stuxnet and Industroyer.V2 have caused severe disruptions to business processes on industrial networks. Such malware can inflict damage on both software and hardware used to operate critical infrastructure. In some scenarios, OT malware can also propagate infections, rendering connected devices inoperable.
+			- Industrial control systems (ICS) are particularly susceptible to malware attacks due to their connectivity to broader networks. Additionally, OT solutions often rely on proprietary systems and legacy technology that are not regularly updated or patched, making them more vulnerable to cyber threats. Once an industrial system is infected, OT ransomware can destructively lock and encrypt hard drive files, rendering the system inaccessible and unusable.
+			- Notable Examples of OT Malware:
+				- Stuxnet (claroty.com):
+					- Stuxnet is a destructive industrial control system (ICS) malware specifically developed to disrupt OT environments. These environments are responsible for monitoring safety systems and other critical infrastructures. Attackers can use malware to manipulate crucial data, block access to sensor gateways, and attempt to damage physical sensors within OT environments.
+					- Once deployed, Stuxnet can compromise gateways by rewriting the NAND chip, effectively disabling remote access and preventing administrators from regaining control. Additionally, the malware can exploit weak credentials on OT devices to gain root access to targeted sensor gateways, further compromising the system. To maximize disruption, attackers can use fuzzing techniques—such as sending malformed packets to sensors—causing them to malfunction. This can result in inaccurate sensor readings and potentially lead to physical damage to equipment.
+				- Kapeka
+				- Abyss Locker
+				- AvosLocker
+				- COSMICENERGY
+				- INDUSTROYER.V2
+				- Pipedream
+		- OT Malware Analysis: COSMICENERGY (cloud.google.com):
+			- COSMICENERGY is a novel operational technology (OT) and industrial control system (ICS)-oriented malware designed to disrupt power systems by interacting with IEC 60870-5-104 (IEC-104) devices, such as remote terminal units (RTUs). It shares similarities with previous malware like INDUSTROYER and INDUSTROYER.V2, which are known for disrupting power grids through the IEC-104 protocol.
+			- COSMICENERGY Attack Scenario:
+				- Stage 1: Reconnaissance:
+					- Attackers begin by conducting reconnaissance to identify potential targets and gather information about the target environment. This includes:
+						- Identifying MSSQL servers with access to the OT network.
+						- Extracting MSSQL credentials.
+						- Locating target IEC-104 device IP addresses.
+						- Gathering details on targeted assets, such as power-line switches, circuit breakers in an RTU, or relay configurations.
+				- Stage 2: Initial Access:
+					- Attackers gain access to the target environment, potentially by exploiting vulnerabilities or using stolen credentials. In COSMICENERGY’s case, this may involve connecting to a user-supplied remote MSSQL server. Once access is established, COSMICENERGY uploads and executes malicious files on the target system.
+				- Stage 3: Executing the Attack:
+					- Once inside the target environment, attackers deploy and execute COSMICENERGY, which consists of two main components: PIEHOP and LIGHTWORK.
+					- PIEHOP (Python-based):
+						- Connects to the MSSQL server to upload files.
+						- Issues remote commands to the RTU.
+						- The main entry point, r3_iec104_control.py, calls PIEHOP’s main function with the argument control=True.
+						- The script imports the "iec104_mssql_lib" module to facilitate communication.
+					- LIGHTWORK (C++-based):
+						- Executes IEC-104 ASDU messages to manipulate RTU information object addresses (IOAs).
+						- Alters the state of power-line switches and circuit breakers (turning them ON or OFF).
+						- Command-line usage: OT_T855_IEC104_GR.exe <ip_address> <port> <command> [ON (1) / OFF (0)]
+					- LIGHTWORK follows this sequence of actions:
+						- Sends a C_IC_NA_1 (station interrogation command) to retrieve the target station’s status.
+						- Executes C_SC_NA_1 (single command) for each hardcoded IOA to change its state.
+						- Issues C_CS_NA_1 (clock synchronization command) to align the target station’s clock with the attacker's device.
+					- If executed successfully, LIGHTWORK provides command-line output confirming the changes.
+					- By leveraging these two components, COSMICENERGY can cause power disruptions by repeatedly sending ON/OFF commands to IEC-104 devices. This could lead to widespread outages and potential damage to the power grid.
+				- Stage 4: Lateral Movement & Covering Tracks:
+					- COSMICENERGY does not have built-in lateral movement capabilities. However, attackers conduct internal reconnaissance, suggesting they may move laterally within the network to gather necessary information before executing the attack.
+			- After achieving their objectives, attackers attempt to erase traces of their activity by deleting PIEHOP, LIGHTWORK, and other malicious files from compromised systems.
