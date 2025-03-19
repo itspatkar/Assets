@@ -15917,3 +15917,118 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- GCP provides cloud computing services across IaaS, PaaS, and serverless models. Its offerings include computing, data storage, analytics, machine learning, networking, big data, cloud AI, identity and security, IoT, API platforms, and management tools.
 		- IBM Cloud (www.ibm.com):
 			- IBM Cloud™ is a powerful suite of cloud solutions integrated with AI tools and deep industry expertise. It offers IaaS, SaaS, and PaaS services across public, private, and hybrid cloud environments. Key services include computing, networking, storage, security, databases, analytics, AI, IoT, mobile, developer tools, and blockchain.
+- Container Technology:
+	- Container technology is a rapidly growing virtualization method that enables developers and IT teams to build, deploy, and manage containerized applications. This is done using a service provider’s API or a web-based interface. Containers and clusters can be deployed in on-premises data centers or cloud environments. This section explores key concepts related to container technology, including Docker containers and Kubernetes.
+	- What is Container:
+		- A container is a lightweight, standalone package that includes an application and all its dependencies—such as libraries, configuration files, and binaries—allowing it to run independently from other processes in a cloud environment. By bundling all necessary resources, containers eliminate compatibility issues when applications are moved between cloud environments.
+		- Containers are offered as part of Container-as-a-Service (CaaS), a cloud service model that provides virtualization and container management via orchestrators. With CaaS, users can develop and deploy scalable containerized applications on cloud platforms or on-premises data centers. CaaS combines elements of both Infrastructure-as-a-Service (IaaS) and Platform-as-a-Service (PaaS). Popular container services include Amazon AWS EC2, Google Kubernetes Engine (GKE), and Docker.
+	- Features of Containers:
+		- Container technology offers several advantages, making it widely adopted across industries. Below are some of its key features:
+		- Portability and Consistency: Containers include all necessary resources, making applications highly portable. This allows applications to run seamlessly across different platforms and cloud environments, whether private or public.
+		- Security: Because containers operate independently, security risks are minimized. If one container is compromised, the issue does not spread to other containers, ensuring better isolation and protection.
+		- High Efficiency and Cost-Effectiveness: Containers require fewer resources than traditional virtual machines (VMs) since they do not need separate operating systems. They consume only a few megabytes of memory, allowing multiple containers to run on a single server. Additionally, containers are isolated, so if one application fails, others continue running without disruption.
+		- Scalability: Containers are highly scalable, enabling users to integrate additional containers within the same cluster as needed. Smart scaling technology allows users to activate only necessary containers while keeping unused ones dormant, optimizing cost and performance.
+		- Robustness: Containers can be created, deployed, and terminated within seconds since they do not require full operating systems. This accelerates development cycles, enhances operational speed, and allows for rapid software updates. The agility of containers also enables developers to quickly address bugs and roll out new features, improving user experience and overall application performance.
+	- Container Technology Architecture:
+		- As shown in the figure below, container technology follows a five-tier architecture and undergoes a three-phase lifecycle:
+		- Five-Tier Architecture:
+			- Tier-1: Developer Machines - Responsible for image creation, testing, and accreditation.
+			- Tier-2: Testing and Accreditation Systems - Perform verification and validation of image contents, sign images, and send them to registries.
+			- Tier-3: Registries - Store images and distribute them to orchestrators based on requests.
+			- Tier-4: Orchestrators - Convert images into containers and deploy them to hosts.
+			- Tier-5: Hosts - Operate and manage containers as instructed by the orchestrator.
+		- Three Phases of the Container Lifecycle:
+			- Image Creation, Testing, and Accreditation:
+				- The first phase of container technology involves image generation and validation. During this phase, application or software components are developed and packaged into an image. This image contains all the necessary files and resources required for execution.
+				- Developers are responsible for integrating essential components, while security teams conduct image testing and accreditation to ensure security and compliance before deployment.
+			- Image Storage and Retrieval:
+				- Once validated, images are stored in central repositories called registries. These registries provide services such as:
+					- Storage and tagging for easy identification
+					- Version control for discovery and reuse
+					- Fetching and downloading images created by other developers
+				- Registries can be self-hosted or cloud-based. Popular registry services include Docker Hub, Amazon Elastic Container Registry (ECR), and Docker Trusted Registry (DTR).
+			- Container Deployment and Management:
+				- The final phase involves deploying and managing containers using orchestrators. DevOps administrators fetch images from registries, deploy them as containers, and manage their operations.
+				- Orchestrators help with:
+					- Monitoring resource consumption
+					- Managing job execution
+					- Detecting host failures and restarting containers
+					- Allocating additional resources when needed
+					- Handling application updates by replacing old containers with new ones
+				- Popular orchestrators include Kubernetes, Docker Swarm, Nomad, and Mesos.
+	- Advantages of Container Technology:
+		- Requires minimal resources for application development
+		- Enables faster detection of software issues and patch deployment
+		- Cost-effective and facilitates easy shipping
+		- Enhances application portability
+		- Scalable resource allocation
+		- Quick container boot-up (within seconds), enabling rapid development
+		- Simplifies management of isolated applications in containers
+		- Facilitates easy testing and debugging
+	- Disadvantages of Container Technology:
+		- Increased complexity
+		- Misconfigurations due to lack of expertise
+		- Heightened vulnerability due to shared resources
+		- Potential performance limitations
+		- Difficulty in selecting an appropriate platform for container deployment
+		- Variability in service discovery methods (e.g., proxy-based, DNS-based)
+	- Containers vs. Virtual Machines:
+		- Virtualization is a fundamental technology that powers cloud computing. It enables multiple operating systems to run on a single physical system while sharing underlying resources such as servers, storage devices, and networks. By leveraging virtualization, organizations can reduce IT costs while improving hardware utilization, flexibility, and productivity. Some popular virtualization vendors include VMware vCloud Suite, VMware vSphere, VirtualBox, and Microsoft Hyper-V.
+		- Traditionally, virtualization has been used to facilitate application portability and optimize cloud IT infrastructure. However, it comes with several disadvantages, including slower performance due to the heavyweight nature of virtual machines, limited portability, and time-consuming IT resource provisioning. To address these issues, industries are increasingly adopting containerization—a technology that provides application resources in the form of lightweight containers. Containers run on a single operating system and allow software applications to operate anywhere with scalable resources.
+		- Containers sit on top of a physical server and its host operating system, sharing system kernel binaries and libraries. This eliminates the need to replicate the OS for each application. With containerization, a single OS can support multiple workloads, making containers highly efficient. Unlike virtual machines, which are larger in size and take minutes to boot, containers are lightweight (only a few megabytes) and start in seconds.
+		- Virtual Machines vs. Containers:
+			- Virtual Machines:
+				- Heavyweight
+				- Run on independent operating systems
+				- Hardware-based virtualization
+				- Slower provisioning
+				- Limited performance
+				- Completely isolated, providing higher security
+				- Created and launched in minutes
+			- Containers:
+				- Lightweight and portable
+				- Share a single host operating system
+				- OS-based virtualization
+				- Scalable with real-time provisioning
+				- Near-native performance
+				- Process-level isolation, offering partial security
+				- Created and launched in seconds
+	- What is Docker:
+		- Docker is an open-source technology used for developing, packaging, and running applications. It utilizes containers to encapsulate all dependencies, ensuring that applications run consistently across different environments. Docker provides a Platform as a Service (PaaS) through OS-level virtualization, enabling the delivery of containerized software packages. This technology isolates applications from the underlying infrastructure, facilitating faster and more efficient software deployment.
+		- One of Docker's key advantages is that when an application is packaged with its dependencies into a Docker container, it can run reliably in any environment. Additionally, since Docker containers are isolated from each other and communicate via well-defined channels, developers can build multiple applications without risk of interference.
+		- Docker Engine:
+			- The Docker Engine is a client-server application installed on a host machine that enables the development, deployment, and execution of containerized applications. It consists of the following components:
+			- Server: A persistent background process, also known as a daemon (dockerd command), responsible for managing containers.
+			- REST API: An interface that facilitates communication and task assignments between the client and the daemon.
+			- Client CLI: A command-line interface that interacts with the daemon, allowing users to execute various Docker commands.
+		- Docker Swarm:
+			- The Docker Engine supports Swarm mode, which allows the management of multiple Docker engines within the Docker platform. The Docker CLI is used to create a swarm, deploy applications, and control their behavior and activity.
+			- Swarm mode enables administrators and developers to:
+				- Communicate with containers and assign tasks to different containers.
+				- Scale containers up or down based on workload demands.
+				- Perform health checks and manage the lifecycle of various containers.
+				- Provide failover and redundancy, ensuring processes continue even if a node fails.
+				- Apply timely software updates to all containers.
+		- Docker Architecture:
+			- The Docker architecture follows a client-server model and consists of various components, including the host, client, network, registry, and storage units. The Docker client interacts with the Docker daemon, which is responsible for building, running, and distributing containers. The daemon and client can operate on the same host, or users can connect a Docker client to a remote daemon. Communication between the Docker client and the Docker daemon is established via a REST API.
+			- Components of Docker Architecture:
+				- Docker Daemon: The Docker daemon (dockerd) processes API requests and manages Docker objects, such as containers, volumes, images, and networks.
+				- Docker Client: The Docker client serves as the primary interface for interacting with Docker. When users run commands such as docker run, the client forwards them to dockerd, which executes the tasks. The Docker API facilitates this communication.
+				- Docker Registries:
+					- Docker registries store and distribute container images. They can be public or private.
+					- Docker Hub and Docker Cloud are two widely used public registries.
+					- Docker Hub is the default repository for Docker images and is accessible to all users.
+				- Docker Objects: Various objects help in building and running applications within Docker, including:
+					- Images: Read-only binary templates containing instructions for creating containers.
+					- Containers: Executable instances of Docker images that encapsulate applications and their dependencies. Containers can be created, started, stopped, or deleted using the Docker CLI or Docker API.
+					- Services: A service allows users to scale containers across multiple daemons, forming a swarm of manager and worker nodes. Each swarm member is a daemon, and they communicate through the Docker API.
+					- Networking: A mechanism enabling communication between isolated containers.
+					- Volumes: Persistent storage used by Docker containers to retain data.
+		- Docker Operations:
+			- Common operations performed on Docker images include:
+			- Building a new image from a Dockerfile.
+			- Listing all local images.
+			- Tagging an existing image.
+			- Pulling a new image from the Docker registry.
+			- Pushing a local image to the Docker registry.
+			- Searching for existing images.
