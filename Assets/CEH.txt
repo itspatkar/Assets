@@ -15794,3 +15794,126 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- High research and development (R&D) costs before implementation
 					- Not affordable for small and medium-sized enterprises (SMEs)
 					- Absence of a fixed model
+	- NIST Cloud Deployment Reference Architecture:
+		- The figure below provides an overview of the NIST cloud computing reference architecture, illustrating the primary actors, activities, and functions in cloud computing. This diagram presents a generic high-level architecture designed to enhance the understanding of cloud computing’s uses, requirements, characteristics, and standards.
+		- The five key actors in this architecture are as follows:
+		- Cloud Consumer:
+			- A cloud consumer is an individual or organization that maintains a business relationship with cloud service providers (CSPs) and utilizes cloud computing services. The cloud consumer browses the CSP’s service catalog, requests the desired services, establishes service contracts (either directly or through a cloud broker), and uses the services. The CSP bills the consumer based on service usage.
+			- The CSP is responsible for fulfilling the service level agreement (SLA), which defines the technical performance requirements, including quality of service, security, and remedies for performance failures. Additionally, the CSP may outline specific limitations and obligations that cloud consumers must accept.
+			- Cloud consumers can access services through the following cloud service models:
+				- PaaS (Platform as a Service): Database (DB), business intelligence, application deployment, development and testing, and integration.
+				- IaaS (Infrastructure as a Service): Storage, service management, content delivery network (CDN), platform hosting, backup and recovery, and computing.
+				- SaaS (Software as a Service): Human resources, enterprise resource planning (ERP), sales, customer relationship management (CRM), collaboration, document management, email and office productivity, content management, financial services, and social networks.
+		- Cloud Provider:
+			- A cloud provider is an individual or organization that acquires and manages computing infrastructure to offer services (either directly or through a cloud broker) to consumers via network access.
+		- Cloud Carrier:
+			- A cloud carrier acts as an intermediary, providing connectivity and transport services between CSPs and cloud consumers. It facilitates access to cloud services via networks, telecommunications, or other access devices.
+		- Cloud Auditor:
+			- A cloud auditor is an independent entity that examines cloud service controls to assess compliance with industry standards. Audits verify adherence to security, performance, and privacy regulations through an evaluation of objective evidence. A cloud auditor may assess:
+				- Security Controls: Management, operational, and technical safeguards designed to protect the confidentiality, integrity, and availability of cloud systems and data.
+				- Privacy Impact: Compliance with applicable privacy laws and regulations.
+				- Performance and Reliability: Adherence to SLAs and overall system efficiency.
+		- Cloud Broker:
+			- As cloud service integration becomes increasingly complex, cloud consumers may rely on cloud brokers instead of directly engaging with CSPs. A cloud broker manages cloud services by overseeing their use, performance, and delivery while maintaining the relationship between CSPs and consumers.
+			- Cloud brokers provide three types of services:
+				- Service Intermediation: Enhances an existing function by adding specific capabilities and offering value-added services to cloud consumers.
+				- Service Aggregation: Combines and integrates multiple services into one or more unified solutions.
+				- Service Arbitrage: Similar to service aggregation but allows dynamic selection of services from multiple providers instead of fixed integrations.
+	- Cloud Storage Architecture:
+		- Cloud storage is a medium used to store digital data in logical pools over a network. The physical storage is distributed across multiple servers, which are owned and managed by a hosting company. Organizations can purchase storage capacity from cloud storage providers to store user, organizational, or application data. Cloud storage providers are responsible for managing the data, ensuring its availability, and maintaining accessibility.
+		- Cloud storage services can be accessed via cloud computing platforms, web service APIs, or applications that integrate these APIs, such as cloud desktop storage, cloud storage gateways, or web-based content management systems. These services are typically operated from off-premises infrastructures, such as Amazon S3.
+		- Cloud storage architecture shares key characteristics with cloud computing, including scalability, accessible interfaces, and metered resource usage. It is built on a highly virtualized infrastructure and consists of multiple layers to provide continuous storage services. The three primary layers include:
+			- Front-end layer: Accessed by end users, providing APIs for data storage management.
+			- Middleware layer: Handles functions such as data deduplication and replication.
+			- Back-end layer: Where the physical hardware and storage infrastructure are implemented.
+		- Cloud storage is composed of distributed resources, making it highly fault-tolerant through redundancy, consistent in data replication, and highly durable. Commonly used object storage services include Amazon S3, Oracle Cloud Storage, Microsoft Azure Storage, and OpenStack Swift.
+	- Virtual Reality and Augmented Reality on the Cloud:
+		- Virtual Reality (VR) and Augmented Reality (AR), along with cloud computing, are two of the most important emerging technologies. When combined, they enable new applications and usage models. Currently, VR/AR headsets require significant local computing and graphics power, making them expensive due to the high costs associated with both the headsets and the processing power of connected PCs. However, cloud environments can provide access to modern multi-core CPUs, effectively handling the computing demands of VR/AR applications. Many cloud-based data centers today offer high-performance GPUs capable of supporting the graphics-intensive needs of VR/AR applications.
+		- Furthermore, VR/AR applications often require higher processing speeds than those available in standard computing devices. Instead of investing in costly hardware upgrades, users can leverage cloud services to enhance the speed and performance of core infrastructure. Additionally, the rapidly evolving nature of VR/AR applications leads to frequent changes in software functionality and user interfaces. By utilizing cloud-based delivery, users can experience seamless updates and improvements.
+		- Finally, since VR/AR applications are not always in constant use, a cloud-based pay-per-use model offers a cost-effective solution, allowing users to access these applications as needed without heavy upfront investments.
+	- Fog Computing:
+		- The massive growth of IoT devices worldwide has resulted in the generation of an enormous amount of data. To meet the increasing demand for analyzing and processing this data, the implementation of fog computing, alongside cloud computing, is an ideal solution. Fog computing is a distributed and independent digital environment in which applications and data storage are positioned between data sources (devices generating data) and cloud services. It is an extended version of cloud computing that consists of multiple edge nodes directly connected to physical devices, enabling service access for end users.
+		- Generally, fog computing refers to the concept of creating an additional layer in a distributed network infrastructure that is closely interconnected with IoT and cloud computing. It acts as an intermediary between hardware and remote servers and is also referred to as an intelligent gateway. Fog computing facilitates enhanced data processing, storage, and analysis in a quick and efficient manner. Many organizations have adopted this technology due to its ability to provide additional functionalities for faster and more efficient data processing, storage, and analysis.
+		- Working of Fog Computing:
+			- Devices with an Internet connection, computational abilities, and data storage capabilities are referred to as fog nodes. These nodes can be deployed anywhere within a network. IoT applications for fog nodes are ported at the network edge, where they collect data from IoT devices, enabling short-term analytics at the edge. Fog computing is particularly beneficial in cases of unstable Internet connections. Urgent requests are transmitted directly to the fog nodes, where they are processed in real time within the local network. Fog computing is widely used in applications such as smart cities, smart grids, connected cars, and real-time analytics.
+		- Advantages of Fog Computing:
+			- Fog computing has been highly beneficial in the fields of IoT, big data, and real-time analytics. The main advantages of fog computing over cloud computing include:
+			- Low latency: Fog computing processes large volumes of data with minimal delay, as it is geographically closer to end users and can offer rapid responses.
+			- High business agility: Developers can quickly and easily design fog instances and deploy them based on requirements.
+			- No bandwidth-related issues: Data is accumulated at distinct points instead of being transmitted collectively to a single data center through one channel, thereby avoiding bandwidth congestion.
+			- No connection loss: The presence of multiple interconnected channels ensures a reliable connection.
+			- Enhanced security: Fog computing improves security by processing data across numerous nodes in a complex distributed system.
+			- Reduced operating costs: By processing data locally instead of transmitting it to the cloud for analysis, fog computing conserves network bandwidth, significantly lowering costs.
+			- High power efficiency: Edge devices utilize power-saving protocols such as Zigbee, Z-Wave, or Bluetooth.
+		- Disadvantages of Fog Computing:
+			- Despite its advantages, fog computing has some drawbacks compared to cloud computing, including:
+			- Additional costs: Organizations must invest in extra edge devices such as routers, hubs, and gateways.
+			- System complexity: As fog computing introduces an additional layer in the data processing and storage system, it increases overall system complexity.
+			- Limited scalability: Fog computing is not as scalable as cloud computing.
+	- Edge Computing:
+		- Conventional cloud computing faces challenges related to data security, low performance, and increased data storage demands, leading to high operational costs. These issues can be addressed by replacing conventional cloud computing with edge computing.
+		- Edge computing is a subset of fog computing, and its approach to data processing is similar. In fog computing, data processing occurs at the LAN level via an intelligent gateway, whereas in edge computing, processing is performed directly on devices such as programmable automation controllers.
+		- Edge computing is used in solutions that require processing small yet urgent operations within milliseconds. It is a distributed, decentralized computing model where computation and data processing occur close to edge devices. Instead of relying on a central location for data storage, edge computing stores data near the devices that generate it. This approach reduces internet bandwidth usage and offloads data transmission.
+		- Many organizations can leverage edge computing for building automation systems, enabling faster processing, prompt responses, and efficient real-time applications.
+	- Cloud vs. Fog Computing vs. Edge Computing:
+		- Edge computing and fog computing are extensions of cloud computing.
+		- Cloud computing follows a centralized model with thousands of servers processing data in real time.
+		- Edge computing operates as a highly distributed and decentralized model, utilizing billions of virtual or hardware endpoints to process data closer to edge devices (such as IoT devices).
+		- Fog computing serves as an intermediary layer, consisting of millions of nodes that efficiently handle data storage, processing, and analysis. It functions as a decentralized intelligent gateway positioned between the data source and cloud infrastructure.
+		- Comparison of Cloud, Fog, and Edge Computing:
+			- Cloud Computing:
+				- Speed: High access speed but depends on VM connectivity.
+				- Latency: High latency.
+				- Data Integration: Integrates multiple data sources.
+				- Capacity: No data reduction while delivering or converting data.
+				- Responsiveness: Low response time.
+				- Security: Less secure than fog computing.
+			- Fog Computing:
+				- Speed: Faster than cloud computing.
+				- Latency: Low latency.
+				- Data Integration: Integrates multiple data sources and devices.
+				- Capacity: Reduces the amount of data sent to the cloud.
+				- Responsiveness: High response time.
+				- Security: Highly secure.
+			- Edge Computing:
+				- Speed: Faster than fog computing.
+				- Latency: Low latency.
+				- Data Integration: Integrates a limited number of data sources.
+				- Capacity: Reduces the amount of data sent to fog computing.
+				- Responsiveness: High response time.
+				- Security: Customizable security.
+	- Cloud Computing vs. Grid Computing:
+		- Cloud computing and grid computing are two widely used computing models, each based on different architectural principles.
+		- Cloud Computing:
+			- Follows a client-server architecture
+			- Offers high scalability
+			- Uses resources in a centralized manner
+			- More flexible compared to grid computing
+			- Cloud servers are owned by infrastructure providers
+			- Provides services such as IaaS, PaaS, and SaaS
+			- Accessed via regular web protocols
+			- Operates on a pay-as-you-go model
+			- Service-oriented, adapting to different user requirements
+			- Does not support interoperability, leading to potential vendor lock-in
+			- Contains a large-scale pool of resources and assets
+		- Grid Computing:
+			- Follows a distributed computing architecture
+			- Offers standard scalability
+			- Uses resources collaboratively rather than centrally
+			- Less flexible compared to cloud computing
+			- Managed and owned by an organization
+			- Accessed through grid middleware
+			- Users generally do not pay for usage
+			- Application-oriented, providing a shared group of computing resources
+			- Supports interoperability, making it easier to manage
+			- Contains a limited number of assets and resources compared to cloud computing
+	- Cloud Service Providers:
+		- Discussed below are some of the most popular cloud service providers:
+		- Amazon Web Services (AWS - aws.amazon.com):
+			- AWS offers on-demand cloud computing services to individuals, organizations, and governments on a pay-as-you-go basis. It provides essential technical infrastructure through distributed computing and a wide range of tools. The virtual environment in AWS includes compute resources (CPU, GPU, RAM), storage (HDD, SSD), operating systems, applications, and networking software such as web servers, databases, and CRM solutions.
+		- Microsoft Azure (azure.microsoft.com):
+			- Microsoft Azure delivers cloud computing services for building, testing, deploying, and managing applications and services via its global data centers. It supports all cloud computing models—SaaS, PaaS, and IaaS—offering a comprehensive suite of services, including computing, storage, data management, messaging, media, machine learning, and IoT.
+		- Google Cloud Platform (GCP - cloud.google.com):
+			- GCP provides cloud computing services across IaaS, PaaS, and serverless models. Its offerings include computing, data storage, analytics, machine learning, networking, big data, cloud AI, identity and security, IoT, API platforms, and management tools.
+		- IBM Cloud (www.ibm.com):
+			- IBM Cloud™ is a powerful suite of cloud solutions integrated with AI tools and deep industry expertise. It offers IaaS, SaaS, and PaaS services across public, private, and hybrid cloud environments. Key services include computing, networking, storage, security, databases, analytics, AI, IoT, mobile, developer tools, and blockchain.
