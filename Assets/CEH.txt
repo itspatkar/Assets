@@ -16736,3 +16736,45 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Encrypt sensitive data stored in configuration files.
 				- Detect network interface controllers (NICs) operating in promiscuous mode.
 				- Ensure that web traffic containing credentials is secured with SSL/TLS encryption.
+		- Side-Channel Attacks or Cross-Guest VM Breaches:
+			- Attackers can compromise the cloud by placing a malicious virtual machine (VM) near a target cloud server and launching a side-channel attack. The figure below illustrates how an attacker can achieve this by deploying a malicious VM on the same physical host as the target VM and exploiting shared physical resources (such as the processor cache).
+			- Once positioned, the attacker executes side-channel attacks—including timing attacks, data remanence, acoustic cryptanalysis, power monitoring attacks, and differential fault analysis—to extract cryptographic keys or plaintext secrets. This enables the attacker to steal the victim’s credentials.
+			- Side-channel attacks can be carried out by any co-resident user and primarily exploit vulnerabilities in shared technology resources. Ultimately, the attacker uses the stolen credentials to impersonate the victim.
+			- Side-Channel Attack Countermeasures:
+				- Implement a virtual firewall in the cloud server back end to prevent attackers from deploying malicious VMs.
+				- Use randomized encryption and decryption techniques with algorithms such as RSA, 3DES, and AES to mitigate cryptographic vulnerabilities.
+				- Lock down OS images and application instances to eliminate potential attack vectors that could provide unauthorized access.
+				- Monitor local memory access and hypervisor processes by configuring and collecting process monitoring data and system logs to detect repeated access attempts.
+				- Develop applications and OS components with consistent and predictable resource access patterns to prevent attackers from gathering sensitive information through timing statistics and other behavioral attributes.
+		- Wrapping Attack:
+			- A wrapping attack occurs during the translation of a SOAP message at the TLS layer. In this attack, adversaries duplicate the message body and send it to the server as if it were from a legitimate user.
+			- As shown in the figure below, when users send a request from their virtual machine (VM) through a browser, the request first reaches the web server. A SOAP message containing structural information is then generated and exchanged with the browser. Before message transmission, the browser must sign the XML document, canonicalize it, and append the signature values to the document. Additionally, the SOAP header must contain the necessary information for the destination after computation.
+			- In a wrapping attack, attackers exploit the translation of the SOAP message within TLS by duplicating the message body and resending it to the server. Since the server verifies authentication through the signature value—which is also duplicated—the attacker can bypass security measures. As a result, the adversary can infiltrate the cloud environment and execute malicious code, disrupting normal cloud server operations.
+			- Countermeasures:
+				- Use XML schema validation to detect altered SOAP messages.
+				- Apply authenticated encryption as per the XML encryption specification.
+				- Strengthen the interface between signature verification and business logic functions.
+				- Implement the WS-SecurityPolicy “SignedParts” policy to ensure that users specify which SOAP body and headers must be signed.
+				- Utilize the CryptoCoverageChecker interceptor to define XPath expressions for elements that should be signed or encrypted.
+		- Man-in-the-Cloud (MITC) Attack:
+			- MITC attacks are an advanced version of MITM (Man-in-the-Middle) attacks. In MITM attacks, an attacker intercepts and manipulates communication between two parties. In contrast, MITC attacks exploit cloud file synchronization services, such as Google Drive or Dropbox, to compromise data, establish command and control (C&C), exfiltrate data, and gain remote access. Synchronization tokens, used for application authentication in the cloud, cannot differentiate between malicious and normal traffic, making them vulnerable to abuse by attackers.
+			- As shown in the figure, the attacker deceives the victim into installing malicious code that implants the attacker's synchronization token on the victim’s drive. As a result, the victim’s Drive application syncs with the attacker’s account. The attacker then steals the victim’s synchronization token and uses it to access the victim’s files. Later, the attacker replaces the malicious token with the victim’s original synchronization token, restoring the Drive application to its original state and remaining undetected.
+			- Countermeasures:
+				- Use an email security gateway to detect social engineering attacks that could lead to MITC attacks.
+				- Strengthen token expiration policies to prevent such attacks.
+				- Deploy efficient antivirus software to detect and remove malware.
+				- Implement a Cloud Access Security Broker (CASB) to monitor cloud traffic and detect anomalies.
+				- Monitor employee activities to identify signs of cloud synchronization token abuse.
+				- Encrypt cloud-stored data and ensure encryption keys are not stored within the same cloud service.
+				- Enforce two-factor authentication (2FA) for enhanced security.
+		- Cloud Hopper Attack:
+			- Cloud hopper attacks target managed service providers (MSPs) and their customers. Once an attack is successfully executed, attackers gain remote access to the intellectual property and critical information of the MSP and its global users/customers. They move laterally within the cloud environment, infiltrating multiple systems to access sensitive data related to various industries, including manufacturing, government, healthcare, and finance.
+			- Attackers typically initiate spear-phishing campaigns, embedding custom-made malware in emails to compromise user accounts of MSP staff or cloud service firms. This allows them to obtain confidential information. Additionally, they leverage PowerShell and PowerSploit command-based scripting for reconnaissance and data gathering. Using the gathered intelligence, attackers gain unauthorized access to other systems connected to the same network.
+			- To carry out this attack, command-and-control (C&C) servers spoof legitimate domains, and fileless malware is deployed, executing directly from memory to evade detection. Attackers often impersonate valid service providers to bypass security mechanisms, ultimately gaining complete access to corporate data and connected customers.
+			- As illustrated in the figure, an attacker infiltrates the target MSP, distributes malware, and gains remote access. Using compromised MSP credentials, the attacker accesses customer profiles, compresses sensitive customer data, and stores it within the MSP infrastructure. The stolen data is then extracted and used to launch further attacks on the target organization and its users.
+			- Countermeasures:
+				- Implement multi-factor authentication (MFA) to prevent credential compromise.
+				- Foster strong coordination between customers and cloud service providers (CSPs) to detect and respond to abnormal incidents.
+				- Ensure customers are educated on cloud service policies and follow best security practices.
+				- Use data categorization to minimize the impact of attacks and prevent data breaches.
+				- Deploy jump servers to enhance security and mitigate cloud hopper attacks.
