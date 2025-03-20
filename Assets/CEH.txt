@@ -16032,3 +16032,171 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Pulling a new image from the Docker registry.
 			- Pushing a local image to the Docker registry.
 			- Searching for existing images.
+		- Microservices vs. Docker:
+			- Monolithic applications are broken down into cloud-hosted sub-applications called microservices, each performing a unique task while working together. Microservices distribute the application workload, providing stable, seamless, and scalable services by interacting with each other. They are designed around business capabilities, enabling cross-functional teams to develop, support, and deploy them efficiently.
+			- Unlike traditional data storage models used by monolithic applications, microservices decentralize data storage by managing their own data stores. Developers use Docker to create a container for each microservice. Since each microservice is packaged into a container along with the necessary libraries, frameworks, and configuration files, microservices within a single application can be developed and managed across multiple platforms.
+		- Docker Networking:
+			- Docker enables the connection of multiple containers, services, and even non-Docker workloads. It can manage Docker hosts running on various platforms, such as Linux and Windows, in a platform-independent manner. The Docker networking architecture is based on a set of interfaces known as the Container Network Model (CNM), which ensures application portability across different infrastructures.
+			- The CNM consists of several high-level constructs:
+				- Sandbox: A sandbox contains the container's network stack configuration, managing container interfaces, routing tables, and Domain Name System (DNS) settings.
+				- Endpoint: An endpoint is an abstraction connected to a network, ensuring application portability by allowing services to use different network drivers without modifications.
+				- Network: A network is a collection of interconnected endpoints. Endpoints that are not connected to a network cannot communicate with each other.
+			- The CNM includes two pluggable driver interfaces that enhance functionality and provide greater control over the network:
+				- Network Drivers: These drivers enable Docker networking functionality. They are pluggable, allowing multiple network drivers to operate concurrently on the same network. There are two types of CNM network drivers: native and remote.
+				- IPAM (IP Address Management) Drivers: IPAM drivers assign default subnets and IP addresses to endpoints and networks if they are not manually assigned.
+			- Native Docker Network Drivers:
+				- The Docker engine includes five built-in network drivers:
+				- Host: The host driver allows a container to share the host's networking stack.
+				- Bridge: The bridge driver creates a Linux bridge on the host, managed by Docker, to facilitate container communication.
+				- Overlay: The overlay driver enables container communication across different Docker hosts over a physical network infrastructure.
+				- MACVLAN: The MACVLAN driver establishes a network connection between container interfaces and the host’s parent interface (or sub-interfaces) using the Linux MACVLAN bridge mode.
+				- None: The none driver creates a completely isolated network stack without any external connectivity.
+			- Remote Docker Network Drivers:
+				- Docker also supports three remote network drivers, developed by the community or third-party vendors, which are compatible with CNM:
+				- Contiv: An open-source network plugin developed by Cisco, designed to enforce security and infrastructure policies for multi-tenant microservices deployments.
+				- Weave: A network plugin that builds a virtual network for Docker containers across multiple cloud environments.
+				- Kuryr: A network plugin that integrates Docker with OpenStack Neutron, implementing the Docker libnetwork remote driver and including an IPAM driver.
+	- Container Orchestration:
+		- Container orchestration is the automated process of managing the lifecycles of software containers and their dynamic environments. It is used to schedule and distribute workloads for microservices-based applications across multiple clusters.
+		- Various tasks can be automated using a container orchestrator, such as:
+			- Provisioning and deploying containers
+			- Managing failover and redundancy of containers
+			- Creating or destroying containers to evenly distribute the load across the host infrastructure
+			- Moving containers from one host to another in case of resource exhaustion or host failure
+			- Automatically allocating resources between containers
+			- Exposing running services to the external environment
+			- Performing load balancing, traffic routing, and service discovery between containers
+			- Conducting health checks of running containers and hosts
+			- Ensuring high availability of containers
+			- Configuring application-related containers
+			- Securing communication between containers
+	- What is Kubernetes:
+		- Kubernetes, also known as K8s, is an open-source, portable, and extensible orchestration platform developed by Google for managing containerized applications and microservices. Containers provide an efficient way to package and run applications. In a real-time production environment, containers must be managed efficiently to minimize downtime. For example, if a container fails, another container is automatically started to replace it. To address these challenges, Kubernetes offers a resilient framework for managing distributed containers, automating deployment processes, and ensuring failover and redundancy for applications.
+		- Features of Kubernetes:
+			- Service Discovery: Kubernetes enables services to be discovered via a DNS name or an IP address.
+			- Load Balancing: When a container experiences high traffic, Kubernetes automatically distributes the load across multiple containers.
+			- Storage Orchestration: Kubernetes allows developers to mount various storage solutions, including local and cloud-based storage.
+			- Automated Rollouts and Rollbacks: Kubernetes automates the creation, destruction, and migration of containerized resources to ensure smooth updates and recovery.
+			- Automatic Bin Packing: Kubernetes efficiently manages a cluster of nodes running containerized applications. By specifying resource requirements such as CPU and memory, Kubernetes optimally allocates and deallocates resources.
+			- Self-Healing: Kubernetes performs health checks, replaces failed containers, removes unresponsive ones, and ensures only healthy containers are advertised to clients.
+			- Secret and Configuration Management: Kubernetes securely manages sensitive data such as credentials, SSH keys, and OAuth tokens. Applications can be updated with new configurations without rebuilding container images.
+		- Kubernetes Cluster Architecture:
+			- When Kubernetes is deployed, clusters are created. A cluster is a group of computers, known as nodes, that run applications inside containers managed by Kubernetes. A cluster consists of at least one master node and one worker node. The worker nodes contain pods (groups of containers), while the master node manages and orchestrates them. The diagram below illustrates the various components of Kubernetes cluster architecture:
+			- Master Components:
+				The master node components form the cluster's control plane, responsible for scheduling, monitoring, and managing cluster events. These components can run on any computer within the cluster.
+				- Kube-apiserver: The API server is a core component of the Kubernetes control plane that handles all API requests. It acts as the front-end interface for the control plane and is the only component that directly interacts with the etcd cluster to store data.
+				- Etcd cluster: A distributed, consistent key-value store that holds Kubernetes cluster data, including service discovery details and API objects.
+				- Kube-scheduler: This component monitors newly created pods and assigns them to appropriate nodes based on factors such as resource availability, data locality, software/hardware constraints, and workload distribution.
+				- Kube-controller-manager: Runs various controllers, such as the node controller, endpoint controller, replication controller, and service account & token controller. Although controllers are separate processes, they are compiled into a single binary to simplify execution.
+				- Cloud-controller-manager: This component runs controllers that interact with cloud service providers. It allows Kubernetes and cloud provider code to evolve independently.
+			- Node Components:
+				- Worker node components are responsible for running pods and ensuring proper operation of containerized applications.
+				- Kubelet: A crucial service agent that runs on each node, ensuring that containers within pods are functioning correctly. Kubelet does not manage containers not created by Kubernetes.
+				- Kube-proxy: A network proxy service running on each worker node. It manages network rules, enabling communication between services and pods.
+				- Container Runtime: The software responsible for running containers. Kubernetes supports multiple container runtimes, including Docker, containerd, cri-o, and rktlet.
+	- Clusters and Containers:
+		- Cluster:
+			- A cluster refers to a set of two or more connected nodes that run in parallel to complete a task. Workloads with individual, parallelizable tasks are distributed among the nodes. These tasks utilize the combined memory and computational power of all the nodes in the cluster. One node acts as the master node, responsible for allocating work, retrieving results, and providing a response.
+			- Types of Cluster Computing:
+				- The different types of clusters are as follows:
+				- Highly Available (HA) or Failover Clusters: In a failover cluster, multiple nodes run simultaneously to ensure high availability (HA) or continuous availability (CA). If one node fails, another node takes over with minimal or no downtime.
+				- Load Balancing Clusters: In a load-balancing cluster, the workload is distributed among nodes to prevent overloading a single node. The load balancer performs periodic health checks on each node to detect failures and redirects incoming traffic as needed. A load-balancing cluster also ensures high availability.
+				- High-Performance Computing (HPC) Clusters: In an HPC cluster, nodes are configured to deliver extreme performance by parallelizing tasks. Scaling further enhances performance by efficiently utilizing available resources.
+		- Clusters in the Cloud:
+			- Cloud clusters consist of nodes hosted on virtual machines (VMs) and are often integrated with virtual private clouds (VPCs). Cloud clustering reduces the effort and time needed to set up a cluster. In a cloud environment, clusters can be scaled up on demand by adding additional resources or VMs. The cloud also offers the flexibility to upgrade infrastructure based on evolving requirements. Additionally, cloud clustering improves latency and resiliency by deploying nodes across multiple availability zones, thereby maximizing availability, security, and maintainability.
+		- Containers and Their Relationship with Clusters:
+			- Containers enable applications to run reliably across different computing environments. For instance, an organization developing a web application may structure the frontend and backend as microservices. To deploy this application, containers can be hosted on a VM in the cloud. However, if the VM or underlying hardware fails, the application becomes inaccessible until traffic is redirected to a failover server.
+			- To enhance availability, scalability, and performance, containerized applications should be deployed across multiple nodes in a cluster. This approach maximizes resource utilization while mitigating the risk of single-node failure by running instances of a container on multiple nodes.
+	- Container Security Challenges:
+		- Organizations are widely adopting container-based platforms due to their advantages, such as flexibility, continuous application delivery, and efficient deployment. However, the rapid growth and proliferation of container technology have introduced numerous security challenges.
+		- Below are some key challenges related to container security:
+			- Inflow of vulnerable source code: Containers rely on open-source platforms where developers frequently update, store, and use images in repositories. This can lead to an influx of uncontrolled code, potentially containing vulnerabilities that compromise security.
+			- Large attack surface: The host OS typically runs multiple containers, applications, virtual machines (VMs), and databases, whether in the cloud or on-premises. A larger attack surface increases the number of potential vulnerabilities and makes them harder to detect.
+			- Lack of visibility: A container engine runs containers, interfaces with the Linux kernel, and adds an additional layer of abstraction. This can obscure container activities, making it difficult to monitor and track specific actions.
+			- Compromised secrets: Containers often require sensitive information such as API keys, usernames, and passwords to access services. If attackers gain unauthorized access to these secrets, they can compromise security.
+			- DevOps speed: Containers can be quickly deployed and removed after execution. This ephemeral nature allows attackers to exploit vulnerabilities and disappear without leaving persistent traces of malicious activity.
+			- Noisy neighboring containers: A single container may consume excessive system resources, degrading the performance of neighboring containers and potentially leading to a denial-of-service (DoS) attack.
+			- Container breakout to the host: Containers running with root privileges may escape their containment and gain unauthorized access to the host OS through privilege escalation.
+			- Network-based attacks: Attackers may exploit vulnerable containers with active raw sockets or outbound network connections to launch various network-based attacks.
+			- Bypassing isolation: After compromising a container, attackers may escalate privileges to gain access to other containers or even the host system.
+			- Ecosystem complexity: Containers are built, deployed, and managed using multiple vendors and sources, making security and updates challenging due to their diverse origins.
+			- Misconfigurations: Incorrect configurations—such as overly permissive network policies or misconfigured access controls—can lead to security vulnerabilities and breaches.
+			- Isolation breakdowns: Although containers are designed to be isolated, vulnerabilities in the container runtime or kernel can lead to isolation failures, allowing attackers to escape from a container.
+			- Insecure communication: Containers often communicate over networks. Without proper encryption and security measures, this communication can be intercepted or tampered with by attackers.
+			- Insufficient logging and monitoring: Effective logging and monitoring are crucial for detecting and responding to security incidents. However, many container environments lack comprehensive logging and monitoring capabilities.
+			- Patch management: Keeping container images and their underlying software up to date with security patches is challenging, especially in large-scale deployments.
+			- Persistent storage security: Securing container-stored data—particularly when using persistent storage—requires careful encryption, access control, and backup strategies.
+			- Container orchestration security: Orchestration tools like Kubernetes introduce additional security complexities and potential vulnerabilities, requiring specific security measures to protect the environment.
+			- Kernel exploits: Since containers share the host OS kernel, any kernel vulnerabilities can impact all containers running on the host. Keeping the kernel updated is essential for security.
+			- Cgroups misconfiguration: Control groups (cgroups) limit and isolate resource usage. Misconfigurations can lead to resource contention and denial-of-service (DoS) attacks.
+			- Pod security policies: In Kubernetes, configuring pod security policies (PSPs) to enforce security standards can be complex and prone to errors, creating potential security gaps.
+			- Compliance audit risks: Compliance is a major concern for enterprises. Failing audits for standards like GDPR, HIPAA, or SOX can result in financial penalties and damage to an organization's reputation.
+	- Container Management Platforms:
+		- Below are various container management platforms:
+		- Portainer (www.portainer.io):
+			- Portainer is a versatile container management tool that simplifies the secure adoption of containers at remarkable speed, regardless of industry, orchestration platform, or computing device. It enables cloud administrators to efficiently set up, maintain, and troubleshoot container infrastructure in both public clouds and data centers.
+			- Additionally, Portainer serves as a potential policy and governance platform within container management stacks, whether deployed on the manufacturing floor or in the public cloud.
+		- Apache Mesos (mesos.apache.org)
+		- Amazon Elastic Container Service (Amazon ECS) (aws.amazon.com)
+		- Microsoft Azure Container Instances (ACI) (azure.microsoft.com)
+		- Red Hat OpenShift Container Platform (www.redhat.com)
+		- Docker CLI (www.docker.com)
+	- Kubernetes Platforms:
+		- Below are various Kubernetes platforms:
+		- Mirantis Kubernetes Engine (MKE) (www.mirantis.com):
+			- Mirantis Kubernetes Engine (MKE) is a CNCF-validated enterprise Kubernetes platform designed for developing and running modern applications at scale. It supports private clouds, public clouds, and bare metal environments, enabling organizations to adopt cloud-native application development and delivery models. MKE also facilitates multi-cluster management and provides a unified interface for streamlined operations, including support for Swarm cluster instances.
+		- Google Kubernetes Engine (GKE) (cloud.google.com)
+		- Amazon Elastic Kubernetes Service (EKS) (aws.amazon.com)
+		- IBM Cloud Kubernetes Service (www.ibm.com)
+		- Docker Kubernetes Service (DKS) (www.docker.com)
+		- Kubernetes (kubernetes.io)
+- Serverless Computing:
+	- Serverless computing is an emerging technology for deploying cloud-based enterprise applications built on containers and microservices. It provides a pay-per-use model, eliminating the burden of manually starting and stopping servers. This allows developers to focus on tasks rather than server management. With serverless computing, developers benefit from scalability and efficiency without requiring deep expertise in cloud infrastructure. This section explores the fundamental concepts of serverless computing.
+	- What is Serverless Computing:
+		- Serverless computing, also known as serverless architecture or Function as a Service (FaaS), is a cloud-based application model where infrastructure and supporting services are managed by a cloud provider on demand. It simplifies application deployment by removing the need for developers to manage servers and hardware.
+		- Although called "serverless," servers are still involved—but they are abstracted away from developers. In a serverless architecture, application code runs on cloud-hosted infrastructure managed by a third-party provider. The cloud provider handles provisioning, scaling, load balancing, and security. Additionally, the provider is responsible for patch management of operating systems and the underlying software and services.
+		- Advantages:
+			- High scalability and flexibility
+			- Faster deployment and updates
+			- Reduced infrastructure costs
+			- No server management required
+			- Pay-per-use pricing model
+			- Lower latency and reduced scaling costs
+			- Quick provisioning of resources
+			- Lower risk of failure
+			- No need for system administration
+		- Disadvantages:
+			- Increased security vulnerabilities
+			- Vendor lock-in
+			- Challenges in managing statelessness
+			- Complex end-to-end application testing
+			- Unsuitability for long-running processes
+	- Serverless vs. Containers:
+		- The table below summarizes the key differences between serverless computing and containers.
+		- Containers:
+			- The developer is responsible for defining the container configuration files, including the operating system, software, libraries, storage, and networking.
+			- The developer creates an image from that file, pushes the image to a registry, and runs a container from the image.
+			- Once initiated, the container runs continuously until the developer stops or destroys it.
+			- A container requires server support, even when it is not executing any programs.
+			- There are no time restrictions for the code running inside a container.
+			- Containers can run on a cluster of host nodes.
+			- Containers store data in temporary storage or mapped storage volumes.
+			- Containers support both complex applications and lightweight microservices.
+			- Developers can choose any programming language and runtime for applications running in a container.
+		- Serverless Computing:
+			- The developer only needs to write and upload the code; the cloud service provider handles the provisioning and management of resources.
+			- After execution, the serverless function is automatically terminated by the cloud environment.
+			- Serverless computing charges only for the resources consumed during execution.
+			- Serverless functions have execution time limits (timeouts).
+			- The underlying host infrastructure is abstracted from the developer.
+			- Serverless functions do not support temporary storage; instead, data is stored in an object storage medium.
+			- Serverless functions are best suited for microservices-based applications.
+			- The choice of programming language for serverless functions is restricted by the cloud service provider.
+	- Serverless Computing Frameworks:
+		- Serverless computing simplifies code execution and application development by eliminating the need for back-end server management. Its adoption is rapidly growing across various industries. Below are some notable serverless cloud computing providers:
+			- Microsoft Azure Functions (www.microsoft.com): Microsoft Azure Functions is a serverless computing platform that enables users to run code without provisioning or managing servers. It is fully automated and scales dynamically based on workload volume, allowing users to focus on adding value without worrying about back-end server management.
+			- AWS Lambda (aws.amazon.com)
+			- Google Cloud Functions (cloud.google.com)
+			- Serverless Framework (www.serverless.com)
+			- AWS Fargate (aws.amazon.com)
+			- Alibaba Cloud Function Compute (www.alibabacloud.com)
