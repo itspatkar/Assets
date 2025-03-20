@@ -16663,3 +16663,76 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Align security architecture with business goals and objectives.
 					- Regularly update the threat model to reflect emerging risks.
 					- Conduct periodic security assessments to evaluate and enhance the actual security posture.
+	- Container Vulnerabilities:
+		- Containers have become increasingly important in cloud computing, offering operational efficiency, productivity, and consistency. However, the adoption of various cloud services has also led to a rise in threats and attacks targeting cloud containers. A successful attack on a container can have widespread consequences, as it can be rapidly replicated, leading to numerous victims falling prey to attackers.
+		- The table below outlines the most common container vulnerabilities:
+		- Vulnerabilities:
+			- Hasty Image Creation: Carelessly creating container images without implementing security safeguards or controls can introduce vulnerabilities.
+			- Insecure Image Configurations: Using a base image that contains outdated or unnecessary software increases the attack surface, exposes sensitive information, and makes the container more vulnerable to security breaches.
+			- Unreliable Third-Party Resources: Using untrusted third-party resources poses severe security risks, making the container susceptible to malicious attacks.
+			- Unauthorized Access: Unauthorized access to user accounts can lead to privilege escalation attacks, compromising container security.
+			- Insecure Container Runtime Configurations: Improper handling of configuration options and mounting sensitive directories on the host can result in faulty and insecure runtime settings.
+			- Data Exposure in Docker Files: Exposing sensitive information in Docker images, such as passwords and SSH encryption keys, can be exploited to compromise container security.
+			- Embedded Malware: A container image may be embedded with malware after its creation, or hardcoded functions may download malware upon deployment.
+			- Outdated Images: Using outdated container images introduces security vulnerabilities and bugs that compromise the overall security of the system.
+			- Hijacked Repositories and Infected Resources: Security misconfigurations and software bugs may allow unauthorized access to repositories, enabling attackers to alter or delete files, thereby poisoning the resources.
+			- Compromised Image Registries: Mismanaged configurations and vulnerabilities can be exploited to compromise image registries and container hubs.
+			- Exposed Services Due to Open Ports: Misconfigured applications may expose sensitive information by leaving ports open, making them vulnerable to port scanning attacks.
+			- Exploited Applications: Vulnerable applications within containers can be exploited using various techniques such as SQL injection (SQLi), cross-site scripting (XSS), and remote file inclusion (RFI).
+			- Mixing Workloads with Different Sensitivity Levels: Orchestrators that place workloads with different sensitivity levels on the same host create security risks. For example, if a container hosts a vulnerable public web server, it may jeopardize containers processing sensitive information.
+	- Kubernetes Vulnerabilities:
+		- The implementation of Kubernetes has enabled IT leaders to bridge on-premises and public cloud environments. Kubernetes allows for layering and application scaling within containers in the cloud, providing a more portable and efficient infrastructure. However, the increasing adoption of Kubernetes has also made it a target for critical cyber-attacks that exploit underlying vulnerabilities.
+		- The table below summarizes common vulnerabilities in Kubernetes environments:
+			- Lack of Certificate Revocation:
+				- Kubernetes does not support certificate revocation, requiring the entire certificate chain to be regenerated to remove a compromised certificate.
+				- Attackers can exploit the certificate before it is fully replaced across the cluster.
+			- Unauthenticated HTTPS Connections:
+				- While Kubernetes relies on public key infrastructure (PKI), it does not always properly authenticate connections between components using Transport Layer Security (TLS).
+				- Attackers can gain unauthorized access to kubelet-managed pods and retrieve sensitive information.
+			- Exposure of Bearer Tokens in Logs:
+				- Kubernetes requires an authentication mechanism to enforce user privileges, such as bearer tokens, which may be logged in hyperkube kube-apiserver system logs.
+				- Attackers with access to system logs can exploit bearer tokens to impersonate previously authenticated users.
+			- Exposure of Sensitive Data via Environment Variables:
+				- Environmental variables are often used to configure Kubernetes components, storing sensitive values.
+				- Attackers can access these stored values through environment logging and exploit them to target endpoints.
+			- Secrets at Rest Not Encrypted by Default:
+				- User-defined secrets, such as credentials and application configuration data, are not encrypted by default in Kubernetes.
+				- Attackers who gain access to etcd servers can retrieve unencrypted secrets.
+			- Non-Constant Time Password Comparison:
+				- Kube-apiserver supports multiple authentication backends but does not perform secure comparisons of secret values when using basic password authentication.
+				- Attackers can execute timing attacks to extract passwords.
+			- Hardcoded Credential Paths:
+				- Instead of hardcoding credential paths in the source code, Kubernetes allows specifying them via an interface during configuration.
+				- If the cluster token and root Certificate Authority (CA) are stored in separate locations, attackers can insert a malicious token and root CA to compromise the cluster.
+			- Non-Atomic Log Rotation:
+				- Kubelet, the primary node agent, uses logs to store metadata about containers. During log rotation, if kubelet is restarted, all logs may be lost.
+				- Attackers can monitor log rotation and attempt to delete logs when the process occurs.
+			- No Back-Off Mechanism for Scheduling:
+				- Kubernetes pods require careful coordination for scheduling but lack a back-off mechanism when scheduling fails.
+				- This results in a tight loop, where the scheduler repeatedly attempts to schedule pods that are continually rejected.
+			- Lack of Non-Repudiation:
+				- Kube-apiserver handles all user transactions, such as creation, modification, and deletion, without a central auditing service.
+				- If debug mode is disabled, kube-apiserver does not record user actions.
+				- Attackers can directly interact with kube-apiserver and carry out malicious activities without accountability.
+	- Cloud Attacks:
+		- In this section, we discuss various attack methods targeting cloud computing environments.
+		- Service Hijacking Using Social Engineering:
+			- In account or service hijacking, an attacker steals the credentials of a cloud service provider (CSP) or a client through phishing, pharming, social engineering, or by exploiting software vulnerabilities. Using these stolen credentials, the attacker gains unauthorized access to cloud services, compromising data confidentiality, integrity, and availability.
+			- Social engineering is a non-technical intrusion method that relies on human interaction and deception to bypass security procedures. Attackers may target CSPs to reset passwords or manipulate IT staff into revealing credentials. Other methods for obtaining passwords include guessing, keylogging malware, password-cracking techniques, and phishing emails. Successful social engineering attacks can lead to the exposure of customer and credit card data, personal information, business plans, employee details, identity theft, and more.
+			- As illustrated in the figure, the attacker first creates a fake cloud service login page and sends a malicious link to a cloud service user. When the user clicks the link and enters their login credentials, they fail to notice that the page is fraudulent. Upon submission, the attacker captures the credentials while the user is automatically redirected to the legitimate cloud service login page. The attacker then uses the stolen credentials to log in and carry out malicious activities.
+			- Countermeasures:
+				- Do not share account credentials between users and services.
+				- Implement strong two-factor or multi-factor authentication wherever possible.
+				- Train employees to recognize and respond to social engineering attacks.
+				- Adhere strictly to established security policies.
+				- Encrypt data before transmitting it over the Internet.
+				- Follow the principle of least privilege to restrict unnecessary access.
+				- Divide administrative responsibilities between CSP administrators and your organization’s administrators to prevent unrestricted access to all security layers.
+		- Service Hijacking Using Network Sniffing:
+			- Network sniffing involves intercepting and monitoring network traffic between cloud nodes. Unencrypted sensitive data (e.g., login credentials) transmitted over a network is at high risk of exposure. Attackers use packet sniffers, such as Wireshark, to capture sensitive information, including passwords, session cookies, and security configuration data related to web services, such as Universal Description, Discovery, and Integration (UDDI), Simple Object Access Protocol (SOAP), and Web Service Description Language (WSDL) files.
+			- As shown in the figure, when a user enters login credentials to access cloud services, an attacker can intercept the credentials or session cookies during transmission using packet-sniffing tools like Wireshark and Capsa Portable Network Analyzer. The attacker then uses the stolen credentials to log into the cloud services and gain unauthorized access.
+			- Countermeasures:
+				- Encrypt sensitive data transmitted over the network.
+				- Encrypt sensitive data stored in configuration files.
+				- Detect network interface controllers (NICs) operating in promiscuous mode.
+				- Ensure that web traffic containing credentials is secured with SSL/TLS encryption.
