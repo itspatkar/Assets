@@ -16778,3 +16778,220 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Ensure customers are educated on cloud service policies and follow best security practices.
 				- Use data categorization to minimize the impact of attacks and prevent data breaches.
 				- Deploy jump servers to enhance security and mitigate cloud hopper attacks.
+		- Cloud Cryptojacking:
+			- Cryptojacking is the unauthorized use of a victim’s computer to stealthily mine digital currency. These attacks are highly lucrative and can involve both external attackers and rogue insiders. To execute such an attack, adversaries exploit vulnerabilities such as cloud misconfigurations, compromised websites, and client- or server-side weaknesses.
+			- For example, an attacker may take advantage of misconfigured cloud instances to inject a malicious crypto-mining payload into a web page or a third-party library used by that web page. The attacker then lures victims into visiting the compromised web page, which automatically executes the crypto-miner in the victim’s browser using JavaScript. JavaScript-based crypto-miners, such as CoinHive and CryptoLoot, enable attackers to embed malicious scripts into legitimate websites simply by including a link to CoinHive.
+			- To evade detection, attackers use various obfuscation techniques, such as encoding, redirections, and script obfuscation. The configuration of the payload can be either dynamically generated or hardcoded. Cryptojacking attacks can have severe consequences, affecting websites, endpoints, and even entire cloud infrastructures.
+			- Steps of Cloud Cryptojacking Attack:
+				- Compromise: The attacker infiltrates a cloud service and embeds a malicious crypto-mining script.
+				- Execution: When a victim connects to the compromised cloud service, the crypto-mining script runs automatically.
+				- Mining: The victim unknowingly mines cryptocurrency on behalf of the attacker, contributing to blockchain computations.
+				- Reward: For each successfully mined block, the attacker illicitly receives cryptocurrency rewards.
+			- Countermeasures:
+				- Enforce a strong password policy.
+				- Maintain three copies of critical data in separate locations, including one off-site backup.
+				- Regularly patch web servers, cloud instances, and connected devices.
+				- Use encrypted SSH key pairs instead of passwords for cloud server access.
+				- Implement CoinBlocker URL and IP blacklisting in firewalls.
+				- Deploy real-time monitoring for the web page Document Object Model (DOM) and JavaScript environments to detect malicious activity early.
+				- Use up-to-date antivirus, anti-malware, and ad-blocking tools in cloud environments.
+				- Install browser extensions to detect and block scripts similar to CoinHive’s mining script.
+				- Implement endpoint security management tools to identify rogue applications on devices.
+				- Regularly audit third-party components used on company websites.
+				- Use advanced network monitoring tools to detect abnormal CPU resource usage and mining activities.
+				- Monitor cloud resource utilization for unexpected cost spikes, as crypto miners often abuse cloud resources.
+				- Ensure all unused cloud instances and services are properly terminated to prevent unauthorized access.
+		- Cloudborne Attack:
+			- Cloudborne is a vulnerability in bare-metal cloud servers that allows attackers to implant malicious backdoors in firmware. These backdoors can persist even after the server is reassigned to new clients or businesses using it as an IaaS. Since physical servers are not dedicated to a single client, they are frequently reallocated. If the firmware re-flash process (factory reset, complete memory wipe, etc.) is not properly implemented during reclamation, backdoors can remain active and migrate with the server.
+			- Attackers exploit vulnerabilities in Supermicro hardware to overwrite the firmware of the Baseboard Management Controller (BMC)—a component used for remote management, provisioning, OS reinstallation, and troubleshooting via the Intelligent Platform Management Interface (IPMI). Since the BMC can remotely control and provision servers for new customers, it becomes a prime target. Weaknesses in bare-metal cloud security and improper firmware re-flashing enable attackers to install and maintain persistent backdoors.
+			- Once implanted, these backdoors allow attackers to:
+				- Directly access server hardware and bypass security mechanisms.
+				- Monitor new customers’ activities.
+				- Disable applications or servers.
+				- Intercept sensitive data.
+			- Such exploits can lead to ransomware attacks and other security breaches.
+			- Countermeasures:
+				- Keep firmware up to date.
+				- Sanitize server firmware before reassigning it to new customers.
+				- Validate servers for implants and backdoors before deployment.
+				- Regularly check for firmware vulnerabilities.
+				- Verify physical hardware integrity before delivery.
+		- Instance Metadata Service (IMDS) Attack:
+			- An Instance Metadata Service (IMDS) provides information about an instance, its associated network, and the software configured to run on it. IMDS also generates credentials for roles associated with the instance. Based on the assigned role or policy, the software running on the instance can access cloud storage resources.
+			- Attackers exploit IMDS vulnerabilities by leveraging zero-day vulnerabilities in the target application server or extracting information leaked through a misconfigured reverse proxy. The primary goal of an IMDS attack is to gain unauthorized access to network resources by compromising instances. If attackers successfully exploit a zero-day vulnerability or obtain leaked credentials via a reverse proxy, they can connect to the cloud instance and retrieve sensitive information, such as user data and roles associated with the instance. These credentials can then be used to escalate privileges and perform further attacks, including unauthorized access, abuse, or modification of cloud storage resources.
+			- How the Attack is Launched:
+				- The attacker exploits a zero-day vulnerability or a misconfigured reverse proxy on the target application server.
+				- They then compromise the cloud instance running on the server and extract metadata from the instance.
+				- Using the obtained credentials, the attacker gains unauthorized access to cloud resources.
+			- Countermeasures:
+				- Use IMDSv2 instead of IMDSv1.
+				- Disable IMDS when it is not required.
+				- Avoid assigning roles to instances unless necessary; if required, grant the least privileges needed.
+				- Restrict IMDS access for untrusted or suspicious users.
+		- Cache Poisoned Denial of Service (CPDoS) / Content Delivery Network (CDN) Cache Poisoning Attack:
+			- A Cache Poisoned Denial of Service (CPDoS) attack or CDN cache poisoning attack occurs when attackers send malformed or oversized HTTP requests to an origin web server, causing it to respond with malicious or error content. This content is then cached by Content Delivery Network (CDN) servers, which subsequently serve the poisoned response to legitimate users. As a result, users receive error pages instead of legitimate content, effectively causing a Denial of Service (DoS) attack against the target website.
+			- CPDoS attacks typically exploit misconfigured CDN-protected servers that unintentionally store and serve error responses from the origin server. Attackers can leverage this technique to prevent users from accessing cloud services. Even a single poisoned HTTP request, once cached, can render a web page or server unreachable, disrupting the website’s online services.
+			- Steps of CDN Cache Poisoning Attack Leading to DoS:
+				- Malicious Request: An attacker submits a request to the target web server containing a specially crafted HTTP header.
+				- Forwarding to the Origin Server: If the CDN does not have a cached version of the requested resource, it forwards the request to the origin web server.
+				- Error Response Caching: Since the request is malformed, the origin server returns an error page (e.g., 404 Not Found), which is mistakenly cached by the CDN.
+				- Propagation of the Poisoned Cache: The CDN now serves the cached error page instead of the actual content, making the legitimate webpage inaccessible.
+				- Widespread Service Disruption: The CDN propagates the same error page to other users, effectively denying access to the targeted service.
+			- Countermeasures Against CDN Cache Poisoning Attacks:
+				- Disable Caching of Error Pages: Configure the CDN to prevent the caching of HTTP error responses.
+				- Implement a Web Application Firewall (WAF): Use a WAF to detect and block malicious HTTP requests before they reach the origin server.
+				- Monitor and Clear Poisoned Cache Entries: Regularly inspect CDN cache contents and remove any error pages that may have been stored.
+		- Cloud Snooper Attack:
+			- A Cloud Snooper attack is a sophisticated cyberattack targeting AWS Security Groups (SGs) to compromise a server and extract sensitive data stealthily. Attackers exploit weakly configured firewalls or underlying vulnerabilities to bypass security controls, such as firewalls, and gain remote access to the target server.
+			- In this attack, attackers exploit weaknesses in SGs, which are designed to allow only traffic with destination ports 80 (HTTP) or 443 (HTTPS). They install rootkits by leveraging vulnerabilities in traffic filters, supply-chain attacks, or brute-force SSH attacks. The attackers then send Command and Control (C2) packets, disguising them as legitimate traffic. The installed rootkit intercepts these packets and redirects the commands to a backdoor Trojan, which executes malicious activities based on the received C2 instructions.
+			- Steps Involved in Cloud Snooper Attack:
+				- Initial Attack: The attacker sends specially crafted C2 packets alongside normal traffic to the target server, using destination ports 80 and 443 to evade detection by the perimeter firewall.
+				- Firewall Evasion: The firewall verifies incoming packets and allows them through, as they appear to use legitimate ports (80 and 443).
+				- Traffic Interception: A listener in the rootkit intercepts incoming traffic and reconstructs the packets with new source ports (e.g., 1010, 2020, 6060, 7070, 8080, 9999). The listener then forwards these packets to the backdoor Trojan installed by the rootkit.
+				- Execution of Malicious Commands: The Trojan executes commands from the attacker, collects sensitive data, and sends it back to the rootkit.
+				- Data Exfiltration: The rootkit reconstructs outgoing packets using ports 80 and 443 to bypass firewall rules, exfiltrating stolen data to the attacker.
+			- Countermeasures:
+				- Regularly analyze and monitor network traffic for anomalies.
+				- Ensure that web servers and security patches are regularly updated.
+				- Implement a layered security model to prevent unauthorized access.
+		- Golden SAML Attack:
+			- A Golden Security Assertion Markup Language (SAML) attack is a cyberattack targeting identity providers in cloud networks, such as Active Directory Federation Services (ADFS), which use the SAML protocol for authentication and authorization. Attackers first gain administrative access to the identity provider’s user profile and then exploit token signing certificates to forge SAML tokens or responses by manipulating SAML assertions. This access is typically obtained through session hijacking, privilege escalation, or lateral movement using previously exploited vulnerabilities or other attacks.
+			- Golden SAML Attack Scenario:
+				- The attacker gains access to the ADFS server (identity provider) and steals the signing certificate and encryption key used to sign assertions.
+				- When a user attempts to access a service, the service provider redirects the request to the identity provider for authentication.
+				- (Step missing in the original text: The identity provider generates and sends a SAML assertion in response.)
+				- The attacker intercepts the redirect request and sends a forged SAML response with manipulated assertion values using the stolen keys.
+				- The service provider accepts the forged SAML response, granting the attacker unauthorized access to federated services associated with the target user account.
+			- Countermeasures:
+				- Continuously monitor user activities to detect anomalies.
+				- Enforce multi-factor authentication (MFA) and require strong passwords.
+				- Implement least-privilege access to limit exposure.
+				- Analyze system logs and security alerts for signs of an attack.
+				- Regularly update and rotate certificates to prevent misuse.
+		- Living Off the Cloud Attack (LotC):
+			- Living Off the Cloud (LotC) is a modern evolution of the "living off the land" attack, in which attackers exploit a victim’s SaaS and IaaS-based applications to carry out malicious activities such as data exfiltration. Because organizations cannot block these essential cloud services, LotC attacks have become a prominent attack vector. A successful LotC attack can enable attackers to steal sensitive data stored in the cloud, mine cryptocurrency, launch DDoS attacks, and more.
+			- How Living Off the Cloud Attack Works:
+				- Initial Access: The attacker gains entry into the victim's environment through methods such as phishing emails, exploiting vulnerabilities, or using previously stolen credentials.
+				- Lateral Movement: The attacker navigates within the network using legitimate tools such as CMD, PowerShell, and Certutil.
+				- Payload Delivery: The attacker delivers malware payloads to the victim’s device via cloud storage services like Dropbox and Google Drive.
+				- Covert Communication: The attacker establishes covert communication channels (C2) using the victim’s cloud services, such as Ngrok.
+				- Malicious Activities: The attacker engages in various malicious activities, including hosting malware on cloud storage, sending phishing links from trusted domains, and exfiltrating sensitive data.
+				- Persistence & Evasion: The attacker blends in with legitimate cloud traffic by abusing the victim’s SaaS or IaaS applications, maintaining long-term access while avoiding detection.
+			- Countermeasures:
+				- Use cloud-native security solutions with a single-pass architecture to inspect and secure traffic in real-time.
+				- Implement zero-trust security to limit unauthorized access to resources.
+				- Restrict file uploads to cloud services by allowing only corporate instances of Dropbox or blocking the upload of files containing sensitive data such as PII, Social Security numbers, or credit card information.
+				- Train employees regularly to recognize and avoid suspicious emails, links, downloads, and other unauthorized activities.
+				- Enable detailed logging of all activities within cloud environments and endpoints.
+				- Leverage machine learning and behavioral analytics to detect unusual patterns that may indicate the malicious use of legitimate tools.
+				- Apply application whitelisting to restrict the execution of unauthorized applications and scripts.
+				- Implement network segmentation to limit lateral movement within the network.
+				- Enforce multi-factor authentication (MFA) for accessing sensitive systems and cloud services.
+				- Use role-based access control (RBAC) to ensure users have only the minimum permissions necessary for their job functions.
+		- Session Hijacking Using Cross-Site Scripting (XSS) Attack:
+			- Attackers exploit XSS vulnerabilities to steal cookies used in user authentication. This involves injecting malicious code into a website, which is then executed by the victim's browser. By stealing cookies, attackers can hijack active sessions and gain unauthorized access to user data. Additionally, attackers may predict or intercept session IDs to facilitate hijacking.
+			- As shown in the figure, the attacker hosts a web page containing a malicious script on a cloud server. When a user visits the compromised page, the malicious script executes in the user’s browser, capturing authentication cookies and sending them to the attacker’s server. The attacker can then use these stolen cookies to gain unauthorized access.
+			- Countermeasures:
+				- Implement Secure Socket Layer (SSL) encryption to protect data transmission.
+				- Use firewalls, antivirus software, and code scanners to detect and prevent malicious scripts.
+				- Implement HttpOnly and Secure flags for cookies to prevent unauthorized access.
+				- Regularly update and audit web applications to patch vulnerabilities.
+		- Session Hijacking via Session Riding:
+			- Attackers exploit websites using cross-site request forgery (CSRF) to send unauthorized commands. In session riding, attackers "ride" an active user session by tricking users into clicking a malicious link—often via email or a compromised webpage—while logged into a legitimate site. When users interact with the malicious link, the website processes the request as if the user had authenticated it. This can lead to unauthorized actions such as modifying or deleting data, performing financial transactions, or resetting passwords.
+			- As illustrated in the figure above, a user logs into a trusted site, initiating a new session. The server stores the session identifier in a cookie within the user's web browser. The attacker then deceives the user into visiting a malicious website, which sends a request to the cloud server from the user’s browser using the stolen session cookie.
+			- Countermeasures:
+				- Avoid saving login details in browsers or websites.
+				- Validate the HTTP referrer header and, when processing POST requests, ignore URL parameters.
+		- Domain Name System (DNS) Attacks:
+			- A DNS server translates a human-readable domain name (e.g., www.google.com) into a numerical IP address, enabling communication between network nodes. Attackers exploit DNS vulnerabilities to intercept or manipulate user requests, often to steal authentication credentials or redirect users to malicious websites.
+			- Types of DNS Attacks:
+				- DNS Poisoning: Redirects users to a spoofed website by corrupting the DNS server or the DNS cache on a user’s system.
+				- Cybersquatting: Involves registering a domain name similar to a legitimate Cloud Service Provider (CSP) to conduct phishing scams.
+				- Domain Hijacking: Steals a domain name by exploiting vulnerabilities in domain registration services.
+				- Domain Sniping: Involves acquiring an expired domain name before its original owner can renew it.
+			- As illustrated in the figure, DNS cache poisoning is a common attack in which an attacker manipulates a DNS cache to redirect users to a fraudulent website. In this scenario, when a user queries an internal DNS server for the IP address of www.xCloud.com, the DNS server forwards the request to the respective cloud server. The attacker intercepts this communication, blocks the legitimate DNS response, and injects a falsified DNS response containing the IP address of a fake website. Consequently, the internal DNS server updates its cache with the attacker's malicious IP, unknowingly directing users to counterfeit websites.
+			- Countermeasures:
+				- Implementing Domain Name System Security Extensions (DNSSEC) helps authenticate DNS responses and mitigate DNS-related threats.
+		- SQL Injection Attacks:
+			SQL (Structured Query Language) is a programming language used for managing database systems. In an SQL injection attack, attackers target SQL servers running vulnerable database applications. They insert malicious code—often using special characters—into standard SQL queries to gain unauthorized access to a database and extract confidential information.
+			- Such attacks typically occur when applications improperly handle user input while constructing dynamic SQL statements. Attackers can exploit this vulnerability to manipulate database contents, retrieve sensitive data, execute system commands remotely, or even take control of the web server for further malicious activities.
+			- As shown in the figure, an attacker exploits an SQL injection vulnerability in a cloud-based web application, gaining unauthorized access to sensitive information stored in the cloud.
+			- Countermeasures:
+				- Implement input validation and filtering techniques to sanitize user input.
+				- Validate input length, range, format, and type.
+				- Regularly update and patch servers and applications.
+				- Use database monitoring tools and intrusion prevention systems (IPS).
+				- Deploy a cloud-based web application firewall (WAF).
+		- Cryptanalysis Attacks:
+			- Insecure or obsolete encryption makes cloud services vulnerable to cryptanalysis. Data stored in the cloud is often encrypted to prevent unauthorized access. However, critical flaws in cryptographic algorithm implementations (e.g., weak random number generation) can weaken or even break otherwise strong encryption. Additionally, new methods continue to emerge for breaking cryptographic protections. Attackers may also extract partial information from encrypted data by analyzing a client’s query access patterns and the locations of accessed data.
+			- Countermeasures:
+				- Use cryptographically secure random number generators to enhance the robustness of cryptographic materials such as SSH keys and DNSSEC.
+				- Avoid using faulty or outdated cryptographic algorithms.
+				- Implement the latest and most secure encryption techniques, including salting, hashing, and other best practices.
+		- DoS and DDoS Attacks:
+			- Denial-of-Service (DoS) attacks on Cloud Service Providers (CSPs) can prevent tenants from accessing their accounts. In a cloud environment, multiple tenants share resources such as CPU, memory, disk space, and bandwidth. If attackers gain access to the cloud, they can generate false data, such as resource requests or malicious code, that runs within legitimate applications.
+			- Processing these malicious requests consumes a server's CPU, memory, and other resources. Once the server reaches its threshold, it offloads tasks to another server. This cascading effect continues across inline servers, eventually overwhelming the entire cloud infrastructure and denying service to legitimate users.
+			- DoS attacks can be executed in various ways, such as:
+				- Flooding the server with excessive requests to exhaust system resources.
+				- Sending malicious input to crash an application.
+				- Repeatedly entering incorrect passwords to trigger account lockouts.
+			- When a DoS attack is carried out using a botnet (a network of compromised machines), it becomes a Distributed Denial-of-Service (DDoS) attack. In a DDoS attack, multiple compromised systems simultaneously target a single system, causing service disruption.
+			- As illustrated in the figure above, the attacker uses a handler to infect numerous computers (zombie network) over the Internet. The infected machines then flood the cloud server with requests, consuming excessive resources and preventing legitimate users from accessing cloud services.
+			- Countermeasures:
+				- Implement the principle of least privilege for users accessing the server.
+				- Deploy Intrusion Detection Systems (IDS) on both physical and virtual machines to detect and mitigate DoS and DDoS attacks.
+		- Man-in-the-Browser Attack:
+			- Man-in-the-Browser attacks target a user’s web browser by injecting sophisticated malware (e.g., bots) that allow attackers to monitor information exchanged between the user’s browser and cloud applications. The injected code exfiltrates the user’s login credentials, such as usernames and passwords, to the attackers. The attackers can then use these credentials to access the cloud server and perform malicious activities on behalf of the user—without the user’s knowledge.
+			- Countermeasures:
+				- Restrict access to cloud services to prevent unauthorized entry into the network.
+				- Integrate cloud-based solutions with intrusion detection systems to identify and alert users of abnormal activities.
+				- Limit access based on IP address ranges and enforce VPN usage for secure connections.
+		- Metadata Spoofing Attack:
+			- Cloud service metadata describes various service details, including network component locations, security requirements, and data formats. Metadata spoofing involves altering or modifying service metadata stored in the Web Service Definition Language (WSDL) file, which contains information about service instances. Once the manipulated file is successfully deployed, cloud users may be redirected to malicious destinations, similar to DNS spoofing.
+			- Countermeasures:
+				- Encrypt and securely store application and service details in the cloud.
+				- Implement hash-based integrity verification to prevent spoofing attacks.
+				- Disable unnecessary metadata services and remove unsafe metadata versions.
+				- Use host-based firewalls to restrict access to the instance metadata API.
+		- Cloud Malware Injection Attack:
+			- In cloud malware injection attacks, attackers deploy malicious service implementations or virtual machines within cloud environments operating as SaaS, PaaS, or IaaS. Once the cloud environment is compromised, users may be redirected to an attacker-controlled website, allowing attackers to eavesdrop on communications, steal sensitive data, and modify information.
+			- Countermeasures:
+				- Implement strong authentication and access controls to prevent unauthorized service deployment.
+				- Use continuous monitoring and anomaly detection systems to identify malicious activities.
+				- Apply security patches and updates to prevent known vulnerabilities from being exploited.
+				- Enforce stringent validation and integrity checks for all deployed services and virtual machines.
+		- Multi-Cloud Attack:
+			- In multi-cloud attacks, attackers exploit vulnerabilities across multiple cloud service providers (CSPs) used by an organization. This includes misconfigurations, weak access controls, or compromised credentials to gain unauthorized access to different cloud environments. Once access is obtained, attackers move laterally between cloud services by exploiting inter-cloud APIs or network bridges. They then manipulate various resources to carry out malicious activities, such as data exfiltration, malware deployment, and establishing persistent access. This significantly compromises the security and integrity of the multi-cloud infrastructure.
+			- Countermeasures:
+				- Use secure APIs and encrypted channels for communication between different cloud services.
+				- Standardize access control models across all cloud providers to prevent security gaps.
+				- Implement multi-factor authentication (MFA) to add an additional security layer beyond passwords.
+				- Synchronize security policies using automated tools to ensure uniform settings across all clouds.
+				- Conduct regular security audits and continuous monitoring to detect misconfigurations and unauthorized activities.
+		- Privilege Escalation with the CSR API:
+			- The Certificate Signing Request (CSR) API in Kubernetes manages requests submitted to a certificate authority for approval. Attackers can exploit vulnerabilities in the CSR API to gain unauthorized privileges within a Kubernetes cluster.
+			- During this attack, an attacker creates a CSR requesting a certificate tied to a service account or user with elevated permissions. Once the CSR is created, the attacker exploits weak security controls to obtain approval, forcing Kubernetes to issue the certificate. The attacker then uses the issued certificate to authenticate as an entity with elevated privileges granted by the approved CSR.
+			- Countermeasures:
+				- Enable Kubernetes auditing on every cluster and monitor events related to the CSR API.
+				- Enforce strict Role-Based Access Control (RBAC) policies to ensure only authorized users can create, approve, and manage CSRs.
+				- Disable automated CSR approvals and require manual review and approval of each CSR to ensure legitimacy.
+		- Privilege Escalation by Abusing Elevation Control Mechanisms:
+			- The elevation control mechanism, also known as Just-In-Time (JIT) access, is a security model that grants users temporary permissions for specific tasks within a defined timeframe. Cloud environments provide administrators with granular access controls, including JIT access, impersonation, resource role assignment, and temporary role elevation. Attackers can exploit these permission configurations to gain unauthorized or temporarily elevated access to cloud resources.
+			- By leveraging these techniques, attackers can infiltrate cloud environments and misuse resources. For example:
+				- In AWS, attackers with the PassRole permission can allow a service they create to assume a role with elevated privileges beyond their original scope.
+				- In Google Cloud Platform (GCP), users with the iam.serviceAccountUser role can attach a service account to a resource, gaining access to privileged accounts.
+			- These privilege escalation techniques can lead to unauthorized access, data breaches, service disruptions, financial losses, and regulatory noncompliance.
+			- Countermeasures:
+				- Restrict cloud account privileges to only the necessary roles, policies, and permissions required for tasks, including role assumption and impersonation.
+				- Require manual approval for temporary privilege elevations when JIT access is enabled.
+				- Segment and isolate critical cloud resources to minimize the potential impact of compromised accounts and reduce the attack surface.
+	- Cloud Malware:
+		- Cuttlefish Zero-Click Malware (www.darkreading.com):
+			- Cuttlefish is a packet-sniffing malware that disguises itself as legitimate software to infiltrate SOHO and enterprise routers by exploiting vulnerabilities. Its primary goal is to covertly steal cloud authentication data.
+			- Once inside a network, the malware spreads by deploying a Bash script that collects host-based data and transmits it to a command-and-control (C2) server in the cloud. It then downloads and executes a malicious binary (payload) tailored for various architectures found in SOHO operating systems. Additionally, Cuttlefish installs a packet filter to inspect outbound connections, monitor cloud traffic, and engage based on predefined criteria.
+			- After installation, the malware continuously monitors all network traffic through the compromised device. It remains dormant until it detects specific activities. Once host-based enumeration is complete, the C2 server updates the malware's rules via a cloud-hosted configuration file. This mechanism allows the malware to hijack DNS and HTTP traffic directed toward private IP addresses. If the traffic is destined for a public IP, the malware activates a cloud sniffer to capture credentials under certain conditions.
+		- Denonia
+		- LemonDuck
+		- RansomCloud
+		- DBatLoader/ModiLoader
+		- Goldbackdoor
