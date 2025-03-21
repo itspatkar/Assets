@@ -17150,3 +17150,29 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Credential and Access Management Manipulation: Attackers remove temporary credentials, such as access tokens or keys, to cover their tracks. They may also create hidden backdoors by establishing covert accounts or access methods that blend into legitimate activity.
 			- System and Service Configuration Tampering: Attackers eliminate visible changes made during the attack and may disable or modify security alerts to prevent detection.
 			- Persistence Mechanisms: Malicious code can be concealed within legitimate processes or services. Attackers may also exploit built-in cloud tools and scripts to evade suspicion.
+- AWS Hacking:
+	- Enumerating S3 Buckets:
+		- Amazon's Simple Storage Service (S3) is a scalable cloud storage solution where files, folders, and objects are stored via web APIs. Customers and end users leverage S3 to store text documents, PDFs, videos, images, and other data. To organize and access stored data, users must create buckets with unique names.
+		- However, attackers can exploit misconfigurations in S3 bucket implementations to bypass security mechanisms and compromise data privacy. If an S3 bucket is left publicly accessible, attackers can modify files—such as JavaScript or other code-based files—and inject malware. By identifying bucket locations and names, attackers can test security weaknesses and exploit vulnerabilities during bucket implementation.
+		- To locate and exploit exposed S3 buckets, attackers use tools such as CloudBrute, S3Scanner, Bucket Flaws, and BucketLoot. These tools help identify publicly accessible buckets on cloud services like Amazon AWS and extract sensitive data for malicious purposes.
+		- Common Techniques Used to Identify AWS S3 Buckets
+			- Inspecting HTML:
+				- Attackers analyze the HTML source code of web pages to extract information about S3 bucket URLs. By reviewing the underlying code, they can identify direct links to stored files and objects.
+			- Brute-Forcing URLs:
+				- Since each S3 bucket has a unique identifier, attackers may perform brute-force attacks to guess the correct bucket URL. For example, given the pattern: http://s3.amazonaws.com/[bucket_name]
+				- Attackers systematically test different values for [bucket_name] until they find a valid match. Tools like Burp Suite (Burp Intruder) automate this process to expedite discovery.
+			- Advanced Google Hacking:
+				- Attackers utilize Google Dorks (advanced search operators) to locate URLs linked to S3 buckets. Some commonly used queries include:
+					- inurl:s3.amazonaws.com
+					- inurl:s3.amazonaws.com/audio/
+					- inurl:s3.amazonaws.com/video/
+					- inurl:s3.amazonaws.com/backup/
+					- inurl:s3.amazonaws.com/movie/
+					- inurl:s3.amazonaws.com/image/
+				- Additionally, attackers can refine their search to target specific domains or organizations:
+					- site:s3.amazonaws.com inurl:facebook
+					- site:s3.amazonaws.com intitle:facebook
+					- inurl:"s3.amazonaws.com" intext:"facebook"
+					- inurl:"s3.amazonaws.com" "facebook"
+					- site:s3.amazonaws.com "facebook"
+		- By leveraging these techniques, attackers attempt to identify, access, and exploit exposed S3 buckets, making it crucial for organizations to implement strict security controls.
