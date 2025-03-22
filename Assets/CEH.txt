@@ -14304,11 +14304,11 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Flash the modified firmware onto the device, potentially causing it to malfunction (brick).
 				- Core Scripts for Firmware Operations:
 					- Primary Scripts:
-						- extract-firmware.sh → Extracts firmware components.
-						- build-firmware.sh → Rebuilds firmware images.
+						- extract-firmware.sh -> Extracts firmware components.
+						- build-firmware.sh -> Rebuilds firmware images.
 					- Secondary Scripts:
-						- ddwrt-gui-extract.sh → Extracts Web GUI files from DD-WRT firmware.
-						- ddwrt-gui-rebuild.sh → Restores modified Web GUI files in DD-WRT firmware.
+						- ddwrt-gui-extract.sh -> Extracts Web GUI files from DD-WRT firmware.
+						- ddwrt-gui-rebuild.sh -> Restores modified Web GUI files in DD-WRT firmware.
 			- Firmware Analysis and Reverse Engineering:
 				- Firmware serves as the central component in controlling various IoT devices. Attackers analyze the firmware of target IoT devices to uncover underlying vulnerabilities and security loopholes. Through firmware analysis, they can identify passwords, API tokens, endpoints, vulnerable services, backdoor accounts, configuration files, private keys, stored data, and more.
 				- Steps Used by Attackers for Firmware Analysis and Reverse Engineering (owasp.org):
@@ -17199,11 +17199,11 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Next, execute the following command to brute-force, generate, and validate target buckets:
 					- ./cloudbrute -d <target.com> -k <keyword> -t 80 -T 10 -w /<path_to_wordlist>.txt
 					- Where:
-						-d amazon.com → Specifies the target bucket hosting domain (e.g., amazon.com).
-						-k facebook → Defines the keyword or pattern to search within the target domain (e.g., facebook).
-						-t 80 → Sets the number of threads (e.g., 80).
-						-T 10 → Specifies the timeout value (e.g., 10).
-						-w bucket_list.txt → Points to the wordlist file used for the attack (e.g., bucket_list.txt).
+						-d amazon.com -> Specifies the target bucket hosting domain (e.g., amazon.com).
+						-k facebook -> Defines the keyword or pattern to search within the target domain (e.g., facebook).
+						-t 80 -> Sets the number of threads (e.g., 80).
+						-T 10 -> Specifies the timeout value (e.g., 10).
+						-w bucket_list.txt -> Points to the wordlist file used for the attack (e.g., bucket_list.txt).
 				- This command will generate a list of both protected and open buckets associated with the target domain (e.g., Facebook), as shown in the screenshot below.
 				- Review the results and check for any open/public buckets. If found, copy their URLs into a browser to view their contents.
 		- Alternative Search Options:
@@ -17427,7 +17427,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Install the AWS CLI (aws-cli) to check the AWS version and create an account.
 		- Step 3: Extract Access Keys:
 			- After creating an account, sign in and navigate to: AWS IAM Console
-			- Go to Users → Add User.
+			- Go to Users -> Add User.
 			- Fill in the required details and click Create User.
 			- Download the CSV file and extract your access keys.
 		- Step 4: Configure AWS CLI:
@@ -17466,3 +17466,70 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Insider Threats:
 			- Insider threats typically originate from business associates, current or former employees, or trusted contractors who already have access to the environment. Unlike external attackers, they do not need to compromise credentials to carry out malicious activities.
 			- For example, a disgruntled employee may attempt to damage the organization's reputation by abusing their credentials to modify cloud services or expose sensitive information to the public.
+	- Hijacking Misconfigured IAM Roles Using Pacu (github.com):
+		- AWS IAM policies, such as AssumeRole permissions, offer flexibility; however, misconfigurations in role permissions can create security vulnerabilities. For instance, if a role is configured with "AWS": "*", any user with a valid AWS account can assume the role and obtain its credentials.
+		- Attackers leverage tools like Pacu, an open-source AWS exploitation framework, to enumerate and hijack IAM roles. This tool includes a built-in wordlist of over 1,100 commonly used role names. It automatically alerts the attacker when a role is identified, detects misconfigured roles, auto-assumes them, and exposes role credentials.
+		- To assume roles, attackers can execute the following Pacu script after obtaining the target account ID: assume_role_enum.py [-h] [-p PROFILE] [-w WORD_LIST] -I ACCOUNT_ID
+		- As shown in the figure, Pacu initiates role enumeration on a target account and identifies restricted roles such as "5" and "ADS", as well as the misconfigured role "APIGateway". The script then assumes the role and exposes its credentials in JSON format. Attackers can use these credentials to conduct further targeted attacks.
+	- Scanning AWS Access Keys Using DumpsterDiver (github.com):
+		- DumpsterDiver enables security researchers and attackers to scan a large variety of file types for hardcoded secret keys, such as AWS access keys, SSL certificates, and Microsoft Azure keys. It also allows users to define custom conditional search rules. This tool is commonly used to identify potential secret leaks and hardcoded credentials in cloud service configurations.
+		- Running DumpsterDiver:
+			- Use the following command to scan for AWS access keys:
+				DumpsterDiver.py [-h] -p LOCAL_PATH [-r] [-a] [-s] [-l [0,3]] [-o OUTFILE]
+					[--min-key MIN_KEY] [--max-key MAX_KEY] [--entropy ENTROPY]
+					[--min-pass MIN_PASS] [--max-pass MAX_PASS]
+					[--pass-complex {1,2,3,4,5,6,7,8,9}]
+					[--grep-words GREP_WORDS [GREP_WORDS ...]]
+					[--exclude-files EXCLUDE_FILES [EXCLUDE_FILES ...]]
+					[--bad-expressions BAD_EXPRESSIONS [BAD_EXPRESSIONS ...]]
+			- Command Parameters
+				-p LOCAL_PATH -> Specifies the path to the folder containing files to be analyzed.
+				-r, --remove -> Removes files that do not contain secret keys.
+				-a, --advance -> Uses advanced analysis based on rules defined in rules.yaml.
+				-s, --secret -> Searches for hardcoded passwords within the files.
+				-o OUTFILE -> Exports the results in JSON format.
+		- Example Commands:
+			- Scanning directory for potential secrets:
+				- dumpsterDiver -p /path/to/scan
+				- DumpsterDiver scans the specified directory or archive, looking for patterns associated with sensitive information. In the case of AWS access keys, it searches for strings that match a predefined format, such as AKIA followed by 16 alphanumeric characters.
+			- Scanning a directory specifically for AWS keys:
+				- dumpsterDiver -p /path/to/scan -e AWS_KEY
+				- Once the scan is complete, DumpsterDiver generates a report containing the paths of files where potential secrets were found. This report helps users assess and mitigate security risks by identifying exposed credentials.
+	- Exploiting Docker Containers on AWS Using the Cloud Container Attack Tool (CCAT) (github.com):
+		- Attackers use compromised AWS credentials to exploit Amazon Elastic Container Service (ECS) and Amazon Elastic Container Registry (ECR).
+		- Steps Involved in Exploiting AWS Docker Containers:
+			- Step 1: Abusing AWS Credentials:
+				- Attackers leverage compromised AWS credentials to explore the AWS cloud environment and identify available ECR repositories. CCAT provides the "Enumerate ECR" module to list the details of accessible ECR repositories.
+			- Step 2: Pulling the Target Docker Image:
+				- From the list of identified ECR repositories, attackers locate and pull the Docker image belonging to the target organization. The "Pull Repos from ECR" module in CCAT enables attackers to retrieve the desired repository.
+			- Step 3: Creating a Backdoored Image:
+				- After extracting the Docker image from the ECR repository, attackers modify it by embedding a backdoor for a reverse shell. The "Docker Backdoor" module in CCAT allows attackers to replace the default CMD command with a malicious reverse shell backdoor.
+			- Step 4: Pushing the Backdoored Docker Image:
+				- Once modified, attackers upload the compromised Docker image back to the ECR repository. CCAT provides the "Push Repos to ECR" module to facilitate the upload of the altered Docker image.
+	- Exploiting Shadow Admins in AWS:
+		- Shadow admins are user accounts with specific permissions that allow attackers to infiltrate a target cloud network. However, attackers can only exploit shadow admins after gaining initial access to the target environment. Once inside, they abuse shadow admin permissions to escalate privileges and take control of the cloud infrastructure.
+		- Below are some techniques attackers use to exploit shadow admin permissions:
+			- Elevating Access Permissions:
+				- Attackers exploit the Microsoft.Authorization/elevateAccess/Action permission to escalate their privileges to those of an administrator account.
+			- Modifying Existing Roles:
+				- With the Microsoft.Authorization/roleDefinitions/write permission, attackers can modify existing roles or create new admin accounts.
+			- Creating New Accounts:
+				- Attackers with the Microsoft.Authorization/roleAssignments/write permission can assign privileged roles to new accounts, effectively granting administrative control.
+		- Additionally, attackers can leverage custom roles to create shadow admin accounts. For example, the custom role "Storage Team Leader" is a full subscription administrator. Attackers can abuse permissions such as Microsoft.Authorization/roleAssignments/*, using the AssignableScopes subscription to grant additional permissions to an account.
+		- Tools for Identifying and Exploiting Shadow Admins:
+			- SkyArk (github.com): SkyArk includes two main scanning modules, AWStealth and AzureStealth. These modules help attackers identify users, groups, and roles with the most sensitive and high-risk permissions, making them prime targets for privilege escalation.
+	- Gaining Access by Exploiting SSRF Vulnerabilities:
+		- Attackers can exploit Server-Side Request Forgery (SSRF) vulnerabilities in a web application that hosts a cloud service to retrieve AWS credentials for a role. They can then add these credentials to the local AWS CLI, access S3 buckets, and exfiltrate data stored in them.
+		- Exploiting SSRF to Retrieve AWS IAM Credentials:
+			- Attackers leverage SSRF vulnerabilities in web applications to access cloud metadata services, such as AWS EC2, and obtain AWS access keys for a role. These keys enable attackers to list and sync S3 buckets to a local machine, gaining unauthorized access to stored data.
+			- This attack is feasible when:
+				- The target web application communicates over HTTP.
+				- The application has an SSRF vulnerability in a GET parameter (e.g., url).
+		- Adding Compromised Credentials to AWS CLI:
+			- Once the AWS credentials are obtained, they can be added to the local AWS CLI using the following command: aws configure --profile stolen_profile
+		- Accessing Data Stored in S3 Buckets:
+			- To verify that the credentials are valid, run: aws sts get-caller-identity --profile stolen_profile
+				- This command retrieves the user ID, account number, and ARN for the compromised role.
+			- Next, list all accessible S3 buckets: aws s3 ls --profile stolen_profile
+				- This displays all S3 buckets that the compromised IAM role can access.
+			- Finally, synchronize and download the bucket contents to the local system: aws s3 sync s3://bucket-name /home/attacker/localstash/targetcloud/ --profile stolen_profile
