@@ -17300,3 +17300,169 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- cognito-identity:ListIdentityPools
 				- cognito-identity:DescribeIdentityPool
 		- These commands provide insights into the configuration and usage of Cognito within an AWS environment, potentially revealing misconfigurations or overly permissive settings.
+	- Enumerating DNS Records of AWS Accounts Using Ghostbuster:
+		- DNS records for AWS accounts are crucial for managing domain names and directing traffic to the appropriate resources within the AWS infrastructure. These records include A, CNAME, MX, and TXT records, which map domain names to IP addresses, define mail server routes, and provide verification for services such as Amazon Route 53.
+		- Enumerating the DNS records of AWS accounts can allow attackers to uncover valuable infrastructure details, such as IP addresses, subdomains, and mail servers. Gaining insights into the DNS setup enables attackers to map the network, identify potential entry points, exploit misconfigurations, or target exposed services—potentially leading to unauthorized access to AWS resources. Tools such as nslookup, dig, and Ghostbuster can help in identifying DNS records associated with AWS accounts.
+		- Ghostbuster (github.com):
+			- Attackers use the Ghostbuster tool to gather DNS records from targeted AWS accounts, particularly those managed through Amazon Route 53. The tool can import DNS records from a CSV file or retrieve them directly from Cloudflare. Ghostbuster dynamically iterates through each AWS profile configured in .aws/config or .aws/credentials across all AWS regions. It pulls subdomain records from AWS Route 53 and Cloudflare and cross-checks these DNS records with the organization’s owned IPs to detect potential takeover opportunities.
+			- Attackers can execute the following command to enumerate the DNS records of a targeted AWS account using Ghostbuster:
+				- ghostbuster scan aws --profile <AWS_CLI_profile_name>
+				- This command connects to the specified AWS account and retrieves all DNS records managed by Route 53.
+			- Note: Ghostbuster leverages publicly available information from AWS Route 53 to gather DNS records. However, accessing certain DNS records may require specific permissions, depending on the security configurations and policies of the AWS account.
+	- Enumerating Serverless Resources in AWS:
+		- Serverless architectures automatically scale to handle large volumes of data collection and processing. Attackers can exploit this scalability to efficiently gather extensive information from distributed sources. To enumerate serverless resources in AWS—specifically AWS Lambda and DynamoDB—an attacker might use the following AWS CLI commands:
+		- Enumerating AWS Lambda Functions:
+			- List all Lambda functions: aws lambda list-functions
+			- Retrieve details about a specific Lambda function, including its version: aws lambda get-function --function-name <function_name>
+			- Examine the configuration details of a Lambda function, including environment variables: aws lambda get-function-configuration --function-name <function_name>
+			- List the exposed URLs of a Lambda function for direct HTTP interactions: aws lambda list-function-url-configs --function-name <function_name>
+			- Retrieve the configuration details of a specific Lambda function URL: aws lambda get-function-url-config --function-name <function_name>
+			- Identify the event sources that trigger a Lambda function: aws lambda list-event-source-mappings --function-name <function_name>
+		- Enumerating IAM Policies Related to Lambda:
+			- List all managed policies attached to a target IAM role: aws iam list-attached-role-policies --role-name <role_name>
+		- Enumerating AWS DynamoDB:
+			- List all DynamoDB table names in the current account and region: aws dynamodb list-tables
+			- Retrieve details of a specific DynamoDB table, including its status and metadata: aws dynamodb describe-table --table-name <table_name>
+			- List all global DynamoDB tables: aws dynamodb list-global-tables
+		- Enumerating API Gateway:
+			- List all API Gateway REST APIs in the current account: aws apigateway get-rest-apis
+			- Retrieve details about a specific REST API Gateway: aws apigateway get-rest-api --rest-api-id <api_id>
+		- By leveraging the information extracted through these commands, attackers could execute various attacks, including privilege escalation, data exfiltration, resource hijacking, and API abuse.
+	- Discovering Attack Paths Using Cartography (github.com):
+		- Cartography is a Python-based tool designed to map and analyze the security posture of various cloud platforms, including AWS, GCP, Oracle Cloud Infrastructure, Microsoft Azure, and Okta. It ingests data from cloud infrastructure, IAM policies, and network configurations to create a comprehensive graph-based view. Attackers can exploit this information to identify relationships and dependencies, uncover misconfigurations, and pinpoint potential vulnerabilities for exploitation. By visualizing interconnected components, Cartography helps security teams recognize attack paths and privilege escalation opportunities.
+		- Examples of Discovering Attack Paths in AWS:
+			- Identify RDS instances in the current AWS account:
+				MATCH (aws:AWSAccount)-[r:RESOURCE]->(rds:RDSInstance)
+				RETURN *
+				- This query instructs Neo4j to identify all [:RESOURCE] relationships from AWSAccount nodes to RDSInstance nodes and return the results.
+			- Identify RDS instances with encryption turned off:
+				MATCH (a:AWSAccount)-[:RESOURCE]->(rds:RDSInstance {storage_encrypted: false})
+				RETURN a.name, rds.id
+			- Identify EC2 instances that are directly exposed to the Internet:
+				MATCH (instance:EC2Instance {exposed_internet: true})
+				RETURN instance.instanceid, instance.publicdnsname
+		- The instances identified by this query are open to the Internet due to permissive inbound IP permissions in their EC2 Security Groups or misconfigured network interfaces.
+	- Tools for Collecting AWS Security-Focused Inventory:
+		- Starbase (github.com)
+		- Cloudlist (github.com)
+		- AWS Recon (github.com)
+		- aws-inventory (github.com)
+		- CloudMapper (github.com)
+	- Discovering Attack Paths Using CloudFox (github.com):
+		- CloudFox is a command-line tool designed to help security professionals identify potential attack paths within cloud environments such as AWS, Azure, and GCP. It can be used to detect misconfigurations and security vulnerabilities, particularly in AWS. By using CloudFox, security teams can determine which regions an AWS account is utilizing and obtain a list of associated resources.
+		- The tool scans for sensitive data in EC2 user data, service-specific environment variables, workloads with administrative permissions, role trusts, host names, IP addresses, and file systems within the targeted AWS infrastructure. Additionally, CloudFox assists in identifying over-permissive policies, exposed endpoints, and privilege escalation opportunities.
+		- The following command can be executed via the AWS CLI to perform automated enumeration within an AWS environment:
+			- cloudfox aws --profile <profile-name> all-checks
+			- This command provides comprehensive details on security misconfigurations and potential attack paths within a specified AWS environment. It generates loot files containing enumerated information, including identified misconfigurations, which can aid in strengthening security postures.
+		- Alternatively, the following CloudFox commands can be used to gather specific security insights:
+			- Access Keys: Enumerates active access keys for all users. cloudfox aws --profile <profile-name> -v2 access-keys
+			- Buckets: Displays all S3 buckets in the account and provides commands for further inspection: cloudfox aws --profile <profile-name> -v2 buckets
+			- ECS Tasks: Returns details on ECS tasks, including associated clusters, task definitions, container instances, launch types, and IAM principals: cloudfox aws -p <profile-name> ecs-tasks -v2
+			- Elastic Network Interfaces (ENIs): Identifies all elastic network interfaces, including ENI IDs, types, external and private IPs, VPC IDs, attached instances, and descriptions: cloudfox aws -p <profile-name> eni -v2
+			- Endpoints: Enumerates exposed endpoints from various services: cloudfox aws --profile <profile-name> -v2 endpoints
+			- Permissions: Lists all IAM permissions available to a principal, excluding resource-based permissions: cloudfox aws --profile <profile-name> permissions -v2
+			- Secrets: Retrieves stored secrets from AWS Secrets Manager and AWS Systems Manager (SSM): cloudfox aws --profile <profile-name> -v2 secrets
+			- Workloads: Identifies workloads with administrative permissions or those that can be escalated to administrative privileges: cloudfox aws --profile <profile-name> workloads
+		- Note: While these commands do not require full administrative privileges, they do require specific IAM permissions. To execute them successfully, users must have the appropriate IAM policies attached to their roles or accounts.
+	- Identify Security Groups Exposed to the Internet:
+		- Attackers can exploit open security groups to gain unauthorized network access by targeting ports that allow unrestricted traffic. When security group rules permit inbound traffic from any IP address on commonly used ports—such as SSH (port 22), HTTP (port 80), HTTPS (port 443), or database ports (e.g., MySQL on port 3306)—these services become exposed to the Internet.
+		- Attackers can scan for open ports and exploit them to launch brute-force attacks on SSH, gain control of instances, execute malicious commands, exfiltrate data, or establish persistence within the network. Additionally, open security groups can expose vulnerabilities such as SQL injection, cross-site scripting (XSS), or remote code execution (RCE), leading to unauthorized access, data breaches, and further penetration into the AWS environment.
+		- Methods to Enumerate Open Security Groups in AWS:
+			- Using the AWS Management Console:
+				- Navigate to the EC2 Dashboard.
+				- Select Security Groups from the sidebar.
+				- Review the inbound and outbound rules for any security group that allows access from 0.0.0.0/0.
+			- Using AWS CLI:
+				- Run the following command to identify security groups with open ports exposed to the Internet:
+					aws ec2 describe-security-groups \
+						--filter Name=ip-permission.cidr,Values=0.0.0.0/0,::/0 \
+						[--filter Name=ip-permission.from-port,Values=<port numbers>]
+				- Explanation of the command:
+					--filter Name=ip-permission.cidr,Values=0.0.0.0/0,::/0 filters security group rules that allow traffic from any IPv4 or IPv6 address.
+					--filter Name=ip-permission.from-port,Values=<port numbers> filters security groups to those that allow traffic on specific ports.
+		- Examining the FromPort and ToPort values in the command output helps identify risky open ports, which attackers can exploit to gain unauthorized access to an AWS environment.
+		- Additionally, attackers can define unrestricted network access to a specific port using the following command: aws ec2 authorize-security-group-ingress --group-id <security group ID> --protocol <protocol> --port <port number> --cidr 0.0.0.0/0
+		- Required IAM Permissions:
+			- Executing these commands does not necessarily require full administrative privileges but does require appropriate IAM permissions. The necessary permission is: ec2:DescribeSecurityGroups
+			- Users with the AmazonEC2ReadOnlyAccess policy or higher have sufficient privileges to run the command.
+	- AWS Threat Emulation Using Stratus Red Team (github.com):
+		- Stratus Red Team is the "Atomic Red Team™" for the cloud, enabling granular and self-contained emulation of offensive attack techniques. Attackers use Stratus Red Team to simulate various attack techniques in target cloud environments. This tool supports multiple platforms, including AWS, GCP, Azure, and Kubernetes. Inspired by the Atomic Red Team, it maps techniques to the MITRE ATT&CK framework, allowing security teams and attackers to conduct comprehensive and realistic security assessments to identify vulnerabilities. Stratus Red Team is self-contained and easy to use for various attack simulations.
+		- Stratus Red Team Commands for AWS Attack Emulation:
+			- To emulate attack techniques against AWS, the attacker must first authenticate before running any attack. This can be done using the aws-vault command or by configuring static credentials in ~/.aws/config and setting up the desired AWS profile using: export AWS_PROFILE=my-profile
+			- Authentication:
+				- Authenticate to AWS using: aws-vault exec sandbox-account
+			- Listing Available Attack Techniques:
+				- To list available attack techniques for the MITRE ATT&CK 'persistence' tactic in AWS: stratus list --platform AWS --mitre-attack-tactic persistence
+			- Viewing Details of a Specific Attack Technique:
+				- To view details of a specific technique: stratus show <Attack technique>
+			- Warming Up an Attack Technique:
+				- To prepare an attack technique by setting up the prerequisite infrastructure or configuration without executing it: stratus warmup <Attack technique>
+			- Executing an Attack Technique:
+				- To execute (detonate) an attack technique: stratus detonate <Attack technique>
+			- Checking the Status of Attack Techniques:
+				- To display the current state of attack techniques: stratus status
+			- Cleaning Up After an Attack:
+				- To clean up any leftover infrastructure from an attack technique: stratus cleanup <Attack technique>
+				- To clean up all attack techniques: stratus cleanup --all
+	- Gathering Cloud Keys Through IMDS Attacks (docs.aws.amazon.com):
+		- In an AWS environment, cloud access keys are security credentials used by an IAM user or the root user of an AWS account to access AWS services. These keys consist of an access key ID and a secret access key, which are essential for authenticating API requests. Attackers exploit Instance Metadata Service (IMDS) vulnerabilities to obtain cloud keys and gain unauthorized access to cloud resources.
+		- IMDSv1 allows access to instance metadata via HTTP requests to a specific IP address: 169.254.169.254. Attackers can leverage this to retrieve information about EC2 instances and their security credentials. For Nitro-based EC2 instances, an IPv6 address (fd00:ec2::254) can also be used.
+		- IMDSv1 Exploitation:
+			- To access the instance metadata and identify associated IAM roles, an attacker may run: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+			- Once an IAM role name is obtained, the attacker can retrieve its credentials using: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/<IAM-Role-Name>
+		- IMDSv2 Exploitation:
+			- AWS introduced IMDSv2 to mitigate these attacks by requiring a session token. However, attackers can still attempt to retrieve instance metadata if IMDSv2 is misconfigured.
+			- Generate a session token with a specific duration (e.g., 21,600 seconds): TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+			- Use the generated token in subsequent requests: curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+		- Mitigation Recommendations:
+			- Enforce IMDSv2-only mode to prevent IMDSv1 exploitation.
+			- Restrict IAM role permissions to follow the principle of least privilege.
+			- Implement network-level controls to prevent unauthorized access to 169.254.169.254.
+	- Exploiting Misconfigured AWS S3 Buckets:
+		- Follow the steps below to exploit misconfigured AWS S3 buckets.
+		- Step 1: Identify S3 Buckets:
+			- Attackers use tools such as S3Scanner, lazys3, Bucket Finder, and s3-buckets-bruteforcer to locate target AWS S3 buckets. These tools help gather URLs of identified buckets.
+			- For example, the URL of an identified S3 bucket may be: http://[bucket_name].s3.amazonaws.com/
+		- Step 2: Set Up the AWS Command-Line Interface:
+			- Install the AWS CLI (aws-cli) to check the AWS version and create an account.
+		- Step 3: Extract Access Keys:
+			- After creating an account, sign in and navigate to: AWS IAM Console
+			- Go to Users → Add User.
+			- Fill in the required details and click Create User.
+			- Download the CSV file and extract your access keys.
+		- Step 4: Configure AWS CLI:
+			- Open a terminal and run the following command to configure AWS CLI: aws configure
+		- Step 5: Identify Vulnerable S3 Buckets:
+			- Run the following commands to identify exploitable S3 buckets:
+				- aws s3 ls s3://[bucket_name]
+				- aws s3 ls s3://[bucket_name] --no-sign-request
+		- Step 6: Exploit S3 Buckets:
+			- Use the following commands to manipulate files stored in S3 buckets:
+				- Reading Files: aws s3 ls s3://[bucket_name] --no-sign-request
+				- Moving Files: aws s3 mv FileName s3://[bucket_name]/test-file.txt --no-sign-request
+				- Copying Files: aws s3 cp FileName s3://[bucket_name]/test-file.svg --no-sign-request
+				- Deleting Files: aws s3 rm s3://[bucket_name]/test-file.svg --no-sign-request
+	- Compromising AWS IAM Credentials:
+		- AWS Identity and Access Management (IAM) provides identity management capabilities to customers, enabling IT administrators to manage AWS user identities and their varying levels of access to AWS resources. Attackers can compromise AWS IAM user credentials by exploiting vulnerabilities and security flaws in cloud environments. Tools such as Pacu can be used to facilitate these attacks.
+		- Below are some common security vulnerabilities that attackers exploit to compromise AWS IAM credentials:
+		- Repository Misconfigurations:
+			- Many organizations store their AWS keys in shared repositories on internal networks, such as Git repositories, allowing developers and engineers easy access. However, these keys may be misused by insiders or inadvertently exposed if developers unknowingly commit personal AWS keys to shared repositories.
+			- For example, an environment variables file accidentally made public on GitHub may reveal AWS API keys to the internet. Users often upload such files with commit messages like "updated .gitignore," making them easy targets for attackers. While AWS scans GitHub commit messages for exposed API keys and notifies users when they are published, attackers may employ similar techniques to gain unauthorized access to cloud resources.
+		- Social Engineering:
+			- Attackers use social engineering techniques, such as phishing emails, fraudulent phone calls, and SMS messages, to trick users into revealing their AWS IAM credentials. If a user relies solely on API keys for authentication, an attacker can use a phishing attack to steal the keys and compromise the account.
+		- Password Reuse:
+			- Password reuse is a widespread issue that creates serious security vulnerabilities. Many users reuse the same password across multiple services. If an attacker compromises a password from one service, they may gain unauthorized access to other cloud services using the same credentials.
+			- In some cases, if a website is breached, attackers can access its backend database, retrieve stored password hashes, or even find plaintext passwords, increasing the risk of credential compromise.
+		- Vulnerabilities in AWS-Hosted Applications:
+			- Server-Side Request Forgery (SSRF):
+				- SSRF is a common web application vulnerability that allows attackers to send arbitrary web requests from compromised web servers. Attackers often target the internal EC2 metadata API through SSRF vulnerabilities in web applications.
+				- When an EC2 instance requires access to the AWS API, it is often assigned an IAM instance profile, which grants temporary AWS credentials via the EC2 metadata API. If an attacker exploits an SSRF vulnerability, they can send HTTP requests to the metadata URL and obtain these temporary credentials.
+			- Reading Local Files:
+				- AWS keys are often stored in configuration and log files within the operating system. For example, users who configure the AWS Command Line Interface (AWS CLI) store their credentials in the home directory or environment variable files.
+				- If an attacker gains access to the operating system, they can extract these stored credentials to further exploit the environment.
+		- Exploiting Third-Party Software:
+			- Many third-party applications require access to AWS environments to function properly. Organizations may deploy such software for cloud management, security, or automation. However, if an attacker compromises third-party software, they can gain unauthorized access to cloud resources.
+			- For instance, an organization might use a third-party password manager to store credentials for various cloud services. If the password manager is compromised, an attacker could obtain high-level access to the cloud environment.
+		- Insider Threats:
+			- Insider threats typically originate from business associates, current or former employees, or trusted contractors who already have access to the environment. Unlike external attackers, they do not need to compromise credentials to carry out malicious activities.
+			- For example, a disgruntled employee may attempt to damage the organization's reputation by abusing their credentials to modify cloud services or expose sensitive information to the public.
