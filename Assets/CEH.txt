@@ -17692,3 +17692,72 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Server-Side Request Forgery (SSRF): Perform an SSRF attack to extract the /etc/passwd file from the Lambda execution environment. Subsequently, compromise the environment to create a new user with administrator privileges.
 			- IAM Privilege Escalation: Exploit misconfigured IAM policies to escalate privileges and gain administrator-level access to the AWS account.
 			- File Upload Vulnerability & Task Metadata Exploitation: Gain shell access to the application by exploiting a file upload vulnerability. Then, retrieve AWS credentials from task metadata to achieve unauthorized access and control over the AWS environment.
+- Microsoft Azure Hacking:
+	- Azure Reconnaissance Using AADInternals (github.com):
+		- AADInternals is a PowerShell module designed for administering Azure AD and Office 365. It provides a comprehensive set of tools for reconnaissance, exploitation, and post-exploitation tasks within an Azure AD environment.
+		- Steps to Perform Azure Reconnaissance Using AADInternals:
+			- Install and import the AADInternals module into the PowerShell session. Then, run the following command to start tenant reconnaissance for a given domain:
+				- Invoke-AADIntReconAsOutsider -Domain <domain name> | Format-Table
+				- This command retrieves all verified domains of the tenant and extracts relevant details, such as their type.
+			- Retrieve login information for a specific user or domain by running: Get-AADIntLoginInformation -Domain <domain name>
+			- List all registered domains for the tenant of a given domain: Get-AADIntTenantDomains -Domain <domain name>
+		- Additional Commands for Reconnaissance Using AADInternals:
+			- Get-AADIntEndpointInstances : Returns Office 365 instances and information about the latest changes.
+			- Get-AADIntEndpointIps -Instance WorldWide : Retrieves Office 365 IP addresses and URLs for the specified instance.
+			- Get-AADIntTenantDetails : Returns details for the specified tenant.
+			- Get-AADIntTenantID -Domain <domain name> : Returns the tenant ID for a given user, domain, or access token.
+			- Get-AADIntKerberosDomainSyncConfig -AccessToken : Fetches the tenant’s Kerberos domain sync configuration using the Azure AD Sync API.
+			- Invoke-AADIntReconAsInsider : Initiates reconnaissance as an insider.
+			- Get-AADIntOpenIDConfiguration -Domain <domain name> : Retrieves the OpenID configuration for a given user or domain.
+			- Get-AADIntServiceLocations | Format-Table : Displays the tenant’s true service locations.
+			- Get-AADIntServicePlans | Format-Table : Returns information about the tenant’s service plans, including name, ID, status, and first assigned date.
+			- Get-AADIntSubscriptions : Retrieves the tenant’s subscription details, including name, ID, number of licenses, and creation date.
+			- Get-AADIntCompanyTags -Domain <domain name> : Returns tags associated with the tenant.
+			- Get-AADIntSyncConfiguration : Returns synchronization details.
+			- Get-AADIntTenantAuthPolicy : Retrieves the tenant’s authorization policy, including user and guest settings.
+			- Get-AADIntComplianceAPICookies : Returns cookies used for compliance API functions.
+			- Get-AADIntAzureADPolicies : Displays Azure AD policies.
+	- Identifying Azure Services and Resources (github.com):
+		- Identifying Azure services and resources is crucial for attackers aiming to map the cloud environment and discover potential targets. By understanding the available services and resources, attackers can identify misconfigurations, vulnerabilities, and weaknesses to exploit. This reconnaissance phase is essential for planning further attacks, such as privilege escalation, lateral movement, or data exfiltration. Attackers can achieve this by leveraging Azure's APIs or exploiting exposed endpoints. Additionally, tools like Azure CLI and MicroBurst can be used to automate the process of enumerating resources and services within an Azure subscription.
+		- Enumerating Azure Services and Resources Using MicroBurst:
+			- Follow these steps to enumerate Azure services and resources using MicroBurst:
+				- Import the MicroBurst module into an authenticated Azure PowerShell session: Import-Module .\MicroBurst.psm1
+				- Create a folder to store the function’s output: New-Item -Name "microburst_output" -ItemType "directory"
+				- Execute the MicroBurst function to enumerate Azure services and resources: Get-AzDomainInfo -Verbose -Folder microburst_output
+					- This command retrieves enumeration results in CSV and text file formats, storing them in the specified output folder.
+					- Open the output folder using File Explorer: explorer microburst_output:
+					- This command opens the microburst_output folder, allowing access to the retrieved information for further analysis.
+		- Note: Executing the above commands for Azure resource enumeration using MicroBurst does not require local administrative privileges. However, appropriate Azure AD and Azure Resource Manager (ARM) permissions are necessary. The user must have at least the Reader role to gather information about Azure resources.
+	- Enumerating Azure Active Directory (AD) Accounts:
+		- Cloud platforms such as Office 365 can be accessed directly from the Internet. Consequently, attackers target these environments to gather as much information as possible to initiate various attacks on Azure Active Directory (AD) and Office 365. Below, we discuss the techniques used to enumerate Azure AD accounts.
+		- Account Enumeration:
+			- Azure AD (AAD) users with access to Office 365 services can enumerate all user accounts and admin groups. This accessibility may motivate attackers to exploit Azure AD for account enumeration. Attackers can use tools such as AzureGraph to perform this enumeration.
+			- AzureGraph (github.com):
+				- AzureGraph is an Azure AD information-gathering tool that leverages Microsoft Graph APIs. It enables attackers to obtain various types of information from Azure AD, including users, devices, applications, and domains. The tool allows attackers to query this data via an API easily through a PowerShell console. Additionally, attackers can download all information from the target cloud and use it offline.
+				- Enumerating Azure AD Accounts:
+					- Use the following commands to enumerate Azure AD accounts:
+					- Authenticate with AAD and create a new login session: gr <-create_graph_login()
+					- View all users in the Azure AD tenant: gr$list_users()
+					- Retrieve information about the authenticated user: me <-gr$get_user("username")
+					- View the groups the authenticated user belongs to: head(me$list_group_memberships())
+					- Retrieve applications owned by the authenticated user/account: me$list_owned_objects(type="application_name")
+		- Password Spraying:
+			- Attackers use password spraying to perform automated password guessing for Azure AD accounts. This method avoids account lockouts by attempting logins across multiple user accounts simultaneously using a single password. If both on-premises and cloud accounts share the same password without Multi-Factor Authentication (MFA), attackers have a high probability of gaining access to the target network through password spraying. Tools such as Spray365 are commonly used for this attack.
+			- Spray365 (github.com):
+				- Spray365 is a tool that allows attackers to identify valid credentials for Microsoft accounts (Office 365 / Azure AD). It helps in generating an execution plan, executing the password spraying attack, and reviewing the results.
+				- Steps to Use the Spray365 Tool:
+					- Generate an execution plan: python3 spray365.py generate normal -ep <execution_plan_filename> -d <domain_name> -u <file_containing_usernames> -pf <file_containing_passwords>
+					- Perform password spraying using the execution plan: python3 spray365.py spray -ep <execution_plan_filename>
+					- Review the results of the spraying operation: python3 spray365.py review <spray_results_json_filename>
+	- Identifying Attack Surfaces Using Stormspotter (github.com):
+		- Attackers use various techniques and tools to identify attack surfaces in a target Azure environment. By mapping these surfaces, they can design exploits to launch multiple attacks on a target system. One such tool is Stormspotter, which helps visualize Azure and Azure Active Directory (AAD) objects. Stormspotter creates a visual graph of an Azure subscription’s resources, allowing attackers to analyze attack surfaces and potential lateral movement paths within a tenant.
+		- Stormcollector Module:
+			- The Stormcollector module within Stormspotter enumerates all the subscriptions that the provided credentials can access. To view available options, use the -h switch.
+			- Alternative Commands for Stormcollector:
+				- Run Stormcollector in CLI mode: python3 sscollector.pyz cli
+				- Run Stormcollector using a service principal for authentication: python3 sscollector.pyz spn -t <tenant> -c <clientID> -s <clientSecret>
+					-t <tenant>: Specifies the Azure tenant ID.
+					-c <clientID>: Specifies the service principal's client ID.
+					-s <clientSecret>: Specifies the service principal's client secret.
+		- Post-Authentication Enumeration:
+			- Once authenticated, an attacker can enumerate resources, configurations, and security gaps within the Azure subscription. The CLI mode leverages existing Azure CLI authentication, while the service principal mode requires explicit credentials, allowing for more targeted enumeration.
