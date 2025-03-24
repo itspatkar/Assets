@@ -17657,3 +17657,38 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 						- aws iam attach-role-policy --role-name <Role-name> --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 					- Step 3: Use the new role to access other resources in the AWS environment.
 		- These techniques highlight the various methods attackers may use to maintain their presence in EC2 instances, complicating efforts to fully remove their access and secure the AWS environment.
+	- Lateral Movement: Moving Between AWS Accounts and Regions:
+		- Lateral movement within AWS involves transitioning from one account or region to another to escalate privileges or gain access to additional resources. For successful lateral movement, attackers must have the necessary permissions to assume roles or access resources in the target account or region.
+		- The following steps outline the process of lateral movement in AWS:
+			- Step 1: Identifying IAM Roles with Permissive Policies or Trust Relationships:
+				- An attacker first identifies IAM roles with permissive policies or trust relationships that allow cross-account or cross-region actions: aws iam list-roles
+				- Once a role is identified, the attacker retrieves detailed information about it using: aws iam get-role --role-name <role-name>
+				- This command returns information such as the role's path, GUID, ARN, and trust policy, which dictates who can assume the role.
+			- Step 2: Assuming an IAM Role in the Target Account:
+				- The attacker assumes an IAM role in the target account to gain additional permissions: aws sts assume-role --role-arn arn:aws:iam::<target-account-id>:role/<role-name> --role-session-name <session-name>
+				- This command returns temporary security credentials, including the access key ID, secret access key, and session token.
+			- Step 3: Configuring the AWS CLI with Temporary Credentials:
+				- To execute actions with the permissions of the assumed role, the attacker configures the AWS CLI using the obtained temporary credentials:
+					export AWS_ACCESS_KEY_ID=<AccessKeyId>
+					export AWS_SECRET_ACCESS_KEY=<SecretAccessKey>
+					export AWS_SESSION_TOKEN=<SessionToken>
+			- Step 4: Enumerating Resources and Permissions in the Target Account:
+				- With the assumed role, the attacker enumerates resources and permissions:
+					- Listing available S3 buckets in the target account: aws s3 ls
+					- Enumerating permissions associated with the target IAM user or role:
+						aws iam list-attached-user-policies --user-name <assumed-user-name>  
+						aws iam list-attached-role-policies --role-name <assumed-role-name>
+			- Step 5: Enumerating AWS Regions for Further Lateral Movement:
+				- After gaining access, the attacker identifies all available AWS regions to explore further movement: aws ec2 describe-regions
+				- To enumerate instances in a specific region, they run: aws ec2 describe-instances --region <region-name>
+			- Step 6: Accessing and Exploiting Resources in Different AWS Regions:
+				- The attacker exploits resources across AWS regions, such as accessing S3 buckets: aws s3api list-buckets --query <filter>
+				- If permissions allow, they may also launch new EC2 instances in other regions to expand their attack footprint.
+	- AWSGoat: A Damn Vulnerable AWS Infrastructure (github.com):
+		- AWSGoat is a deliberately vulnerable AWS infrastructure designed to help security professionals and ethical hackers develop their cloud exploitation skills. It provides a realistic, hands-on environment with various vulnerabilities that simulate real-world attack scenarios. By interacting with AWSGoat, users can gain practical experience in identifying and exploiting weaknesses within AWS environments, deepening their understanding of common vulnerabilities, and improving their ability to assess and secure cloud infrastructure.
+		- The following are some of the attack scenarios that AWSGoat offers:
+			- SQL Injection: Exploit vulnerabilities in the web application hosted within the AWSGoat environment to conduct SQL injection attacks.
+			- ECS Breakout & Instance Metadata Exploitation: Escape a containerized environment to access the underlying host. Then, exploit the instance metadata service to retrieve IAM credentials associated with AWS instances.
+			- Server-Side Request Forgery (SSRF): Perform an SSRF attack to extract the /etc/passwd file from the Lambda execution environment. Subsequently, compromise the environment to create a new user with administrator privileges.
+			- IAM Privilege Escalation: Exploit misconfigured IAM policies to escalate privileges and gain administrator-level access to the AWS account.
+			- File Upload Vulnerability & Task Metadata Exploitation: Gain shell access to the application by exploiting a file upload vulnerability. Then, retrieve AWS credentials from task metadata to achieve unauthorized access and control over the AWS environment.
