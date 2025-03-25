@@ -17966,3 +17966,46 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Where:
 					-o : Specifies the output file where the results will be saved.
 					-g : Specifies the path to the gcloud profile containing the credentials to be used for scanning.
+	- Enumerating Google Cloud Storage Buckets Using cloud_enum (github.com):
+		- The cloud_enum tool is a multi-cloud OSINT tool that enables security researchers to enumerate public resources across AWS, Azure, and Google Cloud environments. Using this tool, researchers can retrieve information from open or publicly accessible GCP buckets, Firebase Realtime Databases, Google App Engine sites, cloud functions, and open Firebase applications, helping them assess potential security risks.
+		- To enumerate Google Cloud Storage Buckets using the cloud_enum tool, run the following command: cloud_enum.py -k <keyword> --disable-aws --disable-azure
+			- In this command:
+				- The -k <keyword> option specifies the keyword to search for.
+				- The --disable-aws and --disable-azure flags skip AWS and Azure checks, making the Google Cloud Storage enumeration process faster.
+		- Alternatively, researchers can use the GrayhatWarfare tool to identify and access publicly available storage buckets on Google Cloud Platform.
+	- Enumerating Privilege Escalation Vulnerabilities Using the GCP Privilege Escalation Scanner (github.com):
+		- The GCP Privilege Escalation Scanner is a Python script that attackers can use to identify potential privilege escalation vulnerabilities within GCP environments. This scanner analyzes IAM policies and permissions across GCP resources to detect misconfigurations and weaknesses that could allow an attacker to gain elevated privileges.
+		- Below are the steps an attacker would follow to enumerate privilege escalation vulnerabilities in a targeted GCP project using the GCP Privilege Escalation Scanner:
+			- Enumerate Member Permissions:
+				- Run the following command to list all permissions assigned to each member within the targeted GCP project: python3 enumerate_member_permissions.py --project-id test-<project ID>
+			- Scan for Privilege Escalation Vulnerabilities:
+				- Using the enumerated permissions, run the following command to identify potential privilege escalation vulnerabilities: python3 check_for_privesc.py
+			- Analyze the Results:
+				- After the scan is completed, the attacker will obtain the following output files containing information about privilege escalation vulnerabilities in the GCP project:
+					- all_org_folder_proj_sa_permissions.json – A list of all project members and their associated permissions.
+					- privesc_methods.txt – A list of identified methods that can be used to escalate privileges within the GCP environment.
+					- setIamPolicy_methods.txt – A list of methods that involve setting IAM policies, which can be exploited for privilege escalation.
+		- Note: Having read and manage permissions specific to IAM resources is typically sufficient to perform this activity.
+	- Escalating Privileges of Google Storage Buckets Using GCPBucketBrute (rhinosecuritylabs.com):
+		- Similar to Amazon AWS S3 buckets, Google Cloud Storage (GCS) uses buckets for static file storage. Misconfigured bucket permission policies can expose these buckets to all GCP users or even to the public internet. Like AWS S3, Google Storage buckets are susceptible to privilege escalation attacks due to improperly configured Access Control Lists (ACLs).
+		- GCPBucketBrute is a script-based tool that allows attackers to enumerate Google Storage buckets, determine their access levels, and assess whether privilege escalation is possible. This tool checks a bucket’s policy by making a direct HTTP request to: https://www.googleapis.com/storage/v1/b/BUCKETNAME/iam
+		- If "allUsers" or "allAuthenticatedUsers" have read access to the bucket policy, the request returns a valid response; otherwise, an access denied message is displayed.
+		- Additionally, attackers can leverage the Google Storage TestIamPermissions API by providing a bucket name and a list of Google Storage permissions to retrieve the bucket’s access levels.
+		- GCPBucketBrute enables attackers to identify their privileges on discovered buckets. If they have any level of access, the tool displays a list of granted permissions. If the attackers possess enough privileges to escalate their access, the tool flags the bucket as vulnerable to privilege escalation. This allows attackers to elevate their permissions, potentially gaining administrative control over the bucket.
+	- Maintaining Access: Creating Backdoors with IAM Roles in GCP:
+		- Creating backdoors with IAM roles on Google Cloud Platform (GCP) involves setting up persistent access methods that allow an attacker to regain access, even if the initial entry point is detected and removed.
+		- An attacker can follow the steps below to create a backdoor account in the targeted GCP environment and grant sufficient permissions to evade detection.
+			- Creating New IAM Roles:
+				- An attacker creates new roles with elevated permissions: gcloud iam roles create <ROLE_NAME> --project=<PROJECT_ID> --file=role-definition.yaml
+				- This command creates a new role with elevated permissions as defined in role-definition.yaml.
+			- Assigning Roles to Service Accounts:
+				- Attaching roles to service accounts ensures they have the necessary permissions for future access: gcloud projects add-iam-policy-binding <PROJECT_ID> --member=serviceAccount:<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com --role=roles/<ROLE_NAME>
+				- This command assigns the newly created role to a service account, ensuring it retains the necessary permissions for continued access.
+				- By configuring these roles and permissions, attackers can establish a persistent backdoor in the GCP environment.
+		- Note: These activities can only be performed after an attacker has escalated their privileges to an administrative level.
+	- GCPGoat: A Vulnerable-by-Design GCP Infrastructure (github.com):
+		- GCPGoat is a deliberately vulnerable GCP infrastructure designed to help security professionals and researchers test and enhance their attack skills by exploiting common misconfigurations and vulnerabilities. These include cross-site scripting (XSS), server-side request forgery (SSRF), weak storage bucket implementations, and IAM privilege escalation. By emulating real-world cloud environments, GCPGoat highlights the latest OWASP Top 10 web application security risks (2021) and other common misconfigurations in services such as IAM, storage buckets, Cloud Functions, and Compute Engine.
+		- The following are various attack scenarios where GCPGoat can be used for practice:
+			- Server-Side Request Forgery (SSRF): Exploit an SSRF vulnerability to retrieve source code from a Cloud Function, dump the database, and escalate privileges to compromise the admin account of a target blog application.
+			- Misconfigured Storage Bucket Policies: Leverage improperly configured storage bucket policies to gain unauthorized administrative access to a cloud storage bucket.
+			- Lateral Movement: Extract credentials for a low-privileged virtual machine instance from a development storage bucket, then use them to escalate access to higher-privileged Compute Engine instances.
