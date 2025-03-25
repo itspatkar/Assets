@@ -18009,3 +18009,24 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Server-Side Request Forgery (SSRF): Exploit an SSRF vulnerability to retrieve source code from a Cloud Function, dump the database, and escalate privileges to compromise the admin account of a target blog application.
 			- Misconfigured Storage Bucket Policies: Leverage improperly configured storage bucket policies to gain unauthorized administrative access to a cloud storage bucket.
 			- Lateral Movement: Extract credentials for a low-privileged virtual machine instance from a development storage bucket, then use them to escalate access to higher-privileged Compute Engine instances.
+- Container Hacking:
+	- Information Gathering Using kubectl:
+		- Attackers can gather information to identify weaknesses in containerized environments. To do this, they often use kubectl, a command-line tool for interacting with Kubernetes clusters. By leveraging kubectl, attackers can retrieve crucial details about the cluster and its components, aiding further exploitation.
+		- Below are various kubectl commands used for information gathering:
+			- List all pods in the Kubernetes cluster: kubectl get pods
+			- Fetch detailed information about a specific pod: kubectl describe pod <pod-name>
+			- Dump logs of a specific pod: kubectl logs <pod-name>
+			- Display all services running in the cluster: kubectl get services
+			- Retrieve detailed information about services: kubectl describe services
+			- List all deployments in the cluster: kubectl get deployments
+			- Get detailed information about a specific deployment: kubectl describe deployment <deployment-name>
+			- List all service accounts in the cluster: kubectl get serviceaccounts
+			- Retrieve detailed information about service accounts: kubectl describe serviceaccount <serviceaccount-name>
+		- Using these commands, attackers can gather critical insights into a containerized environment, potentially uncovering vulnerabilities that can be exploited.
+	- Enumerating Registries:
+		- Enumerating container registries can provide valuable insights into containerized environments. Attackers may perform registry enumeration to identify outdated images or misconfigured containers with known vulnerabilities. This process also allows them to gather critical information, such as environment variables, network configurations, and metadata stored within image layers, which can be leveraged for further exploitation. Once a registry is discovered, attackers may attempt to download or tamper with stored images.
+		- Below are various commands used to enumerate registries:
+			- Log in to a registry: docker login <registry-url>
+			- List repositories for a user or organization: curl -s https://hub.docker.com/v2/repositories/<username>/
+			- List images in a specified Docker registry (using the registry API): curl -u <username>:<password> https://<registry-url>/v2/_catalog
+			- List tags for an image in a registry: curl -u <username>:<password> https://<registry-url>/v2/<image-name>/tags/list
