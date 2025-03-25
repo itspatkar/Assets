@@ -17761,3 +17761,51 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					-s <clientSecret>: Specifies the service principal's client secret.
 		- Post-Authentication Enumeration:
 			- Once authenticated, an attacker can enumerate resources, configurations, and security gaps within the Azure subscription. The CLI mode leverages existing Azure CLI authentication, while the service principal mode requires explicit credentials, allowing for more targeted enumeration.
+	- Collecting Data from Azure AD and Azure RM using AzureHound (github.com):
+		- Attackers use AzureHound to collect information from Azure Active Directory (Azure AD) and Azure Resource Manager (Azure RM) environments. This information can then be imported into BloodHound for better visualization.
+		- AzureHound supports multiple authentication methods for data collection, including user credentials, a JSON Web Token (JWT), a refresh token, a service principal secret, or a service principal certificate. Additionally, authentication methods can be combined with various collection scoping options to tailor the data-gathering process to specific needs.
+		- Steps to Collect Data from Azure AD and Azure RM using AzureHound:
+			- Print all Azure tenant data (Azure AD/Azure RM) to the standard output stream: azurehound list -u "$USERNAME" -p "$PASSWORD" -t "$TENANT"
+				- Note: This step requires authentication to the tenant.
+			- Save Azure tenant data to a file (e.g., JSON format): azurehound list -u "$USERNAME" -p "$PASSWORD" -t "$TENANT" -o "mytenant.json"
+			- Start the data collection service for BloodHound:
+				- azurehound configure
+				- azurehound start
+		- Note: Follow the prompts after executing azurehound configure, then proceed with azurehound start.
+	- Accessing Publicly Exposed Blob Storage Using Goblob (github.com):
+		- Goblob is a lightweight and fast enumeration tool designed to assist in the discovery of sensitive information that is publicly exposed in Azure blobs. This tool helps security professionals identify vulnerabilities by performing reconnaissance and vulnerability scanning.
+		- Steps to Access Publicly Exposed Blob Storage Using Goblob:
+			- Enumerate public Azure blob storage URLs for a single storage account:
+				- Run the following command, replacing <storageaccountname> with the target storage account: ./goblob <storageaccountname>
+				- This command targets a specific Azure storage account and enumerates publicly accessible blob storage URLs.
+			- Enumerate public Azure blob storage URLs for multiple storage accounts:
+				- Use a file containing a list of storage account names: ./goblob -accounts accounts.txt
+				- Goblob will check each storage account listed in accounts.txt for publicly accessible blob storage URLs.
+			- Enumerate a custom list of blob storage container names:
+				- Specify both a list of storage account names and a custom list of container names: ./goblob -accounts accounts.txt -containers wordlists/goblob-folder-names.txt
+				- Goblob will use the provided container names to construct and check potential blob storage URLs for each storage account.
+			- Save output results to a file:
+				- Run the following command to print the results into a file (e.g., results.txt): ./goblob -accounts accounts.txt -containers wordlists/goblob-folder-names.txt -output results.
+	- Identifying Open Network Security Groups (NSGs) in Azure:
+		- Attackers can exploit open Network Security Groups (NSGs) in Azure to gain unauthorized access by targeting ports with unrestricted traffic. When NSG rules allow inbound traffic from any IP address on commonly used ports—such as SSH (port 22), HTTP (port 80), HTTPS (port 443), or database ports like MySQL (port 3306)—these services become exposed to the Internet.
+		- Attackers can scan for open ports and exploit them to launch brute-force attacks on SSH, execute malicious commands, exfiltrate data, or establish persistence within the network. Additionally, open NSGs can be leveraged to exploit vulnerabilities such as SQL injection, cross-site scripting (XSS), or remote code execution (RCE), leading to unauthorized access, data breaches, and deeper penetration into the Azure environment.
+		- Methods for Identifying Open NSGs in Azure:
+			- Using Azure Portal:
+				- Navigate to the Azure Portal.
+				- In the left-hand menu, select "All services", then search for and select "Network security groups".
+				- Choose the NSG you want to review from the list.
+				- In the NSG settings, select "Inbound security rules" or "Outbound security rules" to inspect the configured rules.
+				- Identify any rules allowing access from 0.0.0.0/0, which indicates unrestricted traffic from any IP address.
+			- Using Azure CLI:
+				- Run the following commands in Azure CLI to analyze NSG configurations:
+					- List all NSGs in the subscription: az network nsg list --output table
+					- This command displays a table with details of NSGs, including names, resource groups, and locations.
+				- View details of a specific NSG, including its security rules:
+					- az network nsg show --resource-group <ResourceGroupName> --name <NSGName>
+				- List all security rules within a specific NSG:
+					- az network nsg rule list --resource-group <ResourceGroupName> --nsg-name <NSGName> --output table
+					- Review the security rules and check for those with overly permissive configurations, especially those allowing inbound traffic from 0.0.0.0/0.
+				- Filter security rules to find those allowing inbound access from any IP address:
+					- az network nsg rule list --resource-group <ResourceGroupName> --nsg-name <NSGName> --query "[?direction=='Inbound' && sourceAddressPrefix=='*']" --output table
+					- This command queries NSG rules to identify inbound rules where the source address prefix is set to any IP address (0.0.0.0/0).
+		- By using these methods, security teams can detect and remediate open NSGs, minimizing the risk of unauthorized access and potential attacks in an Azure environment.
