@@ -17897,3 +17897,72 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Server-Side Request Forgery (SSRF): Execute SSRF attacks to abuse server functionality, enabling unauthorized access to or modification of resources.
 			- Security Misconfiguration: Identify misconfigurations that expose sensitive information in Azure resource groups. Attackers can exploit these weaknesses to retrieve storage container lists and scan for open network ports.
 			- Privilege Escalation: Exploit misconfigurations to escalate privileges and gain ownership of resource groups.
+- Google Cloud Hacking:
+	- Enumerating GCP Resources Using Google Cloud CLI:
+		- Enumerating Google Cloud Platform (GCP) involves systematically discovering all resources, services, configurations, and permissions within a GCP environment. This process helps attackers identify critical assets, spot misconfigurations, and uncover various vulnerabilities. By understanding the layout and permissions of the environment, attackers can exploit weaknesses to gain unauthorized access, escalate privileges, and potentially exfiltrate sensitive data.
+		- Enumerating GCP Organizations, Projects, and Cloud Storage Buckets:
+			- Enumerating GCP organizations, projects, and cloud storage buckets helps attackers map the cloud infrastructure, discover all projects, and identify misconfigured or publicly accessible buckets. This enables them to extract valuable data, exploit access control weaknesses, and gain unauthorized access to sensitive information.
+			- Attackers can use the following commands for this purpose:
+				- List organizations accessible by the target user account:
+					- gcloud organizations list
+					- This command displays a list of organizations associated with the target user account, including their organization IDs.
+				- View all folders within a specified organization:
+					- gcloud resource-manager folders list --organization=<organization_id>
+					- This command lists all folders the user has access to within the specified organization.
+				- Identify all active projects where the current account has owner, editor, browser, or viewer permissions:
+					- gcloud projects list
+				- List all Cloud Storage buckets within the default project:
+					- gsutil ls
+					- To list buckets for a specific project, attackers can use the -p flag followed by the project ID.
+				- Retrieve the IAM permissions on a specific Cloud Storage bucket:
+					- gsutil iam get gs://<bucket_name>
+				- List the contents of a Cloud Storage bucket, including objects and subdirectories:
+					- gsutil ls gs://<bucket_name>
+					- Attackers can use the -r flag to recursively list all contents within the bucket.
+		- Enumerating Google Cloud Service Accounts:
+			- Enumerating Google Cloud service accounts allows attackers to identify accounts and their associated permissions. This can expose high-privileged accounts, potentially leading to unauthorized access or privilege escalation. Exploiting these vulnerabilities may result in infrastructure compromises and data theft.
+			- Attackers can use the following commands to list service accounts in a target Google Cloud project:
+				- List all service accounts in the current project:
+					- gcloud iam service-accounts list
+					- To retrieve details for a specific project, use the --project flag with the project ID.
+				- Find all roles assigned to a service account:
+					- gcloud projects get-iam-policy <project-id> --flatten="bindings[].members" --format='table(bindings.role)' --filter="bindings.members:<service-account-email>"
+				- Retrieve an access token for a target service account:
+					- gcloud auth print-access-token --impersonate-service-account=<service-account-email>
+		- Enumerating Google Cloud Resources:
+			- Enumerating Google Cloud resources, such as Compute Engine and Cloud SQL instances, can expose critical infrastructure details. Attackers may identify virtual machines, operating systems, open ports, network configurations, and publicly accessible services within Compute Engine instances by exploiting weak security settings or outdated software. Similarly, in Cloud SQL instances, attackers can determine database versions and access settings, potentially targeting weak passwords, excessive permissions, or unpatched vulnerabilities.
+			- Below are some common commands used to enumerate instances:
+				- List all Compute Engine instances in a project: gcloud compute instances list
+				- Retrieve detailed information about a specific Compute Engine virtual machine in a given zone: gcloud compute instances describe <instance_name> --zone=<zone>
+				- List the service accounts associated with a Compute Engine instance: gcloud compute instances describe <instance_name> --zone=<zone> --format="table(serviceAccounts.scopes)"
+				- View all Cloud SQL instances in the current project: gcloud sql instances list
+				- Enumerate all SQL databases associated with a specific instance: gcloud sql databases list --instance=<instance_name>
+		- Enumerating Google Cloud IAM Roles and Policies:
+			- By analyzing roles and policies, attackers can identify accounts with excessive privileges, misconfigured access controls, and permission hierarchies. This knowledge enables them to exploit overprivileged accounts and gain access to sensitive data and resources.
+			- Attackers can use the following commands to enumerate IAM roles and policies in a targeted Google Cloud environment:
+				- List predefined or custom roles for an organization or project:
+					- gcloud iam roles list [--show-deleted] [--organization=<organization>] [--project=<project_id>]
+					- The --show-deleted flag includes deleted roles in the results.
+				- Retrieve metadata, including permissions, of a specified IAM role:
+					- gcloud iam roles describe <role_id> [--organization=<organization>] [--project=<project_id>]
+				- Get IAM policies:
+					- For an organization: gcloud organizations get-iam-policy <organization_id>
+					- For a project: gcloud projects get-iam-policy <project_id>
+					- For a folder: gcloud resource-manager folders get-iam-policy <folder_id>
+			- Note: While these commands do not require full administrator privileges, they do require specific elevated permissions, which are typically assigned to certain roles.
+		- Enumerating Google Cloud Services Using gcp_service_enum (github.com):
+			- gcp_service_enum is a Python script that allows users to discover various Google Cloud Platform (GCP) services, including Compute Engine instances and Cloud Storage buckets. This tool can help identify publicly accessible resources and misconfigurations within a targeted Google Cloud account by using a service account key file.
+			- To enumerate services on a targeted GCP account and save the results to a file, run the following command: python gcp_enum_services.py -f <service-account-key-file> --output-file <output-file>
+		- Enumerating GCP Resources Using GCP Scanner (github.com):
+			- Attackers use GCP Scanner to assess the level of access associated with specific credentials within Google Cloud Platform (GCP) and to evaluate the impact of compromised VMs, containers, GCP service accounts, or leaked OAuth2 token keys. The tool supports a wide range of GCP resources, including Compute Engine (GCE), Cloud Storage (GCS), Kubernetes Engine (GKE), App Engine, Cloud SQL, BigQuery, Spanner, Pub/Sub, Cloud Functions, Bigtable, Cloud Store, KMS, and other Cloud Services.
+			- GCP Scanner can extract and utilize credentials such as:
+				- GCP VM instance metadata
+				- User credentials from gcloud profiles
+				- OAuth2 Refresh Tokens with cloud-platform scope
+				- GCP service account keys in JSON format
+			- By leveraging these capabilities, attackers can gain insights into permissions and potential vulnerabilities, enabling more targeted and effective exploitation strategies within the Google Cloud environment.
+			- Command Usage:
+				- Attackers can execute the following command to scan and enumerate various resources and permissions within a target GCP environment: python3 scanner.py -o <output_file> -g <gcloud_profile_path>
+				- Where:
+					-o : Specifies the output file where the results will be saved.
+					-g : Specifies the path to the gcloud profile containing the credentials to be used for scanning.
