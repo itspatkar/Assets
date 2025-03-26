@@ -18804,3 +18804,256 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Skyhigh Secure Web Gateway (SWG) (www.skyhighsecurity.com)
 			- Menlo Secure Web Gateway (SWG) (www.menlosecurity.com)
 			- McAfee MVISION UCE (www.mcafee.com)
+
+
+--------------------------------------------------
+
+# Cryptography
+
+- Cryptography Concepts and Encryption Algorithms:
+	- Cryptography secures transactions, communications, and other processes in the digital world. Encryption is the process of converting readable plaintext into unreadable ciphertext using complex algorithms that transform data into blocks or streams of seemingly random alphanumeric characters. This section explores cryptography and its key concepts, providing a foundation for understanding the advanced topics covered later in this module. It also examines ciphers and various encryption algorithms, including DES, AES, RC4, RC5, RC6, DSA, RSA, MD5, and SHA.
+	- Cryptography:
+		- The term "cryptography" originates from the Greek words kryptos, meaning "concealed, hidden, veiled, secret, or mysterious," and graphia, meaning "writing." Thus, cryptography is "the art of secret writing."
+		- Cryptography is the practice of securing information by converting plaintext (readable format) into ciphertext (unreadable format) using a key or encryption scheme. It involves encoding data into a scrambled format that is encrypted and transmitted across private or public networks. Cryptography safeguards confidential data such as email messages, chat sessions, web transactions, personal and corporate data, e-commerce applications, and other types of communication. Despite advances in modern encryption techniques, which are virtually unbreakable, encrypted messages can sometimes be deciphered through cryptanalysis (code-breaking).
+		- Objectives of Cryptography:
+			- Confidentiality: Ensures that information is accessible only to authorized individuals.
+			- Integrity: Prevents unauthorized or improper modifications to data or resources.
+			- Authentication: Verifies that a communication, document, or data is genuine.
+			- Non-repudiation: Ensures that the sender of a message cannot deny having sent it, and the recipient cannot deny having received it.
+		- Cryptography Process:
+			- Plaintext (readable format) is encrypted using encryption algorithms such as RSA, DES, and AES, resulting in ciphertext (unreadable format). Upon reaching its destination, the ciphertext is decrypted back into readable plaintext.
+		- Types of Cryptography:
+			- Cryptography is categorized into two types based on the number of keys used for encryption and decryption:
+			- Symmetric Encryption:
+				- Symmetric encryption requires both the sender and the receiver to possess the same encryption key. The sender encrypts the plaintext using a key and transmits the ciphertext to the recipient, who then decrypts it using the same key. Because symmetric encryption uses a single key for both encryption and decryption, it is also known as secret-key cryptography.
+				- Symmetric encryption is efficient for communication between a small group of users. However, it is impractical for widespread use over the internet, as users who have never communicated before would need to securely share a key beforehand. This limitation is addressed by asymmetric encryption (public-key cryptography).
+			- Asymmetric Encryption:
+				- Asymmetric encryption, also known as public-key cryptography, was introduced to solve key management challenges. This method involves a pair of keys: a public key, which is available to anyone, and a private key, which is kept secret by the owner.
+				- An asymmetric-key system enhances data security by ensuring confidentiality, integrity, authentication, and non-repudiation. It operates using the following sequence:
+					- The sender retrieves the recipient's public key from a directory.
+					- The sender encrypts the message using this public key and transmits it to the recipient.
+					- The recipient decrypts the message using their private key.
+				- Only the holder of the corresponding private key can decrypt a message encrypted with the associated public key. This approach enhances security because private keys are never shared or transmitted. To prevent unauthorized individuals from intercepting messages by falsely claiming a recipient's identity, public keys must be securely linked to their respective users. To address this authentication need, digital signatures can be used.
+		- Strengths and Weaknesses of Cryptographic Methods:
+			- Symmetric Encryption:
+				- Strengths:
+					- Faster and easier to implement since the same key is used for both encryption and decryption.
+					- Requires less processing power and can be implemented in application-specific integrated circuits (ASICs).
+					- Prevents widespread message security compromise, as different secret keys can be used for communication with different parties.
+					- The encryption key is not transmitted with the data, making decryption impossible even if the data is intercepted.
+				- Weaknesses:
+					- Lacks a secure channel for exchanging the secret key.
+					- Difficult to manage and secure multiple shared keys when communicating with different parties.
+					- Does not provide authentication, as the same key is used by both the sender and the receiver.
+					- Vulnerable to dictionary attacks and brute-force attacks.
+			- Asymmetric Encryption:
+				- Strengths:
+					- More convenient, as it eliminates the need to securely distribute encryption keys.
+					- Enhanced security since private keys are never shared or transmitted.
+					- Supports digital signatures, ensuring message authenticity and nonrepudiation.
+				- Weaknesses:
+					- Slower processing and higher computational requirements compared to symmetric encryption.
+					- If the private key is compromised, an attacker can decrypt all intercepted messages.
+					- Messages cannot be decrypted if the private key is lost.
+					- Vulnerable to man-in-the-middle attacks and brute-force attacks.
+	- Government Access to Keys (GAK):
+		- Government Access to Keys (GAK) refers to the statutory obligation of individuals and organizations to disclose their cryptographic keys to government agencies. This means that software companies must provide copies of all keys—or at least a portion sufficient for the government to reconstruct or crack the remainder. Law enforcement agencies worldwide use these cryptographic keys to monitor suspicious communications and collect evidence of cybercrimes in the interest of national security.
+		- The government assures that it will store these keys securely and only use them when authorized by a court-issued warrant. To authorities, GAK is comparable to traditional wiretapping. Government agencies often rely on key escrow to ensure uninterrupted access to keys. Key escrow is a system in which essential cryptographic keys are stored with a trusted third party, which can use or release them under predefined circumstances. In the context of GAK, this third party is typically a government agency that may use encryption keys to decrypt digital evidence under legal authorization.
+		- However, concerns about privacy and security continue to grow. Government agencies are responsible for safeguarding these keys, but they often rely on a single key to protect multiple others—an insecure practice, as the exposure of one key could compromise all linked keys. Additionally, these agencies may not fully understand the sensitivity of the protected information, making it difficult to determine the level of security required. If seized keys also protect unrelated data that the government has no legal right to access, the consequences of key disclosure become unpredictable.
+		- As a result, key owners bear significant risks when handing over their encryption keys. Before complying, they must be assured that government agencies will uphold stringent security standards to protect their interests.
+	- Ciphers:
+		- In cryptography, a cipher is an algorithm (a series of well-defined steps) used for encryption and decryption. Encipherment is the process of converting plaintext into ciphertext, while the reverse process is called decipherment. A message encrypted using a cipher is rendered unreadable unless the recipient possesses the secret key required for decryption.
+		- Modern communication technologies (e.g., the Internet, mobile phones) rely on ciphers to ensure both security and privacy. Cipher algorithms may be:
+			- Open-source: The algorithm itself is publicly available, but the encryption key remains private.
+			- Closed-source: The algorithm is proprietary and restricted to specific domains, such as military applications.
+		- Additionally, ciphers may be either free for public use or licensed.
+		- Types of Ciphers:
+			- Ciphers are classified into two main types: classical and modern.
+			- Classical Ciphers:
+				- Classical ciphers are basic encryption methods that operate on individual letters (A–Z). These ciphers are generally implemented manually or with simple mechanical devices. Due to their simplicity, they are relatively easy to decipher and thus considered insecure.
+				- Types of Classical Ciphers:
+					- Substitution Cipher:
+						- Replaces units of plaintext with ciphertext according to a specific rule. The units can be single letters, pairs of letters, or groups of letters. The recipient reverses this substitution to decrypt the message.
+						- Examples: Beale cipher, autokey cipher, Gronsfeld cipher, Hill cipher.
+						- Example encryption:
+							- Plaintext: HELLO WORLD
+							- Ciphertext: PSTER HGFST (where H = P, E = S, etc.)
+					- Transposition Cipher:
+						- Rearranges the letters of plaintext according to a systematic pattern to create the ciphertext.
+						- Examples: Rail fence cipher, route cipher, Myszkowski transposition cipher.
+						- Example encryption:
+							- Plaintext: CRYPTOGRAPHY
+							- Ciphertext: AOYCRGPTYRHP
+			- Modern Ciphers:
+				- Modern ciphers are designed to resist cryptographic attacks and ensure confidentiality, integrity, and authentication. They rely on advanced mathematical functions, often involving large prime numbers, to enhance security.
+				- Types of Modern Ciphers:
+					- Based on the Type of Key Used:
+						- Symmetric-Key Algorithms (Private-Key Cryptography): Use the same key for both encryption and decryption.
+						- Asymmetric-Key Algorithms (Public-Key Cryptography): Use a pair of keys—one for encryption and another for decryption.
+					- Based on the Type of Input Data:
+						- Block Cipher:
+							- Encrypts fixed-size blocks of data using a deterministic transformation and a symmetric key.
+							- Examples: DES, AES, IDEA.
+							- If the plaintext block is smaller than the required size, padding is added.
+						- Stream Cipher: Encrypts data one bit or byte at a time using a pseudorandom key stream.
+						- Examples: RC4, SEAL.
+	- Symmetric Encryption Algorithms:
+		- Below is a list of various symmetric encryption algorithms, including their cipher type, key size, block size, and common application areas.
+			- Data Encryption Standard (DES):
+				- Cipher Type: Block
+				- Key Size: 56 bits
+				- Block Size: 64 bits
+				- Application Areas: Legacy systems, early encryption standards
+			- Triple DES (3DES):
+				- Cipher Type: Block
+				- Key Size: 112, 168 bits
+				- Block Size: 64 bits
+				- Application Areas: Financial services, payment systems
+			- Advanced Encryption Standard (AES):
+				- Cipher Type: Block
+				- Key Size: 128, 192, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: Secure communications, storage encryption, government standards
+			- RC4:
+				- Cipher Type: Stream
+				- Key Size: 40 to 2048 bits (variable)
+				- Block Size: N/A
+				- Application Areas: Secure web traffic (HTTPS), Wi-Fi security (WEP/WPA), streaming encryption
+			- RC5:
+				- Cipher Type: Block
+				- Key Size: 0 to 2040 bits (variable)
+				- Block Size: 32, 64, 128 bits
+				- Application Areas: Cryptographic libraries, secure communication
+			- RC6:
+				- Cipher Type: Block
+				- Key Size: 128, 192, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: Advanced encryption, AES competition finalist
+			- Blowfish:
+				- Cipher Type: Block
+				- Key Size: 32 to 448 bits (variable)
+				- Block Size: 64 bits
+				- Application Areas: Replacement for DES, secure storage
+			- Twofish:
+				- Cipher Type: Block
+				- Key Size: 128, 192, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: File and disk encryption, open-source software
+			- International Data Encryption Algorithm (IDEA):
+				- Cipher Type: Block
+				- Key Size: 128 bits
+				- Block Size: 64 bits
+				- Application Areas: Secure email (PGP), data encryption
+			- Threefish:
+				- Cipher Type: Block
+				- Key Size: 256, 512, 1024 bits
+				- Block Size: 256, 512, 1024 bits
+				- Application Areas: Disk encryption (Skein hash function)
+			- Serpent:
+				- Cipher Type: Block
+				- Key Size: 128, 192, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: High-security applications, AES competition finalist
+			- Camellia:
+				- Cipher Type: Block
+				- Key Size: 128, 192, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: Secure communications, Japanese encryption standard
+			- Tiny Encryption Algorithm (TEA):
+				- Cipher Type: Block
+				- Key Size: 128 bits
+				- Block Size: 64 bits
+				- Application Areas: Lightweight encryption, embedded systems
+			- CAST-128:
+				- Cipher Type: Block
+				- Key Size: 40 to 128 bits
+				- Block Size: 64 bits
+				- Application Areas: Various software applications, secure communications
+			- CAST-256:
+				- Cipher Type: Block
+				- Key Size: 128, 160, 192, 224, 256 bits
+				- Block Size: 128 bits
+				- Application Areas: Advanced encryption, cryptographic libraries
+			- ChaCha20:
+				- Cipher Type: Stream
+				- Key Size: 256 bits
+				- Block Size: N/A
+				- Application Areas: Secure communications, modern encryption protocols
+			- Salsa20:
+				- Cipher Type: Stream
+				- Key Size: 256 bits
+				- Block Size: N/A
+				- Application Areas: Secure communications, cryptographic protocols
+		- Data Encryption Standard (DES):
+			- DES is a standard for data encryption that uses a secret key for both encryption and decryption (symmetric cryptosystem). It employs a 64-bit secret key, of which 56 bits are randomly generated, while the remaining 8 bits are used for error detection. DES utilizes the Data Encryption Algorithm (DEA), a secret key block cipher that operates with a 56-bit key on 64-bit data blocks.
+			- As the archetypal block cipher, DES takes a fixed-length plaintext string and transforms it into a ciphertext string of the same length. Its design allows implementation in hardware and facilitates single-user encryption, such as securely storing files on a hard disk. DES provides 72 quadrillion or more possible encryption keys, selecting a random key for each message.
+			- However, due to its vulnerabilities against modern computing power, many organizations have adopted Triple DES (3DES) as an alternative. 3DES strengthens security by repeating the encryption process three times until systems are upgraded to support Advanced Encryption Standard (AES).
+		- Triple Data Encryption Standard (3DES):
+			- Over time, it became evident that DES was no longer secure. The U.S. Federal Government initiated a contest to find a replacement cryptographic algorithm. Meanwhile, 3DES was introduced as an interim solution, essentially applying DES encryption three times with different keys.
+			- 3DES employs a key bundle comprising three DES keys: K1, K2, and K3, each being a standard 56-bit DES key. The encryption process follows this sequence:
+				- Encrypt with K1
+				- Decrypt with K2
+				- Encrypt with K3
+			- There are three possible key configurations:
+				- Option 1: All three keys (K1, K2, and K3) are unique (most secure).
+				- Option 2: K1 and K3 are identical, while K2 is different (moderately secure).
+				- Option 3: All three keys are the same, effectively applying DES three times with the same key (least secure).
+			- Despite its increased security over DES, 3DES is now considered outdated due to its vulnerability to brute-force attacks, leading to the adoption of AES.
+		- Advanced Encryption Standard (AES):
+			- The Advanced Encryption Standard (AES) is a specification established by the National Institute of Standards and Technology (NIST) for encrypting electronic data. It is widely used to secure telecommunications, financial transactions, and government data. U.S. government agencies rely on AES to protect sensitive but unclassified information.
+			- AES is a symmetric-key algorithm, meaning the same key is used for both encryption and decryption. It operates as an iterated block cipher, applying multiple rounds of transformations to the data. AES has a 128-bit block size and supports key sizes of:
+				- 128 bits (AES-128)
+				- 192 bits (AES-192)
+				- 256 bits (AES-256)
+			- AES is designed for efficient implementation in both software and hardware, allowing for simultaneous encryption across multiple network layers.
+		- RC4, RC5, and RC6 Algorithms:
+			- The following are symmetric encryption algorithms developed by RSA Security:
+			- RC4:
+				- RC4 is a variable key-size symmetric-key stream cipher with byte-oriented operations, based on the use of a random permutation. According to some analyses, the period of the cipher is likely greater than 10¹⁰⁰. Each output byte requires 8 to 16 system operations, allowing the cipher to run efficiently in software. RC4 is commonly used for securing communications, such as traffic encryption (which secures websites) and in websites utilizing the SSL protocol.
+			- RC5:
+				- RC5 is a fast symmetric-key block cipher designed by Ronald Rivest for RSA Data Security (now RSA Security). It is a parameterized algorithm with a variable block size, variable key size, and variable number of rounds. The block sizes can be 32, 64, or 128 bits. The number of rounds can range from 0 to 255, and the key size can vary from 0 to 2,040 bits. This built-in flexibility allows RC5 to adapt to different levels of security.
+				- RC5 operates through three main routines: key expansion, encryption, and decryption. In the key expansion routine, the secret key provided by the user is expanded to fill a key table, the size of which depends on the number of rounds. Both encryption and decryption use this key table. The encryption process involves three fundamental operations: integer addition, bitwise XOR, and variable rotation. The extensive use of data-dependent rotation and the combination of different operations contribute to the security of RC5.
+			- RC6:
+				- RC6 is a symmetric-key block cipher derived from RC5. Like RC5, it is a parameterized algorithm with a variable block size, key size, and number of rounds.
+				- Two key differences between RC6 and RC5 are:
+					- Integer multiplication, which increases diffusion, allowing the cipher to achieve higher security with fewer rounds while maintaining speed.
+					- The use of four 4-bit working registers instead of two 2-bit registers. This design choice aligns with the 128-bit block size requirement of the AES (Advanced Encryption Standard).
+		- Blowfish:
+			Blowfish is a symmetric block cipher algorithm designed to replace DES or IDEA. It uses the same secret key for both encryption and decryption. This algorithm splits data into 64-bit blocks and supports key sizes ranging from 32 to 448 bits. Due to its high speed and overall efficiency, Blowfish is used in various applications, including password protection tools and e-commerce websites for securing payments. It is a 16-round Feistel cipher that operates on 64-bit blocks. Unlike DES, Blowfish allows a flexible key size between 32 and 448 bits.
+			- The algorithm consists of two main components:
+				- Key Expansion: Expands the key into subkeys.
+				- Data Encryption: Encrypts data using the expanded keys.
+			- Key expansion follows these steps:
+				- Initialize the P-array and S-boxes.
+				- XOR the P-array with key bits. For example, P1 XOR (first 32 bits of the key), P2 XOR (next 32 bits of the key).
+				- Encrypt an all-zero string using Blowfish.
+				- Replace P1 and P2 with the output.
+				- Encrypt the new P1 and P2 with modified subkeys.
+				- Replace P3 and P4 with the new output.
+				- Repeat the process 521 times to derive subkeys for the P-array and S-boxes.
+			- In each encryption round, the round function splits the 32-bit input into four 8-bit quarters, processes them through S-boxes, and combines them using modular addition (mod 232232) and XOR operations to produce the final 32-bit output.
+		- Twofish:
+			- Twofish was one of the five finalists in the U.S. Government’s competition to replace DES, though it was not ultimately selected. It was designed by Bruce Schneier, John Kelsey, Doug Whiting, David Wagner, Chris Hall, and Niels Ferguson.
+			- Twofish is a 128-bit block cipher that supports key sizes up to 256 bits. It is a Feistel cipher known for its speed and flexibility, making it suitable for software and hardware implementations, as well as network-based applications. It allows performance trade-offs between encryption speed, hardware complexity, and memory usage, enabling users to optimize performance based on key scheduling.
+		- Threefish:
+			- Developed in 2008, Threefish is part of the Skein cryptographic hash function family and was a contender in NIST’s SHA-3 competition. It is a tweakable symmetric-key block cipher with block and key sizes of 256, 512, or 1024 bits.
+			- Threefish uses only three basic operations: addition, rotation, and XOR (ARX), which simplifies implementation. All operations work on 64-bit words. The number of encryption rounds depends on the block size:
+				- 256-bit block -> 72 rounds
+				- 512-bit block -> 72 rounds
+				- 1024-bit block -> 80 rounds
+			- Unlike traditional ciphers, Threefish does not use S-boxes, making it resistant to cache timing attacks.
+		- Serpent:
+			- Serpent is a symmetric-key block cipher and was a finalist in the AES competition. It was designed by Ross Anderson, Eli Biham, and Lars Knudsen. Serpent operates on a 128-bit block and supports key sizes of 128, 192, or 256 bits. It can be implemented in both hardware and software without restrictions.
+			- The algorithm consists of 32 rounds of computations, using substitution and permutation operations. It processes data in four 32-bit words and applies 8 S-boxes, each with 4-bit input and output. All S-boxes operate in parallel across 32 rounds.
+			- Although Serpent is considered highly secure, Rijndael (now AES) was chosen over it due to its higher encryption speed and lower computational complexity. However, Serpent offers stronger resistance against cryptanalysis by minimizing the correlation between encoded plaintext and ciphertext more effectively than Twofish or Rijndael.
+		- TEA (Tiny Encryption Algorithm):
+			- The Tiny Encryption Algorithm (TEA) was created by David Wheeler and Roger Needham and was first introduced in 1994. It is a simple yet effective Feistel cipher that is easy to implement in software.
+			- TEA operates on a 64-bit block using a 128-bit key. The algorithm consists of 64 rounds, though this number can be adjusted as long as it remains even (since rounds are grouped into pairs called cycles).
+			- TEA uses a delta constant, defined as 232/ϕ232/ϕ (where ϕϕ is the golden ratio). In each round, a multiple of delta is used. The 128-bit key is split into four 32-bit subkeys (K[0] to K[3]).
+			- Unlike other Feistel ciphers that rely heavily on XOR operations, TEA uses addition and subtraction modulo 232232. The block is split into two halves, L and R, where R is processed through the round function:
+				- Left shift R by 4 and add K[0].
+				- Add delta (current multiple of 232/ϕ232/ϕ).
+				- Right shift the result by 5 and add K[1].
+				- XOR the result with L.
+				- Swap L and R for the next round.
+			- This process repeats for the chosen number of rounds, ensuring strong encryption.
