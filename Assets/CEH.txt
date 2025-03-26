@@ -18424,3 +18424,383 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Attribute Assertion: Contains specific user details.
 			- Authorization Assertion: Determines whether the user is granted or denied access to the service.
 		- These XML-based assertions are then sent back to the SP. If the authentication is successful, the user gains access to the protected resources or services.
+	- Cloud Network Security:
+		- A cloud network is a virtual IT infrastructure managed by cloud service providers (CSPs), where network resources are supplied on demand in the form of private and public clouds. By creating a virtual environment within the cloud using an existing physical network, CSPs can perform network operations on the public cloud through individual client accounts. Cloud network security can be achieved in the following ways:
+		- Virtual Private Cloud (VPC):
+			- A VPC is a secure and isolated private cloud environment that exists within a public cloud. VPC clients can run applications, store data, and perform various tasks on a private network using their individual accounts, while the cloud provider manages the infrastructure. A VPC is generally independent of other VPCs under the same account, meaning one client cannot access another client’s VPC traffic. Clients can also create an IPv6 block and add multiple subnets within it. VPCs combine the scalability and efficiency of public cloud computing with the data isolation of private cloud computing. VPC resources are available on demand and can be expanded and configured as needed.
+		- Public and Private Subnets:
+			- VPC subnets can be either public or private. Virtual machines (VMs) in a public subnet can send data directly over the Internet, while VMs in a private subnet cannot. A public subnet includes an outbound route through an Internet Gateway (IGW), allowing unrestricted IPv4 and IPv6 traffic from the VPC. VMs in the public subnet can also receive inbound traffic via the IGW, provided that security groups and network access control lists (ACLs) allow it.
+			- A private subnet, on the other hand, connects to the Internet through a Network Address Translation (NAT) gateway, which prevents direct inbound traffic from external sources, ensuring security. The NAT gateway itself handles the translation of private IP addresses to public ones. Private subnet connectivity can also be established using VPN services.
+		- Transit Gateways:
+			- A transit gateway is a network routing solution that facilitates communication between an on-premises network and multiple VPCs through a centralized hub. This approach simplifies network topology and eliminates complex peering connections. Communication through a transit gateway can be controlled using cloud-specific ACLs, based on port numbers and IP addresses. The centralized architecture enables administrators to gain full visibility into the network, even when connections are established via a software-defined wide area network (SD-WAN).
+		- VPC Endpoints:
+			- A VPC endpoint enables private communication between a VPC and other cloud services without requiring Internet access, external gateways, NAT solutions, VPN connections, or public IP addresses. This ensures that traffic remains within the organization's network. VPC endpoints are virtual networking components that are redundant, scalable, and highly available, allowing VMs in the VPC to interact with cloud services without bandwidth limitations or availability concerns.
+			- There are two types of VPC endpoints:
+				- Interface Endpoint: An elastic network interface (ENI) with a private IP address within a specified subnet. It serves as the entry point for traffic between a VPC and supported cloud services.
+				- Gateway Load Balancer Endpoint: Also an ENI, this endpoint directs traffic to a service configured through a gateway load balancer, which performs security inspection before forwarding the traffic.
+	- Cloud Security Controls:
+		- Cloud security controls protect a cloud environment from vulnerabilities and minimize the impacts of cyberattacks. These controls include practices, procedures, guidelines, and policies enforced to secure cloud infrastructure. Below are a few examples of cloud security controls.
+		- Cloud Application Security:
+			- Cloud application security consists of rules, processes, policies, controls, and techniques that govern data exchange across collaborative cloud platforms such as Box, Google Workspace, Slack, and Microsoft Office 365. When employees or users store and transmit data via cloud platforms long-term, it is essential to implement a cloud-based solution known as a "safety net" as part of zero-trust security. Cloud application security applies specifically to the application layers of SaaS, IaaS, and PaaS.
+			- Implementing cloud application security helps prevent exploits such as cross-site scripting (XSS), cross-site request forgery (CSRF), session hijacking, SQL injection, and weak authentication vulnerabilities.
+		- High Availability Across Zones:
+			- A cloud environment should include high availability zones to ensure application services remain operational during intentional or unintentional network downtimes. High availability is achieved by distributing servers across multiple zones while maintaining network consistency. This setup allows the system to handle failures in individual availability zones or the network without data loss. It also provides centralized management to monitor network operations and resource utilization.
+			- A highly available cloud environment consists of two nodes: a master node and a secondary node. The master node operates in the primary availability zone, while the secondary node operates in a separate availability zone. This setup protects against service outages caused by disk failures, volume failures, network failures, and zone failures. Each node is independent and located in separate zones. If one node fails, its data is replicated in the other node, ensuring continuous access to all information. Additionally, nodes can be taken offline for upgrades while the other node maintains service availability.
+		- Cloud Integration and Auditing:
+			- Cloud integration involves connecting multiple cloud environments—whether public or hybrid—to allow administrators continuous access to and control over systems, services, data, and applications. It also facilitates integration between cloud and on-premises environments. Without cloud integration, administrators must perform each task manually, making the process time-consuming and prone to errors.
+			- While risk indicators for on-premises networks are typically found in network or application logs, cloud-based risk indicators are derived from API logs. Therefore, all services should be integrated in accordance with defined security policies and guidelines, with audits conducted to ensure security compliance. Cloud integration mechanisms provide a comprehensive view of an organization’s data, improve connectivity, and facilitate risk assessment by aggregating all relevant indicators.
+			- Cloud auditing involves analyzing the services offered by cloud providers and verifying compliance with privacy, security, and performance requirements. Cloud security audits must address challenges associated with both traditional and cloud infrastructure. Proper auditing ensures service availability under all conditions in an organized and comprehensive manner. It also enables automated data collection for systematic security and operational evaluations. Cloud auditing is a cost-effective approach that saves time for both large and small enterprises, as updates to security information can be dynamically applied when modifications are made.
+		- Security Groups:
+			- A security group is a fundamental security measure implemented in cloud infrastructure to protect virtual instances. It acts as a security layer for virtual machines, positioned between the Internet and the virtual instances, regulating inbound and outbound traffic. A properly configured security group helps prevent denial-of-service (DoS) attacks and unauthorized access to IT resources.
+		- Instance Awareness:
+			- The cloud-based kill chain model highlights the risk of attackers using fake cloud instances for command and control to exfiltrate data from cloud environments. Many security solutions—such as firewalls, gateways, and other cloud security tools—struggle to combat these threats because they cannot distinguish between legitimate and malicious cloud instances. Attackers exploit this limitation when targeting cloud networks.
+			- To mitigate these risks, it is essential to use tools that can differentiate between legitimate cloud instances and fraudulent ones. Solutions that recognize and analyze cloud instances—such as Google Drive and OneDrive—are critical for protecting against cloud-based threats, including data exfiltration and SaaS phishing.
+	- Kubernetes Vulnerabilities and Solutions:
+		- The growing adoption of Kubernetes across various organizations, including major public cloud providers, has significantly increased the risk of critical security vulnerabilities. As a result, security professionals must proactively identify these vulnerabilities and implement robust security measures.
+		- The table below outlines common Kubernetes vulnerabilities and their corresponding solutions:
+			- No Certificate Revocation:
+				- Ensure that nodes maintain a Certificate Revocation List (CRL) and verify certificates against it.
+				- Require administrators to use Online Certificate Status Protocol (OCSP) stapling to revoke certificates via an OCSP server.
+			- Unauthenticated HTTPS Connections:
+				- Enforce authentication for all HTTPS connections by default.
+				- Ensure all components use a CA maintained by the kube-apiserver.
+				- Implement mutual TLS (mTLS) for all connections.
+			- Exposed Bearer Tokens in Logs:
+				- Remove bearer tokens from system logs and avoid logging authentication credentials.
+				- Conduct code reviews to ensure sensitive data is not logged.
+				- Implement logging filters to exclude sensitive data before storage.
+			- Exposure of Sensitive Data via Environment Variables:
+				- Avoid storing sensitive data directly in environment variables.
+				- Use Kubernetes Secrets for managing sensitive information across system components.
+			- Secrets at Rest Not Encrypted by Default:
+				- Configure and document encryption settings to meet different security requirements.
+				- Enable Kubernetes encryption providers to encrypt secrets at rest.
+			- Non-Constant Time Password Comparison:
+				- Use a secure constant-time comparison function, such as crypto.subtle.ConstantTimeCompare.
+				- Deprecate basic authentication mechanisms in favor of more secure authentication options.
+			- Hardcoded Credential Paths:
+				- Implement configurable credential paths instead of hardcoding them.
+				- Support cross-platform configurations through path abstraction and generalization.
+			- Non-Atomic Log Rotation:
+				- Use a copy-then-rename approach to prevent log loss during rotation.
+				- Implement persistent logging mechanisms that append log data sequentially and generate new logs as needed.
+			- No Back-Off Process for Scheduling:
+				- Introduce a back-off mechanism in the kube-scheduler to prevent tight scheduling loops.
+			- Lack of Non-Repudiation:
+				- Implement secondary logging mechanisms for operations that require strict non-repudiation and auditing.
+				- Ensure all authentication events are logged and retrievable from a centralized location within the cluster.
+	- Serverless Security Risks and Solutions:
+		- Serverless computing has gained popularity due to its remarkable features, such as zero administration, pay-per-use pricing, and self-scaling capabilities. While serverless technology offers numerous advantages, it also introduces new security risks that must be mitigated.
+		- The table below outlines the top 10 serverless security risks and their corresponding solutions, based on OWASP recommendations.
+		- A1 – Injection:
+			- Do not trust or assume the validity of any input from external sources.
+			- Use safe APIs and implement parameterized interfaces or object-relational mapping (ORM) tools.
+			- Enforce application whitelisting where necessary.
+			- Escape special characters using appropriate syntax in dynamic SQL queries.
+			- Evaluate all system entry points and event types.
+			- Run functions with the least privileges necessary to perform their tasks.
+			- Protect functions during execution using runtime defense solutions.
+		- A2 – Broken Authentication:
+			- Use identity and access management (IAM) solutions provided by cloud service providers, such as AWS Cognito, AWS Single Sign-On, Azure Active Directory B2C, Azure App Service, and Google Firebase Authentication.
+			- Implement strong authentication and access controls for externally exposed resources.
+			- Use secure authentication mechanisms such as Federated Identity (SAML, OAuth2, Security Tokens) for internal resource authentication.
+		- A3 – Sensitive Data Exposure:
+			- Identify and classify sensitive data.
+			- Minimize data storage—retain only essential information.
+			- Encrypt data both in transit and at rest.
+			- Enforce HTTPS for all API endpoints.
+			- Utilize cloud service provider (CSP) tools for key management and encryption of stored data, secrets, and environment variables, both at runtime and during data transmission.
+		- A4 – XML External Entities (XXE):
+			- Whenever possible, use only the cloud provider’s software development kits (SDKs).
+			- Conduct vulnerability scanning on supply chain libraries.
+			- Test API calls for XXE vulnerabilities.
+			- Always disable entity resolution.
+		- A5 – Broken Access Control:
+			- Apply the principle of least privilege when assigning permissions to functions.
+			- Regularly review functions to identify excessive privileges.
+			- Follow the best practices for identity and access management provided by cloud platforms, such as AWS IAM and Azure Identity Management.
+		- A6 – Security Misconfiguration:
+			- Use built-in cloud security tools, such as AWS Trusted Advisor, to detect publicly exposed resources.
+			- Enforce strict access controls on cloud resources.
+			- Identify functions with unlinked triggers.
+			- Set the minimum required timeout for function execution.
+			- Implement automated tools to detect security misconfigurations in serverless applications.
+		- A7 – Cross-Site Scripting (XSS):
+			- Encode all untrusted data before transmitting it to the client.
+			- Use only well-established frameworks and security headers.
+		- A8 – Insecure Deserialization:
+			- Validate all serialized objects originating from untrusted sources.
+			- Scan third-party libraries for deserialization vulnerabilities.
+			- Monitor deserialization usage and exceptions to detect potential attacks.
+		- A9 – Using Components with Known Vulnerabilities:
+			- Continuously monitor third-party libraries and dependencies.
+			- Deploy only signed packages and components from trusted sources.
+			- Regularly check vulnerability databases, such as the Common Vulnerabilities and Exposures (CVE) database and the National Vulnerability Database (NVD).
+			- Perform vulnerability scanning of third-party dependencies using tools like OWASP Dependency-Check and Dependency-Track.
+		- A10 – Insufficient Logging and Monitoring:
+			- Use cloud provider monitoring tools, such as Azure Monitor or AWS CloudTrail, to detect anomalous behavior.
+			- Implement auditing and monitoring mechanisms for data sources outside the CSP’s scope.
+	- Best Practices for Container Security:
+		- Below are various best practices for securing the container environment:
+		- Regularly monitor Common Vulnerabilities and Exposures (CVEs) in the container runtime and remediate any detected vulnerabilities.
+		- Enable comprehensive logging and auditing to track access, changes to containers, and configuration modifications.
+		- Configure applications to run as non-root users to prevent privilege escalation.
+		- Set the host’s root file system to read-only mode to restrict write access and prevent malware injection attacks.
+		- Minimize the use of third-party software and employ application security scanning tools to protect containers from malicious software.
+		- Perform regular scanning of container images in the repository to identify vulnerabilities or misconfigurations.
+		- Deploy application firewalls to enhance container security and prevent threats from entering the environment.
+		- Ensure authenticated access to container registries, particularly those containing sensitive images and data.
+		- Use minimal base images to reduce the attack surface and potential vulnerabilities.
+		- Assign a separate database for each application to improve visibility and enhance data management.
+		- Regularly update the host operating system and kernel with the latest security patches.
+		- Configure orchestrators to deploy hosts separately based on their sensitivity level.
+		- Automate compliance with container runtime configuration standards.
+		- Continuously monitor images for embedded malware.
+		- Store sensitive data externally and enable dynamic access at runtime.
+		- Maintain a set of trusted registries and images, ensuring that only approved images are allowed to run in the container environment.
+		- Use mandatory access control tools, such as SELinux and AppArmor, to protect applications and system services.
+		- Implement real-time threat detection solutions and establish incident response capabilities to handle security incidents.
+		- Use immutable containers to prevent modifications after deployment.
+		- Change default user privileges from root to non-root and enforce permissions using Role-Based Access Control (RBAC).
+		- Avoid storing sensitive information in code or configuration files.
+		- Harden the host environment by removing non-essential native services and securing the entire stack.
+		- Keep containers lightweight by minimizing unnecessary components.
+		- Leverage Infrastructure-as-Code (IaC) to manage cloud resources and verify configurations before deployment.
+	- Best Practices for Docker Security:
+		- Below are best practices for securing a Docker environment:
+		- Avoid exposing the Docker daemon socket as it is the main entry point for the Docker API.
+		- Use only trusted Docker images to prevent the risk of backdoor injections by malicious users.
+		- Regularly update the host OS and Docker to apply the latest security patches.
+		- Limit container capabilities by granting only necessary permissions. Use --cap-drop all to remove all default capabilities, then add only the required ones.
+		- Run containers with --security-opt=no-new-privileges to prevent privilege escalation attacks via setuid or setgid binaries.
+		- Disable inter-container communication by setting --icc=false when running the Docker daemon. To allow specific container communication, use --link CONTAINER_NAME_or_ID:ALIAS.
+		- Utilize Linux security modules like seccomp, AppArmor, and SELinux for fine-grained process control.
+		- Restrict resource usage (CPU, memory, file descriptors, processes, and restarts) to mitigate DoS attacks.
+		- Enable read-only mode on filesystems and volumes using the --read-only flag.
+		- Set the Docker daemon log level to info, and avoid running it in debug mode.
+		- Run containers as an unprivileged user instead of the default root user to prevent privilege escalation.
+		- Minimize installed packages to reduce the attack surface.
+		- Verify digital signatures of remote Docker images using Docker Content Trust (DCT).
+		- Avoid storing sensitive data in environment variables; use Docker Secrets for secure encryption in transit.
+		- Secure API endpoints with HTTPS when exposing the RESTful API.
+		- Avoid the default bridge network for single-host applications using networking.
+		- Store sensitive data in Docker volumes for better security, persistence, and encryption.
+		- Enable TLS authentication for secure communication between the Docker client and daemon.
+		- Use security tools like InSpec and Dive to detect vulnerabilities.
+		- Restrict SSH access to administrators when managing container logs and performing administrative tasks.
+		- Automate container labeling to maintain consistency and security.
+		- Implement the HEALTHCHECK command in Dockerfiles to enhance container health monitoring.
+		- Leverage Docker namespaces (PID, IPC, network, and user namespaces) to isolate containers.
+		- Enable user namespaces to add an extra layer of isolation between the host and containers.
+		- Enforce resource constraints with --memory and --cpus to limit CPU and memory usage per container.
+		- Enable Docker Content Trust (DCT) to ensure image integrity and authenticity.
+		- Specify a non-root user in Dockerfiles using the USER directive to enhance security.
+	- Best Practices for Kubernetes Security:
+		- Below are various best practices for securing the Kubernetes environment:
+		- Ensure proper validation of file contents and their paths at every stage of processing.
+		- Implement configuration methods for credential paths instead of relying on hardcoded paths.
+		- Explicitly raise errors after each step of a compound operation.
+		- Use the copy-then-rename method for log rotation to ensure that logs are not lost when restarting the kubelet.
+		- Ensure secure and reliable handling of JSON data by using well-tested JSON libraries and appropriate type structures in applications interacting with Kubernetes APIs.
+		- Never use compound shell commands without proper validation, as they can affect the system state.
+		- Explicitly check the returned error value of os.Readlink /proc/<pid>/exe to determine if a PID belongs to a kernel process.
+		- Use centralized libraries for common tasks and standardized parsing functions, such as ParsePort, across the codebase to improve code readability.
+		- Use persistent logs instead of log rotation, allowing logs to be written in linear order and new logs to be created when rotation is required.
+		- Use a single encoding format for all configuration tasks to support centralized validation.
+		- Limit the size of manifest files to prevent out-of-memory errors in the kubelet.
+		- Deploy kube-apiserver instances that maintain Certificate Revocation Lists (CRLs) to validate presented certificates.
+		- Use key management services for secret data encryption, avoiding AES-Galois/Counter Mode (GCM) or Cipher Block Chaining (CBC) for encryption.
+		- Authenticate all HTTPS connections by default to ensure certificates are issued by a trusted Certificate Authority (CA) and to prevent Man-in-the-Middle (MITM) attacks.
+		- Avoid using legacy SSH tunnels, as they do not properly validate server IP addresses.
+		- Use Online Certificate Status Protocol (OCSP) stapling to verify the revocation status of certificates.
+		- Enable secure TLS configurations by default in both development and production environments to reduce vulnerabilities caused by misconfiguration.
+		- Implement Access Control Lists (ACLs) to manage file access permissions and prevent unauthorized access.
+		- Use log filtering to remove sensitive information, such as bearer tokens and basic authentication credentials, from log data.
+		- Enable comprehensive logging and monitoring for Kubernetes clusters using tools such as Prometheus, Grafana, and the ELK Stack.
+		- Implement policy management tools such as Open Policy Agent (OPA) or Kyverno to enforce security policies across the Kubernetes cluster.
+		- Regularly patch and update Kubernetes components and dependencies to the latest versions.
+		- Configure resource quotas and limits to prevent resource exhaustion.
+		- Utilize network policies and service meshes to control and secure pod-to-pod communication.
+		- Regularly review and rotate Kubernetes secrets to minimize the risk of credential compromise.
+	- Best Practices for Serverless Security:
+		- Outlined below are key best practices for securing a serverless computing environment:
+		- Minimize permissions during development to reduce the attack surface.
+		- Regularly monitor function layers to detect malicious code injection attempts and other web server attacks.
+		- Utilize third-party security tools to enhance visibility and control.
+		- Patch and update function dependencies and applications frequently.
+		- Use security scanning tools like Snyk to identify known vulnerabilities in serverless applications.
+		- Maintain isolated function perimeters and avoid reliance on function access and invocation order.
+		- Sanitize event inputs properly to prevent code injection attacks.
+		- Leverage security libraries that enforce least-privilege access and restrict unauthorized resource access at runtime.
+		- Deploy functions with minimal granularity to reduce implicit global roles and enhance security.
+		- Apply strict data validation on schemas and data transfer objects instead of relying on serialization and deserialization.
+		- Utilize API Gateway features for input filtering, traffic throttling, rate limiting, and protection against DDoS attacks.
+		- Enforce logging and monitoring of function events with verbose and secure logs for better observability.
+		- Follow secure coding practices and conduct code reviews to address vulnerabilities; additionally, use shared security libraries.
+		- Use TLS/HTTPS for secure communication and encrypt credentials with strong cryptographic algorithms.
+		- Verify SSL certificates to authenticate remote identities and terminate communication if verification fails.
+		- Enable signed requests for cloud vendors to protect data in transit and prevent HTTP replay attacks.
+		- Store sensitive information securely using secret management solutions that support runtime access and key rotation.
+		- Set execution timeouts to limit how long serverless functions run.
+		- Implement network security controls such as Virtual Private Cloud (VPC) configurations to restrict access.
+		- Secure all triggers (e.g., API Gateway, S3, DynamoDB) by ensuring they are configured correctly and accessible only to authorized entities.
+	- Zero Trust Networks:
+		- The Zero Trust model is a security framework that assumes, by default, that every user attempting to access the network is untrusted. It verifies every incoming connection before granting access. This approach strictly follows the principle: “Trust no one; always verify before granting access or providing cloud services.” This does not imply that company employees are inherently untrustworthy; rather, the network can be compromised, or an unauthorized person may attempt to gain access. This model ensures that no user or employee can access the network without verification. It also allows organizations to enforce policies that limit access to only the resources necessary for an employee’s specific role.
+		- Representation of Zero Trust Network:
+			- As shown in the figure, the cloud control plane is a central system that manages and coordinates the data plane (which includes all other network components). The control plane grants network access only to legitimate and verified users or devices. Fine-grained policies are enforced at this layer based on factors such as the user’s role in the organization, the time of access, and the device type. To access highly secure internet resources, users must undergo stronger authentication. Once the control plane approves an access request, the data plane is configured to accept traffic only from that specific client.
+			- The core objectives of implementing a Zero Trust model are:
+				- Ensuring a secure method for accessing resources.
+				- Enforcing strict access controls based on identity and risk.
+				- Continuously monitoring network traffic for anomalies.
+			- Zero Trust can be integrated with various security techniques, including encryption, multi-factor authentication (MFA), and privileged access management (PAM). This model also employs micro-segmentation, which divides the network into smaller, isolated segments to restrict access to specific areas. In the event of a security breach, micro-segmentation helps contain threats and prevents further exploitation of the network.
+	- Organization/Provider Cloud Security Compliance Checklist:
+		- The following tables provide checklists to determine whether the security team, the broader organization, and any proposed cloud provider can ensure cloud security.
+		- Checklist to Assess the Readiness of the Cloud Service Provider (CSP):
+			- Are the security team members formally trained in cloud technologies?
+			- Do the organization’s security policies account for cloud infrastructure?
+			- Has the security team been involved in implementing cloud infrastructure?
+			- Has the organization defined security assessment procedures for cloud infrastructure?
+			- Has the organization ever been audited for cloud security threats?
+			- Will the organization’s cloud adoption comply with the security standards it follows?
+			- Has security governance been updated to include cloud considerations?
+			- Does the team have adequate resources to implement and secure cloud infrastructure?
+		- Operations:
+			- Are regulatory compliance reports, audit reports, and other security-related documents available from the provider?
+			- Are the organization’s incident handling and business continuity policies designed with cloud security considerations?
+			- Are the cloud service provider’s compliance and audit reports accessible to the organization?
+			- Does the CSP’s SLA address incident handling and business continuity concerns?
+			- Does the CSP have clear policies and procedures for handling digital evidence in the cloud environment?
+			- Is the CSP compliant with relevant industry standards?
+			- Does the CSP have skilled and sufficient staff for incident resolution and configuration management?
+			- Has the CSP defined procedures to support the organization in a multi-tenant incident scenario?
+			- Does using a cloud provider provide the organization with an environmental advantage?
+			- Does the organization know which application or database stores each data entity?
+			- Is the cloud-based application disaster-tolerant (i.e., can it recover from internal or external disruptions)?
+			- Are all personnel appropriately vetted, monitored, and supervised?
+			- Does the CSP offer flexibility in service relocation and switchovers?
+			- Has the CSP implemented perimeter security controls (e.g., IDS, firewalls) and does it provide regular activity logs to the organization?
+			- Does the CSP provide reasonable assurance of service quality and availability?
+			- Is it easy to securely integrate cloud-based applications at runtime and upon contract termination?
+			- Does the CSP offer 24/7 support for cloud operations and security-related issues?
+			- Do procurement processes include cloud security requirements?
+			- Does the CSP frequently perform vulnerability assessments to identify security gaps and apply necessary patches?
+		- Technology:
+			- Are appropriate access controls in place (e.g., federated single sign-on) to regulate user access to cloud applications?
+			- Is data separation maintained between the organization and customer information at runtime and during backup, including data disposal?
+			- Has the organization addressed backup, recovery, archiving, and decommissioning of cloud-stored data?
+			- Are authentication, authorization, and key management mechanisms implemented in the cloud environment?
+			- Are measures in place to manage network congestion, misconfiguration, misconnection, and lack of resource isolation that could impact security and service availability?
+			- Has the organization implemented sufficient security controls on client devices used to access the cloud?
+			- Are all cloud-based systems, infrastructure, and physical locations adequately protected?
+			- Are the network designs sufficiently secure for the organization’s cloud adoption strategy?
+		- Management:
+			- Is everyone aware of their cloud security responsibilities?
+			- Is there a mechanism for assessing the security of a cloud service?
+			- Does business governance mitigate security risks from cloud-based “shadow IT”?
+			- Does the organization know the jurisdictions where its data may reside?
+			- Is there a framework for managing cloud-related risks?
+			- Does the organization understand the data architecture required for secure cloud operations?
+			- Can the organization ensure end-to-end service continuity across multiple cloud providers?
+			- Does the CSP comply with all relevant industry regulations (e.g., the UK’s Data Protection Act)?
+			- Does the compliance function understand the specific regulatory issues associated with the organization's cloud adoption?
+	- International Cloud Security Organizations:
+		- Several international cloud security organizations are dedicated to assisting security professionals by promoting best practices, raising security awareness, and establishing strong security policies. These efforts enhance cybersecurity resilience and foster a trusted cloud ecosystem. Below is an international organization that informs and guides industries and security professionals about evolving threats while providing solutions to protect cloud infrastructure from cyberattacks.
+		- Cloud Security Alliance (CSA) (cloudsecurityalliance.org):
+			- The Cloud Security Alliance (CSA) is a nonprofit global organization that raises awareness and promotes best practices and security policies to enhance cloud security. CSA provides education and knowledge on cloud computing and helps secure various computing environments. It connects industry experts, governments, and corporate members to support cloud-based research, education, certification programs, and security solutions.
+	- Shadow Cloud Asset Discovery Tools:
+		- Shadow cloud assets refer to cloud applications or services used within a corporate environment without the IT department’s knowledge. These assets can introduce security risks such as data loss, account abuse, and malware distribution. To mitigate these threats, organizations can leverage tools like Securiti, CloudEagle, and Microsoft Defender for Cloud Apps, which provide comprehensive visibility into application usage. These tools enable administrators to monitor and audit activities within the organization’s cloud network.
+		- Securiti (securiti.ai): Securiti is an AI-powered security tool designed to detect and monitor shadow cloud assets, native data resources, and unmanaged data repositories that pose privacy risks in multi-cloud environments. It offers automated workflows for data classification, risk assessment, and compliance reporting, helping businesses meet regulatory requirements while securing their data.
+		- CloudEagle (www.cloudeagle.ai)
+		- Microsoft Defender for Cloud Apps (learn.microsoft.com)
+		- FireCompass (www.firecompass.com)
+		- Data Theorem (www.datatheorem.com)
+		- BetterCloud (www.bettercloud.com)
+	- Cloud Security Tools:
+		- Migrating to the cloud offers significant benefits, but security remains a primary concern. Fortunately, various security services and tools are available to automate cloud penetration testing, ensuring the confidentiality, integrity, and security of data hosted in the cloud.
+		- Some tools for securing cloud environments include the following:
+			- Qualys Cloud Platform (www.qualys.com): The Qualys Cloud Platform is a comprehensive IT security solution that provides continuous, always-on assessment of global security and compliance postures. It offers visibility across all IT assets, regardless of their location. The platform includes sensors that ensure continuous monitoring, allowing real-time analysis of cloud data. It can immediately respond to threats, perform active vulnerability assessments (including Internet Control Message Protocol (ICMP) timestamp requests), and visualize results in a unified dashboard with AssetView.
+			- Prisma Cloud (www.paloaltonetworks.com)
+			- Netskope One (www.netskope.com)
+			- Lookout CipherCloud (www.lookout.com)
+			- Trend Micro Deep Security (www.trendmicro.com)
+			- Data-Aware Cloud Security (www.skyhighsecurity.com)
+	- Container Security Tools:
+		- As containers are continuously deployed across cloud environments, they require robust security measures. Security professionals use tools such as Aqua, Sysdig Falco, and Anchore to protect containers from various security threats.
+		- Aqua (www.aquasec.com): Aqua scans container images, virtual machines (VMs), and serverless functions for known vulnerabilities, embedded secrets, configuration and permission issues, malware, and open-source licensing risks. It prevents untrusted code from running and ensures that functions, containers, and VMs remain immutable, preventing unauthorized changes to running workloads. Additionally, Aqua integrates seamlessly into existing infrastructure, facilitating DevSecOps collaboration, logging and reporting, incident response, and event monitoring.
+		- Sysdig Falco (sysdig.com)
+		- Anchore (anchore.com)
+		- Snyk Container (snyk.io)
+		- Lacework (www.lacework.com)
+		- Tenable Cloud Security (www.tenable.com)
+	- Kubernetes Security Tools:
+		- As Kubernetes is the de facto container deployment and management tool, its workloads must be regularly monitored and secured using appropriate security measures. Security professionals rely on tools such as Advanced Cluster Security for Kubernetes, Aqua Kubernetes Security, and Kyverno to safeguard Kubernetes environments.
+		- Advanced Cluster Security for Kubernetes (www.redhat.com): Advanced Cluster Security (ACS) for Kubernetes is a comprehensive solution designed to enhance the security of Kubernetes environments. It assists in building, deploying, and running cloud-native applications while providing a robust set of tools and features focused on visibility, compliance, threat detection, and risk management. This ensures comprehensive protection for cloud-native workloads.
+		- Aqua Kubernetes Security (www.aquasec.com)
+		- Kyverno (github.com)
+		- Kubeaudit (github.com)
+		- Sumo Logic (www.sumologic.com)
+		- Kubespace (kubescape.io)
+	- Serverless Application Security Solutions:
+		- Serverless cloud computing has experienced significant growth in recent years. However, the evolving cloud-based infrastructure also introduces various security risks, such as function event-data injection, broken authentication, and over-privileged function permissions. Therefore, conducting regular security inspections is essential.
+		- Security professionals utilize various tools, such as Dashbird, CloudGuard, and Prisma Cloud, to perform security assessments on serverless infrastructures.
+		- Dashbird (dashbird.io): Dashbird is a comprehensive observability and monitoring platform designed for serverless applications. It provides real-time monitoring, error detection, and end-to-end visibility across various cloud resources, enabling security professionals to identify and resolve issues efficiently. By integrating seamlessly with cloud environments, Dashbird helps maintain high performance, security, and operational excellence for serverless workloads.
+		- CloudGuard (www.checkpoint.com)
+		- Datadog Serverless Monitoring (www.datadoghq.com)
+		- Prisma Cloud (www.paloaltonetworks.com)
+		- lumigo (lumigo.io)
+		- sysdig (sysdig.com)
+	- Cloud Access Security Broker (CASB):
+		- Cloud Access Security Brokers (CASBs) are on-premises or cloud-hosted solutions responsible for enforcing security, compliance, and governance policies in cloud applications. A CASB is positioned between an organization's on-premises infrastructure and a cloud provider's infrastructure. It acts as a gatekeeper, enabling organizations to extend their security policies beyond their own infrastructure.
+		- Features of CASB:
+			- Visibility into Cloud Usage: Identifies shadow IT cloud services and provides visibility into user activities within approved cloud applications.
+			- Data Security: Enforces data-centric security measures, including encryption, tokenization, access control, and information rights management.
+			- Threat Protection: Detects and responds to malicious insider threats, privileged user threats, and compromised accounts.
+			- Compliance: Identifies critical data in the cloud and enforces Data Loss Prevention (DLP) policies to meet data residency and compliance requirements.
+		- CASB Capabilities:
+			- CASBs offer the following functionalities:
+			- Firewalls to detect malware and prevent it from infiltrating the enterprise network.
+			- Authentication to validate user credentials, ensuring that only authorized users can access organizational resources.
+			- Web Application Firewalls (WAFs) to prevent malware from breaching security at the application level rather than at the network level.
+			- DLP to prevent users from transferring critical information outside the organization.
+		- How CASBs Work:
+			- A CASB functions by:
+			- Ensuring network traffic between on-premises devices and the cloud provider complies with organizational security policies.
+			- Providing insights into cloud application usage across cloud platforms and identifying unauthorized use.
+			- Utilizing auto-discovery to identify:
+				- Cloud applications in use
+				- High-risk applications
+				- High-risk users
+			- Enforcing security access controls such as encryption and device profiling.
+			- Offering services such as credential mapping when Single Sign-On (SSO) is unavailable.
+		- CASB Solutions:
+			- Forcepoint ONE CASB (www.forcepoint.com):
+				- Forcepoint ONE CASB delivers comprehensive security for all cloud applications.
+				- Key features include:
+					- Cloud application discovery
+					- Cloud application risk scoring
+					- Data classification
+					- User and application governance
+					- Real-time activity monitoring and analytics
+					- Automatic anomaly detection
+					- Data loss prevention
+					- Integration with third-party solutions
+			- CloudCodes (www.cloudcodes.com)
+			- Cisco Cloudlock (www.cisco.com)
+			- Zscaler CASB (www.zscaler.com)
+			- Proofpoint Cloud App Security Broker (CASB) (www.proofpoint.com)
+			- FortiCASB (www.fortinet.com)
+	- Next-Generation Secure Web Gateway (NG SWG):
+		- A Next-Generation Secure Web Gateway (NG SWG) is a cloud-based security solution that protects an organization’s network from cloud-based threats, malware infections, and online data theft. It also enables clients to securely access cloud services. NG SWG detects cloud-based threats in advance, prioritizes them based on risk levels, and manages applications used by different users and clients.
+		- Below are some of its key cloud visibility capabilities and features:
+			- URL filtering
+			- Certificate (TLS/SSL) decryption
+			- Cloud Access Security Broker (CASB) operations, including identifying, decrypting, analyzing, and securing traffic
+			- Advanced Threat Protection (ATP) with sandboxing and machine learning (ML)-based anomaly detection
+			- Support for Data Loss Prevention (DLP) for web traffic and cloud applications
+			- Qualitative metadata contexts for web inspection and reporting
+		- NG SWG Solutions:
+			- Netskope Next Gen Secure Web Gateway (SWG) (www.netskope.com)
+			- Cloudflare Gateway (www.cloudflare.com)
+			- Skyhigh Secure Web Gateway (SWG) (www.skyhighsecurity.com)
+			- Menlo Secure Web Gateway (SWG) (www.menlosecurity.com)
+			- McAfee MVISION UCE (www.mcafee.com)
