@@ -19228,3 +19228,185 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Private key security
 				- Full forward secrecy
 				- Session key security
+	- Message Digest (One-Way Hash) Functions:
+		- Hash functions compute a unique, fixed-size bit string representation, called a message digest, for any arbitrary block of data. These functions condense the information in a file—regardless of its size—into a single, fixed-length value, typically between 128 and 256 bits. If any bit of the input changes, each output bit has a 50% probability of flipping.
+		- Given an input file and its corresponding message digest, it should be nearly impossible to find another file with the same message digest value, as generating two different files with the same hash is computationally infeasible.
+		- Message digest functions are also called one-way hash functions because they produce values that are:
+			- Nearly impossible to invert
+			- Resistant to attacks
+			- Mostly unique
+			- Widely distributed
+		- Message digest algorithms do not perform encryption or decryption. Instead, they facilitate the creation of digital signatures and message authentication codes (MACs) and enable the derivation of encryption keys from passphrases. The primary role of cryptographic hash functions is to ensure data integrity, making them a crucial component of digital signatures. Since they operate faster than digital signature algorithms, they are used to compute signatures for a document's hash value, which is smaller than the original document. Additionally, message digests help obscure the contents or source of a document.
+		- Note: Message digests are also called one-way hash functions because they cannot be reversed.
+		- Common Message Digest Algorithms:
+			- MD5
+			- SHA (Secure Hash Algorithm)
+	- Message Digest Functions:
+		- The following list details message digest functions, including their output size, internal state size, block size, maximum message size, number of rounds, operations used, security level, and application areas:
+			- MD2:
+				- Output Size: 128 bits
+				- Internal State Size: 128 bits
+				- Block Size: 128 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 18
+				- Operations: Permutation, Substitution
+				- Security Level: 128 bits
+				- Application Areas: Legacy applications, checksum validation
+			- MD4:
+				- Output Size: 128 bits
+				- Internal State Size: 128 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 48
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 128 bits
+				- Application Areas: Obsolete, early cryptographic hash functions
+			- MD5:
+				- Output Size: 128 bits
+				- Internal State Size: 128 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 64
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 128 bits
+				- Application Areas: File verification, checksum, digital signatures
+			- MD6:
+				- Output Size: 224, 256, 384, 512 bits
+				- Internal State Size: 1024 bits
+				- Block Size: 512 bits
+				- Max Message Size: Unlimited
+				- Rounds: Variable
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 128-256 bits
+				- Application Areas: Cryptographic applications, data integrity
+			- SHA-0:
+				- Output Size: 160 bits
+				- Internal State Size: 160 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 80
+				- Operations: Bitwise logical operations
+				- Security Level: 0 bits (Obsolete)
+				- Application Areas: Replaced by SHA-1
+			- SHA-1:
+				- Output Size: 160 bits
+				- Internal State Size: 160 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 80
+				- Operations: Bitwise logical operations
+				- Security Level: 80 bits
+				- Application Areas: Legacy systems, software updates, TLS
+			- SHA-2:
+				- Output Size: 224, 256, 384, 512 bits
+				- Internal State Size: 256, 512 bits
+				- Block Size: 512, 1024 bits
+				- Max Message Size: 2¹²⁸ bits
+				- Rounds: 64, 80
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 112-256 bits
+				- Application Areas: Secure applications, digital signatures, SSL
+			- SHA-3:
+				- Output Size: 224, 256, 384, 512 bits
+				- Internal State Size: 1600 bits
+				- Block Size: 1088, 576 bits
+				- Max Message Size: Unlimited
+				- Rounds: Variable
+				- Operations: Sponge construction
+				- Security Level: 128-256 bits
+				- Application Areas: Secure hashing, cryptographic applications
+			- RIPEMD-160:
+				- Output Size: 160 bits
+				- Internal State Size: 160 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2⁶⁴ bits
+				- Rounds: 160
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 160 bits
+				- Application Areas: Cryptographic applications, data integrity
+			- WHIRLPOOL:
+				- Output Size: 512 bits
+				- Internal State Size: 512 bits
+				- Block Size: 512 bits
+				- Max Message Size: 2²⁵⁶ bits
+				- Rounds: 10
+				- Operations: Matrix operations, substitution
+				- Security Level: 256 bits
+				- Application Areas: High-speed applications, checksum validation
+			- Tiger:
+				- Output Size: 192 bits
+				- Internal State Size: 192 bits
+				- Block Size: 512 bits
+				- Max Message Size: Unlimited
+				- Rounds: 24
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 192 bits
+				- Application Areas: High-speed hashing, secure applications
+			- BLAKE2:
+				- Output Size: 256, 512 bits
+				- Internal State Size: 256, 512 bits
+				- Block Size: 512, 1024 bits
+				- Max Message Size: Unlimited
+				- Rounds: 10-14
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 128-256 bits
+				- Application Areas: High-performance cryptographic applications
+			- BLAKE3:
+				- Output Size: 256 bits
+				- Internal State Size: 256 bits
+				- Block Size: 512 bits
+				- Max Message Size: Unlimited
+				- Rounds: Variable
+				- Operations: Logical (AND, OR, XOR)
+				- Security Level: 128-256 bits
+				- Application Areas: Next-generation cryptographic functions
+		- Message Digest Function: MD5 and MD6:
+			- MD2, MD4, MD5, and MD6 are message digest algorithms used in digital signature applications to securely compress a document before the system signs it with a private key. These algorithms can process inputs of variable length, but the resulting message digest always has a fixed size of 128 bits. The structures of MD2, MD4, and MD5 appear similar, although MD2's design differs significantly from MD4 and MD5. MD2 supports 8-bit machines, while MD4 and MD5 are optimized for 32-bit machines.
+			- These algorithms pad the message with extra bits to ensure that the total number of bits is divisible by 512. The extra bits may include a 64-bit representation of the message length.
+			- Attacks on MD4 have become increasingly successful. Research has shown that an attacker can launch a full-version collision attack on MD4 within a minute on a typical PC. MD5 is slightly more secure but slower than MD4. However, both share the same message digest size and padding requirements. MD5 is a widely used cryptographic hash function that takes an input of arbitrary length and produces a 128-bit (16-byte) fingerprint or message digest. MD5 is commonly used for digital signatures, file integrity verification, and password storage. However, MD5 is not collision-resistant, making it unsuitable for modern security applications. Instead, more secure algorithms like MD6, SHA-2, and SHA-3 are recommended.
+			- MD6 employs a Merkle-tree-like structure to enable large-scale parallel computation of hashes for very long inputs. It is resistant to differential cryptanalysis attacks. To evaluate the effectiveness of hash functions, one can analyze the output produced when the algorithm processes arbitrary input messages.
+			- The following examples illustrate how even minor text differences generate radically different MD5 hashes:
+				- echo “There is CHF1500 in the blue bo” | md5sum : e41a323bdf20eadafd3f0e4f72055d36
+				- echo “There is CHF1500 in the blue box” | md5sum : 7a0da864a41fd0200ae0ae97afd3279d
+				- echo “There is CHF1500 in the blue box.” | md5sum : 2db1ff7a70245309e9f2165c6c34999d
+			- QuickHash-GUI (www.quickhash-gui.org):
+				- QuickHash-GUI is a graphical data hashing tool available for Linux, Windows, and macOS. It allows users to hash segments of text or perform dynamic hashing as they type into the text field.
+		- Message Digest Function: Secure Hashing Algorithm (SHA):
+			- The National Institute of Standards and Technology (NIST) developed the Secure Hash Algorithm (SHA), which is specified in the Secure Hash Standard (SHS) and published as a Federal Information Processing Standard (FIPS PUB 180). It generates a cryptographically secure, one-way hash function. Although similar to the Message Digest (MD) family of hash functions developed by Ron Rivest, SHA offers enhanced security. While it is slightly slower than MD5, its larger message digest makes it more resilient to brute-force collision and inversion attacks.
+			- SHA is not an encryption method but a family of cryptographic hash functions, currently categorized into three generations: SHA-1, SHA-2, and SHA-3.
+				- SHA-0:
+					- The original 160-bit hash function published in 1993 under the name SHA. It was withdrawn due to an undisclosed "significant flaw" and replaced with SHA-1, a slightly modified version.
+				- SHA-1:
+					- A 160-bit hash function similar to MD5, designed by the National Security Agency (NSA) as part of the Digital Signature Algorithm (DSA). It produces a 160-bit digest from a message of up to (2⁶⁴ − 1) bits. SHA-1 was widely used in security protocols like PGP, TLS, SSH, and SSL. However, due to cryptographic vulnerabilities, it was deprecated in 2010 and is no longer considered secure.
+				- SHA-2:
+					- A family of two related hash functions with different block sizes:
+						- SHA-256: Uses 32-bit words
+						- SHA-512: Uses 64-bit words
+					- Truncated versions include SHA-224 (a reduced version of SHA-256) and SHA-384 (a reduced version of SHA-512).
+				- SHA-3:
+					- Unlike SHA-1 and SHA-2, SHA-3 uses sponge construction, where message blocks are XORed into the initial bits of the state before undergoing an invertible permutation. While SHA-3 supports the same hash lengths as SHA-2, it has a fundamentally different internal structure, making it more resistant to certain cryptographic attacks.
+		- RIPEMD-160:
+			- RACE Integrity Primitives Evaluation Message Digest (RIPEMD) is a 160-bit hash algorithm developed by Hans Dobbertin, Antoon Bosselaers, and Bart Preneel. There are also 128-, 256-, and 320-bit versions of this algorithm, called RIPEMD-128, RIPEMD-256, and RIPEMD-320, respectively. These versions replace the original RIPEMD, which was found to have a collision issue. However, they do not follow any standard security policies or guidelines.
+			- RIPEMD-160 is a more secure version of the RIPEMD algorithm. Its compression function consists of 80 stages, divided into 5 blocks that each execute 16 times. This process is performed twice, with the results combined at the end using modulo 32 addition.
+		- HMAC:
+			- Hash-based Message Authentication Code (HMAC) is a type of message authentication code (MAC) that uses a cryptographic key along with a cryptographic hash function. It is widely used to verify the integrity of data and authenticate messages. This algorithm incorporates an embedded hash function such as SHA-1 or MD5. The security strength of HMAC depends on the embedded hash function, key size, and hash output size.
+			- HMAC consists of two stages for computing the hash. The input key is processed to generate two keys: the inner key and the outer key.
+				- In the first stage, the inner key and the message are used to produce an internal hash.
+				- In the second stage, the output from the first stage is combined with the outer key to generate the final HMAC code.
+			- Since HMAC executes the underlying hash function twice, it provides protection against various length extension attacks. The size of the key and output depends on the embedded hash function; for example, MD5 produces a 128-bit output, while SHA-1 produces a 160-bit output.
+		- GOST - Hash Function:
+			- The GOST hash algorithm was initially defined in the Russian national standard GOST R 34.11-94, titled “Information Technology – Cryptographic Information Security – Hash Function.”
+			- It produces a fixed-length 256-bit output. The input message is divided into 256-bit blocks. If a block is smaller than 256 bits, the message is padded with zeros until it reaches 256 bits. The remaining bits are filled with a 256-bit integer arithmetic sum of all previously hashed blocks. Finally, a 256-bit integer representing the original message length (in bits) is added to complete the process.
+	- Message Digest Function Calculators:
+		- Message digest function calculators use various hash algorithms to convert plaintext into its corresponding hash value. Below are two such tools:
+		- MD5 Calculator (www.bullzip.com):
+			- MD5 Calculator is a simple application designed to compute the MD5 hash of a given file. It supports large files, even those several gigabytes in size. The tool features a progress counter and a text field from which the final MD5 hash can be easily copied to the clipboard.
+			- MD5 Calculator is useful for verifying file integrity. To calculate an MD5 hash, simply right-click a file, select "MD5 Calculator", and the program will generate the hash. The MD5 Digest field will display the calculated value. To compare this hash with another, paste the second value into the Compare To field. If the values match, an equals sign (“=”) will appear between them; otherwise, a less-than (“<”) or greater-than (“>”) symbol will indicate a difference.
+		- HashMyFiles (www.nirsoft.net):
+			- HashMyFiles is a utility that calculates the MD5 and SHA1 hashes of one or more files on your system. It allows you to copy the generated hash values to the clipboard or save them in a text, HTML, or XML file.
+			- Additionally, you can launch HashMyFiles directly from the Windows Explorer context menu to display the MD5 and SHA1 hashes of selected files or folders.
+		- MD6 Hash Generator (www.browserling.com)
+		- All Hash Generator (www.browserling.com)
+		- md5 hash calculator (onlinehashtools.com)
+		- Message Digester (www.freeformatter.com)
+		- MD6 Hash Generator (www.atatus.com)
