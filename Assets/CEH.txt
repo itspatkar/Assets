@@ -19019,7 +19019,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 					- Integer multiplication, which increases diffusion, allowing the cipher to achieve higher security with fewer rounds while maintaining speed.
 					- The use of four 4-bit working registers instead of two 2-bit registers. This design choice aligns with the 128-bit block size requirement of the AES (Advanced Encryption Standard).
 		- Blowfish:
-			Blowfish is a symmetric block cipher algorithm designed to replace DES or IDEA. It uses the same secret key for both encryption and decryption. This algorithm splits data into 64-bit blocks and supports key sizes ranging from 32 to 448 bits. Due to its high speed and overall efficiency, Blowfish is used in various applications, including password protection tools and e-commerce websites for securing payments. It is a 16-round Feistel cipher that operates on 64-bit blocks. Unlike DES, Blowfish allows a flexible key size between 32 and 448 bits.
+			- Blowfish is a symmetric block cipher algorithm designed to replace DES or IDEA. It uses the same secret key for both encryption and decryption. This algorithm splits data into 64-bit blocks and supports key sizes ranging from 32 to 448 bits. Due to its high speed and overall efficiency, Blowfish is used in various applications, including password protection tools and e-commerce websites for securing payments. It is a 16-round Feistel cipher that operates on 64-bit blocks. Unlike DES, Blowfish allows a flexible key size between 32 and 448 bits.
 			- The algorithm consists of two main components:
 				- Key Expansion: Expands the key into subkeys.
 				- Data Encryption: Encrypts data using the expanded keys.
@@ -19057,3 +19057,174 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- XOR the result with L.
 				- Swap L and R for the next round.
 			- This process repeats for the chosen number of rounds, ensuring strong encryption.
+		- CAST-128:
+			- CAST-128, also called CAST5, is a symmetric-key block cipher that employs a classical 12- or 16-round Feistel network with a block size of 64 bits. CAST-128 supports a key size ranging from 40 bits to 128 bits in 8-bit increments. Its components include large 8×32-bit S-boxes (S1, S2, S3, S4) based on bent functions, modular addition and subtraction, key-dependent rotation, and XOR operations. CAST-128 utilizes a masking key (Km1) and a rotation key (Kr1) to perform its functions. The round function consists of three alternating types, executing addition, subtraction, or XOR operations at different stages. It is used as the default cipher in GPG (GNU Privacy Guard) and PGP (Pretty Good Privacy).
+			- CAST-256 is an extension of CAST-128 that follows the same design principles. CAST-256 has a 128-bit block size and supports key sizes ranging from 128 to 256 bits. Additionally, it is vulnerable to zero-correlation cryptanalysis, which can break 28 rounds with a time complexity of 2²⁴⁶.⁹ and a data complexity of 2⁹⁸.⁸.
+		- GOST Block Cipher:
+			- The GOST (Government Standard) block cipher, also known as Magma, is a symmetric-key block cipher that employs a 32-round Feistel network operating on 64-bit blocks with a 256-bit key length. It features an S-box that can remain secret and contains approximately 354 bits of secret information. GOST is a simple encryption algorithm in which the round function involves adding a 32-bit subkey modulo 2³², passing it through an S-box layer, and performing a left circular shift by 11 bits, thereby generating the round function's output.
+			- The key scheduling in the GOST block cipher is achieved by dividing the 256-bit key into eight 32-bit subkeys, each of which is used four times. In this algorithm, the key words are applied in sequential order for the first 24 rounds and in reverse order for the final 8 rounds.
+			- Kuznyechik is the latest extension of GOST, utilizing 128-bit blocks for encryption.
+		- Camellia:
+			- Camellia is a symmetric-key block cipher that operates with either 18 rounds (for 128-bit keys) or 24 rounds (for 256-bit keys). It is a Feistel cipher with a block size of 128 bits and supports key sizes of 128, 192, and 256 bits. Camellia employs four 8×8-bit S-boxes that perform affine transformations and logical operations. A logical transformation layer, called the FL function (or its inverse), is applied every six rounds.
+			- Camellia enhances security through a key whitening technique. It is incorporated into the Transport Layer Security (TLS) protocol, which facilitates secure communication. Despite its 128-bit key size, Camellia remains resistant to brute-force attacks even with the latest technology, making it a highly secure cipher. Furthermore, Camellia provides strong security levels while maintaining processing efficiency comparable to AES (Rijndael).
+	- Asymmetric Encryption Algorithms:
+		- Below are various asymmetric encryption algorithms along with their key sizes and application areas:
+			- Rivest–Shamir–Adleman (RSA):
+				- Key Size: Variable
+				- Application Areas: Encryption, digital signatures, key exchange
+			- Digital Signature Algorithm (DSA):
+				- Key Size: Variable
+				- Application Areas: Digital signatures
+			- Diffie-Hellman:
+				- Key Size: Variable
+				- Application Areas: Key exchange, secure communication
+			- Elliptic Curve Cryptography (ECC):
+				- Key Size: 160-521 bits
+				- Application Areas: Encryption, digital signatures, key exchange
+			- ElGamal:
+				- Key Size: Variable
+				- Application Areas: Encryption, key exchange
+		- DSA and Related Signature Schemes:
+			- The Digital Signature Algorithm (DSA) is a Federal Information Processing Standard (FIPS) for digital signatures. The National Institute of Standards and Technology (NIST) proposed DSA for use in the Digital Signature Standard (DSS), which was adopted as FIPS 186. DSA is used for generating and verifying digital signatures in sensitive but unclassified applications. It produces a 320-bit digital signature with 512–1024-bit security.
+			- A digital signature is a mathematical scheme used to authenticate digital messages. The computation of a digital signature follows a specific set of rules (i.e., DSA) and parameters, enabling users to verify both the identity of the signatory and the integrity of the data.
+			- Processes Involved in DSA:
+				- Signature Generation Process: The private key is used to create the signature, proving the signer's identity.
+				- Signature Verification Process: The public key is used to verify whether the digital signature is authentic.
+			- DSA is a public-key cryptosystem because it involves the use of both private and public keys.
+			- Benefits of DSA:
+				- Lower risk of forgery compared to a handwritten signature
+				- Quick and easy method for secure business transactions
+				- Helps mitigate issues related to counterfeit currency
+			- DSA Algorithm:
+				- Each entity A follows these steps:
+					- Select a prime number q such that 2¹⁵⁹ < q < 2¹⁶⁰.
+					- Choose t such that 0 ≤ t ≤ 8, then select a prime number p where 2⁵¹¹⁺⁶⁴ᵗ < p < 2⁵¹²⁺⁶⁴ᵗ, ensuring that q divides (p - 1).
+					- Select a generator α of the unique cyclic group of order q in Zₚ*, by choosing an element g ∈ Zₚ* and computing α = g^(p−1)/q mod p until α ≠ 1.
+					- Select a random integer d such that 1 ≤ d ≤ q - 1.
+					- Compute y = α^d mod p.
+					- A’s public key is (p, q, α, y), and A’s private key is d.
+				- To Sign a Message mm, A Does the Following:
+					- Select a random secret integer k, where 0 < k < q.
+					- Compute r = (α^k mod p) mod q.
+					- Compute s = k⁻¹ * (h(m) + d * r) mod q, where h is the Secure Hash Algorithm (SHA).
+					- A’s digital signature for message mm is the pair (r,s)(r,s).
+				- To Verify A’s Signature (r,s)(r,s) on mm, B Should Do the Following:
+					- Obtain A’s authentic public key (p,q,α,y)(p,q,α,y).
+					- Check if 0 < r < q and 0 < s < q. If not, reject the signature.
+					- Compute w = s⁻¹ mod q and h(m).
+					- Compute u₁ = (w * h(m)) mod q and u₂ = (r * w) mod q.
+					- Compute v = (α^u₁ * y^u₂ mod p) mod q.
+					- Accept the signature if and only if v = r.
+		- Rivest-Shamir-Adleman (RSA):
+			- Ron Rivest, Adi Shamir, and Leonard Adleman formulated RSA, a public-key cryptosystem used for Internet encryption and authentication. RSA relies on modular arithmetic and number theory to perform computations using two large prime numbers. It is widely implemented across various products, platforms, and industries and is considered a de facto encryption standard. Companies such as Microsoft, Apple, Sun, and Novell integrate RSA algorithms into their operating systems. RSA is also used in hardware-secured telephones, Ethernet network cards, and smart cards.
+			- How RSA Works:
+				- Two large prime numbers, aa and bb, are chosen, and their product is computed: c=a×bc=a×b (where cc is called the modulus).
+				- A number ee is selected such that it is less than cc and relatively prime to (a−1)(b−1)(a−1)(b−1), meaning ee and (a−1)(b−1)(a−1)(b−1) share no common factors except 1.
+				- A number ff is chosen such that (e×f−1)(e×f−1) is divisible by (a−1)(b−1)(a−1)(b−1).
+				- The values ee and ff serve as the public and private exponents, respectively.
+				- The public key consists of the pair (c,e)(c,e), while the private key consists of (c,f)(c,f).
+				- Obtaining the private key (c,f)(c,f) from the public key (c,e)(c,e) is computationally difficult. However, if an attacker can factor cc into aa and bb, they can determine the private key.
+				- The security of the RSA system relies on the assumption that factoring large numbers is computationally difficult, making the encryption method secure.
+			- RSA in Practical Use:
+				- A typical application of RSA encryption is as follows:
+					- The sender encrypts a message using a randomly generated DES (Data Encryption Standard) symmetric key. DES is a relatively insecure symmetric-key system that uses 64-bit encryption (56 bits for key size, 8 bits for error detection).
+					- The sender retrieves the recipient’s public key and uses RSA to encrypt the DES key.
+					- The sender transmits an RSA digital envelope, which includes both the DES-encrypted message and the RSA-encrypted DES key.
+					- The recipient decrypts the DES key using their RSA private key, then uses the DES key to decrypt the message.
+				- This approach leverages the high speed of DES for encryption while benefiting from RSA’s secure key management.
+			- RSA Signature Scheme:
+				- RSA is used not only for public-key encryption but also for digital signatures, which allow messages to be signed and verified. The RSA signature scheme was the first technique for generating digital signatures and remains widely used.
+				- RSA involves both a public and private key:
+					- The public key is used by anyone to encrypt messages.
+					- The private key is required to decrypt messages or verify signatures.
+				- Example:
+					- John encrypts his document MM using his private key SASA​, creating a signature SJohn(M)SJohn​(M).
+					- John sends both MM and SJohn(M)SJohn​(M) to Alice.
+					- Alice verifies John’s signature by decrypting the signature using John’s public key.
+			- RSA Key Generation:
+				- RSA key generation follows a common process across all RSA-based signature schemes. To generate an RSA key pair:
+					- Select two large distinct prime numbers, pp and qq, of approximately the same bit length.
+					- Compute n=p×qn=p×q and ϕ=(p−1)(q−1)ϕ=(p−1)(q−1).
+					- Choose a random integer ee such that 1<e<ϕ1<e<ϕ and gcd(e, ϕϕ) = 1 (where gcd is the greatest common divisor).
+					- Use the extended Euclidean algorithm to compute dd, the unique integer satisfying:
+						- e×d≡1 (mod ϕ)
+					- The public key is (n,e)(n,e), and the private key is dd.
+					- Securely destroy pp and qq after key generation.
+			- RSA Signature Generation and Verification:
+				- Signature Generation:
+					- To sign a message mm, entity AA performs the following steps:
+						- Compute m~=R(m)m~=R(m), where m~m~ is an integer in the range [0, n−1n−1].
+						- Compute s=m~dmod  ns=m~dmodn.
+						- The signature is ss.
+				- Signature Verification:
+					- To verify AA’s signature ss and recover mm, entity BB performs:
+						- Retrieve AA’s authentic public key (n,e)(n,e).
+						- Compute m~=semod  nm~=semodn.
+						- Verify that m~m~ is within the expected message space; if not, reject the signature.
+						- Recover m=R−1(m~)m=R−1(m~).
+			- Example of RSA Algorithm:
+				- The mathematics behind RSA encryption is as follows:
+				- Select two large prime numbers:
+					- P=61P=61, Q=53Q=53
+					- (Destroy these after computing EE and DD).
+				- Compute the modulus:
+					- PQ=61×53=3233PQ=61×53=3233 (shared publicly).
+				- Choose a public exponent:
+					- E=17E=17 (shared publicly).
+				- Compute the private exponent DD, which satisfies:
+					- D×E≡1mod  (P−1)(Q−1)D×E≡1mod(P−1)(Q−1).
+					- Here, D=2753D=2753 (keep this secret).
+				- Public key: (E,PQ)=(17,3233)
+				- Private key: D=2753
+				- Encryption Example:
+					- To encrypt plaintext T=123:
+						C=(TE)modPQ=(12317)mod3233
+						C=855
+				- Decryption Example:
+					- To decrypt ciphertext C=855C=855:
+						T=(CD)modPQ=(8552753)mod3233
+						T=123
+				- The modular exponentiation steps confirm that the original plaintext 123123 is recovered.
+			- Conclusion: RSA is a foundational encryption and signature algorithm widely used in securing digital communications. Its security relies on the computational difficulty of factoring large prime numbers, ensuring robust protection for encrypted messages and digital signatures.
+		- Diffie–Hellman:
+			- Diffie–Hellman is a cryptographic protocol that allows two parties to establish a shared key over an insecure channel. It was developed and published by Whitfield Diffie and Martin Hellman in 1976. However, it was independently developed a few years earlier by Malcolm J. Williamson of the British Intelligence Service, but it was classified at that time.
+			- Diffie–Hellman Algorithm:
+				- The system has two parameters, p and g:
+					- p is a prime number.
+					- g (usually called a generator) is an integer less than p, with the following property: for every number n between 1 and p - 1 (both inclusive), there exists some power k such that: n=gk modp
+				- Many cryptography textbooks use the fictitious characters “Alice” and “Bob” to illustrate cryptographic concepts. We will do the same here:
+					- Key Generation:
+						- Alice generates a random private value a, and Bob generates a random private value b. Both a and b are chosen from the set of integers.
+						- Using parameters p and g, they derive their public values:
+							- Alice’s public value: g^a mod p
+							- Bob’s public value: g^b mod p
+					- Key Exchange:
+						- Alice and Bob exchange their public values.
+					- Key Derivation:
+						- Alice computes: k = (gb modp)a modp
+						- Bob computes: k = (ga modp)b modp
+						- Since both computations result in the same value (k), Alice and Bob now share a common secret key.
+			- Security Considerations:
+				- The Diffie–Hellman algorithm does not provide authentication for the key exchange, making it vulnerable to man-in-the-middle attacks. However, it serves as the foundation for many authentication mechanisms. For example, it ensures forward secrecy in the ephemeral modes of the TLS protocol, depending on the cipher suite used.
+		- Elliptic Curve Cryptography (ECC):
+			- Elliptic Curve Cryptography (ECC) is a modern public-key cryptographic system designed to reduce the need for large cryptographic key sizes. This asymmetric cryptosystem relies on number theory and mathematical elliptic curves (algebraic structures) to generate short, efficient, and secure cryptographic keys.
+			- RSA, a widely used public-key algorithm, requires significantly larger key sizes to maintain security. Since encryption speed is influenced by key size—where smaller keys enable faster encryption—ECC has been proposed as an alternative to RSA to minimize key size while maintaining strong security.
+			- The operational key sizes for both algorithms to achieve equivalent security levels are as follows:
+				- For ECC key sizes of 160–223 bits, RSA requires a 1024-bit key.
+				- For ECC key sizes of 224–255 bits, RSA requires a 2048-bit key.
+				- For ECC key sizes of 256–383 bits, RSA requires a 3072-bit key.
+				- For ECC key sizes of 384–511 bits, RSA requires a 7680-bit key.
+				- For ECC key sizes of 512+ bits, RSA requires a 15,360-bit key.
+			- For example, while RSA requires a 1024-bit key to encrypt data, ECC provides equivalent security with a key size of just 160 to 223 bits. For high-security applications, RSA requires a 7680-bit key, whereas ECC achieves the same security level with a key size between 384 and 511 bits.
+		- YAK:
+			- YAK is a public-key-based Authenticated Key Exchange (AKE) protocol. Its authentication mechanism relies on public key pairs, requiring a Public Key Infrastructure (PKI) to distribute authentic public keys. YAK is a variant of the two-pass Hashed Menezes‐Qu‐Vanstone (HMQV) protocol that incorporates zero‐knowledge proofs (ZKP) to verify knowledge of ephemeral secret keys from both parties. However, the YAK protocol lacks joint key control and perfect forward secrecy.
+			- The YAK protocol implementation between two parties, Alice and Bob, is described as follows:
+				- Alice selects a random number xx such that x∈R[0,q−1]x∈R​[0,q−1], computes X=gxX=gx, and generates a zero-knowledge proof of xx, denoted as KP{x}KP{x}. Alice then sends XX and KP{x}KP{x} to Bob.
+				- Bob selects a random number yy such that y∈R[0,q−1]y∈R​[0,q−1], computes Y=gyY=gy, and generates a zero-knowledge proof of yy, denoted as KP{y}KP{y}. Bob then sends YY and KP{y}KP{y} to Alice.
+				- Alice verifies KP{y}KP{y} and, upon successful verification, computes the session key as: k=H((Y⋅PKB)x+a) where HH is a cryptographic hash function.
+				- Bob verifies KP{x}KP{x} and, upon successful verification, computes the session key as: k=H((X⋅PKA)y+b)
+				- Upon mutual authentication, both parties derive the same session key: k=H(g(x+a)(y+b))
+			- The YAK protocol achieves the following security properties:
+				- Private key security
+				- Full forward secrecy
+				- Session key security
