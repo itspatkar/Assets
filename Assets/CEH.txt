@@ -19410,3 +19410,117 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- md5 hash calculator (onlinehashtools.com)
 		- Message Digester (www.freeformatter.com)
 		- MD6 Hash Generator (www.atatus.com)
+	- Multilayer Hashing Calculators:
+		- Multilayer hashing, also known as nested hashing or recursive hashing, is a technique where a hash function is applied multiple times to the input or the output of a previous hash operation. This approach enhances security and creates more complex hash structures. Tools like CyberChef can perform multilayer hashing efficiently.
+		- This process makes it significantly harder for attackers to reverse-engineer the original input data from the hash value. By adding multiple layers of hashing, brute-force attacks become more challenging due to increased computational complexity.
+		- How Multilayer Hashing Works:
+			- Initial Hashing:
+				- The original input data (e.g., a message or file) is hashed using a cryptographic hash function such as SHA-256, SHA-3, or MD5.
+				- This results in a fixed-size hash value, typically represented as a string of characters.
+			- Subsequent Hashing:
+				- The hash value from the initial step is hashed again using the same or a different hash function.
+				- This process can be repeated multiple times, creating several hashing layers.
+			- Final Hash Value:
+				- After a predetermined number of iterations, the final hash value is generated.
+				- This value serves as the output of the multilayer hashing process.
+		- Steps to Perform Multilayer Hashing Using CyberChef:
+			- Create a sample file and open CyberChef (CyberChef Online).
+			- Click on "Open file as input" to upload the sample file.
+			- Search for the desired hashing algorithm in the Operations panel (e.g., MD5) and drag it into the Recipe panel. The output appears in the Output panel.
+			- Use the MD5 hash value as input, then select another hashing algorithm (e.g., SHA-1) and add it to the Recipe panel.
+			- Repeat this process by selecting additional hashing algorithms (e.g., SHA-256, SHA-3) and applying them iteratively using the output of the previous hash as the input.
+	- Hardware-Based Encryption:
+		- Hardware-based encryption is a technique that utilizes computer hardware to assist or replace software during the data encryption process. Devices that implement encryption techniques through hardware are considered hardware-based encryption devices. In this approach, the cryptographic workload is offloaded to hardware processors, freeing up system resources for other tasks. These devices can also store encryption keys and other sensitive information in secure areas of RAM or nonvolatile storage devices such as flash memory.
+		- Hardware encryption devices limit instruction sets, allowing only authorized code to be executed. They do not support third-party software, thereby preventing the execution of malicious programs. Hardware encryption offers several advantages over software encryption, including faster algorithm processing, tamper-resistant key storage, and enhanced protection against unauthorized code execution. Some examples of hardware-based encryption devices include wireless access points, Nitrokey, credit card terminals, and network bulk encryptors.
+		- Types of Hardware Encryption Devices:
+			- Trusted Platform Module (TPM):
+				- A Trusted Platform Module (TPM) is a crypto-processor or chip embedded in the motherboard. It securely stores encryption keys and performs various cryptographic operations. TPM provides features such as platform integrity authentication, full disk encryption capabilities, password storage, and software license protection.
+			- Hardware Security Module (HSM):
+				- A Hardware Security Module (HSM) is an external security device used for crypto-processing, including the management, generation, and secure storage of cryptographic keys. HSMs enhance encryption computation, particularly for symmetric keys longer than 256 bits. High-performance HSM devices connect to networks using TCP/IP. Examples of HSM devices include Thales Luna Network HSM, nShield HSM, Utimaco HSM, and Cryptosec Dekaton PCI.
+			- USB Encryption:
+				- USB encryption is an additional security feature for USB storage devices, providing onboard encryption services. Encrypted USB devices require an on-device credential system or software- or hardware-based authentication from a computer. USB encryption protects against malware distribution via USB and helps prevent data loss and leakage. Examples of hardware USB-encrypted devices include Kingston IronKey D300S and diskAshur Pro.
+			- Hard Drive Encryption:
+				- Hard drive encryption technology encrypts stored data using various encryption methods. These devices do not use on-device keyboards or fingerprint readers; instead, they rely on TPMs or HSMs. Hard drive encryption devices can be installed as internal drives in computers. Examples include military-grade 256-bit AES hardware encryption and DiskCypher AES SATA hard drive encryption.
+	- Quantum Cryptography:
+		- As the world increasingly adopts online information sharing, cryptosystems are facing a sharp rise in security attacks. Traditional mathematical encryption relies on binary digits (0 and 1), making it vulnerable to eavesdropping and manipulation through various techniques. To counter these threats, quantum cryptography has been introduced, offering enhanced security against attacks such as man-in-the-middle (MITM) attacks.
+		- Quantum cryptography is based on the principles of quantum mechanics, particularly quantum key distribution (QKD), which uses photons instead of mathematical algorithms for encryption. In this system, data elements are encrypted using a sequence of photons, each possessing a unique spin as they travel between the sender and receiver. These photons pass through different polarization filters—vertical, horizontal, backslash, and forward slash—which determine their binary value:
+			- Horizontal (–): 0
+			- Vertical (|): 1
+			- Backslash (/): 1
+			- Forward slash (\): 0
+		- While attackers may attempt to eavesdrop, they cannot manipulate the data without detection. Since photons are transmitted through arbitrary filters, an attacker must correctly determine the exact polarization. Any incorrect measurement distorts the photon’s polarization, alerting the receiver to the eavesdropping attempt.
+	- Other Encryption Techniques:
+		- Homomorphic Encryption:
+			- Homomorphic encryption differs from conventional encryption mechanisms, where mathematical operations are performed directly on encrypted plaintext. Homomorphic encryption allows users to keep their data secure and in an encrypted format even while it is being processed or manipulated. In this technique, encryption and decryption are performed by the same key holder. The homomorphic mechanism enables the user or sender to encrypt confidential data and outsource it to an enterprise via cloud services for processing.
+			- How Homomorphic Encryption Differs from Other Encryption Mechanisms:
+				- In private key encryption: Only key holders can generate and decrypt ciphertexts using the same key.
+				- In public key encryption: The public key holder generates the ciphertext, while the secret key holder decrypts it.
+				- In homomorphic encryption: The key holder generates the ciphertext, and anyone can manipulate the encrypted data. However, only the key holder can decrypt it.
+			- The primary reason for using homomorphic encryption is that it allows an untrusted entity to process encrypted data without compromising its security. This mechanism ensures that only the sender can encrypt and decrypt the data while permitting mathematical operations to be performed on the ciphertext according to the rules defined by the sender.
+		- Post-Quantum Cryptography:
+			- Post-quantum cryptography, also known as quantum-resistant or quantum-proof cryptography, refers to advanced cryptographic algorithms (primarily public-key based) designed to protect security systems against attacks from both conventional and quantum computers. These algorithms can function alongside existing communication protocols and operating networks. Additionally, post-quantum cryptography can serve as a standalone encryption method, replacing current vulnerable cryptosystems while adhering to standard security policies.
+			- Post-quantum cryptography aims to ensure secure, wide-range communication, secret-key processing, public-key-based signatures, and encryption for high-security applications such as secure e-voting. It includes various low-cost, secure systems commonly used in online communications. Ultimately, post-quantum cryptography is designed to prepare for the era of quantum computing by updating cryptographic algorithms and security standards.
+		- Lightweight Cryptography:
+			- A major challenge in modern cryptography is its application in low-powered devices. Researchers are working on developing compact, quantum-safe algorithms that can operate efficiently on resource-constrained devices. Most existing cryptographic algorithms are optimized for servers and desktops, whereas lightweight cryptography is designed for low-complexity applications such as RFID tags, sensor-based systems, and other IoT-based technologies.
+			- The primary goal of lightweight cryptography is to minimize power and resource consumption without compromising security.
+	- Cipher Modes of Operation:
+		- Cipher modes of operation, also known as block cipher modes, are techniques used to encrypt fixed-length blocks of plaintext using a secret key. Some modes also incorporate an initialization vector (IV) to enhance security. These modes ensure both confidentiality and, in some cases, authenticity of data. The client and server securely exchange an encrypted symmetric key to facilitate encryption and decryption. Below are four common block cipher modes of operation, explaining how encryption at the source and decryption at the destination work.
+		- Electronic Codebook (ECB) Mode:
+			- ECB is the simplest block cipher mode of operation. In this mode, plaintext is divided into fixed-size blocks, which are then encrypted independently using the same secret key and block cipher encryption algorithm.
+			- Encryption:
+				- Each plaintext block is encrypted separately with the secret key, producing a corresponding ciphertext block.
+				- This process is repeated for all plaintext blocks.
+			- Decryption:
+				- Each ciphertext block is decrypted using the same key and algorithm to retrieve the original plaintext block.
+				- The process is repeated for all ciphertext blocks.
+			- Weakness: If identical plaintext blocks appear in the input, they will produce identical ciphertext blocks, making it easier for attackers to detect patterns and infer information about the plaintext.
+		- Cipher Block Chaining (CBC) Mode:
+			- CBC improves upon ECB by introducing an initialization vector (IV) to ensure that identical plaintext blocks do not yield identical ciphertext blocks.
+			- Encryption:
+				- The first plaintext block is XORed with the IV before encryption.
+				- The resulting ciphertext block is then XORed with the next plaintext block before encryption.
+				- This chaining process continues until all plaintext blocks are encrypted.
+			- Decryption:
+				- The first ciphertext block is decrypted and then XORed with the IV to recover the plaintext.
+				- For subsequent blocks, the previous ciphertext block is XORed with the decrypted output to retrieve the plaintext.
+			- Weakness: A single-bit error in a ciphertext block affects not only its corresponding plaintext block but also the next block, leading to error propagation.
+		- Cipher Feedback (CFB) Mode:
+			- CFB operates in a way that converts a block cipher into a self-synchronizing stream cipher by using previous ciphertext blocks as input for encryption.
+			- Encryption:
+				- The IV is initially stored in a shift register and encrypted using the secret key.
+				- A portion of the encryption output is XORed with the plaintext block to produce the ciphertext.
+				- The ciphertext is then fed back into the shift register, and the process repeats for subsequent blocks.
+			- Decryption:
+				- The same process is followed, except that the received ciphertext block is XORed with the encryption output to retrieve the plaintext.
+			- Advantage: CFB makes cryptanalysis more difficult and mitigates error propagation to some extent. However, it may still suffer from some data loss due to the shift register mechanism.
+		- Counter (CTR) Mode:
+			- CTR mode transforms a block cipher into a stream cipher by using a counter value instead of chaining previous ciphertext blocks.
+			- Encryption:
+				- A counter value is generated and encrypted using the secret key.
+				- The encryption output is then XORed with the plaintext block to produce ciphertext.
+				- The counter is incremented for each subsequent block.
+			- Decryption:
+				- The same counter values and secret key are used at the receiving end.
+				- The encrypted counter values are XORed with the ciphertext to recover the plaintext.
+			- Advantage: CTR mode does not suffer from error propagation and allows parallel processing since each block is independently encrypted and decrypted. However, both sender and receiver must maintain synchronized counter values.
+	- Modes of Authenticated Encryption:
+		- Authenticated encryption (AE) modes of operation provide both integrity and confidentiality for transmitted messages. In any cipher mode of operation, encryption and decryption are only possible with a shared secret key, preventing man-in-the-middle (MITM) attacks. However, an attacker can still attempt a chosen ciphertext attack to break the encryption scheme. AE addresses this vulnerability by incorporating a message authentication code (MAC) into the ciphertext. This prevents unauthorized modifications, as the AE scheme rejects improper ciphertexts during decryption.
+		- Authenticated Encryption with Message Authentication Code (MAC):
+			- A MAC is a value obtained by hashing a plaintext message using a shared secret key. It ensures message integrity, allowing the receiver to verify the message using the attached hash value. There are three main ways to use a MAC in encrypted messages:
+			- Encrypt-then-MAC (EtM):
+				- In this approach, the plaintext is first encrypted using a secret key. A MAC is then generated for the resulting ciphertext. The MAC is attached to the ciphertext before transmission. This method provides higher security compared to other AE approaches.
+			- Encrypt-and-MAC (E&M):
+				- In the E&M approach, a MAC is generated from the plaintext first. Then, the plaintext is encrypted using a secret key. Finally, both the ciphertext and the MAC are transmitted together.
+			- MAC-then-Encrypt (MtE):
+				- In this approach, a MAC is first generated from the plaintext using a hash function. The MAC is then appended to the plaintext, and the entire combination is encrypted using a secret key. This results in a ciphertext that contains the encrypted MAC.
+		- Authenticated Encryption with Associated Data (AEAD):
+			- AEAD is another method used to ensure both integrity and authenticity for messages containing encrypted and unencrypted data. This approach includes additional authenticated data (AAD) in the encryption process to prevent chosen ciphertext attacks. The message header remains unencrypted so the receiver can verify the message's source, while the payload is encrypted to ensure confidentiality.
+	- Cryptography Tools:
+		- You can use various cryptographic tools to encrypt and decrypt information, files, and other data. These tools implement different encryption algorithms to ensure security.
+		- BCTextEncoder (www.jetico.com): The BCTextEncoder utility simplifies the encoding and decoding of text data. It compresses, encrypts, and converts plaintext into an encoded text format, which users can copy to the clipboard or save as a text file. It supports both public-key encryption and password-based encryption methods. Additionally, it employs strong, approved symmetric and public-key algorithms for secure data encryption.
+		- CryptoForge (www.cryptoforge.com)
+		- AxCrypt (axcrypt.net)
+		- Microsoft Cryptography Tools (www.microsoft.com)
+		- Concealer (www.belightsoft.com)
+		- SensiGuard (www.sensiguard.com)
+		- Cypherix (www.cypherix.com)
