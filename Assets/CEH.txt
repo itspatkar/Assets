@@ -19524,3 +19524,110 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Concealer (www.belightsoft.com)
 		- SensiGuard (www.sensiguard.com)
 		- Cypherix (www.cypherix.com)
+- Applications of Cryptography:
+	- Cryptography plays a crucial role in securing communication and data across various domains. This section explores key applications of cryptography, including digital signatures, Secure Sockets Layer (SSL), Transport Layer Security (TLS), Pretty Good Privacy (PGP), email encryption, disk encryption, and blockchain.
+	- Public Key Infrastructure (PKI):
+		- Public Key Infrastructure (PKI) is a security framework designed to enhance the confidentiality of information exchanged over the insecure Internet. It encompasses the hardware, software, people, policies, and procedures necessary for creating, managing, distributing, using, storing, and revoking digital certificates. In cryptography, PKI helps bind public keys to corresponding user identities through a Certification Authority (CA).
+		- Components of PKI:
+			- Certificate Management System: Generates, distributes, stores, and verifies certificates.
+			- Digital Certificates: Establish credentials for individuals performing online transactions.
+			- Validation Authority (VA): Stores and verifies certificates, including their public keys.
+			- Certification Authority (CA): Issues and verifies digital certificates.
+			- End User: Requests, manages, and uses digital certificates.
+			- Registration Authority (RA): Acts as a verifier for the CA.
+		- PKI is a comprehensive system that enables the use of public-key encryption and digital signature services across various applications. PKI authentication relies on digital certificates (also known as public-key certificates) that CAs issue and sign. A digital certificate is a digitally signed statement that includes a public key and the subject's identity (user, company, or system).
+		- PKI employs public-key cryptography, widely used on the Internet to encrypt messages and authenticate senders. In public-key cryptography, a CA generates a pair of public and private keys using the same algorithm simultaneously. The private key remains confidential and is held only by the certificate's subject (user, company, or system), while the public key is made accessible in a directory for all parties. The subject uses the private key to decrypt messages encrypted with the corresponding public key. Conversely, others encrypt messages using the subject’s public key, ensuring that only the intended recipient can decrypt them with their private key.
+		- Steps in the PKI Process:
+			- The subject (user, company, or system) applies for a certificate from the Registration Authority (RA) to securely exchange information.
+			- The RA receives the request, verifies the subject’s identity, and forwards the request to the CA for issuing a public key certificate.
+			- The CA issues the public key certificate, binding the subject’s identity to their public key, and updates the information with the Validation Authority (VA).
+			- When the subject initiates a transaction, they digitally sign the message using their private key and send it to the recipient, including the public key certificate.
+			- The recipient verifies the sender's authenticity by querying the VA regarding the validity of the public key certificate.
+			- The VA compares the user’s public key certificate with the CA's updated information and determines whether the certificate is valid or invalid.
+	- Certification Authorities:
+		- Certification Authorities (CAs) are trusted entities that issue digital certificates. A digital certificate verifies the ownership of a public key by the subject (user, company, or system) specified in the certificate. This helps others trust signatures or statements made using the corresponding private key.
+		- Some popular CAs are discussed below:
+			- Comodo (www.comodoca.com): Comodo offers a range of PKI digital certificates with strong SSL encryption (128/256-bit) and Server-Gated Cryptography (SGC). It ensures confidentiality, system reliability, and compliance with industry standards through independent audits. Comodo also provides PKI management solutions such as Comodo Certificate Manager and Comodo EPKI Manager.
+			- IdenTrust (www.identrust.com): IdenTrust is a trusted third-party CA serving various sectors, including banking, corporate enterprises, government, and healthcare. It offers solutions for digital signing and sealing, compliance with NIST SP 800-171, global identity networks, and managed PKI hosting services.
+			- DigiCert CertCentral (www.digicert.com): CertCentral streamlines the entire certificate lifecycle by consolidating tasks such as issuing, installing, inspecting, remediating, and renewing TLS/SSL certificates. It efficiently manages high-volume TLS/SSL certificate issuance for multiple individuals and teams.
+			- GoDaddy (www.godaddy.com): GoDaddy SSL Certificates comply with CA/Browser Forum guidelines and provide SHA-2 hash algorithm and 2048-bit encryption. They also offer protection for unlimited servers, ensuring robust security.
+	- Signed Certificate (CA) vs. Self-Signed Certificate:
+		- Signed Certificate:
+			- As shown in the diagram above, the user obtains a digital certificate from a trusted Certificate Authority (CA). The digital certificate contains the name of the certificate holder, a serial number, expiration dates, a copy of the certificate holder's public key, and the digital signature of the CA. The user signs the document using their private key and sends it to the receiver. The receiver can verify the certificate by consulting a Validation Authority (VA), which confirms its validity.
+		- Self-Signed Certificate:
+			- As shown in the diagram above, the user creates a self-signed digital certificate using certificate creation tools such as Adobe Acrobat Reader, Java Keytool, or Apple’s Keychain. The certificate contains the user’s name, public key, and digital signature. The user signs the document using the self-signed certificate and sends it to the receiver. The receiver can verify the certificate by directly consulting the user, who confirms its authenticity.
+	- Digital Signature:
+		- A digital signature uses asymmetric cryptography to replicate the security properties of a handwritten signature in a digital format. It serves as a cryptographic method for authentication. Public-key cryptography, which employs asymmetric encryption, enables users to create digital signatures.
+		- In public-key cryptography, there are two types of keys:
+			- Private key: Known only to the signer, it is used to generate the digital signature.
+			- Public key: Widely available, it is used by the recipient to verify the digital signature.
+		- A hash function is an algorithm that plays a crucial role in creating and verifying a digital signature. This function generates a digital representation of the message, known as a message fingerprint or hash value. The hash value is significantly smaller than the original message but uniquely corresponds to it. If an attacker alters the message, the hash function will produce a completely different hash value, indicating tampering.
+		- To verify a digital signature, the recipient requires the original message's hash value and the encryption algorithm used to generate the signature. Using the sender’s public key, the verifier ensures that the digital signature was created with the corresponding private key. Additionally, the verifier checks whether the computed hash value matches the original one.
+		- For added security, a digital signature can be further protected by encrypting the signed email, ensuring confidentiality.
+	- Secure Sockets Layer (SSL):
+		- The Secure Sockets Layer (SSL) protocol is an application-layer protocol developed by Netscape to manage the security of message transmission on the Internet. It provides a secure authentication mechanism between two communicating applications, such as a client and a server. SSL requires a reliable transport protocol, such as TCP, for data transmission and reception. It uses RSA asymmetric (public-key) encryption to encrypt data transferred over SSL connections. Any application-layer protocol, such as HTTP, FTP, or Telnet, can operate over SSL transparently. SSL acts as an intermediary between the encryption algorithm and the session key while also verifying the destination server before data transmission and reception. SSL encrypts the entire application protocol's data to ensure security.
+		- SSL also offers "channel security" with three basic properties:
+			- Private channel: All messages are encrypted after a handshake establishes a shared secret key.
+			- Authenticated channel: The server endpoint of the conversation is always authenticated, while the client endpoint is optionally authenticated.
+			- Reliable channel: Message transfer includes an integrity check.
+		- SSL employs both asymmetric and symmetric encryption mechanisms. Public-key encryption verifies the identities of the server, client, or both. Once authentication occurs, the client and server generate symmetric keys, enabling rapid and secure data communication. An SSL session executes the SSL handshake protocol to synchronize the states of the server and client, ensuring protocol consistency.
+		- SSL Handshake Protocol Flow:
+			- The SSL handshake protocol operates on top of the SSL record layer. The steps of the handshake process are as follows:
+				- The client sends a hello message to the server. The server must respond with a hello message; otherwise, the connection will fail due to a fatal error. The client and server hello messages establish attributes such as protocol version, session ID, cipher suite, and compression method.
+				- Once the connection is established, the server sends a certificate to the client for authentication. The server may also send a server key exchange message. After authenticating the server, it may request a certificate from the client (if required by the selected cipher suite).
+				- The server sends a hello done message, signaling the end of its handshake process, and waits for the client’s response.
+				- If the client receives a certificate request message, it must respond with either a certificate message or a no certificate alert. The client then sends a client key exchange message. The content of this message depends on the public-key algorithm used. If the client’s certificate has signing capabilities, a digitally signed certificate verifies the message before transmission.
+				- The client transmits the change cipher spec message and applies the pending cipher specification to the current session. It then sends a message indicating that all future communication will use the newly established encryption parameters.
+				- The server responds with its own change cipher spec message, applies the pending cipher specification, and finalizes the encryption settings. At this point, the handshake is complete, and the server begins exchanging application-layer data with the client.
+		- Session Resumption and Replication:
+			- Resuming a previous session or replicating an existing session follows this process:
+				- The client initiates communication by sending a hello message with the session ID of the session it wants to resume.
+				- If the server recognizes the session ID, it re-establishes the session using the same session state.
+				- The server and client then exchange change cipher spec messages and proceed directly to the finished messages.
+				- Once re-established, the server and client resume data exchange at the application layer.
+				- If the session ID is not recognized, the server generates a new session ID, and the SSL client and server perform a complete handshake.
+	- Transport Layer Security (TLS):
+		- Transport Layer Security (TLS) is a cryptographic protocol used to establish a secure connection between a client and a server, ensuring the privacy and integrity of transmitted information. It employs symmetric encryption for bulk data encryption, asymmetric encryption for authentication and key exchange, and message authentication codes (MACs) for verifying message integrity. The RSA algorithm, with key strengths of 1024 and 2048 bits, is commonly used in TLS. By implementing TLS, security risks such as message tampering, forgery, and interception can be mitigated. One key advantage of TLS is its independence from the application protocol, allowing higher-level protocols to operate transparently on top of it.
+		- TLS consists of two primary layers: the TLS Record Protocol and the TLS Handshake Protocol.
+			- TLS Record Protocol:
+				- The TLS Record Protocol is a layered protocol that ensures secure communication using encryption algorithms such as DES. It secures application data with keys generated during the handshake process and verifies the integrity and origin of transmitted messages.
+				- The TLS Record Protocol provides connection security through two fundamental properties:
+					- Privacy: Symmetric cryptography (e.g., DES) is used for data encryption. Unique keys for symmetric encryption are generated for each connection, based on a secret negotiated by another protocol, such as the TLS Handshake Protocol. TLS can operate without encryption if necessary.
+					- Reliability: The protocol ensures message integrity by using a keyed MAC. Secure hash functions, such as SHA and MD5, are used for MAC computations.
+				- The TLS Record Protocol performs the following tasks:
+					- Fragments outgoing data into manageable blocks and reassembles incoming data.
+					- Optionally compresses outgoing data and decompresses incoming data.
+					- Applies a MAC to outgoing data and verifies incoming data using the MAC.
+					- Encrypts outgoing data and decrypts incoming data.
+				- After processing, the TLS Record Protocol sends encrypted data to the TCP layer for transport.
+			- TLS Handshake Protocol:
+				- The TLS Handshake Protocol enables mutual authentication between the client and server while negotiating encryption algorithms and cryptographic keys before data exchange.
+				- It provides connection security through three key properties:
+					- Peer Authentication: Asymmetric cryptography is used to authenticate one or both parties. Authentication is optional but typically required for at least one peer.
+					- Secure Key Exchange: A shared secret is securely negotiated.
+					- Reliability: The negotiation process is protected against attacks and manipulation.
+				- Operating on top of the TLS Record Protocol, the TLS Handshake Protocol establishes cryptographic parameters for the session state. At the beginning of communication, the TLS client and server agree on a protocol version, select cryptographic algorithms, authenticate each other (if required), and use asymmetric cryptography to generate shared secrets.
+				- Steps of the TLS Handshake Protocol:
+					- The client sends a "Client Hello" message containing a random value and a list of supported cipher suites to the server.
+					- The server responds with a "Server Hello" message, including its random value.
+					- The server sends its certificate to the client for authentication and may optionally request the client’s certificate. The server then sends a "Server Hello Done" message.
+					- If requested, the client sends its certificate to the server.
+					- The client generates a random pre-master secret, encrypts it using the server’s public key, and transmits it to the server.
+					- The server decrypts the pre-master secret and, along with the client, derives the master secret and session keys.
+					- The client sends a "Change Cipher Spec" message to indicate that it will begin using the new session keys for encryption and hashing, followed by a "Client Finished" message.
+					- The server receives the "Change Cipher Spec" message and switches its record layer security state to symmetric encryption using the session keys. It then sends a "Server Finished" message.
+					- Once the handshake is complete, the client and server securely exchange application data using session keys for encryption.
+				- With the handshake successfully completed, all subsequent communication between the client and server is encrypted and protected.
+	- Cryptography Toolkits:
+		- Cryptography toolkits consist of cryptographic primitives, algorithms, and schemes that provide security for various applications. Some notable cryptography toolkits are discussed below:
+		- OpenSSL (www.openssl.org):
+			- OpenSSL is an open-source cryptography toolkit that implements the SSL and TLS network protocols, along with the cryptographic standards they require. It includes a command-line tool that allows users to access various cryptographic functions from OpenSSL’s crypto library via the shell.
+			- OpenSSL can be used for:
+				- Creating and managing private keys, public keys, and cryptographic parameters
+				- Performing public-key cryptographic operations
+				- Generating X.509 certificates, certificate signing requests (CSRs), and certificate revocation lists (CRLs)
+		- wolfSSL (www.wolfssl.com)
+		- AES Crypto Toolkit (www.ni.com)
+		- Libsodium (github.com)
+		- Crypto++ (cryptopp.com)
+		- PyCryptodome (github.com)
