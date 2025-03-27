@@ -19710,3 +19710,103 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- Select File -> Options -> Trust Center -> Trust Center Settings.
 				- Choose Email Security from the left pane.
 				- In the Encrypted email section, check Encrypt contents and attachments for all outgoing messages, then click OK.
+	- Signing and Encrypting Email Messages on Mac:
+		- Email security in Apple Mail can be enhanced by using encryption features such as digital signatures and message encryption, provided by Apple Mail service providers. Users can send digitally signed and encrypted emails from an Apple device.
+		- Sending Digitally Signed and Encrypted Emails:
+			- Open Apple Mail on your Mac and click File → New Message.
+			- Click the From field and select the account that holds the personal certificate in the Keychain from the pop-up menu.
+			- Note: When a personal certificate is enabled in the Keychain, a blue checkmark (✔) appears in the mail, indicating that the outgoing message can be digitally signed.
+		- Receiving Digitally Signed and Encrypted Emails:
+			- An email received with a signed checkmark icon (✔) indicates that the message is digitally signed by a legitimate sender. The recipient can view the sender’s digital certificate by clicking the icon.
+			- If a warning message appears, it suggests that the original email data may have been tampered with or that the sender's identity cannot be verified.
+			- An email received with a closed lock icon (🔒) indicates that the message is encrypted. The recipient can access the email only by providing a valid private key for decryption.
+	- Encrypting and Decrypting Email Messages Using OpenPGP:
+		- While PGP offers strong security, it remains vulnerable to online attacks. However, using OpenPGP (a hybrid of PGP) across multiple environments—such as Windows, macOS, Android, iOS, Linux, and browser plugins—enhances security. Configuring OpenPGP with compatible browser extensions further strengthens email security within the browser environment. Users can leverage browser extension tools like FlowCrypt, which integrates with OpenPGP to facilitate secure email communication.
+		- FlowCrypt (Gmail) (flowcrypt.com):
+			- FlowCrypt is an end-to-end email encryption tool that integrates with OpenPGP to secure emails and attachments in Gmail (G Suite, Business, and Enterprise). It enables encryption and decryption of emails directly on user devices using private and public keys.
+			- Steps to Send and Retrieve an Encrypted Email Using FlowCrypt (Gmail):
+				- Setup:
+					- Open the browser and enable OpenPGP.
+					- Install and configure the FlowCrypt browser extension for Chrome or Firefox.
+				- At the Sender’s End:
+					- Log in to your Gmail account at https://mail.google.com using the same browser.
+					- Click the Secure Compose icon in the left pane. A New Secure Message window appears.
+					- Enter the recipient’s email address in the Add Recipient field.
+					- Note: If the recipient’s name appears in green, they also have FlowCrypt installed in their browser.
+					- Add a Subject and Body (including attachments, if any).
+					- Click Encrypt, Sign, and Send to securely send the email.
+				- At the Recipient’s End:
+					- Open the newly received email.
+					- Note: Depending on the settings, the recipient may need to enter their PGP key to decrypt the email.
+	- Email Encryption Tools:
+		- Several important email encryption tools help secure email messages. Some of them are:
+		- RMail (rmail.com): RMail is an email security tool that offers features such as open tracking, delivery proof, email encryption, electronic signatures, and large file transfer. It integrates seamlessly with existing email platforms, including Microsoft Outlook and Gmail. With RMail, users can encrypt sensitive emails and attachments to ensure security and legal compliance.
+		- Mailvelope (mailvelope.com)
+		- Virtru (www.virtru.com)
+		- WebrootTM (www.webroot.com)
+		- Secure Email (S/MIME) Certificates (www.ssl.com)
+		- Proofpoint Email Protection (www.proofpoint.com)
+		- Paubox (www.paubox.com)
+	- Disk Encryption:
+		- Disk encryption secures data by encrypting every bit stored on a disk or disk volume, preventing unauthorized access. This technology safeguards data confidentiality by converting it into an unreadable format using encryption software or hardware. Disk encryption ensures privacy through passphrases and hidden volumes, functioning similarly to text-message encryption and protecting data even when the operating system is inactive.
+		- By encrypting a disk—whether a USB flash drive, external HDD, or backup—users can prevent unauthorized access to sensitive information. Disk-encryption software scrambles stored data into an unreadable code, which can only be accessed after decryption. This makes disk encryption particularly useful for securely transmitting sensitive data and protecting real-time exchanges from potential threats.
+		- Encrypted information remains secure unless an attacker successfully decrypts it. Additionally, installing encryption software on a system enhances security, making it essential for devices storing valuable data or handling extensive data transfers.
+	- Disk Encryption Tools:
+		The primary goal of disk encryption tools is to encrypt a disk partition to ensure the confidentiality of the information stored on it.
+		- Below are some commonly used disk encryption tools:
+			- VeraCrypt (veracrypt.fr):
+				- VeraCrypt is a software application designed for creating and maintaining on-the-fly encrypted volumes (data storage devices). In on-the-fly encryption, data is automatically encrypted before being saved and decrypted immediately upon loading, without requiring user intervention. Data stored on an encrypted volume cannot be accessed without the correct password, keyfile(s), or encryption keys.
+				- VeraCrypt encrypts the entire file system, including file names, folder names, free space, and metadata. Users can transfer files to and from a mounted VeraCrypt volume just as they would with any standard disk, using simple drag-and-drop operations. Files are automatically decrypted in memory (RAM) while being read or copied from an encrypted volume, and they are automatically encrypted before being written to the disk.
+			- Rohos Disk Encryption (rohos.com):
+				- Rohos Disk Encryption allows users to create hidden and encrypted partitions on a computer, USB flash drive, or cloud storage services such as Google Drive, OneDrive, and Dropbox. The tool utilizes the NIST-approved AES encryption algorithm with a 256-bit encryption key, ensuring automatic encryption for enhanced security.
+			- BitLocker Drive Encryption (www.microsoft.com)
+				- BitLocker provides offline data and operating system (OS) protection for computers running Windows®. It helps prevent unauthorized access to data by encrypting the entire Windows volume.
+				- BitLocker utilizes a microchip called a Trusted Platform Module (TPM) to enhance data protection and maintain the integrity of early boot components. The TPM safeguards data from theft or unauthorized access, particularly when the computer is tampered with while the OS is offline.
+			- Symantec Encryption (www.broadcom.com)
+			- SafeGuard Enterprise Encryption (www.sophos.com)
+			- GiliSoft Full Disk Encryption (www.gilisoft.com)
+			- Check Point Full Disk Encryption (www.checkpoint.com)
+			- DiskCryptor (diskcryptor.org)
+		- Disk Encryption Tools for Linux:
+			- Cryptsetup (gitlab.com): Cryptsetup is a utility for setting up disk encryption using the dm-crypt kernel module. It supports various encryption formats, including plain dm-crypt volumes, LUKS (Linux Unified Key Setup) volumes, loop-AES, TrueCrypt (with VeraCrypt extensions), and BitLocker.
+			- Cryptmount (cryptmount.sourceforge.net)
+			- Tomb (dyne.org)
+			- CryFS (www.cryfs.org)
+			- GnuPG (www.gnupg.org)
+			- Harmony Endpoint (www.checkpoint.com)
+		- Disk Encryption Tools for macOS:
+			- FileVault (support.apple.com): FileVault uses XTS-AES-128 encryption with a 256-bit key to protect the startup disk from unauthorized access. It is available on macOS Lion and later versions. Once FileVault is enabled, the user must log in with their account to access the system. The encryption process begins automatically in the background, ensuring that all files stored on the startup disk are encrypted as soon as they are created.
+			- VeraCrypt (www.veracrypt.fr)
+			- BestCrypt Volume Encryption (www.jetico.com)
+			- Dell Full Disk Encryption (www.dell.com)
+			- Comodo Disk Encryption (www.comodo.com)
+			- GravityZone Full Disk Encryption (www.bitdefender.com)
+	- Blockchain:
+		- A blockchain is a type of distributed ledger technology (DLT) used to securely record and store transaction history in the form of blocks. Data recorded in blockchains is resistant to unauthorized modifications, and transparency is maintained through cryptographic techniques. For multiple transactions, multiple blocks are created and cryptographically linked together to form a blockchain. This chain of records, or blocks, is known as a ledger, which is shared across the network to inform participants of all transaction details and the number of assets owned by each member. Members in the network authenticate blocks using their hash values, which are further validated by crypto miners using complex cryptographic algorithms. Once validated, the blocks are approved and added to the blockchain.
+		- Blockchains are generally implemented using two mechanisms: hash functions (mostly SHA-256) and asymmetric key algorithms. The process of validating blocks is known as proof of work, for which crypto miners are compensated. The process of adding blocks to a blockchain after performing proof of work is referred to as crypto mining. Each block in a blockchain consists of three elements:
+			- Data (transaction details)
+			- Hash (a unique identifier)
+			- The hash of the previous block
+		- Every time a new block is created, it is assigned a new hash value, which is then shared with the next block. The first block in a blockchain is referred to as the genesis block and is represented by a series of zeros. Once a block verifies the hash of the previous block, it is allowed to join the blockchain.
+		- If a block is tampered with, the next block in the chain invalidates it because its previous hash value no longer matches. However, blockchain security is not solely ensured by generating hashes and comparing them with other blocks. Attackers can generate valid hashes using advanced cryptographic techniques. To mitigate such risks, the proof of work mechanism is employed. The security of the blockchain relies on both the effective use of hash functions and the proof-of-work process carried out by miners (in public ledgers).
+		- The figure below illustrates the process of creating a blockchain. In the figure, a block is created by a participant in a transaction. This block is then shared with all members of the network. Each member validates the block using its hash, after which the block is added to the blockchain. Consequently, every participant has access to the details of the new transaction.
+		- Types of Blockchains:
+			- Blockchains can be classified into four types, each serving different purposes:
+			- Public Blockchain (Public Ledger):
+				- A public blockchain operates without a central authority or administrator. It is a decentralized and permissionless network where anyone can join, create, and share blocks. Once data is validated on the blockchain, it becomes immutable and secure from alterations. Examples of public blockchains include Bitcoin and Ethereum. Each member in this blockchain has access to other ledgers without requiring special permissions.
+				- Key aspects of public blockchains:
+					- Anyone in the network can participate in validation.
+					- Once a block is created, it cannot be modified or tampered with.
+					- Public blockchains can be used in sectors such as education and healthcare.
+					- Public blockchains are suitable for B2C services.
+			- Private Blockchain (Private Ledger):
+				- A private blockchain is governed by a central authority that determines who can join and participate in the network. In a private ledger, only authorized members have access to transaction data. Examples of private blockchains include Hyperledger and Ripple (XRP).
+				- Key aspects of private blockchains:
+					- An administrator controls access to the network.
+					- Organizations can add or remove participants as needed.
+					- Private blockchains can be used in sectors such as defense and banking.
+					- Private blockchains are suitable for B2B services.
+			- Federated Blockchain (Consortium Blockchain):
+				- A federated blockchain, also known as a consortium blockchain, is a partially decentralized system. Unlike private blockchains, where a single entity has control, a consortium blockchain is managed by a group of organizations or individuals. Control is distributed among predetermined or trusted nodes. This type of blockchain is widely used by government organizations and central banks. Federated blockchains offer high speed and scalability. Examples include EWF (Energy Web Foundation) and R3 (banking consortium).
+			- Hybrid Blockchain:
+				- A hybrid blockchain combines features of both public and private blockchains. In a hybrid blockchain, certain records are publicly accessible, while other data remains confidential within a private network. This allows organizations to control which information is shared and which remains private. An example of a hybrid blockchain is the IBM Food Trust, which enables supply chain transparency while keeping sensitive business data secure.
