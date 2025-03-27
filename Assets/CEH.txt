@@ -19810,3 +19810,70 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 				- A federated blockchain, also known as a consortium blockchain, is a partially decentralized system. Unlike private blockchains, where a single entity has control, a consortium blockchain is managed by a group of organizations or individuals. Control is distributed among predetermined or trusted nodes. This type of blockchain is widely used by government organizations and central banks. Federated blockchains offer high speed and scalability. Examples include EWF (Energy Web Foundation) and R3 (banking consortium).
 			- Hybrid Blockchain:
 				- A hybrid blockchain combines features of both public and private blockchains. In a hybrid blockchain, certain records are publicly accessible, while other data remains confidential within a private network. This allows organizations to control which information is shared and which remains private. An example of a hybrid blockchain is the IBM Food Trust, which enables supply chain transparency while keeping sensitive business data secure.
+- Cryptanalysis:
+	- Attackers may use various cryptographic attacks to bypass the security of a cryptographic system by exploiting vulnerabilities in code, ciphers, cryptographic protocols, or key management schemes. This process is known as cryptanalysis. Cryptanalysis is the study of ciphers, ciphertext, and cryptosystems to identify vulnerabilities that could allow an attacker to extract plaintext from ciphertext, even without knowing the cryptographic key or encryption algorithm used. This section explores different cryptographic attacks that attackers use to compromise cryptographic systems, as well as various cryptanalysis techniques and tools that aid in breaching cryptographic security.
+	- Cryptanalysis Methods:
+		- Linear Cryptanalysis:
+			- Linear cryptanalysis is a technique used to analyze block ciphers by finding linear approximations of their behavior. This method, invented by Mitsuru Matsui, is a known-plaintext attack that relies on linear approximations to describe the cipher’s operation. By analyzing a sufficient number of plaintext-ciphertext pairs, cryptanalysts can extract bits of information about the encryption key. Naturally, the more pairs available, the higher the probability of success.
+			- Cryptanalysis aims to break cryptographic security. For instance, with the 56-bit Data Encryption Standard (DES), a brute-force attack could take up to 256256 attempts. In contrast, linear cryptanalysis requires approximately 243243 known plaintexts, making it more efficient than brute force but still impractical in many cases without enough data.
+			- The mathematical foundation of linear cryptanalysis involves constructing linear equations that express the equality of two XORed binary variables. For example, consider the following equation: P1⊕P3⊕C1=K2, where P1P1​ and P3P3​ are bits of the plaintext, C1C1​ is a bit of the ciphertext, and K2K2​ is a bit of the key. By deriving similar equations for multiple bits, an attacker can gradually reconstruct the encryption key.
+			- Matsui's Algorithm 2 facilitates this process by analyzing known plaintext-ciphertext pairs. The algorithm works by estimating key bit values based on how frequently an approximation holds across all known pairs. The partial key with the largest absolute deviation from half the total plaintext-ciphertext pairs is considered the most likely candidate.
+		- Differential Cryptanalysis:
+			- Differential cryptanalysis is a powerful cryptanalytic technique applicable to symmetric-key algorithms. Invented by Eli Biham and Adi Shamir, it studies how differences in the input affect differences in the output. Originally designed for chosen-plaintext attacks, differential cryptanalysis has been extended to work with known plaintext and ciphertext as well.
+		- Integral Cryptanalysis:
+			- Integral cryptanalysis, first described by Lars Knudsen, extends differential cryptanalysis and is particularly effective against block ciphers based on substitution-permutation networks (SPNs).
+			- While differential cryptanalysis examines input pairs differing in a single bit, integral cryptanalysis holds b−kb−k bits constant and cycles through all 2k2k possibilities for the remaining kk bits. When k=1k=1, the method reduces to differential cryptanalysis, but for k>1k>1, it introduces a novel analytical approach.
+		- Quantum Cryptanalysis:
+			- Quantum cryptanalysis leverages quantum computers to break cryptographic algorithms. Attackers can use:
+				- Shor’s Algorithm to factor large numbers efficiently, threatening public-key cryptosystems like RSA and Elliptic Curve Diffie-Hellman (ECDH).
+				- Grover’s Algorithm to accelerate brute-force key searches, impacting block ciphers like AES and hash functions such as SHA.
+			- To perform quantum cryptanalysis, attackers must obtain encrypted data and have access to substantial quantum computing resources. The key parameters involved in quantum cryptanalysis include:
+				- Circuit Width: The number of qubits required per time step.
+				- Circuit Depth: The number of time steps required for a quantum circuit.
+				- Number of Gates: The total quantum gates used in the circuit.
+				- Number of T-Gates: The specific number of T-gates used in the circuit.
+				- T-Depth: The time steps required for a T-gate.
+				- MAXDEPTH: The maximum circuit depth (e.g., 240240, 264264, or 296296).
+	- Cryptography Attacks:
+		- Attackers conduct cryptographic attacks by assuming that the cryptanalyst has access to encrypted information. A cryptographic attack, or cryptanalysis, involves studying various principles and methods to decrypt ciphertext back into plaintext without knowledge of the key.
+		- The various types of cryptographic attacks are as follows:
+			- Ciphertext-Only Attack:
+				- A ciphertext-only attack is less effective but more common for an attacker. The attacker only has access to a collection of ciphertexts. This scenario is more likely than a known-plaintext attack but is also the most challenging. The attack is completely successful if the corresponding plaintexts (or even better, the key) can be deduced. Even obtaining partial information about the underlying plaintext is considered a success. To analyze the ciphertexts, the attacker looks for patterns that might reveal hints about the key used. Often, the result of this attack is a partial rather than a complete break.
+			- Adaptive Chosen-Plaintext Attack:
+				- In this type of attack, an attacker has complete access to the plaintext message and its encryption process. The attacker can also modify the content by making a series of interactive queries, choosing subsequent plaintext blocks based on information gained from previous encryption queries. To execute this attack, the attacker must interact with the encryption device.
+			- Chosen-Plaintext Attack:
+				- A chosen-plaintext attack is a highly effective type of cryptanalysis attack. The attacker obtains ciphertexts corresponding to a set of plaintexts of their choosing. This allows them to attempt to derive the encryption key and decrypt other messages encrypted with that key. Since the attacker knows both the plaintext and the corresponding ciphertext, they can gain insights into the key used. Although this technique is difficult, it is not impossible.
+			- Related-Key Attack:
+				- A related-key attack is similar to a chosen-plaintext attack, except that the attacker can obtain ciphertexts encrypted under two different but related keys. This attack is particularly useful in environments where subsequent keys are derived from previous ones, such as in wireless communication. Since the keys are closely related, analyzing the differences can provide clues about the encryption process. Like a ciphertext-only attack, this attack typically results in a partial break.
+			- Dictionary Attack:
+				- In this attack, the attacker constructs a dictionary of plaintexts along with their corresponding ciphertexts over time. Once the dictionary is built, if the attacker obtains a ciphertext, they can use the dictionary to find the corresponding plaintext. Attackers use this technique to decrypt keys, passwords, passphrases, and ciphertexts.
+			- Known-Plaintext Attack:
+				- In a known-plaintext attack, the attacker has access to some plaintext blocks along with their corresponding ciphertexts and the encryption algorithm used. Using this information, they attempt to deduce the encryption key to decipher other messages. This attack is effective against block ciphers and is a form of linear cryptanalysis. The known plaintext blocks are often obtained through educated guesses and logical analysis rather than direct access.
+			- Chosen-Ciphertext Attack:
+				- In this attack, the attacker selects arbitrary ciphertexts and obtains their corresponding plaintexts. Using this information, they attempt to recover the encryption key. To perform this attack, the attacker must have access to the communication channel between the sender and receiver.
+				- There are two variants of this attack:
+					- Lunchtime or Midnight Attack: The attacker has access to the system for a limited time or can access only a few plaintext-ciphertext pairs.
+					- Adaptive Chosen-Ciphertext Attack: The attacker selects a series of ciphertexts and then observes the resulting plaintexts.
+			- Rubber-Hose Attack:
+				- This attack involves extracting cryptographic secrets (e.g., the password to an encrypted file) through coercion or torture. Under pressure, individuals may be forced to reveal encryption keys, passwords, or other sensitive information.
+			- Chosen-Key Attack:
+				- In this attack, an attacker not only breaks a ciphertext but also compromises a larger system that depends on that ciphertext. The attacker typically breaks an n-bit key cipher in 2^(n/2) operations. Once successful, they gain access to the system, allowing them to control it, access confidential data, and launch further attacks.
+			- Timing Attack:
+				- A timing attack is based on measuring the precise execution times of modular exponentiation operations. The attacker attempts to break the ciphertext by analyzing the time taken to execute the encryption and decryption algorithms for various inputs. In a computer system, the execution time of a logical operation may vary based on the input. By providing varying inputs, the attacker attempts to extract the plaintext.
+			- Man-in-the-Middle (MITM) Attack:
+				- This attack is performed against a cryptographic protocol, where an attacker intercepts communication between a client and a server. The attacker negotiates cryptographic parameters, allowing them to decrypt encrypted content and obtain sensitive information such as passwords. They may also inject commands to modify data in transit. MITM attacks commonly target public-key cryptosystems, where key exchange occurs before communication begins.
+	- Code-Breaking Methodologies:
+		- The strength of an encryption algorithm can be measured using various code-breaking techniques. Some of the most common methods are as follows:
+		- Brute Force:
+			- Cryptanalysts attempt to recover the plaintext of a message without knowing the key in advance. They may first try to recover the key or directly attempt to decipher the message. A common cryptanalytic technique is a brute-force attack, also known as an exhaustive search, where every possible key combination is systematically tested. The efficiency of a brute-force attack depends on the hardware used—faster processors can test more keys per second. A successful brute-force attack on the DES encryption method ultimately rendered DES obsolete.
+		- Frequency Analysis:
+			- Frequency analysis studies the occurrence of letters or groups of letters within a ciphertext. This method relies on the fact that, in any given language, certain letters and letter combinations appear more frequently than others. By analyzing the frequency of symbols in a ciphertext, cryptanalysts can make educated guesses about the original plaintext.
+			- For example, in English, the letter “e” is the most commonly used letter. If a particular symbol appears frequently in an encrypted text, it is likely to correspond to “e” or another commonly used letter.
+			- Encrypted source code is especially vulnerable to frequency analysis because certain keywords—such as #define, struct, else, and return—occur repeatedly. To protect against such attacks, sophisticated cryptosystems are required.
+		- Trickery and Deceit:
+			- This method involves social engineering techniques to extract cryptographic keys. Unlike purely mathematical attacks, trickery and deceit rely on manipulating individuals into revealing crucial information.
+			- Example: If an attacker knows part of a message’s content, they can use that information to decrypt the rest of the message more easily. A malicious actor might trick or bribe someone into encrypting and sending a known message, which, when intercepted, could be decrypted using standard cryptanalysis techniques.
+		- One-Time Pad:
+			- Given enough time and resources, any cipher can theoretically be broken—except for the one-time pad, which is considered unbreakable even with infinite computing power.
+			- A one-time pad consists of a random, non-repeating set of letters or numbers used only once for encryption. Each character in the plaintext is encrypted with a corresponding key character from the pad. The receiver, using an identical pad, decrypts the message by reversing the encryption process. After a page of the pad is used, it is securely discarded, ensuring that the encryption remains secure.
+			- Drawback: The key must be as long as the message itself, making it impractical for encrypting and transmitting large amounts of data.
