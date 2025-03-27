@@ -19631,3 +19631,82 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 		- Libsodium (github.com)
 		- Crypto++ (cryptopp.com)
 		- PyCryptodome (github.com)
+	- Pretty Good Privacy (PGP):
+		- Pretty Good Privacy (PGP) is a cryptographic protocol used for encrypting and decrypting data while ensuring authentication and privacy. It is commonly used for data compression, digital signing, and encryption/decryption of messages, emails, files, and directories to enhance email communication security.
+		- PGP employs a hybrid cryptosystem, combining the advantages of symmetric-key cryptography (which is around 1,000 times faster than public-key encryption) and public-key cryptography (which solves key distribution and data transmission issues). It uses RSA for key exchange and digital signatures, IDEA for bulk encryption, and MD5 for computing message digests.
+		- Uses of PGP:
+			- PGP is commonly used for:
+			- Encrypting messages or files before transmission to ensure that only the recipient can decrypt and read them.
+			- Digitally signing plaintext messages to verify the sender’s authenticity.
+			- Encrypting stored files to prevent unauthorized access.
+			- Securely deleting files beyond simple removal from directories or folders.
+			- Compressing data for efficient storage and transmission.
+		- How PGP Works:
+			- PGP Encryption:
+				- The sender encrypts data using PGP, which first compresses the data to reduce patterns that cryptanalysis techniques might exploit.
+				- A random one-time secret key is generated (e.g., GSkAQk49fPD2h).
+				- The random key encrypts the plaintext, producing the ciphertext.
+				- The recipient’s public key encrypts the random key.
+				- The public-key-encrypted random key (e.g., Td7YuEkLg99Qd0) is sent along with the ciphertext to the recipient.
+			- PGP Decryption:
+				- The recipient's PGP software uses their private key to decrypt the encrypted random key.
+				- The recovered random key decrypts the ciphertext, revealing the original plaintext.
+		- Note: Each step of the PGP encryption process—hashing, data compression, symmetric-key cryptography, and public-key cryptography—uses one of the various supported algorithms.
+	- GNU Privacy Guard (GPG):
+		- GNU Privacy Guard (GPG) is a free software replacement for PGP and an open implementation of the OpenPGP standard, used for encrypting and decrypting data. GPG is considered a hybrid encryption software program because it employs both symmetric-key and asymmetric-key cryptography. This enhances security and speed, as symmetric encryption is used for data encryption, while asymmetric encryption facilitates secure key exchange by encrypting the session key with the receiver’s public key. GPG also supports S/MIME and Secure Shell (SSH).
+		- The latest version of GPG supports a wide range of cryptographic functions, including elliptic curve cryptography (ECDSA, ECDH, and EdDSA). It also integrates with the cryptographic library Libgcrypt for additional security features.
+		- Uses of GPG:
+			- Proper management of private and public keys
+			- Creating new private keys and importing/exporting keys, even if they are in armored formats (e.g., ASCII)
+			- Uploading a public key to a key server and signing code with a GPG key for public verification
+			- Deleting private keys from local storage
+			- Encrypting and signing files using asymmetric encryption for email or FTP file transfers
+			- Decrypting and verifying encrypted files using asymmetric keys
+			- Detaching signatures so that signature files can be stored separately from message files
+			- Managing and building a web of trust
+			- Automatically securing messages in messaging applications such as Psi and Fire
+		- How GPG Works:
+			- GPG Encryption:
+				- GPG encrypts messages using asymmetric key pairs.
+				- The sender signs the file with their private key to confirm its integrity.
+				- The file is then encrypted using the receiver’s public key, making it accessible only with the receiver’s private key.
+				- After encryption, the file can be stored locally, distributed via FTP servers, or sent via email.
+			- GPG Decryption:
+				- Decryption is the reverse of encryption.
+				- GPG searches for the receiver’s private key to decrypt the file.
+				- After decryption, GPG automatically verifies the sender’s signature using their public key.
+	- Web of Trust (WoT):
+		- The Web of Trust (WoT) is a trust model used in PGP, OpenPGP, and GnuPG systems. It decentralizes key distribution among PGP users, unlike Public Key Infrastructure (PKI), where a central authority (CA) signs certificates to ensure the authenticity of public keys. In WoT, every user acts as a certificate authority (CA) and can sign the keys of other trusted entities. WoT functions as a network chain in which individuals validate each other’s certificates through their signatures, establishing different levels of trust either directly or indirectly.
+		- How WoT Works:
+			- In a Web of Trust, every PGP user maintains a keyring containing public keys used for encrypting data. Users introduce others whom they trust, forming a decentralized network. In this model, a user encrypts data with the receiver’s public key, ensuring that only the receiver—who possesses the corresponding private key—can decrypt it.
+			- Additionally, every user digitally signs the data with their private key. When the recipient verifies the signature using the sender’s public key, they can confirm the sender’s authenticity.
+			- This process ensures that:
+				- The data originates from a valid sender and has not been tampered with.
+				- Only the intended recipient can decrypt and access the information, as only they hold the corresponding private key.
+		- This decentralized approach enhances security and trust without relying on a single centralized authority.
+	- Encrypting Email Messages in Outlook:
+		- Secure/Multipurpose Internet Mail Extensions (S/MIME) Encryption:
+			- S/MIME certification is a technique that allows users to encrypt their email messages. It ensures that only the sender and designated recipients can access the message without compromising its integrity.
+			- To encrypt email messages using S/MIME encryption, follow these steps:
+				- Prerequisite:
+					- A signing certificate must be attached to the keychain before proceeding.
+					- Steps:
+						- Select File -> Options -> Trust Center -> Trust Center Settings.
+						- Choose Email Security from the left pane.
+						- In the Encrypted email section, click Settings next to Default Setting.
+						- In the Change Security Settings pop-up window, under the Certificates and Algorithms section, select the S/MIME certificate for both the Signing Certificate and Encryption Certificate options. Click OK.
+					- Note: This process applies when Outlook is already configured to use S/MIME.
+		- Microsoft 365 Message Encryption (OME):
+			- Microsoft 365 Message Encryption (OME) allows users to send encrypted emails to any email address. Recipients must either log in to a Microsoft 365 account or use a one-time password to authenticate.
+			- To encrypt email messages using OME, follow these steps:
+			- Encrypt an email message:
+				- In the email message body, select the Options menu.
+				- Click Encrypt and choose the desired encryption option, such as Encrypt-Only or Do Not Forward.
+			- Encrypt a single email message:
+				- Click File, then Properties in the email message body.
+				- In the Properties window, click Security Settings under the Security section.
+				- In the Security Properties pop-up window, check Encrypt message contents and attachments, then click OK.
+			- Encrypt all outgoing messages:
+				- Select File -> Options -> Trust Center -> Trust Center Settings.
+				- Choose Email Security from the left pane.
+				- In the Encrypted email section, check Encrypt contents and attachments for all outgoing messages, then click OK.
