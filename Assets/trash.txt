@@ -1,0 +1,14 @@
+
+C1: henry.ns.cloudflare.com
+C2 (nmap -sn 192.168.10.0/24 -> nmap -PU 192.168.10.0/24): 5
+C3 (nmap -p 22 -O 192.168.10.0/24): 192.168.10.111
+C4 (nmap -p 88,389 -oG 192.168.0.0/24): 192.168.0.222
+C5 (nmap --script smb-os-discovery -p 139,445 192.168.0.222): SKILL.CEH
+C6 (nmap -A 192.168.0.222): SKILL.CEH.com
+C7 (nmap -p 22 -sV 192.168.10.0/24): 8.9p1
+C8 (nmap -p 3306 -sV 172.30.10.0/24 && nmap -T4 -A 172.30.10.99): Ubuntu
+C9 (nmap -sS -sV -T4 -A 192.168.10.0/24): 192.168.10.144
+C10 (dig NS certifiedhacker.com): ns1.bluehost.com, ns2.bluehost.com
+C11 (nmap -p 25 172.30.10.0/24): 172.30.10.200
+C12 (nmap --script smb2-security-mode -p445 172.30.10.200): No
+C13: 276
