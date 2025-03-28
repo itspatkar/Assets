@@ -19877,3 +19877,47 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 			- Given enough time and resources, any cipher can theoretically be broken—except for the one-time pad, which is considered unbreakable even with infinite computing power.
 			- A one-time pad consists of a random, non-repeating set of letters or numbers used only once for encryption. Each character in the plaintext is encrypted with a corresponding key character from the pad. The receiver, using an identical pad, decrypts the message by reversing the encryption process. After a page of the pad is used, it is securely discarded, ensuring that the encryption remains secure.
 			- Drawback: The key must be as long as the message itself, making it impractical for encrypting and transmitting large amounts of data.
+	- Brute-Force Attack:
+		- Cracking cryptographic systems is extremely difficult, as they have no practical weaknesses to exploit. However, it is not impossible. Cryptographic systems use cryptographic algorithms to encrypt messages, relying on a key for encryption and decryption. In cryptography, this key is a crucial parameter that determines the transformation of plaintext into ciphertext and vice versa. If an attacker is able to guess or discover the key, they can decrypt messages and read them in clear text.
+		- A common key length is 128 bits, which is considered strong. To prevent key guessing, cryptographic systems use randomly generated keys, making it computationally infeasible to determine them. However, attackers can attempt to decrypt a message by systematically trying all possible keys until they find the correct one. This method is known as a brute-force attack.
+		- Brute-force attacks require a massive amount of processing power, making them resource- and time-intensive. For any well-designed cryptographic protocol, the time required to find the key depends on its length. Shorter keys are easier to break, while longer keys require significantly more time. A brute-force attack will only succeed if the attacker has enough time and computational resources.
+		- Factors Affecting the Difficulty of a Brute-Force Attack:
+			- Several factors influence how difficult a brute-force attack is:
+			- Key length – Longer keys exponentially increase the difficulty.
+			- Number of possible values per key component – More possible values make brute-force attacks harder.
+			- Attempt speed – The time taken to test each key.
+			- Defense mechanisms – Systems that lock users out after multiple failed attempts can slow attacks.
+		- For example, if a system could brute-force a 56-bit DES key in one second, breaking a 128-bit AES key would take approximately 149 trillion years. Each additional bit in the key length doubles the number of possible keys, requiring twice as much time to brute-force.
+		- Power and Cost Estimates for Brute-Force Attacks:
+			- Estimated Time to Brute-Force Keys Based on Available Computing Power:
+			- 40-bit key (5 characters):
+				- Individual with a $2K PC: 1.4 minutes
+				- Company with a $100K setup: 2 seconds
+				- State-level entity with a $1M infrastructure: 0.2 seconds
+			- 56-bit key (7 characters):
+				- Individual: 73 days
+				- Company: 35 hours
+				- State-level entity: 3.5 hours
+			- 64-bit key (8 characters):
+				- Individual: 50 years
+				- Company: 1 year
+				- State-level entity: 37 days
+			- 128-bit key (16 characters):
+				- Individual: 10²⁰ years
+				- Company: 10¹⁹ years
+				- State-level entity: 10¹⁸ years
+		- Although brute-force attacks are theoretically possible, strong encryption methods make them impractical for most real-world scenarios.
+		- Birthday Attack:
+			- A birthday attack refers to a class of brute-force attacks against cryptographic hash functions that make brute-forcing easier to perform. This attack relies on the birthday paradox, which states that the probability of two or more people in a group of just 23 sharing the same birthday is greater than 50%.
+			- Birthday Paradox:
+				- How many people are needed to have a high likelihood that two will share the same birthday (i.e., the same day and month, but not the same year)? Since there are 365 days in a year, one might assume that at least 182 people are needed for a 50% chance of a shared birthday. However, surprisingly, only 23 people are required!
+				- The reasoning is as follows: If you have 367 people in a room, at least two must share a birthday because there are only 365 days in a year (366 in a leap year). However, the paradox lies in how quickly the probability increases. Even with just 23 people, the probability that at least two share a birthday is already 50%.
+			- Birthday Paradox: Probability:
+				- The probability that the first person has a unique birthday is 100% (365/365). The second person has a 364/365 chance of having a different birthday. The third person has a 363/365 chance of not sharing a birthday with the first two, and so on.
+				- The probability that no two out of 23 people share a birthday is calculated as: 365/365 * 364/365 * 363/365 * ... * 343/365
+				- Converting these values to decimals (truncated at three decimal places): 1×0.997×0.994×0.991×⋯×0.936=0.49
+				- This means there is a 49% chance that no two people share a birthday. Therefore, the probability that at least two do share a birthday is 51%, making it more likely than not.
+			- Application to Cryptographic Hashes:
+			- The birthday attack exploits this probability principle to find hash collisions more efficiently. For example, consider the MD5 hash function, which has a 128-bit output. To guarantee a collision through brute force, one would need to compute 21282128 possible hashes—a vast number: 3.4×10^38
+			- However, using the birthday paradox, the number of hashes required to have a high probability of finding a collision is approximately: 1.174×√2^128 ≈ 2^64.5 ≈ 2.16 × 10^19
+			- While still a large number, it is many orders of magnitude smaller than 21282128, making birthday attacks a practical concern in cryptography.
