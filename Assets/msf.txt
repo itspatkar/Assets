@@ -1,5 +1,5 @@
 
-# Metasploit Framework (https://www.metasploit.com)
+# Metasploit Framework (www.metasploit.com)
 
 Metasploit is a powerful open-source framework widely used for penetration testing, exploit development, and vulnerability assessment. It offers tools and modules for discovering, exploiting, and validating security vulnerabilities in systems, networks, and applications.
 

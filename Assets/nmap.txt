@@ -1,4 +1,5 @@
-Nmap ( https://nmap.org )
+
+# Nmap (nmap.org)
 
 Usage: nmap [Scan Type(s)] [Options] {target specification}
 
@@ -130,9 +131,10 @@ SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES
 
 --------------------------------------------------
 
-- Default Nmap scan (nmap <ip>) is TCP Connect Scan/Full Open Scan (nmap -sT -p 1-1024 <ip>)
+- Default Nmap scan (nmap <host>) is TCP Connect Scan/Full Open Scan (nmap -sT -p 1-1024 <host>)
 
-> Enables service/version detection and Runs default scripts: nmap -sV -sC <host>
+> Discover live hots (ping scan): nmap -sn <subnet>
+> Enables service/version detection and Runs default scripts: nmap -sC -sV <host>
 > Perform aggressive scan with fast timing and verbose output. It detects OS, services, open ports (easily detected by security systems): nmap -T4 -A -v <host>
 
 
@@ -150,36 +152,36 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 
 
 # NMap Script Engine:
-- OS Discovery: nmap --script smb-os-discovery.nse <ip>
-- NetBios Enumeration: nmap -p 137,138,139 --script nbstat.nse <ip>
-- SNMP Enumeration: nmap -p 161 --script snmp-info <ip>
-    - Hosted SNMP services: nmap -p 161 --script snmp-processes <ip>
-    - SNMP server type and OS: nmap -p 161 --script snmp-sysdescr <ip>
-    - List all applications: nmap -p 161 --script snmp-win32-software <ip>
-- LDAP Enumeration: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <ip>
-- NTP Enumeration: nmap -p 123 --script ntp-info <ip>
-    - NTP Version: nmap -p 123 --script ntp-version <ip>
-    - NTP Amplification Vulnerabilities: nmap -p 123 --script ntp-monlist <ip>
-- NFS Enumeration: nmap -p 2049 --script nfs-showmount <ip>
+- OS Discovery: nmap --script smb-os-discovery.nse <host>
+- NetBios Enumeration: nmap -p 137,138,139 --script nbstat.nse <host>
+- SNMP Enumeration: nmap -p 161 --script snmp-info <host>
+    - Hosted SNMP services: nmap -p 161 --script snmp-processes <host>
+    - SNMP server type and OS: nmap -p 161 --script snmp-sysdescr <host>
+    - List all applications: nmap -p 161 --script snmp-win32-software <host>
+- LDAP Enumeration: nmap -p 389 --script ldap-rootdse <host>
+- NTP Enumeration: nmap -p 123 --script ntp-info <host>
+    - NTP Version: nmap -p 123 --script ntp-version <host>
+    - NTP Amplification Vulnerabilities: nmap -p 123 --script ntp-monlist <host>
+- NFS Enumeration: nmap -p 2049 --script nfs-showmount <host>
 - SMTP Enumeration:
-    - lists all SMTP commands available in the Nmap directory: nmap -p 25, 365, 587 -script smtp-commands <ip>
-    - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <ip>
-    - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <ip>
-    - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <ip>
+    - lists all SMTP commands available in the Nmap directory: nmap -p 25, 365, 587 -script smtp-commands <host>
+    - Identify SMTP open relays: nmap -p 25 --script smtp-open-relay <host>
+    - Enumerate all mail users on SMTP server: nmap -p 25 –-script smtp-enum-users <host>
+    - VRFY/EXPN/RCPT: nmap -p25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY, EXPN, RCPT} <host>
 - DNS Enumeration:
-    - nmap --script broadcast-dns-service-discovery <ip>
-    - Retrieve all subdomains associated with target: nmap -T4 -p 53 --script dns-brute <ip>
-    - Check whether DNS recursion is enabled: nmap -Pn -sU -p 53 --script dns-recursion <ip>
-    - DNS Security Extensions (DNSSEC) Enumeration: nmap -sU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=<subdomain> <ip>
-    - DNS zone transfer enumeration: nmap -p 53 --script dns-zone-transfer <ip>
-- IPsec enumeration (IKE version running): nmap -sU -p 500 –script ike-version <ip>
+    - nmap --script broadcast-dns-service-discovery <host>
+    - Retrieve all subdomains associated with target: nmap -T4 -p 53 --script dns-brute <host>
+    - Check whether DNS recursion is enabled: nmap -Pn -sU -p 53 --script dns-recursion <host>
+    - DNS Security Extensions (DNSSEC) Enumeration: nmap -sU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=<subdomain> <host>
+    - DNS zone transfer enumeration: nmap -p 53 --script dns-zone-transfer <host>
+- IPsec enumeration (IKE version running): nmap -sU -p 500 –script ike-version <host>
 - SMB Enumeration:
-    - Enumerate SMB server's protocols and versions: nmap -p 139,445 –-script smb-protocols <ip>
-    - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <ip>
-- SSH Enumeration: nmap --script ssh-brute -p 22 <ip>
+    - Enumerate SMB server's protocols and versions: nmap -p 139,445 –-script smb-protocols <host>
+    - Enumerate SMB servers shares: nmap -p 445 --script smb-enum-shares <host>
+- SSH Enumeration: nmap --script ssh-brute -p 22 <host>
 - Vulnerability Scan: nmap -sV –script vuln <domain> -oN output.txt
 - Detect NIC in Promiscuous Mode: nmap --script sniffer-detect <ip/range>
-- Retrieve Monlist from NTP Server: nmap -sU -pU:123 -Pn -n --script ntp-monlist <ip>
+- Retrieve Monlist from NTP Server: nmap -sU -pU:123 -Pn -n --script ntp-monlist <host>
 - Enumerating User Accounts from an Apache Server (with mod_userdir enabled):
     - Perform an Initial Scan to Enumerate Valid Users: nmap -p80 --script http-userdir-enum <target>
     - Perform a Customized Scan with custom list of potential usernames: nmap -p80 --script http-userdir-enum --script-args userdir.users=<Wordlist>.txt <target>
@@ -200,10 +202,6 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
     - Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>
 - WAF Detection: nmap -p 80,443 --script http-waf-detect --script-args http-waf-detect.aggro, http-waf-detect.detectBodyChanges <domain>
 - Runs all http-vuln scripts to check for web application vulnerabilities: nmap -sV --script http-vuln* <host>
-
-
-
-
-nmap --script ftp-brute -p 21 192.168.10.X
-nmap -p 21 --script ftp-anon 192.168.10.X
-nmap -p 389 --script ldap-rootdse 192.168.10.0/24
+- Bruteforce LDAP Server: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <host>
+- Bruteforce FTP Password: nmap --script ftp-brute -p 21 <host>
+- Check for Anonymous FTP Access: nmap -p 21 --script ftp-anon <host>
