@@ -1,4 +1,6 @@
 
+CEH Engage - Part I
+
 C1: henry.ns.cloudflare.com
 C2 (nmap -sn 192.168.10.0/24 -> nmap -PU 192.168.10.0/24): 5
 C3 (nmap -p 22 -O 192.168.10.0/24): 192.168.10.111
@@ -12,3 +14,33 @@ C10 (dig NS certifiedhacker.com): ns1.bluehost.com, ns2.bluehost.com
 C11 (nmap -p 25 172.30.10.0/24): 172.30.10.200
 C12 (nmap --script smb2-security-mode -p445 172.30.10.200): No
 C13: 276
+C14 (openvas): 70
+C15 (openvas): FTP Unencrypted Cleartext Login
+
+----------------------
+
+CEH Engage - Part II
+
+C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P Desktop/password.txt ftp://192.168.10.111): https://www.crushftp.com/
+C2 (wireshark filter - http.request.method == POST): kety/apple
+C3
+C4 (wireshark filter udp): 192.168.10.144
+C5 (wireshark tcp & udp port 111 & 135): 172.30.10.99
+C6 (most income bytes from remote ip): 192.168.10.222
+C7
+C8
+C9
+C10
+C11
+C12
+C13
+C14
+C15
+
+
+
+192.168.10.0/24
+
+172.30.10.0/24
+
+nmap -p 88,135,139,389,445,464,636,3268,3269 --open -sS -sV -O -T4 172.30.10.0/24

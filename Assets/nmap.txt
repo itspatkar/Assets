@@ -200,3 +200,10 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
     - Check for password file exposure: nmap --script http-passwd --script-args http-passwd.root=/ <target IP address>
 - WAF Detection: nmap -p 80,443 --script http-waf-detect --script-args http-waf-detect.aggro, http-waf-detect.detectBodyChanges <domain>
 - Runs all http-vuln scripts to check for web application vulnerabilities: nmap -sV --script http-vuln* <host>
+
+
+
+
+nmap --script ftp-brute -p 21 192.168.10.X
+nmap -p 21 --script ftp-anon 192.168.10.X
+nmap -p 389 --script ldap-rootdse 192.168.10.0/24
