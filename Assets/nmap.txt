@@ -205,6 +205,4 @@ ICMP Timestamp (nmap -sn -PP) and other ICMP-based methods are often blocked by 
 - Bruteforce LDAP Server: nmap -p 389 --script ldap-brute --script-args ldap.base='"cn=users,dc=CEH,dc=com"' <host>
 - Bruteforce FTP Password: nmap --script ftp-brute -p 21 <host>
 - Check for Anonymous FTP Access: nmap -p 21 --script ftp-anon <host>
-
-
-nmap --script http-headers http://www.certifiedhacker.com
+- Retrieve HTTP headers from web server: nmap --script http-headers <host>

@@ -37,10 +37,9 @@ CEH Engage - Part II
 - C14 (steghide extract -sf stealth.jpeg -p azerty@123 -> Open hidden.txt and find value): 3965222
 - C15 (searchsploit AirDrop 2.0): android/dos/46445.c
 
-
 ----------------------
 
-CEH Engage - Part II
+CEH Engage - Part III
 
 - C1 (wireshark): 172.30.10.200
 - C2 (wireshark filter - http.request.method == POST -> login attempts): lee/test
@@ -53,7 +52,31 @@ CEH Engage - Part II
 - C9 (chatgpt): cross-site scripting (XSS)
 - C10 (chatgpt): Content Security Policy
 - C11
+- C12 (): orange1234
+- C13 (Videos -> HTML Report Count): 3
+- C14 (sqlmap -u "http://www.moviescope.com" --dbs --forms --crawl=2 -> sqlmap -u "http://www.moviescope.com" --forms --crawl=2 -D moviescope --tables --count -> User_Profile): 5
+- C15 (OWASP ZAP Scan -> Web Application Security Consortium (WASC) Threat Classification ID for SQL Injection): 19
+
+----------------------
+
+CEH Engage - Part IV
+
+- C1 (PhoneSploit Pro -> Access Device Shell -> Get file BCtetx.txt -> Win - BCTextEncoder -> Decode with Document/Pawned.txt password): (ryptD3(0d3
+- C2
+- C3
+- C4
+- C5
+- C6
+- C7
+- C8
+- C9
+- C10
+- C11
 - C12
 - C13
 - C14
 - C15
+
+
+192.168.10.121
+5555 ADB
