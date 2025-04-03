@@ -22,9 +22,9 @@ CEH Engage - Part I
 CEH Engage - Part II
 
 - C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111): https://www.crushftp.com/
-- C2 (wireshark filter - http.request.method == POST -> login attempts): kety/apple
+- C2 (wireshark filter: http.request.method == POST -> login attempts): kety/apple
 - C3
-- C4 (wireshark filter udp): 192.168.10.144
+- C4 (wireshark filter: udp): 192.168.10.144
 - C5 (wireshark tcp & udp port 111 & 135): 172.30.10.99
 - C6 (most income bytes from remote ip): 192.168.10.222
 - C7
@@ -42,7 +42,7 @@ CEH Engage - Part II
 CEH Engage - Part III
 
 - C1 (wireshark): 172.30.10.200
-- C2 (wireshark filter - http.request.method == POST -> login attempts): lee/test
+- C2 (wireshark filter: http.request.method == POST -> login attempts): lee/test
 - C3 (Open cowrie.log): 172.30.10.99
 - C4 (nmap --script http-headers www.certifiedhacker.com)
 - C5 (nmap -p 22 --open 192.168.10.0/24 -> hydra -l Martin -P rockyou.txt ssh://192.168.10.101 -> ssh Martin@192.168.10.101 -> type Desktop\$ollers.txt): i2tr&^72546HJ*
@@ -62,21 +62,17 @@ CEH Engage - Part III
 CEH Engage - Part IV
 
 - C1 (PhoneSploit Pro -> Access Device Shell -> Get file BCtetx.txt -> Win - BCTextEncoder -> Decode with Document/Pawned.txt password): (ryptD3(0d3
-- C2
-- C3
-- C4
-- C5
-- C6
-- C7
-- C8
-- C9
-- C10
-- C11
-- C12
-- C13
-- C14
-- C15
-
-
-192.168.10.121
-5555 ADB
+- C2 (adb shell pm list packages -f -s | sed -e 's/package://' -e 's/=.*//' | while read line; do adb pull "$line"; done -> for apk in *.apk; do unzip "$apk" -d "${apk%.apk}_extracted"; done -> find extracted_apks -type f -exec crc32 {} \; | grep "614c"): 53ac614c
+- C3 (Extract signature.zip -> Get-FileHash k4.png -Algorithm MD5): k4.png
+- C4 (Pull /sdcard/Calls/call_log_dump.log.txt -> Open log file -> Call from world bank): +1 (555) 678-9012
+- C5 (Wireshark And_Dos.pcapng -> Filter: ip.src_host == 192.168.10.121 -> Analyze > Expert Information > Severity): Warning
+- C6 (Wireshark -> Filter: mqtt and frame contains "High_humidity" -> Packet contains message "High_humidity" -> Click MQTT Protocol -> Identify Alert Percentage): 50
+- C7 (Share cryt-128-06encr.hex in win -> Open in CrypTool -> Select decryption algo Twofish and key as 06...06): Twofish/@!ph@|tE*t
+- C8 (Mount file MyVeracrypt in VeraCrypt - Win -> Open selected Drive in File Explorer and Count files): 4
+- C9 (PhoneSploit Pro -> Dump All Contacts -> Open dumped file -> Find country code of contact Maddy): 61
+- C10 (Wireshark -> Filter: mqtt and frame contains "High_temperature" -> Packet contains message "High_temperature" -> Click Packet -> Find Topic Length in MQTT Protocol Info): 16
+- C11 (PhoneSploit Pro -> Use Keycodes (Control Device) -> 5. Power Button): Power Button
+- C12 (adb pull /sdcard/Music/confidential.txt): 80099889
+- C13 (adb pull /sdcard/Music/2024-09-11_11-52-05.png): 23
+- C14 (md5sum file.txt -> Compare hash with FileHashes.txt): Quotes
+- C15 (Share file in win -> Mount file MyVeracrypt in VeraCrypt - Win -> Open selected Drive in File Explorer and Count files):6
