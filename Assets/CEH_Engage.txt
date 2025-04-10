@@ -23,7 +23,7 @@ CEH Engage - Part II
 
 - C1 (nmap -p 21 --open 192.168.10.0/24 -> hydra -l nick -P rockyou.txt ftp://192.168.10.111 -> ftp://192.168.10.111 (nick/apple) -> get 52012.py -> Vendor Homepage): https://www.crushftp.com/
 - C2 (wireshark filter: http.request.method == POST -> login attempts): kety/apple
-- C3
+- C3 (): Quake Network Protocol
 - C4 (wireshark filter: udp): 192.168.10.144
 - C5 (wireshark tcp & udp port 111 & 135): 172.30.10.99
 - C6 (most income bytes from remote ip): 192.168.10.222
