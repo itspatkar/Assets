@@ -17,6 +17,8 @@ Metasploit is a powerful open-source framework widely used for penetration testi
 - Enumeration
     - Port Scanning - Outputs the list of open ports from the target <ip>:
         msfconsole -q -x "use auxiliary/scanner/portscan/tcp; set RHOSTS <ip>; run; exit"
+    - Enumerate SMTP Version - Outputs the version of SMTP from the target SMTP server:
+        msfconsole -q -x "use auxiliary/scanner/smtp/smtp_version; set RHOSTS <ip>; run; exit"
     - Enumerate SMTP Users - Outputs the list of valid SMTP users from the target SMTP server:
         msfconsole -q -x "use auxiliary/scanner/smtp/smtp_enum; set RHOSTS <ip>; run; exit"
     - VoIP Enumeration - SIP Username Enumerator to scan numeric usernames/extensions of VoIP phones:
