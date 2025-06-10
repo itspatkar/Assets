@@ -1,0 +1,28 @@
+
+=> Security Headers
+
+Security headers are HTTP response headers that a web server includes to enhance the security of web applications and protect users from various types of attacks. They instruct the browser how to behave while handling content from the server and help prevent vulnerabilities like XSS, clickjacking, MIME sniffing, and data injection.
+
+Header and Purpose:
+- Strict-Transport-Security (HSTS): Forces browsers to use HTTPS, preventing protocol downgrade attacks.
+- Content-Security-Policy (CSP): Restricts sources of content (scripts, styles, etc.) to prevent XSS and data injection.
+- X-Content-Type-Options Prevents MIME-type sniffing, which could lead to content being interpreted incorrectly.
+- X-Frame-Options Prevents the site from being embedded in iframes, mitigating clickjacking attacks.
+- Referrer-Policy Controls how much referrer information is sent with requests.
+- Permissions-Policy (formerly Feature-Policy): Controls access to browser features like camera, microphone, geolocation, etc.
+- Cross-Origin-Embedder-Policy (COEP): Helps enforce secure cross-origin resource sharing.
+- Cross-Origin-Resource-Policy (CORP): Specifies who can load the resource (same-site, cross-site, etc.).
+- Cross-Origin-Opener-Policy (COOP): Isolates browsing context to prevent cross-origin attacks like Spectre.
+
+##################################################
+
+=> Cross-Origin Resource Sharing (CORS)
+
+CORS (Cross-Origin Resource Sharing) is a security feature built into web browsers that controls how a web page in one origin (domain) can request resources from a different origin. CORS (Cross-Origin Resource Sharing) is a server-side configuration that affects how browsers (clients) handle cross-origin requests. CORS is server-related — the server must explicitly allow or deny cross-origin requests by setting specific HTTP response headers. If the server doesn’t include the right CORS headers, the browser blocks the response, even if the request succeeded.
+
+CORS Headers and Role:
+- Access-Control-Allow-Origin: Specifies which origin(s) are allowed
+- Access-Control-Allow-Methods: Lists allowed HTTP methods (e.g., GET, POST)
+- Access-Control-Allow-Headers: Specifies allowed custom headers
+- Access-Control-Allow-Credentials: Indicates if cookies/auth headers are allowed
+- Access-Control-Expose-Headers: Defines which headers can be read by the browser
