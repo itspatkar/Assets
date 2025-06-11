@@ -26,3 +26,19 @@ CORS Headers and Role:
 - Access-Control-Allow-Headers: Specifies allowed custom headers
 - Access-Control-Allow-Credentials: Indicates if cookies/auth headers are allowed
 - Access-Control-Expose-Headers: Defines which headers can be read by the browser
+
+##################################################
+
+Optional/Legacy Headers
+
+=> Pragma Header
+The Pragma header is an HTTP/1.0 general header used for backward compatibility with older HTTP versions. It is mainly used for caching control. This tells the browser or intermediary caches not to cache the response, and instead always request a fresh copy from the server. In security testing, the presence or absence of the Pragma header is usually not a critical issue on its own, but it may be noted as part of secure caching practices, especially for sensitive content (like personal data, tokens, etc.).
+- Pragma: no-cache
+
+=> Cache-Control
+Cache-Control is an HTTP header used to define caching rules for both requests and responses. It tells browsers and intermediate caches (like CDNs, proxies) what to store, for how long, and whether to revalidate.
+- Cache-Control: no-store, no-cache, must-revalidate
+
+=> X-XSS-Protection
+X-XSS-Protection is a legacy HTTP response header used to enable or disable the Cross-Site Scripting (XSS) filter built into older versions of web browsers like Internet Explorer and early versions of Chrome. Enables XSS filtering and blocks the page entirely if an attack is detected (more secure than just sanitizing). Use the Content-Security-Policy (CSP) header instead, which is much more powerful and reliable.
+- X-XSS-Protection: 0
