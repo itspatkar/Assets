@@ -5,3 +5,29 @@ HTTP Smuggling
 - HTTP Smuggling is a web vulnerability that occurs when proxies and web servers parse HTTP requests differently, allowing attackers to "smuggle" a hidden request through a trusted front-end.
 - Most HTTP request smuggling vulnerabilities arise because the HTTP/1 specification provides two different ways to specify where a request ends: the Content-Length header and the Transfer-Encoding header.
 - HTTP Smuggling can be mitigated by ensuring consistent HTTP parsing across components, blocking conflicting headers (Content-Length and Transfer-Encoding), using HTTP/2 or HTTP/3, and regularly testing and updating your infrastructure.
+
+Path Traversal
+- Path Traversal, also known as Directory Traversal, is a web security vulnerability that allows an attacker to read arbitrary files or access directories outside the intended file system structure of the application server.
+- Path Traversal vulnerabilities happen because a web application fails to properly validate or sanitize user input used in file path operations. It happens when the app trusts the user to tell it which file to open, and doesn't check if the file is allowed or safe to access.
+- To mitigate Path Traversal vulnerabilities, always validate and sanitize user input by rejecting sequences like ../ or encoded variants, and use whitelisting for file names and extensions. Ensure that resolved file paths stay within a specific base directory using secure APIs like realpath() or os.path.abspath(). Avoid directly using user input in file operations, enforce strict access controls, and configure the web server to block access to sensitive directories. Additionally, run applications with minimal file permissions and regularly test for traversal attacks using security tools.
+
+
+Cross Site Scripting (XSS)
+- Three main types of XSS attacks:
+    - Reflected XSS, where the malicious script comes from the current HTTP request.
+    - Stored XSS, where the malicious script comes from the website's database.
+    - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+- To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
+- Test/Check:
+    - Reflected:
+        - <script>alert(1)</script>
+        - javascript:alert(1)
+        - Study JS, JQuery code by inspecting
+    - DOM Based:
+        - Test with Elements that support onload/onerror:
+            - <script>alert(1)</script>
+            - <svg onload=alert(1)>
+        - Insert/Create Elements that suppors onload
+        - Query Params Manipulation
+    - Stored:
+        - Store payloads on server
