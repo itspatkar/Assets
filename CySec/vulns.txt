@@ -11,7 +11,6 @@ Path Traversal
 - Path Traversal vulnerabilities happen because a web application fails to properly validate or sanitize user input used in file path operations. It happens when the app trusts the user to tell it which file to open, and doesn't check if the file is allowed or safe to access.
 - To mitigate Path Traversal vulnerabilities, always validate and sanitize user input by rejecting sequences like ../ or encoded variants, and use whitelisting for file names and extensions. Ensure that resolved file paths stay within a specific base directory using secure APIs like realpath() or os.path.abspath(). Avoid directly using user input in file operations, enforce strict access controls, and configure the web server to block access to sensitive directories. Additionally, run applications with minimal file permissions and regularly test for traversal attacks using security tools.
 
-
 Cross Site Scripting (XSS)
 - Three main types of XSS attacks:
     - Reflected XSS, where the malicious script comes from the current HTTP request.
@@ -20,14 +19,18 @@ Cross Site Scripting (XSS)
 - To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
 - Test/Check:
     - Reflected:
+        - Study JS, JQuery code by inspecting, Check for input validation and sanitization
         - <script>alert(1)</script>
         - javascript:alert(1)
-        - Study JS, JQuery code by inspecting
+        - \"-alert(1)}//
     - DOM Based:
         - Test with Elements that support onload/onerror:
             - <script>alert(1)</script>
             - <svg onload=alert(1)>
+            - <img src=x onerror=alert(1)>
         - Insert/Create Elements that suppors onload
         - Query Params Manipulation
+        - URL Search Params
+        - AngularJS: {{constructor.constructor('alert(1)')()}}
     - Stored:
         - Store payloads on server
