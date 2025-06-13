@@ -1,0 +1,29 @@
+
+Cross Site Scripting (XSS)
+
+- Three main types of XSS attacks:
+    - Reflected XSS, where the malicious script comes from the current HTTP request.
+    - Stored XSS, where the malicious script comes from the website's database.
+    - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+- To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
+
+# Test/Check:
+- Reflected:
+    - Study JS, JQuery code by inspecting, Check for input validation and sanitization
+    - Burp Intruder with testing all allowed tags and events
+    - <script>alert(1)</script>
+    - javascript:alert(1)
+    - <svg><animatetransform onbegin=alert(1)>
+    - Validation skip/bypass: \"-alert(1)}//
+- DOM Based:
+    - Test with Elements that support onload/onerror:
+        - <script>alert(1)</script>
+        - <svg onload=alert(1)>
+        - <img src=x onerror=alert(1)>
+    - Insert/Create Elements that suppors onload
+    - Query Params Manipulation
+    - URL Search Params
+    - AngularJS: {{constructor.constructor('alert(1)')()}}
+- Stored:
+    - Store payloads on server
+    - Custom tags when WAF
