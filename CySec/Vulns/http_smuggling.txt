@@ -1,5 +1,5 @@
 
-HTTP Smuggling
+=> HTTP Smuggling
 
 - HTTP Smuggling is a web vulnerability that occurs when proxies and web servers parse HTTP requests differently, allowing attackers to "smuggle" a hidden request through a trusted front-end.
 - Most HTTP request smuggling vulnerabilities arise because the HTTP/1 specification provides two different ways to specify where a request ends: the Content-Length header and the Transfer-Encoding header.

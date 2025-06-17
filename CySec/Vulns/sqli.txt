@@ -1,0 +1,24 @@
+
+=> SQL Injection
+
+- SQL Injection (SQLi) is a type of cyberattack in which an attacker exploits vulnerabilities in an application by inserting malicious SQL (Structured Query Language) code into input fields. This can allow the attacker to manipulate the database—viewing, modifying, or deleting data they should not have access to.
+- Most web applications interact with databases using SQL queries, and if user input is not properly validated or sanitized, attackers can craft input that alters the intended SQL query. SQL Injection enables attackers to bypass authentication, access and steal sensitive data, modify or delete records, execute administrative tasks, extract entire databases, and potentially take control of the server.
+- To prevent SQL Injection, use prepared statements (parameterized queries) to ensure user input is treated as data, not code. Validate and sanitize all inputs through input validation and escaping. Follow the principle of least privilege by restricting database permissions. Utilize ORM frameworks, which often include built-in SQLi protection, and deploy web application firewalls (WAFs) as an additional defense layer.
+
+Types of SQLi:
+- In-Band SQLi: Attacker injects SQL and immediately sees results in the application’s response (e.g., input ' OR '1'='1 alters the query to always return true, bypassing authentication).
+    - Error-Based: Attacker causes database errors to gain information from error messages (e.g., injecting ' UNION SELECT NULL, version() -- reveals the database version through an error).
+    - Union-Based: Attacker uses the SQL UNION operator to combine results from the original query with malicious query results, retrieving data directly (e.g., ' UNION SELECT username, password FROM users -- appends user data to the query output).
+- Blind SQLi: No direct output; attacker infers data by observing application behavior (e.g., using true/false queries to check if the first letter of username is ‘A’, with different page responses).
+    - Boolean-Based: Uses conditional queries causing different responses based on true/false evaluation (e.g., username = 'admin' AND 1=1 returns a normal page, while username = 'admin' AND 1=0 causes an error or different behavior).
+    - Time-Based: Uses delays to determine if conditions are true by measuring server response times (e.g., query causes a 5-second delay if the first password character is ‘a’).
+- Out-of-Band SQLi: When direct or blind injection isn’t possible, attacker uses external channels like DNS or HTTP requests to receive data (e.g., database triggers a DNS lookup to attacker’s server, leaking data externally).
+
+How to detect SQL injection vulnerabilities:
+- You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
+        The single quote character ' and look for errors or other anomalies.
+        Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
+        Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
+        Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.     
+        OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.     
+    Alternatively, you can find the majority of SQL injection vulnerabilities quickly and reliably using Burp Scanner.

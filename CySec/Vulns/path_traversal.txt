@@ -1,5 +1,5 @@
 
-Path Traversal
+=> Path Traversal
 
 - Path Traversal, also known as Directory Traversal, is a web security vulnerability that allows an attacker to read arbitrary files or access directories outside the intended file system structure of the application server.
 - Path Traversal vulnerabilities happen because a web application fails to properly validate or sanitize user input used in file path operations. It happens when the app trusts the user to tell it which file to open, and doesn't check if the file is allowed or safe to access.

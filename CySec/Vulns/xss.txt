@@ -1,5 +1,13 @@
 
-Cross Site Scripting (XSS)
+=> Cross Site Scripting (XSS)
+
+- Cross-Site Scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts are typically written in JavaScript and can be used to manipulate content, steal sensitive information such as cookies and session tokens, hijack user sessions, deface websites, redirect users to malicious sites, or perform actions on behalf of the user without their consent.
+- XSS occurs when an application takes untrusted input—like form fields, URLs, or comments—and renders it in a web page without proper sanitization or escaping, allowing the attacker’s script to execute in the victim’s browser.
+- To prevent XSS, output should be escaped based on its context (HTML, JavaScript, URL), input should be sanitized using libraries like DOMPurify, and a Content Security Policy (CSP) should be implemented to restrict script execution. Unsafe DOM methods like innerHTML should be avoided, and modern frameworks such as React or Angular, which automatically handle output encoding, should be used.
+- Types of XSS:
+    - Stored XSS (Persistent): The malicious script is stored on the server (e.g., in comments or user profiles) and served to users later.
+    - Reflected XSS: The script is embedded in a URL or request and immediately reflected in the response, often in error messages or search results.
+    - DOM-based XSS: The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.
 
 - Three main types of XSS attacks:
     - Reflected XSS, where the malicious script comes from the current HTTP request.
@@ -7,7 +15,7 @@ Cross Site Scripting (XSS)
     - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
 - To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
 
-# Test/Check:
+Test/Check:
 - Reflected:
     - Study JS, JQuery code by inspecting, Check for input validation and sanitization
     - Burp Intruder with testing all allowed tags and events
