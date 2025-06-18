@@ -1,0 +1,9 @@
+
+=> Recon
+
+- Headers Analysis
+- Google Dork
+- Source Code (Web Client Source Code)
+- Vulnerable Software/Libraries
+    - Retire.js
+    - Wappalyzer

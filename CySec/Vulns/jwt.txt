@@ -1,0 +1,92 @@
+
+=> JSON Web Token (JWT)
+
+- A JWT (JSON Web Token) is a compact, URL-safe token format used for securely transmitting information between parties as a JSON object. It's commonly used in authentication and authorization in web applications.
+- JSON Web Tokens (JWTs) are widely used for authentication and authorization in web applications. However, they can be vulnerable to several types of attacks if not properly implemented.
+
+Structure of a JWT
+- A JWT has three parts, separated by dots: <Header>.<Payload>.<Signature>
+- Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywicm9sZSI6ImFkbWluIn0.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+- 1. Header: Specifies metadata like the algorithm used:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+- 2. Payload: Contains the actual data (claims):
+{
+  "userId": 123,
+  "role": "admin",
+  "exp": 1718280000
+}
+3. Signature: Used to verify the integrity of the token:
+HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+
+Authentication:
+- User logs in -> Server generates JWT.
+- JWT is sent to the client (browser/mobile).
+- Client stores JWT (in localStorage, sessionStorage, or cookies).
+- Client includes JWT in Authorization: Bearer <token> header for each request.
+- Server verifies JWT signature and allows/denies access.
+
+JWT Can Be Vulnerable:
+JWTs themselves are not insecure, but incorrect implementation can make them vulnerable. Here’s why:
+- Insecure Algorithm Usage: Using alg: none or misusing HS256/RS256 leads to signature bypass.
+- Weak Secret Keys: If a weak secret is used (e.g., "password"), attackers can brute-force it.
+- No Expiry or Revocation: JWTs are often stateless, so once issued, they stay valid until expiration.- compromised, they can’t be revoked easily unless you maintain a token blacklist.
+- Stored in Client-Side: Storing JWTs in localStorage makes them vulnerable to XSS attacks.- red cookies are vulnerable to CSRF if not set with SameSite=Strict or HttpOnly.
+- Tampered Claims: If claims like admin: true are not validated server-side, they can be manipulated.
+- Trusting JWT Without Verification: If the server skips signature verification, any token is treated as valid.
+
+----
+
+JWT attacks along with short explanations:
+
+🔓 1. None Algorithm Attack
+Cause: Misconfiguration allowing alg: none in the token.
+
+Attack: Attacker removes the signature and sets the algorithm to none. If the server accepts it, the attacker can forge a valid token.
+
+🔐 2. Algorithm Confusion Attack (HS256 to RS256)
+Cause: JWT supports both symmetric (HS256) and asymmetric (RS256) algorithms.
+
+Attack: If server uses RS256 but treats public key as HMAC secret, attacker can sign token with HS256 using public key as secret.
+
+🗝️ 3. Key Injection / Key Confusion
+Cause: Poor key handling.
+
+Attack: Attacker supplies their own public key in the JWT header (e.g., jwk or x5u) and the server mistakenly uses it to verify the token.
+
+⏳ 4. Expired Token Replay
+Cause: No proper expiration checks or replay prevention.
+
+Attack: Attacker uses a previously valid token to gain unauthorized access.
+
+🔄 5. Token Replay Attack
+Cause: Same token accepted multiple times.
+
+Attack: If a token is intercepted, it can be reused on other endpoints without restriction.
+
+🕵️‍♂️ 6. Brute Force / Weak Secret Attack
+Cause: JWT signed with a weak secret (HS256).
+
+Attack: Attacker brute-forces the secret key and forges valid tokens.
+
+🧪 7. Cross-Site Scripting (XSS) to Steal JWT
+Cause: XSS vulnerability in frontend.
+
+Attack: Steal JWT stored in localStorage/sessionStorage or cookies using malicious scripts.
+
+🚫 8. Improper Token Revocation
+Cause: No mechanism to revoke tokens.
+
+Attack: Even after logout or access removal, old tokens may still work.
+
+🔁 9. Replay with Refresh Token
+Cause: Refresh tokens are not bound to user session or IP.
+
+Attack: Attacker uses stolen refresh token to get a new JWT and maintain access.
+
+🔎 10. JWT Injection / Tampering
+Cause: No proper validation of claims like sub, iss, aud.
+
+Attack: Attacker tampers with claims to impersonate another user or gain elevated privileges.
