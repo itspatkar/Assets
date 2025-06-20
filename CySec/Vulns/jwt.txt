@@ -37,56 +37,34 @@ JWTs themselves are not insecure, but incorrect implementation can make them vul
 - Tampered Claims: If claims like admin: true are not validated server-side, they can be manipulated.
 - Trusting JWT Without Verification: If the server skips signature verification, any token is treated as valid.
 
-----
-
-JWT attacks along with short explanations:
-
-🔓 1. None Algorithm Attack
-Cause: Misconfiguration allowing alg: none in the token.
-
-Attack: Attacker removes the signature and sets the algorithm to none. If the server accepts it, the attacker can forge a valid token.
-
-🔐 2. Algorithm Confusion Attack (HS256 to RS256)
-Cause: JWT supports both symmetric (HS256) and asymmetric (RS256) algorithms.
-
-Attack: If server uses RS256 but treats public key as HMAC secret, attacker can sign token with HS256 using public key as secret.
-
-🗝️ 3. Key Injection / Key Confusion
-Cause: Poor key handling.
-
-Attack: Attacker supplies their own public key in the JWT header (e.g., jwk or x5u) and the server mistakenly uses it to verify the token.
-
-⏳ 4. Expired Token Replay
-Cause: No proper expiration checks or replay prevention.
-
-Attack: Attacker uses a previously valid token to gain unauthorized access.
-
-🔄 5. Token Replay Attack
-Cause: Same token accepted multiple times.
-
-Attack: If a token is intercepted, it can be reused on other endpoints without restriction.
-
-🕵️‍♂️ 6. Brute Force / Weak Secret Attack
-Cause: JWT signed with a weak secret (HS256).
-
-Attack: Attacker brute-forces the secret key and forges valid tokens.
-
-🧪 7. Cross-Site Scripting (XSS) to Steal JWT
-Cause: XSS vulnerability in frontend.
-
-Attack: Steal JWT stored in localStorage/sessionStorage or cookies using malicious scripts.
-
-🚫 8. Improper Token Revocation
-Cause: No mechanism to revoke tokens.
-
-Attack: Even after logout or access removal, old tokens may still work.
-
-🔁 9. Replay with Refresh Token
-Cause: Refresh tokens are not bound to user session or IP.
-
-Attack: Attacker uses stolen refresh token to get a new JWT and maintain access.
-
-🔎 10. JWT Injection / Tampering
-Cause: No proper validation of claims like sub, iss, aud.
-
-Attack: Attacker tampers with claims to impersonate another user or gain elevated privileges.
+JWT attacks
+- None Algorithm Attack
+    Cause: Misconfiguration allowing alg: none in the token.
+    Attack: Attacker removes the signature and sets the algorithm to none. If the server accepts it, the attacker can forge a valid token.
+- Algorithm Confusion Attack (HS256 to RS256)
+    Cause: JWT supports both symmetric (HS256) and asymmetric (RS256) algorithms.
+    Attack: If server uses RS256 but treats public key as HMAC secret, attacker can sign token with HS256 using public key as secret.
+- Key Injection / Key Confusion
+    Cause: Poor key handling.
+    Attack: Attacker supplies their own public key in the JWT header (e.g., jwk or x5u) and the server mistakenly uses it to verify the token.
+- Expired Token Replay
+    Cause: No proper expiration checks or replay prevention.
+    Attack: Attacker uses a previously valid token to gain unauthorized access.
+- Token Replay Attack
+    Cause: Same token accepted multiple times.
+    Attack: If a token is intercepted, it can be reused on other endpoints without restriction.
+- Brute Force / Weak Secret Attack
+    Cause: JWT signed with a weak secret (HS256).
+    Attack: Attacker brute-forces the secret key and forges valid tokens.
+- Cross-Site Scripting (XSS) to Steal JWT
+    Cause: XSS vulnerability in frontend.
+    Attack: Steal JWT stored in localStorage/sessionStorage or cookies using malicious scripts.
+- Improper Token Revocation
+    Cause: No mechanism to revoke tokens.
+    Attack: Even after logout or access removal, old tokens may still work.
+- Replay with Refresh Token
+    Cause: Refresh tokens are not bound to user session or IP.
+    Attack: Attacker uses stolen refresh token to get a new JWT and maintain access.
+- JWT Injection / Tampering
+    Cause: No proper validation of claims like sub, iss, aud.
+    Attack: Attacker tampers with claims to impersonate another user or gain elevated privileges.
