@@ -14,11 +14,45 @@ Types of SQLi:
     - Time-Based: Uses delays to determine if conditions are true by measuring server response times (e.g., query causes a 5-second delay if the first password character is ‘a’).
 - Out-of-Band SQLi: When direct or blind injection isn’t possible, attacker uses external channels like DNS or HTTP requests to receive data (e.g., database triggers a DNS lookup to attacker’s server, leaking data externally).
 
-How to detect SQL injection vulnerabilities:
-- You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
-        The single quote character ' and look for errors or other anomalies.
-        Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
-        Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
-        Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.     
-        OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.     
-    Alternatively, you can find the majority of SQL injection vulnerabilities quickly and reliably using Burp Scanner.
+Detect SQL injection vulnerabilities:
+    - You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
+    - The single quote character ' and look for errors or other anomalies.
+    - Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
+    - Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
+    - Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
+    - OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
+
+SQL injection in different parts of the query:
+    - Most SQL injection vulnerabilities occur within the WHERE clause of a SELECT query. Most experienced testers are familiar with this type of SQL injection.
+    - In UPDATE statements, within the updated values or the WHERE clause.
+    - In INSERT statements, within the inserted values.
+    - In SELECT statements, within the table or column name.
+    - In SELECT statements, within the ORDER BY clause.
+
+UNION SQLi:
+- Key requirements for UNION query to work:
+    - The individual queries must return the same number of columns
+    - The data types in each column must be compatible between the individual queries
+- Determining the number of columns required:
+    - Injecting series of ORDER BY clauses and incrementing the specified column index until an error occurs (out of range of the number): ' ORDER BY 1--
+    - Submitting series of UNION SELECT payloads specifying a different number of null values: ' UNION SELECT NULL,NULL--
+- Finding columns with a useful data type:
+    - After determining the number of required columns, you can probe each column to test whether it can hold string data. You can submit a series of UNION SELECT payloads that place a string value into each column in turn. For example, if the query returns four columns, you would submit:
+    - ' UNION SELECT 'a',NULL,NULL,NULL--
+    - ' UNION SELECT NULL,'a',NULL,NULL--
+    - ' UNION SELECT NULL,NULL,'a',NULL--
+    - ' UNION SELECT NULL,NULL,NULL,'a'--
+- UNION attack, retrieving data from other tables: ' UNION SELECT username, password FROM users--
+- Retrieving multiple values within single column: ' UNION SELECT username || '~' || password FROM users--
+- Examining the database:
+    - Querying the database type and version: ' UNION SELECT @@version--
+        - Microsoft, MySQL: SELECT @@version
+        - Oracle: SELECT * FROM v$version
+        - PostgreSQL: SELECT version()
+
+- We use NULL as the values returned from the injected SELECT query because the data types in each column must be compatible between the original and the injected queries. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
+
+Payloads:
+    - Skipping further query by commenting: Abcd'--
+    - Skipping all conditions: Abcd'+OR+1=1--
+    - Bypass login with username: user'--
