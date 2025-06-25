@@ -6,9 +6,9 @@ Security headers are HTTP response headers that a web server includes to enhance
 Header and Purpose:
 - Strict-Transport-Security (HSTS): Forces browsers to use HTTPS, preventing protocol downgrade attacks.
 - Content-Security-Policy (CSP): Restricts sources of content (scripts, styles, etc.) to prevent XSS and data injection.
-- X-Content-Type-Options Prevents MIME-type sniffing, which could lead to content being interpreted incorrectly.
-- X-Frame-Options Prevents the site from being embedded in iframes, mitigating clickjacking attacks.
-- Referrer-Policy Controls how much referrer information is sent with requests.
+- X-Content-Type-Options: X-Content-Type-Options Prevents MIME-type sniffing, which could lead to content being interpreted incorrectly.
+- X-Frame-Options: X-Frame-Options Prevents the site from being embedded in iframes, mitigating clickjacking attacks.
+- Referrer-Policy: Referrer-Policy Controls how much referrer information is sent with requests.
 - Permissions-Policy (formerly Feature-Policy): Controls access to browser features like camera, microphone, geolocation, etc.
 - Cross-Origin-Embedder-Policy (COEP): Helps enforce secure cross-origin resource sharing.
 - Cross-Origin-Resource-Policy (CORP): Specifies who can load the resource (same-site, cross-site, etc.).

