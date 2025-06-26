@@ -1,0 +1,8 @@
+
+=> Web Cache Poisoning
+
+- Web Cache Poisoning is a web security vulnerability where an attacker manipulates the content stored in a caching system (such as a CDN or reverse proxy), causing other users to receive malicious or misleading content from the cache instead of the correct, original version.
+- It is an advanced technique that involves exploiting the behavior of both the web server and caching layer. The attack typically occurs in two phases:
+    - The attacker identifies a way to elicit a backend response that unintentionally includes a harmful payload.
+    - They ensure this malicious response is cached and then served to future users.
+- A successfully poisoned cache can become a powerful delivery mechanism for various attacks, including reflected XSS, JavaScript injection, open redirection, and more.
