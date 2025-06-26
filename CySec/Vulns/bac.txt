@@ -1,0 +1,50 @@
+
+=> Broken Access Control (BAC)
+
+- Broken Access Control is a security vulnerability that occurs when an application fails to properly enforce restrictions on what authenticated users are allowed to do. This can allow attackers to gain unauthorized access to resources or perform actions beyond their assigned permissions.
+- Access control defines who can perform specific actions within an application. When these controls are poorly implemented or missing, malicious users may:
+    - Access other users' data
+    - Perform administrative functions
+    - Modify or delete records they shouldn’t have access to
+- Access Control Components:
+    - Authentication: Confirms user identity.
+    - Session Management: Tracks which HTTP requests belong to which user.
+    - Access Control: Determines if the user is authorized to perform a given action.
+- Types of Access Control:
+    - Vertical Access Control:
+        - Restricts functionality based on user roles.
+        - Example: Admins can delete users, but regular users cannot.
+        - Enforces privilege separation and least privilege.
+    - Horizontal Access Control:
+        - Restricts access to specific user-owned data or resources.
+        - Example: A user should only see their bank account, not another user's.
+    - Context-Dependent Access Control:
+        - Enforces access rules based on user interactions or application state.
+        - Example: A user can't edit a shopping cart after checkout is completed.
+
+Privilege Escalation (PrivEsc):
+- Privilege escalation occurs when a user or attacker gains access to higher privileges than intended.
+- Types of Privilege Escalation:
+    - Vertical Privilege Escalation:
+        - Gaining elevated rights (e.g., user -> admin).
+        - Example: Exploiting a flawed role-check to access an admin dashboard.
+    - Horizontal Privilege Escalation:
+        - Gaining access to another user’s data without changing privilege level.
+        - Example: Accessing another user's profile by modifying the user_id in the request.
+
+Common Examples of BAC:
+- IDOR (Insecure Direct Object References): Attackers manipulate object identifiers (like user IDs or file names) in URLs or requests to access unauthorized resources.
+- Missing Role Checks: An endpoint may allow regular users to access admin-level functionality if it lacks server-side role validation.
+- Forced Browsing: Manually accessing unlinked or hidden endpoints not intended for the user.
+- Frontend-only Enforcement: Relying solely on client-side controls (like disabling buttons or hiding forms), which can be bypassed by sending raw HTTP requests.
+
+BAC Bypass & Exploitation Techniques:
+- Forced browsing i.e. direct access to hidden or sensitive endpoints like /admin or /config (URLs/Route)
+- Parameter Tampering: Modify hidden fields, cookies, or query parameters (URL, request or body params) to escalate access. (Example: Changing role=user to role=admin)
+- IDOR Exploitation: Guessing or modifying sequential or predictable IDs and Brute-forcing resource identifiers (userId=1, userId=2, etc.)
+- Access via Leaked Identifiers: Sensitive IDs exposed via JavaScript, error messages, or logs. (Example: Unpredictable IDs or GUIDs leaked in User reviews, Messages, URLs in JavaScript)
+- Skipping Workflow Steps: Accessing a final step directly (e.g., payment confirmation) without completing prerequisites.
+- HTTP Verb Tampering / Method Bypass: Changing request method (e.g., from GET to POST, or vice versa).
+- Header Manipulation: Adding headers like X-Original-URL, X-Forwarded-For, or X-HTTP-Method-Override to bypass access rules.
+- User-Agent / Referer Spoofing: Sometimes access is restricted based on these headers; spoofing can bypass weak controls.
+- Client-Side Only Validation: Using tools like Burp Suite to manipulate requests and bypass JavaScript-based checks.

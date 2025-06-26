@@ -14,25 +14,25 @@ Types of SQLi:
     - Time-Based: Uses delays to determine if conditions are true by measuring server response times (e.g., query causes a 5-second delay if the first password character is ‘a’).
 - Out-of-Band SQLi: When direct or blind injection isn’t possible, attacker uses external channels like DNS or HTTP requests to receive data (e.g., database triggers a DNS lookup to attacker’s server, leaking data externally).
 
-Detect SQL injection vulnerabilities:
-    - You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
-    - The single quote character ' and look for errors or other anomalies.
-    - Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
-    - Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
-    - Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
-    - OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
+Detect SQLi Vulnerabilities:
+- You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
+- The single quote character ' and look for errors or other anomalies.
+- Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
+- Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
+- Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
+- OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
 
 SQL injection in different parts of the query:
-    - Most SQL injection vulnerabilities occur within the WHERE clause of a SELECT query. Most experienced testers are familiar with this type of SQL injection.
-    - In UPDATE statements, within the updated values or the WHERE clause.
-    - In INSERT statements, within the inserted values.
-    - In SELECT statements, within the table or column name.
-    - In SELECT statements, within the ORDER BY clause.
+- Most SQL injection vulnerabilities occur within the WHERE clause of a SELECT query. Most experienced testers are familiar with this type of SQL injection.
+- In UPDATE statements, within the updated values or the WHERE clause.
+- In INSERT statements, within the inserted values.
+- In SELECT statements, within the table or column name.
+- In SELECT statements, within the ORDER BY clause.
 
 SQLi Payloads:
-    - Skipping further query by commenting: Abcd'--
-    - Skipping all conditions: Abcd'+OR+1=1--
-    - Bypass login with username: user'--
+- Skipping further query by commenting: Abcd'--
+- Skipping all conditions: Abcd'+OR+1=1--
+- Bypass login with username: user'--
 
 In-Band SQLi - UNION:
 - Key requirements for UNION query to work:
@@ -65,7 +65,7 @@ In-Band SQLi - UNION:
     - Retrieve the columns from the table:
         - ' UNION SELECT username_abcdef, password_abcdef FROM users_abcdef--
 
-- Blind SQLi:
+Blind SQLi:
     - Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
     - Exploiting blind SQL injection by triggering conditional responses:
         - With true: ' AND '1'='1
@@ -78,7 +78,7 @@ In-Band SQLi - UNION:
             - ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>3)='a
         - Test the character at each position to determine its value (Intruder): ' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a
 
-- Blind - Error-based SQLi:
+Blind - Error-based SQLi:
     - Error-based SQL injection refers to cases where you're able to use error messages to either extract or infer sensitive data from the database, even in blind contexts. The possibilities depend on the configuration of the database and the types of errors you're able to trigger.
     - Exploiting blind SQL injection by triggering conditional errors:
         - xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a
@@ -94,7 +94,7 @@ In-Band SQLi - UNION:
         - It fails due to multiple rows, so a LIMIT 1 is added: TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--
         - This leaks the first username: "administrator". The final step retrieves the password: TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--
 
-- Blind - Time-based SQLi:
+Blind - Time-based SQLi:
     - When SQL errors are handled gracefully and no error messages are shown, blind SQL injection can be exploited using time-based delays. By injecting conditions that cause deliberate delays (e.g., using SLEEP()), attackers can infer whether a condition is true or false based on the time taken for the HTTP response.
     - Exploiting blind SQL injection by triggering time delays:
         - The techniques for triggering a time delay are specific to the type of database being used. For example, on Microsoft SQL Server:

@@ -1,4 +1,13 @@
 
+=> HTTP Request Headers
+
+- X-Original-URL: It is an HTTP request header sometimes used by reverse proxies, load balancers, or middleware to preserve the original URL path requested by a client before it was rewritten or altered by an intermediary component.
+- X-Rewrite-URL
+- X-Forwarded-For
+- Referer
+
+##################################################
+
 => Security Headers
 
 Security headers are HTTP response headers that a web server includes to enhance the security of web applications and protect users from various types of attacks. They instruct the browser how to behave while handling content from the server and help prevent vulnerabilities like XSS, clickjacking, MIME sniffing, and data injection.

@@ -19,18 +19,17 @@ Types of XSS Attacks:
     - The vulnerability exists in client-side JavaScript that processes data from the browser without proper sanitization.
     - DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
 
-- Prevent XSS Attacks:
-    - Preventing cross-site scripting is trivial in some cases but can be much harder depending on the complexity of the application and the ways it handles user-controllable data.
-    - To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
-    - Filter input on arrival: At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
-    - Encode data on output: At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
-    - Use appropriate response headers: To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend.
-    - Content Security Policy: As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
-    - JavaScript:
-    Add this to Prevention:
-        - Avoid dangerous JavaScript functions like eval(), Function(), setTimeout()/setInterval() with string arguments, document.write() — these increase XSS risk.
-        - Set HttpOnly and Secure flags on cookies to prevent JavaScript access to sensitive cookies.
-        - Use sandbox attribute in iframes to limit script execution.
+Prevent XSS Attacks:
+- Preventing cross-site scripting is trivial in some cases but can be much harder depending on the complexity of the application and the ways it handles user-controllable data.
+- To mitigate XSS attacks, always validate and sanitize user inputs, and use context-aware output encoding (HTML, JS, CSS, etc.). Implement a strong Content Security Policy (CSP) to restrict script sources, and set security headers like HttpOnly, Secure, and optionally X-XSS-Protection. Avoid inline JavaScript, use secure frameworks that auto-escape output, and perform regular security testing to detect vulnerabilities early.
+- Filter input on arrival: At the point where user input is received, filter as strictly as possible based on what is expected or valid input.
+- Encode data on output: At the point where user-controllable data is output in HTTP responses, encode the output to prevent it from being interpreted as active content. Depending on the output context, this might require applying combinations of HTML, URL, JavaScript, and CSS encoding.
+- Use appropriate response headers: To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses in the way you intend.
+- Content Security Policy: As a last line of defense, you can use Content Security Policy (CSP) to reduce the severity of any XSS vulnerabilities that still occur.
+- JavaScript:
+    - Avoid dangerous JavaScript functions like eval(), Function(), setTimeout()/setInterval() with string arguments, document.write() — these increase XSS risk.
+    - Set HttpOnly and Secure flags on cookies to prevent JavaScript access to sensitive cookies.
+    - Use sandbox attribute in iframes to limit script execution.
 
 Test/Check:
 - Reflected:
