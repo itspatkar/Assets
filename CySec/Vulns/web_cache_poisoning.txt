@@ -1,8 +1,65 @@
 
 => Web Cache Poisoning
 
+What is a Web Cache?
+A web cache is a temporary storage mechanism used to store copies of web resources (like HTML pages, images, JavaScript, CSS) so that future requests for the same resources can be served faster and with reduced load on the origin server.
+What It Caches:
+Static assets (CSS, JS, images)
+HTML pages
+API responses
+Dynamic content (if configured)
+
 - Web Cache Poisoning is a web security vulnerability where an attacker manipulates the content stored in a caching system (such as a CDN or reverse proxy), causing other users to receive malicious or misleading content from the cache instead of the correct, original version.
 - It is an advanced technique that involves exploiting the behavior of both the web server and caching layer. The attack typically occurs in two phases:
     - The attacker identifies a way to elicit a backend response that unintentionally includes a harmful payload.
     - They ensure this malicious response is cached and then served to future users.
 - A successfully poisoned cache can become a powerful delivery mechanism for various attacks, including reflected XSS, JavaScript injection, open redirection, and more.
+
+
+🔍 What is Web Cache Poisoning?
+Web Cache Poisoning is a web security vulnerability in which an attacker injects harmful content into a web server's cached response, so that other users are served malicious or manipulated data from the cache instead of the legitimate content.
+
+📦 How It Works:
+Caching systems like CDNs (Content Delivery Networks) or reverse proxies store web content (HTML, images, etc.) to reduce server load and improve speed. However, if these systems cache untrusted or attacker-controlled input, it can lead to poisoning.
+
+🧪 Two-Phase Process:
+Injection Phase:
+The attacker crafts a request (with special headers or parameters) that causes the backend server to respond with content that includes malicious input.
+
+Caching Phase:
+The malicious response is stored by the cache and then served to other users who access the same URL or cache key.
+
+🎯 Example Scenario:
+Attacker sends:
+
+makefile
+Copy
+Edit
+GET /home?lang=en HTTP/1.1  
+Host: victim.com  
+X-Forwarded-Host: evil.com
+Server reflects the X-Forwarded-Host header → response includes links with evil.com
+
+Cache stores this poisoned response
+
+Future visitors see pages with links to evil.com
+
+⚠️ Potential Impacts:
+Reflected XSS
+
+Open redirects
+
+Content spoofing / brand defacement
+
+Session hijacking / phishing support
+
+Cache pollution (breaking UI or functionality)
+
+🛡️ Prevention Tips:
+Validate and sanitize all user input (especially headers)
+
+Use strict cache key definitions (don’t vary cache on untrusted inputs)
+
+Set appropriate Cache-Control and Vary headers
+
+Avoid reflecting unnecessary request data in responses
