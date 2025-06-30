@@ -7,7 +7,6 @@
 - Referer
 - Content-Disposition
 
-##################################################
 
 => Security Headers
 
@@ -24,7 +23,7 @@ Header and Purpose:
 - Cross-Origin-Resource-Policy (CORP): Specifies who can load the resource (same-site, cross-site, etc.).
 - Cross-Origin-Opener-Policy (COOP): Isolates browsing context to prevent cross-origin attacks like Spectre.
 
-##################################################
+
 
 => Cross-Origin Resource Sharing (CORS)
 
@@ -37,7 +36,7 @@ CORS Headers and Role:
 - Access-Control-Allow-Credentials: Indicates if cookies/auth headers are allowed
 - Access-Control-Expose-Headers: Defines which headers can be read by the browser
 
-##################################################
+
 
 Optional/Legacy Headers
 

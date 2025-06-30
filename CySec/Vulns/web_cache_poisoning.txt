@@ -1,13 +1,9 @@
 
 => Web Cache Poisoning
 
-What is a Web Cache?
-A web cache is a temporary storage mechanism used to store copies of web resources (like HTML pages, images, JavaScript, CSS) so that future requests for the same resources can be served faster and with reduced load on the origin server.
-What It Caches:
-Static assets (CSS, JS, images)
-HTML pages
-API responses
-Dynamic content (if configured)
+Web Cache
+- A web cache is a temporary storage mechanism used to store copies of web resources (like HTML pages, images, JavaScript, CSS) so that future requests for the same resources can be served faster and with reduced load on the origin server.
+- What It Caches: Static assets (CSS, JS, images), HTML pages, API responses, Dynamic content (if configured)
 
 - Web Cache Poisoning is a web security vulnerability where an attacker manipulates the content stored in a caching system (such as a CDN or reverse proxy), causing other users to receive malicious or misleading content from the cache instead of the correct, original version.
 - It is an advanced technique that involves exploiting the behavior of both the web server and caching layer. The attack typically occurs in two phases:
@@ -15,51 +11,83 @@ Dynamic content (if configured)
     - They ensure this malicious response is cached and then served to future users.
 - A successfully poisoned cache can become a powerful delivery mechanism for various attacks, including reflected XSS, JavaScript injection, open redirection, and more.
 
+Web Cache Poisoning:
+- Web Cache Poisoning is a web security vulnerability in which an attacker injects harmful content into a web server's cached response, so that other users are served malicious or manipulated data from the cache instead of the legitimate content.
+- How It Works: Caching systems like CDNs (Content Delivery Networks) or reverse proxies store web content (HTML, images, etc.) to reduce server load and improve speed. However, if these systems cache untrusted or attacker-controlled input, it can lead to poisoning.
+- Two-Phase Process:
+    - Injection Phase: The attacker crafts a request (with special headers or parameters) that causes the backend server to respond with content that includes malicious input.
+    - Caching Phase: The malicious response is stored by the cache and then served to other users who access the same URL or cache key.
+- Cache Buster: A cache buster is a technique used to prevent browsers or intermediary caches (like CDNs or proxies) from serving a stale or outdated version of a resource. It typically involves adding a unique or changing value (usually a query parameter or file name change) to a resource URL to "bust" the cache and force a fresh fetch.
+- Query Buster: A Query Buster (or Cache Buster via Query) is a technique that involves adding extra query parameters to a URL — usually to either: Bypass or influence a web cache, and In some cases, exploit vulnerabilities like web cache poisoning.
 
-🔍 What is Web Cache Poisoning?
-Web Cache Poisoning is a web security vulnerability in which an attacker injects harmful content into a web server's cached response, so that other users are served malicious or manipulated data from the cache instead of the legitimate content.
+Example Scenario:
+- Attacker sends:
+    GET /home?lang=en HTTP/1.1
+    Host: victim.com
+    X-Forwarded-Host: evil.com
+- Server reflects the X-Forwarded-Host header -> response includes links with evil.com
+- Cache stores this poisoned response
+- Future visitors see pages with links to evil.com
 
-📦 How It Works:
-Caching systems like CDNs (Content Delivery Networks) or reverse proxies store web content (HTML, images, etc.) to reduce server load and improve speed. However, if these systems cache untrusted or attacker-controlled input, it can lead to poisoning.
+Potential Impacts:
+- Reflected XSS
+- Open redirects
+- Content spoofing / brand defacement
+- Session hijacking / phishing support
+- Cache pollution (breaking UI or functionality)
 
-🧪 Two-Phase Process:
-Injection Phase:
-The attacker crafts a request (with special headers or parameters) that causes the backend server to respond with content that includes malicious input.
+Prevention Tips:
+- Validate and sanitize all user input and parameters (especially headers)
+- Use strict cache key definitions (don’t vary cache on untrusted inputs)
+- Disable caching where not needed
+- Set appropriate Cache-Control and Vary headers
+- Avoid reflecting unnecessary request data (sensitive or user-specific data) in responses
 
-Caching Phase:
-The malicious response is stored by the cache and then served to other users who access the same URL or cache key.
+Common Caching Components Exploited
+- CDNs (Cloudflare, Akamai)
+- Reverse proxies (Varnish, Nginx, Squid)
+- Browser caches
+- Shared hosting proxy layers
 
-🎯 Example Scenario:
-Attacker sends:
-
-makefile
-Copy
-Edit
-GET /home?lang=en HTTP/1.1  
-Host: victim.com  
-X-Forwarded-Host: evil.com
-Server reflects the X-Forwarded-Host header → response includes links with evil.com
-
-Cache stores this poisoned response
-
-Future visitors see pages with links to evil.com
-
-⚠️ Potential Impacts:
-Reflected XSS
-
-Open redirects
-
-Content spoofing / brand defacement
-
-Session hijacking / phishing support
-
-Cache pollution (breaking UI or functionality)
-
-🛡️ Prevention Tips:
-Validate and sanitize all user input (especially headers)
-
-Use strict cache key definitions (don’t vary cache on untrusted inputs)
-
-Set appropriate Cache-Control and Vary headers
-
-Avoid reflecting unnecessary request data in responses
+Techniques and variations of Web Cache Poisoning:
+- Web Cache Poisoning involves manipulating how a caching system (like a reverse proxy, CDN, or browser cache) stores and serves content, so that subsequent users receive a malicious or altered response instead of the intended one.
+- Header-Based Poisoning:
+    - Manipulating request headers that the cache uses to differentiate between responses.
+    - Host Header Injection: Changing the Host header to poison a cached response: Host: attacker.com
+    - These headers are often trusted by web apps and backends but not understood by caching layers: X-Forwarded-Host, X-Forwarded-Scheme, X-Original-URL
+    - Example Attack:
+        GET / HTTP/1.1
+        Host: victim.com
+        X-Forwarded-Host: attacker.com
+- Query Parameter Pollution:
+    - Injecting unexpected or non-standard parameters into the URL, which the application uses but the cache ignores.
+    - Cache Key Ignorance:
+        - /product?id=123&lang=en -> Cache Key
+        - /product?id=123&lang=en&evil=1 -> evil=1 ignored by cache, but app reacts
+    - The server includes content based on evil=1, but the cache sees it as identical to the normal request and stores the poisoned version.
+- HTTP Method Confusion:
+    - Some cache systems cache GET requests but ignore POST/PUT, while the backend treats them differently.
+    - Attacker sends a GET with malicious data in headers/query.
+    - App uses data from header but cache key doesn’t include it -> poisoned response stored.
+- Unkeyed Input Poisoning:
+    - Occurs when the cache does not consider certain parts of the request (like cookies or headers) in its caching logic, but the backend does.
+    - Example: Backend renders different content for authenticated users using a Cookie, but cache ignores the Cookie.
+- Variation Header Manipulation:
+    - The Vary response header tells caches which headers affect the cache key.
+    - If misconfigured or incomplete: The app varies based on User-Agent, but Vary doesn’t include it -> cache confusion and poisoning.
+- Encoding Tricks:
+    - Using double-encoding or unusual characters to bypass filters or trick cache/backend into interpreting content differently.
+    - E.g.: /%2e%2e/admin -> interpreted as /../admin
+    - Cache may treat it as static content, backend may resolve it to admin panel.
+- Cookie Bombing:
+    - If the application uses cookies in a way that affects the response, but the cache ignores them, it can be poisoned.
+    - Send requests with different cookies to store multiple variants in cache, potentially evicting useful ones or planting malicious ones.
+- Cache-Control Header Abuse:
+    - Altering or misusing cache directives.
+    - For example:
+        - Setting Cache-Control: public, max-age=600 on a sensitive response.
+        - Causing sensitive data to be cached and served to other users.
+- Bypass 404 or Error Pages:
+    - Trick server into generating a valid page with a malicious payload that gets cached instead of showing a 404 or error.
+- Open Redirect or SSRF Poisoning:
+    - Poisoning the cache via redirection-based payloads (especially if the redirection response itself is cached).
