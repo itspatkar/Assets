@@ -1,0 +1,4 @@
+
+=> Clickjacking
+
+https://portswigger.net/web-security/clickjacking
