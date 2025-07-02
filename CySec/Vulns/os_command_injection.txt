@@ -1,0 +1,40 @@
+
+=> OS Command Injection
+
+- OS command injection, also known as shell injection, is a vulnerability that allows an attacker to execute operating system (OS) commands on the server hosting a vulnerable application. This can lead to full compromise of the application and its data. In many cases, attackers can further exploit this vulnerability to gain access to other parts of the hosting infrastructure and leverage trust relationships to pivot their attack to additional systems within the organization.
+
+Useful Commands:
+- Linux:
+    - Name of current user: whoami
+    - Operating system: uname -a
+    - Network configuration: ifconfig
+    - Network connections: netstat -an
+    - Running processes: ps -ef
+- Windows:
+    - Name of current user: whoami
+    - Operating system: ver
+    - Network configuration: ipconfig /all
+    - Network connections: netstat -an
+    - Running processes: tasklist
+
+Ways of Injecting OS Commands:
+- Using shell metacharacters is a common method for performing OS command injection attacks. These characters act as command separators, allowing attackers to chain multiple commands together.
+- Command separators that work on both Windows and Unix-based systems:
+    - &
+    - &&
+    - |
+    - ||
+- Command separators that work only on Unix-based systems:
+    - ;
+    - Newline character (\n or 0x0A)
+- Inline command execution on Unix-based systems can be performed using:
+    - Backticks: `injected_command`
+    - Dollar-parentheses: $(injected_command)
+
+Preventing OS Command Injection Attacks:
+- The most effective way to prevent OS command injection vulnerabilities is to avoid calling OS commands from application-layer code altogether. Most required functionalities can be implemented using safer platform-specific APIs.
+- If invoking OS commands with user-supplied input is absolutely necessary, you must apply strict input validation. Effective validation methods include:
+    - Validating input against a whitelist of allowed values.
+    - Ensuring the input is a numeric value, if appropriate.
+    - Restricting input to alphanumeric characters only, disallowing all special characters, whitespace, and syntax.
+- Never rely on escaping shell metacharacters as a security measure. This approach is highly error-prone and can often be bypassed by skilled attackers.

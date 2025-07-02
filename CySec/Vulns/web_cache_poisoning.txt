@@ -5,29 +5,37 @@ Web Cache
 - A web cache is a temporary storage mechanism used to store copies of web resources (like HTML pages, images, JavaScript, CSS) so that future requests for the same resources can be served faster and with reduced load on the origin server.
 - What It Caches: Static assets (CSS, JS, images), HTML pages, API responses, Dynamic content (if configured)
 
-- Web Cache Poisoning is a web security vulnerability where an attacker manipulates the content stored in a caching system (such as a CDN or reverse proxy), causing other users to receive malicious or misleading content from the cache instead of the correct, original version.
-- It is an advanced technique that involves exploiting the behavior of both the web server and caching layer. The attack typically occurs in two phases:
-    - The attacker identifies a way to elicit a backend response that unintentionally includes a harmful payload.
-    - They ensure this malicious response is cached and then served to future users.
-- A successfully poisoned cache can become a powerful delivery mechanism for various attacks, including reflected XSS, JavaScript injection, open redirection, and more.
-
 Web Cache Poisoning:
-- Web Cache Poisoning is a web security vulnerability in which an attacker injects harmful content into a web server's cached response, so that other users are served malicious or manipulated data from the cache instead of the legitimate content.
+- Web Cache Poisoning is a web security vulnerability in which an attacker manipulates or injects harmful content into a web server’s cached response (such as through a CDN or reverse proxy), causing the server to store and serve malicious or altered responses to subsequent users instead of the correct, original content.
 - How It Works: Caching systems like CDNs (Content Delivery Networks) or reverse proxies store web content (HTML, images, etc.) to reduce server load and improve speed. However, if these systems cache untrusted or attacker-controlled input, it can lead to poisoning.
+- A successfully poisoned cache can become a powerful delivery mechanism for various attacks, including reflected XSS, JavaScript injection, open redirection, and more.
 - Two-Phase Process:
     - Injection Phase: The attacker crafts a request (with special headers or parameters) that causes the backend server to respond with content that includes malicious input.
     - Caching Phase: The malicious response is stored by the cache and then served to other users who access the same URL or cache key.
+
+Keyed vs Unkeyed:
+- Keyed Input:
+    - This refers to request components that affect the cache key, i.e., the parts of the request (like URL, headers, etc.) that the cache uses to decide whether a response should be stored or retrieved. If a component is keyed, it is included in the cache lookup.
+    - The cache differentiates responses based on this input.
+    - When a query buster is used, it's typically an example of keyed input poisoning, but with a twist.
+- Unkeyed Input:
+    - This refers to request components that the cache ignores but the backend application uses to generate the response.
+    - The cache treats multiple different requests as the same (i.e., same cache key), But the backend returns different responses depending on the unkeyed input -> poison opportunity.
+
+Query Parameters:
 - Cache Buster: A cache buster is a technique used to prevent browsers or intermediary caches (like CDNs or proxies) from serving a stale or outdated version of a resource. It typically involves adding a unique or changing value (usually a query parameter or file name change) to a resource URL to "bust" the cache and force a fresh fetch.
 - Query Buster: A Query Buster (or Cache Buster via Query) is a technique that involves adding extra query parameters to a URL — usually to either: Bypass or influence a web cache, and In some cases, exploit vulnerabilities like web cache poisoning.
+- To ensure the victim loads the poisoned resource, the request must use the exact same cache key as the one they will load. That’s why you must remove all cache busters — so the cache stores your poisoned version under the same predictable URL the victim will use.
 
-Example Scenario:
-- Attacker sends:
-    GET /home?lang=en HTTP/1.1
-    Host: victim.com
-    X-Forwarded-Host: evil.com
-- Server reflects the X-Forwarded-Host header -> response includes links with evil.com
-- Cache stores this poisoned response
-- Future visitors see pages with links to evil.com
+Parameter Cloaking:
+- Parameter cloaking is a web security evasion technique in which attackers hide or disguise malicious parameters in HTTP requests to bypass filters, WAFs (Web Application Firewalls), or security validations. It can be used to manipulate backend behavior without detection.
+- How Parameter Cloaking Works: Web applications often expect certain parameters in specific formats. Parameter cloaking involves obfuscating or duplicating parameters, using unexpected encodings, or hiding them in headers to confuse the application logic or security controls.
+
+Common Caching Components Exploited
+- CDNs (Cloudflare, Akamai)
+- Reverse proxies (Varnish, Nginx, Squid)
+- Browser caches
+- Shared hosting proxy layers
 
 Potential Impacts:
 - Reflected XSS
@@ -43,11 +51,14 @@ Prevention Tips:
 - Set appropriate Cache-Control and Vary headers
 - Avoid reflecting unnecessary request data (sensitive or user-specific data) in responses
 
-Common Caching Components Exploited
-- CDNs (Cloudflare, Akamai)
-- Reverse proxies (Varnish, Nginx, Squid)
-- Browser caches
-- Shared hosting proxy layers
+Example Scenario:
+- Attacker sends:
+    GET /home?lang=en HTTP/1.1
+    Host: victim.com
+    X-Forwarded-Host: evil.com
+- Server reflects the X-Forwarded-Host header -> response includes links with evil.com
+- Cache stores this poisoned response
+- Future visitors see pages with links to evil.com
 
 Techniques and variations of Web Cache Poisoning:
 - Web Cache Poisoning involves manipulating how a caching system (like a reverse proxy, CDN, or browser cache) stores and serves content, so that subsequent users receive a malicious or altered response instead of the intended one.
