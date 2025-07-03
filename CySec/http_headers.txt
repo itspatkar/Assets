@@ -1,4 +1,50 @@
 
+HTTP Host header
+
+Hypertext Transfer Protocol (HTTP) :
+
+The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web. It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.
+Hypertext Transfer Protocol Secure (HTTPS) :
+
+HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties. HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
+Simple
+
+# HTTP Protocol
+
+The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web.
+HTTP Methods :
+
+HTTP methods are a way for the client to show their intended action when making an HTTP request.
+
+    GET Request : This is used for getting information from a web server.
+    POST Request : This is used for submitting data to the web server and potentially creating new records.
+    PUT Request : This is used for submitting data to a web server to update information.
+    DELETE Request : This is used for deleting information or records from a web server.
+
+
+HTTP Headers :
+
+Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
+
+    Common Request Headers :
+        Host : Some web servers host multiple websites, so by providing the host headers, the client instructs the server which one is required; otherwise, it receives the default website for the server.
+        User-Agent : This is the browser software and its version number, which tells the web server which browser is being used, helping it format the website properly for that specific browser. Additionally, some elements of HTML, JavaScript, and CSS are only supported in certain browser versions.
+        Content-Length : When sending data to a web server, such as in a form, the content length tells the web server how much data to expect in the web request. This way, the server can ensure it isn't missing any data.
+        Accept-Encoding : Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.
+        Cookie : It is data that is sent to the server to help remember users information.
+    Common Response Headers :
+        Set-Cookie : Information to store as cookie, which gets sent back to the web server on each request.
+        Cache-Control : How long should it take to store the content of the response in the browser's cache before it requests it again.
+        Content-Type : This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, images, PDF, video, etc. Using the content-type header, the browser then knows how to process the data.
+        Content-Encoding : What method has been used to compress the data to make it smaller when sending it over the internet.
+
+Cookies :
+
+A cookie is a small piece of data that is stored on a user's computer by a web browser. Cookies are set by the "Set-Cookie" header received from a web server. Cookies are used for session management, tracking and analytics, advertising, etc.
+# Web Socket
+
+------------------------------------
+
 => HTTP Request Headers
 
 - X-Original-URL: It is an HTTP request header sometimes used by reverse proxies, load balancers, or middleware to preserve the original URL path requested by a client before it was rewritten or altered by an intermediary component.

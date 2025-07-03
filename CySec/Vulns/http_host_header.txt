@@ -1,0 +1,4 @@
+
+=> HTTP Host header Attacks
+
+https://portswigger.net/web-security/host-header
