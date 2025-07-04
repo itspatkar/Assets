@@ -1,4 +1,9 @@
 
+Header, Cookie, Payload/body
+-----
+Post - reqeust params passed in body
+Get - request params passed in url
+
 HTTP Host header
 
 Hypertext Transfer Protocol (HTTP) :
