@@ -1,0 +1,84 @@
+
+=> Hypertext Transfer Protocol (HTTP)
+
+- The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web.
+- It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.
+- Hypertext Transfer Protocol Secure (HTTPS): HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties.
+- HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
+
+Key Characteristics of HTTP:
+- Protocol Type: Application-layer protocol (part of the TCP/IP model)
+- Client-Server Model: The client (usually a browser) sends a request; the server responds.
+- Stateless: Each HTTP request is independent — the server doesn’t remember previous interactions by default.
+- Text-based: Requests and responses are human-readable plain text.
+
+HTTP Methods:
+- HTTP methods are a way for the client to show their intended action when making an HTTP request.
+- GET Request:
+    - Retrieve data from the web server without modifying it.
+    - Parameter Location: Sent in the URL as query string parameters.
+    - Example: GET /search?query=books&page=2
+    - Visibility: Visible in browser history, server logs, and URL address bar.
+    - Usage: Typically used for retrieving data (read-only operations).
+    - Size Limit: Limited by the maximum URL length (browser/server dependent, often around 2,048 characters).
+    - Caching: Can be cached and bookmarked.
+- POST Request:
+    - Submit data to the web server (e.g., create a new record)
+    - Parameter Location: Sent in the body of the HTTP request.
+    - Example (raw HTTP body): query=books&page=2
+    - Visibility: Not shown in the URL, making it more private.
+    - Usage: Typically used for sending data (like forms, file uploads, etc.).
+    - Size Limit: Much larger than GET (depends on server config).
+    - Caching: Usually not cached by default.
+- PUT Request:
+    - Replace an existing resource entirely or create it if it doesn’t exist.
+    - Parameter Location: Sent in the body of the request.
+    - Example (raw body): { "title": "New Book", "author": "Alice" }
+    - Visibility: Not shown in the URL.
+    - Usage: Typically used to update full objects.
+    - Size Limit: Depends on server settings (like POST).
+    - Caching: Not typically cached.
+- DELETE Request:
+    - Remove an existing resource from the server.
+    - Parameter Location: Usually in the URL (e.g., resource ID) or sometimes in the body.
+    - Example (URL): /users/123
+    - Visibility: Resource ID visible in URL if passed there.
+    - Usage: Used for deleting data from the server.
+    - Size Limit: Minimal if URL-only; body size depends on use case.
+    - Caching: Not cached.
+- HEAD Request:
+    - Retrieve only the headers of a resource, not the body.
+    - Parameter Location: In the URL like GET requests.
+    - Example (URL): /file.pdf
+    - Visibility: Same as GET (URL visible).
+    - Usage: Used to check metadata (e.g., file size, last modified) before downloading.
+    - Size Limit: Same as GET.
+    - Caching: Can be cached.
+- TRACE Method:
+    - The TRACE method is a diagnostic/debugging tool defined by the HTTP specification. It’s rarely used in modern applications and often disabled for security reasons.
+    - Purpose: Echo the received request so the client can see what is being received at the server.
+    - Parameter Location: In the URL and headers.
+    - Example Use Case: Test or debug what intermediaries (proxies, firewalls) are doing to your HTTP requests.
+    - Response: Returns the exact request received by the server in the response body (headers, request line, etc.).
+
+HTTP Headers:
+- Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
+- Common Request Headers:
+    - Host : Some web servers host multiple websites, so by providing the host headers, the client instructs the server which one is required; otherwise, it receives the default website for the server.
+    - User-Agent : This is the browser software and its version number, which tells the web server which browser is being used, helping it format the website properly for that specific browser. Additionally, some elements of HTML, JavaScript, and CSS are only supported in certain browser versions.
+    - Content-Length : When sending data to a web server, such as in a form, the content length tells the web server how much data to expect in the web request. This way, the server can ensure it isn't missing any data.
+    - Accept-Encoding : Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.
+    - Cookie : It is data that is sent to the server to help remember users information.
+- Common Response Headers:
+    - Set-Cookie : Information to store as cookie, which gets sent back to the web server on each request.
+    - Cache-Control : How long should it take to store the content of the response in the browser's cache before it requests it again.
+    - Content-Type : This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, images, PDF, video, etc. Using the content-type header, the browser then knows how to process the data.
+    - Content-Encoding : What method has been used to compress the data to make it smaller when sending it over the internet.
+
+Cookies:
+- A cookie is a small piece of data that is stored on a user's computer by a web browser. Cookies are set by the "Set-Cookie" header received from a web server. Cookies are used for session management, tracking and analytics, advertising, etc.
+- Cookies are small key-value pairs, approximately 4 KB in size, that are sent with every HTTP request and are commonly used for managing sessions, storing authentication tokens, and enabling user tracking; they remain persistent until their specified expiration.
+
+-----
+
+Header, Cookie, Payload/body

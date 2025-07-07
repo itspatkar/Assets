@@ -6,3 +6,4 @@
 - Unlike traditional HTTP communication, which is request-response based, Websockets provide full-duplex communication, persistent connections, low latency, bi-directional connectivity, and security.
 - WebSocket provides real-time communication and data transfer.
 - It is used in real-time applications like social media apps, online gaming and live streaming, and collaborative tools like Google Docs.
+- WebSockets are used for all kinds of purposes, including performing user actions and transmitting sensitive information. Virtually any web security vulnerability that arises with regular HTTP can also arise in relation to WebSockets communications.

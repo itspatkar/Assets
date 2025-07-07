@@ -1,0 +1,39 @@
+
+=> HTTP Smuggling
+
+- HTTP request smuggling is a web application vulnerability that occurs when there is an inconsistency in the way front-end and back-end servers interpret the boundaries of HTTP requests. This misalignment allows an attacker to "smuggle" a malicious request through, often bypassing security filters or controls.
+- HTTP Smuggling is a web vulnerability that occurs when proxies and web servers parse HTTP requests differently, allowing attackers to "smuggle" a hidden request through a trusted front-end.
+- Most HTTP request smuggling vulnerabilities arise because the HTTP/1 specification provides two different ways to specify where a request ends: the Content-Length header and the Transfer-Encoding header.
+- HTTP Smuggling can be mitigated by ensuring consistent HTTP parsing across components, blocking conflicting headers (Content-Length and Transfer-Encoding), using HTTP/2 or HTTP/3, and regularly testing and updating your infrastructure.
+
+How It Works:
+- Request smuggling typically happens in multi-tier architectures, such as:
+    - A front-end proxy (e.g., reverse proxy, load balancer, CDN),
+    - A back-end web server or application server.
+- The issue arises when the front-end and back-end disagree on:
+    - How to determine the end of one HTTP request and the start of the next.
+    - This often involves conflicting headers such as:
+        - Content-Length
+        - Transfer-Encoding: chunked
+
+Common Techniques:
+- CL.TE (Content-Length + Transfer-Encoding): Front-end honors Content-Length, back-end honors Transfer-Encoding.
+- TE.CL (Transfer-Encoding + Content-Length): Front-end honors Transfer-Encoding, back-end honors Content-Length.
+- TE.TE (double Transfer-Encoding): Used when different interpretations of multiple Transfer-Encoding headers occur.
+
+Exploitation Impact:
+- Bypass authentication or WAFs by hiding malicious payloads.
+- Hijack user sessions by injecting requests that get processed in someone else’s context.
+- Cache poisoning, leading to the serving of attacker-controlled content to other users.
+- Cross-user attacks, like credential theft or forced requests.
+
+HTTP/2 Considerations:
+- While request smuggling is traditionally associated with HTTP/1.1, it can still affect HTTP/2 environments if:
+- HTTP/2 is converted (downgraded) to HTTP/1.1 by a reverse proxy.
+- Improper request reassembly allows smuggling via stream mismanagement or header abuse.
+
+Mitigations:
+- Use consistent and strict parsing logic between front-end and back-end.
+- Avoid mixing Content-Length and Transfer-Encoding headers.
+- Normalize and validate incoming requests at the perimeter.
+- Keep web server software up to date with security patches.
