@@ -15,6 +15,17 @@ How It Works:
     - This often involves conflicting headers such as:
         - Content-Length
         - Transfer-Encoding: chunked
+- Using Both is Invalid per RFC
+
+Headers:
+- Content-Length:
+    - Tells the server exactly how many bytes of data are in the HTTP request (or response) body.
+    - Used when:
+        - The body is sent as one continuous block of bytes.
+        - The server needs to know where the request ends.
+- Transfer-Encoding:
+    - Tells the server how the message body is encoded or broken up before it is sent.
+    - Transfer-Encoding: chunked means: The body is split into multiple chunks, each with its own length, and ends with a chunk of size 0.
 
 Common Techniques:
 - CL.TE (Content-Length + Transfer-Encoding): Front-end honors Content-Length, back-end honors Transfer-Encoding.
@@ -37,3 +48,32 @@ Mitigations:
 - Avoid mixing Content-Length and Transfer-Encoding headers.
 - Normalize and validate incoming requests at the perimeter.
 - Keep web server software up to date with security patches.
+
+Testing Vulnerability:
+POST / HTTP/1.1
+Host: test.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 4
+Transfer-Encoding: chunked
+0
+GET / HTTP/1.1
+X-Ignore: X
+
+Exploiting Vulnerability:
+POST / HTTP/1.1
+Host: test.com
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+5e
+POST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+x=1
+0
+
+HTTP Request Smuggling CL.TE (Content-Length + Transfer-Encoding) Steps:
+- Step 1: Malicious request is sent: The attacker sends an HTTP request containing both Content-Length and Transfer-Encoding: chunked headers, with the Content-Length set to a small value and a larger chunked body that includes a smuggled second request.
+- Step 2: Front-end parses using Content-Length: The front-end (e.g., a proxy or load balancer) trusts the Content-Length header and reads only the specified number of bytes from the request body, ignoring the rest and considering the request complete.
+- Step 3: Back-end parses using Transfer-Encoding: The back-end server trusts the Transfer-Encoding: chunked header instead, and continues reading the entire chunked body, interpreting the leftover data (which the front-end ignored) as a second, valid HTTP request.
+- Step 4: Desynchronization and smuggling occur: As a result, the front-end and back-end become desynchronized, allowing the attacker to smuggle a hidden request past front-end security checks and directly into the back-end server, potentially bypassing authentication, filters, or logging.
