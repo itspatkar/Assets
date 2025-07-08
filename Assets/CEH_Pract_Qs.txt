@@ -1,0 +1,175 @@
+
+End
+Instructions
+Resources
+CEH Practical
+Scenario
+You have been hired as a part of the Red Team at CEHORG, an IT and ITES organization that deals with advanced research and development in the field of information security. It has offices all over the country connected in real-time by its network infrastructure.
+
+Your organization is worried about rising cybersecurity incidents and has entrusted you with a comprehensive security audit of the complete infrastructure.
+
+CEHORG's internal network consists of several subnets housing various organizational units like any large organization. The front office is connected to a separate subnet that connects to the company's public-facing computers. The company has installed multiple kiosks to help customers understand their products and services. The front office also has Wi-Fi connectivity to cater to the users who carry their smartphones and laptops.
+
+The CEHORG's internal network is made up of Militarized and Demilitarized zones. As a security precaution and by design, all the internal resource zones are configured with different subnet IPs. The militarized zone houses the application servers that provide application frameworks for various departments. The Demilitarized Zone contains public-facing systems of the organization, such as web and mail servers. The headquarters' network topology and protocols are replicated worldwide in all its satellite offices for efficient communication with the headquarters.
+
+Description
+CEH Practical exam presents you with 20 challenges built on the ethical hacking domains covered in the C|EH program. The exam hosts multiple hidden machines, each containing a set of vulnerable applications and services. You must apply your knowledge and skills in various ethical hacking domains and solve the challenges. The exam duration is 6 hours. Each challenge in CEH Practical weighs 10 points, and you are required to solve a minimum of 14 challenges out of 20, which would sum up to 140 points, to become a CEH (Practical) Credential Holder.
+
+On the cyber range, you will have access to Ethical Hacker Workstations, EH Workstation - 1 and EH Workstation - 2. EH Workstation - 1 is a Parrot Security machine and EH Workstation - 2 is a Windows 11 machine. You can switch to these machines from the Resources tab.
+
+Please note that there are a maximum of 3 attempts for each challenge.
+
+Available target networks:
+
+10.10.55.0/24
+
+192.168.44.0/24
+
+192.168.200.0/24
+
+Exclusions:
+
+10.10.55.1, 10.10.55.2
+
+192.168.44.1, 192.168.44.2
+
+192.168.200.1, 192.168.200.2
+
+The credentials to access EH Workstation - 1 (Parrot Security) machine are as below:
+
+Username: attacker Password: toor
+
+The credentials to access EH Workstation - 2 (Windows 11) are as below:
+
+Username: Admin Password: Pa$$w0rd
+
+The credentials to access OpenVAS on EH Workstation - 1 (Parrot Security) machine are as below:
+
+Username: admin Password: password
+
+To open OpenVAS tool, click Applications at the top of the Desktop window and navigate to Pentesting --> Vulnerability Analysis --> Openvas - Greenbone --> Start Greenbone Vulnerability Manager Service to launch OpenVAS tool.
+
+Note: You can use username.txt and password.txt available on the Desktop of the EH Workstation - 1 (Parrot Security) machine for any credentials/password cracking attempt.
+
+Flags
+Challenge 1:
+
+Conduct a comprehensive scan of the target network to identify the DNS computer name of the Domain Controller. (Format: AaaaaAaaa*AAAAAA*aaa)
+
+AdminTeam.ECCCEH.com
+Correct answer.
+
+Challenge 2:
+
+During the course of an attack investigation, it was identified that a Windows web development environment was exploited to gain unauthorized access to the system. Perform an in-depth network scan and thorough service enumeration to determine the version of the IMAP Mercury service running on the server. (Format: N*NN)
+
+4.62
+Correct answer.
+
+Challenge 3:
+
+Identify a system with RDP enabled in the 10.10.55.0/24 subnet and crack the RDP credentials for user Jones. Retrieve the forger.cfe file containing an encrypted image. Calculate the SHA1 hash of the decrypted image file and provide the last six digits as the answer. Note: Use Jones's password to extract the image file. (Format: NNaaNN)
+
+60aa64
+Correct answer.
+
+Challenge 4:
+
+An insider attack has been detected involving an employee's mobile device within the 10.10.55.0/24 subnet. The employee is suspected of storing sensitive data within an image file on the device. Your task is to discreetly access the device, recover the concealed data from the image file (.bmp), analyze it, and extract the hidden sensitive information to obtain the secret code. (Format: A*aaaaAN*a)
+
+Challenge 5:
+
+Perform a vulnerability assessment on the host with the IP address 192.168.44.32. Determine the total number of vulnerabilities categorized as low severity and submit the count as the answer. (Format: N)
+
+2
+Correct answer.
+
+Challenge 6:
+
+Leverage a remote login and command-line execution application on a Linux target within the 10.10.55.0/24 subnet to access the sensitive file, StealthNet.txt. Retrieve the contents of the file and provide them as the answer. (Format: Aa*a**A**a)
+
+Challenge 7:
+
+A former employee of the organization has stolen a critical account credential and stored it in a file named pixelpioneer.txt prior to quitting the company. The credential is a nine-character alphanumeric string. Access the pixelpioneer.txt file, located in the Downloads folder of the "EH Workstation – 2," where it was identified as an email attachment. Note: You have learned that "password" is the key to extracting data from the pixelpioneer.txt file. (Format: ANaa*aANaNa)
+
+Challenge 8:
+
+Leverage weak credentials for the SMB service on a Windows machine within the 10.10.55.0/24 subnet to gain access to the file, QuantumCoder.txt, located in the SMB root directory. Extract the contents of the file and submit them as the answer. (Format: Aa*aNaaNNa)
+
+Challenge 9:
+
+You have been tasked with performing a static malware analysis on the malicious executable file, Wildfire.exe, located in the Downloads folder of EH Workstation-2. Identify the Image Version number of the executable and submit it as the answer. (Format: N*N)
+
+1.0
+Correct answer.
+
+Challenge 10:
+
+A subversive former employee, Martin, has concealed confidential files in a folder named "Honeywell" on a Windows machine within the 10.10.55.0/24 subnet. While physical access to the target machine is not feasible, it is known that a Remote Access Tool (RAT) has been installed for remote administration. Your task is to identify the number of files contained within the "Honeywell" folder and provide the total count of files accessed by the employee as the answer. (Format: N)
+
+6
+Challenge 11:
+
+An incident responder has acquired a suspicious executable file named "Ghostware" during an assignment. As a malware analyst, your task is to identify the entry point (address) of the executable. The file is located in the C:\Users\Administrator\Documents directory on the machine labeled "EH Workstation – 2. (Format: NNNNaNNN)
+
+0001e768
+Incorrect answer. Try again.
+
+Challenge 12:
+
+You are assigned to investigate a large-scale DDoS attack targeting the IP address 172.22.10.10. The objective is to analyze the network traffic to identify the malicious packets involved and determine the IP address of the attacker machine running Windows as its operating system. The network capture file, Mystic-capture.pcapng, is located in the Documents directory of the "EH Workstation – 2" (Windows 11) machine. (Format: NN*NN*NN*NN)
+
+10.10.55.11
+Correct answer.
+
+Challenge 13:
+
+You are assigned to extract the password of a user, Matthew, from a web application, cinema.cehorg.com, which is vulnerable to an SQL injection attack. Note: You have already registered on the website with the credentials Sarah/abc123. (Format: NNNNNNNN)
+
+12345678
+Correct answer.
+
+Challenge 14:
+
+Explore the web application at www.cehorg.com and enter the flag's value on the page with page_id=103. (Format: N*aA*a)
+
+1'mM@d
+Correct answer.
+
+Challenge 15:
+
+Conduct a thorough vulnerability assessment and exploit the web application training.cehorg.com. Identify the phantom.txt file and enter its content as the answer. (Format: AAaa*aa)
+
+Challenge 16:
+
+You are assigned to exploit a vulnerable web application, cybersec.cehorg.com, hosted at 192.168.44.40, which is vulnerable to SQL injection attack. Determine the value in the cybersec column from one of the database tables as the answer. (Format: A**a*NNA)
+
+H^(k#37L
+Correct answer.
+
+Challenge 17:
+
+A batch of files has been uploaded through DVWA (http://192.168.44.32:8080/DVWA). These files are stored in the "C:\wamp64\www\DVWA\SecureWeb\prod\" directory. Decode the base64 ciphers to find the original message among them and determine the decrypted message as the answer. Note: Log into DVWA with admin/password. (Format: AaaN*aNaN)
+
+Challenge 18:
+
+Analyze the traffic capture from an IoT network located in the Documents folder of the "EH Workstation – 1" (ParrotSecurity) machine, identify the packet with IoT Publish Message, and enter the topic as the answer. (Format: Aaaa*Aaaa)
+
+High_Temp
+Correct answer.
+
+Challenge 19:
+
+A disgruntled employee encrypted trade secrets of a company using VeraCrypt. The "Mass1nfo" volume file is stored on the C: drive of "EH Workstation – 2". The password hash required to access the volume file is in "Hashed1nfo.txt" in the Documents folder of "EH Workstation – 1" (ParrotSecurity). As an ethical hacker, decrypt the hash, access the VeraCrypt volume, and find the secret code in CS_eng.txt. (Format: Naaa*aaN*)
+
+1nfo$ec3(
+Correct answer.
+
+Challenge 20:
+
+Your organization has identified suspicious wireless activity and suspects the presence of a rogue access point (AP) in the area. A wireless traffic capture file, "Credmapwifi.cap," generated using the airdump-ng tool, is located in the Documents folder of the "EH Workstation-1" (ParrotSecurity) machine. You have been tasked with analyzing the file, cracking the Wi-Fi password, and identifying the last four characters of the password as the answer. (Format: aaaN)
+
+ord1
+Correct answer.
+
+20 Minutes Remaining
