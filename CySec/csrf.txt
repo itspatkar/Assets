@@ -37,3 +37,5 @@ Although CSRF is normally described in relation to cookie-based session handling
 https://portswigger.net/web-security/csrf
 
 - Server should not get unauthenticated requests
+
+CSRF tricks a user into executing unwanted actions on a different website where they're authenticated. This can lead to unauthorized actions like changing account details or making transactions.
