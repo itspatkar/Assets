@@ -1,2 +1,27 @@
 
 => XML External Entity (XXE) Injection
+
+- XML stands for eXtensible Markup Language. It is a markup language used to store, structure, and transport data in a human-readable and machine-readable format.
+- Key Characteristics:
+    - Text-based format (plain text)
+    - Hierarchical structure (tree-like)
+    - Self-descriptive: data is wrapped in tags that describe it
+    - Designed to be extensible — you define your own tags
+    - Used widely in data exchange, configuration files, and web services
+- XML Example:
+    <user>
+        <id>123</id>
+        <name>John Doe</name>
+        <email>john@example.com</email>
+    </user>
+- Uses:
+    - Web Services (SOAP uses XML)
+    - Configuration Files (config.xml, Android manifest.xml)
+    - Data Interchange (Between servers, databases, and applications)
+    - Document Formats (Office files like .docx, .pptx, .xlsx)
+    - RSS/Atom Feeds (News or blog feed syndication)
+- XML vs. JSON:
+    - Verbosity: XML is more verbose than JSON.
+    - Readability: Both are human-readable, but JSON is considered more readable due to its cleaner syntax.
+    - Data Types: XML supports only strings by default, whereas JSON supports multiple data types such as strings, numbers, arrays, and objects.
+    - Usage: XML is commonly used in enterprise and legacy systems, while JSON is widely used in modern APIs and web applications.
