@@ -1,0 +1,13 @@
+
+=> OAuth
+
+- OAuth (short for Open Authorization) is an open standard for access delegation, commonly used to grant websites or applications limited access to a user's information on another service — without giving away the user's credentials (like username and password).
+- In simple terms: OAuth lets you log in to one app using another account, like: “Login with Google” or “Login with Facebook”
+- This allows the app to access certain user data from Google/Facebook, like your email address or profile info, without asking for your Google password.
+
+Key Components of OAuth 2.0:
+- Resource Owner: The user who owns the data.
+- Client: The app requesting access to the user’s data.
+- Authorization Server: The server that authenticates the user and issues access tokens (e.g., Google, GitHub).
+- Resource Server: The server hosting the user's data (e.g., Google Drive, GitHub APIs).
+- Access Token: A temporary credential issued to the client to access the user’s data.

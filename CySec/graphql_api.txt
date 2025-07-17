@@ -1,0 +1,47 @@
+
+=> GraphQL API
+
+- GraphQL is a query language for APIs and a runtime for executing those queries with your existing data. It was developed by Facebook.
+
+Key Concepts of GraphQL:
+- Query Language: Allows clients to specify exactly what data they need from an API
+- Single Endpoint: Unlike REST, GraphQL APIs use a single endpoint, typically /graphql
+- Strongly Typed Schema: Defines what queries are possible and what types are returned
+- Hierarchical Queries: Structure mimics the data structure, allowing nested queries
+- Client-driven: The client controls what data it receives (no underfetching or overfetching)
+
+How It Works:
+- You define a schema on the server with types and relationships.
+- The client sends a query specifying exactly what fields it wants.
+- The server returns a JSON response with just that data.
+
+Example:
+- Query:
+    {
+        user(id: "123") {
+            name
+            email
+            posts {
+                title
+                published
+            }
+        }
+    }
+- Response:
+    {
+        "data": {
+            "user": {
+                "name": "Alice",
+                "email": "alice@example.com",
+                "posts": [
+                    { "title": "First Post", "published": true },
+                    { "title": "Second Post", "published": false }
+                ]
+            }
+        }
+    }
+
+Benefits over REST:
+- No overfetching/underfetching: Get only what you need.
+- Fewer requests: Combine multiple resources in one request.
+- Typed responses: Easier to validate and auto-generate docs/tools.
