@@ -1,0 +1,31 @@
+
+=> NoSQL Injection
+
+- NoSQL stands for "Not Only SQL". It refers to a broad category of database systems that are non-relational and designed to handle a wide variety of data models that traditional relational databases (RDBMS) (like MySQL or PostgreSQL) may struggle with.
+
+Key Features of NoSQL Databases:
+- Schema-less: Data can be stored without a predefined structure.
+- Scalable: Designed for horizontal scaling (add more servers easily).
+- High Performance: Optimized for fast reads/writes of large volumes of data.
+- Flexible Data Models: Supports a variety of formats like documents, key-value pairs, graphs, etc.
+- Distributed Architecture: Often built for distributed data storage and high availability.
+
+Types of NoSQL Databases:
+- Key-Value Store: Data stored as key-value pairs (Redis, DynamoDB)
+- Document Store: Stores semi-structured documents (JSON/XML) (MongoDB, CouchDB)
+- Column Store: Stores data in columns instead of rows (Cassandra, HBase)
+- Graph DB: Designed for data with complex relationships (Neo4j, ArangoDB)
+
+When to Use NoSQL:
+- When dealing with large-scale or real-time data.
+- When data structure is dynamic or changes often.
+- When application needs high throughput and low latency.
+- When using big data, IoT, real-time analytics, or social networks.
+
+When NOT to Use NoSQL:
+- When your data requires strong ACID transactions.
+- When there's a well-defined schema and complex joins/queries.
+
+Summary:
+- SQL is best when you need structured data, strong consistency, and complex queries.
+- NoSQL is ideal for unstructured/rapidly changing data, high availability, and scalability.

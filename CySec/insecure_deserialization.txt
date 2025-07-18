@@ -1,0 +1,27 @@
+
+=> Insecure Deserialization
+
+- Insecure Deserialization is a security vulnerability that occurs when an application deserializes (i.e., reconstructs) data from an untrusted source without properly validating or sanitizing it.
+- What is Deserialization:
+    - Serialization: converting an object (e.g., in Python, Java, PHP) into a format that can be stored/transmitted (e.g., JSON, XML, binary).
+    - Deserialization: converting that format back into the object in memory.
+
+What Makes It Insecure:
+- If the data being deserialized comes from an untrusted source (like user input or cookies) and the application doesn't verify its content, an attacker can:
+    - Inject malicious objects or code
+    - Modify application logic
+    - Achieve Remote Code Execution (RCE) in severe cases
+
+Real-world Impact:
+- Remote Code Execution: If the object type includes methods that run on deserialization (e.g., Java readObject()), attackers can craft input that executes code.
+- Access control bypass
+- Privilege escalation
+- Data tampering
+
+Prevention:
+- Never trust user input for deserialization.
+- Use safe data formats (e.g., JSON instead of raw object serialization).
+- Implement strict type checks before deserialization.
+- Use whitelisting for classes allowed to be deserialized.
+- Keep libraries updated to avoid known deserialization exploits.
+- Use integrity checks (like digital signatures) on serialized data.
