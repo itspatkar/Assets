@@ -1,0 +1,99 @@
+
+=> Server-Side Request Forgery (SSRF)
+
+- Server-side request forgery is a web security vulnerability that allows an attacker to cause the server-side application to make requests to an unintended location.
+- In a typical SSRF attack, the attacker might cause the server to make a connection to internal-only services within the organization's infrastructure. In other cases, they may be able to force the server to connect to arbitrary external systems. This could leak sensitive data, such as authorization credentials.
+
+What is the impact of SSRF attacks?
+- A successful SSRF attack can often result in unauthorized actions or access to data within the organization. This can be in the vulnerable application, or on other back-end systems that the application can communicate with. In some situations, the SSRF vulnerability might allow an attacker to perform arbitrary command execution.
+- An SSRF exploit that causes connections to external third-party systems might result in malicious onward attacks. These can appear to originate from the organization hosting the vulnerable application.
+
+----------------
+
+SSRF (Server-Side Request Forgery) is a web security vulnerability that allows an attacker to make the server perform unauthorized or unintended requests to internal or external resources.
+🔍 What is SSRF?
+
+SSRF occurs when an attacker manipulates a server-side application to make HTTP (or other protocol) requests to a domain or IP address of their choosing. The server acts as a proxy for these requests, potentially exposing internal systems or sensitive data.
+⚙️ How Does SSRF Happen?
+
+It typically happens when:
+
+    A web application fetches remote resources (images, URLs, webhooks, etc.) based on user input.
+
+    The input is not properly validated or restricted.
+
+✅ Example:
+
+Suppose a site fetches an image from a URL passed by the user:
+
+GET /fetch-image?url=http://example.com/cat.jpg
+
+An attacker could change this to:
+
+GET /fetch-image?url=http://localhost:8000/admin
+
+The server will request http://localhost:8000/admin, potentially exposing internal admin functionality not meant for users.
+🚨 Impact of SSRF
+
+    Access Internal Systems:
+
+        Reach internal apps not exposed to the internet (e.g., 127.0.0.1, localhost, internal IP ranges).
+
+    Enumerate Services:
+
+        Identify running services (e.g., Redis, MongoDB, internal APIs).
+
+    Bypass Firewall Restrictions:
+
+        Server might access services that users can’t reach directly.
+
+    Access Metadata Services in Cloud:
+
+        In AWS: http://169.254.169.254/latest/meta-data/
+
+        Can lead to credential theft and full account compromise.
+
+    Port Scanning:
+
+        Identify open ports within the internal network.
+
+    RCE (Remote Code Execution):
+
+        If SSRF can access a service vulnerable to RCE.
+
+🛡️ How to Mitigate SSRF
+✅ Input Validation & Whitelisting
+
+    Only allow URLs from trusted domains.
+
+    Use strict allow-lists (avoid regex or wildcards unless absolutely safe).
+
+✅ Avoid Direct URL Fetching Based on User Input
+
+    Don’t allow users to specify full URLs or IPs unless absolutely necessary.
+
+✅ DNS Rebinding Protections
+
+    Resolve hostnames and verify IPs to prevent bypass via DNS tricks.
+
+✅ Block Internal IP Ranges
+
+    Block requests to:
+
+        127.0.0.1, localhost
+
+        169.254.169.254 (cloud metadata)
+
+        Private IPs (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+
+✅ Use Network Segmentation
+
+    Isolate sensitive systems from web-facing components.
+
+✅ Timeout and Size Limits
+
+    Set request timeouts and response size limits to prevent abuse.
+
+✅ Web Application Firewall (WAF)
+
+    WAFs can detect common SSRF payloads and block them.
