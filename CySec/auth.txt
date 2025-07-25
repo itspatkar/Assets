@@ -1,9 +1,11 @@
 
 => OAuth
 
-- OAuth (short for Open Authorization) is an open standard for access delegation, commonly used to grant websites or applications limited access to a user's information on another service — without giving away the user's credentials (like username and password).
-- In simple terms: OAuth lets you log in to one app using another account, like: “Login with Google” or “Login with Facebook”
+- OAuth (Open Authorization) is an open standard for access delegation, commonly used to grant websites or applications limited access to user information without exposing passwords.
+- OAuth lets users authorize third-party apps to access their resources (e.g., email, profile, calendar) on another service (e.g., Google, Facebook, GitHub) without sharing their credentials.
 - This allows the app to access certain user data from Google/Facebook, like your email address or profile info, without asking for your Google password.
+- In simple terms: OAuth lets you log in to one app using another account, like: “Login with Google” or “Login with Facebook”
+- Example: You click "Login with Google" on a website — OAuth handles that securely.
 
 Key Components of OAuth 2.0:
 - Resource Owner: The user who owns the data.
@@ -11,3 +13,53 @@ Key Components of OAuth 2.0:
 - Authorization Server: The server that authenticates the user and issues access tokens (e.g., Google, GitHub).
 - Resource Server: The server hosting the user's data (e.g., Google Drive, GitHub APIs).
 - Access Token: A temporary credential issued to the client to access the user’s data.
+
+How OAuth Works (OAuth 2.0 flow):
+- There are different flows (or "grant types"), but the most common is the Authorization Code Flow:Basic Actors:
+    - Resource Owner: You (the user)
+    - Client: The third-party app (e.g., Spotify)
+    - Authorization Server: Google/Facebook (who authenticates user)
+    - Resource Server: Hosts protected user data (e.g., Google APIs)
+- Step-by-Step Flow:
+    - Client redirects user to Authorization Server for login.
+    - User logs in and grants permission.
+    - Authorization Server redirects back with an authorization code.
+    - Client exchanges code for an access token from the Authorization Server.
+    - Client uses access token to access user data on the Resource Server.
+
+Common OAuth Vulnerabilities:
+- Misconfigured Redirect URIs:
+    - Attacker tricks the server into redirecting to a malicious site with the token/code.
+    - Exploit: Open Redirect -> Token Leak
+- CSRF in OAuth Flow:
+    - Attacker forces user to authorize attacker’s app.
+    - If the client app doesn't verify state, attacker gets access.
+- Token Leakage via Referrer:
+    - Access tokens may leak via URL (in logs, referrer headers).
+- Authorization Code Interception:
+    - If the client app uses an insecure channel (e.g., HTTP), code can be intercepted.
+- Client Impersonation:
+    - If the client secret is leaked, attacker can impersonate the client.
+- Using Implicit Flow:
+    - Deprecated for SPAs because tokens are exposed in the URL.
+
+Mitigate OAuth Vulnerabilities:
+- Use PKCE (Proof Key for Code Exchange):
+    - Replaces the need for client secret in mobile or SPA.
+    - Prevents interception attacks.
+- Validate Redirect URIs:
+    - Pre-register exact URIs.
+    - Don’t allow wildcards or open redirects.
+- Use state parameter:
+    - Random value to tie request and response.
+    - Prevents CSRF.
+- Always Use HTTPS:
+    - Prevents MITM attacks.
+- Don't Store Tokens in URL:
+    - Use HTTP headers or cookies.
+    - Avoid implicit flow in SPAs.
+- Use short-lived tokens and refresh tokens:
+    - Reduces token abuse risk.
+- Use Scopes:
+    - Limit access based on what the client needs.
+    - e.g., read-only vs full-access
