@@ -1,7 +1,7 @@
 
 => Broken Access Control (BAC)
 
-- Broken Access Control is a security vulnerability that occurs when an application fails to properly enforce restrictions on what authenticated users are allowed to do. This can allow attackers to gain unauthorized access to resources or perform actions beyond their assigned permissions.
+- Broken Access Control (BAC) is a critical security vulnerability that occurs when an application fails to properly enforce restrictions on what authenticated users are allowed to do. This can allow attackers to access data or perform actions beyond their intended permissions or roles.
 - Access control defines who can perform specific actions within an application. When these controls are poorly implemented or missing, malicious users may:
     - Access other users' data
     - Perform administrative functions
@@ -10,17 +10,18 @@
     - Authentication: Confirms user identity.
     - Session Management: Tracks which HTTP requests belong to which user.
     - Access Control: Determines if the user is authorized to perform a given action.
-- Types of Access Control:
-    - Vertical Access Control:
-        - Restricts functionality based on user roles.
-        - Example: Admins can delete users, but regular users cannot.
-        - Enforces privilege separation and least privilege.
-    - Horizontal Access Control:
-        - Restricts access to specific user-owned data or resources.
-        - Example: A user should only see their bank account, not another user's.
-    - Context-Dependent Access Control:
-        - Enforces access rules based on user interactions or application state.
-        - Example: A user can't edit a shopping cart after checkout is completed.
+
+Types of Access Control:
+- Vertical Access Control:
+    - Restricts functionality based on user roles.
+    - Example: Admins can delete users, but regular users cannot.
+    - Enforces privilege separation and least privilege.
+- Horizontal Access Control:
+    - Restricts access to specific user-owned data or resources.
+    - Example: A user should only see their bank account, not another user's.
+- Context-Dependent Access Control:
+    - Enforces access rules based on user interactions or application state.
+    - Example: A user can't edit a shopping cart after checkout is completed.
 
 Privilege Escalation (PrivEsc):
 - Privilege escalation occurs when a user or attacker gains access to higher privileges than intended.
@@ -32,11 +33,45 @@ Privilege Escalation (PrivEsc):
         - Gaining access to another user’s data without changing privilege level.
         - Example: Accessing another user's profile by modifying the user_id in the request.
 
-Common Examples of BAC:
-- IDOR (Insecure Direct Object References): Attackers manipulate object identifiers (like user IDs or file names) in URLs or requests to access unauthorized resources.
+Examples of BAC:
+- Insecure Direct Object References (IDOR): Attackers manipulate object identifiers (like user IDs or file names) in URLs or requests to access unauthorized resources.
 - Missing Role Checks: An endpoint may allow regular users to access admin-level functionality if it lacks server-side role validation.
 - Forced Browsing: Manually accessing unlinked or hidden endpoints not intended for the user.
 - Frontend-only Enforcement: Relying solely on client-side controls (like disabling buttons or hiding forms), which can be bypassed by sending raw HTTP requests.
+
+Mitigations for BAC:
+- Deny by Default:
+    - Access should be explicitly granted.
+    - If a user isn't authorized, don't assume access — block by default.
+- Implement Role-Based Access Control (RBAC):
+    - Use roles like admin, user, moderator, etc.
+    - Limit actions and data visibility based on roles.
+    - Example: Only admin can delete users.
+- Server-Side Enforcement:
+    - Do not trust client-side controls (e.g., hidden fields, JavaScript validation).
+    - Always validate permissions on the server side.
+- Use Secure Authorization Mechanisms:
+    - Use frameworks/libraries that support secure access control (e.g., Spring Security, Django permissions).
+    - Validate user identity (authentication) before checking authorization.
+- Object-Level Access Checks:
+    - Validate ownership of resources (if current_user.id != post.owner_id: return 403)
+    - Prevent Insecure Direct Object References (IDOR).
+- Avoid Hardcoded Privileges in URLs:
+    - Don't expose sensitive actions in URLs like: /deleteUser?id=1
+    - Use proper access checks before processing such requests.
+- Implement Attribute-Based Access Control (ABAC) if needed:
+    - Useful in complex environments.
+    - Controls access based on attributes like location, department, time, etc.
+- Use Centralized Access Control Logic:
+    - Don’t scatter permission checks throughout the app.
+    - Use middleware or decorators to enforce access rules consistently.
+- Regularly Test Access Control - Perform:
+    - Manual and automated testing
+    - Role-switching tests
+    - Unauthorized request fuzzing
+- Audit Logs and Monitoring:
+    - Log access control violations.
+    - Alert on suspicious access patterns (e.g., regular users trying admin routes).
 
 BAC Bypass & Exploitation Techniques:
 - Forced browsing i.e. direct access to hidden or sensitive endpoints like /admin or /config (URLs/Route)

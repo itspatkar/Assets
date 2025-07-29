@@ -1,8 +1,7 @@
 
 => OAuth
 
-- OAuth (Open Authorization) is an open standard for access delegation, commonly used to grant websites or applications limited access to user information without exposing passwords.
-- OAuth lets users authorize third-party apps to access their resources (e.g., email, profile, calendar) on another service (e.g., Google, Facebook, GitHub) without sharing their credentials.
+- OAuth (Open Authorization) is an open standard for access delegation, commonly used to grant websites or applications limited access to user information without exposing passwords. OAuth lets users authorize third-party apps to access their resources (e.g., email, profile, calendar) on another service (e.g., Google, Facebook, GitHub) without sharing their credentials.
 - This allows the app to access certain user data from Google/Facebook, like your email address or profile info, without asking for your Google password.
 - In simple terms: OAuth lets you log in to one app using another account, like: “Login with Google” or “Login with Facebook”
 - Example: You click "Login with Google" on a website — OAuth handles that securely.
