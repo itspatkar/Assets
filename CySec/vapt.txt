@@ -11,7 +11,7 @@ Vulnerability Assessment and Penetration Testing (VAPT)
 - Active:
     - Directory/File Enumeration: ffuf, dirsearch, gobuster
     - Endpoint Discovery: Look for hidden admin panels, APIs, test directories
-    - JavaScript Analysis: Parse JS files for secrets, API paths, tokens
+    - JavaScript Analysis: Parse JS files for secrets, API paths, tokens (fetch all js files and find senstive info)
 
 # Enumeration
 - User Inputs: Identify all input points:

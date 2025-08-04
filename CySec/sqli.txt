@@ -1,9 +1,36 @@
 
 => SQL Injection
 
-- SQL Injection (SQLi) is a type of cyberattack in which an attacker exploits vulnerabilities in an application by inserting malicious SQL (Structured Query Language) code into input fields. This can allow the attacker to manipulate the database—viewing, modifying, or deleting data they should not have access to.
-- Most web applications interact with databases using SQL queries, and if user input is not properly validated or sanitized, attackers can craft input that alters the intended SQL query. SQL Injection enables attackers to bypass authentication, access and steal sensitive data, modify or delete records, execute administrative tasks, extract entire databases, and potentially take control of the server.
-- To prevent SQL Injection, use prepared statements (parameterized queries) to ensure user input is treated as data, not code. Validate and sanitize all inputs through input validation and escaping. Follow the principle of least privilege by restricting database permissions. Utilize ORM frameworks, which often include built-in SQLi protection, and deploy web application firewalls (WAFs) as an additional defense layer.
+- SQL Injection (SQLi) is a web security vulnerability in which an attacker exploits flaws in an application by injecting malicious SQL (Structured Query Language) code into input fields. This can allow the attacker to interfere with the application's database queries, enabling unauthorized access to view, modify, or delete sensitive data.
+- SQL Injection occurs when user input is not properly validated or sanitized and is directly inserted into a SQL query. Since most web applications interact with databases using SQL, improperly handled input can allow attackers to craft malicious input that alters the intended structure and behavior of the query.
+- SQL Injection (SQLi) can have severe consequences, enabling attackers to:
+    - Bypass authentication mechanisms
+    - View sensitive data (e.g., usernames, passwords, personal information)
+    - Modify or delete database records
+    - Execute administrative operations on the database
+    - Extract entire databases
+    - In severe cases, gain control of the underlying server or system
+- Why SQL Injection Happens:
+    - Lack of Input Validation: User inputs are directly used in SQL queries without sanitization.
+    - Dynamic SQL Queries: Constructing SQL strings manually based on user input.
+    - Improper Use of APIs: Not using parameterized queries or ORM methods properly.
+    - Lack of Awareness or Security Practices: Developers not following secure coding standards.
+- Impact of SQL Injection:
+    - Data Theft (PII, credentials, financial info)
+    - Account takeover
+    - Website defacement
+    - Complete system compromise (in some cases)
+    - Regulatory penalties (e.g., under GDPR)
+- Mitigate SQL Injection:
+    - Use Prepared Statements (Parameterized Queries): To ensure user input is treated as data, not code.
+    - Use ORM (Object Relational Mapping) Tools: Tools like Sequelize, Django ORM, Hibernate manage SQL safely.
+    - Input Validation and Sanitization: Validate and sanitize all inputs through input validation and escaping.
+    - Whitelist Input Validation: Only allow expected characters and patterns (e.g., for email, phone numbers).
+    - Escape User Input Carefully: If you must use dynamic SQL, escape input correctly (not recommended over parameterized queries).
+    - Limit Database Privileges (Principle of least privilege): The application’s DB user should have only necessary permissions (e.g., read-only where needed).
+    - Error Handling: Don’t expose database errors to users (disable detailed DB error messages in production).
+    - Use Web Application Firewalls (WAFs): Can block known attack signatures and patterns.
+    - Regular Security Testing: Perform vulnerability scans, code audits, and pen-tests.
 
 Types of SQLi:
 - In-Band SQLi: Attacker injects SQL and immediately sees results in the application’s response (e.g., input ' OR '1'='1 alters the query to always return true, bypassing authentication).
@@ -17,7 +44,7 @@ Types of SQLi:
 Detect SQLi Vulnerabilities:
 - You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
 - The single quote character ' and look for errors or other anomalies.
-- Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.     
+- Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
 - Boolean conditions such as OR 1=1 and OR 1=2, and look for differences in the application's responses.
 - Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
 - OAST payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.

