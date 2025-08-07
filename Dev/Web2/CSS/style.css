@@ -1,0 +1,51 @@
+body {
+	height: 100%;
+	padding: 2rem;
+	background-color: #101010;
+}
+.full {
+	height: 100%;
+	width: 100%;
+}
+#ans {
+	width: 100%;
+	padding: 20px;
+	padding-bottom: 2rem;
+	padding-top: 3rem;
+	overflow: auto;
+	border: 1.5px solid #008ddc;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom: none;
+	text-align: right;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+.custombtn {
+	height: 5rem;
+	width: 1rem;
+	background-color: #151515;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 575px){
+	body {
+		padding: 0.5rem;
+	}
+	.customctn {
+		margin: 0;
+		padding: 0;
+	}
+}
+@media screen and (max-height: 650px){
+	#ans {
+		padding-bottom: 0.75rem;
+		padding-top: 1.5rem;
+	}
+	.custombtn {
+		height: 4rem;
+		font-size: 1.5rem;
+	}
+}
