@@ -1,4 +1,6 @@
 
+Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
+
 => HTTP Request Headers
 
 - X-Original-URL: It is an HTTP request header sometimes used by reverse proxies, load balancers, or middleware to preserve the original URL path requested by a client before it was rewritten or altered by an intermediary component.

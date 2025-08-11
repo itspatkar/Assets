@@ -3,8 +3,9 @@
 
 - The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web.
 - It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.
-- Hypertext Transfer Protocol Secure (HTTPS): HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties.
-- HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
+- Hypertext Transfer Protocol Secure (HTTPS):
+    - HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties.
+    - HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
 
 Key Characteristics of HTTP:
 - Protocol Type: Application-layer protocol (part of the TCP/IP model)
@@ -82,3 +83,121 @@ Cookies:
 -----
 
 Header, Cookie, Payload/body
+
+-----
+
+Versions →
+
+    HTTP/1.1 – most widely used for decades.
+
+    HTTP/2 – faster, supports multiplexing (many requests at once).
+
+    HTTP/3 – newest, uses QUIC over UDP for even better performance.
+
+
+
+HTTP/0.9 (1991 – obsolete)
+
+    Purpose → Extremely simple, only supported GET requests, no headers, server just returned the raw HTML.
+
+    Changes → None before it; it was the first draft of HTTP.
+
+    Risks:
+
+        No headers → no status codes, no security controls.
+
+        No HTTPS → everything in plain text.
+
+        No authentication or cookies possible.
+
+HTTP/1.0 (1996)
+
+    Changes:
+
+        Added headers (both request and response).
+
+        Introduced status codes (200 OK, 404 Not Found).
+
+        Added content types (Content-Type: text/html).
+
+        Basic authentication became possible.
+
+    Risks:
+
+        Plaintext transmission → eavesdropping and MITM (man-in-the-middle).
+
+        Basic Auth sent credentials base64-encoded, easily decoded.
+
+        One TCP connection per request → open to DoS via connection flooding.
+
+HTTP/1.1 (1997 – still dominant)
+
+    Changes:
+
+        Persistent connections (keep-alive) to reuse TCP connections.
+
+        Chunked transfer encoding (send data in pieces without knowing total size).
+
+        Caching improvements (ETag, Cache-Control).
+
+        More methods: OPTIONS, PUT, DELETE.
+
+    Risks:
+
+        Request smuggling & response splitting vulnerabilities due to header parsing differences.
+
+        Caching attacks (e.g., cache poisoning).
+
+        Still plaintext unless HTTPS is used.
+
+        Vulnerable to Slowloris (holding connections open).
+
+HTTP/2 (2015)
+
+    Changes:
+
+        Binary protocol instead of text.
+
+        Multiplexing (many requests in one connection without blocking).
+
+        Header compression (HPACK) to reduce overhead.
+
+        Server push (send resources before client requests them).
+
+    Risks:
+
+        New parsing bugs due to binary framing.
+
+        HPACK compression side-channel attacks (similar to CRIME/BREACH).
+
+        Amplification for DoS if multiplexing abused.
+
+        Complex implementation → more protocol-level CVEs.
+
+HTTP/3 (2022)
+
+    Changes:
+
+        Runs over QUIC (UDP-based, encrypted by default with TLS 1.3).
+
+        Better performance in lossy networks (mobile, Wi-Fi).
+
+        Faster connection setup (0-RTT possible).
+
+    Risks:
+
+        0-RTT replay attacks (if not handled properly).
+
+        UDP can be blocked or throttled in restrictive networks.
+
+        New attack surface from QUIC parsing.
+
+        Debugging harder due to encryption everywhere.
+
+Security Evolution
+
+    HTTP → HTTPS: Biggest security leap was encryption (TLS).
+
+    Risk trend: Each version improves speed and features but adds protocol complexity, which opens implementation-specific vulnerabilities.
+
+    Old versions risk: Using HTTP/1.0 or HTTP without TLS today is like shouting your password across a crowded room.
