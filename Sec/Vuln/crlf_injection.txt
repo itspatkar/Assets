@@ -1,0 +1,28 @@
+
+=> CRLF Injection
+
+- CRLF Injection is a web security vulnerability where an attacker inserts Carriage Return (CR, \r) and Line Feed (LF, \n) characters into input fields or HTTP headers.
+- These characters are used to denote the end of a line in HTTP headers.
+- By injecting CRLF sequences, an attacker can manipulate HTTP headers or responses, potentially enabling other attacks like HTTP Response Splitting, Web Cache Poisoning, or Cross-Site Scripting (XSS).
+
+How It Happens:
+- Occurs when user input is included in HTTP headers or server responses without proper sanitization.
+- Example header insertion points: Set-Cookie, Location (for redirects), or custom headers.
+
+Example:
+- Suppose a site redirects based on user input: Location: /welcome?user=Alice
+- An attacker injects: user=Alice%0D%0ASet-Cookie:session=malicious
+- %0D = CR, %0A = LF
+- The server now sets a malicious cookie in the victim’s browser.
+
+Impact:
+- HTTP Response Splitting: Craft fake responses to the client.
+- Web Cache Poisoning: Poison cached pages to serve malicious content.
+- Cross-Site Scripting (XSS): Inject scripts via manipulated headers.
+- Session Hijacking: Set or overwrite cookies.
+
+Mitigation:
+- Properly sanitize and encode user input used in headers.
+- Avoid directly including user-supplied input in headers or responses.
+- Use frameworks/libraries that handle header encoding safely.
+- Validate input to allow only safe characters (e.g., alphanumeric, certain symbols).

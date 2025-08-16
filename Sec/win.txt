@@ -1,0 +1,25 @@
+
+=> Windows
+
+- WMI
+- Registry
+- PowerShell
+- WMIC
+- VB
+- Windows Group Policy
+- Windows AppLocker
+
+Registry Run Keys / Startup Folder persistence on one of the MITRE ATT&CK techniques
+
+Similarly, the attacker may send the file as a compiled .exe , a PDF, a .ps1 PowerShell Script or .bat Batch script, an HTML application file ( .hta ), or even a .js JavaScript file to be executed by the JavaScript interpreter built into Windows.
+
+
+# Win
+Disable Fast Startup
+Disable Startup Services
+WinR + mrt
+
+Autorun.inf file:
+[autorun]
+open=setup.exe
+icon=setup.exe

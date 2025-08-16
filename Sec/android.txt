@@ -1,0 +1,19 @@
+
+=> Android
+
+Lucky Patcher
+Kali Nethunter
+Magisk Manager
+Xposed Mod / LXposed Riru
+TWRP
+DMVerify
+GSI
+SSL Pinning
+Custom ROM
+Kernel Dev
+BusyBox
+
+SafetyNet and Play Integrity
+Bootloader Unlock Detection Bypass
+Root Detection Bypass
+Developer Option Enable Bypass

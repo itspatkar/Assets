@@ -1,0 +1,32 @@
+
+=> Null Byte Injection
+
+- Null Byte Injection is a web security vulnerability where an attacker injects a null byte character (\0) into input to manipulate string handling in server-side applications.
+- Many languages like C, C++, and PHP treat \0 as the end of a string.
+- If input is not properly sanitized, null bytes can bypass validation, alter file paths, or change the behavior of the application.
+
+How It Works:
+- Applications may check file extensions, paths, or other inputs.
+- A null byte can terminate the string early, causing the application to process a different value than intended.
+
+Example:
+- A PHP application allows uploading only .jpg files:
+    $filename = $_FILES['file']['name'];
+    if (strpos($filename, '.jpg') === false) {
+        die("Invalid file type");
+    }
+- Attacker uploads: malicious.php%00.jpg
+- %00 = Null byte
+- The application may interpret the filename as malicious.php, bypassing the .jpg check.
+- Result: malicious code could be uploaded and potentially executed.
+
+Impact:
+- Bypassing file upload or input validation.
+- Accessing or overwriting files on the server.
+- Potential Remote Code Execution (RCE) if combined with other vulnerabilities.
+
+Mitigation:
+- Remove or reject null byte characters from all input.
+- Use safe string handling functions that do not rely on null-terminated strings.
+- Explicitly validate file types, paths, and input on the server.
+- Apply strict input sanitization and allow-listing.

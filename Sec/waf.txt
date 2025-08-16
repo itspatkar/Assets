@@ -1,0 +1,4 @@
+
+=> Web Application Firewall (WAF)
+
+base64 -> url encoding -> waf xss bypass
