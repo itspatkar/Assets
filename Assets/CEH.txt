@@ -19713,7 +19713,7 @@ Use Different Techniques to Conceal Malicious Programs and Maintain Remote Acces
 	- Signing and Encrypting Email Messages on Mac:
 		- Email security in Apple Mail can be enhanced by using encryption features such as digital signatures and message encryption, provided by Apple Mail service providers. Users can send digitally signed and encrypted emails from an Apple device.
 		- Sending Digitally Signed and Encrypted Emails:
-			- Open Apple Mail on your Mac and click File → New Message.
+			- Open Apple Mail on your Mac and click File -> New Message.
 			- Click the From field and select the account that holds the personal certificate in the Keychain from the pop-up menu.
 			- Note: When a personal certificate is enabled in the Keychain, a blue checkmark (✔) appears in the mail, indicating that the outgoing message can be digitally signed.
 		- Receiving Digitally Signed and Encrypted Emails:

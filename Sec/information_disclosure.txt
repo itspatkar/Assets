@@ -1,4 +1,0 @@
-
-=> Information Disclosure
-
-https://portswigger.net/web-security/information-disclosure

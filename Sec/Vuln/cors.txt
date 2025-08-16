@@ -1,0 +1,31 @@
+
+=> Cross-Origin Resource Sharing (CORS)
+
+- CORS is a browser security feature that controls how a web page from one origin (domain) can request resources from another origin.
+- It is configured on the server-side by setting specific HTTP response headers that tell the browser whether to allow or block the cross-origin request. If the server does not include the correct CORS headers, the browser blocks the response even if the server processes the request successfully.
+- CORS only manages resource-sharing rules; it does not protect against attacks like Cross-Site Request Forgery (CSRF).
+
+Key CORS Headers:
+- Access-Control-Allow-Origin: Defines which origin(s) are permitted (e.g., https://example.com or *).
+- Access-Control-Allow-Methods: Lists allowed HTTP methods (e.g., GET, POST, PUT).
+- Access-Control-Allow-Headers: Specifies which custom/request headers are permitted.
+- Access-Control-Allow-Credentials: Indicates whether cookies and authentication headers are allowed.
+- Access-Control-Expose-Headers: Lists which response headers can be read by the browser.
+- Access-Control-Max-Age: Defines how long the CORS preflight response can be cached.
+
+CORS and Same-Origin Policy (SOP):
+- CORS extends SOP: CORS builds on the Same-Origin Policy (SOP) by allowing controlled cross-origin access. However, a poorly configured CORS policy can expose applications to cross-domain attacks.
+- Whitelist mechanism: Many applications support multiple origins by maintaining a whitelist of trusted domains. When a request is received, the server checks the request’s origin against the whitelist and, if matched, reflects it in the Access-Control-Allow-Origin header to grant access.
+- Misconfiguration risks:
+    - If a server allows all origins (Access-Control-Allow-Origin: *), it may expose data to unauthorized access, especially if combined with credentialed requests.
+    - Trusting an origin that is itself vulnerable to XSS allows attackers to inject JavaScript that abuses CORS to extract sensitive data from the trusting site.
+- Same-Origin Policy (SOP): By default, SOP restricts web pages from reading responses from other origins. A page can send requests to other domains, but the browser blocks access to the response.
+- Why CORS exists: SOP is very restrictive. Since many applications legitimately need to share data across subdomains or third-party services, CORS provides a controlled relaxation of SOP to enable secure cross-origin communication.
+
+Preventing CORS-based Attacks:
+- CORS issues = misconfigurations: Most CORS vulnerabilities arise from incorrect server settings, making prevention largely a configuration problem.
+- Specify origins explicitly: If a resource contains sensitive data, set the Access-Control-Allow-Origin header to a specific, trusted origin — not a wildcard (*).
+- Allow only trusted sites: Never dynamically reflect request origins without validation. Explicitly whitelist only domains you trust.
+- Avoid null origin: Don’t use Access-Control-Allow-Origin: null. The null origin can be set by sandboxed iframes or local files, which attackers can abuse.
+- Avoid wildcards in internal networks: Don’t rely on * in private/internal environments. Internal browsers may still connect to untrusted external sites, creating risk.
+- CORS ≠ server-side security: CORS only defines browser behavior. It does not protect sensitive data on its own. Always enforce strong authentication, authorization, and session management alongside CORS.

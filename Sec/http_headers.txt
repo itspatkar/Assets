@@ -1,55 +1,76 @@
 
-Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
+=> HTTP Headers
 
-=> HTTP Request Headers
+- Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
 
-- X-Original-URL: It is an HTTP request header sometimes used by reverse proxies, load balancers, or middleware to preserve the original URL path requested by a client before it was rewritten or altered by an intermediary component.
-- X-Rewrite-URL
-- X-Forwarded-For
-- Referer
-- Content-Disposition
+Types of HTTP Headers:
+- General Headers: Used in both request and response
+- Request Headers: Sent by the client to provide info about the request
+- Response Headers: Sent by the server to provide info about the response
+- Entity/Representation Headers: Describe the body/payload
+- Security-Related Headers: Security headers are HTTP response headers that a web server includes to enhance the security of web applications and protect users from various types of attacks. They instruct the browser how to behave while handling content from the server and help prevent vulnerabilities like XSS, clickjacking, MIME sniffing, and data injection.
+- Custom headers: Non-standard HTTP headers (not officially defined by the HTTP specification) that developers, proxies, or frameworks create for special purposes. They usually start with X- (e.g., X-Forwarded-For, X-Powered-By).
 
+General Headers:
+- Cache-Control -> caching behavior
+- Connection -> keep-alive or close TCP connection
+- Date -> timestamp of the message
 
-=> Security Headers
+Request Headers:
+- Host: example.com -> target domain
+- User-Agent: Mozilla/5.0 ... -> browser, OS info
+- Accept: application/json -> what response formats client can accept
+- Authorization: Bearer <token> -> authentication credentials
+- Cookie: sessionid=xyz -> send stored cookies
+- Referer: The Referer header indicates the URL of the page the request originated from
 
-Security headers are HTTP response headers that a web server includes to enhance the security of web applications and protect users from various types of attacks. They instruct the browser how to behave while handling content from the server and help prevent vulnerabilities like XSS, clickjacking, MIME sniffing, and data injection.
+Response Headers:
+- Server: Apache/2.4.1 -> server software info
+- Set-Cookie: sessionid=abc123 -> sets cookies
+- Location: /login -> used in redirects
+- Access-Control-Allow-Origin: * -> CORS policy
 
-Header and Purpose:
-- Strict-Transport-Security (HSTS): Forces browsers to use HTTPS, preventing protocol downgrade attacks.
-- Content-Security-Policy (CSP): Restricts sources of content (scripts, styles, etc.) to prevent XSS and data injection.
-- X-Content-Type-Options: X-Content-Type-Options Prevents MIME-type sniffing, which could lead to content being interpreted incorrectly.
-- X-Frame-Options: X-Frame-Options Prevents the site from being embedded in iframes, mitigating clickjacking attacks.
-- Referrer-Policy: Referrer-Policy Controls how much referrer information is sent with requests.
+Entity/Representation Headers:
+- Content-Type: application/json -> format of payload
+- Content-Length: 512 -> size in bytes
+- Content-Encoding: gzip -> compression used
+- Content-Disposition: attachment; filename=file.pdf -> file download
+
+Security-Related Headers:
+- Strict-Transport-Security (HSTS): Forces browsers to use HTTPS -> prevents protocol downgrade to HTTP (MitM)
+- Content-Security-Policy (CSP): Restricts allowed content sources (scripts, styles, etc.) to mitigate XSS and injection attacks.
+- X-Content-Type-Options: Prevents MIME-type sniffing (which could lead to content being interpreted incorrectly) -> mitigates drive-by downloads / XSS
+- X-Frame-Options: Prevents the site from being embedded in iframes, mitigating clickjacking attacks.
+- Referrer-Policy: An HTTP response header that controls how much referrer information (if any) is sent in the Referer header during requests.
 - Permissions-Policy (formerly Feature-Policy): Controls access to browser features like camera, microphone, geolocation, etc.
-- Cross-Origin-Embedder-Policy (COEP): Helps enforce secure cross-origin resource sharing.
-- Cross-Origin-Resource-Policy (CORP): Specifies who can load the resource (same-site, cross-site, etc.).
-- Cross-Origin-Opener-Policy (COOP): Isolates browsing context to prevent cross-origin attacks like Spectre.
+- Cross-Origin-Embedder-Policy (COEP): Enforces secure embedding of cross-origin resources.
+- Cross-Origin-Resource-Policy (CORP): Defines which origins can load a resource (same-site, same-origin, cross-origin).
+- Cross-Origin-Opener-Policy (COOP): Isolates browsing contexts to prevent cross-origin attacks (e.g., Spectre).
+- Access-Control-Allow-Origin: Defines CORS policy for cross-domain requests
 
+CORS Headers:
+- Access-Control-Allow-Origin: Defines which origin(s) are permitted to access the resource.
+- Access-Control-Allow-Methods: Lists allowed HTTP methods (e.g., GET, POST, PUT).
+- Access-Control-Allow-Headers: Specifies which custom/request headers are permitted.
+- Access-Control-Allow-Credentials: Indicates whether cookies and authentication headers can be included.
+- Access-Control-Expose-Headers: Lists response headers that can be accessed by the browser.
 
+Optional/Legacy Headers:
+- Pragma: no-cache -> The Pragma header is an HTTP/1.0 general header used for backward compatibility with older HTTP versions. It is mainly used for caching control. This tells the browser or intermediary caches not to cache the response, and instead always request a fresh copy from the server. In security testing, the presence or absence of the Pragma header is usually not a critical issue on its own, but it may be noted as part of secure caching practices, especially for sensitive content (like personal data, tokens, etc.).
+- Cache-Control: no-store, no-cache, must-revalidate -> Cache-Control is an HTTP header used to define caching rules for both requests and responses. It tells browsers and intermediate caches (like CDNs, proxies) what to store, for how long, and whether to revalidate.
+- X-XSS-Protection: 0 -> X-XSS-Protection is a legacy HTTP response header used to enable or disable the Cross-Site Scripting (XSS) filter built into older versions of web browsers like Internet Explorer and early versions of Chrome. Enables XSS filtering and blocks the page entirely if an attack is detected (more secure than just sanitizing). Use the Content-Security-Policy (CSP) header instead, which is much more powerful and reliable.
 
-=> Cross-Origin Resource Sharing (CORS)
-
-CORS (Cross-Origin Resource Sharing) is a security feature built into web browsers that controls how a web page in one origin (domain) can request resources from a different origin. CORS (Cross-Origin Resource Sharing) is a server-side configuration that affects how browsers (clients) handle cross-origin requests. CORS is server-related — the server must explicitly allow or deny cross-origin requests by setting specific HTTP response headers. If the server doesn’t include the right CORS headers, the browser blocks the response, even if the request succeeded.
-
-CORS Headers and Role:
-- Access-Control-Allow-Origin: Specifies which origin(s) are allowed
-- Access-Control-Allow-Methods: Lists allowed HTTP methods (e.g., GET, POST)
-- Access-Control-Allow-Headers: Specifies allowed custom headers
-- Access-Control-Allow-Credentials: Indicates if cookies/auth headers are allowed
-- Access-Control-Expose-Headers: Defines which headers can be read by the browser
-
-
-
-Optional/Legacy Headers
-
-=> Pragma Header
-The Pragma header is an HTTP/1.0 general header used for backward compatibility with older HTTP versions. It is mainly used for caching control. This tells the browser or intermediary caches not to cache the response, and instead always request a fresh copy from the server. In security testing, the presence or absence of the Pragma header is usually not a critical issue on its own, but it may be noted as part of secure caching practices, especially for sensitive content (like personal data, tokens, etc.).
-- Pragma: no-cache
-
-=> Cache-Control
-Cache-Control is an HTTP header used to define caching rules for both requests and responses. It tells browsers and intermediate caches (like CDNs, proxies) what to store, for how long, and whether to revalidate.
-- Cache-Control: no-store, no-cache, must-revalidate
-
-=> X-XSS-Protection
-X-XSS-Protection is a legacy HTTP response header used to enable or disable the Cross-Site Scripting (XSS) filter built into older versions of web browsers like Internet Explorer and early versions of Chrome. Enables XSS filtering and blocks the page entirely if an attack is detected (more secure than just sanitizing). Use the Content-Security-Policy (CSP) header instead, which is much more powerful and reliable.
-- X-XSS-Protection: 0
+Custom Headers:
+- X-Forwarded-For (XFF): Stores original client IP when request passes through proxy/load balancer. Spoofable -> can bypass IP-based authentication, rate-limiting, logging.
+- X-Forwarded-Host: Indicates original Host header before proxy rewrites. Can be abused in Host Header Injection -> phishing, cache poisoning.
+- X-Forwarded-Proto: Indicates original protocol (HTTP/HTTPS). If app trusts this blindly, can enable SSL stripping or insecure redirects.
+- X-Real-IP: Alternative to X-Forwarded-For for real client IP. Spoofable -> same risks as XFF.
+- X-Original-URL: Stores the original URL path before rewriting by a proxy. May bypass auth if app mistakenly trusts this header.
+- X-Rewrite-URL: Stores the rewritten URL path used by proxy/middleware. Can lead to auth/routing bypass.
+- X-Http-Method-Override: Allows client to override HTTP method (e.g., send POST but treat as DELETE). Can bypass method restrictions in APIs -> method override attacks.
+- X-Request-ID: Unique ID for tracking requests across systems. Low risk, but may aid in information disclosure.
+- X-Correlation-ID: Similar to Request-ID, used for tracing across microservices. Low risk unless sensitive info is exposed.
+- X-Powered-By: Identifies framework/software (e.g., Express, PHP). Info disclosure -> helps attackers fingerprint tech stack.
+- X-AspNet-Version / X-AspNetMvc-Version: Identifies ASP.NET framework version. Info disclosure -> version-specific exploits.
+- X-Content-Duration: Indicates resource duration (used in media). Mostly harmless, but could leak metadata.
+- X-DNS-Prefetch-Control: Controls browser DNS prefetching. Privacy-related, not a major risk.

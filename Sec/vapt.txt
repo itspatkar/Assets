@@ -48,7 +48,7 @@ Penetration Testing:
     - Add product to cart, change price via client-side tampering
     - Coupon code reuse, stack, or logic bypass
     - Race conditions (e.g., gift card redemption multiple times)
-    - Cart manipulation → buy expensive product at cheaper price
+    - Cart manipulation -> buy expensive product at cheaper price
 - File Upload & Storage:
     - Upload:
         - Malicious file extensions (.php, .php.jpg, .svg)

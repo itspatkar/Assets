@@ -3,15 +3,67 @@
 
 - The HTTP (Hypertext Transfer Protocol) is an application layer protocol used for transferring hypermedia documents, such as HTML files, on the World Wide Web.
 - It is the foundation of data communication on the web, and HTTP uses a client-server model, where clients initiate requests and servers respond with the requested resources. HTTP operates over TCP/IP, which ensures reliable delivery of data packets over networks. The protocol is stateless, meaning each request from a client is independent and not dependent on previous requests.
-- Hypertext Transfer Protocol Secure (HTTPS):
-    - HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties.
-    - HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
+
+Hypertext Transfer Protocol Secure (HTTPS):
+- HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP used for secure communication over a computer network, particularly the internet. It encrypts the data sent and received between a user's browser and the website server, ensuring that the information remains confidential and protected from interception or tampering by unauthorized parties.
+- HTTPS uses SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols to establish an encrypted connection between the client and the server.
 
 Key Characteristics of HTTP:
 - Protocol Type: Application-layer protocol (part of the TCP/IP model)
 - Client-Server Model: The client (usually a browser) sends a request; the server responds.
 - Stateless: Each HTTP request is independent — the server doesn’t remember previous interactions by default.
 - Text-based: Requests and responses are human-readable plain text.
+
+HTTP Versions:
+- HTTP/0.9 (1991 – obsolete):
+    - Purpose: Extremely simple, only supported GET requests, no headers, server just returned the raw HTML.
+    - Changes: None before it; it was the first draft of HTTP.
+    - Risks:
+        - No headers: no status codes, no security controls.
+        - No HTTPS: everything in plain text.
+        - No authentication or cookies possible.
+- HTTP/1.0 (1996):
+    - Changes:
+        - Added headers (both request and response).
+        - Introduced status codes (200 OK, 404 Not Found).
+        - Added content types (Content-Type: text/html).
+        - Basic authentication became possible.
+    - Risks:
+        - Plaintext transmission: eavesdropping and MITM (man-in-the-middle).
+        - Basic Auth sent credentials base64-encoded, easily decoded.
+        - One TCP connection per request: open to DoS via connection flooding.
+- HTTP/1.1 (1997 – still dominant):
+    - Changes:
+        - Persistent connections (keep-alive) to reuse TCP connections.
+        - Chunked transfer encoding (send data in pieces without knowing total size).
+        - Caching improvements (ETag, Cache-Control).
+        - More methods: OPTIONS, PUT, DELETE.
+    - Risks:
+        - Request smuggling & response splitting vulnerabilities due to header parsing differences.
+        - Caching attacks (e.g., cache poisoning).
+        - Still plaintext unless HTTPS is used.
+        - Vulnerable to Slowloris (holding connections open).
+- HTTP/2 (2015):
+    - Changes:
+        - Binary protocol instead of text.
+        - Multiplexing (many requests in one connection without blocking).
+        - Header compression (HPACK) to reduce overhead.
+        - Server push (send resources before client requests them).
+    - Risks:
+        - New parsing bugs due to binary framing.
+        - HPACK compression side-channel attacks (similar to CRIME/BREACH).
+        - Amplification for DoS if multiplexing abused.
+        - Complex implementation -> more protocol-level CVEs.
+- HTTP/3 (2022):
+    - Changes:
+        - Runs over QUIC (UDP-based, encrypted by default with TLS 1.3).
+        - Better performance in lossy networks (mobile, Wi-Fi).
+        - Faster connection setup (0-RTT possible).
+    - Risks:
+        - 0-RTT replay attacks (if not handled properly).
+        - UDP can be blocked or throttled in restrictive networks.
+        - New attack surface from QUIC parsing.
+        - Debugging harder due to encryption everywhere.
 
 HTTP Methods:
 - HTTP methods are a way for the client to show their intended action when making an HTTP request.
@@ -65,139 +117,86 @@ HTTP Methods:
 HTTP Headers:
 - Headers are additional bits of data that are sent to the web server when making requests. Although no headers are strictly required when making an HTTP request, if they are not sent, it is difficult to view a website properly.
 - Common Request Headers:
-    - Host : Some web servers host multiple websites, so by providing the host headers, the client instructs the server which one is required; otherwise, it receives the default website for the server.
-    - User-Agent : This is the browser software and its version number, which tells the web server which browser is being used, helping it format the website properly for that specific browser. Additionally, some elements of HTML, JavaScript, and CSS are only supported in certain browser versions.
-    - Content-Length : When sending data to a web server, such as in a form, the content length tells the web server how much data to expect in the web request. This way, the server can ensure it isn't missing any data.
-    - Accept-Encoding : Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.
-    - Cookie : It is data that is sent to the server to help remember users information.
-- Common Response Headers:
-    - Set-Cookie : Information to store as cookie, which gets sent back to the web server on each request.
-    - Cache-Control : How long should it take to store the content of the response in the browser's cache before it requests it again.
-    - Content-Type : This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, images, PDF, video, etc. Using the content-type header, the browser then knows how to process the data.
-    - Content-Encoding : What method has been used to compress the data to make it smaller when sending it over the internet.
+    - Host: Some web servers host multiple websites, so by providing the host headers, the client instructs the server which one is required; otherwise, it receives the default website for the server.
+    - User-Agent: This is the browser software and its version number, which tells the web server which browser is being used, helping it format the website properly for that specific browser. Additionally, some elements of HTML, JavaScript, and CSS are only supported in certain browser versions.
+    - Content-Length: When sending data to a web server, such as in a form, the content length tells the web server how much data to expect in the web request. This way, the server can ensure it isn't missing any data.
+    - Accept-Encoding: Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.
+    - Cookie: It is data that is sent to the server to help remember users information.
+- Common Response Header:
+    - Set-Cookie: Information to store as cookie, which gets sent back to the web server on each request.
+    - Cache-Control: How long should it take to store the content of the response in the browser's cache before it requests it again.
+    - Content-Type: This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, images, PDF, video, etc. Using the content-type header, the browser then knows how to process the data.
+    - Content-Encoding: What method has been used to compress the data to make it smaller when sending it over the internet.
+
+HTTP Payload (Body):
+    - The payload (or body) of an HTTP message is the actual data being transmitted in a request or response.
+    - In requests: the payload is usually sent with methods like POST, PUT, or PATCH to carry data from client to server.
+    - In responses: the payload is the content delivered by the server, such as HTML, JSON, images, or files.
+- Structure:
+    - Request Example (with body):
+        POST /login HTTP/1.1
+        Host: example.com
+        Content-Type: application/json
+        Content-Length: 52
+
+        {
+            "username": "prime",
+            "password": "secret123"
+        }
+    - Response Example (with body):
+        HTTP/1.1 200 OK
+        Content-Type: application/json
+        Content-Length: 34
+
+        {
+            "status": "success",
+            "token": "abc123xyz"
+        }
+- Common Uses of Payload:
+    - Form submissions (HTML form data, JSON, XML).
+    - File uploads (images, PDFs, etc.).
+    - API calls (REST/GraphQL send structured data).
+    - Streaming data (video/audio).
+- Security Risks in HTTP Payloads:
+    - Injection Attacks
+    - SQL Injection, NoSQL Injection, Command Injection if payload isn’t validated.
+    - XSS (Cross-Site Scripting)
+    - Malicious payload stored/returned in server response.
+    - CSRF (if cookies + payload used without proper validation).
+    - Sensitive Data Exposure
+    - Passwords, tokens, or PII sent in plaintext HTTP.
+    - Storing secrets in body without encryption.
+    - Deserialization Attacks
+    - Sending crafted payloads to exploit insecure object deserialization.
+    - File Upload Risks
+    - Payloads with malicious files: RCE (Remote Code Execution).
+- Best Practices:
+    - Use HTTPS: protect payload in transit.
+    - Apply input validation & sanitization before processing.
+    - Use Content-Type headers properly (application/json, not text/plain).
+    - Limit payload size to prevent DoS via oversized requests.
+    - Encrypt sensitive fields (e.g., tokens, credentials).
+    - Validate uploaded files (type, size, extensions).
 
 Cookies:
-- A cookie is a small piece of data that is stored on a user's computer by a web browser. Cookies are set by the "Set-Cookie" header received from a web server. Cookies are used for session management, tracking and analytics, advertising, etc.
-- Cookies are small key-value pairs, approximately 4 KB in size, that are sent with every HTTP request and are commonly used for managing sessions, storing authentication tokens, and enabling user tracking; they remain persistent until their specified expiration.
-
------
-
-Header, Cookie, Payload/body
-
------
-
-Versions →
-
-    HTTP/1.1 – most widely used for decades.
-
-    HTTP/2 – faster, supports multiplexing (many requests at once).
-
-    HTTP/3 – newest, uses QUIC over UDP for even better performance.
-
-
-
-HTTP/0.9 (1991 – obsolete)
-
-    Purpose → Extremely simple, only supported GET requests, no headers, server just returned the raw HTML.
-
-    Changes → None before it; it was the first draft of HTTP.
-
-    Risks:
-
-        No headers → no status codes, no security controls.
-
-        No HTTPS → everything in plain text.
-
-        No authentication or cookies possible.
-
-HTTP/1.0 (1996)
-
-    Changes:
-
-        Added headers (both request and response).
-
-        Introduced status codes (200 OK, 404 Not Found).
-
-        Added content types (Content-Type: text/html).
-
-        Basic authentication became possible.
-
-    Risks:
-
-        Plaintext transmission → eavesdropping and MITM (man-in-the-middle).
-
-        Basic Auth sent credentials base64-encoded, easily decoded.
-
-        One TCP connection per request → open to DoS via connection flooding.
-
-HTTP/1.1 (1997 – still dominant)
-
-    Changes:
-
-        Persistent connections (keep-alive) to reuse TCP connections.
-
-        Chunked transfer encoding (send data in pieces without knowing total size).
-
-        Caching improvements (ETag, Cache-Control).
-
-        More methods: OPTIONS, PUT, DELETE.
-
-    Risks:
-
-        Request smuggling & response splitting vulnerabilities due to header parsing differences.
-
-        Caching attacks (e.g., cache poisoning).
-
-        Still plaintext unless HTTPS is used.
-
-        Vulnerable to Slowloris (holding connections open).
-
-HTTP/2 (2015)
-
-    Changes:
-
-        Binary protocol instead of text.
-
-        Multiplexing (many requests in one connection without blocking).
-
-        Header compression (HPACK) to reduce overhead.
-
-        Server push (send resources before client requests them).
-
-    Risks:
-
-        New parsing bugs due to binary framing.
-
-        HPACK compression side-channel attacks (similar to CRIME/BREACH).
-
-        Amplification for DoS if multiplexing abused.
-
-        Complex implementation → more protocol-level CVEs.
-
-HTTP/3 (2022)
-
-    Changes:
-
-        Runs over QUIC (UDP-based, encrypted by default with TLS 1.3).
-
-        Better performance in lossy networks (mobile, Wi-Fi).
-
-        Faster connection setup (0-RTT possible).
-
-    Risks:
-
-        0-RTT replay attacks (if not handled properly).
-
-        UDP can be blocked or throttled in restrictive networks.
-
-        New attack surface from QUIC parsing.
-
-        Debugging harder due to encryption everywhere.
-
-Security Evolution
-
-    HTTP → HTTPS: Biggest security leap was encryption (TLS).
-
-    Risk trend: Each version improves speed and features but adds protocol complexity, which opens implementation-specific vulnerabilities.
-
-    Old versions risk: Using HTTP/1.0 or HTTP without TLS today is like shouting your password across a crowded room.
+- A cookie is a small piece of data stored on a user’s computer by a web browser, typically in response to a Set-Cookie header sent by a web server. Cookies are generally limited to about 4 KB in size and consist of key–value pairs. They are automatically included in subsequent HTTP requests to the same domain.
+- Cookies can be session-based (deleted when the browser closes) or persistent (stored until their specified expiration time).
+- Cookies are commonly used for:
+    - Session management (e.g., maintaining a logged-in state)
+    - Authentication tokens (e.g., storing login state securely)
+    - Tracking and analytics (e.g., monitoring user behavior)
+    - Advertising personalization
+- Security Aspects of Cookies:
+    - HttpOnly: Prevents client-side scripts (e.g., JavaScript) from accessing the cookie. Helps protect against XSS (Cross-Site Scripting) attacks.
+    - Secure: Ensures the cookie is only sent over HTTPS connections, preventing exposure on unencrypted channels.
+    - SameSite: Restricts cross-site cookie sharing, reducing the risk of CSRF (Cross-Site Request Forgery) attacks.
+    - SameSite=Strict: Strictest, not sent with cross-site requests.
+    - SameSite=Lax: Sent for top-level navigation, safer balance.
+    - SameSite=None; Secure: Allows third-party cookies but only over HTTPS.
+    - Domain & Path restrictions: Control where cookies can be sent.
+    - Expiration/Max-Age: Defines cookie lifetime (session vs. persistent).
+- Risks if misconfigured:
+    - Storing sensitive data in cookies without encryption: data theft.
+    - Missing HttpOnly: cookies vulnerable to XSS theft.
+    - Missing Secure: cookies exposed in plaintext over HTTP.
+    - Weak SameSite policy: susceptible to CSRF.

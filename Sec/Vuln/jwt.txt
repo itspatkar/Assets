@@ -4,22 +4,22 @@
 - A JWT (JSON Web Token) is a compact, URL-safe token format used for securely transmitting information between parties as a JSON object. It's commonly used in authentication and authorization in web applications.
 - JSON Web Tokens (JWTs) are widely used for authentication and authorization in web applications. However, they can be vulnerable to several types of attacks if not properly implemented.
 
-Structure of a JWT
+Structure of JWT:
 - A JWT has three parts, separated by dots: <Header>.<Payload>.<Signature>
 - Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywicm9sZSI6ImFkbWluIn0.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
 - 1. Header: Specifies metadata like the algorithm used:
-{
-  "alg": "HS256",
-  "typ": "JWT"
-}
+    {
+        "alg": "HS256",
+        "typ": "JWT"
+    }
 - 2. Payload: Contains the actual data (claims):
-{
-  "userId": 123,
-  "role": "admin",
-  "exp": 1718280000
-}
-3. Signature: Used to verify the integrity of the token:
-HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+    {
+        "userId": 123,
+        "role": "admin",
+        "exp": 1718280000
+    }
+- 3. Signature: Used to verify the integrity of the token:
+    HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 
 Authentication:
 - User logs in -> Server generates JWT.

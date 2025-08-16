@@ -1,0 +1,41 @@
+
+=> Server-Side Request Forgery (SSRF)
+
+- Server-Side Request Forgery (SSRF) is a web security vulnerability that allows an attacker to trick a server-side application into making unauthorized or unintended requests to internal or external resources.
+
+How SSRF Works:
+- Occurs when a web application fetches remote resources (e.g., images, URLs, webhooks) based on user input.
+- If this input is not properly validated or restricted, attackers can manipulate it to make the server send requests to arbitrary domains or internal systems.
+- The server acts as a proxy, potentially exposing sensitive data such as internal services, metadata endpoints, or authorization credentials.
+
+Example:
+- A website fetches an image from a URL supplied by the user: GET /fetch-image?url=http://example.com/cat.jpg
+- An attacker modifies the request to: GET /fetch-image?url=http://localhost:8000/admin
+- The server then requests http://localhost:8000/admin, potentially exposing internal admin functionality that should not be accessible.
+
+Impact of SSRF:
+- Access Internal Systems: Attackers can reach internal applications not exposed to the internet (e.g., 127.0.0.1, localhost, or private IP ranges).
+- Service Enumeration: Identify running services such as databases (Redis, MongoDB) or internal APIs.
+- Bypass Firewalls: Exploit the server’s ability to access restricted services that are normally unreachable from the outside.
+- Access Cloud Metadata Services: For example, in AWS, accessing http://169.254.169.254/latest/meta-data/ can leak credentials and lead to full account compromise.
+- Port Scanning: Detect open ports and map the internal network.
+- Remote Code Execution (RCE): If the SSRF can interact with a vulnerable service, it may lead to full system compromise.
+
+Overall Risk:
+- A successful SSRF attack can grant unauthorized access to sensitive data or systems within the organization.
+- It may also affect back-end services connected to the application, or even allow arbitrary command execution.
+- If leveraged against external third-party systems, SSRF can be abused for malicious activities that appear to originate from the victim organization, damaging its reputation.
+
+Mitigation of SSRF:
+- Input Validation & Whitelisting:
+    - Allow only URLs from trusted domains.
+    - Use strict allow-lists (avoid wildcards or unsafe regex).
+- Avoid Direct URL Fetching: Don’t let users provide full URLs or IP addresses unless absolutely necessary.
+- DNS Rebinding Protection: Resolve hostnames and verify resulting IPs to prevent bypass via DNS tricks.
+- Block Internal IP Ranges: Restrict access to sensitive ranges, such as:
+    - 127.0.0.1, localhost
+    - 169.254.169.254 (cloud metadata services)
+    - Private IPs (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+- Network Segmentation: Isolate sensitive services from web-facing applications.
+- Timeouts & Size Limits: Apply strict request timeouts and response size limits to prevent abuse.
+- Web Application Firewall (WAF): Use a WAF to detect and block common SSRF payloads.

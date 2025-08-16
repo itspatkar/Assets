@@ -1,0 +1,25 @@
+
+=> Open Redirect
+
+- Open Redirect is a web vulnerability that occurs when a web application takes a user-supplied URL parameter and redirects the user to it without proper validation.
+- Attackers exploit this by crafting a malicious link that first appears to point to a trusted website but actually redirects the victim to a malicious site.
+- It’s often used in phishing attacks, session hijacking, or to bypass security filters.
+
+Example:
+- A legitimate site has this endpoint: https://trusted.com/redirect?url=https://example.com
+- An attacker changes the parameter: https://trusted.com/redirect?url=https://evil.com
+- When a victim clicks it, they trust trusted.com but end up on evil.com.
+
+Impact:
+- Phishing (tricking users into giving credentials).
+- Stealing cookies or tokens if combined with other attacks.
+- Bypassing redirect-based access controls.
+
+Mitigation of Open Redirect:
+- Avoid dynamic redirects: Don’t redirect based on user-supplied input whenever possible.
+- Use allow-lists: If redirection is needed, only allow predefined trusted URLs/domains (e.g., /home, /dashboard).
+- Validate user input: Ensure the redirect target matches expected formats (e.g., relative paths only, not full external URLs).
+- Force relative URLs: Restrict redirects to internal paths instead of absolute URLs.
+- Encode and sanitize inputs: Prevent attackers from injecting // or encoded payloads that bypass filters.
+- Confirm with the user: For external redirects, display a warning/confirmation page before proceeding.
+- Use framework features: Many modern frameworks have safe redirect utilities — use them instead of custom logic.

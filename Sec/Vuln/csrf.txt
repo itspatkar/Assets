@@ -1,0 +1,58 @@
+
+=> Cross-Site Request Forgery (CSRF)
+
+- CSRF (Cross-Site Request Forgery) is a web security vulnerability in which an attacker tricks a victim’s browser into making unintended requests to a web application where the victim is already authenticated.
+- It allows attackers to induce users to perform actions they did not intend, such as changing account details or transferring funds.
+- CSRF partly circumvents the Same-Origin Policy, which normally prevents different websites from interfering with each other.
+- The attack works because the browser automatically includes cookies, session tokens, or authentication headers with the forged request. As a result, the application processes the request as if it were from the legitimate user.
+
+CSRF Working:
+For a CSRF attack to succeed, three key conditions must exist:
+- A relevant action: The application exposes an action the attacker wants to trigger. This could be a privileged action (e.g., modifying user permissions) or a sensitive user action (e.g., changing a password).
+- Cookie-based session handling: The application relies only on session cookies to identify users, without additional request validation mechanisms (like CSRF tokens or re-authentication).
+- No unpredictable request parameters: The action request does not contain parameters that the attacker cannot know or guess. For example, if a password change requires the old password, the function is not vulnerable.
+
+Example of CSRF Attack:
+- Suppose an application allows users to change their email address via the following request:
+    POST /email/change HTTP/1.1
+    Host: example.com
+    Content-Type: application/x-www-form-urlencoded
+    Content-Length: 30
+    Cookie: session=yvthwsztyeQkAPzeQ5gHgTvlyxHfsAfE
+
+    email=mymail@mail.com
+- This scenario satisfies the conditions for CSRF:
+    - Relevant action: Changing a user’s email is valuable to an attacker, since it could enable a password reset and full account takeover.
+    - Cookie-based session handling: The application relies only on a session cookie for authentication, with no additional tokens or validation.
+    - Predictable parameters: The attacker can easily guess or set the email parameter value.
+- If a victim visits a malicious web page:
+    - The attacker’s page silently sends a forged HTTP request to the vulnerable application.
+    - If the victim is logged in, their browser automatically includes the session cookie in the request (unless mitigated by SameSite cookies).
+    - The application processes the request as if it came from the victim, and changes the email address.
+- Attacker’s Exploit Page:
+    - An attacker could craft a web page like this:
+        <html>
+            <body>
+                <h1>Free Gift! Click below</h1>
+                <form action="https://example.com/email/change" method="POST">
+                    <input type="hidden" name="email" value="attacker@mail.com">
+                    <input type="submit" value="Claim Your Prize">
+                </form>
+            </body>
+        </html>
+    - If the victim clicks the button while logged into example.com, their email will silently change to attacker@mail.com.
+
+Impact of CSRF Attack:
+- In a successful CSRF attack, the attacker tricks the victim into unintentionally performing actions within a web application where they are authenticated.
+- Examples include changing the user’s email address, resetting their password, or initiating a funds transfer.
+- The severity depends on the action performed. An attacker may gain full control of the victim’s account.
+- If the targeted user has administrative or privileged access, the attacker could potentially compromise the entire application, including all its data and functionality.
+
+Mitigation of CSRF Attacks:
+- CSRF Tokens: Generate unique, unpredictable tokens per session; include them in forms and validate on the server for every state-changing request.
+- SameSite Cookies: Configure cookies with the SameSite attribute (Strict, Lax, or None; Secure) to prevent automatic inclusion in cross-site requests.
+- Double-Submit Cookies: Send a random value both as a cookie and request parameter/header; the server verifies they match.
+- Re-authentication / Confirmation: Require password, OTP, biometric, or confirmation dialogs for sensitive actions like password changes or fund transfers.
+- Custom Headers: Enforce headers (e.g., X-Requested-With) that browsers don’t add automatically, ensuring requests come from trusted sources.
+- User Interaction Validation: Add CAPTCHAs or confirmation prompts for critical actions to ensure intentional user actions.
+- Principle of Least Privilege: Limit session lifetimes, enforce role-based access, and apply stricter workflows to sensitive actions to minimize impact.
