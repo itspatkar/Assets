@@ -1,4 +1,131 @@
 
 => Web Application Firewall (WAF)
 
-base64 -> url encoding -> waf xss bypass
+- A WAF (Web Application Firewall) is a security solution that sits in front of a web application and monitors, filters, or blocks HTTP/S traffic between the client and the application before it reaches the backend.
+- What WAF Does:
+    - Protects web apps from common attacks and vulnerabilities (like SQL Injection, XSS, CSRF, etc.).
+    - Analyzes HTTP requests/responses and blocks malicious patterns.
+    - Acts as a shield without requiring changes to the application’s code.
+- How WAF Works:
+    - Uses rules, signatures, and behavior analysis to detect attacks.
+    - Example: If an attacker tries: http://example.com/product?id=1 OR '1'='1'
+    - A WAF can block this SQL Injection attempt before it reaches the database.
+
+Protections Offered by WAF:
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- Cross-Site Request Forgery (CSRF)
+- Remote File Inclusion (RFI)
+- Directory Traversal
+- Zero-day attacks (with heuristic/AI-based WAFs)
+
+Types of WAF:
+- Network-based WAF: Hardware appliance placed inline with traffic.
+- Host-based WAF: Installed as software or plugin on the server.
+- Cloud-based WAF: Provided as a service (e.g., AWS WAF, Cloudflare WAF).
+
+WAF vs IDS/IPS:
+- WAF (Web Application Firewall):
+    - Focus: Protects web applications (HTTP/HTTPS) specifically.
+    - Works at Layer 7 (Application Layer).
+    - Stops web app attacks like:
+        - SQL Injection
+        - XSS
+        - CSRF
+        - File inclusion
+        - Cookie poisoning
+    - Example: If an attacker injects: ?id=1 OR '1'='1'
+    - The WAF blocks it before it hits the backend.
+- IDS/IPS (Intrusion Detection & Prevention System):
+    - Focus: Monitor network/system traffic for malicious activity and detects/prevents in real-time.
+    - Layers: Work across OSI layers 3–7 (network to application).
+    - Behavior:
+        - As an IDS (Intrusion Detection System) -> Passive: detects and alerts security teams but does not block traffic.
+        - As an IPS (Intrusion Prevention System) -> Active: detects and blocks suspicious/malicious traffic in real time.
+    - Examples:
+        - Port scan or brute-force -> IDS raises an alert but won’t stop it.
+        - Buffer overflow exploit attempt -> IPS drops the malicious packets instantly.
+
+Summary:
+- WAF = Specialized firewall for web applications.
+- IDS/IPS = IDS -> Alarm system (detects, no blocking) and IPS -> Guard + gatekeeper (detects & blocks).
+
+WAF Bypass Techniques:
+- Encoding / Obfuscation:
+    - Working:
+        - Firewalls and WAFs often rely on rules/signatures (like regex patterns) to detect attacks (SQLi, XSS, etc.).
+        - If an attacker encodes the payload differently, the firewall may not recognize it.
+        - The backend server decodes the payload automatically -> malicious input executes.
+        - Examples of Encoding for Bypass: URL encoding, double encoding, Unicode tricks, Base64, HTML entities.
+    - URL Encoding:
+        - Attack: GET /search?q=<script>alert(1)</script>
+        - WAF might block this because it matches <script>.
+        - Encoded: GET /search?q=%3Cscript%3Ealert(1)%3C%2Fscript%3E
+            - %3C = <
+            - %3E = >
+            - %2F = /
+        - If the firewall doesn’t normalize the request first, it misses the XSS, but the server decodes it back.
+    - Double URL Encoding:
+        - Normal encoding: ' = %27
+        - Double-encoded: %2527
+        - First decode -> %27
+        - Second decode -> '
+        - If WAF only decodes once, the payload slips through.
+    - Base64 Encoding:
+        - Some backends accept Base64-encoded parameters (like in APIs).
+        - Attack: admin' OR '1'='1
+        - Base64 encoded:
+            YWRtaW4nIE9SI
+            CcxJz0nMQ==
+        - WAF might ignore it, backend decodes and executes SQL injection.
+    - HTML Encoding:
+        - <script> -> &lt;script&gt;
+        - If the WAF only blocks <script> but not its encoded form, bypass works.
+- Case Manipulation & Keyword Splitting:
+    - Many filters are case-sensitive.
+    - Example:
+        - UNION SELECT -> uNiOn SeLeCt
+        - se/**/lect (using comments to split).
+- HTTP Parameter Pollution (HPP):
+    - Sending the same parameter twice may confuse firewall vs. backend.
+    - Example: ?id=1&id=2
+    - Firewall may parse id=1, backend uses id=2.
+- Overlong UTF-8 / Unicode Tricks:
+    - Some systems accept alternative byte encodings.
+    - Example: /etc/passwd -> /%2565tc/passwd (double-encoded).
+- Path Traversal Tricks:
+    - Using different slashes or encodings.
+    - Example:
+        - ../../etc/passwd
+        - ..%2F..%2Fetc/passwd
+        - ..\\..\\etc\\passwd
+- Request Smuggling / Desync:
+    - Different devices (proxy vs firewall vs server) parse HTTP headers differently.
+    - Attacker exploits this mismatch to slip malicious payloads through.
+- Using Allowed Protocols / Ports:
+    - Firewalls usually allow HTTP (80) and HTTPS (443).
+    - Attackers tunnel other protocols inside them (SSH over HTTPS, DNS tunneling).
+- Fragmentation & Evasion:
+    - Splitting payloads across multiple packets.
+    - Some firewalls don’t reassemble before inspection.
+    - Example: <scri + pt> split across TCP fragments.
+- Host Header Manipulation:
+    - Some WAFs use Host header for filtering.
+    - Changing it (X-Forwarded-Host) can confuse backend vs firewall.
+- Using Alternate HTTP Methods:
+    - Firewalls may only filter GET/POST but forget others (PUT, DELETE, OPTIONS, PATCH).
+    - Attack via overlooked methods.
+- Misconfigurations:
+    - “Allow all outbound traffic” rules.
+    - Forgotten debug endpoints bypass filtering.
+    - Whitelisted IPs abused by attackers.
+
+Summary:
+- Firewall bypass is about finding mismatches between what the firewall sees vs. what the backend executes.
+- Attackers exploit these gaps with encodings, protocol tricks, fragmentation, misconfigurations, and tunneling.
+
+Defense:
+- Normalize input (decode everything) before inspection.
+- Use strict allowlists, not blocklists.
+- Pair firewall with IDS/IPS + secure coding.
+- Monitor logs for anomalies (odd encodings, duplicate params).

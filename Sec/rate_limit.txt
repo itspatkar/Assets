@@ -1,0 +1,54 @@
+
+=> Rate Limit
+
+- Rate limiting in an application means restricting how many requests a user, IP, or client can make to the system within a certain period of time (e.g., 100 requests per minute).
+
+How It’s Implemented:
+- Token Bucket / Leaky Bucket algorithms (common for APIs).
+- Fixed window / sliding window counters (count requests per time window).
+- Reverse proxy / WAF level (e.g., Nginx, Cloudflare, AWS API Gateway, rate-limiting middleware).
+
+Rate Limit Bypass Techniques:
+- Multiple Accounts / API Keys:
+    - If rate limit is tied to a user account or API key, attackers just register many accounts or generate multiple API keys.
+- IP Rotation / Proxy Networks:
+    - If limit is based on IP, attackers use: VPNs, Tor, Botnets, Proxy lists (datacenter, residential), Each request appears from a different IP.
+- Changing Headers:
+    - Some systems check rate limit by headers like X-Forwarded-For, X-Real-IP.
+    - Attackers manipulate these headers to spoof different IPs.
+- Distributed Attacks:
+    - Attackers spread requests across multiple clients/devices (like credential stuffing using 1000 bots).
+    - Each client stays under the limit, but combined they overwhelm the app.
+- Parameter Manipulation:
+    - Sometimes apps enforce limits only on certain endpoints.
+    - Attackers tweak request parameters slightly (e.g., /?id=1 vs /?id=1&x=abc) so backend counts them as different requests.
+- Race Conditions:
+    - Send parallel/burst requests faster than the server can track.
+    - Example: server counts after processing, so 100 requests sent simultaneously may bypass a “5 per second” limit.
+- Session / Cookie Manipulation:
+    - If limit is tied to a session ID, attackers reset cookies or reinitialize sessions to evade limits.
+- Unprotected Alternative Endpoints:
+    - Rate limiting may apply on /api/v1/login but not on /api/v2/login or a mobile app API.
+    - Attackers find and exploit these “hidden” endpoints.
+
+Example:
+- Login API: 5 attempts per minute.
+- Attacker:
+    - Rotates IP via proxy → unlimited tries.
+    - Sends 20 requests at once → 20 attempts before limit hits.
+    - Uses /mobile/login endpoint → no rate limit applied.
+
+Rate Limiting Checks:
+- When testing rate limiting, you usually verify:
+    - Scope of Enforcement
+    - Is the rate limit applied per IP address?
+    - Is it tied to a specific user account?
+    - Is it bound to a session/cookie?
+    - Or is it applied globally across all users?
+- Consistency Across Endpoints:
+    - Is rate limiting enforced uniformly on all APIs/endpoints?
+    - Are there unprotected or alternative endpoints (e.g., mobile APIs, v2 APIs)?
+- Bypass Possibilities:
+    - Can the limit be bypassed by sending parallel/burst requests (race condition)?
+    - Can it be bypassed by header spoofing (e.g., X-Forwarded-For, X-Real-IP)?
+    - Can it be bypassed using IP rotation, multiple accounts, or session resets?
