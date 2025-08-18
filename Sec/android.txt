@@ -12,6 +12,7 @@ SSL Pinning
 Custom ROM
 Kernel Dev
 BusyBox
+Webview
 
 SafetyNet and Play Integrity
 Bootloader Unlock Detection Bypass

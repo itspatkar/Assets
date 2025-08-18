@@ -1,0 +1,34 @@
+
+=> Cookies
+
+- A cookie is a small piece of data stored on a user’s computer by a web browser, typically in response to a Set-Cookie header sent by a web server. Cookies are generally limited to about 4 KB in size and consist of key–value pairs. They are automatically included in subsequent HTTP requests to the same domain.
+- Cookies can be session-based (deleted when the browser closes) or persistent (stored until their specified expiration time).
+
+Cookies are commonly used for:
+- Session management (e.g., maintaining a logged-in state)
+- Authentication tokens (e.g., storing login state securely)
+- Tracking and analytics (e.g., monitoring user behavior)
+- Advertising personalization
+
+Security Aspects of Cookies:
+- HttpOnly: Prevents client-side scripts (e.g., JavaScript) from accessing the cookie. Helps protect against XSS (Cross-Site Scripting) attacks.
+- Secure: Ensures the cookie is only sent over HTTPS connections, preventing exposure on unencrypted channels.
+- SameSite: Restricts cross-site cookie sharing, reducing the risk of CSRF (Cross-Site Request Forgery) attacks.
+- SameSite=Strict: Strictest, not sent with cross-site requests.
+- SameSite=Lax: Sent for top-level navigation, safer balance.
+- SameSite=None; Secure: Allows third-party cookies but only over HTTPS.
+- Domain & Path restrictions: Control where cookies can be sent.
+- Expiration/Max-Age: Defines cookie lifetime (session vs. persistent).
+
+Risks if misconfigured:
+- Storing sensitive data in cookies without encryption: data theft.
+- Missing HttpOnly: cookies vulnerable to XSS theft.
+- Missing Secure: cookies exposed in plaintext over HTTP.
+- Weak SameSite policy: susceptible to CSRF.
+
+Cookie Accessibility: Domain vs Subdomain:
+- Cookie set on a domain (example.com):
+    - Accessible to that domain and all its subdomains (e.g., app.example.com, shop.example.com).
+- Cookie set on a subdomain (app.example.com):
+    - Accessible only to that subdomain (app.example.com).
+    - Not accessible to parent domain (example.com) or sibling subdomains (shop.example.com).
