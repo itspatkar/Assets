@@ -24,6 +24,8 @@ HTTP Versions:
         - No authentication or cookies possible.
 - HTTP/1.0 (1996):
     - Changes:
+        - Each request requires a new TCP connection (via 3-way handshake).
+        - Once the response is received, the TCP connection is closed.
         - Added headers (both request and response).
         - Introduced status codes (200 OK, 404 Not Found).
         - Added content types (Content-Type: text/html).
@@ -35,6 +37,8 @@ HTTP Versions:
 - HTTP/1.1 (1997 – still dominant):
     - Changes:
         - Persistent connections (keep-alive) to reuse TCP connections.
+        - Multiple HTTP requests can be sent over the same TCP connection, but sequentially (one after another).
+        - After the handshake, the connection stays alive for a set timeout before closing.
         - Chunked transfer encoding (send data in pieces without knowing total size).
         - Caching improvements (ETag, Cache-Control).
         - More methods: OPTIONS, PUT, DELETE.
@@ -48,6 +52,7 @@ HTTP Versions:
         - Binary protocol instead of text.
         - Multiplexing (many requests in one connection without blocking).
         - Header compression (HPACK) to reduce overhead.
+        - Reduces latency compared to HTTP/1.1.
         - Server push (send resources before client requests them).
     - Risks:
         - New parsing bugs due to binary framing.
