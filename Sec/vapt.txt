@@ -4,6 +4,7 @@ Vulnerability Assessment and Penetration Testing (VAPT)
 # Recon
 - Passive:
     - Headers Analysis: shcheck
+    - SSL Analysis: testssl, sslyze, sslscan
     - Network Analysis/Scan:
         - Whois lookup
         - Port/Service detection: nmap
@@ -15,7 +16,7 @@ Vulnerability Assessment and Penetration Testing (VAPT)
         - SHODAN Search
         - Web Archives, Wayback Machine
     - Source Code Review:
-        - JavaScript Analysis: Parse JS files, Client-side JS for secrets, API paths, tokens (fetch all js files and find senstive info) - Retire.js
+        - JavaScript Analysis: Parse JS files, Client-side JS for secrets, API paths, tokens (fetch all js files and find senstive info) - Retire.js, getJS
 - Active:
     - Directory/File Enumeration: ffuf, dirsearch, gobuster
     - Endpoint Discovery: Look for hidden admin panels, APIs, test directories
@@ -51,6 +52,7 @@ Penetration Testing:
     - Insecure JWTs or predictable session IDs
     - CSRF on state-changing requests
     - OAuth/OpenID misconfigurations (if used)
+    - Race Conditions
 - Business Logic Issues:
     - Add product to cart, change price via client-side tampering
     - Coupon code reuse, stack, or logic bypass
