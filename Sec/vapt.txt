@@ -3,23 +3,27 @@ Vulnerability Assessment and Penetration Testing (VAPT)
 
 # Recon
 - Passive:
-    - Headers Analysis: shcheck
-    - SSL Analysis: testssl, sslyze, sslscan
+    - Headers Analysis -> shcheck
+    - SSL Analysis -> testssl, sslyze, sslscan
     - Network Analysis/Scan:
         - Whois lookup
-        - Port/Service detection: nmap
-        - Subdomain enum: subfinder
-    - Vulnerable Software/Libraries: Wappalyzer, BuiltWith, WhatWeb
+        - DNS Records (A, MX, TXT, CNAME, PTR) -> dig, dnsenum
+        - Zone Transfers (AXFR)
+        - Subdomain enum -> subfinder, assetfinder, amass (passive mode)
+    - Vulnerable Software/Libraries -> Wappalyzer, BuiltWith, WhatWeb
     - Search Engines:
-        - Google Advanced Search (Google Dorking): Exposed sensitive info, endpoints
-        - Google Hacking Database
-        - SHODAN Search
-        - Web Archives, Wayback Machine
-    - Source Code Review:
-        - JavaScript Analysis: Parse JS files, Client-side JS for secrets, API paths, tokens (fetch all js files and find senstive info) - Retire.js, getJS
+        - Google Advanced Search (Google Dorking) -> Exposed sensitive info, endpoints
+        - Google Hacking Database (GHDB)
+        - Shodan, Censys, ZoomEye
+        - Web Archives -> Wayback Machine
+    - JavaScript Analysis: Parse JS files, Client-side JS for secrets, API paths, tokens (fetch all js files and find senstive info) -> Retire.js, getJS
+    - Identify hidden or obfuscated paths and functionality through the analysis of metadata files -> robots.txt, <META> tag, sitemap.xml, .htacess, sensitive directories/files, etc.
 - Active:
-    - Directory/File Enumeration: ffuf, dirsearch, gobuster
-    - Endpoint Discovery: Look for hidden admin panels, APIs, test directories
+    - Port and Service detection -> nmap, masscan, rustscan
+    - Content Discovery -> gau, waybackurls, hakrawler
+    - Directory/File Enum -> ffuf, dirsearch, gobuster
+    - Endpoint Discovery -> hidden admin panels, APIs, test directories
+    - Parameter Discovery/Fuzzing -> Arjun, ParamSpider, kxss
 
 # Enumeration
 - User Inputs: Identify all input points:

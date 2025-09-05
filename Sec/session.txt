@@ -1,0 +1,106 @@
+
+=> Session
+
+- A session is a temporary interaction between a client (user/browser) and a server (web application) that lasts across multiple requests.
+- Since HTTP is stateless (it forgets everything after each request), sessions are used to remember the user and their activity.
+- How Sessions Work:
+    - User logs in -> Server verifies username & password.
+    - Server creates a session -> Generates a unique Session ID (random string).
+    - Session ID is stored -> Usually sent as a cookie (e.g., Set-Cookie: JSESSIONID=abc123).
+    - User makes more requests -> Browser automatically sends the session ID with each request.
+    - Server matches ID -> Finds user’s session data (who they are, what they can access).
+    - Session ends -> On logout, timeout, or server restart.
+- Example:
+    - You log in to Gmail.
+    - Gmail gives you a session cookie (SID=xyz987).
+    - Each time you open inbox, read mail, or send mail, your browser includes SID=xyz987.
+    - Gmail server uses that ID to know: “Oh, this is Prime, logged in as prime@example.com
+    - Without sessions, you’d have to log in again on every page.
+- Session Storage:
+    - Sessions can store:
+        - User ID (who you are)
+        - Roles/permissions (admin, user)
+        - Cart items (in shopping apps)
+        - Temporary states (multi-step forms, OTP flow)
+    - Storage location depends:
+        - Server-side: memory, database, Redis (common).
+        - Client-side: cookies, localStorage, JWTs (stateless sessions).
+- Security Importance: Because a session represents identity, if an attacker steals it, they become you.
+
+Session vs Token (JWT):
+- Traditional Session (Server-Side Session)
+    - How it works:
+        - User logs in -> server creates a session entry in memory/database.
+        - Server gives the user a Session ID (stored in a cookie).
+        - On each request, the browser sends the cookie.
+        - Server checks its session store: "SessionID=abc123 -> User=Prime, Role=Admin".
+    - Characteristics:
+        - Stateful -> server must store session data.
+        - Session expires on logout or timeout.
+        - Session invalid if server restarts (unless persistent).
+    - Example:
+        Set-Cookie: JSESSIONID=abc123; HttpOnly; Secure
+        - Next requests include Cookie: JSESSIONID=abc123.
+- Token-Based Session (Stateless, e.g., JWT):
+    - How it works:
+        - User logs in -> server generates a token (JWT).
+        - JWT contains user data + signature (self-contained).
+        - Server doesn’t need to store it -> just verifies signature on each request.
+        - Client sends token in Authorization header or cookie.
+    - Characteristics:
+        - Stateless -> server doesn’t store session, only validates token.
+        - Scales better for distributed/microservices.
+        - Tokens often have expiry (exp) and can’t be revoked easily unless you keep a blacklist.
+        - Example (JWT payload):
+            {
+                "sub": "prime",
+                "role": "admin",
+                "exp": 1756985126
+            }
+            - Sent as: Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+Session-based Attacks:
+- Session-based attacks target how applications create, store, or validate session identifiers (tokens/cookies). If a session is hijacked, an attacker can act as the victim.
+- Session Hijacking (steal):
+    - Attacker steals a valid session token (cookie, JWT, bearer token).
+    - Methods: XSS, sniffing (HTTP/plaintext), malicious Wi-Fi, malware.
+    - Example: document.cookie leak via XSS.
+- Session Fixation (plant):
+    - Attacker sets/victim uses a known session ID.
+    - If the app doesn’t regenerate a new session after login, attacker can hijack.
+    - Example: ?sessionid=12345 -> victim logs in -> attacker reuses 12345.
+- Session Replay (reuse):
+    - Attacker reuses previously valid session traffic.
+    - Especially possible if no nonce or timestamp is used.
+    - Example: Resubmitting a captured Authorization: Bearer <token> header.
+- Session Sidejacking:
+    - Sniffing active session tokens over insecure HTTP/Wi-Fi.
+    - Often paired with Firesheep-style attacks.
+    - Example: Capturing Set-Cookie over unencrypted traffic.
+- Cross-Site Request Forgery (CSRF):
+    - Exploits authenticated session without knowing credentials.
+    - Victim is tricked into sending a request with their valid session cookie.
+    - Example: Hidden form -> POST /transfer?to=attacker&amount=5000.
+- Cross-Site Script Inclusion (XSSI):
+    - Exploits session-based API responses by embedding them as <script src=...>.
+    - Leaks sensitive data tied to the victim’s session.
+- Cookie Poisoning:
+    - Modifying cookies (esp. if not signed/encrypted) to escalate privileges.
+    - Example: role=user -> change to role=admin.
+- Predictable Session IDs:
+    - If session tokens are weakly generated (e.g., incremental, timestamp-based), attacker can guess them.
+- Session Timeout Issues:
+    - Session does not expire (persistent cookies or long-lived JWTs).
+    - Attacker can reuse stolen tokens indefinitely.
+- Man-in-the-Middle (MITM) Session Hijacking:
+    - Active interception to modify/steal live session data.
+    - Example: SSL stripping, ARP spoofing.
+
+Mitigations:
+- Use HTTPS everywhere.
+- Regenerate session IDs after login.
+- Set HttpOnly, Secure, SameSite cookie flags.
+- Implement CSRF tokens.
+- Invalidate sessions on logout.
+- Use short-lived tokens + refresh tokens.
+- Detect anomalies (IP/UA/device mismatch).
