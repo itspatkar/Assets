@@ -3,13 +3,13 @@ Vulnerability Assessment and Penetration Testing (VAPT)
 
 => Reconnaissance
 - Passive:
-    - Headers Analysis -> shcheck
-    - SSL/TLS Analysis -> testssl, sslyze, sslscan
-    - Network Information:
-        - Whois lookup
-        - DNS Records (A, MX, TXT, CNAME, PTR) -> dig, dnsenum
-        - Zone Transfers (AXFR)
-        - Subdomain Enum -> subfinder, assetfinder, amass (passive mode)
+    - Network Analysis:
+        - Whois Lookup -> whois
+        - DNS Records (A, MX, TXT, CNAME, PTR) -> dig, fierce, dnsenum, dnsrecon, amass
+        - DNS Zone Transfers (AXFR)
+        - Subdomain Enum -> subfinder, assetfinder, amass, theHarvester
+    - Headers Analysis -> shcheck, Mozilla HTTP Observatory
+    - SSL/TLS Analysis -> testssl, SSLyze, sslscan
     - Vulnerable Software/Libraries -> Wappalyzer, BuiltWith, WhatWeb
     - Technology & Framework Fingerprinting:
         - Identify web server, CMS, frameworks, hosting (PaaS, serverless, microservices, static storage)

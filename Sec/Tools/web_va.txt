@@ -1,0 +1,9 @@
+
+Vulnerability Assessment Web Tools:
+
+nikto
+wpscan
+wapiti
+XSStrike
+CMSmap
+arachni
