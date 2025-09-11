@@ -1,0 +1,39 @@
+
+=> File Upload
+
+Test Cases:
+- File Type Validation:
+	- Try uploading non-image files (.exe, .php, .js, .sh).
+	- Upload with double extensions (evil.php.jpg, malware.png.php).
+	- Rename .exe -> .jpg and attempt upload (extension bypass).
+	- Change MIME type in request (Content-Type: image/png) while uploading another file type.
+	- Upload polyglot files (valid image + embedded script).
+- Size & Resource Handling:
+	- Upload oversized file beyond limit (DoS attempt).
+	- Upload 0-byte file.
+	- Upload extremely high-resolution image (e.g., 20000×20000 pixels) to check for processing crash.
+	- Perform concurrent uploads of large files -> test server stability.
+- Metadata & Content Injection:
+	- Inject malicious payloads in EXIF metadata (JS, SQL, HTML).
+	- Attempt stored XSS via filename (<script>alert(1)</script>.jpg).
+	- Upload with SQL injection payload in filename.
+	- Upload image with path traversal in filename (../../evil.php).
+- Storage & Access Control:
+	- Verify uploaded files are not stored in a web-accessible directory (/uploads/file.jpg accessible directly).
+	- Attempt IDOR: access another user’s uploaded image by changing file ID/path.
+	- Check if previously uploaded file can be overwritten by attacker.
+	- Test if uploaded files are served with Content-Disposition: attachment (to prevent inline execution).
+	- Check for X-Content-Type-Options: nosniff header to prevent MIME sniffing.
+- Execution & Malware:
+	- Upload script disguised as image and check if it executes (shell.php.jpg).
+	- Upload image with embedded PHP/JS and request it via direct URL.
+	- Upload known EICAR test file (to check AV/malware scanning).
+- Transport & Security Controls:
+	- Verify HTTPS enforced during upload.
+	- Intercept request -> try tampering multipart boundary in Burp.
+	- Test slow upload (Slowloris) to check server timeout.
+	- Test for lack of rate limiting in upload endpoint.
+- Business Logic:
+	- Check if attacker can bypass file upload restrictions via API calls (mobile app endpoints, hidden routes).
+	- Verify if image validation happens server-side (not just client-side).
+	- Test if multiple upload attempts invalidate old links.

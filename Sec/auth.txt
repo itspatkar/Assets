@@ -1,0 +1,38 @@
+
+=> Authentication
+
+Test Cases:
+- Authentication & Credential Handling:
+	- Check for weak password policies (short, dictionary-based, missing complexity).
+	- Test for default / common credentials (admin/admin, test/test).
+	- Attempt brute force / credential stuffing -> verify rate limiting, captcha, account lockout.
+	- Check if session persists after password change / logout (session invalidation).
+	- Check for user enumeration via error messages (different response for valid vs invalid email).
+- OTP:
+	- Verify OTP is random, unpredictable, and not sequential.
+	- Test for reuse of OTP after successful login.
+	- Attempt to use expired OTP.
+	- Attempt brute force OTP (e.g., 000000–999999).
+	- Test rate limiting on OTP verification.
+	- Try replay attack (capture OTP request/response and resend).
+	- Verify OTP is not exposed in logs, response payload, or client-side code.
+	- Check if multiple OTPs issued invalidate old ones (to prevent parallel valid OTPs).
+- Session Management:
+	- Verify session cookie flags (HttpOnly, Secure, SameSite).
+	- Test for session fixation (inject old session ID).
+	- Check if session persists after logout / token invalidation.
+	- Attempt cookie replay (reuse session cookie in new browser/incognito).
+- Input Validation:
+	- Inject SQLi payloads in email & password fields.
+	- Inject XSS payloads in email field (stored/reflected).
+	- Try CRLF injection in login parameters.
+	- Test email field with special characters, long inputs, null bytes, Unicode.
+- Transport & Storage Security:
+	- Verify HTTPS enforced (no login over HTTP).
+	- Check for TLS version & weak ciphers.
+	- Ensure credentials are not in GET params / URL.
+- Business Logic Flaws:
+	- Try bypassing password with OTP (force direct OTP flow without request).
+	- Attempt login via API endpoint manipulation (e.g., skipping OTP verification).
+	- Verify if both login methods create the same privilege level (no privilege escalation).
+	- Test multi-session handling (login from multiple devices at once).

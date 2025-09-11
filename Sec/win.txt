@@ -18,8 +18,8 @@ Windows Directories
     - C:\Users\*\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup -> User-level startup folder (commonly abused by malware).
     - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup -> Startup folder for all users.
 - Network Configuration:
-    - C:\Windows\System32\drivers\etc\hosts → Local DNS mappings (often abused for redirection).
-    - C:\Windows\System32\drivers\etc\networks → Legacy network config file (rarely used today).
+    - C:\Windows\System32\drivers\etc\hosts -> Local DNS mappings (often abused for redirection).
+    - C:\Windows\System32\drivers\etc\networks -> Legacy network config file (rarely used today).
 
 Windows Native Features
 - Registry (Run Keys / Startup Folder):

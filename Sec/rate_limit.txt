@@ -34,9 +34,9 @@ Rate Limit Bypass Techniques:
 Example:
 - Login API: 5 attempts per minute.
 - Attacker:
-    - Rotates IP via proxy → unlimited tries.
-    - Sends 20 requests at once → 20 attempts before limit hits.
-    - Uses /mobile/login endpoint → no rate limit applied.
+    - Rotates IP via proxy -> unlimited tries.
+    - Sends 20 requests at once -> 20 attempts before limit hits.
+    - Uses /mobile/login endpoint -> no rate limit applied.
 
 Rate Limiting Checks:
 - When testing rate limiting, you usually verify:
