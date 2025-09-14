@@ -1,7 +1,7 @@
 
 # Install KVM and required packages
 sudo pacman -Syu
-sudo pacman -S virt-manager libvirt virt-viewer qemu-full dnsmasq bridge-utils
+sudo pacman -S virt-manager libvirt virt-viewer qemu-full dnsmasq bridge-utils dmidecode
 
 # Start KVM libvirt service
 sudo systemctl enable libvirtd
@@ -25,6 +25,8 @@ sudo virsh net-start default
 # Restart system
 sudo shutdown -r now
 
+# Share KVM folder to Host
+sudo mount -t virtiofs shared /mnt/shared
 
 --------------------------------------------------
 

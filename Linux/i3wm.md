@@ -5,7 +5,6 @@ Install following packages for your distribution :
 - `i3blocks`
 - `i3lock`
 
-
 ### Utilities and Dependencies :
 - `acpi` : client for battery, power, and thermal readings
 - `brightnessctl` : read and control device brightness
@@ -24,19 +23,16 @@ Install following packages for your distribution :
 - `scrot` : cmd-line screenshot utility for X
 - `xbacklight` : read and control device brightness
 
-
 ### Configure :
 - Get all files from [here](https://github.com/itspatkar/Assets/raw/main/i3wm-config.zip)
 - Extract it
 - Copy files to `~/.config/`
 - Restart i3 with `mod+Shift+r`
 
-
 ### Ricing :
 Download themes from the link below. Extract and copy folder to `/usr/share/themes`, and select theme from GTK theme settings.
 - [GTK - Material Black Colors](https://www.xfce-look.org/p/1316887/)
 - [GTK - Sweet Dark](https://www.xfce-look.org/p/1253385/)
-
 
 ### Productive & Media Apps :
 - `cheese` : GNOME webcam

@@ -56,3 +56,58 @@
 -------
 
 xfce4-screenshooter --clipboard --no-border --window --save /home/user/Pictures/"Screenshot_$(date -d "today" +"%Y-%m-%d_%H-%M-%S").png"
+
+-------
+
+# Packages
+
+android-tools
+blueman
+bluez
+bluez-utils
+btop
+cheese
+chromium
+code
+curl
+deadbeef
+fastfetch
+file-roller
+filezilla
+firefox
+fzf
+fzy
+gcc
+git
+gparted
+gvfs-mtp
+libreoffice-fresh
+lightdm-gtk-greeter-settings
+lsof
+lxqt-sudo
+mpv
+mtools
+mugshot
+scrcpy
+ssr
+sublime-text
+tar
+telegram-desktop
+thunar-archive-plugin
+unzip
+viewnior
+vscode
+xdg-user-dirs
+xfce4-clipman-plugin
+xfce4-pulseaudio-plugin
+xfce4-screenshooter
+xkill
+xorg-xinput
+xz
+zip
+
+-------
+
+# Wifi Disconnect Fix
+
+options iwlwifi power_save=0
