@@ -1,49 +1,51 @@
 
 Vulnerability Assessment and Penetration Testing (VAPT)
 
-=> Reconnaissance
+=> Reconnaissance/Enumeration
 - Passive:
     - Network Analysis:
         - Whois Lookup -> whois
-        - DNS Records (A, MX, TXT, CNAME, PTR) -> dig, fierce, dnsenum, dnsrecon, amass
+        - DNS Records (A, MX, TXT, CNAME, PTR) -> dig, dnsdumpster
         - DNS Zone Transfers (AXFR)
-        - Subdomain Enum -> subfinder, assetfinder, amass
-    - Headers Analysis -> shcheck, Mozilla HTTP Observatory
-    - SSL/TLS Analysis -> testssl, SSLyze, sslscan
-    - Technology & Framework Fingerprinting:
+    - Subdomain Enum -> subfinder, amass (passive mode), assetfinder, theHarvester
+    - Certificate transparency/logs -> crt.sh, certspotter, ctsearch
+    - Headers Analysis (security headers, cookies, server banners) -> shcheck, Mozilla HTTP Observatory
+    - SSL/TLS Analysis (check protocol versions, ciphers, HSTS, OCSP stapling) -> testssl, SSLyze, sslscan
+    - Technology Fingerprinting:
         - Identify web server, CMS, frameworks, hosting (PaaS, serverless, microservices, static storage)
-        - Identify vulnerable software/libraries
+        - Identify vulnerable software/libraries -> Retire.js
         - Detect reverse proxy, WAF, IPS
         - Tools -> Wappalyzer, BuiltWith, WhatWeb
     - OSINT:
         - Google Dorking (advanced operators) -> Exposed sensitive info, endpoints
-        - Google Hacking Database (GHDB)
         - Wayback Machine and Archives (sites)
+        - Google Hacking Database (GHDB)
         - IoT/Search Engines -> Shodan, Censys, ZoomEye
+        - Public code/repo scans (GitHub, GitLab) -> gitrob, truffleHog, Gitleaks
+        - Public Platform -> Social profiles, job/people postings, blogs, etc.
+        - OSINT frameworks -> Recon-ng, Maltego
     - File/Source Code:
-        - JavaScript Analysis: Parse & review client-side JS for secrets, API paths, tokens -> Retire.js, getJS
+        - JavaScript Analysis: Parse & review client-side JS for secrets, API paths, tokens
         - Backup/Config/Cache Files Check: Extensions like .old, .bak, .inc, .src
         - Metadata & Exposed Files: robots.txt, <META> tags, sitemap.xml, .htaccess, sensitive dirs/files
 - Active:
-    - Port/Service detection -> nmap, masscan, rustscan
-    - Content Discovery -> gau, waybackurls, hakrawler
-    - Directory/File Enum -> ffuf, dirsearch, gobuster
-    - Endpoint Discovery -> hidden admin panels, APIs, test/staging dirs
-    - Parameter Discovery/Fuzzing -> Arjun, ParamSpider, kxss
-- Enumeration:
-    - Directory and Ports:
-        - Common admin panels -> /admin, /administrator, /backoffice, /backend
-        - Alternative ports (e.g., Tomcat on 8080)
-    - User Inputs: Identify all input points:
-        - Search, Registration/Login, Feedback/Contact forms
-        - Coupon/Gift code fields
-        - File uploads
-    - Features Enumeration:
-        - Anonymous vs authenticated users
-        - Account/email enumeration
+    - Hosts Discovery (live hosts) -> ping, nmap, rustscan
+    - Port Detection (open ports) -> nmap, masscan, rustscan
+    - Service Detection -> nmap
+    - DNS Probing/Enum (A, MX, TXT, CNAME, PTR) -> amass, dnsrecon, dnsenum
+    - Subdomain Enum: amass, sublist3r, fierce, dnsrecon, dnsenum
+    - Content Discovery:
+        - Crawlers/URLs Extraction -> waybackurls, gau/gauplus
+        - Directory/File Enum -> ffuf, dirsearch, gobuster, dirb/dirbuster
+        - Endpoint Extraction (hidden admin panels, APIs, test/staging dirs) -> linkfinder, getJS, SecretFinder, hakrawler, AdminPBuster
+        - Parameter Discovery/Fuzzing -> Arjun, ParamSpider, kxss, api-fuzzers/apibuster
+    - Forced Browsing:
+        - Common Directory (admin panels) -> /admin, /administrator, /backoffice, /backend
+        - Ports (alternative ports) -> Tomcat on 8080
 
 => Penetration Testing
 - Input flaws:
+    - Identify all input points: Search, Registration/Login, Feedback/Contact forms, Coupon/Gift code fields, File uploads
     - SSTI, HTML injection
     - XSS (Reflected, Stored, DOM) -> In search, reviews, profile updates
     - SQLi (Classic, blind, time-based) -> login, product ID, filters
@@ -82,7 +84,9 @@ Vulnerability Assessment and Penetration Testing (VAPT)
     - Privilege Escalation:
         - Access restricted paths (/admin, /superuser)
         - Modify role/permissions in requests
+        - Anonymous vs authenticated users
     - IDOR/Broken Object Level Authorization:
         - Access other users’ orders (/orders/123)
         - Change user_id, product_id, invoice IDs in requests
         - Unauthorized access to invoices, payment details
+        - Account/email enumeration
