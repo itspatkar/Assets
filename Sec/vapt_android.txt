@@ -1,0 +1,7 @@
+
+=> Vulnerability Assessment and Penetration Testing - Mobile Application (Android)
+
+- Reverse engineering app binaries (APK/IPA): secrets in code, API keys, hard-coded endpoints
+- Inter-app communication, deep link handling, SSL pinning weaknesses
+- Local data storage encryption, keychain/keystore checks
+- API usage via mobile app flows (session reuse, tokens)

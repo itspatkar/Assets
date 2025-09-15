@@ -1,5 +1,5 @@
 
-Vulnerability Assessment and Penetration Testing (VAPT)
+Vulnerability Assessment and Penetration Testing - Web Application & API
 
 => Reconnaissance/Enumeration
 - Passive:
@@ -10,7 +10,11 @@ Vulnerability Assessment and Penetration Testing (VAPT)
     - Subdomain Enum -> subfinder, amass (passive mode), assetfinder, theHarvester
     - Certificate transparency/logs -> crt.sh, certspotter, ctsearch
     - Headers Analysis (security headers, cookies, server banners) -> shcheck, Mozilla HTTP Observatory
-    - SSL/TLS Analysis (check protocol versions, ciphers, HSTS, OCSP stapling) -> testssl, SSLyze, sslscan
+    - SSL/TLS Analysis:
+        - Check protocol versions, ciphers, HSTS, OCSP stapling
+        - Weak TLS/SSL configs (RC4, SSLv3, TLS < 1.2 where not allowed)
+        - Missing HSTS, weak ciphers, certificate expiry, invalid chains
+        - Tools -> testssl, SSLyze, sslscan
     - Technology Fingerprinting:
         - Identify web server, CMS, frameworks, hosting (PaaS, serverless, microservices, static storage)
         - Identify vulnerable software/libraries -> Retire.js
@@ -18,8 +22,8 @@ Vulnerability Assessment and Penetration Testing (VAPT)
         - Tools -> Wappalyzer, BuiltWith, WhatWeb
     - OSINT:
         - Google Dorking (advanced operators) -> Exposed sensitive info, endpoints
-        - Wayback Machine and Archives (sites)
         - Google Hacking Database (GHDB)
+        - Wayback Machine and Archives (sites)
         - IoT/Search Engines -> Shodan, Censys, ZoomEye
         - Public code/repo scans (GitHub, GitLab) -> gitrob, truffleHog, Gitleaks
         - Public Platform -> Social profiles, job/people postings, blogs, etc.
@@ -35,7 +39,7 @@ Vulnerability Assessment and Penetration Testing (VAPT)
     - DNS Probing/Enum (A, MX, TXT, CNAME, PTR) -> amass, dnsrecon, dnsenum
     - Subdomain Enum: amass, sublist3r, fierce, dnsrecon, dnsenum
     - Content Discovery:
-        - Crawlers/URLs Extraction -> waybackurls, gau/gauplus
+        - Crawlers/URLs Extraction -> waybackurls, gau/gauplus, hakrawler
         - Directory/File Enum -> ffuf, dirsearch, gobuster, dirb/dirbuster
         - Endpoint Extraction (hidden admin panels, APIs, test/staging dirs) -> linkfinder, getJS, SecretFinder, hakrawler, AdminPBuster
         - Parameter Discovery/Fuzzing -> Arjun, ParamSpider, kxss, api-fuzzers/apibuster
@@ -43,7 +47,18 @@ Vulnerability Assessment and Penetration Testing (VAPT)
         - Common Directory (admin panels) -> /admin, /administrator, /backoffice, /backend
         - Ports (alternative ports) -> Tomcat on 8080
 
+=> Email
+- SPF / DKIM / DMARC checks and misconfig
+- Email template injection, password reset via email vulnerability
+- Open mail relays, mail server configuration
+
 => Penetration Testing
+- Client-side:
+    - Sensitive data in localStorage/sessionStorage, indexdb, cookies
+    - Insecure CORS configuration: overly-permissive Access-Control-Allow-Origin
+    - CSP missing or too permissive; missing SRI for third-party scripts
+    - DOM-based vulnerabilities, client-side logic manipulation
+    - Source-map exposure, debug endpoints
 - Input flaws:
     - Identify all input points: Search, Registration/Login, Feedback/Contact forms, Coupon/Gift code fields, File uploads
     - SSTI, HTML injection
@@ -53,13 +68,14 @@ Vulnerability Assessment and Penetration Testing (VAPT)
     - XXE/XInclude -> file uploads, XML APIs
     - SSRF -> image fetchers, webhooks, PDF generation
 - Authentication & Session:
-    - Weak login flows: Default/weak creds, brute-force, password spraying
+    - Weak login flows -> Default/weak credential, credential stuffing, brute-force, password spraying
     - Login/Logout flaws & error-based enumeration (invalid user vs invalid password)
     - Forgot password flows -> token leakage, reset bypass
     - OTP/email verification bypass -> request/response tampering
     - Account lockout & rate-limiting bypass
     - Session flaws: fixation, token reuse, predictable session IDs
-    - JWT issues -> insecure alg (none, HS256), weak secrets
+    - Session invalidation on logout, concurrent session controls, session binding to IP/user-agent
+    - JWT issues -> insecure alg (none, HS256), weak secrets, token expiry
     - Cookie security -> missing flags (HttpOnly, Secure, SameSite)
     - CSRF on state-changing requests
     - OAuth/OpenID misconfigurations
@@ -68,18 +84,20 @@ Vulnerability Assessment and Penetration Testing (VAPT)
     - Upload bypasses:
         - Malicious extensions (.php, .php.jpg, .svg)
         - MIME type & content-type validation bypass
+        - Magic bytes
     - Post-upload risks:
-        - Stored XSS in file preview
+        - Stored XSS in file metadata or preview
         - Direct file access (/uploads/filename.jpg)
         - Unrestricted file download
-    - Cloud/Storage checks:
-        - Open S3 buckets, misconfigured blob storage
+    - Cloud Storage misconfig:
+        - Open S3/GCS buckets or blobs, misconfigured blob storage
+        - Public ACLs, exposed SAS tokens
+        - Check CDN caching of sensitive content
 - Business Logic Issues:
-    - Rate limiting flaws -> brute-force, OTP abuse
-    - Payment bypass, workflow abuse, cart manipulation
+    - Rate-limiting bypass, account creation abuse, OTP re-use, price manipulation, concurrency/race in discounts or quota counters
+    - Cart manipulation, order tampering, coupon stacking, payment flow bypass, unlimited redemption
+    - Workflow abuse: refund/manipulation via sequence-of-steps faults
     - Race conditions -> multiple coupon/gift card redemption
-    - Coupon/discount logic bypass -> stacking, unlimited use
-    - Price tampering via client-side manipulation
 - Role & Access Control Failures:
     - Privilege Escalation:
         - Access restricted paths (/admin, /superuser)
@@ -90,3 +108,10 @@ Vulnerability Assessment and Penetration Testing (VAPT)
         - Change user_id, product_id, invoice IDs in requests
         - Unauthorized access to invoices, payment details
         - Account/email enumeration
+
+=> APIs, Microservices, GraphQL, WebSockets
+- REST: missing auth on endpoints, improper rate-limiting, excessive data exposure
+- GraphQL: introspection, excessive queries, schema leaks, query complexity DOS
+- gRPC/WebSockets: authentication, message validation
+- API parameter tampering: IDORs, mass assignment
+- API versioning & deprecated endpoints
