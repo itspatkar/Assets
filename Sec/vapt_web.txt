@@ -29,7 +29,7 @@ Vulnerability Assessment and Penetration Testing - Web Application & API
         - Public Platform -> Social profiles, job/people postings, blogs, etc.
         - OSINT frameworks -> Recon-ng, Maltego
     - File/Source Code:
-        - JavaScript Analysis: Parse & review client-side JS for secrets, API paths, tokens
+        - JavaScript Analysis: Parse & review client-side JS for secrets, API paths, keys, tokens, credentials, endpoints, URLs, private IPs, etc.
         - Backup/Config/Cache Files Check: Extensions like .old, .bak, .inc, .src
         - Metadata & Exposed Files: robots.txt, <META> tags, sitemap.xml, .htaccess, sensitive dirs/files
 - Active:

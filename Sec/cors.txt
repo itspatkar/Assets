@@ -4,6 +4,9 @@
 - CORS is a browser security feature that controls how a web page from one origin (domain) can request resources from another origin.
 - It is configured on the server-side by setting specific HTTP response headers that tell the browser whether to allow or block the cross-origin request. If the server does not include the correct CORS headers, the browser blocks the response even if the server processes the request successfully.
 - CORS only manages resource-sharing rules; it does not protect against attacks like Cross-Site Request Forgery (CSRF).
+- A CORS misconfiguration is only exploitable if:
+    - The server responds with Access-Control-Allow-Credentials: true, and
+    - Sensitive endpoints are accessible cross-origin.
 
 Key CORS Headers:
 - Access-Control-Allow-Origin: Defines which origin(s) are permitted (e.g., https://example.com or *).
