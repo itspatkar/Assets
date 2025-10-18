@@ -42,7 +42,7 @@ Test/Check:
         - <script>alert(1)</script>
         - javascript:alert(1)
         - `${alert(1)}` (evaluate in backticks)
-        - <svg><animatetransform onbegin=alert(1)>
+        - <svg><animatetransform onbegin=alert(1)></svg>
         - \"-alert(1)}// (skip/bypass validation)
         - <link rel="canonical" href="https://test.com/?" accesskey="x" onclick="alert(1)"> (cononical link tag)
         - [1] | orderBy: toString().constructor.fromCharCode(120,61,97,108,101,114,116,40,49,41) (obfuscation with AngularJS)
