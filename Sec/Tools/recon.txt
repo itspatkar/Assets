@@ -8,14 +8,15 @@ amass enum -active -d example.com -o amass_active.txt
 
 nikto -h https://example.com/ | tee nikto.txt
 
-nmap -p- -sVC example.com -oN nmap_full.txt
 nmap -p 80,443 --script ssl-enum-ciphers example.com -oN nmap_ssl_cipher.txt
 nmap -p 80,443 --script http-slowloris-check example.com -oN nmap_slowloris.txt
+nmap -p 80,443 --script http-vuln-cve2011-3192 example.com -oN nmap_apache_byterange.txt
 nmap -p 80,443 --script vuln example.com -oN nmap_vuln.txt
+nmap -p- -sVC example.com -oN nmap_full.txt
 
 waybackurls https://example.com/ | tee waybackurls.txt
 getJS --url https://example.com/ --complete --output getjs.txt
 paramspider -d example.com | tee paramspider.txt
-python linkfinder.py -i https://www.resqservices.in/index.js -o cli | tee - linkfinder.txt
+python linkfinder.py -i https://example.com/ -o cli | tee - linkfinder.txt
 
 gobuster dir -u https://example.com -w /usr/share/seclists/Discovery/Web-Content/common.txt -o gobuster.txt
