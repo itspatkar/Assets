@@ -1,0 +1,40 @@
+
+whois [URL] | tee whois.txt
+shcheck.py https://[URL]/ | tee shcheck.txt
+testssl https://[URL] | tee testssl.txt
+sslyze --regular --certinfo=full --http_headers $URL:443 | tee ssl_sslyze.txt
+sslscan --show-cipher-ids --show-sigs --show-certificate $URL:443 | tee ssl_sslscan.txt
+wafw00f [URL] | tee waf.txt
+whatweb [URL] | tee whatweb.txt
+
+subfinder -d [URL] -all -o subfinder.txt
+amass enum -active -d [URL] -o amass_active.txt
+fierce -dns $URL -wide -traverse 10 -threads 10 | tee dns_fierce.txt
+dnsrecon -d $URL -t std,axfr,brt,rvl,goo,bing | tee dns_dnsrecon.txt
+dnsenum --enum --threads 10 --dnsserver 8.8.8.8 $URL | tee dns_dnsenum.txt
+masscan
+
+waybackurls https://[URL]/ | tee waybackurls.txt
+getJS --url https://[URL]/ --complete --output getjs.txt
+paramspider -d [URL] | tee paramspider.txt
+python linkfinder.py -i https://[URL]/ -o cli | tee - linkfinder.txt
+assetfinder
+retire --url $URL --outputformat text --outputpath "$DIR/fingerprint_retire.txt"
+gau https://[URL]
+gobuster dir -u https://[URL] -w /usr/share/seclists/Discovery/Web-Content/common.txt -o gobuster.txt
+
+nikto -h https://[URL]/ | tee nikto.txt
+nuclei -target "$DOMAIN" | tee -a "$DIR/nuclei.txt"
+katana -u "$DOMAIN" -kf robots.txt,sitemap.xml -d 5 | tee -a "$DIR/katana.txt"
+wpscan --url "$DOMAIN" --enumerate u,ap,at -o wpscan.txt --format cli-no-color
+wapiti -u "$DOMAIN" -m "all" --scope all --max-depth 5 --random-agent --color -o "$DIR/wapiti.txt" --format html,json --ignore-redirects
+
+nmap --script whois-domain --script-args whois-domain.target="$DOMAIN" "$DOMAIN" -oN "$DIR/nmap_whois.txt"
+nmap -p 53 --script dns-brute,dns-recursion,dns-service-discovery,dns-zone-transfer "$DOMAIN" -oN "$DIR/nmap_dns.txt"
+nmap -p 80,443 --script http-headers,http-security-headers "$DOMAIN" -oN "$DIR/nmap_headers.txt"
+nmap -p 443 --script ssl-enum-ciphers,ssl-cert,ssl-dh-params,ssl-heartbleed "$DOMAIN" -oN "$DIR/nmap_ssl.txt"
+nmap -p 80,443 --script ssl-enum-ciphers [URL] -oN nmap_ssl_cipher.txt
+nmap -p 80,443 --script http-slowloris-check [URL] -oN nmap_slowloris.txt
+nmap -p 80,443 --script http-vuln-cve2011-3192 [URL] -oN nmap_apache_byterange.txt
+nmap -p 80,443 --script vuln [URL] -oN nmap_vuln.txt
+nmap -p- -sVC [URL] -oN nmap_full.txt
