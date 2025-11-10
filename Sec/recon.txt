@@ -19,20 +19,20 @@ getJS --url https://[URL]/ --complete --output getjs.txt
 paramspider -d [URL] | tee paramspider.txt
 python linkfinder.py -i https://[URL]/ -o cli | tee - linkfinder.txt
 assetfinder
-retire --url $URL --outputformat text --outputpath "$DIR/fingerprint_retire.txt"
+retire --url $URL --outputformat text --outputpath fingerprint_retire.txt
 gau https://[URL]
 gobuster dir -u https://[URL] -w /usr/share/seclists/Discovery/Web-Content/common.txt -o gobuster.txt
 
 nikto -h https://[URL]/ | tee nikto.txt
-nuclei -target "$DOMAIN" | tee -a "$DIR/nuclei.txt"
-katana -u "$DOMAIN" -kf robots.txt,sitemap.xml -d 5 | tee -a "$DIR/katana.txt"
-wpscan --url "$DOMAIN" --enumerate u,ap,at -o wpscan.txt --format cli-no-color
-wapiti -u "$DOMAIN" -m "all" --scope all --max-depth 5 --random-agent --color -o "$DIR/wapiti.txt" --format html,json --ignore-redirects
+nuclei -target $DOMAIN | tee -a nuclei.txt
+katana -u $DOMAIN -kf robots.txt,sitemap.xml -d 5 | tee -a katana.txt
+wpscan --url $DOMAIN --enumerate u,ap,at -o wpscan.txt --format cli-no-color
+wapiti -u $DOMAIN -m all --scope all --max-depth 5 --random-agent --color -o wapiti.txt --format html,json --ignore-redirects
 
-nmap --script whois-domain --script-args whois-domain.target="$DOMAIN" "$DOMAIN" -oN "$DIR/nmap_whois.txt"
-nmap -p 53 --script dns-brute,dns-recursion,dns-service-discovery,dns-zone-transfer "$DOMAIN" -oN "$DIR/nmap_dns.txt"
-nmap -p 80,443 --script http-headers,http-security-headers "$DOMAIN" -oN "$DIR/nmap_headers.txt"
-nmap -p 443 --script ssl-enum-ciphers,ssl-cert,ssl-dh-params,ssl-heartbleed "$DOMAIN" -oN "$DIR/nmap_ssl.txt"
+nmap --script whois-domain --script-args whois-domain.target=$DOMAIN $DOMAIN -oN nmap_whois.txt
+nmap -p 53 --script dns-brute,dns-recursion,dns-service-discovery,dns-zone-transfer $DOMAIN -oN nmap_dns.txt
+nmap -p 80,443 --script http-headers,http-security-headers $DOMAIN -oN nmap_headers.txt
+nmap -p 443 --script ssl-enum-ciphers,ssl-cert,ssl-dh-params,ssl-heartbleed $DOMAIN -oN nmap_ssl.txt
 nmap -p 80,443 --script ssl-enum-ciphers [URL] -oN nmap_ssl_cipher.txt
 nmap -p 80,443 --script http-slowloris-check [URL] -oN nmap_slowloris.txt
 nmap -p 80,443 --script http-vuln-cve2011-3192 [URL] -oN nmap_apache_byterange.txt

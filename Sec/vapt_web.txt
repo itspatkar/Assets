@@ -1,5 +1,5 @@
 
-Vulnerability Assessment and Penetration Testing - Web Application & API
+Web Application & API VAPT
 
 => Reconnaissance/Enumeration
 - Passive:
@@ -15,6 +15,7 @@ Vulnerability Assessment and Penetration Testing - Web Application & API
         - Weak TLS/SSL configs (RC4, SSLv3, TLS < 1.2 where not allowed)
         - Missing HSTS, weak ciphers, certificate expiry, invalid chains
         - Tools -> testssl, SSLyze, sslscan
+    - Email -> SPF, DKIM, and DMARC checks and misconfigurations
     - Technology Fingerprinting:
         - Identify web server, CMS, frameworks, hosting (PaaS, serverless, microservices, static storage)
         - Identify vulnerable software/libraries -> Retire.js
@@ -44,13 +45,11 @@ Vulnerability Assessment and Penetration Testing - Web Application & API
         - Endpoint Extraction (hidden admin panels, APIs, test/staging dirs) -> linkfinder, getJS, SecretFinder, hakrawler, AdminPBuster
         - Parameter Discovery/Fuzzing -> Arjun, ParamSpider, kxss, api-fuzzers/apibuster
     - Forced Browsing:
-        - Common Directory (admin panels) -> /admin, /administrator, /backoffice, /backend
+        - Common Directory:
+            - Admin Panels -> /admin, /administrator, /backoffice, /backend
+            - Login -> /login
+            - Default Pages -> /wp-admin (WordPress), /manager/html (Tomcat)
         - Ports (alternative ports) -> Tomcat on 8080
-
-=> Email
-- SPF / DKIM / DMARC checks and misconfig
-- Email template injection, password reset via email vulnerability
-- Open mail relays, mail server configuration
 
 => Penetration Testing
 - Client-side:
