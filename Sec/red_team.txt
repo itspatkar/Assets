@@ -1,0 +1,309 @@
+
+Red Teaming
+
+=> Red Teaming
+
+Red Teaming is a simulated cyberattack performed by ethical hackers to assess an organization’s security from an adversary’s perspective. It involves an independent group (the “red team”) emulating real-world threat actors to evaluate the effectiveness, readiness, and resilience of an organization’s systems, processes, and defenses.
+- The objective is not only to find vulnerabilities but also to test detection and response capabilities, identify gaps across people, processes, and technology, and measure true attack preparedness.
+- Unlike traditional penetration testing, which focuses mainly on technical flaws, red teaming evaluates the organization’s overall security posture in a realistic attack scenario.
+
+
+=> MITRE ATT&CK
+
+MITRE ATT&CK (Adversarial Tactics, Techniques & Common Knowledge) is a globally used cybersecurity framework that documents how real-world attackers behave.
+
+It is basically a matrix that shows:
+- What attackers do (Tactics)
+- How they do it (Techniques and Sub-techniques)
+- It is based on real attack data, not theory.
+
+Why does MITRE ATT&CK exist?
+- Before ATT&CK, there was no standard way to describe hacker behavior.
+
+MITRE created ATT&CK so that:
+- Red teams can simulate real attacks
+- Blue teams can detect attacks better
+- Security tools can map coverage
+- Organizations can assess gaps
+- It gives everyone a common language to talk about attacks.
+
+Structure of MITRE ATT&CK
+MITRE ATT&CK is structured into 3 layers:
+- Tactics (WHAT attackers want to achieve)
+    - Tactics = the goal or phase of the attack.
+    - There are 14 Tactics:
+        - Reconnaissance
+        - Resource Development
+        - Initial Access
+        - Execution
+        - Persistence
+        - Privilege Escalation
+        - Defense Evasion
+        - Credential Access
+        - Discovery
+        - Lateral Movement
+        - Collection
+        - Command & Control (C2)
+        - Exfiltration
+        - Impact
+    - This forms the columns of the ATT&CK matrix.
+- Techniques (HOW attackers achieve it)
+    - Each tactic contains many techniques.
+    - Examples:
+        - Technique Name ID Purpose
+        - Phishing T1566 Get initial access
+        - PowerShell T1059 Execute commands
+        - Credential Dumping T1003 Steal passwords
+        - Remote Services T1021 Lateral movement
+- Sub-Techniques (Detailed variations)
+    - Examples:
+        - T1566.001 – Spear-phishing Email
+        - T1003.001 – LSASS Dump
+        - T1059.001 – PowerShell
+    - These give very specific attacker behaviors.
+
+What MITRE ATT&CK Matrices Exist?
+MITRE ATT&CK has three main matrices:
+- Enterprise ATT&CK (Windows, Linux, macOS, Cloud, SaaS, Containers)
+- Mobile ATT&CK (Android, iOS)
+- ICS ATT&CK (Industrial control systems like SCADA)
+
+How MITRE ATT&CK is Used
+- Red Teaming (Simulating attacks)
+    - Red teams plan scenarios using ATT&CK to mimic real threat actors.
+    - Example: Use T1566 (Phishing) → T1059 (PowerShell) → T1003 (Credential Dumps).
+- Blue Team/SOC (Detection & response)
+    - SOC uses the framework to:
+    - Build logging/alert rules
+    - Detect suspicious behavior
+    - Map detection gaps
+    - Almost all SIEMs (Splunk, Sentinel, QRadar) map alerts to MITRE ATT&CK.
+- Threat Intelligence
+    - Threat actors like APT29, Lazarus Group, FIN7 have their techniques mapped in MITRE.
+    - Helps understand:
+        - Which techniques they use
+        - Their attack chain pattern
+- Security Product Evaluation
+    - EDR and XDR products are evaluated on how many techniques they can detect.
+    - Example: MITRE Engenuity’s evaluations.
+
+Example MITRE Attack Flow
+- A real-world simulated attack may look like this:
+    - Initial Access → T1566.001 (Spear phishing email)
+    - Execution → T1059.001 (PowerShell)
+    - Privilege Escalation → T1068 (Vulnerability exploit)
+    - Credential Access → T1003.001 (LSASS dump)
+    - Lateral Movement → T1021.002 (SMB)
+    - Exfiltration → T1041 (Exfil via C2 channel)
+- This gives a step-by-step picture of attacker actions.
+
+Why MITRE ATT&CK is Important
+- Provides a universal language for attacks
+- Helps identify security coverage gaps
+- Improves incident detection
+- Supports threat hunting
+- Used worldwide by governments, banks, SOCs, and red teams
+
+MITRE ATT&CK in Simple Words
+- MITRE ATT&CK is a detailed map of hacker behavior.
+- It shows what attackers do and how they do it at every stage of a cyberattack.
+
+
+=> Cyber Kill Chain
+
+The Cyber Kill Chain is a security framework created by Lockheed Martin to describe the stages of a cyberattack—from preparation to final impact.
+
+It helps organizations:
+- Understand how attacks happen
+- Detect attackers early
+- Break (interrupt) the attack at any stage
+
+It consists of 7 stages.
+- Reconnaissance (Information Gathering)
+    - Attacker collects information about the target.
+    - Examples:
+        - Scanning network ports
+        - Finding employee emails
+        - Gathering OSINT from LinkedIn
+        - Checking website technologies
+    - Goal: Identify weaknesses and plan the attack.
+- Weaponization
+    - Attacker prepares the malicious payload.
+    - Examples:
+        - Creating a phishing email with a malware attachment
+        - Crafting an exploit-laced PDF
+        - Creating a malicious payload (trojan, RAT, ransomware)
+    - Goal: Build a weapon that will be delivered to the victim.
+- Delivery
+    - Attacker sends the weapon to the target.
+    - Examples:
+        - Spear-phishing email
+        - Malicious USB drive
+        - Drive-by download link
+        - Compromised website
+    - Goal: Get the victim to receive or click something.
+- Exploitation
+    - The malicious code executes due to a vulnerability or user action.
+    - Examples:
+        - User opens the malicious attachment
+        - Browser exploit runs on compromised website
+        - Macro executes in malicious Excel file
+    - Goal: Exploit the system to run attacker’s code.
+- Installation
+    - Malware is installed to maintain access.
+    - Examples:
+        - Installing Trojan / backdoor
+        - Creating a persistence mechanism
+        - Dropping implants or RATs
+    - Goal: Achieve a foothold on the device.
+- Command & Control (C2)
+    - Infected system connects to attacker’s server.
+    - Examples:
+        - Malware reaching out to C2 server
+        - Reverse shell opened
+        - Encrypted communication channel
+    - Goal: Allow attacker to remotely control the system.
+- Actions on Objectives
+    - Attacker performs the final mission.
+    - Examples:
+        - Data theft
+        - Ransomware encryption
+        - Destroying systems
+        - Creating new accounts
+        - Moving laterally to other systems
+    - Goal: Achieve attacker’s main purpose.
+
+Why Cyber Kill Chain is Important
+- Helps security teams detect attacks early
+- Helps break the attack at any stage ("kill the chain")
+- Used for threat hunting & incident response
+- Forms the basis of many SOC and SIEM detection strategies
+
+
+=> Active Directory? (AD)
+
+Active Directory (AD) is Microsoft’s directory service used to manage users, computers, groups, policies, and permissions in a Windows domain network. Think of it as the central brain of a corporate network.
+
+It allows organizations to:
+- Authenticate & authorize users
+- Control access to resources
+- Apply security policies
+- Manage thousands of systems centrally
+- Windows Server hosts the Active Directory service.
+
+Active Directory Domain Services (AD DS)
+- This is the main service of AD.
+- It provides:
+    - Centralized authentication
+    - User & computer management
+    - Group Policy
+    - Access control
+    - Directory database
+- Everything in AD DS is stored in the NTDS.dit database.
+- Active Directory Components
+    - Domain
+        - A domain is a logical group of: Users. Computers. Servers, Policies
+        - Example: company.local
+        - Domains are the fundamental building blocks in AD.
+    - Domain Controller (DC)
+        - A server that runs AD DS.
+        - DC stores and manages:
+            - User accountsPasswords
+            - Authentication (Kerberos)
+            - Policies
+        - If DC is down → users cannot log in.
+    - Forest
+        - A forest contains multiple domains under one umbrella.
+        - It is the top-level AD structure.
+        - Example: company.local, india.company.local, europe.company.local
+        - All domains in a forest trust each other.
+    - Tree
+        - A group of domains organized in a hierarchy.
+    - Organizational Unit (OU)
+        - Container used to organize objects.
+        - Example OUs: Users, Computers, IT Dept, Finance Dept
+        - GPOs are applied to OUs.
+    - Objects
+        - Everything inside AD is an object.
+        - Types: User, Group, Computer, Printer, Service Account
+    - Groups
+        - Two types of groups:
+            - Security groups: Used to assign permissions.
+            - Distribution groups: Used for emails (Exchange).
+    - Group Policy Objects (GPOs)
+        - Rules and settings applied to users and computers.
+        - Examples of GPO controls:
+            - Disable USB
+            - Set password policies
+            - Disable CMD/PowerShell
+            - Install software
+            - Firewall rules
+        - Applied to Domains or OUs.
+
+AD Authentication Methods
+- Kerberos Authentication
+    - Default & most secure.
+    - Uses:
+        - TGT (Ticket Granting Ticket)
+        - Service Tickets
+    - Key terms:
+        - KDC – Key Distribution Center
+        - AS-REQ / AS-REP
+        - TGS-REQ / TGS-REP
+- NTLM Authentication
+    - Older, less secure.
+    - Used when:
+        - Kerberos fails
+        - Workgroup environment
+        - Legacy apps
+
+AD Infrastructure Terms
+- DNS → AD heavily depends on DNS
+- Sites → Used for replication control
+- Subnets → Define network boundaries
+- AD Replication → DCs synchronize data
+- SYSVOL folder → Stores GPOs, scripts
+
+Common Active Directory Attacks (Red Team)
+- Kerberoasting: Stealing service account tickets and cracking their password offline.
+- AS-REP Roasting: Targeting accounts with no Kerberos preauthentication.
+- Pass-the-Hash (PtH): Using NTLM hash to authenticate without knowing the password.
+- Pass-the-Ticket (PtT): Using Kerberos tickets to impersonate users.
+- Golden Ticket Attack: Using the KRBTGT hash to generate fake TGTs (full domain compromise).
+- Silver Ticket Attack: Forging service tickets (access to specific services).
+- DCSync: Mimicking domain controller replication to steal:
+    - NTLM hashes
+    - KRBTGT hash
+    - Passwords
+- Lateral Movement: Moving from one system to another.
+    - Tools: PsExec, WinRM, SMB, RDP
+- Privilege Escalation:
+    - Techniques:
+        - Unconstrained delegation
+        - Vulnerable GPOs
+        - Misconfigured OUs
+        - Weak ACL permissions
+
+Tools Used with Active Directory
+- For administrators:
+    - AD Users and Computers
+    - GPMC (Group Policy Management Console)
+    - DNS Manager
+    - ADSI Edit
+    - PowerShell
+- For security / red teaming:
+    - BloodHound
+    - SharpHound
+    - Mimikatz
+    - Impacket
+    - CrackMapExec
+    - PingCastle
+    - PowerSploit
+
+
+-----
+
+Nessus
+OpenVAS
+Blood Hound
+Maltego

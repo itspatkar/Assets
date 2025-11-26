@@ -22,9 +22,9 @@ Web Application & API VAPT
         - Detect reverse proxy, WAF, IPS
         - Tools -> Wappalyzer, BuiltWith, WhatWeb
     - OSINT:
-        - Google Dorking (advanced operators) -> Exposed sensitive info, endpoints
+        - Google Dorking (advanced search operators) -> Exposed sensitive info, endpoints
         - Google Hacking Database (GHDB)
-        - Wayback Machine and Archives (sites)
+        - Wayback Machine and Archives (sites) -> waybackurls
         - IoT/Search Engines -> Shodan, Censys, ZoomEye
         - Public code/repo scans (GitHub, GitLab) -> gitrob, truffleHog, Gitleaks
         - Public Platform -> Social profiles, job/people postings, blogs, etc.
@@ -95,7 +95,7 @@ Web Application & API VAPT
 - Business Logic Issues:
     - Rate-limiting bypass, account creation abuse, OTP re-use, price manipulation, concurrency/race in discounts or quota counters
     - Cart manipulation, order tampering, coupon stacking, payment flow bypass, unlimited redemption
-    - Workflow abuse: refund/manipulation via sequence-of-steps faults
+    - Workflow abuse -> refund/manipulation via sequence-of-steps faults
     - Race conditions -> multiple coupon/gift card redemption
 - Role & Access Control Failures:
     - Privilege Escalation:

@@ -1,40 +1,41 @@
 
-whois [URL] | tee whois.txt
-shcheck.py https://[URL]/ | tee shcheck.txt
-testssl https://[URL] | tee testssl.txt
-sslyze --regular --certinfo=full --http_headers $URL:443 | tee ssl_sslyze.txt
-sslscan --show-cipher-ids --show-sigs --show-certificate $URL:443 | tee ssl_sslscan.txt
-wafw00f [URL] | tee waf.txt
-whatweb [URL] | tee whatweb.txt
+whois https://swayam.jio.com/alumni/ | tee whois.txt
+shcheck.py https://swayam.jio.com/alumni/ | tee shcheck.txt
+testssl https://swayam.jio.com/alumni/ | tee testssl.txt
+sslyze --regular --certinfo=full --http_headers https://swayam.jio.com/alumni/:443 | tee ssl_sslyze.txt
+sslscan --show-cipher-ids --show-sigs --show-certificate https://swayam.jio.com/alumni/:443 | tee ssl_sslscan.txt
+wafw00f https://swayam.jio.com/alumni/ | tee waf.txt
+whatweb https://swayam.jio.com/alumni/ | tee whatweb.txt
 
-subfinder -d [URL] -all -o subfinder.txt
-amass enum -active -d [URL] -o amass_active.txt
-fierce -dns $URL -wide -traverse 10 -threads 10 | tee dns_fierce.txt
-dnsrecon -d $URL -t std,axfr,brt,rvl,goo,bing | tee dns_dnsrecon.txt
-dnsenum --enum --threads 10 --dnsserver 8.8.8.8 $URL | tee dns_dnsenum.txt
+subfinder -d https://swayam.jio.com/alumni/ -all -o subfinder.txt
+amass enum -active -d https://swayam.jio.com/alumni/ -o amass_active.txt
+fierce -dns https://swayam.jio.com/alumni/ -wide -traverse 10 -threads 10 | tee dns_fierce.txt
+dnsrecon -d https://swayam.jio.com/alumni/ -t std,axfr,brt,rvl,goo,bing | tee dns_dnsrecon.txt
+dnsenum --enum --threads 10 --dnsserver 8.8.8.8 https://swayam.jio.com/alumni/ | tee dns_dnsenum.txt
 masscan
 
-waybackurls https://[URL]/ | tee waybackurls.txt
-getJS --url https://[URL]/ --complete --output getjs.txt
-paramspider -d [URL] | tee paramspider.txt
-python linkfinder.py -i https://[URL]/ -o cli | tee - linkfinder.txt
+waybackurls https://swayam.jio.com/alumni/ | tee waybackurls.txt
+getJS --url https://swayam.jio.com/alumni/ --complete --output getjs.txt
+paramspider -d https://swayam.jio.com/alumni/ | tee paramspider.txt
+python linkfinder.py -i https://swayam.jio.com/alumni/ -o cli | tee - linkfinder.txt
 assetfinder
-retire --url $URL --outputformat text --outputpath fingerprint_retire.txt
-gau https://[URL]
-gobuster dir -u https://[URL] -w /usr/share/seclists/Discovery/Web-Content/common.txt -o gobuster.txt
+retire https://swayam.jio.com/alumni/ --outputformat text --outputpath retire.txt
+getallurls https://swayam.jio.com/alumni/ -o gau.txt
+gobuster dir -u https://swayam.jio.com/alumni/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -o gobuster.txt
+dirsearch -u https://swayam.jio.com/alumni/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -0 dirsearch.txt
 
-nikto -h https://[URL]/ | tee nikto.txt
-nuclei -target $DOMAIN | tee -a nuclei.txt
-katana -u $DOMAIN -kf robots.txt,sitemap.xml -d 5 | tee -a katana.txt
-wpscan --url $DOMAIN --enumerate u,ap,at -o wpscan.txt --format cli-no-color
-wapiti -u $DOMAIN -m all --scope all --max-depth 5 --random-agent --color -o wapiti.txt --format html,json --ignore-redirects
+nikto -h https://swayam.jio.com/alumni/ | tee nikto.txt
+nuclei -target https://swayam.jio.com/alumni/ | tee -a nuclei.txt
+katana -u https://swayam.jio.com/alumni/ -kf robots.txt,sitemap.xml -d 5 | tee -a katana.txt
+wpscan --url https://swayam.jio.com/alumni/ --enumerate u,ap,at -o wpscan.txt --format cli-no-color
+wapiti -u https://swayam.jio.com/alumni/ -m all --scope all --max-depth 5 --random-agent --color -o wapiti.txt --format html,json --ignore-redirects
 
-nmap --script whois-domain --script-args whois-domain.target=$DOMAIN $DOMAIN -oN nmap_whois.txt
-nmap -p 53 --script dns-brute,dns-recursion,dns-service-discovery,dns-zone-transfer $DOMAIN -oN nmap_dns.txt
-nmap -p 80,443 --script http-headers,http-security-headers $DOMAIN -oN nmap_headers.txt
-nmap -p 443 --script ssl-enum-ciphers,ssl-cert,ssl-dh-params,ssl-heartbleed $DOMAIN -oN nmap_ssl.txt
-nmap -p 80,443 --script ssl-enum-ciphers [URL] -oN nmap_ssl_cipher.txt
-nmap -p 80,443 --script http-slowloris-check [URL] -oN nmap_slowloris.txt
-nmap -p 80,443 --script http-vuln-cve2011-3192 [URL] -oN nmap_apache_byterange.txt
-nmap -p 80,443 --script vuln [URL] -oN nmap_vuln.txt
-nmap -p- -sVC [URL] -oN nmap_full.txt
+nmap --script whois-domain --script-args whois-domain.target=https://swayam.jio.com/alumni/ https://swayam.jio.com/alumni/ -oN nmap_whois.txt
+nmap -p 53 --script dns-brute,dns-recursion,dns-service-discovery,dns-zone-transfer https://swayam.jio.com/alumni/ -oN nmap_dns.txt
+nmap -p 80,443 --script http-headers,http-security-headers https://swayam.jio.com/alumni/ -oN nmap_headers.txt
+nmap -p 443 --script ssl-enum-ciphers,ssl-cert,ssl-dh-params,ssl-heartbleed https://swayam.jio.com/alumni/ -oN nmap_ssl.txt
+nmap -p 80,443 --script ssl-enum-ciphers https://swayam.jio.com/alumni/ -oN nmap_ssl_cipher.txt
+nmap -p 80,443 --script http-slowloris-check https://swayam.jio.com/alumni/ -oN nmap_slowloris.txt
+nmap -p 80,443 --script http-vuln-cve2011-3192 https://swayam.jio.com/alumni/ -oN nmap_apache_byterange.txt
+nmap -p 80,443 --script vuln https://swayam.jio.com/alumni/ -oN nmap_vuln.txt
+nmap -p- -sVC https://swayam.jio.com/alumni/ -oN nmap_full.txt
