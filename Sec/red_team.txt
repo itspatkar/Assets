@@ -3,186 +3,215 @@ Red Teaming
 
 => Red Teaming
 
-Red Teaming is a simulated cyberattack performed by ethical hackers to assess an organization’s security from an adversary’s perspective. It involves an independent group (the “red team”) emulating real-world threat actors to evaluate the effectiveness, readiness, and resilience of an organization’s systems, processes, and defenses.
+- Red Teaming is a simulated cyberattack performed by ethical hackers to assess an organization’s security from an adversary’s perspective. It involves an independent group (the “red team”) emulating real-world threat actors to evaluate the effectiveness, readiness, and resilience of an organization’s systems, processes, and defenses.
 - The objective is not only to find vulnerabilities but also to test detection and response capabilities, identify gaps across people, processes, and technology, and measure true attack preparedness.
 - Unlike traditional penetration testing, which focuses mainly on technical flaws, red teaming evaluates the organization’s overall security posture in a realistic attack scenario.
 
 
 => MITRE ATT&CK
 
-MITRE ATT&CK (Adversarial Tactics, Techniques & Common Knowledge) is a globally used cybersecurity framework that documents how real-world attackers behave.
+- MITRE ATT&CK (Adversarial Tactics, Techniques & Common Knowledge) is a globally adopted cybersecurity framework that documents how real-world attackers behave.
+- It provides a standardized, evidence-based way to describe attacker actions across the entire attack lifecycle.
 
-It is basically a matrix that shows:
-- What attackers do (Tactics)
-- How they do it (Techniques and Sub-techniques)
-- It is based on real attack data, not theory.
-
-Why does MITRE ATT&CK exist?
-- Before ATT&CK, there was no standard way to describe hacker behavior.
-
-MITRE created ATT&CK so that:
-- Red teams can simulate real attacks
-- Blue teams can detect attacks better
-- Security tools can map coverage
-- Organizations can assess gaps
-- It gives everyone a common language to talk about attacks.
+Why MITRE ATT&CK Exists
+- Before ATT&CK, the security industry lacked a common language to describe hacker behaviors.
+- MITRE developed this framework so that:
+    - Red Teams can simulate realistic attacks
+    - Blue Teams/SOCs can build better detection and response
+    - Security tools can map and validate coverage
+    - Organizations can identify visibility and control gaps
+    - Everyone can communicate using the same vocabulary
 
 Structure of MITRE ATT&CK
-MITRE ATT&CK is structured into 3 layers:
-- Tactics (WHAT attackers want to achieve)
-    - Tactics = the goal or phase of the attack.
-    - There are 14 Tactics:
-        - Reconnaissance
-        - Resource Development
-        - Initial Access
-        - Execution
-        - Persistence
-        - Privilege Escalation
-        - Defense Evasion
-        - Credential Access
-        - Discovery
-        - Lateral Movement
-        - Collection
-        - Command & Control (C2)
-        - Exfiltration
-        - Impact
-    - This forms the columns of the ATT&CK matrix.
-- Techniques (HOW attackers achieve it)
-    - Each tactic contains many techniques.
+MITRE ATT&CK has three layers:
+- Tactics:
+    - What attackers want to achieve
+    - Tactics represent the goal or stage of the attack.
+    - There are 14 Tactics, forming the columns of the matrix:
+        1. Reconnaissance
+        2. Resource Development
+        3. Initial Access
+        4. Execution
+        5. Persistence
+        6. Privilege Escalation
+        7. Defense Evasion
+        8. Credential Access
+        9. Discovery
+        10. Lateral Movement
+        11. Collection
+        12. Command & Control
+        13. Exfiltration
+        14. Impact
+- Techniques:
+    - How attackers achieve the goal
+    - Each tactic contains multiple techniques.
     - Examples:
-        - Technique Name ID Purpose
-        - Phishing T1566 Get initial access
-        - PowerShell T1059 Execute commands
-        - Credential Dumping T1003 Steal passwords
-        - Remote Services T1021 Lateral movement
-- Sub-Techniques (Detailed variations)
+        | Technique          | ID    | Purpose           |
+        | ------------------ | ----- | ----------------- |
+        | Phishing           | T1566 | Initial Access    |
+        | PowerShell         | T1059 | Execute commands  |
+        | Credential Dumping | T1003 | Steal credentials |
+        | Remote Services    | T1021 | Lateral Movement  |
+- Sub-techniques:
+    - More specific variations
+    - These describe detailed methods used by attackers.
     - Examples:
-        - T1566.001 – Spear-phishing Email
-        - T1003.001 – LSASS Dump
-        - T1059.001 – PowerShell
-    - These give very specific attacker behaviors.
+        - T1566.001 - Spear-phishing Email
+        - T1003.001 - LSASS Memory Dump
+        - T1059.001 - PowerShell Execution
 
-What MITRE ATT&CK Matrices Exist?
-MITRE ATT&CK has three main matrices:
-- Enterprise ATT&CK (Windows, Linux, macOS, Cloud, SaaS, Containers)
-- Mobile ATT&CK (Android, iOS)
-- ICS ATT&CK (Industrial control systems like SCADA)
+Types of MITRE ATT&CK Matrices
+MITRE maintains three main matrices:
+- Enterprise ATT&CK: Windows, Linux, macOS, Cloud, SaaS, Office 365, Containers
+- Mobile ATT&CK: Android, iOS
+- ICS ATT&CK: Industrial Control Systems / SCADA
 
-How MITRE ATT&CK is Used
-- Red Teaming (Simulating attacks)
-    - Red teams plan scenarios using ATT&CK to mimic real threat actors.
-    - Example: Use T1566 (Phishing) → T1059 (PowerShell) → T1003 (Credential Dumps).
-- Blue Team/SOC (Detection & response)
-    - SOC uses the framework to:
-    - Build logging/alert rules
-    - Detect suspicious behavior
-    - Map detection gaps
-    - Almost all SIEMs (Splunk, Sentinel, QRadar) map alerts to MITRE ATT&CK.
-- Threat Intelligence
-    - Threat actors like APT29, Lazarus Group, FIN7 have their techniques mapped in MITRE.
-    - Helps understand:
-        - Which techniques they use
-        - Their attack chain pattern
-- Security Product Evaluation
-    - EDR and XDR products are evaluated on how many techniques they can detect.
-    - Example: MITRE Engenuity’s evaluations.
+How MITRE ATT&CK Is Used
+- Red Teaming (Attack Simulation):
+    - Helps build realistic attack chains
+    - Common flow: T1566 (Phishing) -> T1059 (PowerShell) -> T1003 (Credential Dumping)
+- Blue Team / SOC (Detection & Response):
+    - SOCs use ATT&CK to:
+        - Create detection logic and alert rules
+        - Prioritize logs and telemetry
+        - Map coverage and identify gaps
+        - Align SIEM detections (Splunk, Sentinel, QRadar, Elastic)
+- Threat Intelligence:
+    - MITRE maps real threat groups (e.g., APT29, FIN7, Lazarus) to techniques to understand:
+        - Their preferred attack methods
+        - Common patterns in their operations
+- Security Product Evaluation:
+    - Products like EDR/XDR are assessed against ATT&CK techniques in MITRE Engenuity evaluations.
 
-Example MITRE Attack Flow
-- A real-world simulated attack may look like this:
-    - Initial Access → T1566.001 (Spear phishing email)
-    - Execution → T1059.001 (PowerShell)
-    - Privilege Escalation → T1068 (Vulnerability exploit)
-    - Credential Access → T1003.001 (LSASS dump)
-    - Lateral Movement → T1021.002 (SMB)
-    - Exfiltration → T1041 (Exfil via C2 channel)
-- This gives a step-by-step picture of attacker actions.
+Example MITRE Attack Chain
+A simulated attack might follow this sequence:
+- Initial Access -> T1566.001 (Spear-phishing Email)
+- Execution -> T1059.001 (PowerShell)
+- Privilege Escalation -> T1068 (Exploitation for PrivEsc)
+- Credential Access -> T1003.001 (LSASS Dump)
+- Lateral Movement -> T1021.002 (SMB/Remote Services)
+- Exfiltration -> T1041 (Exfiltration Over C2 Channel)
 
-Why MITRE ATT&CK is Important
-- Provides a universal language for attacks
-- Helps identify security coverage gaps
-- Improves incident detection
-- Supports threat hunting
-- Used worldwide by governments, banks, SOCs, and red teams
+Why MITRE ATT&CK Is Important
+- Provides a universal language for describing attacks
+- Improves detection engineering and SOC maturity
+- Helps identify visibility gaps
+- Supports threat hunting and incident response
+- Widely used by governments, enterprises, and security teams worldwide
 
-MITRE ATT&CK in Simple Words
-- MITRE ATT&CK is a detailed map of hacker behavior.
-- It shows what attackers do and how they do it at every stage of a cyberattack.
+MITRE ATT&CK - In Simple Words
+- A detailed map of hacker behavior.
+- It explains what attackers do and how they do it at every stage of a cyberattack.
 
 
 => Cyber Kill Chain
 
-The Cyber Kill Chain is a security framework created by Lockheed Martin to describe the stages of a cyberattack—from preparation to final impact.
+- The Cyber Kill Chain, developed by Lockheed Martin, is a security framework that outlines the seven stages of a cyberattack, from initial preparation to final impact.
+- It helps organizations understand attacker behavior, detect threats early, and disrupt attacks at any stage.
 
-It helps organizations:
-- Understand how attacks happen
-- Detect attackers early
-- Break (interrupt) the attack at any stage
+Why Cyber Kill Chain Exists
+- Before frameworks like MITRE ATT&CK became widely adopted, organizations needed a simple way to understand and break an attack before it caused damage.
+- Lockheed Martin developed the Cyber Kill Chain to:
+    - Provide a clear, step-by-step model of how cyberattacks progress
+    - Help security teams detect attackers early in the process
+    - Identify where defenders can disrupt (“kill”) the attack
+    - Improve SOC monitoring and incident response
+    - Give organizations a common, high-level language for attack stages
 
-It consists of 7 stages.
-- Reconnaissance (Information Gathering)
-    - Attacker collects information about the target.
+The 7 Stages of the Cyber Kill Chain
+1. Reconnaissance
+    - Information Gathering
+    - The attacker collects information to understand the target environment.
     - Examples:
-        - Scanning network ports
-        - Finding employee emails
-        - Gathering OSINT from LinkedIn
-        - Checking website technologies
+        - Scanning ports and services
+        - Identifying employee email addresses
+        - OSINT gathering (LinkedIn, social media, website info)
+        - Profiling technology stack
     - Goal: Identify weaknesses and plan the attack.
-- Weaponization
-    - Attacker prepares the malicious payload.
+2. Weaponization
+    - Creating the Malicious Payload
+    - The attacker prepares the exploit or malware to be delivered.
     - Examples:
-        - Creating a phishing email with a malware attachment
-        - Crafting an exploit-laced PDF
-        - Creating a malicious payload (trojan, RAT, ransomware)
-    - Goal: Build a weapon that will be delivered to the victim.
-- Delivery
-    - Attacker sends the weapon to the target.
+        - Crafting a phishing email with malware
+        - Creating an exploit-injected PDF or document
+        - Building payloads such as trojans, ransomware, or RATs
+        - Goal: Develop a “weapon” that will compromise the target.
+3. Delivery
+    - Transmitting the Weapon
+    - The attacker delivers the malicious payload to the victim.
     - Examples:
         - Spear-phishing email
-        - Malicious USB drive
+        - Malicious USB device
         - Drive-by download link
         - Compromised website
-    - Goal: Get the victim to receive or click something.
-- Exploitation
-    - The malicious code executes due to a vulnerability or user action.
+    - Goal: Ensure the target receives or interacts with the malicious content.
+4. Exploitation
+    - Executing the Payload
+    - The attack triggers execution, typically via a vulnerability or user action.
     - Examples:
-        - User opens the malicious attachment
-        - Browser exploit runs on compromised website
-        - Macro executes in malicious Excel file
-    - Goal: Exploit the system to run attacker’s code.
-- Installation
-    - Malware is installed to maintain access.
+        - Victim opens a malicious attachment
+        - Browser exploit is triggered on a compromised site
+        - Malicious macros run in Office files
+    - Goal: Execute code to compromise the system.
+5. Installation
+    - Establishing Foothold
+    - Malware is installed to maintain persistent access.
     - Examples:
-        - Installing Trojan / backdoor
-        - Creating a persistence mechanism
+        - Installing a backdoor or trojan
+        - Setting up persistence mechanisms
         - Dropping implants or RATs
-    - Goal: Achieve a foothold on the device.
-- Command & Control (C2)
-    - Infected system connects to attacker’s server.
+    - Goal: Secure long-term access to the compromised system.
+6. Command & Control (C2)
+    - Remote Access
+    - The infected device connects back to the attacker.
     - Examples:
-        - Malware reaching out to C2 server
-        - Reverse shell opened
-        - Encrypted communication channel
-    - Goal: Allow attacker to remotely control the system.
-- Actions on Objectives
-    - Attacker performs the final mission.
+        - Malware beaconing to a C2 server
+        - Establishing a reverse shell
+        - Creating encrypted communication channels
+    - Goal: Allow attackers to remotely control the system.
+7. Actions on Objectives
+    - Final Mission
+    - The attacker performs the intended malicious activity.
     - Examples:
-        - Data theft
-        - Ransomware encryption
-        - Destroying systems
-        - Creating new accounts
-        - Moving laterally to other systems
-    - Goal: Achieve attacker’s main purpose.
+        - Data theft or data exfiltration
+        - Ransomware deployment
+        - System destruction or sabotage
+        - Creating rogue accounts
+        - Lateral movement across the network
+    - Goal: Achieve the attacker’s ultimate objective.
 
-Why Cyber Kill Chain is Important
-- Helps security teams detect attacks early
-- Helps break the attack at any stage ("kill the chain")
-- Used for threat hunting & incident response
-- Forms the basis of many SOC and SIEM detection strategies
+How the Cyber Kill Chain Is Used
+- Threat Detection: SOC teams map alerts to kill chain stages (e.g., Delivery -> suspicious emails, C2 -> beaconing traffic).
+- Incident Response: IR teams identify which stage the attacker is in and take targeted action to contain the attack.
+- Threat Hunting: Hunters look for patterns along the kill chain—such as scanning (Recon) or malware execution (Exploitation).
+- Security Architecture: Organizations design security controls to interrupt each stage (e.g., email filtering for Delivery, AV/EDR for Installation).
+- Training & Awareness: Provides a simple and easy-to-understand model for explaining cyberattacks to non-technical teams.
+
+Example Cyber Kill Chain Flow
+A typical attacker workflow might look like:
+- Reconnaissance -> Collecting employee emails
+- Weaponization -> Creating a malicious macro-enabled Excel file
+- Delivery -> Sending the file in a phishing email
+- Exploitation -> User opens the attachment and enables macros
+- Installation -> Malware installs a backdoor
+- C2 -> Backdoor connects to attacker’s server
+- Actions on Objectives -> Attacker exfiltrates sensitive data
+
+Why the Cyber Kill Chain Is Important
+- Helps detect and disrupt attacks at any stage
+- Supports incident response, threat hunting, and forensic analysis
+- Strengthens SOC visibility and detection strategies
+- Provides a clear framework for understanding attack progression
+
+Cyber Kill Chain – In Simple Words
+- A step-by-step map of how hackers attack a system.
+- If you break any step, you break the attack.
 
 
-=> Active Directory? (AD)
+=> Active Directory (AD)
 
-Active Directory (AD) is Microsoft’s directory service used to manage users, computers, groups, policies, and permissions in a Windows domain network. Think of it as the central brain of a corporate network.
+- Active Directory (AD) is Microsoft’s directory service used to manage users, computers, groups, policies, and permissions in a Windows domain network.
+- Think of it as the central brain of a corporate network.
 
 It allows organizations to:
 - Authenticate & authorize users
@@ -211,7 +240,7 @@ Active Directory Domain Services (AD DS)
             - User accountsPasswords
             - Authentication (Kerberos)
             - Policies
-        - If DC is down → users cannot log in.
+        - If DC is down -> users cannot log in.
     - Forest
         - A forest contains multiple domains under one umbrella.
         - It is the top-level AD structure.
@@ -247,7 +276,7 @@ AD Authentication Methods
         - TGT (Ticket Granting Ticket)
         - Service Tickets
     - Key terms:
-        - KDC – Key Distribution Center
+        - KDC - Key Distribution Center
         - AS-REQ / AS-REP
         - TGS-REQ / TGS-REP
 - NTLM Authentication
@@ -258,11 +287,11 @@ AD Authentication Methods
         - Legacy apps
 
 AD Infrastructure Terms
-- DNS → AD heavily depends on DNS
-- Sites → Used for replication control
-- Subnets → Define network boundaries
-- AD Replication → DCs synchronize data
-- SYSVOL folder → Stores GPOs, scripts
+- DNS -> AD heavily depends on DNS
+- Sites -> Used for replication control
+- Subnets -> Define network boundaries
+- AD Replication -> DCs synchronize data
+- SYSVOL folder -> Stores GPOs, scripts
 
 Common Active Directory Attacks (Red Team)
 - Kerberoasting: Stealing service account tickets and cracking their password offline.
@@ -299,7 +328,6 @@ Tools Used with Active Directory
     - CrackMapExec
     - PingCastle
     - PowerSploit
-
 
 -----
 
